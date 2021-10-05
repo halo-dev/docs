@@ -72,7 +72,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: '系统开发',
+          label: '主题开发',
           items: [
             'developer-guide/theme/prepare',
             'developer-guide/theme/config-files',
