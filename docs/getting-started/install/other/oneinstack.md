@@ -131,12 +131,12 @@ vim /usr/local/nginx/conf/vhost/demo.halo.run.conf
 2. 删除一些不必要的配置
 
 ```nginx
-  location ~ [^/]\.php(/|$) {
-    #fastcgi_pass remote_php_ip:9000;
-    fastcgi_pass unix:/dev/shm/php-cgi.sock;
-    fastcgi_index index.php;
-    include fastcgi.conf;
-  }
+location ~ [^/]\.php(/|$) {
+  #fastcgi_pass remote_php_ip:9000;
+  fastcgi_pass unix:/dev/shm/php-cgi.sock;
+  fastcgi_index index.php;
+  include fastcgi.conf;
+}
 ```
 
 此段配置是针对 php 应用的，所以可以删掉。
@@ -154,33 +154,33 @@ upstream halo {
 4. 在 `server` 节点添加如下配置
 
 ```nginx
-  location / {
-    proxy_set_header HOST $host;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_pass http://halo;
-  }
+location / {
+  proxy_set_header HOST $host;
+  proxy_set_header X-Forwarded-Proto $scheme;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_pass http://halo;
+}
 ```
 
 5. 修改 `location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$` 节点
 
 ```nginx
-  location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {
-    proxy_pass http://halo;
-    expires 30d;
-    access_log off;
-  }
+location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {
+  proxy_pass http://halo;
+  expires 30d;
+  access_log off;
+}
 ```
 
 6. 修改 `location ~ .*\.(js|css)?$` 节点
 
 ```nginx
-  location ~ .*\.(js|css)?$ {
-    proxy_pass http://halo;
-    expires 7d;
-    access_log off;
-  }
+location ~ .*\.(js|css)?$ {
+  proxy_pass http://halo;
+  expires 7d;
+  access_log off;
+}
 ```
 
 如果不按照第 5，6 步操作，请求一些图片或者样式文件不会经过 Halo，所以请不要忽略此配置。
