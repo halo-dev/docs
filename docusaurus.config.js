@@ -12,8 +12,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
     onBrokenMarkdownLinks: "warn",
     favicon: "img/favicon.ico",
     i18n: {
-      defaultLocale: 'zh-CN',
-      locales: ['zh-CN']
+      defaultLocale: 'zh-Hans',
+      locales: ['zh-Hans']
     },
     organizationName: "halo-dev", // Usually your GitHub org/user name.
     projectName: "halo", // Usually your repo name.

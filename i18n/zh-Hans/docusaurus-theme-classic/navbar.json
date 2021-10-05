@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "Halo Documents",
+    "description": "The title in the navbar"
+  },
+  "item.label.官网": {
+    "message": "官网",
+    "description": "Navbar item with label 官网"
+  },
+  "item.label.论坛": {
+    "message": "论坛",
+    "description": "Navbar item with label 论坛"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}
