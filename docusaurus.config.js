@@ -10,10 +10,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
     baseUrl: "/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
-    favicon: "img/favicon.ico",
+    favicon: "img/favicon-96x96.png",
     i18n: {
-      defaultLocale: 'zh-Hans',
-      locales: ['zh-Hans']
+      defaultLocale: "zh-Hans",
+      locales: ["zh-Hans"],
     },
     organizationName: "halo-dev", // Usually your GitHub org/user name.
     projectName: "halo", // Usually your repo name.
@@ -30,7 +30,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               "https://github.com/facebook/docusaurus/edit/main/website/",
             routeBasePath: "/",
             showLastUpdateTime: true,
-            showLastUpdateAuthor: true
+            showLastUpdateAuthor: true,
           },
           blog: false,
           theme: {
@@ -78,6 +78,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           theme: darkCodeTheme,
           darkTheme: darkCodeTheme,
         },
+        googleAnalytics: {
+          trackingID: "UA-110780416-7",
+        },
       }),
+    plugins: ["@docusaurus/plugin-ideal-image"],
   }
 );

@@ -52,7 +52,7 @@ java -jar halo.jar
 docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=always halohub/halo
 ```
 
-详细部署文档请查阅：<https://docs.halo.run/install/index>
+详细部署文档请查阅：<https://docs.halo.run/getting-started/install/linux>
 
 ## 生态
 
@@ -81,5 +81,5 @@ Halo 使用 GPL-v3.0 协议开源，请遵守开源协议。
 
 > 如果 Halo 对您有帮助，不妨赞助我们
 
-<https://docs.halo.run/zh/contribution/sponsor>
+<https://docs.halo.run/contribution/sponsor>
 

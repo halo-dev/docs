@@ -838,7 +838,7 @@ ${metas.key}
 
 访问路径不固定，视固定链接配置而定，默认为：`http://yourdomain/categories`
 
-此页面无页面变量，可以使用 [模板标签](https://docs.halo.run/zh/developer-guide/theme/template-tag) 获取分类列表。
+此页面无页面变量，可以使用 [模板标签](/developer-guide/theme/template-tag) 获取分类列表。
 
 ## 单个分类所属文章页面（category.ftl）
 
@@ -986,7 +986,7 @@ ${category.attribute}
 
 访问路径不固定，视固定链接配置而定，默认为：`http://yourdomain/tags`
 
-此页面无页面变量，可以使用 [模板标签](https://docs.halo.run/zh/developer-guide/theme/template-tag) 获取标签列表。
+此页面无页面变量，可以使用 [模板标签](/developer-guide/theme/template-tag) 获取标签列表。
 
 ## 单个标签所属文章页面（tag.ftl）
 
@@ -1253,7 +1253,7 @@ ${keyword!}
 
 访问路径不固定，视固定链接配置而定，默认为：`http://yourdomain/links`
 
-此页面无页面变量，可以使用 [模板标签](https://docs.halo.run/zh/developer-guide/theme/template-tag) 获取友情链接列表。
+此页面无页面变量，可以使用 [模板标签](/developer-guide/theme/template-tag) 获取友情链接列表。
 
 ## 图库页面（photos.ftl）
 
