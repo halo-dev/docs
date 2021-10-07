@@ -68,6 +68,11 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
               label: "GitHub",
               position: "right",
             },
+            {
+              href: "https://gitee.com/halo-dev/halo",
+              label: "Gitee",
+              position: "right",
+            },
           ],
         },
         footer: {
@@ -80,6 +85,21 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         },
         googleAnalytics: {
           trackingID: "UA-110780416-7",
+        },
+        algolia: {
+          apiKey: "YOUR_API_KEY",
+          indexName: "YOUR_INDEX_NAME",
+
+          // Optional: see doc section below
+          contextualSearch: true,
+
+          // Optional: see doc section below
+          appId: "YOUR_APP_ID",
+
+          // Optional: Algolia search parameters
+          searchParameters: {},
+
+          //... other Algolia params
         },
       }),
     plugins: ["@docusaurus/plugin-ideal-image"],
