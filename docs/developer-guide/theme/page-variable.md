@@ -1,11 +1,6 @@
 ---
 title: 页面变量
 description: 每个页面所返回的变量
-published: true
-date: 2021-07-09T03:07:03.814Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-11T15:14:42.747Z
 ---
 
 ## 首页（index.ftl）

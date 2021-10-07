@@ -1,11 +1,6 @@
 ---
 title: 赞助我们
 description: 如果 Halo 对您有帮助，不妨赞助我们
-published: true
-date: 2021-09-22T11:59:35.914Z
-tags: 
-editor: markdown
-dateCreated: 2021-01-26T16:33:09.606Z
 ---
 
 ## 为什么需要赞助

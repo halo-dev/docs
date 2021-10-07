@@ -1,11 +1,6 @@
 ---
 title: 版本升级
 description: 版本升级指南
-published: true
-date: 2021-09-16T13:36:45.343Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-09T12:53:58.281Z
 ---
 
 选择你部署的平台：

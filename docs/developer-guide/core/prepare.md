@@ -1,11 +1,6 @@
 ---
 title: 相关说明
 description: 开发环境的一些说明
-published: true
-date: 2021-07-09T03:07:37.190Z
-tags: 
-editor: markdown
-dateCreated: 2021-03-04T12:56:25.883Z
 ---
 
 ## 所需要的环境

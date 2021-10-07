@@ -1,11 +1,6 @@
 ---
 title: 代码贡献
 description: 代码贡献指南
-published: true
-date: 2021-07-11T15:28:35.063Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-11T06:36:02.384Z
 ---
 
 > 欢迎你参与 Halo 的开发，下面是参与代码贡献的指南，以供参考。

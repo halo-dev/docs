@@ -1,11 +1,6 @@
 ---
 title: 写在前面
 description: 在开始前，您需要了解的事项
-published: true
-date: 2021-09-22T12:00:00.312Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-09T12:51:03.801Z
 ---
 
 ## 环境要求

@@ -1,11 +1,6 @@
 ---
 title: 配置文件
 description: 主题配置文件的说明
-published: true
-date: 2021-10-04T08:43:29.708Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-11T15:12:10.695Z
 ---
 
 > Halo 的主题模块使用 yaml 来对主题进行配置，`theme.yaml` 里面主要描述主题的名称，开发者的信息，开源地址等等。`settings.yaml` 包含了主题所有的配置选项，需要注意的是，这些选项仅仅是用于构建配置表单，并不起到对主题的配置作用。

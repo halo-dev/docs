@@ -1,11 +1,6 @@
 ---
 title: 全局变量
 description: 系统提供的一些全局变量
-published: true
-date: 2021-07-09T03:07:01.155Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-11T15:13:43.148Z
 ---
 
 ## 博客地址

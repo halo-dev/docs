@@ -1,11 +1,6 @@
 ---
 title: 模板标签
 description: 用于获取数据的模板标签
-published: true
-date: 2021-08-01T06:33:03.314Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-11T05:09:17.676Z
 ---
 
 > 模板标签可以运用在页面的任何地方。

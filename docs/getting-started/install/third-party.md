@@ -1,10 +1,5 @@
 ---
 title: 三方指南
-published: true
-date: 2021-07-09T03:06:34.872Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-09T12:52:31.360Z
 ---
 
 :::tip

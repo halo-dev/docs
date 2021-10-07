@@ -1,11 +1,6 @@
 ---
 title: 公共宏模板
 description: 系统提供的一些宏模板
-published: true
-date: 2021-09-18T16:21:55.758Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-11T15:15:22.987Z
 ---
 
 > 为了减少重复代码，我们将某些常见的全局变量封装成了一个公共模板，我们只需要引入该模板，然后调用其中的宏模板即可。

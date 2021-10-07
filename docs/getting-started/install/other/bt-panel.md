@@ -1,11 +1,6 @@
 ---
 title: 与宝塔面板配合使用
 description: 与宝塔面板配合使用的指南
-published: true
-date: 2021-07-10T05:59:10.401Z
-tags: 
-editor: markdown
-dateCreated: 2021-01-05T12:21:13.846Z
 ---
 
 ## 声明

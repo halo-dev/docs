@@ -1,11 +1,6 @@
 ---
 title: 系统结构
 description: Halo 项目的构成
-published: true
-date: 2021-07-09T03:07:35.008Z
-tags: 
-editor: markdown
-dateCreated: 2021-03-04T12:53:48.806Z
 ---
 
 [Halo](https://github.com/halo-dev/halo) 博客系统分为以下四个部分：

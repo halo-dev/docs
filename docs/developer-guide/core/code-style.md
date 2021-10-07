@@ -1,11 +1,6 @@
 ---
 title: 代码风格
 description: 代码风格的相关配置说明
-published: true
-date: 2021-07-09T03:07:39.180Z
-tags: 
-editor: markdown
-dateCreated: 2021-03-04T12:58:29.590Z
 ---
 
 Halo 添加了 checkstyle 插件，来保证每位提交者代码的风格保持一致，减少无效代码的修改。本篇文章主要讲解如何在 IDEA 中添加 CheckStyle 插件，并引入项目所提供的 checkstyle.xml 配置。

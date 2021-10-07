@@ -1,11 +1,6 @@
 ---
 title: 资源下载
 description: 目前所有与 Halo 相关的下载地址
-published: true
-date: 2021-07-09T03:07:18.643Z
-tags: 
-editor: markdown
-dateCreated: 2020-12-27T13:01:44.286Z
 ---
 
 ## Github

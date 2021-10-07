@@ -1,11 +1,6 @@
 ---
 title: 配置参考
 description: Halo 配置文件的详细介绍及参考
-published: true
-date: 2021-08-27T05:31:10.729Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-16T07:12:17.629Z
 ---
 
 Halo 的配置文件名为 `application.yaml`，其必须位于[工作目录](/getting-started/prepare#工作目录) `~/.halo` 下。 Halo 会读取该目录下的配置文件进行加载。

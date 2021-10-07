@@ -1,11 +1,6 @@
 ---
 title: 使用 Docker 部署 Halo
 description: 使用 Docker 部署
-published: true
-date: 2021-09-16T13:35:47.626Z
-tags: 
-editor: markdown
-dateCreated: 2020-10-09T12:50:08.650Z
 ---
 
 :::info
