@@ -28,5 +28,6 @@ jobs:
         ARGS: "-avzr --delete"
         SOURCE: "build/"
         REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+        REMOTE_PORT: ${{ secrets.SERVER_PORT }}
         REMOTE_USER: ${{ secrets.SERVER_USER }}
         TARGET: "/data/wwwroot/docstest.halo.run"
