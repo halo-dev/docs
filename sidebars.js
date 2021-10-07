@@ -81,6 +81,11 @@ module.exports = {
             'developer-guide/theme/page-variable',
             'developer-guide/theme/template-tag',
           ]
+        },
+        {
+          type: 'link',
+          label: 'REST API',
+          href: 'https://api.halo.run'
         }
       ],
     },

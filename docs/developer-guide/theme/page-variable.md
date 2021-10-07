@@ -9,8 +9,7 @@ description: 每个页面所返回的变量
 
 ### posts（List）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 <#list posts.content as post>
@@ -18,7 +17,7 @@ description: 每个页面所返回的变量
 </#list>
 ```
 
-##### 参数
+#### 参数
 
 ```json
 [{
@@ -88,7 +87,7 @@ description: 每个页面所返回的变量
 }]
 ```
 
-##### 示例
+#### 示例
 
 遍历输出首页的文章：
 
@@ -118,8 +117,7 @@ description: 每个页面所返回的变量
 
 ### post（Object）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 ${post.attribute}
@@ -127,7 +125,7 @@ ${post.attribute}
 
 注：attribute 代表具体属性。
 
-##### 参数
+#### 参数
 
 ```json
 {
@@ -199,7 +197,7 @@ ${post.attribute}
 }
 ```
 
-##### 示例
+#### 示例
 
 获取文章标题：
 
@@ -215,8 +213,7 @@ ${post.attribute}
 
 ### prevPost（Object）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 ${prevPost.attribute}
@@ -224,7 +221,7 @@ ${prevPost.attribute}
 
 注：attribute 代表具体属性。
 
-##### 参数
+#### 参数
 
 ```json
 {
@@ -296,7 +293,7 @@ ${prevPost.attribute}
 }
 ```
 
-##### 示例
+#### 示例
 
 获取上一篇文章的信息：
 
@@ -314,8 +311,7 @@ ${prevPost.attribute}
 
 ### nextPost（Object）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 ${nextPost.attribute}
@@ -323,7 +319,7 @@ ${nextPost.attribute}
 
 注：attribute 代表具体属性。
 
-##### 参数
+#### 参数
 
 ```json
 {
@@ -395,7 +391,7 @@ ${nextPost.attribute}
 }
 ```
 
-##### 示例
+#### 示例
 
 获取下一篇文章的信息：
 
@@ -413,8 +409,7 @@ ${nextPost.attribute}
 
 ### categories（List）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 <#list categories as category>
@@ -422,7 +417,7 @@ ${nextPost.attribute}
 </#list>
 ```
 
-##### 参数
+#### 参数
 
 ```json
 [{
@@ -438,7 +433,7 @@ ${nextPost.attribute}
 }]
 ```
 
-##### 示例
+#### 示例
 
 获取文章的分类列表：
 
@@ -457,8 +452,7 @@ ${nextPost.attribute}
 
 ### tags（List）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 <#list tags as tag>
@@ -466,7 +460,7 @@ ${nextPost.attribute}
 </#list>
 ```
 
-##### 参数
+#### 参数
 
 ```json
 [{
@@ -479,7 +473,7 @@ ${nextPost.attribute}
 }]
 ```
 
-##### 示例
+#### 示例
 
 获取文章的标签列表：
 
@@ -498,8 +492,7 @@ ${nextPost.attribute}
 
 ### metas（Object）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 ${metas.key}
@@ -507,11 +500,11 @@ ${metas.key}
 
 注：attribute 代表具体 key 值。
 
-##### 参数
+#### 参数
 
 无
 
-##### 示例
+#### 示例
 
 获取用户设置的音乐链接：
 
@@ -531,8 +524,7 @@ ${metas.key}
 
 ### sheet（Object）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 ${sheet.attribute}
@@ -540,7 +532,7 @@ ${sheet.attribute}
 
 注：attribute 代表具体属性。
 
-##### 参数
+#### 参数
 
 ```json
 {
@@ -583,7 +575,7 @@ ${sheet.attribute}
 }
 ```
 
-##### 示例
+#### 示例
 
 获取页面标题：
 
@@ -599,8 +591,7 @@ ${sheet.attribute}
 
 ### metas（Object）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 ${metas.key}
@@ -608,11 +599,11 @@ ${metas.key}
 
 注：attribute 代表具体 key 值。
 
-##### 参数
+#### 参数
 
 无
 
-##### 示例
+#### 示例
 
 获取用户设置的音乐链接：
 
@@ -632,8 +623,7 @@ ${metas.key}
 
 ### posts（List）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 <#list posts.content as post>
@@ -641,7 +631,7 @@ ${metas.key}
 </#list>
 ```
 
-##### 参数
+#### 参数
 
 ```json
 [{
@@ -711,7 +701,7 @@ ${metas.key}
 }]
 ```
 
-##### 示例
+#### 示例
 
 遍历输出归档页面的文章（无年份分组）：
 
@@ -731,8 +721,7 @@ ${metas.key}
 
 ### archives（List）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 <#list archives.content as archive>
@@ -740,7 +729,7 @@ ${metas.key}
 </#list>
 ```
 
-##### 参数
+#### 参数
 
 ```json
 {
@@ -803,7 +792,7 @@ ${metas.key}
 }
 ```
 
-##### 示例
+#### 示例
 
 遍历输出归档页面的文章（有年份分组）：
 
@@ -841,8 +830,7 @@ ${metas.key}
 
 ### posts（List）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 <#list posts.content as post>
@@ -850,7 +838,7 @@ ${metas.key}
 </#list>
 ```
 
-##### 参数
+#### 参数
 
 ```json
 [{
@@ -920,7 +908,7 @@ ${metas.key}
 }]
 ```
 
-##### 示例
+#### 示例
 
 遍历输出某个分类的文章：
 
@@ -940,8 +928,7 @@ ${metas.key}
 
 ### category（Object）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 ${category.attribute}
@@ -949,7 +936,7 @@ ${category.attribute}
 
 注：attribute 代表具体属性。
 
-##### 参数
+#### 参数
 
 ```json
 {
@@ -965,7 +952,7 @@ ${category.attribute}
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <a href="${category.fullPath!}">分类：${category.name!}</a>
@@ -989,8 +976,7 @@ ${category.attribute}
 
 ### posts（List）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 <#list posts.content as post>
@@ -998,7 +984,7 @@ ${category.attribute}
 </#list>
 ```
 
-##### 参数
+#### 参数
 
 ```json
 [{
@@ -1068,7 +1054,7 @@ ${category.attribute}
 }]
 ```
 
-##### 示例
+#### 示例
 
 遍历输出某个标签的文章：
 
@@ -1088,8 +1074,7 @@ ${category.attribute}
 
 ### tag（Object）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 ${tag.attribute}
@@ -1097,7 +1082,7 @@ ${tag.attribute}
 
 注：attribute 代表具体属性。
 
-##### 参数
+#### 参数
 
 ```json
 {
@@ -1110,7 +1095,7 @@ ${tag.attribute}
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <a href="${tag.fullPath!}">标签：${tag.name!}</a>
@@ -1128,18 +1113,17 @@ ${tag.attribute}
 
 ### keyword（String）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 ${keyword!}
 ```
 
-##### 参数
+#### 参数
 
 无
 
-##### 示例
+#### 示例
 
 ```html
 搜索关键字为：${keyword!}
@@ -1147,8 +1131,7 @@ ${keyword!}
 
 ### posts（List）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 <#list posts.content as post>
@@ -1156,7 +1139,7 @@ ${keyword!}
 </#list>
 ```
 
-##### 参数
+#### 参数
 
 ```json
 [{
@@ -1226,7 +1209,7 @@ ${keyword!}
 }]
 ```
 
-##### 示例
+#### 示例
 
 遍历输出某个搜索结果的文章：
 
@@ -1256,8 +1239,7 @@ ${keyword!}
 
 ### photos（List）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 <#list photos.content as photo>
@@ -1265,7 +1247,7 @@ ${keyword!}
 </#list>
 ```
 
-##### 参数
+#### 参数
 
 ```json
 {
@@ -1291,7 +1273,7 @@ ${keyword!}
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <#list photos.content as photo>
@@ -1313,8 +1295,7 @@ ${keyword!}
 
 ### journals（List）
 
-#### Tabs {.tabset}
-##### 语法
+#### 语法
 
 ```html
 <#list journals.content as journal>
@@ -1322,7 +1303,7 @@ ${keyword!}
 </#list>
 ```
 
-##### 参数
+#### 参数
 
 ```json
 {
@@ -1347,7 +1328,7 @@ ${keyword!}
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <ul>

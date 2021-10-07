@@ -3,15 +3,15 @@ title: 模板标签
 description: 用于获取数据的模板标签
 ---
 
-> 模板标签可以运用在页面的任何地方。
+:::note
+模板标签可以运用在页面的任何地方。
+:::
 
 ## 文章（postTag）
 
 ### 获取最新文章（latest）
 
-#### latest {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@postTag method="latest" top="获取条数">
@@ -24,7 +24,7 @@ description: 用于获取数据的模板标签
 1. method：latest
 2. top：所需要获取的条数
 
-##### 返回参数
+#### 返回参数
 
 posts:
 
@@ -74,7 +74,7 @@ posts:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@postTag method="latest" top="3">
@@ -94,9 +94,7 @@ posts:
 
 ### 获取所有文章的数量（count）
 
-#### count {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@postTag method="count">
@@ -108,13 +106,13 @@ posts:
 
 1. method：count
 
-##### 返回参数
+#### 返回参数
 
 ```json
 count: long
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@postTag method="count">
@@ -130,9 +128,7 @@ count: long
 
 ### 根据年份归档（archiveYear）
 
-#### archiveYear {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@postTag method="archiveYear">
@@ -144,7 +140,7 @@ count: long
 
 1. method：archiveYear
 
-##### 返回参数
+#### 返回参数
 
 archives:
 
@@ -197,7 +193,7 @@ archives:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@postTag method="archiveYear">
@@ -239,9 +235,7 @@ archives:
 
 ### 根据年月归档（archiveMonth）
 
-#### archiveMonth {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@postTag method="archiveMonth">
@@ -253,7 +247,7 @@ archives:
 
 1. method：archiveMonth
 
-##### 返回参数
+#### 返回参数
 
 archives:
 
@@ -307,7 +301,7 @@ archives:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@postTag method="archiveMonth">
@@ -349,9 +343,7 @@ archives:
 
 ### 归档（archive）
 
-#### archive {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@postTag method="archive" type="year or month">
@@ -364,7 +356,7 @@ archives:
 1. method：archive
 2. type: `year` 或者 `month`
 
-##### 返回参数
+#### 返回参数
 
 archives(year):
 
@@ -470,7 +462,7 @@ archives(month):
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@postTag method="archive" type="month">
@@ -512,9 +504,7 @@ archives(month):
 
 ### 根据分类 id 获取文章（listByCategoryId）
 
-#### listByCategoryId {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@postTag method="listByCategoryId" categoryId="分类 id">
@@ -527,7 +517,7 @@ archives(month):
 1. method：listByCategoryId
 2. categoryId：分类 id
 
-##### 返回参数
+#### 返回参数
 
 posts:
 
@@ -577,7 +567,7 @@ posts:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@postTag method="listByCategoryId" top="${category.id?c}">
@@ -598,9 +588,7 @@ posts:
 
 ### 根据分类 slug 获取文章（listByCategorySlug）
 
-#### listByCategorySlug {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@postTag method="listByCategorySlug" categorySlug="分类 slug">
@@ -613,7 +601,7 @@ posts:
 1. method：listByCategorySlug
 2. categorySlug：分类 slug
 
-##### 返回参数
+#### 返回参数
 
 posts:
 
@@ -663,7 +651,7 @@ posts:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@postTag method="listByCategorySlug" categorySlug="${category.slug!}">
@@ -684,9 +672,7 @@ posts:
 
 ### 根据标签 id 获取文章（listByTagId）
 
-#### listByTagId {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@postTag method="listByTagId" tagId="标签 id">
@@ -699,7 +685,7 @@ posts:
 1. method：listByTagId
 2. tagId：标签 id
 
-##### 返回参数
+#### 返回参数
 
 posts:
 
@@ -749,7 +735,7 @@ posts:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@postTag method="listByTagId" tagId="${tag.id?c}">
@@ -770,9 +756,7 @@ posts:
 
 ### 根据标签 slug 获取文章（listByTagSlug）
 
-#### listByTagSlug {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@postTag method="listByTagSlug" tagSlug="标签 slug">
@@ -785,7 +769,7 @@ posts:
 1. method：listByTagSlug
 2. tagSlug：标签 slug
 
-##### 返回参数
+#### 返回参数
 
 posts:
 
@@ -835,7 +819,7 @@ posts:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@postTag method="listByTagSlug" tagSlug="${tag.slug!}">
@@ -858,9 +842,7 @@ posts:
 
 ### 获取最新评论（latest）
 
-#### latest {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@commentTag method="latest" top="获取条数">
@@ -873,7 +855,7 @@ posts:
 1. method：latest
 2. top：所需要获取的条数
 
-##### 返回参数
+#### 返回参数
 
 comments:
 
@@ -908,7 +890,7 @@ comments:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@commentTag method="latest" top="获取条数">
@@ -931,9 +913,7 @@ comments:
 
 ### 获取所有评论的数量（count）
 
-#### count {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@commentTag method="count">
@@ -945,13 +925,13 @@ comments:
 
 1. method：count
 
-##### 返回参数
+#### 返回参数
 
 ```json
 count: long
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@commentTag method="count">
@@ -969,9 +949,7 @@ count: long
 
 ### 获取所有分类目录（list）
 
-#### list {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@categoryTag method="list">
@@ -983,7 +961,7 @@ count: long
 
 1. method：list
 
-##### 返回参数
+#### 返回参数
 
 categories:
 
@@ -1001,7 +979,7 @@ categories:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@categoryTag method="list">
@@ -1020,9 +998,7 @@ categories:
 
 ### 获取文章的所有分类（listByPostId）
 
-#### listByPostId {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@categoryTag method="listByPostId" postId="文章 id">
@@ -1035,7 +1011,7 @@ categories:
 1. method：listByPostId
 2. postId：文章 id
 
-##### 返回参数
+#### 返回参数
 
 categories:
 
@@ -1052,7 +1028,7 @@ categories:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@categoryTag method="listByPostId" postId="${post.id?c}">
@@ -1071,9 +1047,7 @@ categories:
 
 ### 获取所有分类的数量（count）
 
-#### count {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@categoryTag method="count">
@@ -1085,13 +1059,13 @@ categories:
 
 1. method：count
 
-##### 返回参数
+#### 返回参数
 
 ```json
 count: long
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@categoryTag method="count">
@@ -1109,9 +1083,7 @@ count: long
 
 ### 获取所有标签（list）
 
-#### list {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@tagTag method="list">
@@ -1123,7 +1095,7 @@ count: long
 
 1. method：list
 
-##### 返回参数
+#### 返回参数
 
 tags:
 
@@ -1139,7 +1111,7 @@ tags:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@tagTag method="list">
@@ -1158,9 +1130,7 @@ tags:
 
 ### 获取文章的所有标签（listByPostId）
 
-#### listByPostId {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@tagTag method="listByPostId" postId="文章 id">
@@ -1173,7 +1143,7 @@ tags:
 1. method：listByPostId
 2. postId：文章 id
 
-##### 返回参数
+#### 返回参数
 
 tags:
 
@@ -1188,7 +1158,7 @@ tags:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@tagTag method="listByPostId" postId="${post.id?c}">
@@ -1207,9 +1177,7 @@ tags:
 
 ### 获取所有标签的数量（count）
 
-#### count {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@tagTag method="count">
@@ -1221,13 +1189,13 @@ tags:
 
 1. method：count
 
-##### 返回参数
+#### 返回参数
 
 ```json
 count: long
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@tagTag method="count">
@@ -1245,9 +1213,7 @@ count: long
 
 ### 获取所有菜单（list）
 
-#### list {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@menuTag method="list">
@@ -1259,7 +1225,7 @@ count: long
 
 1. method：list
 
-##### 返回参数
+#### 返回参数
 
 menus:
 
@@ -1276,7 +1242,7 @@ menus:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@menuTag method="list">
@@ -1305,9 +1271,7 @@ menus:
 
 ### 获取多级菜单（tree）
 
-#### tree {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@menuTag method="tree">
@@ -1319,7 +1283,7 @@ menus:
 
 1. method：tree
 
-##### 返回参数
+#### 返回参数
 
 menus:
 
@@ -1347,7 +1311,7 @@ menus:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@menuTag method="tree">
@@ -1393,9 +1357,7 @@ menus:
 
 ### 根据分组获取菜单（listByTeam）
 
-#### listByTeam {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@menuTag method="listByTeam" team="team 名称">
@@ -1408,7 +1370,7 @@ menus:
 1. method：listByTeam
 2. team：team 名称
 
-##### 返回参数
+#### 返回参数
 
 menus:
 
@@ -1425,7 +1387,7 @@ menus:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@menuTag method="listByTeam" team="main">
@@ -1454,9 +1416,7 @@ menus:
 
 ### 根据分组获取多级菜单（treeByTeam）
 
-#### treeByTeam {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@menuTag method="treeByTeam" team="team 名称">
@@ -1469,7 +1429,7 @@ menus:
 1. method：treeByTeam
 2. team：team 名称
 
-##### 返回参数
+#### 返回参数
 
 menus:
 
@@ -1497,7 +1457,7 @@ menus:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@menuTag method="treeByTeam" team="main">
@@ -1545,9 +1505,7 @@ menus:
 
 ### 获取所有友情链接（list）
 
-#### list {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@linkTag method="list">
@@ -1559,7 +1517,7 @@ menus:
 
 1. method：list
 
-##### 返回参数
+#### 返回参数
 
 links:
 
@@ -1577,7 +1535,7 @@ links:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <ul>
@@ -1612,9 +1570,7 @@ links:
 
 ### 乱序获取所有友情链接（listByRandom）
 
-#### listByRandom {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@linkTag method="listByRandom">
@@ -1626,7 +1582,7 @@ links:
 
 1. method：listByRandom
 
-##### 返回参数
+#### 返回参数
 
 ```json
 [{
@@ -1642,7 +1598,7 @@ links:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <ul>
@@ -1677,9 +1633,7 @@ links:
 
 ### 获取分组友情链接（listTeams）
 
-#### listTeams {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@linkTag method="listTeams">
@@ -1691,7 +1645,7 @@ links:
 
 1. method：listTeams
 
-##### 返回参数
+#### 返回参数
 
 teams:
 
@@ -1710,7 +1664,7 @@ teams:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@linkTag method="listTeams">
@@ -1762,9 +1716,7 @@ teams:
 
 ### 乱序获取分组友情链接（listTeamsByRandom）
 
-#### listTeamsByRandom {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@linkTag method="listTeamsByRandom">
@@ -1776,7 +1728,7 @@ teams:
 
 1. method：listTeamsByRandom
 
-##### 返回参数
+#### 返回参数
 
 teams:
 
@@ -1795,7 +1747,7 @@ teams:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@linkTag method="listTeamsByRandom">
@@ -1847,9 +1799,7 @@ teams:
 
 ### 获取所有友情链接的数量（count）
 
-#### count {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@linkTag method="count">
@@ -1861,13 +1811,13 @@ teams:
 
 1. method：count
 
-##### 返回参数
+#### 返回参数
 
 ```json
 count: long
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@linkTag method="count">
@@ -1885,9 +1835,7 @@ count: long
 
 ### 获取所有图片（list）
 
-#### list {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@photoTag method="list">
@@ -1899,7 +1847,7 @@ count: long
 
 1. method：list
 
-##### 返回参数
+#### 返回参数
 
 photos:
 
@@ -1918,7 +1866,7 @@ photos:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@photoTag method="list">
@@ -1938,9 +1886,7 @@ photos:
 
 ### 获取所有分组图片（listTeams）
 
-#### listTeams {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@photoTag method="listTeams">
@@ -1952,7 +1898,7 @@ photos:
 
 1. method：listTeams
 
-##### 返回参数
+#### 返回参数
 
 teams:
 
@@ -1972,7 +1918,7 @@ teams:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@photoTag method="listTeams">
@@ -2000,9 +1946,7 @@ teams:
 
 ### 根据分组获取图片（listByTeam）
 
-#### listByTeam {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@photoTag method="listByTeam" team="team 名称">
@@ -2015,7 +1959,7 @@ teams:
 1. method：listByTeam
 2. team：team 名称
 
-##### 返回参数
+#### 返回参数
 
 photos:
 
@@ -2034,7 +1978,7 @@ photos:
 }]
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@photoTag method="listTeams" team="风景">
@@ -2054,9 +1998,7 @@ photos:
 
 ### 获取所有图片的数量（count）
 
-#### count {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@photoTag method="count">
@@ -2068,13 +2010,13 @@ photos:
 
 1. method：count
 
-##### 返回参数
+#### 返回参数
 
 ```json
 count: long
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <@linkTag method="count">
@@ -2092,9 +2034,7 @@ count: long
 
 ### 获取首页文章列表的分页数据（index）
 
-#### index {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@paginationTag method="index" page="${posts.number}" total="${posts.totalPages}" display="3">
@@ -2109,7 +2049,7 @@ count: long
 3. total：总页数，通过 `${posts.totalPages}` 得到
 3. display：页码展示数量
 
-##### 返回参数
+#### 返回参数
 
 pagination：
 
@@ -2127,7 +2067,7 @@ pagination：
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <ul class="pagination">
@@ -2181,9 +2121,7 @@ pagination：
 
 ### 获取文章归档列表的分页数据（archives）
 
-#### archives {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@paginationTag method="archives" page="${posts.number}" total="${posts.totalPages}" display="3">
@@ -2198,7 +2136,7 @@ pagination：
 3. total：总页数，通过 `${posts.totalPages}` 得到
 3. display：页码展示数量
 
-##### 返回参数
+#### 返回参数
 
 pagination：
 
@@ -2216,7 +2154,7 @@ pagination：
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <ul class="pagination">
@@ -2270,9 +2208,7 @@ pagination：
 
 ### 获取搜索结果文章列表的分页数据（search）
 
-#### search {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@paginationTag method="search" page="${posts.number}" total="${posts.totalPages}" keyword="${keyword}" display="3">
@@ -2288,7 +2224,7 @@ pagination：
 4. keyword: 关键词
 5. display：页码展示数量
 
-##### 返回参数
+#### 返回参数
 
 pagination：
 
@@ -2306,7 +2242,7 @@ pagination：
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <ul class="pagination">
@@ -2360,9 +2296,7 @@ pagination：
 
 ### 获取标签下文章列表的分页数据（tagPosts）
 
-#### tagPosts {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@paginationTag method="tagPosts" slug="${tag.slug!}" page="${posts.number}" total="${posts.totalPages}" display="3">
@@ -2378,7 +2312,7 @@ pagination：
 3. display：页码展示数量
 4. slug：标签 slug
 
-##### 返回参数
+#### 返回参数
 
 pagination：
 
@@ -2396,7 +2330,7 @@ pagination：
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <ul class="pagination">
@@ -2450,9 +2384,7 @@ pagination：
 
 ### 获取分类下文章列表的分页数据（categoryPosts）
 
-#### categoryPosts {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@paginationTag method="categoryPosts" slug="${category.slug!}" page="${posts.number}" total="${posts.totalPages}" display="3">
@@ -2468,7 +2400,7 @@ pagination：
 3. display：页码展示数量
 4. slug：标签 slug
 
-##### 返回参数
+#### 返回参数
 
 pagination：
 
@@ -2486,7 +2418,7 @@ pagination：
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <ul class="pagination">
@@ -2540,9 +2472,7 @@ pagination：
 
 ### 获取图库页面图片列表的分页数据（photos）
 
-#### photos {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@paginationTag method="photos" page="${photos.number}" total="${photos.totalPages}" display="3">
@@ -2557,7 +2487,7 @@ pagination：
 3. total：总页数，通过 `${photos.totalPages}` 得到
 3. display：页码展示数量
 
-##### 返回参数
+#### 返回参数
 
 pagination：
 
@@ -2575,7 +2505,7 @@ pagination：
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <ul class="pagination">
@@ -2629,9 +2559,7 @@ pagination：
 
 ### 获取日志页面日志列表的分页数据（journals）
 
-#### journals {.tabset}
-
-##### 语法
+#### 语法
 
 ```html
 <@paginationTag method="journals" page="${journals.number}" total="${journals.totalPages}" display="3">
@@ -2646,7 +2574,7 @@ pagination：
 3. total：总页数，通过 `${journals.totalPages}` 得到
 3. display：页码展示数量
 
-##### 返回参数
+#### 返回参数
 
 pagination：
 
@@ -2664,7 +2592,7 @@ pagination：
 }
 ```
 
-##### 示例
+#### 示例
 
 ```html
 <ul class="pagination">
