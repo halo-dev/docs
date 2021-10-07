@@ -20,3 +20,13 @@ jobs:
         node-version: 14.x
     - run: yarn
     - run: yarn build
+    
+    - name: Deploy
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        ARGS: "-avzr --delete"
+        SOURCE: "./build/"
+        REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+        REMOTE_USER: ${{ secrets.SERVER_USER }}
+        TARGET: "/data/wwwroot/docstest.halo.run"
