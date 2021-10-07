@@ -52,7 +52,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           title: "Halo Documents",
           logo: {
             alt: "Halo Documents Logo",
-            src: "https://docs.halo.run/assets/adaptive2.png",
+            src: "https://halo.run/upload/2021/03/Adaptive256-463ca9b92e2d40268431018c07735842.png",
           },
           items: [
             {
