@@ -233,5 +233,13 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
         },
       ],
     ],
+    scripts: [
+      {
+        src: "https://analytics.halo.run/umami.js",
+        async: true,
+        defer: true,
+        "data-website-id": "84657224-4386-44b9-b012-3258c70a49eb",
+      },
+    ],
   }
 );
