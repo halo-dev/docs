@@ -17,7 +17,7 @@ description: 如果 Halo 对您有帮助，不妨赞助我们
 
 | 支付宝 | 微信 |
 | ------ | ---- |
-|   <img alt="ali-pay.png" src="https://docs.halo.run/assets/ali-pay.png" style={{width: '150px'}}/>     |   <img alt="wechat-pay.png" src="https://docs.halo.run/assets/wechat-pay.png" style={{width: '150px'}}/>   |
+|   <img alt="ali-pay.png" src="/img/ali-pay.png" style={{width: '150px'}}/>     |   <img alt="wechat-pay.png" src="/img/wechat-pay.png" style={{width: '150px'}}/>   |
 
 ### 部署服务
 

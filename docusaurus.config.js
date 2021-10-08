@@ -95,13 +95,13 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
                   href: "https://github.com/halo-dev",
                 },
                 {
-                  label: 'Gitee 组织',
+                  label: "Gitee 组织",
                   href: "https://gitee.com/halo-dev",
                 },
                 {
-                  label: 'Server Status',
+                  label: "Server Status",
                   href: "https://status.halo.run",
-                }
+                },
               ],
             },
             {
@@ -148,17 +148,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         algolia: {
           apiKey: "739f2a55c6d13d93af146c22a4885669",
           indexName: "docs",
-
-          // Optional: see doc section below
           contextualSearch: true,
-
-          // Optional: see doc section below
           appId: "OG53LY1OQH",
-
-          // Optional: Algolia search parameters
-          searchParameters: {},
-
-          //... other Algolia params
         },
       }),
     plugins: ["@docusaurus/plugin-ideal-image"],

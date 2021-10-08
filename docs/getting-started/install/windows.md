@@ -18,7 +18,7 @@ title: 在 Windows 服务器上部署
 
 3. 双击 MSI 安装程序，安装 JRE 至服务器，注意到安装程序第三步时，勾选 `JAVA_HOME Variable`，其余直接 `next` 即可
 
-![img2.png](https://docs.halo.run/images/img2.png)
+![img2.png](/img/img2.png)
 
 4. 安装完成之后， 使用 <kbd>Win</kbd>+<kbd>R</kbd> 打开运行窗口并输入 `CMD` 后，回车打开 CMD 窗口。之后键入 `java -version`。显示如下所示内容即代表安装成功。
 ```
@@ -27,7 +27,7 @@ OpenJDK Runtime Environment 18.9 (build 11.0.10+9-LTS)
 OpenJDK 64-Bit Server VM 18.9 (build 11.0.10+9-LTS, mixed mode)
 ```
 
-![1615618595.jpg](https://docs.halo.run/images/1615618595.jpg)
+![1615618595.jpg](/img/1615618595.jpg)
 
 # 安装 Halo
 1. 下载运行包
