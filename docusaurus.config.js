@@ -26,7 +26,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
           docs: {
             sidebarPath: require.resolve("./sidebars.js"),
             // Please change this to your repo.
-            editUrl: "https://github.com/ruibaby/docs.halo.run/edit/main/",
+            editUrl: "https://github.com/halo-dev/docs/edit/main/",
             routeBasePath: "/",
             showLastUpdateTime: true,
             showLastUpdateAuthor: true,

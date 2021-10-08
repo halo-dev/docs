@@ -13,4 +13,4 @@ description: 关于本文档站点的一些说明
 如果你发现文档中有不正确或者需要添加的内容，非常欢迎参与到文档编辑当中。
 :::
 
-当前文档的仓库地址为 [halo-dev/docs.halo.run](https://github.com/halo-dev/docs.halo.run) ，所以你可以 fork 此仓库，修改之后提交 `Pull request` 等待我们合并即可。
+当前文档的仓库地址为 [halo-dev/docs](https://github.com/halo-dev/docs) ，所以你可以 fork 此仓库，修改之后提交 `Pull request` 等待我们合并即可。
