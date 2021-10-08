@@ -78,12 +78,71 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         footer: {
           style: "dark",
           copyright: `Copyright © ${new Date().getFullYear()} halo-dev, Inc. Built with Docusaurus.`,
+          links: [
+            {
+              title: "关于",
+              items: [
+                {
+                  label: "官网",
+                  href: "https://halo.run",
+                },
+                {
+                  label: "主题仓库",
+                  href: "https://halo.run/themes.html",
+                },
+                {
+                  label: "GitHub 组织",
+                  href: "https://github.com/halo-dev",
+                },
+                {
+                  label: 'Gitee 组织',
+                  href: "https://gitee.com/halo-dev",
+                },
+                {
+                  label: 'Server Status',
+                  href: "https://status.halo.run",
+                }
+              ],
+            },
+            {
+              title: "社区",
+              items: [
+                {
+                  label: "官方论坛",
+                  href: "https://bbs.halo.run",
+                },
+                {
+                  label: "微信公众号",
+                  href: "https://halo.run/upload/2021/03/B3C27F16-4890-4633-81CC-20BA4B28F94F-2415126255c749b290312ca22d9bdeb0.jpeg",
+                },
+                {
+                  label: "微信 & QQ群申请",
+                  href: "https://wj.qq.com/s2/8434455/9170/",
+                },
+                {
+                  label: "GitHub Issues",
+                  href: "https://github.com/halo-dev/halo/issues",
+                },
+                {
+                  label: "Telegram Channel",
+                  href: "https://t.me/halo_dev",
+                },
+                {
+                  label: "Telegram Group",
+                  href: "https://t.me/HaloBlog",
+                },
+              ],
+            },
+          ],
         },
         prism: {
           theme: darkCodeTheme,
           darkTheme: darkCodeTheme,
         },
         googleAnalytics: {
+          trackingID: "UA-110780416-7",
+        },
+        gtag: {
           trackingID: "UA-110780416-7",
         },
         algolia: {
