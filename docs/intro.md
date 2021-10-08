@@ -1,6 +1,7 @@
 ---
 id: intro
-title: 简介
+sidebar_label: 简介
+title: ''
 sidebar_position: 1
 hide_title: true
 slug: /

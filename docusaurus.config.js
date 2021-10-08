@@ -1,4 +1,4 @@
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const darkCodeTheme = require("prism-react-renderer/themes/palenight");
 
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
@@ -26,8 +26,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           docs: {
             sidebarPath: require.resolve("./sidebars.js"),
             // Please change this to your repo.
-            editUrl:
-              "https://github.com/facebook/docusaurus/edit/main/website/",
+            editUrl: "https://github.com/ruibaby/docs.halo.run/edit/main/",
             routeBasePath: "/",
             showLastUpdateTime: true,
             showLastUpdateAuthor: true,
@@ -39,7 +38,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           sitemap: {
             changefreq: "weekly",
             priority: 0.5,
-            trailingSlash: false,
           },
         }),
       ],
@@ -51,7 +49,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
         navbar: {
           title: "Halo Documents",
           logo: {
-            alt: "Halo Documents Logo",
+            alt: "Halo Logo",
             src: "https://halo.run/upload/2021/03/Adaptive256-463ca9b92e2d40268431018c07735842.png",
           },
           items: [
@@ -152,6 +150,88 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           appId: "OG53LY1OQH",
         },
       }),
-    plugins: ["@docusaurus/plugin-ideal-image"],
+    plugins: [
+      [
+        "@docusaurus/plugin-client-redirects",
+        {
+          redirects: [
+            {
+              to: "/getting-started/install/linux",
+              from: [
+                "/zh/install",
+                "/install",
+                "/zh/install/index",
+                "/install/index",
+                "/zh/install/linux",
+                "/install/linux",
+              ],
+            },
+            {
+              to: "/getting-started/install/docker",
+              from: ["/zh/install/docker", "/install/docker"],
+            },
+            {
+              to: "/getting-started/install/other/bt-panel",
+              from: ["/zh/install/bt-panel", "/install/bt-panel"],
+            },
+            {
+              to: "/getting-started/install/other/oneinstack",
+              from: ["/zh/install/oneinstack", "/install/oneinstack"],
+            },
+            {
+              to: "/getting-started/install/other/tencent-cloudbase",
+              from: [
+                "/zh/install/tencent-cloudbase",
+                "/install/tencent-cloudbase",
+              ],
+            },
+            {
+              to: "/getting-started/prepare",
+              from: ["/zh/install/prepare", "/install/prepare"],
+            },
+            {
+              to: "/getting-started/config",
+              from: ["/zh/install/config", "/install/config"],
+            },
+            {
+              to: "/getting-started/upgrade",
+              from: ["/zh/install/upgrade", "/install/upgrade"],
+            },
+            {
+              to: "/getting-started/downloads",
+              from: ["/zh/install/downloads", "/install/downloads"],
+            },
+            {
+              to: "/user-guide/backup-migration",
+              from: ["/zh/user-guide/backup-migration"],
+            },
+            {
+              to: "/user-guide/markdown",
+              from: ["/zh/user-guide/markdown"],
+            },
+            {
+              to: "/developer-guide/core/structure",
+              from: ["/zh/developer-guide/core", "/developer-guide/core"],
+            },
+            {
+              to: "/developer-guide/theme/prepare",
+              from: ["/zh/developer-guide/theme", "/developer-guide/theme"],
+            },
+            {
+              to: "/contribution/issue",
+              from: ["/zh/contribution/issue"],
+            },
+            {
+              to: "/contribution/pr",
+              from: ["/zh/contribution/pr"],
+            },
+            {
+              to: "/contribution/sponsor",
+              from: ["/zh/contribution/sponsor"],
+            },
+          ],
+        },
+      ],
+    ],
   }
 );
