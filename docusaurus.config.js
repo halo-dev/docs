@@ -146,14 +146,14 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
           trackingID: "UA-110780416-7",
         },
         algolia: {
-          apiKey: "YOUR_API_KEY",
-          indexName: "YOUR_INDEX_NAME",
+          apiKey: "739f2a55c6d13d93af146c22a4885669",
+          indexName: "docs",
 
           // Optional: see doc section below
           contextualSearch: true,
 
           // Optional: see doc section below
-          appId: "YOUR_APP_ID",
+          appId: "OG53LY1OQH",
 
           // Optional: Algolia search parameters
           searchParameters: {},
