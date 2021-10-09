@@ -238,7 +238,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
         src: "https://analytics.halo.run/umami.js",
         async: true,
         defer: true,
-        "data-website-id": "84657224-4386-44b9-b012-3258c70a49eb",
+        "data-website-id": "7e8d48ad-973d-4b44-b36d-ea1f1df25baa",
       },
       {
         src: "https://cdn.wwads.cn/js/makemoney.js",
