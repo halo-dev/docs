@@ -232,6 +232,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
           ],
         },
       ],
+      "./src/plugins/plugin-wwads/index.js",
     ],
     scripts: [
       {
@@ -239,10 +240,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
         async: true,
         defer: true,
         "data-website-id": "7e8d48ad-973d-4b44-b36d-ea1f1df25baa",
-      },
-      {
-        src: "https://cdn.wwads.cn/js/makemoney.js",
-        async: true,
       },
       {
         src: "/js/wwads.js",
