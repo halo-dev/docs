@@ -28,17 +28,17 @@ service halo stop
 2. 备份数据以及旧的运行包（重要）
 
 ```bash
-cp -r ~/.halo ~/.halo.1.4.11
+cp -r ~/.halo ~/.halo.1.4.12
 ```
 
 ```bash
-cd ~/app && mv halo.jar halo.jar.1.4.11
+cd ~/app && mv halo.jar halo.jar.1.4.12
 ```
 
 3. 下载最新版本的运行包
 
 ```bash
-cd ~/app && wget https://dl.halo.run/release/halo-1.4.12.jar -O halo.jar
+cd ~/app && wget https://dl.halo.run/release/halo-1.4.13.jar -O halo.jar
 ```
 
 :::info
@@ -83,13 +83,13 @@ docker rm -f halo
 2. 备份数据（重要）
 
 ```bash
-cp -r ~/.halo ~/.halo.1.4.11
+cp -r ~/.halo ~/.halo.1.4.12
 ```
 
 3. 拉取最新的 Halo 镜像
 
 ```bash
-docker pull halohub/halo:1.4.12
+docker pull halohub/halo:1.4.13
 ```
 
 :::info
@@ -99,7 +99,7 @@ docker pull halohub/halo:1.4.12
 4. 创建容器
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.4.12
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.4.13
 ```
 - **-it：** 开启输入功能并连接伪终端
 - **-d：** 后台运行容器
