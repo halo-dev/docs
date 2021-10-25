@@ -32,6 +32,8 @@ description: 如果 Halo 对您有帮助，不妨赞助我们
 如果您当前还没有购买服务器，可以考虑通过以下链接购买，这会为我们带来一部分收益。此外，如果您已经通过下面的链接购买了服务器，可以[联系我们](mailto:hi@halo.run)帮您免费部署 Halo。
 
 - 阿里云：[https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=3t6v5x0v](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=3t6v5x0v)
+- 阿里云双十一新用户：[https://www.aliyun.com/minisite/goods?taskPkg=1111ydsrwb&pkgSid=12305&userCode=3t6v5x0v](https://www.aliyun.com/minisite/goods?taskPkg=1111ydsrwb&pkgSid=12305&userCode=3t6v5x0v)
 - 腾讯云：[https://curl.qcloud.com/ewTUJQec](https://curl.qcloud.com/ewTUJQec)
+- 腾讯云双十一新用户：[https://cloud.tencent.com/act/pre-2021double11?spread_hash_key=f7cce5fd94766a553072b1642977ea7a](https://cloud.tencent.com/act/pre-2021double11?spread_hash_key=f7cce5fd94766a553072b1642977ea7a)
 - Vultr：[https://www.vultr.com/?ref=7278289](https://www.vultr.com/?ref=7278289)
 
