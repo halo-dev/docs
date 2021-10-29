@@ -114,7 +114,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
                   href: "https://halo.run/upload/2021/03/B3C27F16-4890-4633-81CC-20BA4B28F94F-2415126255c749b290312ca22d9bdeb0.jpeg",
                 },
                 {
-                  label: "微信 & QQ群申请",
+                  label: "微信群申请",
                   href: "https://wj.qq.com/s2/8434455/9170/",
                 },
                 {
