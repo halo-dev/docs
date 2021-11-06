@@ -19,14 +19,6 @@ description: 如果 Halo 对您有帮助，不妨赞助我们
 | ------ | ---- |
 |   <img alt="ali-pay.png" src="/img/ali-pay.png" style={{width: '150px'}}/>     |   <img alt="wechat-pay.png" src="/img/wechat-pay.png" style={{width: '150px'}}/>   |
 
-### 部署服务
-
-考虑到部分用户可能是非软件行业的，对项目部署维护方面不是很了解，但又需要一个博客来展现自己的日常，因此我们推出部署服务，仅收取少量人工费，有需求的用户可通过如下方式联系我们（请注明来意）：
-
-1. QQ：709831589
-2. Telegram：https://t.me/ruibaby
-2. Email：[hi@halo.run](mailto:hi@halo.run)
-
 ### 通过我们的推广链接购买服务器
 
 如果您当前还没有购买服务器，可以考虑通过以下链接购买，这会为我们带来一部分收益。此外，如果您已经通过下面的链接购买了服务器，可以[联系我们](mailto:hi@halo.run)帮您免费部署 Halo。
