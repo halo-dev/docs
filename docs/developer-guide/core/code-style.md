@@ -12,9 +12,15 @@ Halo 添加了 checkstyle 插件，来保证每位提交者代码的风格保持
 
 ## 配置 CheckStyle
 
-- 进入 CheckStyle 配置（File | Settings | Other Settings | Checkstyle）。
+- 进入 CheckStyle 配置。
+  -  Windows - File | Settings | Other Settings | Checkstyle
+  -  MacOS - Preferences | Tools | Checkstyle
 - 在配置文件中点击添加按钮，配置描述可随便填写（建议 Halo Checks），选择 ./config/checkstyle/checkstyle.xml，点击下一步和完成；
 - 勾选刚刚创建的配置文件。
+
+```
+如果在添加配置文件时失败了，可以根据失败提示修改checkstyle.xml，重新导入。
+```
 
 ## 配置 Editor
 
