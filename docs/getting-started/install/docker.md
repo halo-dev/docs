@@ -27,7 +27,7 @@ vim application.yaml
 
 4. 拉取最新的 Halo 镜像
 ```bash
-docker pull halohub/halo:1.4.13
+docker pull halohub/halo:1.4.14
 ```
 
 :::info
@@ -36,7 +36,7 @@ docker pull halohub/halo:1.4.13
 
 5. 创建容器
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.4.13
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.4.14
 ```
 - **-it：** 开启输入功能并连接伪终端
 - **-d：** 后台运行容器
