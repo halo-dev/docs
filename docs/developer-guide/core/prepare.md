@@ -11,7 +11,6 @@ description: 开发环境的一些说明
 
 > 推荐 IntelliJ IDEA 社区版（开源免费）https://github.com/JetBrains/intellij-community
 
-
 `Halo` 项目使用了 `Lombok`，运行 `Halo` 之前请检查 `IDE` 是否已经安装好了 `Lombok` 插件。
 
 如果使用的 `IDE` 是 `IntelliJ IDEA`，请在设置中启用 `Build, Execution, Deployment/Annotation Processors` 的 `Enable annotation processing`。
@@ -23,14 +22,10 @@ description: 开发环境的一些说明
 如果你已经 `fork` 了 [`Halo`](https://github.com/halo-dev/halo)，请将以下命令中的 `halo-dev` 替换为你的 `Github 用户名`。
 
 ```bash
-git clone https://github.com/halo-dev/halo
+git clone --recursive https://github.com/halo-dev/halo
 
 // 如果你在 Github 上已经添加了你的 ssh key，请使用以下命令进行 clone：
-git clone git@github.com:halo-dev/halo.git
-
-git submodule init
-
-git submodule update
+git clone --recursive git@github.com:halo-dev/halo.git
 ```
 
 这里推荐使用第二种方式进行克隆，这样每次提交代码的时候，就不会提示登录 `Github` 了。
@@ -134,7 +129,6 @@ git submodule update
 4. 按 `Ctrl+Shift+A` (Cmd+Shift+A on macOS)快捷键，然后搜索 `Registry`。打开之后找到 `compiler.automake.allow.when.app.running`，并启用它 (IntelliJ IDEA 15 and newer)。
 
 > 来源于 <https://zeroturnaround.com/software/jrebel/quickstart/intellij/enable-automatic-compilation-in-intellij-idea/>
-
 
 Developer Tools 原理
 
