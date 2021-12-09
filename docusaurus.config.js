@@ -186,6 +186,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
               ],
             },
             {
+              to: "/getting-started/install/other/docker-mysql",
+              from: ["/zh/install/docker-mysql", "/install/docker-mysql"],
+            },
+            {
               to: "/getting-started/prepare",
               from: ["/zh/install/prepare", "/install/prepare"],
             },
