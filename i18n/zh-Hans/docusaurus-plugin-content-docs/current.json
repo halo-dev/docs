@@ -34,5 +34,13 @@
   "sidebar.tutorialSidebar.link.腾讯云开发者实验室": {
     "message": "腾讯云开发者实验室",
     "description": "The label for link 腾讯云开发者实验室 in sidebar tutorialSidebar, linking to https://cloud.tencent.com/developer/labs/lab/10523"
+  },
+  "sidebar.tutorialSidebar.category.主题开发": {
+    "message": "主题开发",
+    "description": "The label for category 主题开发 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.link.REST API": {
+    "message": "REST API",
+    "description": "The label for link REST API in sidebar tutorialSidebar, linking to https://api.halo.run"
   }
 }
