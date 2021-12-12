@@ -62,6 +62,17 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
               label: "论坛",
             },
             {
+              type: 'docsVersionDropdown',
+              position: 'right',
+              dropdownActiveClassDisabled: true,
+              dropdownItemsAfter: [
+                {
+                  to: '/versions',
+                  label: 'All versions',
+                },
+              ],
+            },
+            {
               href: "https://github.com/halo-dev/halo",
               label: "GitHub",
               position: "right",
