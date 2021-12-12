@@ -2,5 +2,57 @@
   "copyright": {
     "message": "Copyright © 2021 halo-dev, Inc. Built with Docusaurus.",
     "description": "The footer copyright"
+  },
+  "link.title.关于": {
+    "message": "关于",
+    "description": "The title of the footer links column with title=关于 in the footer"
+  },
+  "link.title.社区": {
+    "message": "社区",
+    "description": "The title of the footer links column with title=社区 in the footer"
+  },
+  "link.item.label.官网": {
+    "message": "官网",
+    "description": "The label of footer link with label=官网 linking to https://halo.run"
+  },
+  "link.item.label.主题仓库": {
+    "message": "主题仓库",
+    "description": "The label of footer link with label=主题仓库 linking to https://halo.run/themes.html"
+  },
+  "link.item.label.GitHub 组织": {
+    "message": "GitHub 组织",
+    "description": "The label of footer link with label=GitHub 组织 linking to https://github.com/halo-dev"
+  },
+  "link.item.label.Gitee 组织": {
+    "message": "Gitee 组织",
+    "description": "The label of footer link with label=Gitee 组织 linking to https://gitee.com/halo-dev"
+  },
+  "link.item.label.Server Status": {
+    "message": "Server Status",
+    "description": "The label of footer link with label=Server Status linking to https://status.halo.run"
+  },
+  "link.item.label.官方论坛": {
+    "message": "官方论坛",
+    "description": "The label of footer link with label=官方论坛 linking to https://bbs.halo.run"
+  },
+  "link.item.label.微信公众号": {
+    "message": "微信公众号",
+    "description": "The label of footer link with label=微信公众号 linking to https://halo.run/upload/2021/03/B3C27F16-4890-4633-81CC-20BA4B28F94F-2415126255c749b290312ca22d9bdeb0.jpeg"
+  },
+  "link.item.label.微信群申请": {
+    "message": "微信群申请",
+    "description": "The label of footer link with label=微信群申请 linking to https://wj.qq.com/s2/8434455/9170/"
+  },
+  "link.item.label.GitHub Issues": {
+    "message": "GitHub Issues",
+    "description": "The label of footer link with label=GitHub Issues linking to https://github.com/halo-dev/halo/issues"
+  },
+  "link.item.label.Telegram Channel": {
+    "message": "Telegram Channel",
+    "description": "The label of footer link with label=Telegram Channel linking to https://t.me/halo_dev"
+  },
+  "link.item.label.Telegram Group": {
+    "message": "Telegram Group",
+    "description": "The label of footer link with label=Telegram Group linking to https://t.me/HaloBlog"
   }
 }
