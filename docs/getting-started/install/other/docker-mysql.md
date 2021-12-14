@@ -5,13 +5,17 @@ description: Halo 使用 docker 安装 的 mysql
 
 ### 简介
 
-该章节我们将分三种情况为您说明该如何同时使用 docker+mysql 来部署 Halo
+该章节我们将分三种情况为您说明该如何同时使用 Docker + MySQL 来部署 Halo
 
 前提条件： 我们默认您的机器上已经安装好 docker
 
-### 统一使用 docker 部署
+- 如果你想完全通过`Docker`运行`MySQL`和`HALO`请参考场景一
+- 如果你已经有`Docker`部署的`MySQL`想安装`Halo`请参考场景二
+- 如果你已有`MySQL`但部署在宿主机，想通过`Docker`安装`Halo`请参考场景三
 
-如果你的机器上没有现成的`mysql`可供使用，那么您可以选择使用 docker 来运行 mysql 和 halo
+### 场景一
+
+如果你的机器上没有现成的`mysql`可供使用，那么您可以选择使用 `docker` 来运行 `MySQL` 和 `Halo`
 
 1. 创建 docker 自定义桥接网络
 
@@ -26,19 +30,19 @@ docker network create halo-net
 Docker 官方文档中称：该--link 标志是 Docker 的遗留功能。它可能最终会被删除。除非您绝对需要继续使用它，否则我们建议您使用用户定义的网络来促进两个容器之间的通信，而不是使用 --link。
 :::
 
-2. 拉取 mysql 镜像
+2. 拉取 `MySQL` 镜像
 
 ```shell
 docker pull mysql:8.0.27
 ```
 
-3. 创建`mysql`数据目录
+3. 创建`MySQL`数据目录
 
 ```shell
 mkdir -p /data/mysql
 ```
 
-3. 启动 mysql 实例
+3. 启动 `MySQL` 实例
 
 ```shell
 docker run --name some-mysql -v /data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw --net halo-net --restart=unless-stopped -d mysql:8.0.27
@@ -112,11 +116,13 @@ docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net halo-net
 
 9. 打开 `http://ip:端口号` 即可看到安装引导界面。
 
-如果您已有 `docker` 部署的 `mysql` 实例，那么为了保证 `halo` 和 `mysql` 两个容器网络可以互通，和上文同样的思路可以创建一个网络让 `mysql` 和 `halo` 都加入进来。
+### 场景二
+
+如果您已有 `docker` 部署的 `mysql` 实例，那么为了保证 `Halo` 和 `MySQL` 两个容器的网络可以互通，和上文同样的思路可以创建一个网络让 `MySQL` 和 `Halo` 都加入进来。
 
 1. 使用 `docker ps` 来查看的你 `MySQL` 容器实例的名称或`container id`， 例如叫`some-mysql`
 
-2. 创建一个桥接网络，让 MySQL 加入
+2. 创建一个桥接网络，让 `MySQL` 加入
 
 ```shell
 # 首先使用 docker network ls 来查看一下都有哪些网络名称，起一个不会冲突的网络名称，例如halo-net
@@ -138,7 +144,7 @@ mkdir ~/.halo && cd ~/.halo
 wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 ```
 
-5. 编辑配置文件，修改 mysql 数据库连接和密码
+5. 编辑配置文件，修改 `MySQL` 数据库连接和密码
 
 ```shell
 vim application.yaml
@@ -154,10 +160,72 @@ spring:
     password: my-secret-pw
 ```
 
-同样的，如注释所示需要做出两个步骤的修改，1.修改 mysql 的 url 中的 ip 地址部分为容器名称，2.修改密码为自己的 mysql 密码
+同样的，如注释所示需要做出两个步骤的修改，1.修改 `MySQL` 的 `url `中的 `ip` 地址部分为容器名称，2.修改密码为自己的 `MySQL` 密码
 
-6. 创建 Halo 容器实例,并使用`--net`指定网络为刚才创建的`halo-net`
+6. 创建 `Halo` 容器实例,并使用`--net`指定网络为刚才创建的`halo-net`
 
 ```shell
 docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net halo-net --restart=unless-stopped halohub/halo:1.4.15
 ```
+
+### 场景三
+
+如果你已有`MySQL`但安装在宿主机，你想使用`Docker`安装`Halo`那么此时为了保证`MySQL`和`Halo`能网络互通，你有两种选择：1.`Halo`的docker实例使用宿主机网络；2.配置`Halo`的`application.yaml`中关于`MySQL`数据库连接部分使用宿主机`ip`地址。
+
+#### 使用宿主机网络模式启动安装Halo
+
+1. 创建 `Halo` 的工作目录
+
+```shell
+mkdir ~/.halo && cd ~/.halo
+```
+2. 拉取配置
+```shell
+wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
+```
+3. 使用 `Docker` 启动 `Halo`实例并指定网络模式为`host`
+
+```shell
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net host --restart=unless-stopped halohub/halo:1.4.15
+```
+
+#### 使用`docker0`的网关地址
+
+`Docker`安装后会在宿主机安装一个虚拟网关 `docker0`，可以使用宿主机在 `docker0`上的 `IP` 地址来代替 `127.0.0.1` 。
+
+1.查看`docker0`的网关地址
+
+```shell
+ip addr show docker0
+
+# 结果示例如下则取 172.17.0.1 配置到halo的application.yaml中
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 02:42:11:73:e5:a0 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::42:11ff:fe73:e5a0/64 scope link 
+       valid_lft forever preferred_lft forever
+```
+
+2. 拉取`Halo`配置
+
+```shell
+mkdir ~/.halo && cd ~/.halo
+```
+
+```shell
+wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
+```
+
+修改 `application.yaml`的`MySQL`连接部分的`url`中的`127.0.0.1`为`docker0`的网关地址:
+
+```
+spring:
+  datasource:
+    # MySQL database configuration.
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.17.0.1:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+```
+
