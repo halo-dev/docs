@@ -9,13 +9,13 @@ description: Halo 使用 docker 安装 的 mysql
 
 前提条件： 我们默认您的机器上已经安装好 `Docker`
 
-- 如果你想完全通过`Docker`运行`MySQL`和`HALO`请参考场景一
-- 如果你已经有`Docker`部署的`MySQL`，想安装`Halo`请参考场景二
-- 如果你已有`MySQL`但部署在宿主机，想通过`Docker`安装`Halo`请参考场景三
+- 如果你想完全通过 `Docker` 运行 `MySQL` 和 `HALO` 请参考场景一
+- 如果你已经有 `Docker`部署的 `MySQL`，想安装 `Halo` 请参考场景二
+- 如果你已有 `MySQL` 但部署在宿主机，想通过 `Docker` 安装 `Halo` 请参考场景三
 
 ### 场景一
 
-如果你的机器上没有现成的`MySQL`可供使用，那么您可以选择使用 `Docker` 来运行 `MySQL` 和 `Halo`
+如果你的机器上没有现成的 `MySQL` 可供使用，那么您可以选择使用 `Docker` 来运行 `MySQL` 和 `Halo`
 
 1. 创建 docker 自定义桥接网络
 
@@ -27,7 +27,7 @@ docker network create halo-net
 如果你之前有 Docker 使用经验，你可能已经习惯了使用 `--link` 参数来使容器互联。
 
 但随着 Docker 网络的完善，强烈建议大家将容器加入自定义的 Docker 网络来连接多个容器，而不是使用 --link 参数。
-Docker 官方文档中称：该--link 标志是 Docker 的遗留功能。它可能最终会被删除。除非您绝对需要继续使用它，否则我们建议您使用用户定义的网络来促进两个容器之间的通信，而不是使用 --link。
+Docker 官方文档中称：该--link 标志是 Docker 的遗留功能。它可能最终会被删除。除非您确定需要继续使用它，否则我们建议您使用用户定义的网络来促进两个容器之间的通信，而不是使用 --link。
 :::
 
 2. 拉取 `MySQL` 镜像
@@ -52,7 +52,7 @@ docker run --name some-mysql -v /data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWOR
 
 :::tip 释意
 
-`-e MYSQL_ROOT_PASSWORD=my-secret-pw`: 指定`mysql`的登录密码为 `my-secret-pw`
+`-e MYSQL_ROOT_PASSWORD=my-secret-pw`: 指定`MySQL`的登录密码为 `my-secret-pw`
 
 `-v /data/mysql:/var/lib/mysql` 命令: 将宿主机的目录 `/data/mysql` 挂载到容器内部的目录 `/var/lib/mysql`，默认情况下 MySQL 将向 `/data/mysql` 写入其数据文件。
 
@@ -60,7 +60,7 @@ docker run --name some-mysql -v /data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWOR
 
 :::
 
-4. 进入 MySQL 容器中登录 MySQL 创建 halo 需要的数据库
+4. 进入 MySQL 容器中登录 MySQL 并创建 halo 需要的数据库
 
 ```shell
 # 1.some-mysql 为 mysql 实例的容器名称
@@ -108,7 +108,7 @@ spring:
     password: my-secret-pw
 ```
 
-如注释所示需要做出两个步骤的修改，1.修改 `MySQL` 的 url 中的 ip 地址部分为容器名称，2.修改密码为自己的 `MySQL` 密码
+如注释所示需要做出两个步骤的修改，1.修改 `MySQL` 的 url 中的 ip 地址部分为容器名称，2.修改密码为您设定的 `MySQL` 密码
 
 8. 创建 Halo 容器实例
 
@@ -127,14 +127,14 @@ docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net halo-net
 2. 创建一个桥接网络，让 `MySQL` 加入
 
 ```shell
-# 首先使用 docker network ls 来查看一下都有哪些网络名称，起一个不会冲突的网络名称，例如halo-net
+# 首先使用 docker network ls 来查看一下都有哪些网络名称，起一个不会冲突的网络名称，例如 halo-net
 docker network create halo-net
 
 # 让已经存在的 mysql 容器实例加入到该网络中
 docker network connect halo-net some-mysql
 ```
 
-3. 同之前一样创建`Halo`工作目录
+3. 同之前一样创建 `Halo` 工作目录
 
 ```
 mkdir ~/.halo && cd ~/.halo
@@ -146,12 +146,12 @@ mkdir ~/.halo && cd ~/.halo
 wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 ```
 
-5. 编辑配置文件，修改 `MySQL` 数据库连接和密码
+5. 编辑配置文件，修改 `MySQL` 的数据库连接和密码
 
 ```shell
 vim application.yaml
 
-#修改如下datasource配置为mysql
+#修改如下 datasource 配置为 mysql
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -164,7 +164,7 @@ spring:
 
 同样的，如注释所示需要做出两个步骤的修改，1.修改 `MySQL` 的 `url `中的 `ip` 地址部分为容器名称，2.修改密码为自己的 `MySQL` 密码
 
-6. 创建 `Halo` 容器实例,并使用`--net`指定网络为刚才创建的`halo-net`
+6. 创建 `Halo` 容器实例,并使用 `--net` 指定网络为刚才创建的`halo-net`
 
 ```shell
 docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net halo-net --restart=unless-stopped halohub/halo:1.4.15
