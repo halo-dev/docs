@@ -95,7 +95,9 @@ wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 ```shell
 vim application.yaml
 
-#修改如下datasource配置为mysql
+# 1.注释H2 database configuration.部分
+# 2.启用MySQL database configuration.部分
+# 3.修改如下datasource配置为mysql
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -106,7 +108,7 @@ spring:
     password: my-secret-pw
 ```
 
-如注释所示需要做出两个步骤的修改，1.修改 mysql 的 url 中的 ip 地址部分为容器名称，2.修改密码为自己的 mysql 密码
+如注释所示需要做出两个步骤的修改，1.修改 `MySQL` 的 url 中的 ip 地址部分为容器名称，2.修改密码为自己的 `MySQL` 密码
 
 8. 创建 Halo 容器实例
 
