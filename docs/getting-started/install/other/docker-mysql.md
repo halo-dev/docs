@@ -1,6 +1,6 @@
 ---
 title: 使用 Docker 部署 Halo 和 MySQL
-description: Halo 使用 docker 安装 的 mysql
+description: Halo 与 MySQL 在 Docker 中的部署方案
 ---
 
 ### 简介
@@ -9,15 +9,15 @@ description: Halo 使用 docker 安装 的 mysql
 
 前提条件： 我们默认您的机器上已经安装好 `Docker`
 
-- 如果你想完全通过 `Docker` 运行 `MySQL` 和 `HALO` 请参考场景一
-- 如果你已经有 `Docker`部署的 `MySQL`，想安装 `Halo` 请参考场景二
-- 如果你已有 `MySQL` 但部署在宿主机，想通过 `Docker` 安装 `Halo` 请参考场景三
+- 如果你想完全通过 `Docker` 运行 `MySQL` 和 `Halo` 请参考小节《统一使用Docker安装》
+- 如果你已经有 `Docker`部署的 `MySQL`，想安装 `Halo` 请参考小节《MySQL 部署在Docker如何使用Docker安装 Halo》
+- 如果你已有 `MySQL` 但部署在宿主机，想通过 `Docker` 安装 `Halo` 请参考小节《MySQL 在宿主机如何通过 Docker 安装 Halo》
 
-### 场景一
+### 统一使用Docker安装
 
 如果你的机器上没有现成的 `MySQL` 可供使用，那么您可以选择使用 `Docker` 来运行 `MySQL` 和 `Halo`
 
-1. 创建 docker 自定义桥接网络
+1. 创建 Docker 自定义桥接网络
 
 ```shell
 docker network create halo-net
@@ -39,45 +39,50 @@ docker pull mysql:8.0.27
 3. 创建 `MySQL` 数据目录
 
 ```shell
-mkdir -p /data/mysql
+mkdir -p ~/.halo/mysql
 ```
 
 3. 启动 `MySQL` 实例
 
 ```shell
-docker run --name some-mysql -v /data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw --net halo-net --restart=unless-stopped -d mysql:8.0.27
+docker run --name some-mysql -v ~/.halo/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw --net halo-net --restart=unless-stopped -d mysql:8.0.27
 ```
 
-注意: 请将 `my-secret-pw` 修改为自己需要的密码后再执行
+注意: 请将 `my-secret-pw` 修改为自己需要的密码后再执行，密码尽量包含小写字母、大写字母、数字和特殊字符且长度超过8位。
 
 :::tip 释意
 
 `-e MYSQL_ROOT_PASSWORD=my-secret-pw`: 指定`MySQL`的登录密码为 `my-secret-pw`
 
-`-v /data/mysql:/var/lib/mysql` 命令: 将宿主机的目录 `/data/mysql` 挂载到容器内部的目录 `/var/lib/mysql`，默认情况下 MySQL 将向 `/data/mysql` 写入其数据文件。
+`-v ~/.halo/mysql:/var/lib/mysql` 命令: 将宿主机的目录 `~/.halo/mysql` 挂载到容器内部的目录 `/var/lib/mysql`，默认情况下 MySQL 将向 `~/.halo/mysql` 写入其数据文件。
 
 `--net halo-net`: 将该容器加入到 `halo-net` 网络,连接到 `halo-net` 网络的任何其他容器都可以访问 `some-mysql`容器上的所有端口。
 
 :::
 
-4. 进入 MySQL 容器中登录 MySQL 并创建 halo 需要的数据库
+4. 进入 MySQL 容器中登录 MySQL 并创建 Halo 需要的数据库
 
-```shell
-# 1.some-mysql 为 mysql 实例的容器名称
-docker exec -it some-mysql /bin/bash
+- (1) some-mysql 为 MySQL 实例的容器名称
 
-# 2.登录 mysql
-mysql -u root -p
+  ```shell
+  docker exec -it some-mysql /bin/bash
+  ```
 
-# 3.输入 mysql 数据库密码
-# 4.创建数据库
-create database halodb;
-# 5.退出mysql
-exit
-# 6.退出容器
-exit
-```
+- (2) 登录 MySQL
 
+  ```shell
+  mysql -u root -p
+  ```
+
+- (3) 输入 MySQL 数据库密码
+
+- (4) 创建数据库
+
+  ```shell
+  create database halodb character set utf8mb4 collate utf8mb4_bin;
+  ```
+
+- (5) 使用 `exit`退出`MySQL` 并退出容器
 5. 创建 `Halo` 工作目录
 
 ```
@@ -94,21 +99,23 @@ wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 
 ```shell
 vim application.yaml
+```
+你需要做如下几个步骤：
 
-# 1.注释H2 database configuration.部分
-# 2.启用MySQL database configuration.部分
-# 3.修改如下datasource配置为mysql
+- 注释 H2 database configuration.部分
+- 启用 MySQL database configuration.部分
+- 修改 datasource 下的 url 中的 ip 地址部分为容器名称并修改密码为您设定的 `MySQL` 密码
+
+修改后的内容如下:
+
+```yaml
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    # 1.修改ip部分为 mysql容器名称
     url: jdbc:mysql://some-mysql:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
-    # 2.修改此处密码为mysql密码
     password: my-secret-pw
 ```
-
-如注释所示需要做出两个步骤的修改，1.修改 `MySQL` 的 url 中的 ip 地址部分为容器名称，2.修改密码为您设定的 `MySQL` 密码
 
 8. 创建 Halo 容器实例
 
@@ -118,19 +125,14 @@ docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net halo-net
 
 9. 打开 `http://ip:端口号` 即可看到安装引导界面。
 
-### 场景二
+### MySQL 部署在Docker如何使用Docker安装 Halo
 
 如果您已有 `Docker` 部署的 `MySQL` 实例，那么为了保证 `Halo` 和 `MySQL` 两个容器的网络可以互通，和上文同样的思路可以创建一个网络让 `MySQL` 和 `Halo` 都加入进来。
 
 1. 使用 `docker ps` 来查看的你 `MySQL` 容器实例的名称或 `container id`， 例如 `some-mysql`
-
-2. 创建一个桥接网络，让 `MySQL` 加入
+2. 创建一个桥接网络，让 `MySQL` 加入，首先使用 `docker network ls` 来查看一下都有哪些网络名称，起一个不会冲突的网络名称，例如 `halo-net`，其次让已经存在的 MySQL 容器实例加入到该网络中
 
 ```shell
-# 首先使用 docker network ls 来查看一下都有哪些网络名称，起一个不会冲突的网络名称，例如 halo-net
-docker network create halo-net
-
-# 让已经存在的 mysql 容器实例加入到该网络中
 docker network connect halo-net some-mysql
 ```
 
@@ -147,22 +149,26 @@ wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 ```
 
 5. 编辑配置文件，修改 `MySQL` 的数据库连接和密码
-
 ```shell
 vim application.yaml
-
-#修改如下 datasource 配置为 mysql
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    # 1.some-mysql 为 mysql 的容器名称
-    url: jdbc:mysql://some-mysql:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: root
-    # 2.修改此处密码为mysql密码
-    password: my-secret-pw
 ```
 
-同样的，如注释所示需要做出两个步骤的修改，1.修改 `MySQL` 的 `url `中的 `ip` 地址部分为容器名称，2.修改密码为自己的 `MySQL` 密码
+   你需要做如下几个步骤：
+
+   - 注释 H2 database configuration.部分
+   - 启用 MySQL database configuration.部分
+   - 修改 datasource 下的 url 中的 ip 地址部分为容器名称并修改密码为您设定的 `MySQL` 密码
+
+   修改后的内容如下:
+
+   ```yaml
+   spring:
+     datasource:
+       driver-class-name: com.mysql.cj.jdbc.Driver
+       url: jdbc:mysql://some-mysql:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+       username: root
+       password: my-secret-pw
+   ```
 
 6. 创建 `Halo` 容器实例,并使用 `--net` 指定网络为刚才创建的`halo-net`
 
@@ -170,7 +176,7 @@ spring:
 docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net halo-net --restart=unless-stopped halohub/halo:1.4.15
 ```
 
-### 场景三
+### MySQL 在宿主机如何通过 Docker 安装 Halo
 
 如果你已有 `MySQL` 但安装在宿主机，你想使用 `Docker` 安装 `Halo` 那么此时为了保证 `MySQL` 和 `Halo` 能网络互通，可以使用 `host` 网络模式即 `--net host`。
 
@@ -183,6 +189,7 @@ mkdir ~/.halo && cd ~/.halo
 ```shell
 wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 ```
+
 3. 使用 `Docker` 启动 `Halo` 实例并指定网络模式为 `host`
 
 ```shell
