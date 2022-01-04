@@ -86,7 +86,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
         },
         footer: {
           style: "dark",
-          copyright: `Copyright © ${new Date().getFullYear()} halo-dev, Inc. Built with Docusaurus.`,
+          copyright: `Copyright © 2022 <a target="_blank" href="https://www.fit2cloud.com/">FIT2CLOUD 飞致云</a>. Built with Docusaurus.`,
           links: [
             {
               title: "关于",
