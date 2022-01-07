@@ -90,7 +90,7 @@ module.exports = {
     {
       type: "category",
       label: "参与贡献",
-      items: ["contribution/issue", "contribution/pr", "contribution/sponsor"],
+      items: ["contribution/issue", "contribution/pr"],
     },
     "about",
   ],

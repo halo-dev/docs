@@ -70,16 +70,6 @@ create database halodb character set utf8mb4 collate utf8mb4_bin;
 
 后续的文档中，我们会使用 vim 为例，用于修改一些必要的配置文件，所以同样请确保服务器已经安装了这个软件包。当前，修改文档也不限制工具，如果你对其他编辑软件熟悉，也可以忽略。
 
-### 服务器推荐
-
-如果您当前还没有购买服务器，可以考虑通过以下链接购买，这会为我们带来一部分收益。此外，如果您已经通过下面的链接购买了服务器，可以 [联系我们](mailto:hi@halo.run) 帮你免费部署 Halo。
-
-- 阿里云：[https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=3t6v5x0v](https://promotion.aliyun.com/ntms/yunparter/invite.html?userCode=3t6v5x0v)
-- 阿里云双十一新用户：[https://www.aliyun.com/minisite/goods?taskPkg=1111ydsrwb&pkgSid=12305&userCode=3t6v5x0v](https://www.aliyun.com/minisite/goods?taskPkg=1111ydsrwb&pkgSid=12305&userCode=3t6v5x0v)
-- 腾讯云：[https://curl.qcloud.com/ewTUJQec](https://curl.qcloud.com/ewTUJQec)
-- 腾讯云双十一新用户：[https://cloud.tencent.com/act/pre-2021double11?spread_hash_key=f7cce5fd94766a553072b1642977ea7a](https://cloud.tencent.com/act/pre-2021double11?spread_hash_key=f7cce5fd94766a553072b1642977ea7a)
-- Vultr：[https://www.vultr.com/?ref=7278289](https://www.vultr.com/?ref=7278289)
-
 ## 浏览器支持
 
 1. 用户前台：视主题所支持的情况而定，由于目前的评论模块使用了 [Vuejs](https://cn.vuejs.org/v2/guide/installation.html#%E5%85%BC%E5%AE%B9%E6%80%A7) 开发，所以在 [Vuejs](https://cn.vuejs.org/v2/guide/installation.html#%E5%85%BC%E5%AE%B9%E6%80%A7) 不支持的某些浏览器中无法正常显示评论区域。

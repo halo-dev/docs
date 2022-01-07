@@ -235,11 +235,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
             {
               to: "/contribution/pr",
               from: ["/zh/contribution/pr"],
-            },
-            {
-              to: "/contribution/sponsor",
-              from: ["/zh/contribution/sponsor"],
-            },
+            }
           ],
         },
       ],

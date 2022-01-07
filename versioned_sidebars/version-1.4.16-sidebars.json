@@ -80,8 +80,7 @@
       "label": "参与贡献",
       "items": [
         "contribution/issue",
-        "contribution/pr",
-        "contribution/sponsor"
+        "contribution/pr"
       ]
     },
     "about"
