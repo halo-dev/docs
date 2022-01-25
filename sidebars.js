@@ -53,7 +53,11 @@ module.exports = {
     {
       type: "category",
       label: "用户指南",
-      items: ["user-guide/backup-migration", "user-guide/markdown"],
+      items: [
+        "user-guide/backup-migration",
+        "user-guide/markdown",
+        "user-guide/faq",
+      ],
     },
     {
       type: "category",
