@@ -39,6 +39,12 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
             changefreq: "weekly",
             priority: 0.5,
           },
+          googleAnalytics: {
+            trackingID: "UA-110780416-7",
+          },
+          gtag: {
+            trackingID: "UA-110780416-7",
+          },
         }),
       ],
     ],
@@ -62,13 +68,13 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
               label: "论坛",
             },
             {
-              type: 'docsVersionDropdown',
-              position: 'right',
+              type: "docsVersionDropdown",
+              position: "right",
               dropdownActiveClassDisabled: true,
               dropdownItemsAfter: [
                 {
-                  to: '/versions',
-                  label: 'All versions',
+                  to: "/versions",
+                  label: "All versions",
                 },
               ],
             },
@@ -147,12 +153,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
         prism: {
           theme: darkCodeTheme,
           darkTheme: darkCodeTheme,
-        },
-        googleAnalytics: {
-          trackingID: "UA-110780416-7",
-        },
-        gtag: {
-          trackingID: "UA-110780416-7",
         },
         algolia: {
           apiKey: "739f2a55c6d13d93af146c22a4885669",
@@ -235,7 +235,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
             {
               to: "/contribution/pr",
               from: ["/zh/contribution/pr"],
-            }
+            },
           ],
         },
       ],
