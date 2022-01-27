@@ -47,11 +47,42 @@ server {
 
 ### 开启了两步验证但丢失了验证设备或 APP，如何取消两步验证？
 
-可以参考 [忘记了管理员密码，如何重置？](/user-guide/faq#忘记了管理员密码如何重置) 重置密码，完成重置密码之后即可清除两步验证。
+可以参考 [忘记了管理员密码，如何重置？](./user-guide/faq.md#忘记了管理员密码如何重置) 重置密码，完成重置密码之后即可清除两步验证。
 
 ### 网站加载速度慢，是什么问题导致的？
 
+导致网站加载速度慢的原因有很多，建议打开浏览器的 Developer Tools 查看具体是哪个请求时间过长，然后进行针对性的优化。这里提供一些可能的原因：
+
+1. 服务器带宽过小，很多厂商提供的最低带宽一般是 1M。
+2. 服务器地区过远，这个需要自行取舍。
+3. 网站上的图片过多或者体积过大，可以尝试压缩图片，或者参考 [优雅的让 Halo 支持 webp 图片输出](https://halo.run/archives/halo-and-webp.html) 的教程配置一个 Webp 图片的服务。
+4. 部分主题的静态资源可能是由公共 CDN 提供的，当这个 CDN 不稳定的时候可能会导致加载变慢。
+
+一些提升网站加载速度的建议：
+
+1. 尽量不要选择 1M 带宽的服务器，可以根据自己的预算适当提升带宽。一般 3M 以上即可。
+2. 尽量购买网络质量较好的服务器，或者较近区域的服务器。
+3. 如果一定需要放大量的图片，建议先无损压缩一下再使用。
+4. 如上所说，可以自行搭建一个 Webp 图片转换的服务，参考 [优雅的让 Halo 支持 webp 图片输出](https://halo.run/archives/halo-and-webp.html)。
+5. 如果网站的静态资源加载慢是由三方 CDN 导致的，可以自行修改主题。
+6. 可以使用全站 CDN 加速的方案。
+
 ### 如何一台服务器上部署多个站点？
+
+参考 [写在前面/工作目录](../getting-started/prepare.md#工作目录) 我们可以知道，工作目录对于 Halo 主程序来说是固定的。如果我们需要部署多个站点，我们提供以下两种方式以供参考：
+
+1. 创建多个 Linux 账户，并在每个账户上运行一个独立的 Halo。因为工作目录是基于账户的，所以每个账户都有自己的工作目录。但是有一点需要注意，就是需要修改每一个 Halo 的运行端口，参考：[配置参考/端口](../getting-started/config#%E7%AB%AF%E5%8F%A3)
+2. 使用 Docker 创建多个容器，因为使用 Docker 可以将内部的工作目录映射到宿主机的任何目录，可以参考以下创建容器的方式：
+
+```bash
+# 第一个 Halo 容器
+docker run -it -d --name halo1 -p 8090:8090 -v ~/.halo.1:/root/.halo --restart=unless-stopped halohub/halo:latest
+
+# 第二个 Halo 容器
+docker run -it -d --name halo2 -p 8091:8090 -v ~/.halo.2:/root/.halo --restart=unless-stopped halohub/halo:latest
+```
+
+更多 Docker 相关的教程请参考：[使用 Docker 部署 Halo](../getting-started/install/docker.md)
 
 ### 如何查看运行日志？
 
