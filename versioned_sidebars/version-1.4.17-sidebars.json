@@ -41,7 +41,8 @@
       "label": "用户指南",
       "items": [
         "user-guide/backup-migration",
-        "user-guide/markdown"
+        "user-guide/markdown",
+        "user-guide/faq"
       ]
     },
     {
