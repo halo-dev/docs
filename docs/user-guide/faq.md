@@ -74,20 +74,40 @@ server {
 1. 创建多个 Linux 账户，并在每个账户上运行一个独立的 Halo。因为工作目录是基于账户的，所以每个账户都有自己的工作目录。但是有一点需要注意，就是需要修改每一个 Halo 的运行端口，参考：[配置参考/端口](../getting-started/config#%E7%AB%AF%E5%8F%A3)
 2. 使用 Docker 创建多个容器，因为使用 Docker 可以将内部的工作目录映射到宿主机的任何目录，可以参考以下创建容器的方式：
 
-```bash
-# 第一个 Halo 容器
-docker run -it -d --name halo1 -p 8090:8090 -v ~/.halo.1:/root/.halo --restart=unless-stopped halohub/halo:latest
+    ```bash
+    # 第一个 Halo 容器
+    docker run -it -d --name halo1 -p 8090:8090 -v ~/.halo.1:/root/.halo --restart=unless-stopped halohub/halo:latest
 
-# 第二个 Halo 容器
-docker run -it -d --name halo2 -p 8091:8090 -v ~/.halo.2:/root/.halo --restart=unless-stopped halohub/halo:latest
-```
+    # 第二个 Halo 容器
+    docker run -it -d --name halo2 -p 8091:8090 -v ~/.halo.2:/root/.halo --restart=unless-stopped halohub/halo:latest
+    ```
 
 更多 Docker 相关的教程请参考：[使用 Docker 部署 Halo](../getting-started/install/docker.md)
 
 ### 如何查看运行日志？
 
+1. 登录到服务器，查看工作目录下的 `logs/spring.log`。
+2. 在 Halo 后台进入开发者选项（点击左上角 `Halo Dashboard` 10 次），选择 `实时日志` 界面。
+
 ### SMTP 发信设置配置正确，但是发信失败，如何解决？
+
+可能是部分厂商不允许使用密码作为客户端登录的凭证，一般会提供类似 `授权码` 的设置，将 `授权码` 当做密码在 Halo 后台设置即可。如还有其他类型的原因，欢迎向我们提交 issue：[https://github.com/halo-dev/halo/issues/new/choose](https://github.com/halo-dev/halo/issues/new/choose)
 
 ### 网站配置了全站 CDN 导致后台部分功能异常，如何解决？
 
+可能是 CDN 厂商默认关闭了 `参数跟随` 选项，导致部分接口参数没有正确添加到回源请求上。你可以在 CDN 控制台查找此选项并打开。或者设置路径过滤，过滤掉 `/api/admin`，让接口请求始终访问回源地址。
+
 ### 前台样式丢失，如何解决？
+
+前台样式不正常或者丢失有很多种问题的可能，最快捷定位问题的方式就是打开浏览器控制台查看具体请求的错误，以下列出部分常见导致的原因：
+
+1. 后台设置的 `博客地址` 与实际访问地址不一致。也可能是开启了 https 之后，无法正常加载 http 资源，将 `博客地址` 改为 https 协议即可。
+2. Nginx 配置了静态资源缓存，但没有设置 `proxy_pass`，参考如下：
+
+    ```nginx
+    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {
+        proxy_pass http://halo;
+        expires 30d;
+        access_log off;
+    }
+    ```
