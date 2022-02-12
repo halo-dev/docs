@@ -996,6 +996,108 @@ categories:
 <a href="http://localhost:8090/categories/url2">name2（12）</a>
 ```
 
+### 获取分类目录树结构（tree）
+
+#### 语法
+
+```html
+<@categoryTag method="tree">
+// do something
+</@categoryTag>
+```
+
+参数：
+
+1. method：tree
+
+#### 返回参数
+
+categories:
+
+```json
+[
+  {
+    "children": [
+      {
+        "children": [],
+        "createTime": "2022-02-12T14:11:06.376Z",
+        "description": "string",
+        "fullPath": "string",
+        "id": 0,
+        "name": "string",
+        "parentId": 0,
+        "password": "string",
+        "slug": "string",
+        "thumbnail": "string"
+      }
+    ],
+    "createTime": "2022-02-12T14:11:06.376Z",
+    "description": "string",
+    "fullPath": "string",
+    "id": 0,
+    "name": "string",
+    "parentId": 0,
+    "password": "string",
+    "slug": "string",
+    "thumbnail": "string"
+  }
+]
+```
+
+#### 示例
+
+```html
+<@categoryTag method="tree">
+    <ul>
+        <#list categories as category>
+            <li>
+                <a href="${category.fullPath!}">
+                    ${category.name!}
+                </a>
+            </li>
+
+            <#if category.children?? && category.children?size gt 0>
+                <@renderCategories category.children></@renderCategories>
+            </#if>
+        </#list>
+    </ul>
+</@categoryTag>
+
+<#macro renderCategories categories>
+    <ul>
+        <#list categories as category>
+            <li>
+                <a  href="${category.fullPath!}">
+                    ${(category.name)!}
+                </a>
+                <#if category.children?? && category.children?size gt 0>
+                    <@renderCategories category.children></@renderCategories>
+                </#if>
+            </li>
+        </#list>
+    </ul>
+</#macro>
+```
+
+输出：
+
+```html
+<ul>
+    <li>
+        <a href="http://localhost:8090/categories/parent">
+            父级分类
+        </a>
+    </li>
+    <ul>
+        <li>
+            <a href="http://localhost:8090/categories/child">
+                子分类
+            </a>
+        </li>
+    </ul>
+</ul>
+```
+
 ### 获取文章的所有分类（listByPostId）
 
 #### 语法
@@ -1671,7 +1773,7 @@ teams:
   <#list teams as team>
   	<h1>${team.team}</h1>
     <ul>
-      <#list team.links as link>
+      <#list links as link>
         <li>
           <a href="${link.url!}" target="_blank">
           ${link.name!}
@@ -1754,7 +1856,7 @@ teams:
   <#list teams as team>
   	<h1>${team.team}</h1>
     <ul>
-      <#list team.links as link>
+      <#list links as link>
         <li>
           <a href="${link.url!}" target="_blank">
           ${link.name!}
