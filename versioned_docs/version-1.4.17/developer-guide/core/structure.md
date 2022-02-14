@@ -31,11 +31,6 @@ description: Halo 项目的构成
 
 在开发的时候，希望大家能够在 `~/halo-dev/application.yml` 中进行添加自定义配置。当然后面也会讲到如何用`运行参数` 和 `VM options` 进行控制配置，届时可根据具体情况进行选择。
 
-
-<article class="message is-warning">
-  <div class="message-body">
-
+:::warning
 开发的时候，我们不建议直接更改`项目源码`中的所包含的`配置文件`，包括 `application.yml`、`application-dev.yml`、`application-test.yml` 和 `application-user.yml`。
-
-  </div>
-</article>
+:::

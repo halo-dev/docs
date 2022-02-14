@@ -44,7 +44,7 @@ Halo 的运行可参考上述 [系统开发](/developer-guide/core/prepare)，�
 
 > 为了让开发更加规范，我们推荐使用以下的目录结构。
 
-```
+```txt
 ├── module                      // 公共模板目录
 │   ├── comment.ftl             // 比如：评论模板
 │   ├── layout.ftl              // 比如：布局模板

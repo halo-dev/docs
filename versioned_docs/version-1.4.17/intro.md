@@ -72,7 +72,7 @@ docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=alwa
 | [halo-comment-normal](https://github.com/halo-dev/halo-comment-normal)       | <a href="https://www.npmjs.com/package/halo-comment-normal"><img alt="npm release" src="https://img.shields.io/npm/v/halo-comment-normal?style=flat-square"/></a> | 另外一款评论组件                         |
 | [halo-mobile-app](https://github.com/halo-dev/halo-mobile-app)                             | 已停止维护                                                                                                                                                        | 移动端管理 APP                           |
 | [tencent-cloudbase-halo](https://github.com/halo-dev/tencent-cloudbase-halo) | 无                                                                                                                                                                | 腾讯云 CloudBase 一键部署配置            |
-| [halo-theme-*](https://github.com/topics/halo-theme)                         | 无                                                                                                                                                                | GitHub 上开源的 Halo 主题集合            | 
+| [halo-theme-*](https://github.com/topics/halo-theme)                         | 无                                                                                                                                                                | GitHub 上开源的 Halo 主题集合            |
 
 ## 许可证
 

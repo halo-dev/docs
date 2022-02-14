@@ -9,21 +9,27 @@ Halo 使用的 `Markdown` 解析器为 [flexmark-java](https://github.com/vsch/f
 
 ## 代码块
 
-    ```language
-    代码块
-    ```
+````markdown
+```language
+代码块
+```
+````
 
 其中，language 为必填，如果不填写，很可能主题的代码高亮插件无法识别代码的语言，导致样式异常。举几个例子：
 
-    ```java
-    public static void main(String[] args){
-        System.out.println("Hello World!");
-    }
-    ```
+````markdown
+```java
+public static void main(String[] args){
+    System.out.println("Hello World!");
+}
+```
+````
 
-    ```javascript
-    console.log("Hello World!")
-    ```
+````markdown
+```javascript
+console.log("Hello World!")
+```
+````
 
 ## TOC
 
@@ -33,9 +39,9 @@ Halo 使用的 `Markdown` 解析器为 [flexmark-java](https://github.com/vsch/f
 
 支持自动将一个链接解析为可点击的格式，如下：
 
-````markdown
+```markdown
 https://halo.run
-````
+```
 
 将被解析为：
 
@@ -177,21 +183,21 @@ Halo 内置一些短连接以更好地支持一些 HTML 语法，但是编辑器
 
 ## 脚注
 
-#### 语法
+语法：
 
 ```markdown
 [^脚注名]
 [^脚注名]: 脚注内容
 ```
 
-#### 示例
+示例：
 
 ```markdown
 驿外[^1]断桥边，寂寞开无主。已是黄昏独自愁，更着风和雨
 [^1]: 驿（yì）外：指荒僻、冷清之地。驿，驿站。
 ```
 
-#### 解析结果
+解析结果：
 
 ```html
 <p>驿外<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>断桥边，寂寞开无主。已是黄昏独自愁，更着风和雨</p>
