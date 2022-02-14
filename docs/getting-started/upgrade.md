@@ -57,10 +57,9 @@ java -jar halo.jar
 
 5. 重启服务
 
-```
+```bash
 service halo start
 ```
-
 
 ## Docker <i class="mdi mdi-docker"></i>
 
@@ -93,7 +92,7 @@ docker pull halohub/halo:1.4.17
 ```
 
 :::info
-查看最新版本镜像：https://hub.docker.com/r/halohub/halo ，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
+查看最新版本镜像：<https://hub.docker.com/r/halohub/halo> ，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
 :::
 
 4. 创建容器
@@ -101,6 +100,7 @@ docker pull halohub/halo:1.4.17
 ```bash
 docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.4.17
 ```
+
 - **-it：** 开启输入功能并连接伪终端
 - **-d：** 后台运行容器
 - **--name：** 为容器指定一个名称

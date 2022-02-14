@@ -86,7 +86,7 @@ docker run --name some-mysql -v ~/.halo/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSW
 
 5. 创建 `Halo` 工作目录
 
-```
+```bash
 mkdir ~/.halo && cd ~/.halo
 ```
 
@@ -140,7 +140,7 @@ docker network connect halo-net some-mysql
 
 3. 同之前一样创建 `Halo` 工作目录
 
-```
+```bash
 mkdir ~/.halo && cd ~/.halo
 ```
 

@@ -15,7 +15,7 @@ description: 使用 OneinStack 的 vhost 脚本创建 Halo 站点的 Nginx 配�
 
 点击下方链接进入 OneinStack 官网，仅选择 `安装 Nginx`，其他的都可以取消选择。
 
-https://oneinstack.com/auto
+<https://oneinstack.com/auto>
 
 最后点击 `复制安装命令` 到服务器执行即可。如果你仅安装 Nginx，你的链接应该是这样：
 
@@ -55,12 +55,12 @@ sh vhost.sh
 
 2. 按照提示选择或输入相关信息
 
-```bash	
+```bash
 What Are You Doing?
-	1. Use HTTP Only
-	2. Use your own SSL Certificate and Key
-	3. Use Let's Encrypt to Create SSL Certificate and Key
-	q. Exit
+    1. Use HTTP Only
+    2. Use your own SSL Certificate and Key
+    3. Use Let's Encrypt to Create SSL Certificate and Key
+    q. Exit
 Please input the correct option:
 ```
 
@@ -260,14 +260,14 @@ nginx -t
 
 如果输出如下提示则代表配置有效：
 
-```
+```bash
 nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok
 nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful
 ```
 
 重载 Nginx 配置：
 
-```
+```bash
 nginx -s reload
 ```
 

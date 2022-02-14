@@ -84,14 +84,16 @@ create database halodb character set utf8mb4 collate utf8mb4_bin;
 代表当前系统下的 [用户目录](https://zh.wikipedia.org/wiki/%E5%AE%B6%E7%9B%AE%E5%BD%95)。
 
 ### 运行包
+
 指 Halo 构建所产生的 Jar 包，后缀为 `.jar`。可能与其他网站应用有所区别的是，Halo 仅仅只有这一个文件。而且所有数据统一保存在下面所说的 `工作目录`。
 
 ### 工作目录
+
 指 Halo 所依赖的工作目录，在 Halo 运行的时候会在系统当前用户目录下产生一个 `.halo` 的文件夹，绝对路径为 `~/.halo`。由于这个工作目录是固定的，所以上面所说的 `运行包`不限制所存放的位置，里面通常包含下列目录或文件：
 
 1. `db`：存放 H2 Database 的物理文件，如果您使用 MySQL 数据库，那么不会存在这个目录。
 2. `templates/themes`：里面包含用户所下载的主题。
 3. `static`：相当于网站的根目录。
 4. `logs`：运行日志目录。
-4. `upload`：附件目录。
-5. `application.yaml`：配置文件。
+5. `upload`：附件目录。
+6. `application.yaml`：配置文件。

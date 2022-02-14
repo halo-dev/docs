@@ -9,7 +9,7 @@ description: 开发环境的一些说明
 2. 工具：[Gradle](https://gradle.org/)，[Lombok](https://projectlombok.org/) 插件
 3. JDK：`11+`
 
-> 推荐 IntelliJ IDEA 社区版（开源免费）https://github.com/JetBrains/intellij-community
+> 推荐 IntelliJ IDEA 社区版（开源免费）<https://github.com/JetBrains/intellij-community>
 
 `Halo` 项目使用了 `Lombok`，运行 `Halo` 之前请检查 `IDE` 是否已经安装好了 `Lombok` 插件。
 

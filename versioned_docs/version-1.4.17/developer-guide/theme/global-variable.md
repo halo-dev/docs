@@ -5,16 +5,15 @@ description: 系统提供的一些全局变量
 
 ## 博客地址
 
-```
+```html
 ${blog_url!}
 ```
 
 此变量与后台博客设置中的 `博客地址` 相对应。
 
-
 ## 网站根路径
 
-```
+```html
 ${context!}
 ```
 
@@ -24,12 +23,12 @@ ${context!}
 
 假设，我设置的 `博客地址` 为 `https://halo.run`，那么：
 
-- 全局绝对路径为开启的状态下：https://halo.run/
+- 全局绝对路径为开启的状态下：<https://halo.run/>
 - 全局绝对路径为关闭的状态下：/
 
 ## 主题资源根路径
 
-```
+```html
 ${theme_base!}
 ```
 
@@ -37,7 +36,7 @@ ${theme_base!}
 
 举个例子，你当前开发的主题为 `anatole`，当你要获取主题下 `css/style.css` 这个文件的路径，那么：
 
-```
+```html
 ${theme_base!}/css/style.css
 ```
 
@@ -45,25 +44,25 @@ ${theme_base!}/css/style.css
 
 主题名称：
 
-```
+```html
 ${theme.name!}
 ```
 
 主题 git 仓库地址：
 
-```
+```html
 ${theme.repo!}
 ```
 
 主题版本号：
 
-```
+```html
 ${theme.version!}
 ```
 
 ## 博客标题
 
-```
+```html
 ${blog_title!}
 ```
 
@@ -71,7 +70,7 @@ ${blog_title!}
 
 ## 博客 Logo
 
-```
+```html
 ${blog_logo!}
 ```
 
@@ -79,7 +78,7 @@ ${blog_logo!}
 
 ## Halo 版本
 
-```
+```html
 ${version!}
 ```
 
@@ -89,37 +88,37 @@ ${version!}
 
 昵称：
 
-```
+```html
 ${user.nickname!}
 ```
 
 邮箱地址：
 
-```
+```html
 ${user.email!}
 ```
 
 描述：
 
-```
+```html
 ${user.description!}
 ```
 
 头像地址：
 
-```
+```html
 ${user.avatar!}
 ```
 
 上次登录时间：
 
-```
+```html
 ${user.expireTime!}
 ```
 
 ## SEO 关键词
 
-```
+```html
 ${meta_keywords!}
 ```
 
@@ -132,16 +131,15 @@ ${meta_keywords!}
 
 ## SEO 描述
 
-```
+```html
 ${meta_description!}
 ```
 
 需要注意的是，虽然这个变量在任何页面都可以使用，但是其值可能在不同的页面是不一样的。会根据用户的设置，生成对应的值。
 
-
 ## RSS 2.0 订阅地址
 
-```
+```html
 ${rss_url!}
 ```
 
@@ -149,7 +147,7 @@ ${rss_url!}
 
 ## Atom 格式的订阅地址
 
-```
+```html
 ${atom_url!}
 ```
 
@@ -157,7 +155,7 @@ ${atom_url!}
 
 ## Xml 格式的网站地图地址
 
-```
+```html
 ${sitemap_xml_url!}
 ```
 
@@ -165,7 +163,7 @@ ${sitemap_xml_url!}
 
 ## HTML 格式的网站地图地址
 
-```
+```html
 ${sitemap_html_url!}
 ```
 
@@ -173,7 +171,7 @@ ${sitemap_html_url!}
 
 ## 友情链接页面地址
 
-```
+```html
 ${links_url!}
 ```
 
@@ -184,7 +182,7 @@ ${links_url!}
 
 ## 图库页面地址
 
-```
+```html
 ${photos_url!}
 ```
 
@@ -195,7 +193,7 @@ ${photos_url!}
 
 ## 日志页面地址
 
-```
+```html
 ${journals_url!}
 ```
 
@@ -206,7 +204,7 @@ ${journals_url!}
 
 ## 文章归档页面地址
 
-```
+```html
 ${archives_url!}
 ```
 
@@ -217,7 +215,7 @@ ${archives_url!}
 
 ## 分类列表页面地址
 
-```
+```html
 ${categories_url!}
 ```
 
@@ -228,7 +226,7 @@ ${categories_url!}
 
 ## 标签列表页面地址
 
-```
+```html
 ${tags_url!}
 ```
 
@@ -258,6 +256,6 @@ ${tags_url!}
 
 ```html
 <#if is_index??>
-	当前页面是首页
+    当前页面是首页
 </#if>
 ```
