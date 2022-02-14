@@ -397,14 +397,14 @@ ${nextPost.attribute}
 
 ```html
 <#if nextPost??>
-	<a href="${nextPost.fullPath!}">上一篇：${nextPost.title!}</a>
+	<a href="${nextPost.fullPath!}">下一篇：${nextPost.title!}</a>
 </#if>
 ```
 
 输出：
 
 ```html
-<a href="http://localhost:8090/archives/url3">上一篇：title3</a>
+<a href="http://localhost:8090/archives/url3">下一篇：title3</a>
 ```
 
 ### categories（List）
