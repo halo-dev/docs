@@ -16,11 +16,11 @@
     "lint": "markdownlint-cli2 './docs/**/*.md' './versioned_docs/version-1.4.17/**/*.md'"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-beta.16",
-    "@docusaurus/plugin-client-redirects": "^2.0.0-beta.16",
-    "@docusaurus/preset-classic": "2.0.0-beta.16",
-    "@docusaurus/theme-classic": "2.0.0-beta.16",
-    "@docusaurus/theme-common": "2.0.0-beta.16",
+    "@docusaurus/core": "2.0.0-beta.17",
+    "@docusaurus/plugin-client-redirects": "^2.0.0-beta.17",
+    "@docusaurus/preset-classic": "2.0.0-beta.17",
+    "@docusaurus/theme-classic": "2.0.0-beta.17",
+    "@docusaurus/theme-common": "2.0.0-beta.17",
     "@mdx-js/react": "^1.6.22",
     "@svgr/webpack": "^5.5.0",
     "clsx": "^1.1.1",
