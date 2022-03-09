@@ -12,9 +12,11 @@ Halo 的配置文件名为 `application.yaml`，其必须位于[工作目录](/g
 如下将详细列出配置文件 `application.yaml` 中所有的配置项。
 
 ## 基础配置
+
 基础配置中的配置设置一般来说是**必要的**，且必须在 application.yaml 里进行定义。
 
 ### 端口
+
 用于指定 HTTP 服务器监听的端口，Halo 默认设置为 `8090`。
 
 ```yaml
@@ -25,6 +27,7 @@ server:
 请注意，如果您选择设置端口为 `80`，则需要确保您的 80 端口未被占用，通常**不建议**直接设置为 80 端口。
 
 ### 数据库
+
 Halo 目前支持 `H2` 及 `MySQL` 数据库。
 
 :::tip
@@ -39,7 +42,7 @@ Halo 目前支持 `H2` 及 `MySQL` 数据库。
 
 ```yaml
 spring:
-  datasource: 
+  datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:file:~/.halo/db/halo
     username: admin
@@ -62,7 +65,7 @@ spring:
 
 ```yaml
 spring:
-  datasource: 
+  datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
@@ -88,9 +91,11 @@ create database halodb character set utf8mb4 collate utf8mb4_bin;
 - 默认时区为 `Asia/Shanghai`，如果与您所在时区不一致，则可以修改为您所在的时区。
 
 ## 高级配置
+
 高级配置中的配置设置是可选的，如果不需要，可以略过。
 
 ### 后台路径
+
 Halo 支持自定义后台管理的**根路径**。
 
 ```yaml
@@ -102,6 +107,7 @@ halo:
 注意：仅为改动后台管理的根路径，因此前后不带 `/`。
 
 ### 缓存
+
 某些情况下，需要用户根据需求来设置缓存数据的保存方式，例如将缓存数据持久化保存在本地。
 
 ```yaml
@@ -111,17 +117,19 @@ halo:
 ```
 
 目前支持两种策略：
+
 - `memory` 将数据缓存至内存，重启服务缓存将清空。
 - `level` 将数据缓存至本地，重启服务不会清空缓存。
 
 ### 压缩
-启用压缩对于减少带宽和加快页面加载非常有用，在**未使用** `Nginx` 或 `Caddy` 等反向代理服务器时（反向代理服务器通常是默认开启 Gzip 的），可以考虑开启系统自带的Gzip 功能。
+
+启用压缩对于减少带宽和加快页面加载非常有用，在**未使用** `Nginx` 或 `Caddy` 等反向代理服务器时（反向代理服务器通常是默认开启 Gzip 的），可以考虑开启系统自带的 Gzip 功能。
 
 ```yaml
 server:
   # Response data gzip.
   compression:
-    enabled: false
+    enabled: true
 ```
 
 ## 示例配置文件
@@ -138,10 +146,9 @@ server:
 
   # Response data gzip.
   compression:
-    enabled: false
+    enabled: true
 spring:
   datasource:
-
     # H2 database configuration.
     driver-class-name: org.h2.Driver
     url: jdbc:h2:file:~/.halo/db/halo
@@ -157,7 +164,6 @@ spring:
       enabled: false
 
 halo:
-
   # Your admin client path is https://your-domain/{admin-path}
   admin-path: admin
 
@@ -173,10 +179,9 @@ server:
 
   # Response data gzip.
   compression:
-    enabled: false
+    enabled: true
 spring:
   datasource:
-
     # MySQL database configuration.
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
@@ -184,7 +189,6 @@ spring:
     password: 123456
 
 halo:
-
   # Your admin client path is https://your-domain/{admin-path}
   admin-path: admin
 
