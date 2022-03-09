@@ -28,17 +28,17 @@ service halo stop
 2. 备份数据以及旧的运行包（重要）
 
 ```bash
-cp -r ~/.halo ~/.halo.1.4.12
+cp -r ~/.halo ~/.halo.1.4
 ```
 
 ```bash
-cd ~/app && mv halo.jar halo.jar.1.4.12
+cd ~/app && mv halo.jar halo.jar.1.4
 ```
 
 3. 下载最新版本的运行包
 
 ```bash
-cd ~/app && wget https://dl.halo.run/release/halo-1.4.13.jar -O halo.jar
+cd ~/app && wget https://dl.halo.run/release/halo-1.5.0-alpha.1.jar -O halo.jar
 ```
 
 :::info
@@ -57,10 +57,9 @@ java -jar halo.jar
 
 5. 重启服务
 
-```
+```bash
 service halo start
 ```
-
 
 ## Docker <i class="mdi mdi-docker"></i>
 
@@ -83,24 +82,25 @@ docker rm -f halo
 2. 备份数据（重要）
 
 ```bash
-cp -r ~/.halo ~/.halo.1.4.12
+cp -r ~/.halo ~/.halo.1.4
 ```
 
 3. 拉取最新的 Halo 镜像
 
 ```bash
-docker pull halohub/halo:1.4.13
+docker pull halohub/halo:1.5.0-alpha.1
 ```
 
 :::info
-查看最新版本镜像：https://hub.docker.com/r/halohub/halo ，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
+查看最新版本镜像：<https://hub.docker.com/r/halohub/halo> ，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
 :::
 
 4. 创建容器
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.4.13
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.0-alpha.1
 ```
+
 - **-it：** 开启输入功能并连接伪终端
 - **-d：** 后台运行容器
 - **--name：** 为容器指定一个名称

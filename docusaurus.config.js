@@ -39,6 +39,12 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
             changefreq: "weekly",
             priority: 0.5,
           },
+          googleAnalytics: {
+            trackingID: "UA-110780416-7",
+          },
+          gtag: {
+            trackingID: "UA-110780416-7",
+          },
         }),
       ],
     ],
@@ -62,6 +68,17 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
               label: "论坛",
             },
             {
+              type: 'docsVersionDropdown',
+              position: 'right',
+              dropdownActiveClassDisabled: true,
+              dropdownItemsAfter: [
+                {
+                  to: '/versions',
+                  label: 'All versions',
+                },
+              ],
+            },
+            {
               href: "https://github.com/halo-dev/halo",
               label: "GitHub",
               position: "right",
@@ -75,7 +92,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
         },
         footer: {
           style: "dark",
-          copyright: `Copyright © ${new Date().getFullYear()} halo-dev, Inc. Built with Docusaurus.`,
+          copyright: `Copyright © 2022 <a target="_blank" href="https://www.fit2cloud.com/">FIT2CLOUD 飞致云</a>. Built with Docusaurus.`,
           links: [
             {
               title: "关于",
@@ -136,12 +153,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
         prism: {
           theme: darkCodeTheme,
           darkTheme: darkCodeTheme,
-        },
-        googleAnalytics: {
-          trackingID: "UA-110780416-7",
-        },
-        gtag: {
-          trackingID: "UA-110780416-7",
         },
         algolia: {
           apiKey: "739f2a55c6d13d93af146c22a4885669",
@@ -224,11 +235,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
             {
               to: "/contribution/pr",
               from: ["/zh/contribution/pr"],
-            },
-            {
-              to: "/contribution/sponsor",
-              from: ["/zh/contribution/sponsor"],
-            },
+            }
           ],
         },
       ],

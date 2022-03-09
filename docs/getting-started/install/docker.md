@@ -8,36 +8,43 @@ description: 使用 Docker 部署
 :::
 
 ## 使用 Docker 镜像
+
 Halo 在 Docker Hub 上发布的镜像为 [halohub/halo](https://hub.docker.com/r/halohub/halo)
 
 1. 创建[工作目录](/getting-started/prepare#工作目录)
+
 ```bash
 mkdir ~/.halo && cd ~/.halo
 ```
 
 2. 下载示例配置文件到[工作目录](/getting-started/prepare#工作目录)
+
 ```bash
 wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 ```
 
 3. 编辑配置文件，配置数据库或者端口等，如需配置请参考[参考配置](/getting-started/config)
+
 ```bash
 vim application.yaml
 ```
 
 4. 拉取最新的 Halo 镜像
+
 ```bash
-docker pull halohub/halo:1.4.13
+docker pull halohub/halo:1.5.0-alpha.1
 ```
 
 :::info
-查看最新版本镜像：https://hub.docker.com/r/halohub/halo ，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
+查看最新版本镜像：<https://hub.docker.com/r/halohub/halo> ，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
 :::
 
 5. 创建容器
+
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.4.13
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.0-alpha.1
 ```
+
 - **-it：** 开启输入功能并连接伪终端
 - **-d：** 后台运行容器
 - **--name：** 为容器指定一个名称
@@ -78,7 +85,7 @@ server {
 
 ### Caddy 1.x
 
-```
+```txt
 https://www.yourdomain.com {
  gzip
  tls your@email.com
@@ -90,7 +97,7 @@ https://www.yourdomain.com {
 
 ### Caddy 2.x
 
-```
+```txt
 www.yourdomain.com
 
 encode gzip
@@ -98,4 +105,4 @@ encode gzip
 reverse_proxy 127.0.0.1:8090
 ```
 
-以上配置都可以在 https://github.com/halo-dev/halo-common 找到。
+以上配置都可以在 <https://github.com/halo-dev/halo-common> 找到。

@@ -12,8 +12,9 @@ Halo 添加了 checkstyle 插件，来保证每位提交者代码的风格保持
 
 ## 配置 CheckStyle
 
-- 进入 CheckStyle 配置（File | Settings | Other Settings | Checkstyle）。
-- 在配置文件中点击添加按钮，配置描述可随便填写（建议 Halo Checks），选择 ./config/checkstyle/checkstyle.xml，点击下一步和完成；
+- 进入 CheckStyle 配置（File | Settings | Tools | Checkstyle）。
+- 选择 Checkstyle 版本：8.39。
+- 在配置文件中点击添加按钮，配置描述可随便填写（推荐 Halo Checks），选择 ./config/checkstyle/checkstyle.xml，点击下一步和完成；
 - 勾选刚刚创建的配置文件。
 
 ## 配置 Editor
@@ -23,7 +24,7 @@ Halo 添加了 checkstyle 插件，来保证每位提交者代码的风格保持
 - 导入 checkstyle.xm 配置：
 
 ![image.png](https://halo.run/upload/2020/2/image-0c7a018e73f74634a534fa3ba8806628.png)
-  
+
 - 选择 `./config/checkstyle/checkstyle.xml` 配置文件，点击确定即可。
 
 至此，有关代码风格检查工具和格式化配置已经完成。

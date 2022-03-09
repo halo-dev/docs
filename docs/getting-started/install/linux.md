@@ -8,6 +8,7 @@ description: 在Linux上快速安装Halo
 :::
 
 ## 依赖检查
+
 目前运行 Halo 的最低依赖要求为 JRE 11，请务必确保在进行下面操作之前已经正确安装了 JRE。
 
 目前介绍两种 Linux 发行版的安装方式，均为 OpenJRE，不推荐 Oracle 版本。
@@ -61,34 +62,39 @@ OpenJDK 64-Bit Server VM (build 11.0.10+9-Ubuntu-0ubuntu1.20.04, mixed mode)
 :::
 
 创建一个名为 halo 的用户（名字可以随意）
+
 ```bash
 useradd -m halo
 ```
 
 给予 sudo 权限
+
 ```bash
 usermod -aG wheel halo
 ```
 
 为 halo 用户创建密码
+
 ```bash
 passwd halo
 ```
 
 登录到 halo 账户
+
 ```bash
 su - halo
 ```
 
 2. 创建存放 [运行包](/getting-started/prepare#运行包) 的目录，这里以 `~/app` 为例
 
-```
+```bash
 mkdir ~/app && cd ~/app
 ```
 
 3. 下载运行包
+
 ```bash
-wget https://dl.halo.run/release/halo-1.4.13.jar -O halo.jar
+wget https://dl.halo.run/release/halo-1.5.0-alpha.1.jar -O halo.jar
 ```
 
 :::info
@@ -102,26 +108,31 @@ mkdir ~/.halo && cd ~/.halo
 ```
 
 5. 下载示例配置文件到 [工作目录](/getting-started/prepare#工作目录)
+
 ```bash
 wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml 
 ```
 
 6. 编辑配置文件，配置数据库或者端口等，如需配置请参考 [参考配置](/getting-started/config)
+
 ```bash
 vim application.yaml
 ```
 
 7. 测试运行 Halo
+
 ```bash
 cd ~/app && java -jar halo.jar
 ```
 
 8. 如看到类似以下日志输出，则代表启动成功。
+
 ```bash
 run.halo.app.listener.StartedListener    : Halo started at         http://127.0.0.1:8090
 run.halo.app.listener.StartedListener    : Halo admin started at   http://127.0.0.1:8090/admin
 run.halo.app.listener.StartedListener    : Halo has started successfully!
 ```
+
 打开 `http://ip: 端口号` 即可看到安装引导界面。
 
 :::info
@@ -143,16 +154,19 @@ exit
 ```
 
 2. 下载 Halo 官方的 halo.service 模板
+
 ```bash
 wget https://dl.halo.run/config/halo.service -O /etc/systemd/system/halo.service
 ```
 
 3. 修改 halo.service
+
 ```bash
 vim /etc/systemd/system/halo.service
 ```
 
 4. 修改配置
+
 - **YOUR_JAR_PATH**：Halo 运行包的绝对路径，例如 `/home/halo/app/halo.jar`，注意：此路径不支持 `~` 符号。
 - **USER**：运行 Halo 的系统用户，如果有按照上方教程创建新的用户来运行 Halo，修改为你创建的用户名称即可。反之请删除 `User=USER`。
 
@@ -182,21 +196,25 @@ WantedBy=multi-user.target
 :::
 
 5. 重新加载 systemd
+
 ```bash
 systemctl daemon-reload
 ```
 
 6. 运行服务
+
 ```bash
 systemctl start halo
 ```
 
 7. 在系统启动时启动服务
+
 ```bash
 systemctl enable halo
 ```
 
 您可以查看服务日志检查启动状态
+
 ```bash
 journalctl -n 20 -u halo
 ```
@@ -230,7 +248,7 @@ server {
 
 ### Caddy 1.x
 
-```
+```txt
 https://www.yourdomain.com {
  gzip
  tls your@email.com
@@ -242,7 +260,7 @@ https://www.yourdomain.com {
 
 ### Caddy 2.x
 
-```
+```txt
 www.yourdomain.com
 
 encode gzip
@@ -250,4 +268,4 @@ encode gzip
 reverse_proxy 127.0.0.1:8090
 ```
 
-以上配置都可以在 https://github.com/halo-dev/halo-common 找到。
+以上配置都可以在 <https://github.com/halo-dev/halo-common> 找到。
