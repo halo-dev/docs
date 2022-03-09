@@ -42,7 +42,7 @@ Halo 目前支持 `H2` 及 `MySQL` 数据库。
 
 ```yaml
 spring:
-  datasource: 
+  datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:file:~/.halo/db/halo
     username: admin
@@ -65,7 +65,7 @@ spring:
 
 ```yaml
 spring:
-  datasource: 
+  datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
@@ -123,13 +123,13 @@ halo:
 
 ### 压缩
 
-启用压缩对于减少带宽和加快页面加载非常有用，在**未使用** `Nginx` 或 `Caddy` 等反向代理服务器时（反向代理服务器通常是默认开启 Gzip 的），可以考虑开启系统自带的Gzip 功能。
+启用压缩对于减少带宽和加快页面加载非常有用，在**未使用** `Nginx` 或 `Caddy` 等反向代理服务器时（反向代理服务器通常是默认开启 Gzip 的），可以考虑开启系统自带的 Gzip 功能。
 
 ```yaml
 server:
   # Response data gzip.
   compression:
-    enabled: false
+    enabled: true
 ```
 
 ## 示例配置文件
@@ -146,10 +146,9 @@ server:
 
   # Response data gzip.
   compression:
-    enabled: false
+    enabled: true
 spring:
   datasource:
-
     # H2 database configuration.
     driver-class-name: org.h2.Driver
     url: jdbc:h2:file:~/.halo/db/halo
@@ -165,7 +164,6 @@ spring:
       enabled: false
 
 halo:
-
   # Your admin client path is https://your-domain/{admin-path}
   admin-path: admin
 
@@ -181,10 +179,9 @@ server:
 
   # Response data gzip.
   compression:
-    enabled: false
+    enabled: true
 spring:
   datasource:
-
     # MySQL database configuration.
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
@@ -192,7 +189,6 @@ spring:
     password: 123456
 
 halo:
-
   # Your admin client path is https://your-domain/{admin-path}
   admin-path: admin
 
