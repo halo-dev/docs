@@ -123,13 +123,13 @@ halo:
 
 ### 压缩
 
-启用压缩对于减少带宽和加快页面加载非常有用，在**未使用** `Nginx` 或 `Caddy` 等反向代理服务器时（反向代理服务器通常是默认开启 Gzip 的），可以考虑开启系统自带的Gzip 功能。
+启用压缩对于减少带宽和加快页面加载非常有用，在**未使用** `Nginx` 或 `Caddy` 等反向代理服务器时（反向代理服务器通常是默认开启 Gzip 的），可以考虑开启系统自带的 Gzip 功能。
 
 ```yaml
 server:
   # Response data gzip.
   compression:
-    enabled: false
+    enabled: true
 ```
 
 ## 示例配置文件
@@ -146,7 +146,7 @@ server:
 
   # Response data gzip.
   compression:
-    enabled: false
+    enabled: true
 spring:
   datasource:
 
@@ -181,7 +181,7 @@ server:
 
   # Response data gzip.
   compression:
-    enabled: false
+    enabled: true
 spring:
   datasource:
 
