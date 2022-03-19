@@ -11,3 +11,4 @@ title: 三方指南
 - [Halo+云服务器+Nginx反向代理实现个人博客搭建](https://yusart.xyz/archives/halo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA)
 - [如何在 Windows 下搭建 Halo](https://ykanade.cn/2021/08/11/HaloInWindows/)
 - [Halo 博客建站记录](https://catchersun.cn/archives/halo%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95)
+- [Windows下搭建halo并配置nginx与SSL](https://blog.shikangsi.cn/archives/halo-windows)
