@@ -3,6 +3,8 @@ title: 版本升级
 description: 版本升级指南
 ---
 
+当前最新版本为：1.5.0。在更新之前建议先查阅变更日志：<https://github.com/halo-dev/halo/releases/tag/v1.5.0>
+
 ## Linux
 
 :::info
