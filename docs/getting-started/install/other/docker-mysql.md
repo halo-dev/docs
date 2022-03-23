@@ -122,7 +122,7 @@ spring:
 8. 创建 Halo 容器实例
 
 ```shell
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net halo-net --restart=unless-stopped halohub/halo:1.5.0-alpha.1
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net halo-net --restart=unless-stopped halohub/halo:1.5.0
 ```
 
 9. 打开 `http://ip:端口号` 即可看到安装引导界面。
@@ -176,7 +176,7 @@ spring:
 6. 创建 `Halo` 容器实例,并使用 `--net` 指定网络为刚才创建的`halo-net`
 
 ```shell
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net halo-net --restart=unless-stopped halohub/halo:1.5.0-alpha.1
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net halo-net --restart=unless-stopped halohub/halo:1.5.0
 ```
 
 ### MySQL 在宿主机如何通过 Docker 安装 Halo
@@ -198,5 +198,5 @@ wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 3. 使用 `Docker` 启动 `Halo` 实例并指定网络模式为 `host`
 
 ```shell
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net host --restart=unless-stopped halohub/halo:1.5.0-alpha.1
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --net host --restart=unless-stopped halohub/halo:1.5.0
 ```

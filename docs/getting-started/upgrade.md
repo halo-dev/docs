@@ -3,20 +3,12 @@ title: 版本升级
 description: 版本升级指南
 ---
 
-选择你部署的平台：
+当前最新版本为：1.5.0。在更新之前建议先查阅变更日志：<https://github.com/halo-dev/halo/releases/tag/v1.5.0>
 
-## Linux <i class="mdi mdi-ubuntu"></i>
-
-> 我们假设您存放运行包的路径为 `~/app`，运行包的文件名为 `halo.jar`，如有不同，下列命令请按需修改。
-
----
-
-:::tip
-从 1.4.3 开始，Halo 最低支持的 JRE 版本为 11，在升级前，请务必先升级 JRE。
-:::
+## Linux
 
 :::info
-如果当前您不方便升级到 11，我们推荐使用 [Docker](/getting-started/install/docker) 运行新版 Halo，从 Jar 包的方式迁移到 Docker 运行非常方便，按照[指南](/getting-started/install/docker)在创建容器的时候将容器内的 `/root/.halo` 目录映射到当前 Halo 的工作目录即可。
+我们假设你存放运行包的路径为 `~/app`，运行包的文件名为 `halo.jar`，且使用了 systemd 进行进程管理，如有不同，下列命令请按需修改。
 :::
 
 1. 停止正在运行的服务
@@ -25,20 +17,22 @@ description: 版本升级指南
 service halo stop
 ```
 
-2. 备份数据以及旧的运行包（重要）
+2. 备份数据以及旧的运行包（**重要**）
 
 ```bash
-cp -r ~/.halo ~/.halo.1.4
+cp -r ~/.halo ~/.halo.archive
 ```
 
 ```bash
-cd ~/app && mv halo.jar halo.jar.1.4
+mv ~/app/halo.jar ~/app/halo.jar.archive
 ```
+
+> 需要注意的是，`.halo.archive` 和 `halo.jar.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
 
 3. 下载最新版本的运行包
 
 ```bash
-cd ~/app && wget https://dl.halo.run/release/halo-1.5.0-alpha.1.jar -O halo.jar
+cd ~/app && wget https://dl.halo.run/release/halo-1.5.0.jar -O halo.jar
 ```
 
 :::info
@@ -61,9 +55,11 @@ java -jar halo.jar
 service halo start
 ```
 
-## Docker <i class="mdi mdi-docker"></i>
+## Docker
 
-> 我们假设您的容器是按照 [使用 Docker 部署 Halo](/getting-started/install/docker) 中的命令构建的。如有不同，请根据实际情况修改。
+:::info
+我们假设您的容器是按照 [使用 Docker 部署 Halo](/getting-started/install/docker) 中的命令构建的。如有不同，请根据实际情况修改。
+:::
 
 1. 停止并删除当前运行中的容器
 
@@ -82,13 +78,15 @@ docker rm -f halo
 2. 备份数据（重要）
 
 ```bash
-cp -r ~/.halo ~/.halo.1.4
+cp -r ~/.halo ~/.halo.archive
 ```
 
-3. 拉取最新的 Halo 镜像
+> 需要注意的是，`.halo.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
+
+1. 拉取最新的 Halo 镜像
 
 ```bash
-docker pull halohub/halo:1.5.0-alpha.1
+docker pull halohub/halo:1.5.0
 ```
 
 :::info
@@ -98,7 +96,7 @@ docker pull halohub/halo:1.5.0-alpha.1
 4. 创建容器
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.0-alpha.1
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.0
 ```
 
 - **-it：** 开启输入功能并连接伪终端

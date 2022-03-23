@@ -4,26 +4,26 @@ description: 使用 Docker 部署
 ---
 
 :::info
-在继续操作之前，我们推荐您先阅读[《写在前面》](/getting-started/prepare)，这可以快速帮助你了解 Halo。
+在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare)，这可以快速帮助你了解 Halo。
 :::
 
 ## 使用 Docker 镜像
 
 Halo 在 Docker Hub 上发布的镜像为 [halohub/halo](https://hub.docker.com/r/halohub/halo)
 
-1. 创建[工作目录](/getting-started/prepare#工作目录)
+1. 创建 [工作目录](../prepare#工作目录)
 
 ```bash
 mkdir ~/.halo && cd ~/.halo
 ```
 
-2. 下载示例配置文件到[工作目录](/getting-started/prepare#工作目录)
+2. 下载示例配置文件到 [工作目录](../prepare#工作目录)
 
 ```bash
 wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 ```
 
-3. 编辑配置文件，配置数据库或者端口等，如需配置请参考[参考配置](/getting-started/config)
+3. 编辑配置文件，配置数据库或者端口等，如需配置请参考 [配置参考](../config)
 
 ```bash
 vim application.yaml
@@ -32,7 +32,7 @@ vim application.yaml
 4. 拉取最新的 Halo 镜像
 
 ```bash
-docker pull halohub/halo:1.5.0-alpha.1
+docker pull halohub/halo:1.5.0
 ```
 
 :::info
@@ -42,8 +42,12 @@ docker pull halohub/halo:1.5.0-alpha.1
 5. 创建容器
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.0-alpha.1
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.0
 ```
+
+:::info
+注意：此命令默认使用自带的 H2 Database 数据库。如需使用 MySQL，请参考：[使用 Docker 部署 Halo 和 MySQL](./other/docker-mysql)
+:::
 
 - **-it：** 开启输入功能并连接伪终端
 - **-d：** 后台运行容器
@@ -60,7 +64,7 @@ docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unle
 
 ## 反向代理
 
-你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。如果你对 Nginx 不熟悉，我们推荐使用 [OneinStack](/getting-started/install/other/oneinstack) 来管理 Nginx。
+你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。如果你对 Nginx 不熟悉，我们推荐使用 [OneinStack](./other/oneinstack) 来管理 Nginx。
 
 ### Nginx
 

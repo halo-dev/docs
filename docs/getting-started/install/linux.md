@@ -1,10 +1,10 @@
 ---
 title: 在 Linux 环境部署
-description: 在Linux上快速安装Halo
+description: 在 Linux 上快速安装 Halo
 ---
 
 :::info
-在继续操作之前，我们推荐您先阅读[《写在前面》](/getting-started/prepare)，这可以快速帮助你了解 Halo。
+在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare)，这可以快速帮助你了解 Halo。
 :::
 
 ## 依赖检查
@@ -13,7 +13,7 @@ description: 在Linux上快速安装Halo
 
 目前介绍两种 Linux 发行版的安装方式，均为 OpenJRE，不推荐 Oracle 版本。
 
-### CentOS <i class="mdi mdi-centos"></i>
+### CentOS
 
 ```bash
 sudo yum install java-11-openjdk -y
@@ -33,7 +33,7 @@ OpenJDK Runtime Environment 18.9 (build 11.0.10+9-LTS)
 OpenJDK 64-Bit Server VM 18.9 (build 11.0.10+9-LTS, mixed mode, sharing)
 ```
 
-### Ubuntu <i class="mdi mdi-ubuntu"></i>
+### Ubuntu
 
 ```bash
 sudo apt-get install openjdk-11-jre -y
@@ -85,7 +85,7 @@ passwd halo
 su - halo
 ```
 
-2. 创建存放 [运行包](/getting-started/prepare#运行包) 的目录，这里以 `~/app` 为例
+2. 创建存放 [运行包](../prepare#运行包) 的目录，这里以 `~/app` 为例
 
 ```bash
 mkdir ~/app && cd ~/app
@@ -94,26 +94,26 @@ mkdir ~/app && cd ~/app
 3. 下载运行包
 
 ```bash
-wget https://dl.halo.run/release/halo-1.5.0-alpha.1.jar -O halo.jar
+wget https://dl.halo.run/release/halo-1.5.0.jar -O halo.jar
 ```
 
 :::info
-如果下载速度不理想，可以 [在这里](/getting-started/downloads) 选择其他下载地址。
+如果下载速度不理想，可以 [在这里](../downloads) 选择其他下载地址。
 :::
 
-4. 创建 [工作目录](/getting-started/prepare#工作目录)
+4. 创建 [工作目录](../prepare#工作目录)
 
 ```bash
 mkdir ~/.halo && cd ~/.halo
 ```
 
-5. 下载示例配置文件到 [工作目录](/getting-started/prepare#工作目录)
+5. 下载示例配置文件到 [工作目录](../prepare#工作目录)
 
 ```bash
 wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml 
 ```
 
-6. 编辑配置文件，配置数据库或者端口等，如需配置请参考 [参考配置](/getting-started/config)
+6. 编辑配置文件，配置数据库或者端口等，如需配置请参考 [配置参考](../config)
 
 ```bash
 vim application.yaml
@@ -133,7 +133,7 @@ run.halo.app.listener.StartedListener    : Halo admin started at   http://127.0.
 run.halo.app.listener.StartedListener    : Halo has started successfully!
 ```
 
-打开 `http://ip: 端口号` 即可看到安装引导界面。
+打开 `http://ip:端口号` 即可看到安装引导界面。
 
 :::info
 如测试启动正常，请继续看`作为服务运行`部分，第 8 步仅仅作为测试。当你关闭 ssh 连接之后，服务会停止。你可使用 <kbd>CTRL</kbd>+<kbd>C</kbd> 停止运行测试进程。
@@ -221,7 +221,7 @@ journalctl -n 20 -u halo
 
 ## 反向代理
 
-你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其基本操作有一定了解。如果你对 Nginx 不熟悉，我们推荐使用 [OneinStack](/getting-started/install/other/oneinstack) 来管理 Nginx。
+你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其基本操作有一定了解。如果你对 Nginx 不熟悉，我们推荐使用 [OneinStack](./other/oneinstack) 来管理 Nginx。
 
 ### Nginx
 
