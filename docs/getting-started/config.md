@@ -116,14 +116,50 @@ halo:
 
 ```yaml
 halo:
-  # memory or level
+  # memory or level or redis
   cache: memory
 ```
 
-目前支持两种策略：
+目前支持三种策略：
 
 - `memory` 将数据缓存至内存，重启服务缓存将清空。
 - `level` 将数据缓存至本地，重启服务不会清空缓存。
+- `redis` 将数据缓存至 Redis，重启服务不会清空缓存，如需分布式部署 Halo，请选用此种缓存方式。
+
+**注意事项**：
+
+- 如果选用 Redis 缓存方式，请在配置文件加入 Redis 相关配置，完整的配置示例如下：
+
+```yaml
+server:
+  port: 8090
+  
+  # Response data gzip.
+  compression:
+    enabled: true
+    
+spring:
+  datasource:
+    # MySQL database configuration.
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  redis:
+    # Redis cache configuration.
+    port: 6379
+    database: 0
+    host: 127.0.0.1
+    password: 123456
+
+halo:
+  # Your admin client path is https://your-domain/{admin-path}
+  admin-path: admin
+
+  # memory or level or redis
+  cache: redis
+```
+
 
 ### 压缩
 
@@ -171,7 +207,7 @@ halo:
   # Your admin client path is https://your-domain/{admin-path}
   admin-path: admin
 
-  # memory or level
+  # memory or level or redis
   cache: memory
 ```
 
@@ -196,7 +232,7 @@ halo:
   # Your admin client path is https://your-domain/{admin-path}
   admin-path: admin
 
-  # memory or level
+  # memory or level or redis
   cache: memory
 ```
 
