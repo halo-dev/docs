@@ -70,7 +70,7 @@ services:
       halo_net:
         ipv4_address: 172.19.0.4
     volumes:
-      - $PWD/.halo/:/root/.halo
+      - $PWD/:/root/.halo
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
