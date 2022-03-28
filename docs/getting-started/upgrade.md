@@ -29,7 +29,13 @@ mv ~/app/halo.jar ~/app/halo.jar.archive
 
 > 需要注意的是，`.halo.archive` 和 `halo.jar.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
 
-3. 下载最新版本的运行包
+3. 清空 [leveldb](./config.md#缓存) 缓存（如果有使用 leveldb 作为缓存策略）
+
+```bash
+rm -rf ~/.halo/.leveldb
+```
+
+4. 下载最新版本的运行包
 
 ```bash
 cd ~/app && wget https://dl.halo.run/release/halo-1.5.0.jar -O halo.jar
@@ -39,7 +45,7 @@ cd ~/app && wget https://dl.halo.run/release/halo-1.5.0.jar -O halo.jar
 如果下载速度不理想，可以[在这里](/getting-started/downloads)选择其他下载地址。
 :::
 
-4. 启动测试
+5. 启动测试
 
 ```bash
 java -jar halo.jar
@@ -49,7 +55,7 @@ java -jar halo.jar
 如测试启动正常，请继续下一步。使用 <kbd>CTRL</kbd>+<kbd>C</kbd> 停止运行测试进程。
 :::
 
-5. 重启服务
+6. 重启服务
 
 ```bash
 service halo start
@@ -83,7 +89,13 @@ cp -r ~/.halo ~/.halo.archive
 
 > 需要注意的是，`.halo.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
 
-1. 拉取最新的 Halo 镜像
+3. 清空 [leveldb](./config.md#缓存) 缓存（如果有使用 leveldb 作为缓存策略）
+
+```bash
+rm -rf ~/.halo/.leveldb
+```
+
+4. 拉取最新的 Halo 镜像
 
 ```bash
 docker pull halohub/halo:1.5.0
@@ -93,7 +105,7 @@ docker pull halohub/halo:1.5.0
 查看最新版本镜像：<https://hub.docker.com/r/halohub/halo> ，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
 :::
 
-4. 创建容器
+5. 创建容器
 
 ```bash
 docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.0
