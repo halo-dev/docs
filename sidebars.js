@@ -27,6 +27,7 @@ module.exports = {
           items: [
             "getting-started/install/linux",
             "getting-started/install/docker",
+            "getting-started/install/docker-compose",
             {
               type: "category",
               label: "其他指南",
