@@ -153,7 +153,7 @@ docker-compose up -d
 ```
 
 :::info
-注意：如果您未在 application.yaml 中修改数据源配置，使用此命令启动则会默认使用自带的 `H2 Database`数据库。如需使用`MySQL`，请参考：[使用 Docker 部署 Halo 和 MySQL](./other/docker-mysql) 的内容将 `datasource` 配置更改为`MySQL`的配置。
+注意：如果您未在 application.yaml 中修改数据源配置，使用此命令启动则会默认使用自带的 `H2 Database` 数据库。如需使用 `MySQL`，请参考：[使用 Docker 部署 Halo 和 MySQL](./other/docker-mysql) 的内容将 `datasource` 配置更改为 `MySQL` 的配置。
 :::
 
 - **image：** 容器镜像版本，默认为 `halohub/halo:1.5.0`。如果需要使用最新版本请使用 `halohub/halo:latest`。
