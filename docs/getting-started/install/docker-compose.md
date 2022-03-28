@@ -53,7 +53,7 @@ services:
 
 ** Halo+MySQL+Redis **
 
-如果您需要使用自部署的`MySQL`和`Redis`，可参考如下的`docker-compose.yaml`
+如果您需要使用自部署的 `MySQL` 和 `Redis`，可参考如下的 `docker-compose.yaml`：
 
 ```yaml
 version: "3"
