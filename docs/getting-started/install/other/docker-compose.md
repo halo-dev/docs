@@ -4,24 +4,24 @@ description: 使用 Docker-Compose 部署 Halo
 ---
 
 :::info
-在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare)，这可以快速帮助你了解 Halo。
+在继续操作之前，我们推荐您先阅读[《写在前面》](../../prepare)，这可以快速帮助你了解 Halo。
 :::
 
 ## 使用 Docker-Compose 部署
 
-1. 创建[工作目录](../prepare#工作目录)
+1. 创建[工作目录](../../prepare#工作目录)
 
 ```bash
 mkdir ~/.halo && cd ~/.halo
 ```
 
-2. 下载示例配置文件到[工作目录](../prepare#工作目录)
+2. 下载示例配置文件到[工作目录](../../prepare#工作目录)
 
 ```bash
 wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 ```
 
-3. 编辑配置文件，配置数据库或者端口等，如需配置请参考 [配置参考](../config)
+3. 编辑配置文件，配置数据库或者端口等，如需配置请参考 [配置参考](../../config)
 
 ```bash
 vim application.yaml
@@ -153,7 +153,7 @@ docker-compose up -d
 ```
 
 :::info
-注意：如果您未在 application.yaml 中修改数据源配置，使用此命令启动则会默认使用自带的 `H2 Database` 数据库。如需使用 `MySQL`，请参考：[使用 Docker 部署 Halo 和 MySQL](./other/docker-mysql) 的内容将 `datasource` 配置更改为 `MySQL` 的配置。
+注意：如果您未在 application.yaml 中修改数据源配置，使用此命令启动则会默认使用自带的 `H2 Database` 数据库。如需使用 `MySQL`，请参考：[使用 Docker 部署 Halo 和 MySQL](./docker-mysql) 的内容将 `datasource` 配置更改为 `MySQL` 的配置。
 :::
 
 - **image：** 容器镜像版本，默认为 `halohub/halo:1.5.0`。如果需要使用最新版本请使用 `halohub/halo:latest`。
@@ -162,7 +162,7 @@ docker-compose up -d
 - **volumes：** 工作目录映射。形式为：`宿主机路径:/root/.halo`，后者不能修改。
 - **restart：** 建议设置为 `unless-stopped`，在 Docker 启动的时候自动启动 Halo 容器。
 
-6. 打开 `http://ip:端口号` 即可看到安装引导界面。
+1. 打开 `http://ip:端口号` 即可看到安装引导界面。
 
 :::tip
 如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
@@ -170,7 +170,7 @@ docker-compose up -d
 
 ## 反向代理
 
-你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。如果你对 Nginx 不熟悉，我们推荐使用 [OneinStack](./other/oneinstack) 来管理 Nginx。
+你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。如果你对 Nginx 不熟悉，我们推荐使用 [OneinStack](./oneinstack) 来管理 Nginx。
 
 ### Nginx
 
