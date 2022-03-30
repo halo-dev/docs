@@ -127,7 +127,7 @@ spring:
   datasource:
     # MySQL database configuration.
     driver-class-name: com.mysql.cj.jdbc.Driver
-    # 此处的地址应该使用docker-compose.yaml中配置的MySQL地址和密码
+    # 此处的地址应该使用 docker-compose.yaml 中配置的 MySQL 地址和密码
     url: jdbc:mysql://172.19.0.2:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: mysqlpass
