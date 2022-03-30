@@ -21,7 +21,7 @@ mkdir ~/.halo && cd ~/.halo
 wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 ```
 
-3. 编辑配置文件，配置数据库或者端口等，如需配置请参考 [配置参考](../../config)
+3. 编辑配置文件，配置数据库或者端口等，如需配置请参考[配置参考](../../config)
 
 ```bash
 vim application.yaml
