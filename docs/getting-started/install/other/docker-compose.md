@@ -63,7 +63,7 @@ services:
     depends_on:
       - mysql_db
       - redis_db
-    image: halohub/halo:latest
+    image: halohub/halo:1.5.0
     container_name: halo-self
     restart: unless-stopped
     networks:
@@ -91,6 +91,7 @@ services:
       - "3306:3306"
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - $PWD/init:/docker-entrypoint-initdb.d/
       - $PWD/mysql/var/lib/mysql:/var/lib/mysql
       - $PWD/mysql/mysqlBackup:/data/mysqlBackup
     environment:
@@ -120,7 +121,19 @@ networks:
         - subnet: 172.19.0.0/16
 ```
 
-注意，如果您使用了自部署的 MySQL 和 Redis，启动前您应该同步更改 application.yaml 中的数据源地址和 cache 选项。
+
+:::info
+注意，如果您使用了自部署的 `MySQL` 和 `Redis`，由于 `Halo` 启动时并不会主动创建数据库或者 `schema` ，所以您应该提前创建好 `init.sql` 并且同步更改 `application.yaml` 中的数据源地址和 `cache` 选项。
+:::
+
+创建 init.sql :
+
+```bash
+mkdir init && touch ./init/init.sql
+echo 'create database halodb character set utf8mb4 collate utf8mb4_bin;' > ./init/init.sql
+```
+
+修改数据源配置 :
 
 ```yaml
 spring:
@@ -146,7 +159,7 @@ halo:
   # memory or level or redis
   cache: redis
 ```
-6. 启动 Halo 服务
+1. 启动 Halo 服务
 
 ```bash
 docker-compose up -d
