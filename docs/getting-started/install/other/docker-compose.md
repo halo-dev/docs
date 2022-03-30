@@ -95,7 +95,7 @@ services:
       - $PWD/mysql/mysqlBackup:/data/mysqlBackup
     environment:
       ## 此处需要输入自定义 MySQL 密码
-      - MYSQL_ROOT_PASSWORD = mysqlpass
+      - MYSQL_ROOT_PASSWORD=mysqlpass
 
   redis_db:
     image: redis
