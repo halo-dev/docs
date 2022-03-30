@@ -27,7 +27,7 @@ wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
 vim application.yaml
 ```
 
-4. 创建 docker-compose.yaml
+4. 创建 `docker-compose.yaml`
 
 ** Halo 基础版本**
 
