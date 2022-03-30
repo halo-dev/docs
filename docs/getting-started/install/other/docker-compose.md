@@ -107,7 +107,7 @@ services:
     volumes:
       - $PWD/redis/data:/data
       - $PWD/redis/logs:/logs
-    ## 此处需要输入自定义redis密码
+    ## 此处需要输入自定义 Redis 密码
     command: redis-server --requirepass redispass
     ports:
       - "6379:6379"
