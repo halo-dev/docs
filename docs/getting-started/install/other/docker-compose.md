@@ -135,7 +135,7 @@ spring:
     # Redis cache configuration.
     port: 6379
     database: 0
-    # 此处的地址应该使用docker-compose.yaml中配置的Redis地址和密码
+    # 此处的地址应该使用 docker-compose.yaml 中配置的 Redis 地址和密码
     host: 172.19.0.3
     password: redispass
 
