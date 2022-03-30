@@ -159,7 +159,7 @@ halo:
   # memory or level or redis
   cache: redis
 ```
-1. 启动 Halo 服务
+5. 启动 Halo 服务
 
 ```bash
 docker-compose up -d
@@ -175,7 +175,7 @@ docker-compose up -d
 - **volumes：** 工作目录映射。形式为：`宿主机路径:/root/.halo`，后者不能修改。
 - **restart：** 建议设置为 `unless-stopped`，在 Docker 启动的时候自动启动 Halo 容器。
 
-1. 打开 `http://ip:端口号` 即可看到安装引导界面。
+6. 打开 `http://ip:端口号` 即可看到安装引导界面。
 
 :::tip
 如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
