@@ -117,3 +117,66 @@ docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unle
 - **-p：** 端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
 - **-v：** 工作目录映射。形式为：-v 宿主机路径:/root/.halo，后者不能修改。
 - **--restart：** 建议设置为 `unless-stopped`，在 Docker 启动的时候自动启动 Halo 容器。
+
+## Docker-Compose
+
+:::info
+我们假设您的 Halo 服务容器是按照 [使用 Docker-Compose 部署 Halo](/getting-started/install/other/docker-compose) 中的方式启动的。如有不同，请根据实际情况修改。
+:::
+
+1. 停止运行中的容器
+
+```bash
+docker-compose stop
+```
+
+:::info
+此操作会停止所有使用当前 `docker-compose.ymal` 启动的容器，如果需要单独更新镜像，请参考上文。
+:::
+
+2. 备份数据（重要）
+
+```bash
+cp -r ~/.halo ~/.halo.archive
+```
+
+> 需要注意的是，`.halo.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
+
+3. 清空 [leveldb](./config.md#缓存) 缓存（如果有使用 leveldb 作为缓存策略）
+
+```bash
+rm -rf ~/.halo/.leveldb
+```
+
+4. 更新 Halo 服务
+
+:::info
+注意，当您的 `Docker` 镜像源非官方源时,执行 `docker-compose pull` 命令时可能无法获取到最新的 `latest` 标签的镜像。
+:::
+
+针对使用 `latest` 标签镜像的更新： 
+
+```bash
+docker-compose pull && docker-compose up -d
+```
+
+针对使用具体版本标签镜像的更新： 
+
+修改 `docker-compose.ymal` 中配置的镜像版本。
+
+```diff
+services:
+  halo_server:
+    depends_on:
+      - mysql_db
+      - redis_db
+-    image: halohub/halo:1.5.0
++    image: halohub/halo:1.5.1
+    container_name: halo-self
+```
+
+执行更新命令：
+
+```bash
+docker-compose up -d
+```
