@@ -29,7 +29,7 @@ vim application.yaml
 
 4. 创建 `docker-compose.yaml`
 
-** Halo 基础版本**
+**Halo** 基础版本
 
 ```yaml
 version: "3"
@@ -51,7 +51,7 @@ services:
 您可以前往 <https://hub.docker.com/r/halohub/halo> 查看最新版本镜像，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
 :::
 
-** Halo + MySQL + Redis **
+**Halo** + **MySQL** + **Redis**
 
 如果您需要使用自部署的 `MySQL` 和 `Redis`，可参考如下的 `docker-compose.yaml`：
 
@@ -159,7 +159,7 @@ halo:
   cache: redis
 ```
 
-5. 启动 Halo 服务
+1. 启动 Halo 服务
 
 ```bash
 docker-compose up -d
@@ -266,13 +266,13 @@ rm -rf ~/.halo/.leveldb
 注意，当您的 `Docker` 镜像源非官方源时,执行 `docker-compose pull` 命令时可能无法获取到最新的 `latest` 标签的镜像。
 :::
 
-针对使用 `latest` 标签镜像的更新： 
+针对使用 `latest` 标签镜像的更新：
 
 ```bash
 docker-compose pull && docker-compose up -d
 ```
 
-针对使用具体版本标签镜像的更新： 
+针对使用具体版本标签镜像的更新：  
 
 修改 `docker-compose.yaml` 中配置的镜像版本。
 
@@ -292,3 +292,4 @@ services:
 ```bash
 docker-compose up -d
 ```
+  
