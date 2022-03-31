@@ -153,7 +153,7 @@ ${atom_url!}
 
 如：`https://yourdomain/atom.xml`
 
-## Xml 格式的网站地图地址
+## XML 格式的网站地图地址
 
 ```html
 ${sitemap_xml_url!}

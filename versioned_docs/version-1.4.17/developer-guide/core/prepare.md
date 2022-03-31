@@ -19,16 +19,16 @@ description: 开发环境的一些说明
 
 ## 克隆项目（Optional）
 
-如果你已经 `fork` 了 [`Halo`](https://github.com/halo-dev/halo)，请将以下命令中的 `halo-dev` 替换为你的 `Github 用户名`。
+如果你已经 `fork` 了 [`Halo`](https://github.com/halo-dev/halo)，请将以下命令中的 `halo-dev` 替换为你的 `GitHub 用户名`。
 
 ```bash
 git clone --recursive https://github.com/halo-dev/halo
 
-// 如果你在 Github 上已经添加了你的 ssh key，请使用以下命令进行 clone：
+// 如果你在 GitHub 上已经添加了你的 ssh key，请使用以下命令进行 clone：
 git clone --recursive git@github.com:halo-dev/halo.git
 ```
 
-这里推荐使用第二种方式进行克隆，这样每次提交代码的时候，就不会提示登录 `Github` 了。
+这里推荐使用第二种方式进行克隆，这样每次提交代码的时候，就不会提示登录 `GitHub` 了。
 
 ## 导入项目
 
