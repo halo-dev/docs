@@ -29,7 +29,7 @@ vim application.yaml
 
 4. 创建 `docker-compose.yaml`
 
-** Halo 基础版本**
+仅创建 Halo 实例：
 
 ```yaml
 version: "3"
@@ -51,7 +51,7 @@ services:
 您可以前往 <https://hub.docker.com/r/halohub/halo> 查看最新版本镜像，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
 :::
 
-** Halo + MySQL + Redis **
+创建 Halo + MySQL + Redis 的实例：
 
 如果您需要使用自部署的 `MySQL` 和 `Redis`，可参考如下的 `docker-compose.yaml`：
 
@@ -121,7 +121,6 @@ networks:
         - subnet: 172.19.0.0/16
 ```
 
-
 :::info
 注意，如果您使用了自部署的 `MySQL` 和 `Redis`，由于 `Halo` 启动时并不会主动创建数据库或者 `schema` ，所以您应该提前创建好 `init.sql` 并且同步更改 `application.yaml` 中的数据源地址和 `cache` 选项。
 :::
@@ -159,6 +158,7 @@ halo:
   # memory or level or redis
   cache: redis
 ```
+
 5. 启动 Halo 服务
 
 ```bash

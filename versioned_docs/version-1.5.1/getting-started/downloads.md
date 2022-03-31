@@ -3,7 +3,7 @@ title: 资源下载
 description: 目前所有与 Halo 相关的下载地址
 ---
 
-## Github
+## GitHub
 
 :::note
 如果您的服务器在海外，推荐从 GitHub 下载。
