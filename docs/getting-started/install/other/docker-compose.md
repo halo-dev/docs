@@ -38,9 +38,9 @@ services:
   server:
     image: halohub/halo:1.5.0
     container_name: halo
-    restart: unless-stopped
+    restart: on-failure:3
     volumes:
-      - ./:/root/.halo
+      - ~/.halo:/root/.halo
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -65,12 +65,12 @@ services:
       - redis_db
     image: halohub/halo:1.5.0
     container_name: halo-self
-    restart: unless-stopped
+    restart: on-failure:3
     networks:
       halo_net:
         ipv4_address: 172.19.0.4
     volumes:
-      - $PWD/:/root/.halo
+      - ~/.halo:/root/.halo
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -78,7 +78,7 @@ services:
 
   mysql_db:
     image: mysql:8.0.27
-    restart: always
+    restart: on-failure:3
     networks:
       halo_net:
         ipv4_address: 172.19.0.2
@@ -91,23 +91,23 @@ services:
       - "3306:3306"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - $PWD/init:/docker-entrypoint-initdb.d/
-      - $PWD/mysql/var/lib/mysql:/var/lib/mysql
-      - $PWD/mysql/mysqlBackup:/data/mysqlBackup
+      - ~/.halo/init:/docker-entrypoint-initdb.d/
+      - ~/.halo/mysql/var/lib/mysql:/var/lib/mysql
+      - ~/.halo/mysql/mysqlBackup:/data/mysqlBackup
     environment:
       ## 此处需要输入自定义 MySQL 密码
       - MYSQL_ROOT_PASSWORD=mysqlpass
 
   redis_db:
     image: redis
-    restart: always
+    restart: on-failure:3
     networks:
       halo_net:
         ipv4_address: 172.19.0.3
     container_name: halo-redis
     volumes:
-      - $PWD/redis/data:/data
-      - $PWD/redis/logs:/logs
+      - ~/.halo/redis/data:/data
+      - ~/.halo/redis/logs:/logs
     ## 此处需要输入自定义 Redis 密码
     command: redis-server --requirepass redispass
     ports:
@@ -129,8 +129,8 @@ networks:
 创建 init.sql :
 
 ```bash
-mkdir init && touch ./init/init.sql
-echo 'create database halodb character set utf8mb4 collate utf8mb4_bin;' > ./init/init.sql
+mkdir init && touch ~/.halo/init/init.sql
+echo 'create database halodb character set utf8mb4 collate utf8mb4_bin;' > ~/.halo/init/init.sql
 ```
 
 修改数据源配置 :
@@ -141,7 +141,7 @@ spring:
     # MySQL database configuration.
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 此处的地址应该使用 docker-compose.yaml 中配置的 MySQL 地址和密码
-    url: jdbc:mysql://172.19.0.2:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://mysql_db:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
     password: mysqlpass
   redis:
@@ -149,7 +149,7 @@ spring:
     port: 6379
     database: 0
     # 此处的地址应该使用 docker-compose.yaml 中配置的 Redis 地址和密码
-    host: 172.19.0.3
+    host: redis_db
     password: redispass
 
 halo:
