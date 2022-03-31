@@ -131,7 +131,7 @@ docker-compose stop
 ```
 
 :::info
-此操作会停止所有使用当前 `docker-compose.ymal` 启动的容器，如果需要单独更新镜像，请参考上文。
+此操作会停止所有使用当前 `docker-compose.yaml` 启动的容器，如果需要单独更新镜像，请参考上文。
 :::
 
 2. 备份数据（重要）
@@ -162,7 +162,7 @@ docker-compose pull && docker-compose up -d
 
 针对使用具体版本标签镜像的更新： 
 
-修改 `docker-compose.ymal` 中配置的镜像版本。
+修改 `docker-compose.yaml` 中配置的镜像版本。
 
 ```diff
 services:
