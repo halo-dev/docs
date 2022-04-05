@@ -117,3 +117,4 @@ docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unle
 - **-p：** 端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
 - **-v：** 工作目录映射。形式为：-v 宿主机路径:/root/.halo，后者不能修改。
 - **--restart：** 建议设置为 `unless-stopped`，在 Docker 启动的时候自动启动 Halo 容器。
+  
