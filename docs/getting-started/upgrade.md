@@ -3,7 +3,7 @@ title: 版本升级
 description: 版本升级指南
 ---
 
-当前最新版本为：1.5.1。在更新之前建议先查阅变更日志：<https://github.com/halo-dev/halo/releases/tag/v1.5.1>
+当前最新版本为：1.5.2。在更新之前建议先查阅变更日志：<https://github.com/halo-dev/halo/releases/tag/v1.5.2>
 
 ## Linux
 
@@ -38,7 +38,7 @@ rm -rf ~/.halo/.leveldb
 4. 下载最新版本的运行包
 
 ```bash
-cd ~/app && wget https://dl.halo.run/release/halo-1.5.1.jar -O halo.jar
+cd ~/app && wget https://dl.halo.run/release/halo-1.5.2.jar -O halo.jar
 ```
 
 :::info
@@ -98,7 +98,7 @@ rm -rf ~/.halo/.leveldb
 4. 拉取最新的 Halo 镜像
 
 ```bash
-docker pull halohub/halo:1.5.1
+docker pull halohub/halo:1.5.2
 ```
 
 :::info
@@ -108,7 +108,7 @@ docker pull halohub/halo:1.5.1
 5. 创建容器
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.1
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.2
 ```
 
 - **-it：** 开启输入功能并连接伪终端
@@ -117,4 +117,3 @@ docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unle
 - **-p：** 端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
 - **-v：** 工作目录映射。形式为：-v 宿主机路径:/root/.halo，后者不能修改。
 - **--restart：** 建议设置为 `unless-stopped`，在 Docker 启动的时候自动启动 Halo 容器。
-  
