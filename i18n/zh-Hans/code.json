@@ -59,6 +59,10 @@
     "message": "阅读更多",
     "description": "The label used in blog post item excerpts to link to full blog posts"
   },
+  "theme.blog.sidebar.navAriaLabel": {
+    "message": "最近博文导航",
+    "description": "The ARIA label for recent posts in the blog sidebar"
+  },
   "theme.blog.post.paginator.navAriaLabel": {
     "message": "博文分页导航",
     "description": "The ARIA label for the blog posts pagination"
@@ -70,10 +74,6 @@
   "theme.blog.post.paginator.olderPost": {
     "message": "较旧一篇",
     "description": "The blog post button label to navigate to the older/next post"
-  },
-  "theme.blog.sidebar.navAriaLabel": {
-    "message": "最近博文导航",
-    "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.blog.post.plurals": {
     "message": "{count} 篇博文",
@@ -135,8 +135,9 @@
     "message": "{nDocsTagged}「{tagName}」",
     "description": "The title of the page for a docs tag"
   },
-  "theme.docs.versionBadge.label": {
-    "message": "版本：{versionLabel}"
+  "theme.common.editThisPage": {
+    "message": "编辑此页",
+    "description": "The link label to edit the current page"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
     "message": "此为 {siteTitle} {versionLabel} 版尚未发行的文档。",
@@ -154,9 +155,8 @@
     "message": "最新版本",
     "description": "The label used for the latest version suggestion link label"
   },
-  "theme.common.editThisPage": {
-    "message": "编辑此页",
-    "description": "The link label to edit the current page"
+  "theme.docs.versionBadge.label": {
+    "message": "版本：{versionLabel}"
   },
   "theme.common.headingLinkTitle": {
     "message": "标题的直接链接",
