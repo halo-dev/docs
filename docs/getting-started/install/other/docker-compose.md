@@ -283,7 +283,7 @@ services:
       - mysql_db
       - redis_db
 -    image: halohub/halo:1.5.0
-+    image: halohub/halo:1.5.1
++    image: halohub/halo:1.5.2
     container_name: halo-self
 ```
 
@@ -292,4 +292,3 @@ services:
 ```bash
 docker-compose up -d
 ```
-  
