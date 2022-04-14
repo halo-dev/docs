@@ -1,4 +1,7 @@
 const darkCodeTheme = require("prism-react-renderer/themes/palenight");
+const math = require("remark-math");
+const katex = require("rehype-katex");
+const mermaid = require("mdx-mermaid");
 
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
@@ -30,6 +33,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
             routeBasePath: "/",
             showLastUpdateTime: true,
             showLastUpdateAuthor: true,
+            remarkPlugins: [math, mermaid],
+            rehypePlugins: [katex],
           },
           blog: false,
           theme: {
@@ -68,13 +73,13 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
               label: "论坛",
             },
             {
-              type: 'docsVersionDropdown',
-              position: 'right',
+              type: "docsVersionDropdown",
+              position: "right",
               dropdownActiveClassDisabled: true,
               dropdownItemsAfter: [
                 {
-                  to: '/versions',
-                  label: 'All versions',
+                  to: "/versions",
+                  label: "All versions",
                 },
               ],
             },
@@ -235,7 +240,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
             {
               to: "/contribution/pr",
               from: ["/zh/contribution/pr"],
-            }
+            },
           ],
         },
       ],
@@ -246,6 +251,12 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
         async: true,
         defer: true,
         "data-website-id": "7e8d48ad-973d-4b44-b36d-ea1f1df25baa",
+      },
+    ],
+    stylesheets: [
+      {
+        href: "https://unpkg.com/katex@0.12.0/dist/katex.min.css",
+        type: "text/css",
       },
     ],
   }
