@@ -2,6 +2,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/palenight");
 const math = require("remark-math");
 const katex = require("rehype-katex");
 const mermaid = require("mdx-mermaid");
+const VersionsArchived = require("./versionsArchived.json");
 
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
@@ -77,6 +78,12 @@ const mermaid = require("mdx-mermaid");
               position: "right",
               dropdownActiveClassDisabled: true,
               dropdownItemsAfter: [
+                ...Object.entries(VersionsArchived).map(
+                  ([versionName, versionUrl]) => ({
+                    label: versionName,
+                    href: versionUrl,
+                  })
+                ),
                 {
                   to: "/versions",
                   label: "All versions",
