@@ -35,11 +35,7 @@ module.exports = {
                 "getting-started/install/other/oneinstack",
                 "getting-started/install/other/tencent-cloudbase",
                 "getting-started/install/other/docker-mysql",
-                {
-                  type: "link",
-                  label: "腾讯云开发者实验室",
-                  href: "https://cloud.tencent.com/developer/labs/lab/10523",
-                },
+                "getting-started/install/other/docker-compose"
               ],
             },
             "getting-started/install/third-party",
