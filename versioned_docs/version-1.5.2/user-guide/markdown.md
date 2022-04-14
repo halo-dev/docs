@@ -3,187 +3,144 @@ title: Markdown 语法
 description: Halo 编辑器中所支持的 Markdown 语法说明
 ---
 
+## 写在前面
+
+从 1.5.0 版本开始，Halo 默认保存编辑器渲染的 html 文档。使用的 Markdown 渲染库为 [markdown-it](https://github.com/markdown-it/markdown-it)，我们也对此进行了封装：[@halo-dev/markdown-renderer](https://github.com/halo-dev/js-sdk/tree/master/packages/markdown-renderer)。后续我们会在任何需要渲染 Markdown 的地方都使用此库，保证 Markdown 渲染结果一致。
+
 ## 基础语法
 
-Halo 使用的 `Markdown` 解析器为 [flexmark-java](https://github.com/vsch/flexmark-java)，基于 [CommonMark (spec 0.28)](https://spec.commonmark.org/0.28/) 标准开发，语法参考：[https://spec.commonmark.org/0.28/](https://spec.commonmark.org/0.28/)。
+markdown-it 使用了 [CommonMark spec](https://spec.commonmark.org) 规范，基础语法请参考 [CommonMark spec](https://spec.commonmark.org)。
 
-## 代码块
+## 自动链接（Auto Link）
 
-````markdown
-```language
-代码块
-```
-````
+支持自动将一个链接格式的文本转换为 a 标签链接。
 
-其中，language 为必填，如果不填写，很可能主题的代码高亮插件无法识别代码的语言，导致样式异常。举几个例子：
+语法规则：
 
-````markdown
-```java
-public static void main(String[] args){
-    System.out.println("Hello World!");
-}
-```
-````
-
-````markdown
-```javascript
-console.log("Hello World!")
-```
-````
-
-## TOC
-
-在文章的最前面加上 `[TOC]` 即可。
-
-## 自动链接
-
-支持自动将一个链接解析为可点击的格式，如下：
-
-```markdown
+```plain
 https://halo.run
 ```
 
-将被解析为：
+渲染结果：
 
 ```html
 <a href="https://halo.run">https://halo.run</a>
 ```
 
+预览：
+
+<https://halo.run>
+
+## 代码块（Code Block）
+
+语法规则：
+
+````markdown {1}
+```language
+内容
+```
+````
+
+示例：
+
+````markdown {1}
+```java
+public static void main(String[] args){
+    System.out.println("Hello World!");
+}
+```
+````
+
+````markdown {1}
+```javascript
+console.log("Hello World!")
+```
+````
+
+:::info
+注意：代码高亮需要主题添加插件支持，不同的主题可能有实现差异。
+:::
+
+## 缩写（abbr）
+
+语法规则：
+
+```markdown
+*[HTML]: Hyper Text Markup Language
+*[W3C]:  World Wide Web Consortium 
+The HTML specification
+is maintained by the W3C.
+```
+
+渲染结果：
+
+```html
+<p>
+    The
+    <abbr title="Hyper Text Markup Language">
+        HTML
+    </abbr>
+    specification
+    <br />
+    is maintained by the
+    <abbr title="World Wide Web Consortium">
+        W3C
+    </abbr>
+    .
+</p>
+```
+
+## Attrs
+
+此语法支持将 `id` `class` `target` 添加到渲染后的 HTML 标签上。
+
+示例：
+
+```markdown
+# Halo {#halo}
+```
+
+```markdown
+> Hello Halo {.info}
+```
+
+```markdown
+[https://halo.run](https://halo.run) {target="_blank"}
+```
+
+渲染结果：
+
+```html
+<h1 id="halo" tabindex="-1">Halo</h1>
+```
+
+```html
+<blockquote class="info"> <p>Hello Halo</p> </blockquote>
+```
+
+```html
+<a href="https://halo.run" target="_blank">https://halo.run</a>
+```
+
 ## Emoji
 
-支持将 Emoji 的文字形式转化为图片形式，如下：
+支持将 Emoji 的文字形式转化为图片形式。
+
+示例：
 
 ```markdown
 :100:
 ```
 
-将被解析为：
+渲染结果：
 
 ```html
 💯
 ```
 
-更多 Emoji 表情可访问：[https://emoji.svend.cc](https://emoji.svend.cc)
+## 脚注（Footnote）
 
-## 数学公式
-
-行内公式：
-
-```markdown
-$a \ne 0$
-```
-
-段落公式：
-
-```markdown
-$$
-x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
-$$
-```
-
-> 需要注意的是，并不是每一款主题都支持显示数学公式，你可以先到你使用的主题设置中查看是否支持，如不支持，请看下面的解决方案。
-
-首先，登陆到后台，进入 `系统 -> 博客设置 -> 其他设置`。将下面的代码复制到 `自定义内容页面 head`。
-
-```html
-<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        MathJax.Hub.Config({
-            'HTML-CSS': {
-                matchFontHeight: false
-            },
-            SVG: {
-                matchFontHeight: false
-            },
-            CommonHTML: {
-                matchFontHeight: false
-            },
-            tex2jax: {
-                inlineMath: [
-                    ['$','$'],
-                    ['\\(','\\)']
-                ],
-                displayMath: [["$$", "$$"], ["\\[", "\\]"]]
-            }
-        });
-    });
-</script>
-```
-
-## 图表
-
-饼图：
-
-````markdown
-```mermaid
-pie title NETFLIX
-         "Time spent looking for movie" : 90
-         "Time spent watching it" : 10
-```
-````
-
-更多用法查看：[https://mermaidjs.github.io/#/](https://mermaidjs.github.io/#/)
-
-> 需要注意的是，并不是每一款主题都支持显示图表，你可以先到你使用的主题设置中查看是否支持，如不支持，请看下面的解决方案。
-
-首先，登陆到后台，进入 `系统 -> 博客设置 -> 其他设置`。将下面的代码复制到 `自定义内容页面 head`。
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.4/dist/mermaid.min.js"></script>
-```
-
-## 短连接
-
-:::tip
-这属于实验性特性，也许我们将在未来的版本移除这个特性。
-:::
-
-Halo 内置一些短连接以更好地支持一些 HTML 语法，但是编辑器目前并不能解析，只能发布之后才可以看到效果，如下：
-
-### 网易云音乐
-
-#### 语法
-
-```markdown
-[music:id]
-```
-
-#### 示例
-
-```markdown
-[music:32507038]
-```
-
-#### 解析结果
-
-```html
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=32507038&auto=1&height=66"></iframe>
-```
-
-### 哔哩哔哩动画
-
-#### 语法
-
-```markdown
-[bilibili:aid,width,height]
-```
-
-#### 示例
-
-```markdown
-[bilibili:65898131,256,256]
-```
-
-#### 解析结果
-
-```html
-<iframe height="256" width="256" src="//player.bilibili.com/player.html?aid=65898131" scrolling="no" border="0" frameborder="no"  framespacing="0" allowfullscreen="true">  </iframe>
-```
-
-## 脚注
-
-语法：
+语法规则：
 
 ```markdown
 [^脚注名]
@@ -192,20 +149,302 @@ Halo 内置一些短连接以更好地支持一些 HTML 语法，但是编辑器
 
 示例：
 
-```markdown
+```html
 驿外[^1]断桥边，寂寞开无主。已是黄昏独自愁，更着风和雨
 [^1]: 驿（yì）外：指荒僻、冷清之地。驿，驿站。
 ```
 
-解析结果：
+渲染结果：
 
 ```html
-<p>驿外<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>断桥边，寂寞开无主。已是黄昏独自愁，更着风和雨</p>
+<p>
+    驿外
+    <sup class="footnote-ref">
+        <a href="#fn1" id="fnref1">
+            [1]
+        </a>
+    </sup>
+    断桥边，寂寞开无主。已是黄昏独自愁，更着风和雨
+</p>
 <hr class="footnotes-sep">
 <section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>驿（yì）外：指荒僻、冷清之地。驿，驿站。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
+    <ol class="footnotes-list">
+        <li id="fn1" class="footnote-item">
+            <p>
+                驿（yì）外：指荒僻、冷清之地。驿，驿站。
+                <a href="#fnref1" class="footnote-backref">
+                    ↩︎
+                </a>
+            </p>
+        </li>
+    </ol>
 </section>
+```
+
+## 下划线（ins）
+
+示例：
+
+```markdown
+++inserted++
+```
+
+渲染结果：
+
+```html
+<ins>inserted</ins>
+```
+
+预览：
+
+<ins>inserted</ins>
+
+## 标记（mark）
+
+示例：
+
+```markdown
+==marked==
+```
+
+渲染结果：
+
+```html
+<mark>marked</mark>
+```
+
+预览：
+
+<mark>marked</mark>
+
+## 下标（sub）
+
+示例：
+
+```markdown
+H~2~0
+```
+
+渲染结果：
+
+```html
+H<sub>2</sub>0
+```
+
+预览：
+
+H<sub>2</sub>0
+
+## 上标（sup）
+
+示例：
+
+```markdown
+29^th^
+```
+
+渲染结果：
+
+```html
+29<sup>th</sup>
+```
+
+预览：
+
+29<sup>th</sup>
+
+## 目录（TOC）
+
+此语法支持根据标题生成文档目录。
+
+示例：
+
+```markdown
+[toc]
+
+# Heading
+
+## Sub heading 1
+Some nice text
+
+## Sub heading 2
+Some even nicer text
+```
+
+渲染结果：
+
+```html
+<p>
+    <div class="table-of-contents">
+        <ul>
+            <li>
+                <a href="#heading">
+                    Heading
+                </a>
+                <ul>
+                    <li>
+                        <a href="#sub-heading-1">
+                            Sub heading 1
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#sub-heading-2">
+                            Sub heading 2
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</p>
+<h1 id="heading" tabindex="-1">
+    Heading
+</h1>
+<h2 id="sub-heading-1" tabindex="-1">
+    Sub heading 1
+</h2>
+<p>
+    Some nice text
+</p>
+<h2 id="sub-heading-2" tabindex="-1">
+    Sub heading 2
+</h2>
+<p>
+    Some even nicer text
+</p>
+```
+
+## 任务列表（Task Lists）
+
+示例：
+
+```markdown
+- [x] Apple
+- [ ] Banana
+```
+
+渲染结果：
+
+```html
+<ul class="contains-task-list">
+    <li class="task-list-item">
+        <input class="task-list-item-checkbox" checked="" disabled="" type="checkbox">
+        Apple
+    </li>
+    <li class="task-list-item">
+        <input class="task-list-item-checkbox" disabled="" type="checkbox">
+        Banana
+    </li>
+</ul>
+```
+
+预览：
+
+- [x] Apple
+- [ ] Banana
+
+## 数学公式（Katex）
+
+我们使用了 Katex 作为数学公式渲染的插件，因为从 1.5.0 开始，我们将直接保存编辑器渲染的内容，在保存的时候就已经保存了渲染好的 Katex 结构。所以在前台无需引入 Katex 插件来进行渲染，但目前仍需要引入 Katex 的样式文件，如果主题没有支持，可以在系统设置的 `自定义内容页 head：` 中加入以下代码：
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/katex@0.12.0/dist/katex.min.css" />
+```
+
+### 行内公式
+
+示例：
+
+```markdown
+$\sqrt{3x-1}+(1+x)^2$
+```
+
+预览：
+
+Example：$\sqrt{3x-1}+(1+x)^2$
+
+### 块级公式
+
+示例：
+
+```markdown
+$$\begin{array}{c}
+
+\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
+= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
+
+\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
+
+\nabla \cdot \vec{\mathbf{B}} & = 0
+
+\end{array}$$
+```
+
+预览：
+
+$$\begin{array}{c}
+
+\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
+= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
+
+\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
+
+\nabla \cdot \vec{\mathbf{B}} & = 0
+
+\end{array}$$
+
+## 图表（Mermaid）
+
+从 Halo 1.5.0 开始，编辑器支持渲染 Mermaid 图表为 svg 内容，并直接保存渲染后的内容，所以无需在前台引入 Mermaid 插件进行渲染。
+
+示例：
+
+````markdown
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+````
+
+````markdown
+```mermaid
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+```
+````
+
+预览：
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+```mermaid
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts <br/>prevail!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
 ```
