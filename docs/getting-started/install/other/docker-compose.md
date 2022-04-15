@@ -7,175 +7,188 @@ description: 使用 Docker-Compose 部署 Halo
 在继续操作之前，我们推荐您先阅读[《写在前面》](../../prepare)，这可以快速帮助你了解 Halo。
 :::
 
-## 使用 Docker-Compose 部署
+## 创建容器组
 
-1. 创建[工作目录](../../prepare#工作目录)
-
-```bash
-mkdir ~/.halo && cd ~/.halo
-```
-
-2. 下载示例配置文件到[工作目录](../../prepare#工作目录)
+1. 在系统任意位置创建一个文件夹，此文档以 `~/halo-app` 为例。
 
 ```bash
-wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml
+mkdir ~/halo-app && cd ~/halo-app
 ```
 
-3. 编辑配置文件，配置数据库或者端口等，如需配置请参考[配置参考](../../config)
+:::info
+注意：后续操作中，Halo 的所有相关数据都会保存在这个目录，请妥善保存。
+:::
 
-```bash
-vim application.yaml
-```
+2. 创建 `docker-compose.yaml`
 
-4. 创建 `docker-compose.yaml`
+此文档提供三种场景的 Docker-Compose 配置文件，请根据你的需要选择一种。
 
-仅创建 Halo 实例：
+:::info
+需要注意的是，此文档为了更加方便的管理配置，所有与 Halo 相关的配置都使用 Docker 环境变量代替，所以无需创建 application.yaml 文件。
+:::
 
-```yaml
+A. 仅创建 Halo 实例（使用默认的 H2 数据库）：
+
+```yaml {18-19}
 version: "3"
 
 services:
-  server:
-    image: halohub/halo:1.5.0
+  halo:
+    image: halohub/halo:1.5.2
     container_name: halo
     restart: on-failure:3
     volumes:
-      - ~/.halo:/root/.halo
+      - ./:/root/.halo
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "8090:8090"
+    environment:
+      - SERVER_PORT=8090
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.h2.Driver
+      - SPRING_DATASOURCE_URL=jdbc:h2:file:~/.halo/db/halo
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=o#DwN&JSa56
+      - HALO_ADMIN_PATH=admin
+      - HALO_CACHE=memory
 ```
 
 :::info
 您可以前往 <https://hub.docker.com/r/halohub/halo> 查看最新版本镜像，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
 :::
 
-创建 Halo + MySQL + Redis 的实例：
+B. 创建 Halo + MySQL 的实例：
 
-如果您需要使用自部署的 `MySQL` 和 `Redis`，可参考如下的 `docker-compose.yaml`：
-
-```yaml
+```yaml {22-23,45}
 version: "3"
 
 services:
   halo_server:
-    depends_on:
-      - mysql_db
-      - redis_db
-    image: halohub/halo:1.5.0
-    container_name: halo-self
+    image: halohub/halo:1.5.2
+    container_name: halo_server
     restart: on-failure:3
+    depends_on:
+      - halo_mysql
     networks:
-      halo_net:
-        ipv4_address: 172.19.0.4
+      halo_network:
     volumes:
-      - ~/.halo:/root/.halo
+      - ./:/root/.halo
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "8090:8090"
+    environment:
+      - SERVER_PORT=8090
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_DATASOURCE_URL=jdbc:mysql://halo_mysql:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=o#DwN&JSa56
+      - HALO_ADMIN_PATH=admin
+      - HALO_CACHE=memory
 
-  mysql_db:
+  halo_mysql:
     image: mysql:8.0.27
+    container_name: halo_mysql
     restart: on-failure:3
     networks:
-      halo_net:
-        ipv4_address: 172.19.0.2
-    container_name: halo-mysql
+      halo_network:
     command: --default_authentication_plugin=mysql_native_password
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_general_ci
       --explicit_defaults_for_timestamp=true
-    ports:
-      - "3306:3306"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ~/.halo/init:/docker-entrypoint-initdb.d/
-      - ~/.halo/mysql/var/lib/mysql:/var/lib/mysql
-      - ~/.halo/mysql/mysqlBackup:/data/mysqlBackup
+      - ./mysql:/var/lib/mysql
+      - ./mysql/mysqlBackup:/data/mysqlBackup
+    ports:
+      - "3306:3306"
     environment:
-      ## 此处需要输入自定义 MySQL 密码
-      - MYSQL_ROOT_PASSWORD=mysqlpass
+      # 请修改此密码，并对应修改上方 Halo 服务的 SPRING_DATASOURCE_PASSWORD 变量值
+      - MYSQL_ROOT_PASSWORD=o#DwN&JSa56
+      - MYSQL_DATABASE=halodb
 
-  redis_db:
+networks:
+  halo_network:
+```
+
+C. 创建 Halo + MySQL + Redis 的实例：
+
+```yaml {22-23,29,49,62}
+version: "3"
+
+services:
+  halo_server:
+    image: halohub/halo:1.5.2
+    container_name: halo_server
+    restart: on-failure:3
+    depends_on:
+      - halo_mysql
+    networks:
+      halo_network:
+    volumes:
+      - ./:/root/.halo
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "8090:8090"
+    environment:
+      - SERVER_PORT=8090
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_DATASOURCE_URL=jdbc:mysql://halo_mysql:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=o#DwN&JSa56
+      - HALO_ADMIN_PATH=admin
+      - HALO_CACHE=redis
+      - SPRING_REDIS_PORT=6379
+      - SPRING_REDIS_DATABASE=0
+      - SPRING_REDIS_HOST=halo_redis
+      - SPRING_REDIS_PASSWORD=dm5fD%rvPtq
+
+  halo_mysql:
+    image: mysql:8.0.27
+    container_name: halo_mysql
+    restart: on-failure:3
+    networks:
+      halo_network:
+    command: --default_authentication_plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./mysql:/var/lib/mysql
+      - ./mysql/mysqlBackup:/data/mysqlBackup
+    ports:
+      - "3306:3306"
+    environment:
+      # 请修改此密码，并对应修改上方 Halo 服务的 SPRING_DATASOURCE_PASSWORD 变量值
+      - MYSQL_ROOT_PASSWORD=o#DwN&JSa56
+      - MYSQL_DATABASE=halodb
+
+  halo_redis:
     image: redis
+    container_name: halo_redis
     restart: on-failure:3
     networks:
       halo_net:
-        ipv4_address: 172.19.0.3
-    container_name: halo-redis
     volumes:
-      - ~/.halo/redis/data:/data
-      - ~/.halo/redis/logs:/logs
-    ## 此处需要输入自定义 Redis 密码
-    command: redis-server --requirepass redispass
+      - ./redis/data:/data
+      - ./redis/logs:/logs
+    # 请修改此密码，并对应修改上方 Halo 服务的 SPRING_REDIS_PASSWORD 变量值
+    command: redis-server --requirepass dm5fD%rvPtq
     ports:
       - "6379:6379"
-
 networks:
-  halo_net:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.19.0.0/16
+  halo_network:
 ```
 
-:::info
-注意，如果您使用了自部署的 `MySQL` 和 `Redis`，由于 `Halo` 启动时并不会主动创建数据库或者 `schema` ，所以您应该提前创建好 `init.sql` 并且同步更改 `application.yaml` 中的数据源地址和 `cache` 选项。
-:::
-
-创建 init.sql :
-
-```bash
-mkdir init && touch ~/.halo/init/init.sql
-echo 'create database halodb character set utf8mb4 collate utf8mb4_bin;' > ~/.halo/init/init.sql
-```
-
-修改数据源配置 :
-
-```yaml
-spring:
-  datasource:
-    # MySQL database configuration.
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    # 此处的地址应该使用 docker-compose.yaml 中配置的 MySQL 地址和密码
-    url: jdbc:mysql://mysql_db:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: root
-    password: mysqlpass
-  redis:
-    # Redis cache configuration.
-    port: 6379
-    database: 0
-    # 此处的地址应该使用 docker-compose.yaml 中配置的 Redis 地址和密码
-    host: redis_db
-    password: redispass
-
-halo:
-  # Your admin client path is https://your-domain/{admin-path}
-  admin-path: admin
-
-  # memory or level or redis
-  cache: redis
-```
-
-5. 启动 Halo 服务
+3. 启动 Halo 服务
 
 ```bash
 docker-compose up -d
 ```
 
-:::info
-注意：如果您未在 `application.yaml` 中修改数据源配置，使用此命令启动则会默认使用自带的 `H2 Database` 数据库。如需使用 `MySQL`，请参考：[使用 Docker 部署 Halo 和 MySQL](./docker-mysql) 的内容将 `datasource` 配置更改为 `MySQL` 的配置。
-:::
-
-- **image：** 容器镜像版本，默认为 `halohub/halo:1.5.0`。如果需要使用最新版本请使用 `halohub/halo:latest`。
-- **container_name：** 为容器指定一个名称。
-- **ports：** 端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
-- **volumes：** 工作目录映射。形式为：`宿主机路径:/root/.halo`，后者不能修改。
-- **restart：** 建议设置为 `unless-stopped`，在 Docker 启动的时候自动启动 Halo 容器。
-
-6. 打开 `http://ip:端口号` 即可看到安装引导界面。
+4. 打开 `http://ip:端口号` 即可看到安装引导界面。
 
 :::tip
 如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
@@ -236,35 +249,29 @@ reverse_proxy 127.0.0.1:8090
 我们假设您的 Halo 服务容器是按照 [使用 Docker-Compose 部署 Halo](docker-compose.md) 中的方式启动的。如有不同，请根据实际情况修改。
 :::
 
-1. 停止运行中的容器
+1. 停止运行中的容器组
 
 ```bash
-docker-compose stop
+cd ~/halo-app && docker-compose stop
 ```
-
-:::info
-此操作会停止所有使用当前 `docker-compose.yaml` 启动的容器，如果需要单独更新镜像，请参考上文。
-:::
 
 2. 备份数据（重要）
 
 ```bash
-cp -r ~/.halo ~/.halo.archive
+cp -r ~/halo-app ~/halo-app.archive
 ```
 
-> 需要注意的是，`.halo.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
+> 需要注意的是，`halo-app.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
 
-3. 清空 [leveldb](../../config.md#缓存) 缓存（如果有使用 leveldb 作为缓存策略）
+3. 清空 [leveldb 或 Redis](../../config.md#缓存) 缓存（如果有使用 leveldb 或 Redis 作为缓存策略）
 
 ```bash
-rm -rf ~/.halo/.leveldb
+rm -rf ~/halo-app/.leveldb
+
+rm -rf ~/halo-app/redis
 ```
 
 4. 更新 Halo 服务
-
-:::info
-注意，当您的 `Docker` 镜像源非官方源时,执行 `docker-compose pull` 命令时可能无法获取到最新的 `latest` 标签的镜像。
-:::
 
 针对使用 `latest` 标签镜像的更新：
 
@@ -272,19 +279,20 @@ rm -rf ~/.halo/.leveldb
 docker-compose pull && docker-compose up -d
 ```
 
-针对使用具体版本标签镜像的更新：  
+:::info
+注意，当您的 `Docker` 镜像源非官方源时，执行 `docker-compose pull` 命令时可能无法获取到最新的 `latest` 标签的镜像。
+:::
+
+针对使用具体版本标签镜像的更新：
 
 修改 `docker-compose.yaml` 中配置的镜像版本。
 
 ```diff
 services:
   halo_server:
-    depends_on:
-      - mysql_db
-      - redis_db
 -    image: halohub/halo:1.5.0
 +    image: halohub/halo:1.5.2
-    container_name: halo-self
+    container_name: halo_server
 ```
 
 5. 启动容器组：
