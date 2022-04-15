@@ -170,7 +170,7 @@ services:
     container_name: halo_redis
     restart: on-failure:3
     networks:
-      halo_net:
+      halo_network:
     volumes:
       - ./redis/data:/data
       - ./redis/logs:/logs
