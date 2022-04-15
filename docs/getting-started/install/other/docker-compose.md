@@ -21,7 +21,7 @@ mkdir ~/halo-app && cd ~/halo-app
 
 2. 创建 `docker-compose.yaml`
 
-此文档提供三种场景的 Docker-Compose 配置文件，请根据你的需要选择一种。
+此文档提供三种场景的 Docker Compose 配置文件，请根据你的需要选择一种。
 
 :::info
 需要注意的是，此文档为了更加方便的管理配置，所有与 Halo 相关的配置都使用 Docker 环境变量代替，所以无需创建 application.yaml 文件。
