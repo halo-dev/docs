@@ -1,6 +1,6 @@
 ---
-title: 使用 Docker-Compose 部署 Halo
-description: 使用 Docker-Compose 部署 Halo
+title: 使用 Docker Compose 部署 Halo
+description: 使用 Docker Compose 部署 Halo
 ---
 
 :::info
@@ -247,7 +247,7 @@ reverse_proxy 127.0.0.1:8090
 ## 更新容器组
 
 :::info
-我们假设您的 Halo 服务容器是按照 [使用 Docker-Compose 部署 Halo](docker-compose.md) 中的方式启动的。如有不同，请根据实际情况修改。
+我们假设您的 Halo 服务容器是按照 [使用 Docker Compose 部署 Halo](docker-compose.md) 中的方式启动的。如有不同，请根据实际情况修改。
 :::
 
 1. 停止运行中的容器组
