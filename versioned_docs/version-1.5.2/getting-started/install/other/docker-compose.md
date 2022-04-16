@@ -123,6 +123,7 @@ services:
     restart: on-failure:3
     depends_on:
       - halo_mysql
+      - halo_redis
     networks:
       halo_network:
     volumes:
