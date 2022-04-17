@@ -20,11 +20,11 @@ description: 使用腾讯云 CloudBase 一键部署
 
 点击下方按钮即可进入到腾讯云云开发 CloudBase 创建应用界面，此按钮可在云开发页面自动选择 Halo 的配置模板。
 
-#### GitHub
+### GitHub
 
 [![CloudBase](https://main.qcloudimg.com/raw/67f5a389f1ac6f3b4d04c7256438e44f.svg)](https://console.cloud.tencent.com/tcb/env/index?action=CreateAndDeployCloudBaseProject&appUrl=https%3A%2F%2Fgithub.com%2Fhalo-dev%2Ftencent-cloudbase-halo&branch=master)
 
-#### Gitee
+### Gitee
 
 [![CloudBase](https://main.qcloudimg.com/raw/67f5a389f1ac6f3b4d04c7256438e44f.svg)](https://console.cloud.tencent.com/tcb/env/index?action=CreateAndDeployCloudBaseProject&appUrl=https%3A%2F%2Fgitee.com%2Fhalo-dev%2Ftencent-cloudbase-halo&branch=master)
 
