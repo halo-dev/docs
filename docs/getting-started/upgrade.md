@@ -3,7 +3,7 @@ title: 版本升级
 description: 版本升级指南
 ---
 
-当前最新版本为：1.5.2。在更新之前建议先查阅变更日志：<https://github.com/halo-dev/halo/releases/tag/v1.5.2>
+当前最新版本为：1.5.3。在更新之前建议先查阅变更日志：<https://github.com/halo-dev/halo/releases/tag/v1.5.3>
 
 ## Linux
 
@@ -38,7 +38,7 @@ rm -rf ~/.halo/.leveldb
 4. 下载最新版本的运行包
 
 ```bash
-cd ~/app && wget https://dl.halo.run/release/halo-1.5.2.jar -O halo.jar
+cd ~/app && wget https://dl.halo.run/release/halo-1.5.3.jar -O halo.jar
 ```
 
 :::info
@@ -98,7 +98,7 @@ rm -rf ~/.halo/.leveldb
 4. 拉取最新的 Halo 镜像
 
 ```bash
-docker pull halohub/halo:1.5.2
+docker pull halohub/halo:1.5.3
 ```
 
 :::info
@@ -108,7 +108,7 @@ docker pull halohub/halo:1.5.2
 5. 创建容器
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.2
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.3
 ```
 
 - **-it：** 开启输入功能并连接伪终端

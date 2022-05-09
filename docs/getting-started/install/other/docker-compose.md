@@ -34,7 +34,7 @@ description: 使用 Docker Compose 部署 Halo
 
     services:
       halo:
-        image: halohub/halo:1.5.2
+        image: halohub/halo:1.5.3
         container_name: halo
         restart: on-failure:3
         volumes:
@@ -64,7 +64,7 @@ description: 使用 Docker Compose 部署 Halo
 
     services:
       halo_server:
-        image: halohub/halo:1.5.2
+        image: halohub/halo:1.5.3
         container_name: halo_server
         restart: on-failure:3
         depends_on:
@@ -118,7 +118,7 @@ description: 使用 Docker Compose 部署 Halo
 
     services:
       halo_server:
-        image: halohub/halo:1.5.2
+        image: halohub/halo:1.5.3
         container_name: halo_server
         restart: on-failure:3
         depends_on:
@@ -291,7 +291,7 @@ reverse_proxy 127.0.0.1:8090
   ```yaml {3}
   services:
     halo_server:
-      image: halohub/halo:1.5.2
+      image: halohub/halo:1.5.3
       container_name: halo_server
   ```
 
