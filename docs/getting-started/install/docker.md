@@ -32,7 +32,7 @@ vim application.yaml
 4. 拉取最新的 Halo 镜像
 
 ```bash
-docker pull halohub/halo:1.5.3
+docker pull halohub/halo:1.5.4
 ```
 
 :::info
@@ -42,7 +42,7 @@ docker pull halohub/halo:1.5.3
 5. 创建容器
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.3
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.4
 ```
 
 :::info
