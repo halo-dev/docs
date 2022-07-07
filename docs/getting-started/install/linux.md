@@ -94,7 +94,7 @@ mkdir ~/app && cd ~/app
 3. 下载运行包
 
 ```bash
-wget https://dl.halo.run/release/halo-1.5.3.jar -O halo.jar
+wget https://dl.halo.run/release/halo-1.5.4.jar -O halo.jar
 ```
 
 :::info
