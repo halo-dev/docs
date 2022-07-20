@@ -92,14 +92,14 @@ description: 使用 Docker Compose 部署 Halo
         restart: on-failure:3
         networks:
           halo_network:
-        command: --default_authentication_plugin=mysql_native_password
+        command: --default-authentication-plugin=mysql_native_password
           --character-set-server=utf8mb4
           --collation-server=utf8mb4_general_ci
           --explicit_defaults_for_timestamp=true
         volumes:
           - /etc/localtime:/etc/localtime:ro
           - ./mysql:/var/lib/mysql
-          - ./mysql/mysqlBackup:/data/mysqlBackup
+          - ./mysqlBackup:/data/mysqlBackup
         ports:
           - "3306:3306"
         environment:
@@ -151,14 +151,14 @@ description: 使用 Docker Compose 部署 Halo
         restart: on-failure:3
         networks:
           halo_network:
-        command: --default_authentication_plugin=mysql_native_password
+        command: --default-authentication-plugin=mysql_native_password
           --character-set-server=utf8mb4
           --collation-server=utf8mb4_general_ci
           --explicit_defaults_for_timestamp=true
         volumes:
           - /etc/localtime:/etc/localtime:ro
           - ./mysql:/var/lib/mysql
-          - ./mysql/mysqlBackup:/data/mysqlBackup
+          - ./mysqlBackup:/data/mysqlBackup
         ports:
           - "3306:3306"
         environment:
