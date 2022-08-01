@@ -2082,8 +2082,8 @@ photos:
 #### 示例
 
 ```html
-<@photoTag method="listTeams" team="风景">
-  <#list team.photos as photo>
+<@photoTag method="listByTeam" team="风景">
+  <#list photos as photo>
       <img alt="${photo.description}" src="${photo.url}"/>
   </#list>
 </@photoTag>
