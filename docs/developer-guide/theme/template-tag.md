@@ -1772,7 +1772,7 @@ teams:
   <#list teams as team>
       <h1>${team.team}</h1>
     <ul>
-      <#list links as link>
+      <#list team.links as link>
         <li>
           <a href="${link.url!}" target="_blank">
           ${link.name!}
@@ -1855,7 +1855,7 @@ teams:
   <#list teams as team>
       <h1>${team.team}</h1>
     <ul>
-      <#list links as link>
+      <#list team.links as link>
         <li>
           <a href="${link.url!}" target="_blank">
           ${link.name!}
