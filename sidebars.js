@@ -35,7 +35,8 @@ module.exports = {
                 "getting-started/install/other/oneinstack",
                 "getting-started/install/other/tencent-cloudbase",
                 "getting-started/install/other/docker-mysql",
-                "getting-started/install/other/docker-compose"
+                "getting-started/install/other/docker-compose",
+                "getting-started/install/other/kubernetes"
               ],
             },
             "getting-started/install/third-party",
