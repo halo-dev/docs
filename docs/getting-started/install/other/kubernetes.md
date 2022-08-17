@@ -213,6 +213,7 @@ spec:
 
 ```bash
 ~# ls -al
+#以下是解压后的证书文件
 drwxr-xr-x@  6 marionxue  staff   192 Jul 30 22:33 .
 drwxr-xr-x  13 marionxue  staff   416 Aug  9 21:00 ..
 -rw-r--r--@  1 marionxue  staff  1016 Jul 30 22:33 devopsman.cn.csr
@@ -235,6 +236,8 @@ metadata:
     exposed_by: ingress
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "20M"
+    nginx.ingress.kubernetes.io/affinity: "cookie" # 增加cookie会话粘性，解决在多halo的pod实例场景下登录后台后显示"登录状态已失效，请重新登录"的问题
+    nginx.ingress.kubernetes.io/session-cookie-name: "route"
 spec:
   ingressClassName: nginx # 选择kubernetes集群中暴露服务的 ingressClass(多ingressClass存在时注意区分)
   rules:
