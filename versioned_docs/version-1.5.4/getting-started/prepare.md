@@ -60,7 +60,7 @@ create database halodb character set utf8mb4 collate utf8mb4_bin;
 
 #### Web 服务器（可选）
 
-如果您部署在生产环境，那么你很可能需要进行域名绑定，这时候我们推荐使用诸如 [Nginx](http://nginx.org/)、[Caddy](https://caddyserver.com/) 之类的 Web 服务器进行反向代理。
+如果您部署在生产环境，那么你很可能需要进行域名绑定，这时候我们推荐使用诸如 [Nginx](http://nginx.org/)、[Caddy](https://caddyserver.com/) 之类的 Web 服务器进行反向代理。但需要注意的是，目前 Halo 不支持代理到子目录（如：halo.run/blog）。
 
 #### Wget（可选）
 
