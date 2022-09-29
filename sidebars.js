@@ -28,18 +28,7 @@ module.exports = {
           items: [
             "getting-started/install/linux",
             "getting-started/install/docker",
-            {
-              type: "category",
-              label: "其他指南",
-              items: [
-                "getting-started/install/other/bt-panel",
-                "getting-started/install/other/oneinstack",
-                "getting-started/install/other/tencent-cloudbase",
-                "getting-started/install/other/docker-mysql",
-                "getting-started/install/other/docker-compose"
-              ],
-            },
-            "getting-started/install/third-party",
+            "getting-started/install/docker-compose",
           ],
         },
         "getting-started/config",
@@ -47,15 +36,15 @@ module.exports = {
         "getting-started/downloads",
       ],
     },
-    {
-      type: "category",
-      label: "用户指南",
-      items: [
-        "user-guide/backup-migration",
-        "user-guide/markdown",
-        "user-guide/faq",
-      ],
-    },
+    // {
+    //   type: "category",
+    //   label: "用户指南",
+    //   items: [
+    //     "user-guide/backup-migration",
+    //     "user-guide/markdown",
+    //     "user-guide/faq",
+    //   ],
+    // },
     {
       type: "category",
       label: "开发者指南",
@@ -71,6 +60,11 @@ module.exports = {
         },
         {
           type: "category",
+          label: "插件开发",
+          items: ["developer-guide/plugin/prepare"],
+        },
+        {
+          type: "category",
           label: "主题开发",
           items: [
             "developer-guide/theme/prepare",
@@ -81,11 +75,11 @@ module.exports = {
             "developer-guide/theme/template-tag",
           ],
         },
-        {
-          type: "link",
-          label: "REST API",
-          href: "https://api.halo.run",
-        },
+        // {
+        //   type: "link",
+        //   label: "REST API",
+        //   href: "https://api.halo.run",
+        // },
       ],
     },
     {
