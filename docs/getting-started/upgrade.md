@@ -13,53 +13,53 @@ description: 版本升级指南
 
 1. 停止正在运行的服务
 
-```bash
-service halo stop
-```
+    ```bash
+    service halo stop
+    ```
 
 2. 备份数据以及旧的运行包（**重要**）
 
-```bash
-cp -r ~/.halo ~/.halo.archive
-```
+    ```bash
+    cp -r ~/.halo ~/.halo.archive
+    ```
 
-```bash
-mv ~/app/halo.jar ~/app/halo.jar.archive
-```
+    ```bash
+    mv ~/app/halo.jar ~/app/halo.jar.archive
+    ```
 
-> 需要注意的是，`.halo.archive` 和 `halo.jar.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
+    > 需要注意的是，`.halo.archive` 和 `halo.jar.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
 
 3. 清空 [leveldb](./config.md#缓存) 缓存（如果有使用 leveldb 作为缓存策略）
 
-```bash
-rm -rf ~/.halo/.leveldb
-```
+    ```bash
+    rm -rf ~/.halo/.leveldb
+    ```
 
 4. 下载最新版本的运行包
 
-```bash
-cd ~/app && wget https://dl.halo.run/release/halo-1.5.4.jar -O halo.jar
-```
+    ```bash
+    cd ~/app && wget https://dl.halo.run/release/halo-1.5.4.jar -O halo.jar
+    ```
 
-:::info
-如果下载速度不理想，可以[在这里](/getting-started/downloads)选择其他下载地址。
-:::
+    :::info
+    如果下载速度不理想，可以[在这里](/getting-started/downloads)选择其他下载地址。
+    :::
 
 5. 启动测试
 
-```bash
-java -jar halo.jar
-```
+    ```bash
+    java -jar halo.jar
+    ```
 
-:::info
-如测试启动正常，请继续下一步。使用 <kbd>CTRL</kbd>+<kbd>C</kbd> 停止运行测试进程。
-:::
+    :::info
+    如测试启动正常，请继续下一步。使用 <kbd>CTRL</kbd>+<kbd>C</kbd> 停止运行测试进程。
+    :::
 
 6. 重启服务
 
-```bash
-service halo start
-```
+    ```bash
+    service halo start
+    ```
 
 ## Docker
 
@@ -69,51 +69,51 @@ service halo start
 
 1. 停止并删除当前运行中的容器
 
-```bash
-docker stop halo
-```
+    ```bash
+    docker stop halo
+    ```
 
-```bash
-docker rm -f halo
-```
+    ```bash
+    docker rm -f halo
+    ```
 
-:::info
-你的容器名称不一定为 `halo`，在执行前可以先执行 `docker ps -a` 查看一下。
-:::
+    :::info
+    你的容器名称不一定为 `halo`，在执行前可以先执行 `docker ps -a` 查看一下。
+    :::
 
 2. 备份数据（重要）
 
-```bash
-cp -r ~/.halo ~/.halo.archive
-```
+    ```bash
+    cp -r ~/.halo ~/.halo.archive
+    ```
 
-> 需要注意的是，`.halo.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
+    > 需要注意的是，`.halo.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
 
 3. 清空 [leveldb](./config.md#缓存) 缓存（如果有使用 leveldb 作为缓存策略）
 
-```bash
-rm -rf ~/.halo/.leveldb
-```
+    ```bash
+    rm -rf ~/.halo/.leveldb
+    ```
 
 4. 拉取最新的 Halo 镜像
 
-```bash
-docker pull halohub/halo:1.5.4
-```
+    ```bash
+    docker pull halohub/halo:1.5.4
+    ```
 
-:::info
-查看最新版本镜像：<https://hub.docker.com/r/halohub/halo> ，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
-:::
+    :::info
+    查看最新版本镜像：<https://hub.docker.com/r/halohub/halo> ，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
+    :::
 
 5. 创建容器
 
-```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.4
-```
+    ```bash
+    docker run -it -d --name halo -p 8090:8090 -v ~/.halo:/root/.halo --restart=unless-stopped halohub/halo:1.5.4
+    ```
 
-- **-it：** 开启输入功能并连接伪终端
-- **-d：** 后台运行容器
-- **--name：** 为容器指定一个名称
-- **-p：** 端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
-- **-v：** 工作目录映射。形式为：-v 宿主机路径:/root/.halo，后者不能修改。
-- **--restart：** 建议设置为 `unless-stopped`，在 Docker 启动的时候自动启动 Halo 容器。
+    - **-it：** 开启输入功能并连接伪终端
+    - **-d：** 后台运行容器
+    - **--name：** 为容器指定一个名称
+    - **-p：** 端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
+    - **-v：** 工作目录映射。形式为：-v 宿主机路径:/root/.halo，后者不能修改。
+    - **--restart：** 建议设置为 `unless-stopped`，在 Docker 启动的时候自动启动 Halo 容器。

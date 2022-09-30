@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "Next",
+    "message": "2.0.0-SNAPSHOT",
     "description": "The label for version current"
   },
   "sidebar.tutorialSidebar.category.入门": {
@@ -11,14 +11,6 @@
     "message": "安装指南",
     "description": "The label for category 安装指南 in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.其他指南": {
-    "message": "其他指南",
-    "description": "The label for category 其他指南 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.用户指南": {
-    "message": "用户指南",
-    "description": "The label for category 用户指南 in sidebar tutorialSidebar"
-  },
   "sidebar.tutorialSidebar.category.开发者指南": {
     "message": "开发者指南",
     "description": "The label for category 开发者指南 in sidebar tutorialSidebar"
@@ -27,6 +19,10 @@
     "message": "系统开发",
     "description": "The label for category 系统开发 in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.插件开发": {
+    "message": "插件开发",
+    "description": "The label for category 插件开发 in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.主题开发": {
     "message": "主题开发",
     "description": "The label for category 主题开发 in sidebar tutorialSidebar"
@@ -34,9 +30,5 @@
   "sidebar.tutorialSidebar.category.参与贡献": {
     "message": "参与贡献",
     "description": "The label for category 参与贡献 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.link.REST API": {
-    "message": "REST API",
-    "description": "The label for link REST API in sidebar tutorialSidebar, linking to https://api.halo.run"
   }
 }

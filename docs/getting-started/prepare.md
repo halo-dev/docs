@@ -3,6 +3,10 @@ title: 写在前面
 description: 在开始前，您需要了解的事项
 ---
 
+:::warning 提示
+当前文档是 Halo 2.0 测试阶段的文档，强烈不建议尝试将 1.5 升级到 2.0 测试版，也不建议在生产环境使用，当前版本仅用于测试。我们欢迎大家在测试过程中反馈任何问题。另外，在 Halo 2.0 正式发布的时候，我们会提供完整的升级指南。
+:::
+
 ## 环境要求
 
 这里将讲述运行 Halo 所要求的一些软硬件的配置，我们建议您在运行或者部署之前先浏览一遍此页面。
@@ -15,7 +19,7 @@ description: 在开始前，您需要了解的事项
 
 #### CPU
 
-无特别要求。目前我们的 [Docker 镜像](https://hub.docker.com/r/halohub/halo) 也已经支持多平台。
+无特别要求。目前我们的 [Docker 镜像](https://hub.docker.com/r/halohub/halo-dev) 也已经支持多平台。
 
 #### 内存
 
@@ -38,25 +42,12 @@ Halo 理论上可以运行在任何支持 Java 的平台。
 必须在运行环境安装好 JRE，这是运行 Halo 所要求的的最低软件环境要求。如果您使用 Docker 运行 Halo，可忽略此要求。
 
 :::info
-从 1.4.3 起，版本要求为 11 以上的版本。1.4.3 以下需要 1.8 以上的版本。
+当前版本（2.0）需要 JRE 17 的版本，推荐使用 OpenJDK 17。
 :::
 
-#### MySQL（可选）
+#### PostgreSQL（可选）
 
-这并不是 Halo 必须依赖的，Halo 默认使用自带的 `H2 Database`，无需单独安装。如果 `H2 Database` 不能满足你的要求，您需要在系统内安装并运行好 MySQL。
-
-具体要求：
-
-1. 版本：5.7 +
-2. 字符集（Character Set）：`utf8mb4`
-3. 排序规则（Collate）：`utf8mb4_bin`
-4. 存储引擎：`InnoDB`
-
-综上，建议创建数据库采用下面的命令：
-
-```bash
-create database halodb character set utf8mb4 collate utf8mb4_bin;
-```
+也可以使用系统自带的 H2 Database 数据库，无需安装。但不推荐在生产环境中使用 H2 Database。
 
 #### Web 服务器（可选）
 
@@ -89,11 +80,11 @@ create database halodb character set utf8mb4 collate utf8mb4_bin;
 
 ### 工作目录
 
-指 Halo 所依赖的工作目录，在 Halo 运行的时候会在系统当前用户目录下产生一个 `.halo` 的文件夹，绝对路径为 `~/.halo`。由于这个工作目录是固定的，所以上面所说的 `运行包`不限制所存放的位置，里面通常包含下列目录或文件：
+指 Halo 所依赖的工作目录，在 Halo 运行的时候会在系统当前用户目录下产生一个 `.halo-next` 的文件夹，绝对路径为 `~/.halo-next`。由于这个工作目录是固定的，所以上面所说的 `运行包`不限制所存放的位置，里面通常包含下列目录或文件：
 
-1. `db`：存放 H2 Database 的物理文件，如果您使用 MySQL 数据库，那么不会存在这个目录。
-2. `templates/themes`：里面包含用户所下载的主题。
-3. `static`：相当于网站的根目录。
+1. `db`：存放 H2 Database 的物理文件，如果你使用其他数据库，那么不会存在这个目录。
+2. `themes`：里面包含用户所安装的主题。
+2. `plugins`：里面包含用户所安装的插件。
+5. `attachments`：附件目录。
 4. `logs`：运行日志目录。
-5. `upload`：附件目录。
 6. `application.yaml`：配置文件。

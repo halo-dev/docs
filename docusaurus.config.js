@@ -34,6 +34,13 @@ const config = {
           showLastUpdateAuthor: true,
           remarkPlugins: [math, mermaid],
           rehypePlugins: [katex],
+          lastVersion: "1.5.4",
+          versions: {
+            current: {
+              label: "2.0.0-SNAPSHOT",
+              path: "2.0.0-SNAPSHOT",
+            },
+          },
         },
         blog: false,
         theme: {

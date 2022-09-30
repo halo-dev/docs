@@ -1,6 +1,6 @@
 ---
-title: 使用 Docker Compose 部署 Halo
-description: 使用 Docker Compose 部署 Halo
+title: 使用 Docker Compose 部署
+description: 使用 Docker Compose 部署
 ---
 
 :::info
@@ -12,7 +12,7 @@ description: 使用 Docker Compose 部署 Halo
 1. 在系统任意位置创建一个文件夹，此文档以 `~/halo-app` 为例。
 
   ```bash
-  mkdir ~/halo-app && cd ~/halo-app
+  mkdir ~/halo-next && cd ~/halo-next
   ```
 
   :::info
@@ -34,7 +34,7 @@ description: 使用 Docker Compose 部署 Halo
 
     services:
       halo:
-        image: halohub/halo:1.5.4
+        image: halohub/halo-dev:next
         container_name: halo
         restart: on-failure:3
         volumes:
@@ -54,21 +54,21 @@ description: 使用 Docker Compose 部署 Halo
     ```
 
     :::info
-    您可以前往 <https://hub.docker.com/r/halohub/halo> 查看最新版本镜像，我们推荐使用具体版本号的镜像，但也提供了 `latest` 标签的镜像，它始终是最新的。
+    您可以前往 <https://hub.docker.com/r/halohub/halo-dev> 查看最新版本镜像，需要注意的是，`halohub/halo-dev` 仅作为 Halo 2.0 测试期间的镜像，正式发布之后会有改动。
     :::
 
-    2. 创建 Halo + MySQL 的实例：
+    2. 创建 Halo + PostgreSQL 的实例：
 
     ```yaml {22-23,45}
     version: "3"
 
     services:
       halo_server:
-        image: halohub/halo:1.5.4
+        image: halohub/halo-dev:next
         container_name: halo_server
         restart: on-failure:3
         depends_on:
-          - halo_mysql
+          - halo_db
         networks:
           halo_network:
         volumes:
@@ -86,9 +86,9 @@ description: 使用 Docker Compose 部署 Halo
           - HALO_ADMIN_PATH=admin
           - HALO_CACHE=memory
 
-      halo_mysql:
+      halo_db:
         image: mysql:8.0.27
-        container_name: halo_mysql
+        container_name: halo_db
         restart: on-failure:3
         networks:
           halo_network:
@@ -107,78 +107,6 @@ description: 使用 Docker Compose 部署 Halo
           - MYSQL_ROOT_PASSWORD=o#DwN&JSa56
           - MYSQL_DATABASE=halodb
 
-    networks:
-      halo_network:
-    ```
-
-    3. 创建 Halo + MySQL + Redis 的实例：
-
-    ```yaml {22-23,29,49,62}
-    version: "3"
-
-    services:
-      halo_server:
-        image: halohub/halo:1.5.4
-        container_name: halo_server
-        restart: on-failure:3
-        depends_on:
-          - halo_mysql
-          - halo_redis
-        networks:
-          halo_network:
-        volumes:
-          - ./:/root/.halo
-          - /etc/timezone:/etc/timezone:ro
-          - /etc/localtime:/etc/localtime:ro
-        ports:
-          - "8090:8090"
-        environment:
-          - SERVER_PORT=8090
-          - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-          - SPRING_DATASOURCE_URL=jdbc:mysql://halo_mysql:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-          - SPRING_DATASOURCE_USERNAME=root
-          - SPRING_DATASOURCE_PASSWORD=o#DwN&JSa56
-          - HALO_ADMIN_PATH=admin
-          - HALO_CACHE=redis
-          - SPRING_REDIS_PORT=6379
-          - SPRING_REDIS_DATABASE=0
-          - SPRING_REDIS_HOST=halo_redis
-          - SPRING_REDIS_PASSWORD=dm5fD%rvPtq
-
-      halo_mysql:
-        image: mysql:8.0.27
-        container_name: halo_mysql
-        restart: on-failure:3
-        networks:
-          halo_network:
-        command: --default-authentication-plugin=mysql_native_password
-          --character-set-server=utf8mb4
-          --collation-server=utf8mb4_general_ci
-          --explicit_defaults_for_timestamp=true
-        volumes:
-          - /etc/localtime:/etc/localtime:ro
-          - ./mysql:/var/lib/mysql
-          - ./mysqlBackup:/data/mysqlBackup
-        ports:
-          - "3306:3306"
-        environment:
-          # 请修改此密码，并对应修改上方 Halo 服务的 SPRING_DATASOURCE_PASSWORD 变量值
-          - MYSQL_ROOT_PASSWORD=o#DwN&JSa56
-          - MYSQL_DATABASE=halodb
-
-      halo_redis:
-        image: redis
-        container_name: halo_redis
-        restart: on-failure:3
-        networks:
-          halo_network:
-        volumes:
-          - ./redis/data:/data
-          - ./redis/logs:/logs
-        # 请修改此密码，并对应修改上方 Halo 服务的 SPRING_REDIS_PASSWORD 变量值
-        command: redis-server --requirepass dm5fD%rvPtq
-        ports:
-          - "6379:6379"
     networks:
       halo_network:
     ```
@@ -264,17 +192,9 @@ reverse_proxy 127.0.0.1:8090
 
   > 需要注意的是，`halo-app.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
 
-3. 清空 [leveldb 或 Redis](../../config.md#缓存) 缓存（如果有使用 leveldb 或 Redis 作为缓存策略）
+5. 更新 Halo 服务
 
-  ```bash
-  rm -rf ~/halo-app/.leveldb
-
-  rm -rf ~/halo-app/redis
-  ```
-
-4. 更新 Halo 服务
-
-  针对使用 `latest` 标签镜像的更新：
+  针对使用 `next` 标签镜像的更新：
 
   ```bash
   docker-compose pull && docker-compose up -d
