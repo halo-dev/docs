@@ -28,12 +28,12 @@ module.exports = {
           items: [
             // "getting-started/install/linux",
             "getting-started/install/docker",
-            "getting-started/install/docker-compose",
+            // "getting-started/install/docker-compose",
           ],
         },
-        "getting-started/config",
-        "getting-started/upgrade",
-        "getting-started/downloads",
+        // "getting-started/config",
+        // "getting-started/upgrade",
+        // "getting-started/downloads",
       ],
     },
     // {
