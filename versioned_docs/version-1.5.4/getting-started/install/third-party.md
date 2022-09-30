@@ -13,3 +13,4 @@ title: 三方指南
 - [Halo 博客建站记录](https://catchersun.cn/archives/halo%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95)
 - [Windows下搭建halo并配置nginx与SSL](https://blog.shikangsi.cn/archives/halo-windows)
 - [Linux环境下如何分布式部署Halo](https://luoxx.top/archives/halo-distributed-deploy)
+- [极空间DOCKER搭建HALO博客系统](https://halo.521313.xyz/archives/ji-kong-jian-docker-da-jian-halo-bo-ke-xi-tong)
