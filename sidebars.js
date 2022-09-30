@@ -26,7 +26,7 @@ module.exports = {
           type: "category",
           label: "安装指南",
           items: [
-            "getting-started/install/linux",
+            // "getting-started/install/linux",
             "getting-started/install/docker",
             "getting-started/install/docker-compose",
           ],
@@ -53,9 +53,9 @@ module.exports = {
           type: "category",
           label: "系统开发",
           items: [
-            "developer-guide/core/structure",
+            // "developer-guide/core/structure",
             "developer-guide/core/prepare",
-            "developer-guide/core/code-style",
+            // "developer-guide/core/code-style",
           ],
         },
         {
@@ -68,11 +68,11 @@ module.exports = {
           label: "主题开发",
           items: [
             "developer-guide/theme/prepare",
-            "developer-guide/theme/config-files",
-            "developer-guide/theme/global-variable",
-            "developer-guide/theme/public-template-tag",
-            "developer-guide/theme/page-variable",
-            "developer-guide/theme/template-tag",
+            // "developer-guide/theme/config-files",
+            // "developer-guide/theme/global-variable",
+            // "developer-guide/theme/public-template-tag",
+            // "developer-guide/theme/page-variable",
+            // "developer-guide/theme/template-tag",
           ],
         },
         // {
