@@ -24,8 +24,8 @@ description: 使用 Docker 部署
       --name halo-next \
       -p 8090:8090 \
       -v ~/halo-next:/root/halo-next \
-      -e HALO_EXTERNAL_URL=http://localhost:8090/ \ # 请修改外部访问链接
-      -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \ # 请修改管理员密码
+      -e HALO_EXTERNAL_URL=http://localhost:8090/ \
+      -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
       halohub/halo-dev:2.0.0-alpha.1 
     ```
 
@@ -33,12 +33,14 @@ description: 使用 Docker 部署
     注意：此命令默认使用自带的 H2 Database 数据库。如需使用 PostgreSQL，请参考：[使用 Docker Compose 部署](./docker-compose)
     :::
 
-    - **-it：** 开启输入功能并连接伪终端
-    - **-d：** 后台运行容器
-    - **--name：** 为容器指定一个名称
-    - **-p：** 端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
-    - **-v：** 工作目录映射。形式为：`-v 宿主机路径:/root/halo-next`，后者不能修改。
-    - **--restart：** 建议设置为 `unless-stopped`，在 Docker 启动的时候自动启动 Halo 容器。
+    - **-it**：开启输入功能并连接伪终端
+    - **-d**：后台运行容器
+    - **--name**：为容器指定一个名称
+    - **-p**：端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
+    - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/halo-next`，后者不能修改。
+    - **-e**：环境变量
+      - `HALO_EXTERNAL_URL`: 外部可访问的链接。例如：<https://域名/>
+      - `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`: 超级管理员用户（admin）的初始化密码。如果该环境变量没有设置，系统将会生成随机密码并打印在日志中。
 
 1. 用浏览器访问 `$HALO_EXTERNAL_URL/console/`（外部访问链接）即可进入 Halo 管理端。
 
