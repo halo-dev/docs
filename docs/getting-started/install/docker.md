@@ -4,7 +4,7 @@ description: 使用 Docker 部署
 ---
 
 :::info
-在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare)，这可以快速帮助你了解 Halo。
+暂时我们仅提供使用 Docker 运行的文档。在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare)，这可以快速帮助你了解 Halo。
 :::
 
 ## 使用 Docker 镜像
@@ -40,11 +40,19 @@ description: 使用 Docker 部署
     - **-v：** 工作目录映射。形式为：`-v 宿主机路径:/root/halo-next`，后者不能修改。
     - **--restart：** 建议设置为 `unless-stopped`，在 Docker 启动的时候自动启动 Halo 容器。
 
-1. 用浏览器访问 `$HALO_EXTERNAL_URL/console/`（外部访问链接）即可进入 Halo 管理端。
+1. 用浏览器访问 `$HALO_EXTERNAL_URL/console/`（外部访问链接）即可进入 Halo 管理端。管理员用户名为 `admin`，登录密码为上方设置的 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`。
 
     :::tip
     如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
     :::
+
+## 使用
+
+目前 Alpha 版本有以下几个使用注意事项：
+
+1. 由于目前尚未完成初始化程序，所以安装完成之后没有默认主题，你可以访问 <https://github.com/halo-sigs/awesome-halo> 查阅所有支持 2.0 的主题，并在后台主题管理页面手动安装。
+2. 同上，由于目前评论组件也被插件化，所以如果要体验完整的评论功能，需要手动在后台安装 <https://github.com/halo-sigs/plugin-comment-widget> 评论组件插件。
+3. 目前 2.0 已支持的主题和插件会同步到 <https://github.com/halo-sigs/awesome-halo>，你可以在对应仓库的 release 下载最新的主题或插件。
 
 ## 反向代理
 
