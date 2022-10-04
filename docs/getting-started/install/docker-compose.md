@@ -9,7 +9,16 @@ description: 使用 Docker Compose 部署
 
 ## 创建容器组
 
-1. 在系统任意位置创建一个文件夹，此文档以 `~/halo-app` 为例。
+可用的 Halo 2.0.0-alpha.1 的 Docker 镜像：
+
+- [halohub/halo-dev](https://hub.docker.com/r/halohub/halo-dev)
+- [ghcr.io/halo-dev/halo-dev](https://github.com/halo-dev/halo/pkgs/container/halo-dev)
+
+:::info 注意
+以上两个镜像仅作为 Halo 2.0 测试期间的镜像，正式发布之后会更改为 `halohub/halo` 和 `ghcr.io/halo-dev/halo`。
+:::
+
+1. 在系统任意位置创建一个文件夹，此文档以 `~/halo-next` 为例。
 
   ```bash
   mkdir ~/halo-next && cd ~/halo-next
@@ -21,7 +30,7 @@ description: 使用 Docker Compose 部署
 
 2. 创建 `docker-compose.yaml`
 
-  此文档提供三种场景的 Docker Compose 配置文件，请根据你的需要选择一种。
+  此文档提供两种场景的 Docker Compose 配置文件，请根据你的需要选择一种。
 
   :::info
   需要注意的是，此文档为了更加方便的管理配置，所有与 Halo 相关的配置都使用 Docker 环境变量代替，所以无需创建 application.yaml 文件。
@@ -29,83 +38,77 @@ description: 使用 Docker Compose 部署
 
     1. 仅创建 Halo 实例（使用默认的 H2 数据库）：
 
-    ```yaml {18-19}
+    ```yaml {15-20}
     version: "3"
 
     services:
-      halo:
-        image: halohub/halo-dev:next
-        container_name: halo
+      halo_next:
+        image: halohub/halo-dev:2.0.0-alpha.1
+        container_name: halo_next
         restart: on-failure:3
         volumes:
-          - ./:/root/.halo
+          - ./:/root/halo-next
           - /etc/timezone:/etc/timezone:ro
           - /etc/localtime:/etc/localtime:ro
         ports:
           - "8090:8090"
         environment:
-          - SERVER_PORT=8090
-          - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.h2.Driver
-          - SPRING_DATASOURCE_URL=jdbc:h2:file:~/.halo/db/halo
-          - SPRING_DATASOURCE_USERNAME=admin
-          - SPRING_DATASOURCE_PASSWORD=o#DwN&JSa56
-          - HALO_ADMIN_PATH=admin
-          - HALO_CACHE=memory
+          # 外部访问地址，请根据实际需要修改
+          - HALO_EXTERNAL_URL=http://localhost:8090/
+          # 初始化的超级管理员用户名
+          - HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME=admin
+          # 初始化的超级管理员密码
+          - HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd
     ```
-
-    :::info
-    您可以前往 <https://hub.docker.com/r/halohub/halo-dev> 查看最新版本镜像，需要注意的是，`halohub/halo-dev` 仅作为 Halo 2.0 测试期间的镜像，正式发布之后会有改动。
-    :::
 
     2. 创建 Halo + PostgreSQL 的实例：
 
-    ```yaml {22-23,45}
+    ```yaml {19-29,43}
     version: "3"
 
     services:
-      halo_server:
-        image: halohub/halo-dev:next
-        container_name: halo_server
+      halo_next:
+        image: halohub/halo-dev:2.0.0-alpha.1
+        container_name: halo_next
         restart: on-failure:3
         depends_on:
           - halo_db
         networks:
           halo_network:
         volumes:
-          - ./:/root/.halo
+          - ./:/root/halo-next
           - /etc/timezone:/etc/timezone:ro
           - /etc/localtime:/etc/localtime:ro
         ports:
           - "8090:8090"
         environment:
-          - SERVER_PORT=8090
-          - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-          - SPRING_DATASOURCE_URL=jdbc:mysql://halo_mysql:3306/halodb?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-          - SPRING_DATASOURCE_USERNAME=root
-          - SPRING_DATASOURCE_PASSWORD=o#DwN&JSa56
-          - HALO_ADMIN_PATH=admin
-          - HALO_CACHE=memory
+          - SPRING_R2DBC_URL=r2dbc:pool:postgresql://halo_db/halo
+          - SPRING_R2DBC_USERNAME=halo
+          # PostgreSQL 的密码，请保证与下方 POSTGRES_PASSWORD 的变量值一致。
+          - SPRING_R2DBC_PASSWORD=openpostgresql
+          - SPRING_SQL_INIT_PLATFORM=postgresql
+          # 外部访问地址，请根据实际需要修改
+          - HALO_EXTERNAL_URL=http://localhost:8090/
+          # 初始化的超级管理员用户名
+          - HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME=admin
+          # 初始化的超级管理员密码
+          - HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd
 
       halo_db:
-        image: mysql:8.0.27
+        image: postgres:latest
         container_name: halo_db
         restart: on-failure:3
         networks:
           halo_network:
-        command: --default-authentication-plugin=mysql_native_password
-          --character-set-server=utf8mb4
-          --collation-server=utf8mb4_general_ci
-          --explicit_defaults_for_timestamp=true
         volumes:
           - /etc/localtime:/etc/localtime:ro
-          - ./mysql:/var/lib/mysql
-          - ./mysqlBackup:/data/mysqlBackup
+          - ./db:/var/lib/postgresql/data
         ports:
-          - "3306:3306"
+          - "5432:5432"
         environment:
-          # 请修改此密码，并对应修改上方 Halo 服务的 SPRING_DATASOURCE_PASSWORD 变量值
-          - MYSQL_ROOT_PASSWORD=o#DwN&JSa56
-          - MYSQL_DATABASE=halodb
+          - POSTGRES_PASSWORD=openpostgresql
+          - POSTGRES_USER=halo
+          - POSTGRES_DB=halo
 
     networks:
       halo_network:
@@ -117,11 +120,19 @@ description: 使用 Docker Compose 部署
   docker-compose up -d
   ```
 
-4. 打开 `http://ip:端口号` 即可看到安装引导界面。
+4. 用浏览器访问 `$HALO_EXTERNAL_URL/console/`（外部访问链接）即可进入 Halo 管理端。管理员用户名为 `admin`，登录密码为上方设置的 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`。
 
   :::tip
   如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
   :::
+
+## 使用
+
+目前 Alpha 版本有以下几个使用注意事项：
+
+1. 由于目前尚未完成初始化程序，所以安装完成之后没有默认主题，你可以访问 <https://github.com/halo-sigs/awesome-halo> 查阅所有支持 2.0 的主题，并在后台主题管理页面手动安装。
+2. 同上，由于目前评论组件也被插件化，所以如果要体验完整的评论功能，需要手动在后台安装 <https://github.com/halo-sigs/plugin-comment-widget> 评论组件插件。
+3. 目前 2.0 已支持的主题和插件会同步到 <https://github.com/halo-sigs/awesome-halo>，你可以在对应仓库的 release 下载最新的主题或插件。
 
 ## 反向代理
 
@@ -181,42 +192,28 @@ reverse_proxy 127.0.0.1:8090
 1. 停止运行中的容器组
 
   ```bash
-  cd ~/halo-app && docker-compose stop
+  cd ~/halo-next && docker-compose stop
   ```
 
 2. 备份数据（重要）
 
   ```bash
-  cp -r ~/halo-app ~/halo-app.archive
+  cp -r ~/halo-next ~/halo-next.archive
   ```
 
-  > 需要注意的是，`halo-app.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
+  > 需要注意的是，`halo-next.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
 
-5. 更新 Halo 服务
-
-  针对使用 `next` 标签镜像的更新：
-
-  ```bash
-  docker-compose pull && docker-compose up -d
-  ```
-
-  :::info
-  注意，当您的 `Docker` 镜像源非官方源时，执行 `docker-compose pull` 命令时可能无法获取到最新的 `latest` 标签的镜像。
-  :::
-
-  针对使用具体版本标签镜像的更新：
+3. 更新 Halo 服务
 
   修改 `docker-compose.yaml` 中配置的镜像版本。
 
   ```yaml {3}
   services:
-    halo_server:
-      image: halohub/halo:1.5.4
-      container_name: halo_server
+    halo_next:
+      image: halohub/halo-dev:2.0.0-alpha.1
+      container_name: halo_next
   ```
 
-5. 启动容器组：
-
   ```bash
-  docker-compose up -d
+  docker-compose pull && docker-compose up -d
   ```
