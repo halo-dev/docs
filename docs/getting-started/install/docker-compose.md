@@ -4,7 +4,7 @@ description: 使用 Docker Compose 部署
 ---
 
 :::info
-在继续操作之前，我们推荐您先阅读[《写在前面》](../../prepare)，这可以快速帮助你了解 Halo。
+在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare.md)，这可以快速帮助你了解 Halo。
 :::
 
 ## 创建容器组
@@ -136,7 +136,7 @@ description: 使用 Docker Compose 部署
 
 ## 反向代理
 
-你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。如果你对 Nginx 不熟悉，我们推荐使用 [OneinStack](./oneinstack) 来管理 Nginx。
+你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。如果你对 Nginx 不熟悉，我们推荐使用 [OneinStack](../install/other/oneinstack.md) 来管理 Nginx。
 
 ### Nginx
 

@@ -10,8 +10,8 @@ const config = {
   tagline: "Halo 博客系统的文档站点",
   url: "https://docs.halo.run",
   baseUrl: "/",
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon-96x96.png",
   i18n: {
     defaultLocale: "zh-Hans",
@@ -34,7 +34,7 @@ const config = {
           showLastUpdateAuthor: true,
           remarkPlugins: [math, mermaid],
           rehypePlugins: [katex],
-          lastVersion: "1.5.4",
+          lastVersion: "1.6",
           versions: {
             current: {
               label: "2.0.0-SNAPSHOT",
@@ -254,6 +254,21 @@ const config = {
             from: ["/zh/contribution/pr"],
           },
         ],
+        createRedirects(existingPath) {
+          if (existingPath.startsWith("/1.5/")) {
+            return [
+              existingPath.replace("/1.5/", "/1.5.4/"),
+              existingPath.replace("/1.5/", "/1.5.3/"),
+              existingPath.replace("/1.5/", "/1.5.2/"),
+              existingPath.replace("/1.5/", "/1.5.1/"),
+              existingPath.replace("/1.5/", "/1.5.0/"),
+            ];
+          }
+          if (existingPath.startsWith("/1.4/")) {
+            return [existingPath.replace("/1.4/", "/1.4.17/")];
+          }
+          return undefined;
+        },
       },
     ],
   ],
