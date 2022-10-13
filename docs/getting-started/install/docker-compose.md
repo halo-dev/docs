@@ -9,7 +9,7 @@ description: 使用 Docker Compose 部署
 
 ## 创建容器组
 
-可用的 Halo 2.0.0-alpha.1 的 Docker 镜像：
+可用的 Halo 2.0.0-alpha.2 的 Docker 镜像：
 
 - [halohub/halo-dev](https://hub.docker.com/r/halohub/halo-dev)
 - [ghcr.io/halo-dev/halo-dev](https://github.com/halo-dev/halo/pkgs/container/halo-dev)
@@ -43,7 +43,7 @@ description: 使用 Docker Compose 部署
 
     services:
       halo_next:
-        image: halohub/halo-dev:2.0.0-alpha.1
+        image: halohub/halo-dev:2.0.0-alpha.2
         container_name: halo_next
         restart: on-failure:3
         volumes:
@@ -68,7 +68,7 @@ description: 使用 Docker Compose 部署
 
     services:
       halo_next:
-        image: halohub/halo-dev:2.0.0-alpha.1
+        image: halohub/halo-dev:2.0.0-alpha.2
         container_name: halo_next
         restart: on-failure:3
         depends_on:
@@ -210,7 +210,7 @@ reverse_proxy 127.0.0.1:8090
   ```yaml {3}
   services:
     halo_next:
-      image: halohub/halo-dev:2.0.0-alpha.1
+      image: halohub/halo-dev:2.0.0-alpha.2
       container_name: halo_next
   ```
 
