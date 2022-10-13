@@ -254,6 +254,21 @@ const config = {
             from: ["/zh/contribution/pr"],
           },
         ],
+        createRedirects(existingPath) {
+          if (existingPath.startsWith("/1.5/")) {
+            return [
+              existingPath.replace("/1.5/", "/1.5.4/"),
+              existingPath.replace("/1.5/", "/1.5.3/"),
+              existingPath.replace("/1.5/", "/1.5.2/"),
+              existingPath.replace("/1.5/", "/1.5.1/"),
+              existingPath.replace("/1.5/", "/1.5.0/"),
+            ];
+          }
+          if (existingPath.startsWith("/1.4/")) {
+            return [existingPath.replace("/1.4/", "/1.4.17/")];
+          }
+          return undefined;
+        },
       },
     ],
   ],
