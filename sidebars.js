@@ -55,6 +55,7 @@ module.exports = {
           items: [
             // "developer-guide/core/structure",
             "developer-guide/core/prepare",
+            "developer-guide/core/run",
             // "developer-guide/core/code-style",
           ],
         },
