@@ -38,7 +38,7 @@ description: 使用 Docker Compose 部署
 
     1. 仅创建 Halo 实例（使用默认的 H2 数据库）：
 
-    ```yaml {15-20}
+    ```yaml {13-20}
     version: "3"
 
     services:
@@ -48,8 +48,6 @@ description: 使用 Docker Compose 部署
         restart: on-failure:3
         volumes:
           - ./:/root/halo-next
-          - /etc/timezone:/etc/timezone:ro
-          - /etc/localtime:/etc/localtime:ro
         ports:
           - "8090:8090"
         environment:
@@ -63,7 +61,7 @@ description: 使用 Docker Compose 部署
 
     2. 创建 Halo + PostgreSQL 的实例：
 
-    ```yaml {19-29,43}
+    ```yaml {18-28,46}
     version: "3"
 
     services:
@@ -72,13 +70,12 @@ description: 使用 Docker Compose 部署
         container_name: halo_next
         restart: on-failure:3
         depends_on:
-          - halo_db
+          halo_db:
+            condition: service_healthy
         networks:
           halo_network:
         volumes:
           - ./:/root/halo-next
-          - /etc/timezone:/etc/timezone:ro
-          - /etc/localtime:/etc/localtime:ro
         ports:
           - "8090:8090"
         environment:
@@ -101,10 +98,14 @@ description: 使用 Docker Compose 部署
         networks:
           halo_network:
         volumes:
-          - /etc/localtime:/etc/localtime:ro
           - ./db:/var/lib/postgresql/data
         ports:
           - "5432:5432"
+        healthcheck:
+          test: [ "CMD", "pg_isready" ]
+          interval: 10s
+          timeout: 5s
+          retries: 5
         environment:
           - POSTGRES_PASSWORD=openpostgresql
           - POSTGRES_USER=halo
