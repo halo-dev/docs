@@ -58,8 +58,9 @@ spec:
 
 目前 Halo 为了让开发者能够尽快搭建主题项目，提供了一些初始模板，开发者可以根据实际需要选择使用。
 
-- <https://github.com/halo-sigs/theme-starter>
-- <https://github.com/halo-sigs/theme-astro-starter>
+- [halo-sigs/theme-starter](https://github.com/halo-sigs/theme-starter) - 最基础的主题模板，包含了主题的基本目录结构。
+- [halo-sigs/theme-vite-starter](https://github.com/halo-sigs/theme-vite-starter) - 与 Vite 集成的主题模板，由 Vite 负责资源构建。
+- [halo-sigs/theme-astro-starter](https://github.com/halo-sigs/theme-astro-starter) - 与 Astro 集成的主题模板，使用 Astro 对模板进行预编译。
 
 :::info 提示
 以上 GitHub 都被设置为了模板仓库（Template repository），点击仓库主页的 `Use this template` 按钮即可通过此模板创建一个新的仓库。
@@ -76,10 +77,15 @@ Halo 使用 [Thymeleaf](https://www.thymeleaf.org/) 作为后端模板引擎，�
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halo</title>
+    <title th:text="${site.title}"></title>
   </head>
   <body>
     <h1>Hello World!</h1>
+    <ul>
+      <li th:each="post : ${posts.items}">
+        <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+      </li>
+    </ul>
   </body>
 </html>
 ```
