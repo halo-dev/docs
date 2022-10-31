@@ -60,6 +60,7 @@ spec:
 
 - [halo-sigs/theme-starter](https://github.com/halo-sigs/theme-starter) - 最基础的主题模板，包含了主题的基本目录结构。
 - [halo-sigs/theme-vite-starter](https://github.com/halo-sigs/theme-vite-starter) - 与 Vite 集成的主题模板，由 Vite 负责资源构建。
+- [halo-sigs/theme-modern-starter](https://github.com/halo-sigs/theme-modern-starter) - 集成了现代前端技术栈的 Halo 2.0 的主题开发模板。
 - [halo-sigs/theme-astro-starter](https://github.com/halo-sigs/theme-astro-starter) - 与 Astro 集成的主题模板，使用 Astro 对模板进行预编译。
 
 :::info 提示
