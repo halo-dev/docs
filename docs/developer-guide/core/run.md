@@ -105,7 +105,7 @@ VITE v3.1.6  ready in 638 ms
 6. 最终访问 `http://localhost:8090/console` 即可进入控制台。访问 `http://localhost:8090` 即可进入站点首页。
 
 :::info 注意
-目前 Alpha 版本有以下几个使用注意事项：
+目前 Beta 版本有以下几个使用注意事项：
 :::
 
 1. 由于目前尚未完成初始化程序，所以安装完成之后没有默认主题，你可以访问 <https://github.com/halo-sigs/awesome-halo> 查阅所有支持 2.0 的主题，并在后台主题管理页面手动安装。
