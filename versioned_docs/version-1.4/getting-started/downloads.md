@@ -14,7 +14,7 @@ description: 目前所有与 Halo 相关的下载地址
 
 ## 官方镜像源
 
-- [https://dl.halo.run](https://dl.halo.run)
+- [https://download.halo.run](https://download.halo.run)
 
 此镜像源由 [Nova Kwok](https://nova.moe/) 提供并维护。
 

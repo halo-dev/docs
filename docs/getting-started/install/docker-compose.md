@@ -9,7 +9,7 @@ description: 使用 Docker Compose 部署
 
 ## 创建容器组
 
-可用的 Halo 2.0.0-alpha.2 的 Docker 镜像：
+可用的 Halo 2.0.0-beta.1 的 Docker 镜像：
 
 - [halohub/halo-dev](https://hub.docker.com/r/halohub/halo-dev)
 - [ghcr.io/halo-dev/halo-dev](https://github.com/halo-dev/halo/pkgs/container/halo-dev)
@@ -38,18 +38,16 @@ description: 使用 Docker Compose 部署
 
     1. 仅创建 Halo 实例（使用默认的 H2 数据库）：
 
-    ```yaml {15-20}
+    ```yaml {13-20}
     version: "3"
 
     services:
       halo_next:
-        image: halohub/halo-dev:2.0.0-alpha.2
+        image: halohub/halo-dev:2.0.0-beta.1
         container_name: halo_next
         restart: on-failure:3
         volumes:
           - ./:/root/halo-next
-          - /etc/timezone:/etc/timezone:ro
-          - /etc/localtime:/etc/localtime:ro
         ports:
           - "8090:8090"
         environment:
@@ -63,22 +61,21 @@ description: 使用 Docker Compose 部署
 
     2. 创建 Halo + PostgreSQL 的实例：
 
-    ```yaml {19-29,43}
+    ```yaml {18-28,46}
     version: "3"
 
     services:
       halo_next:
-        image: halohub/halo-dev:2.0.0-alpha.2
+        image: halohub/halo-dev:2.0.0-beta.1
         container_name: halo_next
         restart: on-failure:3
         depends_on:
-          - halo_db
+          halo_db:
+            condition: service_healthy
         networks:
           halo_network:
         volumes:
           - ./:/root/halo-next
-          - /etc/timezone:/etc/timezone:ro
-          - /etc/localtime:/etc/localtime:ro
         ports:
           - "8090:8090"
         environment:
@@ -101,10 +98,14 @@ description: 使用 Docker Compose 部署
         networks:
           halo_network:
         volumes:
-          - /etc/localtime:/etc/localtime:ro
           - ./db:/var/lib/postgresql/data
         ports:
           - "5432:5432"
+        healthcheck:
+          test: [ "CMD", "pg_isready" ]
+          interval: 10s
+          timeout: 5s
+          retries: 5
         environment:
           - POSTGRES_PASSWORD=openpostgresql
           - POSTGRES_USER=halo
@@ -128,7 +129,7 @@ description: 使用 Docker Compose 部署
 
 ## 使用
 
-目前 Alpha 版本有以下几个使用注意事项：
+目前 Beta 版本有以下几个使用注意事项：
 
 1. 由于目前尚未完成初始化程序，所以安装完成之后没有默认主题，你可以访问 <https://github.com/halo-sigs/awesome-halo> 查阅所有支持 2.0 的主题，并在后台主题管理页面手动安装。
 2. 同上，由于目前评论组件也被插件化，所以如果要体验完整的评论功能，需要手动在后台安装 <https://github.com/halo-sigs/plugin-comment-widget> 评论组件插件。
@@ -210,7 +211,7 @@ reverse_proxy 127.0.0.1:8090
   ```yaml {3}
   services:
     halo_next:
-      image: halohub/halo-dev:2.0.0-alpha.2
+      image: halohub/halo-dev:2.0.0-beta.1
       container_name: halo_next
   ```
 

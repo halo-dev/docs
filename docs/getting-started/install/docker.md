@@ -9,7 +9,7 @@ description: 使用 Docker 部署
 
 ## 使用 Docker 镜像
 
-可用的 Halo 2.0.0-alpha.2 的 Docker 镜像：
+可用的 Halo 2.0.0-beta.1 的 Docker 镜像：
 
 - [halohub/halo-dev](https://hub.docker.com/r/halohub/halo-dev)
 - [ghcr.io/halo-dev/halo-dev](https://github.com/halo-dev/halo/pkgs/container/halo-dev)
@@ -26,7 +26,7 @@ description: 使用 Docker 部署
       -v ~/halo-next:/root/halo-next \
       -e HALO_EXTERNAL_URL=http://localhost:8090/ \
       -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo-dev:2.0.0-alpha.2
+      halohub/halo-dev:2.0.0-beta.1
     ```
 
     :::info
@@ -50,7 +50,7 @@ description: 使用 Docker 部署
 
 ## 使用
 
-目前 Alpha 版本有以下几个使用注意事项：
+目前 Beta 版本有以下几个使用注意事项：
 
 1. 由于目前尚未完成初始化程序，所以安装完成之后没有默认主题，你可以访问 <https://github.com/halo-sigs/awesome-halo> 查阅所有支持 2.0 的主题，并在后台主题管理页面手动安装。
 2. 同上，由于目前评论组件也被插件化，所以如果要体验完整的评论功能，需要手动在后台安装 <https://github.com/halo-sigs/plugin-comment-widget> 评论组件插件。
