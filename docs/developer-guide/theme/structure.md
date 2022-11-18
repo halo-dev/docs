@@ -3,6 +3,8 @@ title: 目录结构
 description: 主题的目录结构介绍
 ---
 
+Halo 2.0 的主题基本目录结构如下：
+
 ```bash title="~/halo-next/themes/my-theme"
 my-theme
 ├── templates/
@@ -22,3 +24,10 @@ my-theme
 ├── theme.yaml
 └── settings.yaml
 ```
+
+详细说明：
+
+1. `/templates/` - 主题模板目录，存放主题模板文件，所有模板都需要放在这个目录。
+2. `/templates/assets/` - 主题静态资源目录，存放主题的静态资源文件，目前静态资源文件只能放在这个目录。
+3. `/theme.yaml` - 主题配置文件，配置主题的基本信息，如主题名称、版本、作者等。
+4. `/settings.yaml` - 主题设置定义文件，配置主题的设置项表单。
