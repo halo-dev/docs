@@ -70,11 +70,13 @@ module.exports = {
           items: [
             "developer-guide/theme/prepare",
             "developer-guide/theme/structure",
-            // "developer-guide/theme/config-files",
-            // "developer-guide/theme/global-variable",
-            // "developer-guide/theme/public-template-tag",
-            // "developer-guide/theme/page-variable",
-            // "developer-guide/theme/template-tag",
+            "developer-guide/theme/config",
+            "developer-guide/theme/settings",
+            "developer-guide/theme/static-resources",
+            "developer-guide/theme/template-route-mapping",
+            "developer-guide/theme/template-variables",
+            "developer-guide/theme/finder-apis",
+            "developer-guide/theme/code-snippets",
           ],
         },
         // {
