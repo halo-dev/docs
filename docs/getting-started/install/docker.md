@@ -9,7 +9,7 @@ description: 使用 Docker 部署
 
 ## 使用 Docker 镜像
 
-可用的 Halo 2.0.0-beta.1 的 Docker 镜像：
+可用的 Halo 2.0.0-beta.2 的 Docker 镜像：
 
 - [halohub/halo-dev](https://hub.docker.com/r/halohub/halo-dev)
 - [ghcr.io/halo-dev/halo-dev](https://github.com/halo-dev/halo/pkgs/container/halo-dev)
@@ -26,7 +26,7 @@ description: 使用 Docker 部署
       -v ~/halo-next:/root/halo-next \
       -e HALO_EXTERNAL_URL=http://localhost:8090/ \
       -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo-dev:2.0.0-beta.1
+      halohub/halo-dev:2.0.0-beta.2
     ```
 
     :::info
