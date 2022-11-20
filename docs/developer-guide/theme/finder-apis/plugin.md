@@ -3,10 +3,10 @@ title: 插件
 description: 插件 - PluginFinder
 ---
 
-## available()
+## available(pluginName)
 
 ```js
-pluginFinder.available()
+pluginFinder.available(pluginName)
 ```
 
 ### 描述
