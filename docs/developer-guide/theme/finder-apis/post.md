@@ -581,6 +581,9 @@ postFinder.archives(page,size,year,month)
 }
 ```
 
+- [#CategoryVo](#categoryvo)
+- [#TagVo](#tagvo)
+
 ### ListResult<ListedPostVo\>
 
 ```json title="ListResult<ListedPostVo>"
