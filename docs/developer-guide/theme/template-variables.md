@@ -2,4 +2,6 @@
 title: 模板变量
 ---
 
-## 首页（index.html）
+import DocCardList from '@theme/DocCardList';
+
+<DocCardList />
