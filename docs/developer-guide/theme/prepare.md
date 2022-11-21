@@ -56,7 +56,7 @@ spec:
 
 ## 创建第一个页面模板
 
-Halo 使用 [Thymeleaf](https://www.thymeleaf.org/) 作为后端模板引擎，后缀为 `.html`，与单纯编写 HTMl 一致。在 Halo 的主题中，主题的模板文件存放于 `templates` 目录下，例如 `~/halo-next/themes/theme-foo/templates`。为了此文档方便演示，我们先在 `templates` 创建一个首页的模板文件 `index.html`：
+Halo 使用 [Thymeleaf](https://www.thymeleaf.org/) 作为后端模板引擎，后缀为 `.html`，与单纯编写 HTML 一致。在 Halo 的主题中，主题的模板文件存放于 `templates` 目录下，例如 `~/halo-next/themes/theme-foo/templates`。为了此文档方便演示，我们先在 `templates` 创建一个首页的模板文件 `index.html`：
 
 ```html title="templates/index.html"
 <!DOCTYPE html>
