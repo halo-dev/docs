@@ -133,6 +133,7 @@ module.exports = {
             "developer-guide/theme/code-snippets",
           ],
         },
+        "developer-guide/form-schema",
         // {
         //   type: "link",
         //   label: "REST API",
