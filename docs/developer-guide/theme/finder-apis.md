@@ -1,5 +1,6 @@
 ---
 title: Finder API
+description: 本文档介绍 Finder API 的使用方法。
 ---
 
 import DocCardList from '@theme/DocCardList';
