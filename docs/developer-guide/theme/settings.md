@@ -108,3 +108,22 @@ Setting 资源的 `metadata.name` 必须和 `theme.yaml` 中的 `spec.settingNam
     <!-- do something -->
 </div>
 ```
+
+## 从 1.x 迁移
+
+为了方便主题开发者从 1.x 迁移，我们提供了工具用于迁移设置表单配置文件。
+
+工具仓库地址：<https://github.com/halo-sigs/convert-theme-config-to-next>
+
+```bash
+# 1.x 版本主题
+cd path/to/theme
+
+npx @halo-dev/convert-theme-config-to-next settings
+```
+
+执行完成之后即可看到主题目录下生成了 `settings.2.0.yaml` 文件，重命名为 `settings.yaml` 即可。
+
+:::tip
+转换完成之后需要修改 `metadata.name` 字段。
+:::
