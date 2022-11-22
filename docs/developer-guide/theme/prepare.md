@@ -11,7 +11,7 @@ Halo 在本地开发环境的运行可参考[开发环境运行](../core/run.md)
 
 ## 新建一个主题
 
-Halo 的主题存放于工作目录的 `themes` 目录下，即 `~/halo-next/themes`，在该目录下新建一个文件夹，例如 `theme-foo`。当前一个最小可被系统加载的主题必须在主题根目录下包含 `theme.yaml` 配置文件。
+Halo 的主题存放于工作目录的 `themes` 目录下，即 `~/halo2-dev/themes`，在该目录下新建一个文件夹，例如 `theme-foo`。当前一个最小可被系统加载的主题必须在主题根目录下包含 `theme.yaml` 配置文件。
 
 ```yaml title="theme.yaml"
 apiVersion: theme.halo.run/v1alpha1
@@ -56,7 +56,7 @@ spec:
 
 ## 创建第一个页面模板
 
-Halo 使用 [Thymeleaf](https://www.thymeleaf.org/) 作为后端模板引擎，后缀为 `.html`，与单纯编写 HTML 一致。在 Halo 的主题中，主题的模板文件存放于 `templates` 目录下，例如 `~/halo-next/themes/theme-foo/templates`。为了此文档方便演示，我们先在 `templates` 创建一个首页的模板文件 `index.html`：
+Halo 使用 [Thymeleaf](https://www.thymeleaf.org/) 作为后端模板引擎，后缀为 `.html`，与单纯编写 HTML 一致。在 Halo 的主题中，主题的模板文件存放于 `templates` 目录下，例如 `~/halo2-dev/themes/theme-foo/templates`。为了此文档方便演示，我们先在 `templates` 创建一个首页的模板文件 `index.html`：
 
 ```html title="templates/index.html"
 <!DOCTYPE html>

@@ -5,7 +5,7 @@ description: 主题的目录结构介绍
 
 Halo 2.0 的主题基本目录结构如下：
 
-```bash title="~/halo-next/themes/my-theme"
+```bash title="~/halo2-dev/themes/my-theme"
 my-theme
 ├── templates/
 │   ├── assets/
