@@ -89,7 +89,6 @@ menuFinder.getPrimary()
 }
 ```
 
-
 ### MenuItemVo
 
 ```json title="MenuItemVo"
@@ -144,4 +143,3 @@ menuFinder.getPrimary()
   "parentName": "string",
 }
 ```
-
