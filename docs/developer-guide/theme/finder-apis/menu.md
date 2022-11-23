@@ -89,7 +89,6 @@ menuFinder.getPrimary()
 }
 ```
 
-- [#MenuItemVo](#menuitemvo)
 
 ### MenuItemVo
 
