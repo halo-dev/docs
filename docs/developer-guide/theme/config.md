@@ -79,5 +79,5 @@ npx @halo-dev/convert-theme-config-to-next theme
 执行完成之后即可看到主题目录下生成了 `theme.2.0.yaml` 文件，重命名为 `theme.yaml` 即可。
 
 :::tip
-转换完成之后需要修改 `metadata.name` `spec.settingName` `spec.configMapName`。
+转换完成之后需要修改 `metadata.name`、`spec.settingName` 和 `spec.configMapName`。
 :::
