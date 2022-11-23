@@ -145,4 +145,3 @@ menuFinder.getPrimary()
 }
 ```
 
-- [#MenuItemVo](#menuitemvo)
