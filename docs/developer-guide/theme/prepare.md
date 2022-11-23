@@ -11,47 +11,34 @@ Halo 在本地开发环境的运行可参考[开发环境运行](../core/run.md)
 
 ## 新建一个主题
 
-Halo 的主题存放于工作目录的 `themes` 目录下，即 `~/halo-next/themes`，在该目录下新建一个文件夹，例如 `theme-foo`。当前一个最小可被系统加载的主题必须在主题根目录下包含 `theme.yaml` 配置文件。
-
-以 [theme-default](https://github.com/halo-sigs/theme-default) 为例：
+Halo 的主题存放于工作目录的 `themes` 目录下，即 `~/halo2-dev/themes`，在该目录下新建一个文件夹，例如 `theme-foo`。当前一个最小可被系统加载的主题必须在主题根目录下包含 `theme.yaml` 配置文件。
 
 ```yaml title="theme.yaml"
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  name: theme-default
+  name: theme-foo
 spec:
-  displayName: Default
+  displayName: 示例主题
   author:
     name: halo-dev
     website: https://halo.run
-  description: Default theme for Halo 2.0
+  description: 一个示例主题
   logo: https://halo.run/logo
-  website: https://github.com/halo-sigs/theme-default
-  repo: https://github.com/halo-sigs/theme-default.git
-  settingName: "theme-default-setting"
-  configMapName: "theme-default-configMap"
+  website: https://github.com/halo-sigs/theme-foo
+  repo: https://github.com/halo-sigs/theme-foo.git
+  settingName: "theme-foo-setting"
+  configMapName: "theme-foo-configMap"
   version: 1.0.0
   require: 2.0.0
 ```
 
-| 字段                  | 描述                                                        | 是否必填 |
-| --------------------- | ----------------------------------------------------------- | -------- |
-| `metadata.name`       | 主题的唯一标识                                              | 是       |
-| `spec.displayName`    | 显示名称                                                    | 是       |
-| `spec.author.name`    | 作者名称                                                    | 否       |
-| `spec.author.website` | 作者网站                                                    | 否       |
-| `spec.description`    | 主题描述                                                    | 否       |
-| `spec.logo`           | 主题 Logo                                                   | 否       |
-| `spec.website`        | 主题网站                                                    | 否       |
-| `spec.repo`           | 主题托管地址                                                | 否       |
-| `spec.settingName`    | 设置表单定义的名称，需要同时创建对应的 `settings.yaml` 文件 | 否       |
-| `spec.configMapName`  | 设置持久化的 ConfigMap 名称                                 | 否       |
-| `spec.version`        | 主题版本                                                    | 是       |
-| `spec.require`        | 所需 Halo 的运行版本                                        | 是       |
+:::info 提示
+主题的配置文件详细文档请参考 [配置文件](./config.md)。
+:::
 
 :::info 提示
-关于主题项目的目录结构请参考[主题目录结构](./structure.md)。
+主题项目的目录结构请参考 [主题目录结构](./structure.md)。
 :::
 
 ## 通过模板创建
@@ -69,7 +56,7 @@ spec:
 
 ## 创建第一个页面模板
 
-Halo 使用 [Thymeleaf](https://www.thymeleaf.org/) 作为后端模板引擎，后缀为 `.html`，与单纯编写 HTMl 一致。在 Halo 的主题中，主题的模板文件存放于 `templates` 目录下，例如 `~/halo-next/themes/theme-foo/templates`。为了此文档方便演示，我们先在 `templates` 创建一个首页的模板文件 `index.html`：
+Halo 使用 [Thymeleaf](https://www.thymeleaf.org/) 作为后端模板引擎，后缀为 `.html`，与单纯编写 HTML 一致。在 Halo 的主题中，主题的模板文件存放于 `templates` 目录下，例如 `~/halo2-dev/themes/theme-foo/templates`。为了此文档方便演示，我们先在 `templates` 创建一个首页的模板文件 `index.html`：
 
 ```html title="templates/index.html"
 <!DOCTYPE html>
