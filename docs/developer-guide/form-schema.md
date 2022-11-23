@@ -48,7 +48,7 @@ spec:
           name: username
           label: 用户名
           value: ""
-        - $formkit: text
+        - $formkit: password
           name: password
           label: 密码
           value: ""
