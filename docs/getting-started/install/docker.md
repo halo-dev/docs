@@ -9,7 +9,7 @@ description: 使用 Docker 部署
 
 ## 使用 Docker 镜像
 
-可用的 Halo 2.0.0-beta.2 的 Docker 镜像：
+可用的 Halo 2.0.0-rc.1 的 Docker 镜像：
 
 - [halohub/halo-dev](https://hub.docker.com/r/halohub/halo-dev)
 - [ghcr.io/halo-dev/halo-dev](https://github.com/halo-dev/halo/pkgs/container/halo-dev)
@@ -23,10 +23,10 @@ description: 使用 Docker 部署
       -it -d \
       --name halo-next \
       -p 8090:8090 \
-      -v ~/halo-next:/root/halo-next \
+      -v ~/.halo2:/root/.halo2 \
       -e HALO_EXTERNAL_URL=http://localhost:8090/ \
       -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo-dev:2.0.0-beta.2
+      halohub/halo-dev:2.0.0-rc.1
     ```
 
     :::info
@@ -37,7 +37,7 @@ description: 使用 Docker 部署
     - **-d**：后台运行容器
     - **--name**：为容器指定一个名称
     - **-p**：端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
-    - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/halo-next`，后者不能修改。
+    - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/.halo2`，后者不能修改。
     - **-e**：环境变量
       - `HALO_EXTERNAL_URL`: 外部可访问的链接。例如：<https://域名/>
       - `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`: 超级管理员用户（admin）的初始化密码。如果该环境变量没有设置，系统将会生成随机密码并打印在日志中。
@@ -50,11 +50,10 @@ description: 使用 Docker 部署
 
 ## 使用
 
-目前 Beta 版本有以下几个使用注意事项：
+目前 RC 版本有以下几个使用注意事项：
 
-1. 由于目前尚未完成初始化程序，所以安装完成之后没有默认主题，你可以访问 <https://github.com/halo-sigs/awesome-halo> 查阅所有支持 2.0 的主题，并在后台主题管理页面手动安装。
-2. 同上，由于目前评论组件也被插件化，所以如果要体验完整的评论功能，需要手动在后台安装 <https://github.com/halo-sigs/plugin-comment-widget> 评论组件插件。
-3. 目前 2.0 已支持的主题和插件会同步到 <https://github.com/halo-sigs/awesome-halo>，你可以在对应仓库的 release 下载最新的主题或插件。
+1. 由于目前评论组件被插件化且暂不支持提供默认插件，所以如果要体验完整的评论功能，需要手动在后台安装 <https://github.com/halo-sigs/plugin-comment-widget> 评论组件插件。
+2. 目前 2.0 已支持的主题和插件会同步到 <https://github.com/halo-sigs/awesome-halo>，你可以在对应仓库的 release 下载最新的主题或插件。
 
 ## 反向代理
 
