@@ -77,7 +77,11 @@ module.exports = {
           link: {
             type: "generated-index",
           },
-          items: ["developer-guide/plugin/prepare"],
+          items: [
+            "developer-guide/plugin/introduction",
+            "developer-guide/plugin/prepare",
+            "developer-guide/plugin/hello-world"
+          ],
         },
         {
           type: "category",
