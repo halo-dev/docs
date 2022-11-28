@@ -9,6 +9,20 @@ description: 主题开发所需的准备工作和基本的项目搭建
 
 Halo 在本地开发环境的运行可参考[开发环境运行](../core/run.md)，或者使用 [Docker](../../getting-started/install/docker.md) 运行。
 
+:::tip
+为了保证在开发时，主题代码可以实时生效，需要注意以下事项：
+
+- 使用 Halo 源码运行时，需要在配置文件中包含如下配置：
+
+  ```yaml
+  spring:
+    thymeleaf:
+      cache: false
+  ```
+
+- 使用 Docker 运行时，需要添加 `SPRING_THYMELEAF_CACHE=false` 的环境变量。
+:::
+
 ## 新建一个主题
 
 Halo 的主题存放于工作目录的 `themes` 目录下，即 `~/halo2-dev/themes`，在该目录下新建一个文件夹，例如 `theme-foo`。当前一个最小可被系统加载的主题必须在主题根目录下包含 `theme.yaml` 配置文件。
