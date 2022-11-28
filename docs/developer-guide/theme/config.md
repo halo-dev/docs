@@ -63,6 +63,12 @@ spec:
 | `spec.version`                  | 主题版本                                                                      | 是       |
 | `spec.require`                  | 所需 Halo 的运行版本                                                          | 是       |
 
+## 更新配置
+
+由于目前 `theme.yaml` 是持久化存储在数据库中的，不会在修改之后主动更新，所以我们在 Console 的主题页面添加了 `重载主题配置` 的选项。
+
+![重载主题配置](/img/theme/reload-theme-config.png)
+
 ## 从 1.x 迁移
 
 为了方便主题开发者从 1.x 迁移，我们提供了工具用于迁移配置文件。
