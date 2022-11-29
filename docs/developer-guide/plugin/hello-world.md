@@ -283,4 +283,339 @@ public class HelloWorldPlugin extends BasePlugin {
 
 ## 编写用户界面
 
-TODO...
+### 目标
+
+我们希望实现如下的用户界面：
+
+- 在左侧菜单添加一个名为 `Todo List` 的菜单项，它属于一个`工具`的组。
+- 内容页为一个简单的 Todo List，它实现以下功能：
+  - 添加 `Todo item`
+  - 将一个 `Todo item` 标记为完成，也可以取消完成状态
+  - 列表有三个 `Tab` 可供切换，用于过滤数据展示
+
+![todo user interface](/img/todo-ui.png)
+
+### 实现
+
+使用模板仓库创建的项目中与 `src` 目录同级有一个 `console` 目录，它即为用户界面的源码目录。
+
+在实现用户界面前我们需要先修改 `console/vite.config.ts` 中的 `pluginName` 为 `plugin.yaml` 中的 `metadata.name`，它用来标识此用户界面所属于插件名 pluginName 标识的插件，以便 Halo 加载 console 目录打包产生的文件。
+
+修改完成后执行
+
+```groovy
+./gradlew build 
+```
+
+修改前端项目不需要重启 Halo，直接页面即可，此时能看到多出来一个菜单项：
+
+![starter-ui-example](/img/starter-ui-example.png)
+
+而我们需要实现的目标中也需要一个菜单项，所以直接修改它即可。
+
+打开 `console/src/index.ts` 文件，修改如下：
+
+```diff
+export default definePlugin({
+-  name: "PluginStarter",
++  name: "plugin-hello-world",
+  components: [],
+  routes: [
+    {
+      parentName: "Root",
+      route: {
+-       path: "/hello-world",
++       path: "/todos", // TodoList 的路由 path
+        children: [
+          {
+            path: "",
+-            name: "HelloWorld",
++            name: "TodoList",// 菜单标识名
+            component: DefaultView,
+            meta: {
+-              permissions: ["plugin:apples:view"],
+-              title: "HelloWorld",
++              title: "Todo List",//菜单页的浏览器 tab 标题
+              searchable: true,
+              menu: {
+-               name: "迁移",
++               name: "Todo List",// TODO 菜单显示名称
+-               group: "From PluginStarter",
+=               group: "工具",// 所在组名
+                icon: markRaw(IconGrid),
+                priority: 0,
+              },
+            },
+          },
+        ],
+      },
+    },
+  ],
+  extensionPoints: {},
+  activated() {},
+  deactivated() {},
+});
+```
+
+配置好之后还是一样重新 Build:
+
+```groovy
+./gradlew build 
+```
+
+刷新页面就能看到，左侧菜单多了一个名 `工具` 的组，其下有 `Todo List`，浏览器标签页名称也是 `Todo List`。
+
+接来下我们需要在右侧内容区域实现 [目标](#目标) 中图示的 Todo 样式，为了快速上手，我们使用 [todomvc](https://todomvc.com/examples/vue/) 提供的 Vue 标准实现。
+编辑 `console/src/views/DefaultView.vue` 文件，清空它的内容，并拷贝 [examples/#todomvc](https://vuejs.org/examples/#todomvc) 的所有代码粘贴到此文件中，并执行以下步骤：
+
+1. `cd console` 切换到 `console` 目录。
+2. ` pnpm install todomvc-app-css `。
+3. 修改 `console/src/views/DefaultView.vue` 最底部的 `style` 标签。
+
+```diff
+- <style>
++ <style scoped>
+-  @import "https://unpkg.com/todomvc-app-css@2.4.1/index.css";
++  @import "todomvc-app-css/index.css";
+  </style>
+```
+
+4. 重新 Build 后刷新页面，便能看到目标图所示效果。
+
+但此时会发现点击菜单切换到 `Todo List` 时会卡顿，这是由于默认实现中使用 `a` 标签来切换路由，在其中加了路由监听，在不使用 `vue-router` 的情况下我们把它改为 `Tab` 切换。
+
+1. 删除 `mounted` 生命周期方法
+
+```diff
+- mounted() {
+-    window.addEventListener("hashchange", this.onHashChange);
+-    this.onHashChange();
+-  },
+```
+
+2. 删除 `methods` 下的 `onHashChange()` 方法。
+
+```diff
+- onHashChange() {
+-   const visibility = window.location.hash.replace(/#\/?/, "");
+-   if (filters[visibility]) {
+-     this.visibility = visibility;
+-   } else {
+-     window.location.hash = "";
+-     this.visibility = "all";
+-   }
+- },
+```
+
+3. 修改 `footer` 标签块。
+
+```diff
+  <footer class="footer" v-show="todos.length">
+    <span class="todo-count">
+      <strong>{{ remaining }}</strong>
+      <span>{{ remaining === 1 ? " item" : " items" }} left</span>
+    </span>
+    <ul class="filters">
+      <li>
+-        <a href="#/all" :class="{ selected: visibility === 'all' }">All</a>
++        <a
++          href="javascript:void(0);"
++          @click="() => this.visibility = 'all'"
++          :class="{ selected: visibility === 'all' }">All</a>
+      </li>
+      <li>
+-        <a href="#/active" :class="{ selected: visibility === 'active' }">Active</a>
++        <a
++          href="javascript:void(0);"
++          @click="() => (this.visibility = 'active')"
++          :class="{ selected: visibility === 'active' }">Active</a>
+      </li>
+      <li>
+-       <a href="#/completed" :class="{ selected: visibility === 'completed' }">Completed</a>
++       <a
++           href="javascript:void(0);"
++           @click="() => (this.visibility = 'completed')"
++           :class="{ selected: visibility === 'completed' }">Completed</a>
+      </li>
+    </ul>
+    <button
+      class="clear-completed"
+      @click="removeCompleted"
+      v-show="todos.length > remaining"
+    >
+      Clear completed
+    </button>
+  </footer>
+```
+
+通过以上步骤就实现了一个 Todo List 的用户界面功能，但 `Todo` 数据只是被临时存放到了 `LocalStorage` 中，下一步我们将通过自定义模型生成的 APIs 来让用户界面与服务端交互。
+
+### 与服务端数据交互
+
+本章节我们将通过使用 `Axios` 来完成与插件后端 APIs 进行数据交互，文档参考 [axios-http](https://axios-http.com/docs)。
+
+首先需要安装 `Axios`， 在 console 目录下执行命令：
+
+```shell
+pnpm install axios
+```
+
+编辑 `console/src/views/DefaultView.vue` 文件，在 `<script>` 标签内添加如下内容：
+
+```javascript
+const http = axios.create({
+  baseURL: "/",
+  timeout: 1000,
+});
+```
+
+然后使用 `Axios` 调用接口，示例：
+
+```javascript
+<script>
+import axios from "axios";
+
+const http = axios.create({
+  baseURL: "/",
+  timeout: 1000,
+});
+
+const createTodo = async (title) => {
+  // 查看 http://localhost:8090/swagger-ui.html
+  return await http.post("/apis/todo.guqing.github.io/v1alpha1/todos", {
+    spec: {
+      title: title,
+      done: false,
+    },
+    apiVersion: "todo.guqing.github.io/v1alpha1",// apiVersion=自定义模型的 group/version
+    kind: "Todo",// Todo 自定义模型中 @GVK 注解中的 kind
+    metadata: {
+      generateName: "todo-", // 根据 'todo-' 前缀自动生成 todo 的名称作为唯一标识，可以理解为数据库自动生成主键 id
+    },
+  });
+};
+
+const getTodo = async (name) => {
+  return await http.get(`/apis/todo.guqing.github.io/v1alpha1/todos/${name}`);
+};
+
+const listAllTodos = async () => {
+  return await http.get("/apis/todo.guqing.github.io/v1alpha1/todos");
+};
+
+const updateDoneStatus = async (name, done) => {
+  const todoItem = await getTodo(name);
+  todoItem.spec.done = done;
+  return await http.put(
+    `/apis/todo.guqing.github.io/v1alpha1/todos/${name}`,
+    todoItem
+  );
+};
+
+const removeTodo = async (name) => {
+  return await http.delete(
+    `/apis/todo.guqing.github.io/v1alpha1/todos/${name}`
+  );
+};
+```
+
+当定义好这些 CRUD 方法后，我们就可以来调用它，`script` 标签内容如下：
+
+```javascript
+<script>
+// ... other code written before
+
+export default {
+  // app initial state
+  data: () => ({
+    todos: [],
+    editedTodo: null,
+    visibility: "all",
+  }),
+
+  // watch todos change for localStorage persistence
+  watch: {
+    todos: {
+      handler(todos) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+      },
+      deep: true,
+    },
+  },
+  computed: {
+    filteredTodos() {
+      return filters[this.visibility](this.todos);
+    },
+    remaining() {
+      return filters.active(this.todos).length;
+    },
+  },
+  async mounted() {
+    await this.listAll();
+  },
+  // methods that implement data logic.
+  // note there's no DOM manipulation here at all.
+  methods: {
+    async listAll() {
+      const list = await listAllTodos();
+      this.todos = list.data.items.map((item) => {
+        return {
+          id: item.metadata.name,
+          title: item.spec.title,
+        };
+      });
+    },
+
+    toggleAll(e) {
+      this.todos.forEach((todo) => (todo.completed = e.target.checked));
+    },
+
+    async addTodo(e) {
+      const value = e.target.value.trim();
+      if (!value) {
+        return;
+      }
+      const { data } = await createTodo(value);
+      this.todos.push({
+        id: data.metadata.name,
+        title: data.spec.title,
+        completed: data.spec.done,
+      });
+      e.target.value = "";
+    },
+
+    async removeTodo(todo) {
+      await removeTodo(todo.id);
+      await this.listAll();
+    },
+
+    editTodo(todo) {
+      this.beforeEditCache = todo.title;
+      this.editedTodo = todo;
+    },
+
+    async doneEdit(todo) {
+      if (!this.editedTodo) {
+        return;
+      }
+      this.editedTodo = null;
+      todo.title = todo.title.trim();
+      if (!todo.title) {
+        return await updateDoneStatus(todo.id, true);
+      }
+    },
+
+    cancelEdit(todo) {
+      this.editedTodo = null;
+      todo.title = this.beforeEditCache;
+    },
+
+    async removeCompleted() {
+      this.todos = filters.active(this.todos);
+    },
+  },
+};
+</script>
+```
+
+至此我们就完成了与插件后端 APIs 实现 Todo List 数据交互的部分。
