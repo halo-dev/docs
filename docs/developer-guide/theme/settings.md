@@ -109,6 +109,12 @@ Setting 资源的 `metadata.name` 必须和 `theme.yaml` 中的 `spec.settingNam
 </div>
 ```
 
+## 更新配置
+
+与 `theme.yaml` 一样，`settings.yaml` 也是持久化存储在数据库中的，不会在修改之后主动更新。同样在主题详情页面点击 `重载主题配置` 即可。
+
+![重载主题配置](/img/theme/reload-theme-config.png)
+
 ## 从 1.x 迁移
 
 为了方便主题开发者从 1.x 迁移，我们提供了工具用于迁移设置表单配置文件。
