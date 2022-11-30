@@ -13,10 +13,43 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
   - <https://github.com/halo-sigs/plugin-moments>
   - <https://github.com/halo-sigs/plugin-photos>
 - Halo 2.0 的外置云存储目前仅有阿里云 OSS 的插件，如果你对其他外部云存储有强需求，建议先暂缓迁移。
+- 在迁移过程中不会保留旧版本的用户数据，迁移完成之后，关于文章等数据的关联都将改为 Halo 2.0 的新用户。
+- 迁移插件目前仅支持 Chrome 浏览器。
 - 为了防止直接升级 2.0 导致 1.x 的数据受到破坏，我们已经将工作目录由 `~/.halo` 变更为 `~/.halo2`。
+- 目前 Halo 2.0 仅提供 Docker 部署方式，没有提供可执行 JAR 包。
+- 可以考虑先在本地运行一个 Halo 2.0，模拟一下导入，检查导入后是否满足要求。
 
-如果有遇到迁移过程中的问题，也可以向我们提交 Issue: <https://github.com/halo-dev/halo/issues/new/choose>
+如果遇到了迁移过程中的问题，也可以向我们提交 Issue: <https://github.com/halo-dev/halo/issues/new/choose>
 
 ## 备份数据
 
-在进行迁移操作之前，我们强烈建议先**完整备份所有数据**，
+在进行迁移操作之前，我们强烈建议先**完整备份所有数据**，可以参考 [备份迁移](https://docs.halo.run/user-guide/backup-migration) 进行整站备份。
+
+## 导出数据文件
+
+在 Halo 1.5.x / 1.6.x 后台的小工具中提供了数据导出的功能，将最新的数据进行备份，然后下载即可。这个数据文件包含了数据库所有的数据，后续我们在 2.0 的导入插件中就是通过这个文件进行数据导入。
+
+![halo-data-export.png](/img/halo-data-export.png)
+
+## 部署 Halo 2.0
+
+可以参考以下文档进行部署：
+
+- [使用 Docker 部署](./install/docker.md)
+- [使用 Docker Compose 部署](./install/docker-compose.md)
+
+:::tip
+可以考虑暂时保留旧版本的 Halo，等到迁移完成之后再移除。如果需要保留旧版本的 Halo，请注意在部署 Halo 2.0 的时候使用其他端口，然后在反向代理（Nginx）中修改为 Halo 2.0 的运行端口即可。
+:::
+
+## 安装迁移插件
+
+需要在 <https://github.com/halo-sigs/plugin-migrate/releases> 中下载最新版本的插件 JAR 包，然后在 Halo 2.0 的插件管理中安装即可，安装完成即可在左侧菜单中看到迁移菜单。
+
+![Migrate Plugin](/img/migrate/halo2.0-migrate-plugin.png)
+
+## 迁移
+
+1. 点击左侧菜单的迁移进入迁移页面。
+2. 点击 **选择文件** 按钮，选择在 Halo 1.5.x / 1.6.x 导出的数据文件（JSON 格式）。
+3. 最后点击页面下方的 **执行导入** 即可。
