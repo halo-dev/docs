@@ -663,3 +663,79 @@ const handleDelete = (todo: Todo) => {
 这在原先的基础上替换为了 `TypeScipt` 写法，并去除了数据保存到 `LocalStorage` 的逻辑，这也是我们推荐的方式，可读性更强，且有 `TypeScript` 提供类型提示。
 
 至此我们就完成了与插件后端 APIs 实现 Todo List 数据交互的部分。
+
+### 使用 Icon
+
+目前 Todo 的菜单还是默认的网格样式 Icon，在 `console/src/index.ts` 文件中配置有一个 `icon: markRaw(IconGrid)`。以此为例说明该如何使用其他 `Icon`。
+
+1. 安装 [unplugin-icons](https://github.com/antfu/unplugin-icons)。
+
+```shell
+pnpm install -D unplugin-icons
+pnpm install -D @iconify/json
+pnpm install -D @vue/compiler-sfc
+```
+
+2. 编辑 `console/vite.config.ts`，在 `defineConfig` 的 `plugins` 中添加配置，修改如下。
+
+```diff
++ import Icons from "unplugin-icons/vite";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+-  plugins: [vue(), vueJsx()],
++  plugins: [vue(), vueJsx(), Icons({ compiler: "vue3" })],
+```
+
+3. 在 `console/tsconfig.app.json` 中加入 `unplugni-icons` 的 `types` 配置。
+
+```diff
+{
+  // ...
+  "compilerOptions": {
+    // ...
+    "paths": {
+      "@/*": ["./src/*"]
+-    }
++    },
++    "types": ["unplugin-icons/types/vue"]
+  }
+}
+```
+
+4. 到 [icones](https://icones.js.org/) 搜索你想要使用的图标，并点击它，然后选择 `Unplugin Icons`，会复制到剪贴板。
+
+![unplugin icons selector](/img/unplugin-icons-example.png)
+
+5. 编辑 `console/src/index.ts` 在 `import` 区域粘贴，并 `icon` 属性。
+
+```diff
+- import { IconGrid } from "@halo-dev/components";
++ import VscodeIconsFileTypeLightTodo from "~icons/vscode-icons/file-type-light-todo";
+
+export default definePlugin({
+  routes: [
+    {
+     // ...
+      route: {
+        path: "/todos",
+        children: [
+          {
+            // ...
+            meta: {
+              // ...
+              menu: {
+                // ...
+-               icon: markRaw(IconGrid),
++               icon: markRaw(VscodeIconsFileTypeLightTodo),
+                priority: 0,
+              },
+            },
+          },
+        ],
+      },
+    },
+  ],
+  // ...
+});
+```
