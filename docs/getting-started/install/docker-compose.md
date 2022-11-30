@@ -43,11 +43,11 @@ description: 使用 Docker Compose 部署
 
     services:
       halo:
-        image: halohub/halo-dev:2.0.0-rc.1
+        image: halohub/halo:2.0.0
         container_name: halo
         restart: on-failure:3
         depends_on:
-          halo_db:
+          halodb:
             condition: service_healthy
         networks:
           halo_network:
@@ -56,7 +56,7 @@ description: 使用 Docker Compose 部署
         ports:
           - "8090:8090"
         environment:
-          - SPRING_R2DBC_URL=r2dbc:pool:postgresql://halo_db/halo
+          - SPRING_R2DBC_URL=r2dbc:pool:postgresql://halodb/halo
           - SPRING_R2DBC_USERNAME=halo
           # PostgreSQL 的密码，请保证与下方 POSTGRES_PASSWORD 的变量值一致。
           - SPRING_R2DBC_PASSWORD=openpostgresql
@@ -68,9 +68,9 @@ description: 使用 Docker Compose 部署
           # 初始化的超级管理员密码
           - HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd
 
-      halo_db:
+      halodb:
         image: postgres:latest
-        container_name: halo_db
+        container_name: halodb
         restart: on-failure:3
         networks:
           halo_network:
@@ -103,7 +103,7 @@ description: 使用 Docker Compose 部署
         container_name: halo
         restart: on-failure:3
         depends_on:
-          halo_db:
+          halodb:
             condition: service_healthy
         networks:
           halo_network:
@@ -112,7 +112,7 @@ description: 使用 Docker Compose 部署
         ports:
           - "8090:8090"
         environment:
-          - SPRING_R2DBC_URL=r2dbc:pool:mysql://halo_db:3306/halo
+          - SPRING_R2DBC_URL=r2dbc:pool:mysql://halodb:3306/halo
           - SPRING_R2DBC_USERNAME=root
           # MySQL 的密码，请保证与下方 MYSQL_ROOT_PASSWORD 的变量值一致。
           - SPRING_R2DBC_PASSWORD=o#DwN&JSa56
@@ -124,9 +124,9 @@ description: 使用 Docker Compose 部署
           # 初始化的超级管理员密码
           - HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd
 
-      halo_db:
+      halodb:
         image: mysql:8.0.27
-        container_name: halo_db
+        container_name: halodb
         restart: on-failure:3
         networks:
           halo_network:
