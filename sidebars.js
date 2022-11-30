@@ -80,7 +80,8 @@ module.exports = {
           items: [
             "developer-guide/plugin/introduction",
             "developer-guide/plugin/prepare",
-            "developer-guide/plugin/hello-world"
+            "developer-guide/plugin/hello-world",
+            "developer-guide/plugin/publish",
           ],
         },
         {
