@@ -33,13 +33,11 @@ slug: /
 
 ## 快速开始
 
-### Docker
-
 ```bash
 docker run -it -d --name halo-next -p 8090:8090 -v ~/.halo2:/root/.halo2 --restart=unless-stopped halohub/halo:2.0.0
 ```
 
-详细部署文档请查阅：<https://docs.halo.run/2.0.0-SNAPSHOT/getting-started/install/docker>
+详细部署文档请查阅：<https://docs.halo.run/getting-started/install/docker-compose>
 
 ## 在线体验
 
@@ -50,7 +48,8 @@ docker run -it -d --name halo-next -p 8090:8090 -v ~/.halo2:/root/.halo2 --resta
 
 ## 生态
 
-可访问 [awesome-halo](https://github.com/halo-sigs/awesome-halo) 查看已经适用于 Halo 2.0 的主题和插件，以及适用于 Halo 1.x 的相关仓库。
+可访问 [awesome-halo](https://github.com/halo-sigs/awesome-halo) 查看已经适用于 Halo 2.0 的主题和插件，以及适用于 Halo
+1.x 的相关仓库。
 
 ## 许可证
 
