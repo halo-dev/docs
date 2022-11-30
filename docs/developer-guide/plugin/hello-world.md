@@ -17,7 +17,7 @@ Halo 提供了一个模板仓库用于创建插件：
 1. 修改 `build.gradle` 中的 `group` 为你自己的，如:
 
   ```groovy
-  group = 'io.github.guqing'
+  group = 'run.halo.tutorial'
   ```
 
 2. 修改 `settings.gradle` 中的 `rootProject.name`
@@ -73,10 +73,10 @@ Halo 提供了一个模板仓库用于创建插件：
 
 为了看到效果，首先我们需要让插件能最简单的运行起来。
 
-1. 在 `src/main/java` 下创建包，如 `io.github.guqing`，在创建一个类 `HelloWorldPlugin`，它继承自 `BasePlugin` 类内容如下：
+1. 在 `src/main/java` 下创建包，如 `run.halo.tutorial`，在创建一个类 `HelloWorldPlugin`，它继承自 `BasePlugin` 类内容如下：
 
 ```java
-package io.github.guqing;
+package run.halo.tutorial;
 
 import org.pf4j.PluginWrapper;
 import org.springframework.stereotype.Component;
@@ -94,9 +94,9 @@ public class HelloWorldPlugin extends BasePlugin {
 
 ```text
 .
-└── io
-    └── github
-        └── guqing
+└── run
+    └── halo
+        └── tutorial
             └── HelloWorldPlugin.java
 ```
 
@@ -180,7 +180,7 @@ Hello world 插件启动了!
 首先创建一个 `class` 名为 `Todo` 并写入如下内容：
 
 ```java
-package io.github.guqing;
+package run.halo.tutorial;
 
 import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 
@@ -192,7 +192,7 @@ import run.halo.app.extension.GVK;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@GVK(kind = "Todo", group = "todo.guqing.github.io",
+@GVK(kind = "Todo", group = "todo.plugin.halo.run",
     version = "v1alpha1", singular = "todo", plural = "todos")
 public class Todo extends AbstractExtension {
 
@@ -263,7 +263,7 @@ public class HelloWorldPlugin extends BasePlugin {
 ![hello world plugin swagger api for toto](/img/halo-plugin-hello-world-todo-swagger-api.png)
 
 由于所有以 `/api` 和 `/apis` 开头的 APIs 都需要认证才能访问，因此先在 Swagger UI 界面顶部点击 `Authorize` 认证，然后尝试访问
-`GET /apis/todo.guqing.github.io/v1alpha1/todos` 可以看到如下结果：
+`GET /apis/todo.plugin.halo.run/v1alpha1/todos` 可以看到如下结果：
 
 ```json
 {
@@ -307,7 +307,7 @@ public class HelloWorldPlugin extends BasePlugin {
 ./gradlew build 
 ```
 
-修改前端项目不需要重启 Halo，直接页面即可，此时能看到多出来一个菜单项：
+修改前端项目不需要重启 Halo，只需要 build 然后刷新页面，此时能看到多出来一个菜单项：
 
 ![starter-ui-example](/img/starter-ui-example.png)
 
@@ -363,7 +363,7 @@ export default definePlugin({
 ./gradlew build 
 ```
 
-刷新页面就能看到，左侧菜单多了一个名 `工具` 的组，其下有 `Todo List`，浏览器标签页名称也是 `Todo List`。
+完成此步骤后 Console 左侧菜单多了一个名 `工具` 的组，其下有 `Todo List`，浏览器标签页名称也是 `Todo List`。
 
 接来下我们需要在右侧内容区域实现 [目标](#目标) 中图示的 Todo 样式，为了快速上手，我们使用 [todomvc](https://todomvc.com/examples/vue/) 提供的 Vue 标准实现。
 编辑 `console/src/views/DefaultView.vue` 文件，清空它的内容，并拷贝 [examples/#todomvc](https://vuejs.org/examples/#todomvc) 的所有代码粘贴到此文件中，并执行以下步骤：
@@ -382,72 +382,6 @@ export default definePlugin({
 
 4. 重新 Build 后刷新页面，便能看到目标图所示效果。
 
-但此时会发现点击菜单切换到 `Todo List` 时会卡顿，这是由于默认实现中使用 `a` 标签来切换路由，在其中加了路由监听，在不使用 `vue-router` 的情况下我们把它改为 `Tab` 切换。
-
-1. 删除 `mounted` 生命周期方法
-
-```diff
-- mounted() {
--    window.addEventListener("hashchange", this.onHashChange);
--    this.onHashChange();
--  },
-```
-
-2. 删除 `methods` 下的 `onHashChange()` 方法。
-
-```diff
-- onHashChange() {
--   const visibility = window.location.hash.replace(/#\/?/, "");
--   if (filters[visibility]) {
--     this.visibility = visibility;
--   } else {
--     window.location.hash = "";
--     this.visibility = "all";
--   }
-- },
-```
-
-3. 修改 `footer` 标签块。
-
-```diff
-  <footer class="footer" v-show="todos.length">
-    <span class="todo-count">
-      <strong>{{ remaining }}</strong>
-      <span>{{ remaining === 1 ? " item" : " items" }} left</span>
-    </span>
-    <ul class="filters">
-      <li>
--        <a href="#/all" :class="{ selected: visibility === 'all' }">All</a>
-+        <a
-+          href="javascript:void(0);"
-+          @click="() => this.visibility = 'all'"
-+          :class="{ selected: visibility === 'all' }">All</a>
-      </li>
-      <li>
--        <a href="#/active" :class="{ selected: visibility === 'active' }">Active</a>
-+        <a
-+          href="javascript:void(0);"
-+          @click="() => (this.visibility = 'active')"
-+          :class="{ selected: visibility === 'active' }">Active</a>
-      </li>
-      <li>
--       <a href="#/completed" :class="{ selected: visibility === 'completed' }">Completed</a>
-+       <a
-+           href="javascript:void(0);"
-+           @click="() => (this.visibility = 'completed')"
-+           :class="{ selected: visibility === 'completed' }">Completed</a>
-      </li>
-    </ul>
-    <button
-      class="clear-completed"
-      @click="removeCompleted"
-      v-show="todos.length > remaining"
-    >
-      Clear completed
-    </button>
-  </footer>
-```
-
 通过以上步骤就实现了一个 Todo List 的用户界面功能，但 `Todo` 数据只是被临时存放到了 `LocalStorage` 中，下一步我们将通过自定义模型生成的 APIs 来让用户界面与服务端交互。
 
 ### 与服务端数据交互
@@ -460,162 +394,272 @@ export default definePlugin({
 pnpm install axios
 ```
 
-编辑 `console/src/views/DefaultView.vue` 文件，在 `<script>` 标签内添加如下内容：
+为了更好的看懂代码，将用 TypeScript 改造之前的 todomvc 示例：
 
-```javascript
-const http = axios.create({
-  baseURL: "/",
-  timeout: 1000,
-});
+1. 创建 types 文件 `console/src/types/index.ts`
+
+```typescript
+export interface Metadata {
+  name: string;
+  labels?: {
+    [key: string]: string;
+  } | null;
+  annotations?: {
+    [key: string]: string;
+  } | null;
+  version?: number | null;
+  creationTimestamp?: string | null;
+  deletionTimestamp?: string | null;
+}
+
+export interface TodoSpec {
+  title: string;
+  done?: boolean;
+}
+
+/**
+ * 与自定义模型 Todo 对应
+ */
+export interface Todo {
+  spec: TodoSpec;
+  apiVersion: "todo.plugin.halo.run/v1alpha1"; // apiVersion=自定义模型的 group/version
+  kind: "Todo"; // Todo 自定义模型中 @GVK 注解中的 kind
+  metadata: Metadata;
+}
+
+/**
+ * Todo 自定义模型生成 list API 所对应的类型
+ */
+export interface TodoList {
+  page: number;
+  size: number;
+  total: number;
+  items: Array<Todo>;
+  first: boolean;
+  last: boolean;
+  hasNext: boolean;
+  hasPrevious: boolean;
+  totalPages: number;
+}
 ```
 
-然后使用 `Axios` 调用接口，示例：
+编辑 `console/src/views/DefaultView.vue` 文件，将所有内容替换为如下写法：
 
-```javascript
-<script>
+```typescript
+<script setup lang="ts">
 import axios from "axios";
+import type { Todo, TodoList } from "../types";
+import { computed, onMounted, ref } from "vue";
 
 const http = axios.create({
   baseURL: "/",
   timeout: 1000,
 });
 
-const createTodo = async (title) => {
-  // 查看 http://localhost:8090/swagger-ui.html
-  return await http.post("/apis/todo.guqing.github.io/v1alpha1/todos", {
-    spec: {
-      title: title,
-      done: false,
-    },
-    apiVersion: "todo.guqing.github.io/v1alpha1",// apiVersion=自定义模型的 group/version
-    kind: "Todo",// Todo 自定义模型中 @GVK 注解中的 kind
-    metadata: {
-      generateName: "todo-", // 根据 'todo-' 前缀自动生成 todo 的名称作为唯一标识，可以理解为数据库自动生成主键 id
-    },
-  });
+interface Tab {
+  label: string;
+}
+
+const todos = ref<TodoList>({
+  page: 1,
+  size: 20,
+  total: 0,
+  items: [],
+  first: true,
+  last: false,
+  hasNext: false,
+  hasPrevious: false,
+  totalPages: 0,
+});
+
+const tabs = [
+  {
+    label: "All",
+  },
+  {
+    label: "Active",
+  },
+  {
+    label: "Completed",
+  },
+];
+
+const activeTab = ref("All");
+
+/**
+ * 列表展示的数据
+ */
+const todoList = computed(() => {
+  if (activeTab.value === "All") {
+    return todos.value.items;
+  }
+  if (activeTab.value === "Active") {
+    return filterByDone(false);
+  }
+  if (activeTab.value === "Completed") {
+    return filterByDone(true);
+  }
+  return [];
+});
+
+const filterByDone = (done: boolean) => {
+  return todos.value.items.filter((todo) => todo.spec.done === done);
 };
 
-const getTodo = async (name) => {
-  return await http.get(`/apis/todo.guqing.github.io/v1alpha1/todos/${name}`);
-};
+// 查看 http://localhost:8090/swagger-ui.html
+function handleFetchTodos() {
+  http
+    .get<TodoList>("/apis/todo.plugin.halo.run/v1alpha1/todos")
+    .then((response) => {
+      todos.value = response.data;
+    });
+}
 
-const listAllTodos = async () => {
-  return await http.get("/apis/todo.guqing.github.io/v1alpha1/todos");
-};
+onMounted(handleFetchTodos);
 
-const updateDoneStatus = async (name, done) => {
-  const todoItem = await getTodo(name);
-  todoItem.spec.done = done;
-  return await http.put(
-    `/apis/todo.guqing.github.io/v1alpha1/todos/${name}`,
-    todoItem
-  );
-};
+// 创建的逻辑
 
-const removeTodo = async (name) => {
-  return await http.delete(
-    `/apis/todo.guqing.github.io/v1alpha1/todos/${name}`
-  );
-};
-```
+const title = ref("");
 
-当定义好这些 CRUD 方法后，我们就可以来调用它，`script` 标签内容如下：
-
-```javascript
-<script>
-// ... other code written before
-
-export default {
-  // app initial state
-  data: () => ({
-    todos: [],
-    editedTodo: null,
-    visibility: "all",
-  }),
-
-  // watch todos change for localStorage persistence
-  watch: {
-    todos: {
-      handler(todos) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+function handleCreate(e: Event) {
+  http
+    .post<Todo>("/apis/todo.plugin.halo.run/v1alpha1/todos", {
+      metadata: {
+        // 根据 'todo-' 前缀自动生成 todo 的名称作为唯一标识，可以理解为数据库自动生成主键 id
+        generateName: "todo-",
       },
-      deep: true,
-    },
-  },
-  computed: {
-    filteredTodos() {
-      return filters[this.visibility](this.todos);
-    },
-    remaining() {
-      return filters.active(this.todos).length;
-    },
-  },
-  async mounted() {
-    await this.listAll();
-  },
-  // methods that implement data logic.
-  // note there's no DOM manipulation here at all.
-  methods: {
-    async listAll() {
-      const list = await listAllTodos();
-      this.todos = list.data.items.map((item) => {
-        return {
-          id: item.metadata.name,
-          title: item.spec.title,
-        };
-      });
-    },
+      spec: {
+        title: title.value,
+        done: false,
+      },
+      kind: "Todo",
+      apiVersion: "todo.plugin.halo.run/v1alpha1",
+    })
+    .then((response) => {
+      title.value = "";
+      handleFetchTodos();
+    });
+}
 
-    toggleAll(e) {
-      this.todos.forEach((todo) => (todo.completed = e.target.checked));
-    },
+// 更新的逻辑
+const selectedTodo = ref<Todo | undefined>();
+const handleUpdate = () => {
+  http
+    .put<Todo>(
+      `/apis/todo.plugin.halo.run/v1alpha1/todos/${selectedTodo.value?.metadata.name}`,
+      selectedTodo.value
+    )
+    .then((response) => {
+      handleFetchTodos();
+    });
+};
 
-    async addTodo(e) {
-      const value = e.target.value.trim();
-      if (!value) {
-        return;
-      }
-      const { data } = await createTodo(value);
-      this.todos.push({
-        id: data.metadata.name,
-        title: data.spec.title,
-        completed: data.spec.done,
-      });
-      e.target.value = "";
-    },
+function handleDoneChange(todo: Todo) {
+  todo.spec.done = !todo.spec.done;
+  http
+    .put<Todo>(
+      `/apis/todo.plugin.halo.run/v1alpha1/todos/${todo.metadata.name}`,
+      todo
+    )
+    .then((response) => {
+      handleFetchTodos();
+    });
+}
 
-    async removeTodo(todo) {
-      await removeTodo(todo.id);
-      await this.listAll();
-    },
-
-    editTodo(todo) {
-      this.beforeEditCache = todo.title;
-      this.editedTodo = todo;
-    },
-
-    async doneEdit(todo) {
-      if (!this.editedTodo) {
-        return;
-      }
-      this.editedTodo = null;
-      todo.title = todo.title.trim();
-      if (!todo.title) {
-        return await updateDoneStatus(todo.id, true);
-      }
-    },
-
-    cancelEdit(todo) {
-      this.editedTodo = null;
-      todo.title = this.beforeEditCache;
-    },
-
-    async removeCompleted() {
-      this.todos = filters.active(this.todos);
-    },
-  },
+// 删除
+const handleDelete = (todo: Todo) => {
+  http
+    .delete(`/apis/todo.plugin.halo.run/v1alpha1/todos/${todo.metadata.name}`)
+    .then((response) => {
+      handleFetchTodos();
+    });
 };
 </script>
+
+<template>
+  <section class="todoapp">
+    <header class="header">
+      <h1>todos</h1>
+      <input
+        class="new-todo"
+        autofocus
+        v-model="title"
+        placeholder="What needs to be done?"
+        @keyup.enter="handleCreate"
+      />
+    </header>
+    <section class="main" v-show="todos.items.length">
+      <input
+        id="toggle-all"
+        class="toggle-all"
+        type="checkbox"
+        :checked="filterByDone(false).length > 0"
+      />
+      <label for="toggle-all">Mark all as complete</label>
+      <ul class="todo-list">
+        <li
+          v-for="(todo, index) in todoList"
+          class="todo"
+          :key="index"
+          :class="{ completed: todo.spec.done, editing: todo === selectedTodo }"
+        >
+          <div class="view">
+            <input
+              class="toggle"
+              type="checkbox"
+              :checked="todo.spec.done"
+              @click="handleDoneChange(todo)"
+            />
+            <label @dblclick="selectedTodo = todo">{{ todo.spec.title }}</label>
+            <button class="destroy" @click="handleDelete(todo)"></button>
+          </div>
+          <input
+            v-if="selectedTodo"
+            class="edit"
+            type="text"
+            v-model="selectedTodo.spec.title"
+            @vnode-mounted="({ el }) => el.focus()"
+            @blur="handleUpdate()"
+            @keyup.enter="handleUpdate()"
+            @keyup.escape="selectedTodo = undefined"
+          />
+        </li>
+      </ul>
+    </section>
+    <footer class="footer" v-show="todos.total">
+      <span class="todo-count">
+        <strong>{{ filterByDone(false).length }}</strong>
+        <span>
+          {{ filterByDone(false).length === 1 ? " item" : " items" }} left</span
+        >
+      </span>
+      <ul class="filters">
+        <li v-for="(tab, index) in tabs" :key="index">
+          <a
+            href="javascript:void(0);"
+            @click="activeTab = tab.label"
+            :class="{ selected: activeTab === tab.label }"
+          >
+            {{ tab.label }}
+          </a>
+        </li>
+      </ul>
+      <button
+        class="clear-completed"
+        @click="() => filterByDone(true).map((todo) => handleDelete(todo))"
+        v-show="todos.items.length > filterByDone(false).length"
+      >
+        Clear completed
+      </button>
+    </footer>
+  </section>
+</template>
+
+<style scoped>
+@import "todomvc-app-css/index.css";
+</style>
 ```
+
+这在原先的基础上替换为了 `TypeScipt` 写法，并去除了数据保存到 `LocalStorage` 的逻辑，这也是我们推荐的方式，可读性更强，且有 `TypeScript` 提供类型提示。
 
 至此我们就完成了与插件后端 APIs 实现 Todo List 数据交互的部分。
