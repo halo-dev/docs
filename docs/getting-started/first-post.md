@@ -3,6 +3,8 @@ title: 第一篇文章
 description: 安装完成后，如何写下第一篇文章。
 ---
 
+![第一篇文章](/img/first-post.gif)
+
 ## 登录管理端
 
 浏览器访问 `$HALO_EXTERNAL_URL/console/`（外部访问链接）即可进入 Halo 管理端。默认的管理员用户名为 `admin`，登录密码为安装时设置的 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`，文档中的默认值为 `P@88w0rd`。
@@ -24,10 +26,7 @@ Halo 安装完成后，默认初始化了一篇 `Hello Halo` 文章，接下来�
 确认无误后，点击弹框下方的 `发布` 按钮，我们的第一篇文章就成功发布了。
 
 :::info
-
-1. 关于编辑器的详细使用说明，请参考《[用户指南-编辑器](../user-guide/posts.md)》章节
-2. 关于文章相关其他功能及文章各种设置项的说明，请参考《[用户指南-文章](../user-guide/posts.md)》章节
-
+关于文章相关其他功能及文章各种设置项的说明，请参考《[用户指南-文章](../user-guide/posts.md)》章节
 :::
 
 ## 查看文章
