@@ -34,7 +34,7 @@ const config = {
           showLastUpdateAuthor: true,
           remarkPlugins: [math, mermaid],
           rehypePlugins: [katex],
-          lastVersion: "1.6",
+          lastVersion: "2.0",
           versions: {
             current: {
               label: "2.0.0-SNAPSHOT",
