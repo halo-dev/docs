@@ -59,7 +59,6 @@ module.exports = {
         "user-guide/users",
         "user-guide/settings",
         "user-guide/backup-migration",
-        "user-guide/faq",
       ],
     },
     {
