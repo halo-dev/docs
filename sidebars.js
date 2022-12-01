@@ -37,6 +37,7 @@ module.exports = {
             "getting-started/install/docker-compose",
           ],
         },
+        "getting-started/migrate-from-1.x",
         "getting-started/first-post",
         // "getting-started/config",
         // "getting-started/upgrade",
