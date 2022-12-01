@@ -5,13 +5,7 @@ description: 使用上的常见问题
 
 ### Halo 是什么？
 
-**Halo** [ˈheɪloʊ]，一款现代化的开源博客/CMS系统，值得一试。
-
-### 没有提供 SQL 脚本，是否需要手动建表？
-
-得益于我们使用的 ORM 框架，Halo 在首次启动的时候会自动根据实体类创建表结构，无需通过 SQL 脚本自行创建，也不会提供所谓的 SQL 脚本。所以仅需配置好数据库连接地址和用户名密码即可。注意，H2 无需手动创建数据库，MySQL 需要。
-
-详情可见：[配置参考](../getting-started/config#数据库)
+**Halo** [ˈheɪloʊ]，是一款好用又强大的[开源建站工具](https://github.com/halo-dev/halo)，配合上不同的模板与插件，可以很好地帮助你构建你心中的理想站点。它可以是你公司的官方网站，可以是你的个人博客，也可以是团队共享的知识库，甚至可以是一个论坛、一个商城。
 
 ### 为什么百度无法搜索到我的站点？
 
@@ -22,16 +16,6 @@ description: 使用上的常见问题
 - 页面静态化
 - 支持自定义文章关键字和描述
 - 支持自定义站点关键字以及站点描述
-
-### 忘记了管理员密码，如何重置？
-
-目前在登录页面含有隐藏的 `找回密码` 链接，点击即可进入找回密码页面，具体可参考以下步骤：
-
-1. 在登录页面按下键盘快捷键（Windows / Linux：`Shift + Alt + H`，macOS：`Shift + Command + H`）即可显示 `找回密码` 链接。
-2. 按照表单提示输入用户名和邮箱，点击 `获取` 按钮即可发送带有验证码的邮件。
-3. 按照表单填写验证码和新密码，点击重置密码即可。
-
-> 需要注意的是，第 2 步中的获取验证码需要事先配置了 SMTP 发信设置，否则无法发送验证码。但你可以登录服务器查看 Halo 运行日志，搜索 `Got reset password code` 关键字即可获取到验证码。
 
 ### 附件上传提示 `413 Request Entity Too Large` 如何解决？
 
@@ -44,10 +28,6 @@ server {
     client_max_body_size 1024m;
 }
 ```
-
-### 开启了两步验证但丢失了验证设备或 APP，如何取消两步验证？
-
-可以参考 [忘记了管理员密码，如何重置？](#忘记了管理员密码如何重置) 重置密码，完成重置密码之后即可清除两步验证。
 
 ### 网站加载速度慢，是什么问题导致的？
 
@@ -76,26 +56,38 @@ server {
 
     ```bash
     # 第一个 Halo 容器
-    docker run -it -d --name halo1 -p 8090:8090 -v ~/.halo.1:/root/.halo --restart=unless-stopped halohub/halo:latest
+    docker run \
+      -it -d \
+      --name halo-next-1 \
+      -p 8090:8090 \
+      -v ~/.halo2.1:/root/.halo2 \
+      -e HALO_EXTERNAL_URL=http://localhost:8090/ \
+      -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
+      halohub/halo-dev:latest
 
     # 第二个 Halo 容器
-    docker run -it -d --name halo2 -p 8091:8090 -v ~/.halo.2:/root/.halo --restart=unless-stopped halohub/halo:latest
+    docker run \
+      -it -d \
+      --name halo-next-2 \
+      -p 8090:8090 \
+      -v ~/.halo2.2:/root/.halo2 \
+      -e HALO_EXTERNAL_URL=http://localhost:8090/ \
+      -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
+      halohub/halo-dev:latest
     ```
 
 更多 Docker 相关的教程请参考：[使用 Docker 部署 Halo](../getting-started/install/docker.md)
 
 ### 如何查看运行日志？
 
-1. 登录到服务器，查看工作目录下的 `logs/spring.log`。
-2. 在 Halo 后台进入开发者选项（点击左上角 `Halo Dashboard` 10 次），选择 `实时日志` 界面。
+使用 docker logs 命令进行查看。
 
-### SMTP 发信设置配置正确，但是发信失败，如何解决？
-
-可能是部分厂商不允许使用密码作为客户端登录的凭证，一般会提供类似 `授权码` 的设置，将 `授权码` 当做密码在 Halo 后台设置即可。如还有其他类型的原因，欢迎向我们提交 issue：[https://github.com/halo-dev/halo/issues/new/choose](https://github.com/halo-dev/halo/issues/new/choose)
-
-### 网站配置了全站 CDN 导致后台部分功能异常，如何解决？
-
-可能是 CDN 厂商默认关闭了 `参数跟随` 选项，导致部分接口参数没有正确添加到回源请求上。你可以在 CDN 控制台查找此选项并打开。或者设置路径过滤，过滤掉 `/api/admin`，让接口请求始终访问回源地址。
+```bash
+# '-f' 滚动更新日志
+# '-n 200' 从倒数第200行开始查看
+# 更多帮助可以查看 'docker logs --help'
+docker logs -f halo_next -n 200
+```
 
 ### 前台样式丢失，如何解决？
 
