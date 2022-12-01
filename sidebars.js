@@ -32,9 +32,14 @@ module.exports = {
             type: "generated-index",
           },
           items: [
-            // "getting-started/install/linux",
-            "getting-started/install/docker",
             "getting-started/install/docker-compose",
+            "getting-started/install/docker",
+            {
+              type: "category",
+              label: "其他指南",
+              items: ["getting-started/install/other/oneinstack"],
+            },
+            "getting-started/install/third-party",
           ],
         },
         "getting-started/migrate-from-1.x",
