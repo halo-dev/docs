@@ -87,6 +87,7 @@ description: 使用 Docker Compose 部署
           - POSTGRES_PASSWORD=openpostgresql
           - POSTGRES_USER=halo
           - POSTGRES_DB=halo
+          - PGUSER=halo
 
     networks:
       halo_network:
