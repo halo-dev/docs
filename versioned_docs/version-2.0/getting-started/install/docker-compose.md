@@ -7,6 +7,15 @@ description: 使用 Docker Compose 部署
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare.md)，这可以快速帮助你了解 Halo。
 :::
 
+## 环境搭建
+
+- Docker 安装文档：<https://docs.docker.com/get-docker/>
+- Docker Compose 安装文档：<https://docs.docker.com/compose/install/>
+
+:::tip
+我们推荐按照 Docker 官方文档安装 Docker 和 Docker Compose，因为部分 Linux 发行版软件仓库中的 Docker 版本可能过旧。
+:::
+
 ## 创建容器组
 
 可用的 Halo 2.0.0 的 Docker 镜像：

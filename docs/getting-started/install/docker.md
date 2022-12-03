@@ -13,6 +13,14 @@ description: 使用 Docker 部署
 如果需要使用其他数据库部署，我们推荐使用 Docker Compose 部署：[使用 Docker Compose 部署](./docker-compose)
 :::
 
+## 环境搭建
+
+- Docker 安装文档：<https://docs.docker.com/get-docker/>
+
+:::tip
+我们推荐按照 Docker 官方文档安装 Docker，因为部分 Linux 发行版软件仓库中的 Docker 版本可能过旧。
+:::
+
 ## 使用 Docker 镜像
 
 可用的 Halo 2.0.0 的 Docker 镜像：

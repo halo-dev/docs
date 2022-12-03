@@ -58,22 +58,22 @@ server {
     # 第一个 Halo 容器
     docker run \
       -it -d \
-      --name halo-next-1 \
+      --name halo-1 \
       -p 8090:8090 \
       -v ~/.halo2.1:/root/.halo2 \
       -e HALO_EXTERNAL_URL=http://localhost:8090/ \
       -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo-dev:latest
+      halohub/halo:2.0.0
 
     # 第二个 Halo 容器
     docker run \
       -it -d \
-      --name halo-next-2 \
+      --name halo-2 \
       -p 8090:8090 \
       -v ~/.halo2.2:/root/.halo2 \
       -e HALO_EXTERNAL_URL=http://localhost:8090/ \
       -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo-dev:latest
+      halohub/halo:2.0.0
     ```
 
 更多 Docker 相关的教程请参考：[使用 Docker 部署 Halo](../getting-started/install/docker.md)

@@ -19,7 +19,7 @@ description: 在开始前，您需要了解的事项
 
 #### CPU
 
-无特别要求。目前我们的 [Docker 镜像](https://hub.docker.com/r/halohub/halo-dev) 也已经支持多平台。
+无特别要求。目前我们的 [Docker 镜像](https://hub.docker.com/r/halohub/halo) 也已经支持多平台。
 
 #### 内存
 
