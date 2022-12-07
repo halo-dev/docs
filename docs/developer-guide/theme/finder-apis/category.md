@@ -3,6 +3,9 @@ title: 文章分类
 description: 文章分类 - CategoryFinder
 ---
 
+import CategoryVo from "../vo/CategoryVo.md"
+import CategoryTreeVo from "../vo/CategoryTreeVo.md"
+
 ## getByName(name)
 
 ```js
@@ -157,37 +160,7 @@ List<[#CategoryTreeVo](#categorytreevo)>
 
 ### CategoryVo
 
-```json title="CategoryVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T13:06:38.512Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "description": "string",
-    "cover": "string",
-    "template": "string",
-    "priority": 0,
-    "children": [
-      "string"
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "postCount": 0,
-    "visiblePostCount": 0
-  },
-  "postCount": 0
-}
-```
+<CategoryVo />
 
 ### ListResult<CategoryVo\>
 
@@ -209,38 +182,6 @@ List<[#CategoryTreeVo](#categorytreevo)>
 
 ### CategoryTreeVo
 
-```json title="CategoryTreeVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T14:18:49.230Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "description": "string",
-    "cover": "string",
-    "template": "string",
-    "priority": 0,
-    "children": [
-      "string"
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "postCount": 0,
-    "visiblePostCount": 0
-  },
-  "children": "List<#CategoryTreeVo>",
-  "parentName": "string",
-  "postCount": 0
-}
-```
+<CategoryTreeVo />
 
 - [#CategoryTreeVo](#categorytreevo)

@@ -3,10 +3,17 @@ title: 文章
 description: 文章 - PostFinder
 ---
 
+import CategoryVo from "../vo/CategoryVo.md";
+import TagVo from "../vo/TagVo.md";
+import PostVo from "../vo/PostVo.md";
+import ContentVo from "../vo/ContentVo.md"
+import Contributor from "../vo/Contributor.md"
+import ListedPostVo from "../vo/ListedPostVo.md"
+
 ## getByName(postName)
 
 ```js
-postFinder.getByName(postName)
+postFinder.getByName(postName);
 ```
 
 ### 描述
@@ -32,7 +39,7 @@ postFinder.getByName(postName)
 ## content(postName)
 
 ```js
-postFinder.content(postName)
+postFinder.content(postName);
 ```
 
 ### 描述
@@ -58,7 +65,7 @@ postFinder.content(postName)
 ## cursor(postName)
 
 ```js
-postFinder.cursor(postName)
+postFinder.cursor(postName);
 ```
 
 ### 描述
@@ -76,9 +83,7 @@ postFinder.cursor(postName)
 ### 示例
 
 ```html title="/templates/post.html"
-<div
-  th:with="postCursor = ${postFinder.cursor(post.metadata.name)}"
->
+<div th:with="postCursor = ${postFinder.cursor(post.metadata.name)}">
   <a
     th:if="${postCursor.hasPrevious()}"
     th:href="@{${postCursor.previous.status.permalink}}"
@@ -97,7 +102,7 @@ postFinder.cursor(postName)
 ## listAll()
 
 ```js
-postFinder.listAll()
+postFinder.listAll();
 ```
 
 ### 描述
@@ -125,7 +130,7 @@ List<[#ListedPostVo](#listedpostvo)>
 ## list(page,size)
 
 ```js
-postFinder.list(page,size)
+postFinder.list(page, size);
 ```
 
 ### 描述
@@ -154,7 +159,7 @@ postFinder.list(page,size)
 ## listByCategory(page,size,categoryName)
 
 ```js
-postFinder.listByCategory(page,size,categoryName)
+postFinder.listByCategory(page, size, categoryName);
 ```
 
 ### 描述
@@ -184,7 +189,7 @@ postFinder.listByCategory(page,size,categoryName)
 ## listByTag(page,size,tag)
 
 ```js
-postFinder.listByTag(page,size,tag)
+postFinder.listByTag(page, size, tag);
 ```
 
 ### 描述
@@ -214,7 +219,7 @@ postFinder.listByTag(page,size,tag)
 ## archives(page,size)
 
 ```js
-postFinder.archives(page,size)
+postFinder.archives(page, size);
 ```
 
 ### 描述
@@ -239,9 +244,7 @@ postFinder.archives(page,size)
     <ul>
       <th:block th:each="month : ${archive.months}">
         <li th:each="post : ${month.posts}">
-          <a
-            th:href="@{${post.status.permalink}}"
-            th:text="${post.spec.title}">
+          <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}">
           </a>
         </li>
       </th:block>
@@ -253,7 +256,7 @@ postFinder.archives(page,size)
 ## archives(page,size,year)
 
 ```js
-postFinder.archives(page,size,year)
+postFinder.archives(page, size, year);
 ```
 
 ### 描述
@@ -264,7 +267,7 @@ postFinder.archives(page,size,year)
 
 1. `page:int` - 分页页码，从 1 开始
 2. `size:int` - 分页条数
-2. `year:string` - 年份
+3. `year:string` - 年份
 
 ### 返回值
 
@@ -279,9 +282,7 @@ postFinder.archives(page,size,year)
     <ul>
       <th:block th:each="month : ${archive.months}">
         <li th:each="post : ${month.posts}">
-          <a
-            th:href="@{${post.status.permalink}}"
-            th:text="${post.spec.title}">
+          <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}">
           </a>
         </li>
       </th:block>
@@ -293,7 +294,7 @@ postFinder.archives(page,size,year)
 ## archives(page,size,year,month)
 
 ```js
-postFinder.archives(page,size,year,month)
+postFinder.archives(page, size, year, month);
 ```
 
 ### 描述
@@ -304,8 +305,8 @@ postFinder.archives(page,size,year,month)
 
 1. `page:int` - 分页页码，从 1 开始
 2. `size:int` - 分页条数
-2. `year:string` - 年份
-2. `month:string` - 月份
+3. `year:string` - 年份
+4. `month:string` - 月份
 
 ### 返回值
 
@@ -320,9 +321,7 @@ postFinder.archives(page,size,year,month)
     <ul>
       <th:block th:each="month : ${archive.months}">
         <li th:each="post : ${month.posts}">
-          <a
-            th:href="@{${post.status.permalink}}"
-            th:text="${post.spec.title}">
+          <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}">
           </a>
         </li>
       </th:block>
@@ -335,160 +334,28 @@ postFinder.archives(page,size,year,month)
 
 ### CategoryVo
 
-```json title="CategoryVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T13:06:38.512Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "description": "string",
-    "cover": "string",
-    "template": "string",
-    "priority": 0,
-    "children": [
-      "string"
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "postCount": 0,
-    "visiblePostCount": 0
-  },
-  "postCount": 0
-}
-```
+<CategoryVo />
 
 ### TagVo
 
-```json title="TagVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T13:06:38.512Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "color": "#F9fEB1",
-    "cover": "string"
-  },
-  "status": {
-    "permalink": "string",
-    "visiblePostCount": 0,
-    "postCount": 0
-  },
-  "postCount": 0
-}
-```
+<TagVo />
+
+### Contributor
+
+<Contributor />
 
 ### PostVo
 
-```json title="PostVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T12:45:43.888Z",
-  },
-  "spec": {
-    "title": "string",
-    "slug": "string",
-    "releaseSnapshot": "string",
-    "headSnapshot": "string",
-    "baseSnapshot": "string",
-    "owner": "string",
-    "template": "string",
-    "cover": "string",
-    "deleted": false,
-    "publish": false,
-    "publishTime": "2022-11-20T12:45:43.888Z",
-    "pinned": false,
-    "allowComment": true,
-    "visible": "PUBLIC",
-    "priority": 0,
-    "excerpt": {
-      "autoGenerate": true,
-      "raw": "string"
-    },
-    "categories": [
-      "string"
-    ],
-    "tags": [
-      "string"
-    ],
-    "htmlMetas": [
-      {
-        "additionalProp1": "string"
-      }
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "excerpt": "string",
-    "commentsCount": 0,
-    "contributors": [
-      "string"
-    ]
-  },
-  "categories": "List<#CategoryVo>",
-  "tags": "List<#TagVo>",
-  "contributors": [
-    {
-      "name": "string",
-      "displayName": "string",
-      "avatar": "string",
-      "bio": "string"
-    }
-  ],
-  "owner": {
-    "name": "string",
-    "displayName": "string",
-    "avatar": "string",
-    "bio": "string"
-  },
-  "stats": {
-    "visit": 0,
-    "upvote": 0,
-    "comment": 0
-  },
-  "content": {
-    "raw": "string",
-    "content": "string"
-  }
-}
-```
+<PostVo />
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)
+- [#Contributor](#contributor)
+- [#ContentVo](#contentvo)
 
 ### ContentVo
 
-```json title="ContentVo"
-{
-  "raw": "string",
-  "content": "string"
-}
-```
+<ContentVo />
 
 ### NavigationPostVo
 
@@ -504,85 +371,11 @@ postFinder.archives(page,size,year,month)
 
 ### ListedPostVo
 
-```json title="ListedPostVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T13:06:38.505Z",
-  },
-  "spec": {
-    "title": "string",
-    "slug": "string",
-    "releaseSnapshot": "string",
-    "headSnapshot": "string",
-    "baseSnapshot": "string",
-    "owner": "string",
-    "template": "string",
-    "cover": "string",
-    "deleted": false,
-    "publish": false,
-    "publishTime": "2022-11-20T13:06:38.505Z",
-    "pinned": false,
-    "allowComment": true,
-    "visible": "PUBLIC",
-    "priority": 0,
-    "excerpt": {
-      "autoGenerate": true,
-      "raw": "string"
-    },
-    "categories": [
-      "string"
-    ],
-    "tags": [
-      "string"
-    ],
-    "htmlMetas": [
-      {
-        "additionalProp1": "string"
-      }
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "excerpt": "string",
-    "inProgress": true,
-    "commentsCount": 0,
-    "contributors": [
-      "string"
-    ]
-  },
-  "categories": "List<#CategoryVo>",
-  "tags": "List<#TagVo>",
-  "contributors": [
-    {
-      "name": "string",
-      "displayName": "string",
-      "avatar": "string",
-      "bio": "string"
-    }
-  ],
-  "owner": {
-    "name": "string",
-    "displayName": "string",
-    "avatar": "string",
-    "bio": "string"
-  },
-  "stats": {
-    "visit": 0,
-    "upvote": 0,
-    "comment": 0
-  }
-}
-```
+<ListedPostVo />
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)
+- [#Contributor](#contributor)
 
 ### ListResult<ListedPostVo\>
 

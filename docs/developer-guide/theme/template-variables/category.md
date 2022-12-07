@@ -3,6 +3,11 @@ title: 分类归档
 description: category.html - /categories/:slug
 ---
 
+import CategoryVo from "../vo/CategoryVo.md"
+import TagVo from "../vo/TagVo.md"
+import Contributor from "../vo/Contributor.md";
+import ListedPostVo from "../vo/ListedPostVo.md"
+
 ## 路由信息
 
 - 模板路径：`/templates/category.html`
@@ -61,148 +66,23 @@ description: category.html - /categories/:slug
 
 ### CategoryVo
 
-```json title="CategoryVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T13:06:38.512Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "description": "string",
-    "cover": "string",
-    "template": "string",
-    "priority": 0,
-    "children": [
-      "string"
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "postCount": 0,
-    "visiblePostCount": 0
-  },
-  "postCount": 0
-}
-```
+<CategoryVo />
 
 ### TagVo
 
-```json title="TagVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T13:06:38.512Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "color": "#F9fEB1",
-    "cover": "string"
-  },
-  "status": {
-    "permalink": "string",
-    "visiblePostCount": 0,
-    "postCount": 0
-  },
-  "postCount": 0
-}
-```
+<TagVo />
+
+### Contributor
+
+<Contributor />
 
 ### ListedPostVo
 
-```json title="ListedPostVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T13:06:38.505Z",
-  },
-  "spec": {
-    "title": "string",
-    "slug": "string",
-    "releaseSnapshot": "string",
-    "headSnapshot": "string",
-    "baseSnapshot": "string",
-    "owner": "string",
-    "template": "string",
-    "cover": "string",
-    "deleted": false,
-    "publish": false,
-    "publishTime": "2022-11-20T13:06:38.505Z",
-    "pinned": false,
-    "allowComment": true,
-    "visible": "PUBLIC",
-    "priority": 0,
-    "excerpt": {
-      "autoGenerate": true,
-      "raw": "string"
-    },
-    "categories": [
-      "string"
-    ],
-    "tags": [
-      "string"
-    ],
-    "htmlMetas": [
-      {
-        "additionalProp1": "string"
-      }
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "excerpt": "string",
-    "inProgress": true,
-    "commentsCount": 0,
-    "contributors": [
-      "string"
-    ]
-  },
-  "categories": "List<#CategoryVo>",
-  "tags": "List<#TagVo>",
-  "contributors": [
-    {
-      "name": "string",
-      "displayName": "string",
-      "avatar": "string",
-      "bio": "string"
-    }
-  ],
-  "owner": {
-    "name": "string",
-    "displayName": "string",
-    "avatar": "string",
-    "bio": "string"
-  },
-  "stats": {
-    "visit": 0,
-    "upvote": 0,
-    "comment": 0
-  }
-}
-```
+<ListedPostVo />
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)
+- [#Contributor](#contributor)
 
 ### UrlContextListResult<ListedPostVo\>
 

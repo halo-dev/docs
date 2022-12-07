@@ -3,6 +3,8 @@ title: 作者
 description: 作者 - ContributorFinder
 ---
 
+import Contributor from "../vo/Contributor.md"
+
 ## getContributor(name)
 
 ```js
@@ -59,11 +61,4 @@ List<[#Contributor](#contributor)>
 
 ### Contributor
 
-```json title="Contributor"
-{
-  "name": "string",
-  "displayName": "string",
-  "avatar": "string",
-  "bio": "string"
-}
-```
+<Contributor />

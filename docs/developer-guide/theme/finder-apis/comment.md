@@ -3,6 +3,9 @@ title: 评论
 description: 评论 - CommentFinder
 ---
 
+import CommentVo from "../vo/CommentVo.md"
+import ReplyVo from "../vo/ReplyVo.md"
+
 ## getByName(name)
 
 ```js
@@ -98,59 +101,7 @@ commentFinder.listReply(commentName,page,size)
 
 ### CommentVo
 
-```json title="CommentVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T12:16:19.788Z"
-  },
-  "spec": {
-    "raw": "string",
-    "content": "string",
-    "owner": {
-      "kind": "string",
-      "name": "string",
-      "displayName": "string",
-      "annotations": {
-        "additionalProp1": "string"
-      }
-    },
-    "userAgent": "string",
-    "ipAddress": "string",
-    "priority": 0,
-    "top": false,
-    "allowNotification": true,
-    "approved": false,
-    "hidden": false,
-    "subjectRef": {
-      "group": "string",
-      "version": "string",
-      "kind": "string",
-      "name": "string"
-    },
-    "lastReadTime": "2022-11-20T12:16:19.788Z"
-  },
-  "status": {
-    "lastReplyTime": "2022-11-20T12:16:19.788Z",
-    "replyCount": 0,
-    "unreadReplyCount": 0,
-    "hasNewReply": true
-  },
-  "owner": {
-    "kind": "string",
-    "name": "string",
-    "displayName": "string",
-    "avatar": "string",
-    "email": "string"
-  }
-}
-```
+<CommentVo />
 
 ### ListResult<CommentVo\>
 
@@ -172,48 +123,7 @@ commentFinder.listReply(commentName,page,size)
 
 ### ReplyVo
 
-```json title="ReplyVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T12:25:32.357Z"
-  },
-  "spec": {
-    "raw": "string",
-    "content": "string",
-    "owner": {
-      "kind": "string",
-      "name": "string",
-      "displayName": "string",
-      "annotations": {
-        "additionalProp1": "string"
-      }
-    },
-    "userAgent": "string",
-    "ipAddress": "string",
-    "priority": 0,
-    "top": false,
-    "allowNotification": true,
-    "approved": false,
-    "hidden": false,
-    "commentName": "string",
-    "quoteReply": "string"
-  },
-  "owner": {
-    "kind": "string",
-    "name": "string",
-    "displayName": "string",
-    "avatar": "string",
-    "email": "string"
-  }
-}
-```
+<ReplyVo />
 
 ### ListResult<ReplyVo\>
 
