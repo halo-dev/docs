@@ -37,8 +37,8 @@ const config = {
           lastVersion: "2.0",
           versions: {
             current: {
-              label: "2.0.0-SNAPSHOT",
-              path: "2.0.0-SNAPSHOT",
+              label: "2.1.0-SNAPSHOT",
+              path: "2.1.0-SNAPSHOT",
             },
           },
         },
@@ -271,6 +271,11 @@ const config = {
           }
           if (existingPath.startsWith("/1.4/")) {
             return [existingPath.replace("/1.4/", "/1.4.17/")];
+          }
+          if (existingPath.startsWith("/2.1.0-SNAPSHOT/")) {
+            return [
+              existingPath.replace("/2.1.0-SNAPSHOT/", "/2.0.0-SNAPSHOT/"),
+            ];
           }
           return undefined;
         },
