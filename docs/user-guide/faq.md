@@ -63,7 +63,7 @@ server {
       -v ~/.halo2.1:/root/.halo2 \
       -e HALO_EXTERNAL_URL=http://localhost:8090/ \
       -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo:2.0.0
+      halohub/halo:2.0.1
 
     # 第二个 Halo 容器
     docker run \
@@ -73,7 +73,7 @@ server {
       -v ~/.halo2.2:/root/.halo2 \
       -e HALO_EXTERNAL_URL=http://localhost:8090/ \
       -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo:2.0.0
+      halohub/halo:2.0.1
     ```
 
 更多 Docker 相关的教程请参考：[使用 Docker 部署 Halo](../getting-started/install/docker.md)
