@@ -22,11 +22,8 @@
             {
               "type": "category",
               "label": "其他指南",
-              "items": [
-                "getting-started/install/other/oneinstack"
-              ]
-            },
-            "getting-started/install/third-party"
+              "items": ["getting-started/install/other/oneinstack"]
+            }
           ]
         },
         "getting-started/migrate-from-1.x",
@@ -63,10 +60,7 @@
           "link": {
             "type": "generated-index"
           },
-          "items": [
-            "developer-guide/core/prepare",
-            "developer-guide/core/run"
-          ]
+          "items": ["developer-guide/core/prepare", "developer-guide/core/run"]
         },
         {
           "type": "category",
@@ -74,9 +68,7 @@
           "link": {
             "type": "generated-index"
           },
-          "items": [
-            "developer-guide/plugin/prepare"
-          ]
+          "items": ["developer-guide/plugin/prepare"]
         },
         {
           "type": "category",
@@ -141,10 +133,7 @@
       "link": {
         "type": "generated-index"
       },
-      "items": [
-        "contribution/issue",
-        "contribution/pr"
-      ]
+      "items": ["contribution/issue", "contribution/pr"]
     },
     "about"
   ]
