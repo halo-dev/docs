@@ -3,6 +3,10 @@ title: 独立页面
 description: page.html - /:slug
 ---
 
+import SinglePageVo from "../vo/SinglePageVo.md"
+import Contributor from "../vo/Contributor.md"
+import ContentVo from "../vo/ContentVo.md"
+
 ## 路由信息
 
 - 模板路径：`/templates/page.html`
@@ -35,75 +39,15 @@ description: page.html - /:slug
 
 ### SinglePageVo
 
-```json title="SinglePageVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T14:29:44.601Z",
-  },
-  "spec": {
-    "title": "string",
-    "slug": "string",
-    "releaseSnapshot": "string",
-    "headSnapshot": "string",
-    "baseSnapshot": "string",
-    "owner": "string",
-    "template": "string",
-    "cover": "string",
-    "deleted": false,
-    "publish": false,
-    "publishTime": "2022-11-20T14:29:44.601Z",
-    "pinned": false,
-    "allowComment": true,
-    "visible": "PUBLIC",
-    "priority": 0,
-    "excerpt": {
-      "autoGenerate": true,
-      "raw": "string"
-    },
-    "htmlMetas": [
-      {
-        "additionalProp1": "string"
-      }
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "excerpt": "string",
-    "inProgress": true,
-    "commentsCount": 0,
-    "contributors": [
-      "string"
-    ]
-  },
-  "stats": {
-    "visit": 0,
-    "upvote": 0,
-    "comment": 0
-  },
-  "contributors": [
-    {
-      "name": "string",
-      "displayName": "string",
-      "avatar": "string",
-      "bio": "string"
-    }
-  ],
-  "owner": {
-    "name": "string",
-    "displayName": "string",
-    "avatar": "string",
-    "bio": "string"
-  },
-  "content": {
-    "raw": "string",
-    "content": "string"
-  }
-}
-```
+<SinglePageVo />
+
+- [#ContentVo](#contentvo)
+- [#Contributor](#contributor)
+
+### ContentVo
+
+<ContentVo />
+
+### Contributor
+
+<Contributor />

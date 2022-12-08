@@ -3,6 +3,9 @@ title: 导航菜单
 description: 导航菜单 - MenuFinder
 ---
 
+import MenuItemVo from "../vo/MenuItemVo.md"
+import MenuVo from "../vo/MenuVo.md"
+
 ## getByName(name)
 
 ```js
@@ -67,79 +70,8 @@ menuFinder.getPrimary()
 
 ### MenuVo
 
-```json title="MenuVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T14:44:58.984Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "menuItems": [
-      "string"
-    ]
-  },
-  "menuItems": "List<#MenuItemVo>"
-}
-```
+<MenuVo />
 
 ### MenuItemVo
 
-```json title="MenuItemVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T14:44:58.984Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "href": "string",
-    "priority": 0,
-    "children": [
-      "string"
-    ],
-    "categoryRef": {
-      "group": "string",
-      "version": "string",
-      "kind": "string",
-      "name": "string"
-    },
-    "tagRef": {
-      "group": "string",
-      "version": "string",
-      "kind": "string",
-      "name": "string"
-    },
-    "postRef": {
-      "group": "string",
-      "version": "string",
-      "kind": "string",
-      "name": "string"
-    },
-    "singlePageRef": {
-      "group": "string",
-      "version": "string",
-      "kind": "string",
-      "name": "string"
-    }
-  },
-  "status": {
-    "displayName": "string",
-    "href": "string"
-  },
-  "children": "List<#MenuItemVo>",
-  "parentName": "string",
-}
-```
+<MenuItemVo />

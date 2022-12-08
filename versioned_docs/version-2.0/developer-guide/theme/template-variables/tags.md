@@ -2,6 +2,9 @@
 title: 文章标签集合
 description: tags.html - /tags
 ---
+
+import TagVo from '../vo/TagVo.md'
+
 ## 路由信息
 
 - 模板路径：`/templates/tags.html`
@@ -33,29 +36,4 @@ List<[#TagVo](#tagvo)>
 
 ### TagVo
 
-```json title="TagVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T13:06:38.512Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "color": "#F9fEB1",
-    "cover": "string"
-  },
-  "status": {
-    "permalink": "string",
-    "visiblePostCount": 0,
-    "postCount": 0
-  },
-  "postCount": 0
-}
-```
+<TagVo />

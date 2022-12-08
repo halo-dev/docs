@@ -3,6 +3,9 @@ title: 文章分类
 description: 文章分类 - CategoryFinder
 ---
 
+import CategoryVo from "../vo/CategoryVo.md"
+import CategoryTreeVo from "../vo/CategoryTreeVo.md"
+
 ## getByName(name)
 
 ```js
@@ -157,51 +160,21 @@ List<[#CategoryTreeVo](#categorytreevo)>
 
 ### CategoryVo
 
-```json title="CategoryVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T13:06:38.512Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "description": "string",
-    "cover": "string",
-    "template": "string",
-    "priority": 0,
-    "children": [
-      "string"
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "postCount": 0,
-    "visiblePostCount": 0
-  },
-  "postCount": 0
-}
-```
+<CategoryVo />
 
 ### ListResult<CategoryVo\>
 
 ```json title="ListResult<CategoryVo>"
 {
-  "page": 0,
-  "size": 0,
-  "total": 0,
-  "items": "List<#CategoryVo>",
-  "first": true,
-  "last": true,
-  "hasNext": true,
-  "hasPrevious": true,
-  "totalPages": 0
+  "page": 0,                                   // 当前页码
+  "size": 0,                                   // 每页条数
+  "total": 0,                                  // 总条数
+  "items": "List<#CategoryVo>",                // 分类列表数据
+  "first": true,                               // 是否为第一页
+  "last": true,                                // 是否为最后一页
+  "hasNext": true,                             // 是否有下一页
+  "hasPrevious": true,                         // 是否有上一页
+  "totalPages": 0                              // 总页数
 }
 ```
 
@@ -209,38 +182,6 @@ List<[#CategoryTreeVo](#categorytreevo)>
 
 ### CategoryTreeVo
 
-```json title="CategoryTreeVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T14:18:49.230Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "description": "string",
-    "cover": "string",
-    "template": "string",
-    "priority": 0,
-    "children": [
-      "string"
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "postCount": 0,
-    "visiblePostCount": 0
-  },
-  "children": "List<#CategoryTreeVo>",
-  "parentName": "string",
-  "postCount": 0
-}
-```
+<CategoryTreeVo />
 
 - [#CategoryTreeVo](#categorytreevo)

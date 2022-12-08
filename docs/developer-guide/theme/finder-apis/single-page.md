@@ -3,6 +3,11 @@ title: 独立页面
 description: 独立页面 - SinglePageFinder
 ---
 
+import SinglePageVo from "../vo/SinglePageVo.md"
+import ListedSinglePageVo from "../vo/ListedSinglePageVo.md"
+import Contributor from "../vo/Contributor.md"
+import ContentVo from "../vo/ContentVo.md"
+
 ## getByName(pageName)
 
 ```js
@@ -88,163 +93,30 @@ singlePageFinder.list(page,size)
 
 ### SinglePageVo
 
-```json title="SinglePageVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T14:29:44.601Z",
-  },
-  "spec": {
-    "title": "string",
-    "slug": "string",
-    "releaseSnapshot": "string",
-    "headSnapshot": "string",
-    "baseSnapshot": "string",
-    "owner": "string",
-    "template": "string",
-    "cover": "string",
-    "deleted": false,
-    "publish": false,
-    "publishTime": "2022-11-20T14:29:44.601Z",
-    "pinned": false,
-    "allowComment": true,
-    "visible": "PUBLIC",
-    "priority": 0,
-    "excerpt": {
-      "autoGenerate": true,
-      "raw": "string"
-    },
-    "htmlMetas": [
-      {
-        "additionalProp1": "string"
-      }
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "excerpt": "string",
-    "inProgress": true,
-    "commentsCount": 0,
-    "contributors": [
-      "string"
-    ]
-  },
-  "stats": {
-    "visit": 0,
-    "upvote": 0,
-    "comment": 0
-  },
-  "contributors": [
-    {
-      "name": "string",
-      "displayName": "string",
-      "avatar": "string",
-      "bio": "string"
-    }
-  ],
-  "owner": {
-    "name": "string",
-    "displayName": "string",
-    "avatar": "string",
-    "bio": "string"
-  },
-  "content": {
-    "raw": "string",
-    "content": "string"
-  }
-}
-```
+<SinglePageVo />
+
+- [#Contributor](#contributor)
+- [#ContentVo](#contentvo)
 
 ### ListedSinglePageVo
 
-```json title="ListedSinglePageVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T14:31:00.876Z"
-  },
-  "spec": {
-    "title": "string",
-    "slug": "string",
-    "releaseSnapshot": "string",
-    "headSnapshot": "string",
-    "baseSnapshot": "string",
-    "owner": "string",
-    "template": "string",
-    "cover": "string",
-    "deleted": false,
-    "publish": false,
-    "publishTime": "2022-11-20T14:31:00.876Z",
-    "pinned": false,
-    "allowComment": true,
-    "visible": "PUBLIC",
-    "priority": 0,
-    "excerpt": {
-      "autoGenerate": true,
-      "raw": "string"
-    },
-    "htmlMetas": [
-      {
-        "additionalProp1": "string"
-      }
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "excerpt": "string",
-    "inProgress": true,
-    "commentsCount": 0,
-    "contributors": [
-      "string"
-    ]
-  },
-  "stats": {
-    "visit": 0,
-    "upvote": 0,
-    "comment": 0
-  },
-  "contributors": [
-    {
-      "name": "string",
-      "displayName": "string",
-      "avatar": "string",
-      "bio": "string"
-    }
-  ],
-  "owner": {
-    "name": "string",
-    "displayName": "string",
-    "avatar": "string",
-    "bio": "string"
-  }
-}
-```
+- [#Contributor](#contributor)
+
+<ListedSinglePageVo />
 
 ### ListResult<ListedSinglePageVo\>
 
 ```json title="ListResult<ListedSinglePageVo>"
 {
-  "page": 0,
-  "size": 0,
-  "total": 0,
-  "items": "List<#ListedSinglePageVo>",
-  "first": true,
-  "last": true,
-  "hasNext": true,
-  "hasPrevious": true,
-  "totalPages": 0
+  "page": 0,                                   // 当前页码
+  "size": 0,                                   // 每页条数
+  "total": 0,                                  // 总条数
+  "items": "List<#ListedSinglePageVo>",        // 自定义页面列表数据
+  "first": true,                               // 是否为第一页
+  "last": true,                                // 是否为最后一页
+  "hasNext": true,                             // 是否有下一页
+  "hasPrevious": true,                         // 是否有上一页
+  "totalPages": 0                              // 总页数
 }
 ```
 
@@ -252,9 +124,8 @@ singlePageFinder.list(page,size)
 
 ### ContentVo
 
-```json title="ContentVo"
-{
-  "raw": "string",
-  "content": "string"
-}
-```
+<ContentVo />
+
+### Contributor
+
+<Contributor />

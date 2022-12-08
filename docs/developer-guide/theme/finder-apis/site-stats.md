@@ -36,10 +36,10 @@ siteStatsFinder.getStats()
 
 ```json title="SiteStatsVo"
 {
-  "visit": 0,
-  "upvote": 0,
-  "comment": 0,
-  "post": 0,
-  "category": 0
+  "visit": 0,                                   // 访问数量
+  "upvote": 0,                                  // 点赞数量
+  "comment": 0,                                 // 评论数量
+  "post": 0,                                    // 文章数量
+  "category": 0                                 // 分类数量
 }
 ```
