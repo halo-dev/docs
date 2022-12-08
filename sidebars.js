@@ -39,7 +39,6 @@ module.exports = {
               label: "其他指南",
               items: ["getting-started/install/other/oneinstack"],
             },
-            "getting-started/install/third-party",
           ],
         },
         "getting-started/migrate-from-1.x",
