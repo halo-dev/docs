@@ -27,13 +27,13 @@
     "visible": "PUBLIC",
     "priority": 0,
     "excerpt": {
-      "autoGenerate": true,
-      "raw": "string"
+      "autoGenerate": true,                             // 是否自动生成摘要
+      "raw": "string"                                   // 摘要内容
     },
-    "categories": [
+    "categories": [                                     // 分类的名称集合，即 Category 的 metadata.name 的集合
       "string"
     ],
-    "tags": [
+    "tags": [                                           // 标签的名称集合，即 Tag 的 metadata.name 的集合
       "string"
     ],
     "htmlMetas": [
@@ -56,9 +56,9 @@
   "contributors": "List<#Contributor>",                 // 贡献者的集合
   "owner": "#Contributor",                              // 创建者
   "stats": {
-    "visit": 0,
-    "upvote": 0,
-    "comment": 0
+    "visit": 0,                                         // 访问数量
+    "upvote": 0,                                        // 点赞数量
+    "comment": 0                                        // 评论数量
   },
   "content": "#ContentVo"                               // 内容
 }

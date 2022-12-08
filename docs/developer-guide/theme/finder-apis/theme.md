@@ -64,29 +64,29 @@ themeFinder.getByName(themeName)
 ```json title="ThemeVo"
 {
   "metadata": {
-    "name": "string",
+    "name": "string",                                   // 唯一标识
     "labels": {
       "additionalProp1": "string"
     },
     "annotations": {
       "additionalProp1": "string"
     },
-    "creationTimestamp": "2022-11-20T15:27:15.036Z",
+    "creationTimestamp": "2022-11-20T15:27:15.036Z",    // 创建时间
   },
   "spec": {
-    "displayName": "string",
+    "displayName": "string",                            // 显示名称
     "author": {
-      "name": "string",
-      "website": "string"
+      "name": "string",                                 // 作者名称
+      "website": "string"                               // 作者网站
     },
-    "description": "string",
-    "logo": "string",
-    "website": "string",
-    "repo": "string",
-    "version": "string",
-    "require": "string",
-    "settingName": "string",
-    "configMapName": "string",
+    "description": "string",                            // 描述
+    "logo": "string",                                   // Logo
+    "website": "string",                                // 网站
+    "repo": "string",                                   // 仓库地址
+    "version": "string",                                // 版本
+    "require": "string",                                // 依赖 Halo 的版本
+    "settingName": "string",                            // 表单定义的名称，即 Setting 资源的 metadata.name
+    "configMapName": "string",                          // 设置项存储的名称，即 ConfigMap 资源的 metadata.name
     "customTemplates": {
       "post": [
         {

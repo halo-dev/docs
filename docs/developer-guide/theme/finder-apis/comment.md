@@ -107,15 +107,15 @@ commentFinder.listReply(commentName,page,size)
 
 ```json title="ListResult<CommentVo>"
 {
-  "page": 0,
-  "size": 0,
-  "total": 0,
-  "items": "List<#CommentVo>",
-  "first": true,
-  "last": true,
-  "hasNext": true,
-  "hasPrevious": true,
-  "totalPages": 0
+  "page": 0,                                   // 当前页码
+  "size": 0,                                   // 每页条数
+  "total": 0,                                  // 总条数
+  "items": "List<#CommentVo>",                 // 评论列表数据
+  "first": true,                               // 是否为第一页
+  "last": true,                                // 是否为最后一页
+  "hasNext": true,                             // 是否有下一页
+  "hasPrevious": true,                         // 是否有上一页
+  "totalPages": 0                              // 总页数
 }
 ```
 
@@ -129,15 +129,15 @@ commentFinder.listReply(commentName,page,size)
 
 ```json title="ListResult<ReplyVo>"
 {
-  "page": 0,
-  "size": 0,
-  "total": 0,
-  "items": "List<#ReplyVo>",
-  "first": true,
-  "last": true,
-  "hasNext": true,
-  "hasPrevious": true,
-  "totalPages": 0
+  "page": 0,                                   // 当前页码
+  "size": 0,                                   // 每页条数
+  "total": 0,                                  // 总条数
+  "items": "List<#ReplyVo>",                   // 回复列表数据
+  "first": true,                               // 是否为第一页
+  "last": true,                                // 是否为最后一页
+  "hasNext": true,                             // 是否有下一页
+  "hasPrevious": true,                         // 是否有上一页
+  "totalPages": 0                              // 总页数
 }
 ```
 

@@ -75,11 +75,11 @@ import ListedPostVo from "../vo/ListedPostVo.md";
 
 ```json title="PostArchiveVo"
 {
-  "year": "string",
-  "months": [
+  "year": "string",                                   // 年份
+  "months": [                                         // 按月的文章集合
     {
-      "month": "string",
-      "posts": "#ListedPostVo"
+      "month": "string",                              // 月份
+      "posts": "List<#ListedPostVo>"                  // 文章列表数据
     }
   ]
 }
@@ -91,17 +91,17 @@ import ListedPostVo from "../vo/ListedPostVo.md";
 
 ```json title="UrlContextListResult<PostArchiveVo>"
 {
-  "page": 0,
-  "size": 0,
-  "total": 0,
-  "items": "List<#PostArchiveVo>",
-  "first": true,
-  "last": true,
-  "hasNext": true,
-  "hasPrevious": true,
-  "totalPages": 0,
-  "nextUrl": "string",
-  "prevUrl": "string"
+  "page": 0,                                   // 当前页码
+  "size": 0,                                   // 每页条数
+  "total": 0,                                  // 总条数
+  "items": "List<#PostArchiveVo>",             // 文章归档数据
+  "first": true,                               // 是否为第一页
+  "last": true,                                // 是否为最后一页
+  "hasNext": true,                             // 是否有下一页
+  "hasPrevious": true,                         // 是否有上一页
+  "totalPages": 0,                             // 总页数
+  "nextUrl": "string",                         // 下一页链接
+  "prevUrl": "string"                          // 上一页链接
 }
 ```
 

@@ -27,8 +27,8 @@
     "visible": "PUBLIC",
     "priority": 0,
     "excerpt": {
-      "autoGenerate": true,
-      "raw": "string"
+      "autoGenerate": true,                             // 是否自动生成摘要
+      "raw": "string"                                   // 摘要内容
     },
     "htmlMetas": [
       {
@@ -46,9 +46,9 @@
     ]
   },
   "stats": {
-    "visit": 0,
-    "upvote": 0,
-    "comment": 0
+    "visit": 0,                                         // 访问数量
+    "upvote": 0,                                        // 点赞数量
+    "comment": 0                                        // 评论数量
   },
   "contributors": "List<#Contributor>",                 // 贡献者的集合
   "owner": "#Contributor"                               // 创建者
