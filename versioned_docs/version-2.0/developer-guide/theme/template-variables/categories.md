@@ -3,6 +3,8 @@ title: 文章分类集合
 description: categories.html - /categories
 ---
 
+import CategoryTreeVo from "../vo/CategoryTreeVo.md"
+
 ## 路由信息
 
 - 模板路径：`/templates/categories.html`
@@ -47,38 +49,6 @@ List<[#CategoryTreeVo](#categorytreevo)>
 
 ### CategoryTreeVo
 
-```json title="CategoryTreeVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T14:18:49.230Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "description": "string",
-    "cover": "string",
-    "template": "string",
-    "priority": 0,
-    "children": [
-      "string"
-    ]
-  },
-  "status": {
-    "permalink": "string",
-    "postCount": 0,
-    "visiblePostCount": 0
-  },
-  "children": "List<#CategoryTreeVo>",
-  "parentName": "string",
-  "postCount": 0
-}
-```
+<CategoryTreeVo />
 
 - [#CategoryTreeVo](#categorytreevo)

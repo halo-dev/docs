@@ -3,6 +3,9 @@ title: 评论
 description: 评论 - CommentFinder
 ---
 
+import CommentVo from "../vo/CommentVo.md"
+import ReplyVo from "../vo/ReplyVo.md"
+
 ## getByName(name)
 
 ```js
@@ -98,73 +101,21 @@ commentFinder.listReply(commentName,page,size)
 
 ### CommentVo
 
-```json title="CommentVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T12:16:19.788Z"
-  },
-  "spec": {
-    "raw": "string",
-    "content": "string",
-    "owner": {
-      "kind": "string",
-      "name": "string",
-      "displayName": "string",
-      "annotations": {
-        "additionalProp1": "string"
-      }
-    },
-    "userAgent": "string",
-    "ipAddress": "string",
-    "priority": 0,
-    "top": false,
-    "allowNotification": true,
-    "approved": false,
-    "hidden": false,
-    "subjectRef": {
-      "group": "string",
-      "version": "string",
-      "kind": "string",
-      "name": "string"
-    },
-    "lastReadTime": "2022-11-20T12:16:19.788Z"
-  },
-  "status": {
-    "lastReplyTime": "2022-11-20T12:16:19.788Z",
-    "replyCount": 0,
-    "unreadReplyCount": 0,
-    "hasNewReply": true
-  },
-  "owner": {
-    "kind": "string",
-    "name": "string",
-    "displayName": "string",
-    "avatar": "string",
-    "email": "string"
-  }
-}
-```
+<CommentVo />
 
 ### ListResult<CommentVo\>
 
 ```json title="ListResult<CommentVo>"
 {
-  "page": 0,
-  "size": 0,
-  "total": 0,
-  "items": "List<#CommentVo>",
-  "first": true,
-  "last": true,
-  "hasNext": true,
-  "hasPrevious": true,
-  "totalPages": 0
+  "page": 0,                                   // 当前页码
+  "size": 0,                                   // 每页条数
+  "total": 0,                                  // 总条数
+  "items": "List<#CommentVo>",                 // 评论列表数据
+  "first": true,                               // 是否为第一页
+  "last": true,                                // 是否为最后一页
+  "hasNext": true,                             // 是否有下一页
+  "hasPrevious": true,                         // 是否有上一页
+  "totalPages": 0                              // 总页数
 }
 ```
 
@@ -172,62 +123,21 @@ commentFinder.listReply(commentName,page,size)
 
 ### ReplyVo
 
-```json title="ReplyVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T12:25:32.357Z"
-  },
-  "spec": {
-    "raw": "string",
-    "content": "string",
-    "owner": {
-      "kind": "string",
-      "name": "string",
-      "displayName": "string",
-      "annotations": {
-        "additionalProp1": "string"
-      }
-    },
-    "userAgent": "string",
-    "ipAddress": "string",
-    "priority": 0,
-    "top": false,
-    "allowNotification": true,
-    "approved": false,
-    "hidden": false,
-    "commentName": "string",
-    "quoteReply": "string"
-  },
-  "owner": {
-    "kind": "string",
-    "name": "string",
-    "displayName": "string",
-    "avatar": "string",
-    "email": "string"
-  }
-}
-```
+<ReplyVo />
 
 ### ListResult<ReplyVo\>
 
 ```json title="ListResult<ReplyVo>"
 {
-  "page": 0,
-  "size": 0,
-  "total": 0,
-  "items": "List<#ReplyVo>",
-  "first": true,
-  "last": true,
-  "hasNext": true,
-  "hasPrevious": true,
-  "totalPages": 0
+  "page": 0,                                   // 当前页码
+  "size": 0,                                   // 每页条数
+  "total": 0,                                  // 总条数
+  "items": "List<#ReplyVo>",                   // 回复列表数据
+  "first": true,                               // 是否为第一页
+  "last": true,                                // 是否为最后一页
+  "hasNext": true,                             // 是否有下一页
+  "hasPrevious": true,                         // 是否有上一页
+  "totalPages": 0                              // 总页数
 }
 ```
 

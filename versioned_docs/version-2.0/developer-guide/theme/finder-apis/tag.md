@@ -3,6 +3,8 @@ title: 文章标签
 description: 文章标签 - TagFinder
 ---
 
+import TagVo from "../vo/TagVo.md"
+
 ## getByName(name)
 
 ```js
@@ -116,46 +118,21 @@ List<[#TagVo](#tagvo)>
 
 ### TagVo
 
-```json title="TagVo"
-{
-  "metadata": {
-    "name": "string",
-    "labels": {
-      "additionalProp1": "string"
-    },
-    "annotations": {
-      "additionalProp1": "string"
-    },
-    "creationTimestamp": "2022-11-20T13:06:38.512Z",
-  },
-  "spec": {
-    "displayName": "string",
-    "slug": "string",
-    "color": "#F9fEB1",
-    "cover": "string"
-  },
-  "status": {
-    "permalink": "string",
-    "visiblePostCount": 0,
-    "postCount": 0
-  },
-  "postCount": 0
-}
-```
+<TagVo />
 
 ### ListResult<TagVo\>
 
 ```json title="ListResult<TagVo>"
 {
-  "page": 0,
-  "size": 0,
-  "total": 0,
-  "items": "List<#TagVo>",
-  "first": true,
-  "last": true,
-  "hasNext": true,
-  "hasPrevious": true,
-  "totalPages": 0
+  "page": 0,                                   // 当前页码
+  "size": 0,                                   // 每页条数
+  "total": 0,                                  // 总条数
+  "items": "List<#TagVo>",                     // 标签列表数据
+  "first": true,                               // 是否为第一页
+  "last": true,                                // 是否为最后一页
+  "hasNext": true,                             // 是否有下一页
+  "hasPrevious": true,                         // 是否有上一页
+  "totalPages": 0                              // 总页数
 }
 ```
 
