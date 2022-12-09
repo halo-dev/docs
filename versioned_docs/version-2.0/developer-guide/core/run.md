@@ -26,7 +26,7 @@ description: 开发环境运行的指南
 ```bash
 git clone https://github.com/halo-dev/halo
 
-或者使用 ssh 的方式 clone（推荐）
+# 或者使用 ssh 的方式 clone（推荐）
 
 git clone git@github.com:halo-dev/halo.git
 ```
@@ -34,7 +34,7 @@ git clone git@github.com:halo-dev/halo.git
 ```bash
 git clone https://github.com/halo-dev/console
 
-或者使用 ssh 的方式 clone（推荐）
+# 或者使用 ssh 的方式 clone（推荐）
 
 git clone git@github.com:halo-dev/console.git
 ```
