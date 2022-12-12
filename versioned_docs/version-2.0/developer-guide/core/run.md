@@ -68,38 +68,25 @@ VITE v3.1.6  ready in 638 ms
 ## 运行 Halo
 
 1. 在 IntelliJ IDEA 中打开 Halo 项目，等待 Gradle 初始化和依赖下载完成。
-2. 创建本地配置文件
 
-    复制 `src/main/resources/application-dev.yaml` 为 `application-local.yaml`，修改配置如下：
+2. 修改 IntelliJ IDEA 的运行配置
+    1. macOS / Linux
+    将 Active Profiles 改为 `dev`，如图所示：
+    ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-MacOs.png)
+    2. Windows
+    将 Active Profiles 改为 `dev,win`，如图所示：
+    ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-Win.png)
 
-    ```yaml
-    halo:
-      console:
-        proxy:
-          endpoint: http://localhost:3000/
-          enabled: true
-      security:
-        initializer:
-          super-admin-username: admin
-          super-admin-password: admin
-    ```
+3. 点击 IntelliJ IDEA 的运行按钮，等待项目启动完成。
 
-3. 修改 IntelliJ IDEA 的运行配置
-
-    将 Active Profiles 改为 `local`，如图所示：
-
-    ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles.png)
-
-4. 点击 IntelliJ IDEA 的运行按钮，等待项目启动完成。
-
-5. 或者使用 Gradle 运行
+4. 或者使用 Gradle 运行
 
     ```bash
     # macOS / Linux
-    ./gradlew bootRun --args="--spring.profiles.active=local"
+    ./gradlew bootRun --args="--spring.profiles.active=dev"
 
     # Windows
-    gradlew.bat bootRun --args="--spring.profiles.active=local"
+    gradlew.bat bootRun --args="--spring.profiles.active=dev,win"
     ```
 
-6. 最终访问 `http://localhost:8090/console` 即可进入控制台。访问 `http://localhost:8090` 即可进入站点首页。
+5. 最终访问 `http://localhost:8090/console` 即可进入控制台。访问 `http://localhost:8090` 即可进入站点首页。
