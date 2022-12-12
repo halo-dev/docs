@@ -63,6 +63,7 @@ module.exports = {
         "user-guide/plugins",
         "user-guide/users",
         "user-guide/settings",
+        "user-guide/faq"
       ],
     },
     {
