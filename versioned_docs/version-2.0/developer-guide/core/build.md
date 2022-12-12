@@ -61,7 +61,7 @@ pnpm build
 
 构建完成之后，在 console 目录下产生的 `dist` 目录即为构建完成的文件。最后将 `dist` 目录的所有文件复制到 halo 项目的 `src/main/resources/console` 目录。
 
-## 构建 Halo
+## 构建 Fat Jar
 
 构建之前需要修改 `gradle.properties` 中的 `version` 为当前 tag 的版本号，如：`version=2.0.0`
 
