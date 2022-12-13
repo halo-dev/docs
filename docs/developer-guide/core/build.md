@@ -22,6 +22,8 @@ git clone git@github.com:halo-dev/halo.git
 
 # 切换到最新的 tag
 
+cd halo
+
 git checkout v2.0.0
 ```
 
@@ -33,6 +35,8 @@ git clone https://github.com/halo-dev/console
 git clone git@github.com:halo-dev/console.git
 
 # 切换到最新的 tag
+
+cd console
 
 git checkout v2.0.0
 ```

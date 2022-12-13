@@ -22,6 +22,8 @@ git clone git@github.com:halo-dev/halo.git
 
 # 切换到最新的 tag
 
+cd halo
+
 git checkout v2.0.0
 ```
 
@@ -33,6 +35,8 @@ git clone https://github.com/halo-dev/console
 git clone git@github.com:halo-dev/console.git
 
 # 切换到最新的 tag
+
+cd console
 
 git checkout v2.0.0
 ```
@@ -71,10 +75,10 @@ cd path/to/halo
 
 ```bash
 # Windows
-./gradlew.bat clean build -x test -x jar
+./gradlew.bat clean build -x check -x jar
 
 # macOS / Linux
-./gradlew clean build -x test -x jar
+./gradlew clean build -x check -x jar
 ```
 
 构建完成之后，在 halo 项目下产生的 `build/libs/halo-2.0.0.jar` 即为构建完成的文件。
