@@ -71,7 +71,7 @@ cd path/to/halo
 
 ```bash
 # Windows
-./gradlew.bat clean build -x test -x jar
+./gradlew.bat clean build -x check -x jar
 
 # macOS / Linux
 ./gradlew clean build -x test -x jar
