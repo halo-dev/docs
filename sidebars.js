@@ -37,7 +37,10 @@ module.exports = {
             {
               type: "category",
               label: "其他指南",
-              items: ["getting-started/install/other/oneinstack"],
+              items: [
+                "getting-started/install/other/oneinstack",
+                "getting-started/install/other/nginxproxymanager",
+              ],
             },
           ],
         },
@@ -63,7 +66,7 @@ module.exports = {
         "user-guide/plugins",
         "user-guide/users",
         "user-guide/settings",
-        "user-guide/faq"
+        "user-guide/faq",
       ],
     },
     {
