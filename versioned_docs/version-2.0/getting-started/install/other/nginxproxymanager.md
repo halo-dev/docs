@@ -3,9 +3,9 @@ title: 与 Nginx Proxy Manager 配合使用
 description: 使用 Nginx Proxy Manager 管理 Halo 服务的反向代理
 ---
 
-# 与 Nginx Proxy Manager 配合使用
+## 与 Nginx Proxy Manager 配合使用
 
-## Halo 部署
+### Halo 部署
 
 参见 [使用 Docker Compose 部署](https://docs.halo.run/getting-started/install/docker-compose)
 
@@ -14,8 +14,7 @@ description: 使用 Nginx Proxy Manager 管理 Halo 服务的反向代理
 > `「反向代理」` 部分不用进行操作，保证 Halo 服务运行无误即可。（即可以用`http://ip:端口号` 的形式访问博客。）
 
 
-
-## 简介
+### 简介
 
 顾名思义，Nginx Proxy Manager就是一个Nginx的代理管理器，它最大的特点是简单方便。
 
@@ -27,7 +26,7 @@ Nginx Proxy Manager后台还可以一键申请SSL证书，并且会自动续期�
 
 
 
-## 安装Nginx Proxy Manager
+### 安装Nginx Proxy Manager
 
 > 说明：默认你的服务器已经安装了Docker和Docker-compose，如果你没有安装，可以参考：[使用 Docker Compose 部署](https://docs.halo.run/getting-started/install/docker-compose)的环境搭建部分来进行安装。
 
@@ -102,7 +101,7 @@ docker compose up -d     # 如果你用的是 docker-compose-plugin的话，用�
 
 
 
-## 配置Halo的反向代理
+### 配置Halo的反向代理
 
 
 
@@ -171,7 +170,7 @@ ip addr show docker0
 
 
 
-## 一键申请SSL证书
+### 一键申请SSL证书
 
 
 
@@ -204,7 +203,6 @@ ip addr show docker0
 
 
 至此，你已经成功完成了Halo的反向代理，快尝试使用域名访问一下看看吧！
-
 
 
 > 同样的，举一反三，试试把你的NPM也用一个域名来反向代理一下吧。(小提示：你需要再解析一个域名（可以是二级域名）到NPM所在的服务器上，反代页面需要填的IP可以填docker容器内的IP也可以填服务器的IP，端口填`81`即可）
