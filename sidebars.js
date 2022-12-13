@@ -83,6 +83,7 @@ module.exports = {
             // "developer-guide/core/structure",
             "developer-guide/core/prepare",
             "developer-guide/core/run",
+            "developer-guide/core/build",
             // "developer-guide/core/code-style",
           ],
         },
