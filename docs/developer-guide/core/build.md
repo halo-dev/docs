@@ -74,7 +74,7 @@ cd path/to/halo
 ./gradlew.bat clean build -x check -x jar
 
 # macOS / Linux
-./gradlew clean build -x test -x jar
+./gradlew clean build -x check -x jar
 ```
 
 构建完成之后，在 halo 项目下产生的 `build/libs/halo-2.0.0.jar` 即为构建完成的文件。
