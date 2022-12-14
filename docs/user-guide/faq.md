@@ -37,6 +37,10 @@ docker logs halo | grep 'Generated random password:' | tail -1
   delete from extensions where name like '/registry/users/admin';
   ```
 
+  :::info
+  其他类型的数据库处理方式类似，先通过命令行或数据库连接工具连接到数据库后，再执行上面的 `delete` SQL 语句。
+  :::
+
 3. 重新启动 Halo 服务
 
   ```bash
