@@ -7,6 +7,52 @@ description: 使用上的常见问题
 
 **Halo** [ˈheɪloʊ]，是一款好用又强大的[开源建站工具](https://github.com/halo-dev/halo)，配合上不同的模板与插件，可以很好地帮助你构建你心中的理想站点。它可以是你公司的官方网站，可以是你的个人博客，也可以是团队共享的知识库，甚至可以是一个论坛、一个商城。
 
+### 忘记密码怎么办？
+
+如果安装时没有指定 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD` 环境变量，系统会随机一个初始化密码，可以通过下面的命令进行查看。
+
+```bash
+docker logs halo | grep 'Generated random password:' | tail -1
+```
+
+如果你已经修改过初始化密码后忘记了密码，假设系统中还有可用的具有用户管理权限的其他用户，可以通过该用户参考[修改用户密码](./users#修改用户密码)部分，修改指定用户的密码。没有可用的具有用户管理权限的管理员用户时，目前需要通过删除数据库记录的方式，触发管理员用户的初始化任务进行密码重置。
+
+假设 Halo 使用容器方式运行，容器名称为 `halo`，具体操作如下。
+
+1. 停止 Halo 服务
+
+  ```bash
+  docker stop halo
+  ```
+
+2. 连接 Halo 使用的数据库，删除 admin 用户记录
+
+  以容器化部署的 PostgreSQL 为例，假设容器名称为 `halo_db`。
+
+  ```bash
+  # 进入 psql 命令行
+  docker exec -it halo_db psql halo
+
+  # 执行下面的 SQL 删除 admin 用户记录
+  delete from extensions where name like '/registry/users/admin';
+  ```
+
+3. 重新启动 Halo 服务
+
+  ```bash
+  docker start halo
+  ```
+
+4. 登录 Halo 控制台
+
+  如果部署时通过 `HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME` 和 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD` 环境变量指定了初始化用户名和密码，使用该用户名密码登录控制台。
+  
+  如果未指定该配置，则默认用户名为 `admin`，默认密码将打印在 Halo 容器日志中，可以通过如下命令查看。
+
+  ```bash
+  docker logs halo | grep 'Generated random password:' | tail -1
+  ```
+
 ### 为什么百度无法搜索到我的站点？
 
 这是一个暂时无法解答的问题。所涉及到的问题过多，受影响因素可能有域名、服务器 IP 位置、建站时间、网站结构、内容等等。建议了解一下 SEO 相关知识对网站进行优化，目前我们在程序方面做的优化有：
