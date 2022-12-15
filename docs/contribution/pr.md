@@ -13,7 +13,7 @@ description: 代码贡献指南
 
 > 这个步骤非常适合首次贡献者。
 
-在 [halo-dev](https://github.com/halo-dev) 组织下，有非常多的仓库。每个仓库下都有可能包含一些“首次贡献者”友好的 Issue，主要是为了给贡献者提供一个友好的体验。 该类 Issue
+在 [halo-dev](https://github.com/halo-dev) 和 [halo-sigs](https://github.com/halo-sigs) 组织下，有非常多的仓库。每个仓库下都有可能包含一些“首次贡献者”友好的 Issue，主要是为了给贡献者提供一个友好的体验。 该类 Issue
 一般会用 `good-first-issue` 标签标记。标签 `good-first-issue` 表示该 Issue 不需要对 Halo 有深入的理解也能够参与。
 
 请点击：[good-first-issue](https://github.com/issues?q=org%3Ahalo-dev+is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+no%3Aassignee+)
@@ -44,7 +44,7 @@ Issue。这样可避免两位贡献者在同一个问题上花时间。
    ```bash
    git remote add upstream https://github.com/halo-dev/halo.git
    # 或者 git remote add upstream git@github.com:halo-dev/halo.git
-   git fetch upstream master
+   git fetch upstream main
    ```
 
 4. 创建新的开发分支
@@ -52,7 +52,7 @@ Issue。这样可避免两位贡献者在同一个问题上花时间。
    我们需要从主仓库的主分支创建一个新的开发分支。
 
    ```bash
-   git checkout upstream/master
+   git checkout upstream/main
    git checkout -b {BRANCH_NAME}
    ```
 
@@ -69,8 +69,8 @@ Issue。这样可避免两位贡献者在同一个问题上花时间。
    在提交 Pull Request 之前，尽量保证当前分支和主分支的代码尽可能同步，这时需要我们手动操作。示例：
 
    ```bash
-   git fetch upstream/master
-   git merge upstream/master
+   git fetch upstream/main
+   git merge upstream/main
    git push origin {BRANCH_NAME}
    ```
 
@@ -80,7 +80,7 @@ Issue。这样可避免两位贡献者在同一个问题上花时间。
 
 ### 创建 Pull Request
 
-回到自己的仓库页面，选择 `New pull request` 按钮，创建 `Pull request` 到原仓库的 `master` 分支。
+回到自己的仓库页面，选择 `New pull request` 按钮，创建 `Pull request` 到原仓库的 `main` 分支。
 然后等待我们 Review 即可，如有 `Change Request`，再本地修改之后再次提交即可。
 
 提交 Pull Request 的注意事项：
@@ -88,9 +88,9 @@ Issue。这样可避免两位贡献者在同一个问题上花时间。
 - 提交 Pull Request 请充分自测。
 - 每个 Pull Request 尽量只解决一个 Issue，特殊情况除外。
 - 应尽可能多的添加单元测试，其他测试（集成测试和 E2E 测试）可看情况添加。
-- 不论需要解决的 Issue 发生在哪个版本，提交 Pull Request 的时候，请将主仓库的主分支设置为 `master`。例如：即使某个 Bug 于 Halo 1.4.x 被发现，但是提交 Pull Request 仍只针对
-  `master` 分支，等待 Pull Request 合并之后，我们会通过 `/cherrypick release-1.4` 或者 `/cherry-pick release-1.4` 指令将此 Pull Request
-  的修改应用到 `release-1.4` 和 `release-1.5` 分支上。
+- 不论需要解决的 Issue 发生在哪个版本，提交 Pull Request 的时候，请将主仓库的主分支设置为 `main`。例如：即使某个 Bug 于 Halo 2.0.x 被发现，但是提交 Pull Request 仍只针对
+  `main` 分支，等待 Pull Request 合并之后，我们会通过 `/cherrypick release-2.0` 或者 `/cherry-pick release-2.1` 指令将此 Pull Request
+  的修改应用到 `release-2.0` 和 `release-2.1` 分支上。
 
 ### 更新 commits
 
