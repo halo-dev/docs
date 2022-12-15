@@ -6,10 +6,11 @@ description: 开发环境的准备工作
 ## 环境要求
 
 - [OpenJDK 17 LTS](https://github.com/openjdk/jdk)
-- [Node.js 16 LTS](https://nodejs.org)
+- [Node.js 18 LTS](https://nodejs.org)
 - [pnpm 7](https://pnpm.io/)
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 - [Git](https://git-scm.com/)
+- [Docker](https://www.docker.com/)（可选）
 
 ## 名词解释
 
