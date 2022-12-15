@@ -10,7 +10,7 @@ description: 安装完成后，如何写下第一篇文章。
 浏览器访问 `$HALO_EXTERNAL_URL/console/`（外部访问链接）即可进入 Halo 管理端。默认的管理员用户名为 `admin`，登录密码为安装时设置的 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`，文档中的默认值为 `P@88w0rd`。
 
 :::info
-如果你在安装时没有设置 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD` 变量或忘记了设置的密码，可以参考[常见问题中的忘记密码章节](../user-guide/faq.md)进行处理。
+如果你在安装时没有设置 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD` 变量或忘记了设置的密码，可以参考[常见问题中的忘记密码章节](../user-guide/faq.md#忘记密码怎么办)进行处理。
 :::
 
 ## 新建文章
