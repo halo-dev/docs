@@ -3,6 +3,8 @@ title: 使用 Docker Compose 部署
 description: 使用 Docker Compose 部署
 ---
 
+import DockerEnv from "./slots/docker-env.md"
+
 :::info
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare.md)，这可以快速帮助你了解 Halo。
 :::
@@ -39,7 +41,7 @@ description: 使用 Docker Compose 部署
 
 2. 创建 `docker-compose.yaml`
 
-  此文档提供两种场景的 Docker Compose 配置文件，请根据你的需要选择一种。
+  此文档提供两种场景的 Docker Compose 配置文件，请根据你的需要**选择一种**。
 
   :::info
   需要注意的是，此文档为了更加方便的管理配置，所有与 Halo 相关的配置都使用 Docker 环境变量代替，所以无需创建 application.yaml 文件。
@@ -185,6 +187,10 @@ description: 使用 Docker Compose 部署
           # 初始化的超级管理员密码
           - HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd
     ```
+
+  环境变量详解：
+
+  <DockerEnv />
 
 3. 启动 Halo 服务
 
