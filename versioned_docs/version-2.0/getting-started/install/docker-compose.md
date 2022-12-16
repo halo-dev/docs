@@ -20,13 +20,13 @@ import DockerEnv from "./slots/docker-env.md"
 
 ## 创建容器组
 
-可用的 Halo 2.0.1 的 Docker 镜像：
+可用的 Halo 2.0.2 的 Docker 镜像：
 
 - [halohub/halo](https://hub.docker.com/r/halohub/halo)
 - [ghcr.io/halo-dev/halo](https://github.com/halo-dev/halo/pkgs/container/halo)
 
 :::info 注意
-目前 Halo 2.0 并未更新 Docker 的 latest 标签镜像，主要因为 2.0 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.0.1`。
+目前 Halo 2.0 并未更新 Docker 的 latest 标签镜像，主要因为 2.0 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.0.2`。
 :::
 
 1. 在系统任意位置创建一个文件夹，此文档以 `~/halo` 为例。
@@ -54,7 +54,7 @@ import DockerEnv from "./slots/docker-env.md"
 
     services:
       halo:
-        image: halohub/halo:2.0.1
+        image: halohub/halo:2.0.2
         container_name: halo
         restart: on-failure:3
         depends_on:
@@ -110,7 +110,7 @@ import DockerEnv from "./slots/docker-env.md"
 
     services:
       halo:
-        image: halohub/halo:2.0.1
+        image: halohub/halo:2.0.2
         container_name: halo
         restart: on-failure:3
         depends_on:
@@ -171,7 +171,7 @@ import DockerEnv from "./slots/docker-env.md"
 
     services:
       halo:
-        image: halohub/halo:2.0.1
+        image: halohub/halo:2.0.2
         container_name: halo
         restart: on-failure:3
         volumes:
@@ -232,7 +232,7 @@ import DockerEnv from "./slots/docker-env.md"
   ```yaml {3}
   services:
     halo:
-      image: halohub/halo:2.0.1
+      image: halohub/halo:2.0.2
       container_name: halo
   ```
 
