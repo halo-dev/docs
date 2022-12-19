@@ -8,9 +8,9 @@ description: 使用 Nginx Proxy Manager 管理 Halo 服务的反向代理
 
 参见 [使用 Docker Compose 部署](https://docs.halo.run/getting-started/install/docker-compose)
 
-> 信息：
->
-> `「反向代理」` 部分不用进行操作，保证 Halo 服务运行无误即可。（即可以用 `http://ip: 端口号` 的形式访问博客。）
+:::info
+`「反向代理」` 部分不进行操作，保证 Halo 服务运行无误即可。
+:::
 
 ### 简介
 
