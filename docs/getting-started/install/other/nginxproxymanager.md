@@ -49,7 +49,7 @@ services:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
-      - '80:80'              #不建议修改端口
+      - '80:80'              # 不建议修改端口
       - '81:81'              # 可以把冒号左边的 81 端口修改成你服务器上没有被占用的端口
       - '443:443'            #不建议修改端口
     volumes:
