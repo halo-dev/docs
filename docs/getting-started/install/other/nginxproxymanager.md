@@ -80,7 +80,7 @@ docker compose up -d     # 如果你用的是 docker-compose-plugin 的话，用
 
 第一次登陆会提示更改用户名和密码，建议修改一个复杂一点的密码。
 
-至此，我们已经完成了 Nginx Proxy Manager 的搭建，之后就可以用它给我们的 Halo 或者其他 web 应用做反向代理了。
+至此，我们已经完成了 Nginx Proxy Manager 的搭建，之后就可以用它给我们的 Halo 或者其他 Web 应用做反向代理了。
 
 ### 配置 Halo 的反向代理
 
