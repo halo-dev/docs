@@ -20,7 +20,7 @@ description: 使用 Nginx Proxy Manager 管理 Halo 服务的反向代理
 
 Nginx Proxy Manager 后台还可以一键申请 SSL 证书，并且会自动续期，方便省心。
 
-下面我们就来介绍如何用 Nginx Proxy Manger 来配合 Halo，实现反向代理和 https 访问。
+下面我们就来介绍如何用 Nginx Proxy Manger 来配合 Halo，实现反向代理和 HTTPS 访问。
 
 ### 安装 Nginx Proxy Manager
 
