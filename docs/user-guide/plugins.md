@@ -40,7 +40,7 @@ description: 插件管理相关功能说明
 ## 卸载插件
 
 点击插件列表指定插件所在行后方的 `···` 更多操作按钮，选择其中的 `卸载` 或 `卸载并删除配置` 选项即可对当前插件进行卸载。
-![卸载主题](/img/user-guide/themes/theme-uninstall.png)
+![卸载主题](/img/user-guide/plugins/plugin-uninstall.png)
 
 :::info
 仅卸载插件时插件的配置信息会进行保留，当重新安装插件后还可以使用之前已保存的配置。
