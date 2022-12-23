@@ -3,6 +3,9 @@ title: Todo List
 description: 这个例子展示了如何开发 Todo List 插件
 ---
 
+本示例用于展示如何从插件模板创建一个插件并写一个 Todo List：
+
+首先通过模板仓库创建一个插件，例如叫 `halo-plugin-todolist`
 
 ## 配置你的插件
 
@@ -15,7 +18,7 @@ description: 这个例子展示了如何开发 Todo List 插件
 2. 修改 `settings.gradle` 中的 `rootProject.name`
 
   ```groovy
-  rootProject.name = 'halo-plugin-hello-world'
+  rootProject.name = 'halo-plugin-todolist'
   ```
 
 3. 修改插件的描述文件 `plugin.yaml`，它位于 `src/main/resources/plugin.yaml`。示例：
@@ -24,28 +27,17 @@ description: 这个例子展示了如何开发 Todo List 插件
   apiVersion: plugin.halo.run/v1alpha1
   kind: Plugin
   metadata:
-    # 它是插件的唯一标识名
-    # 包含不超过 253 个字符，仅包含小写字母、数字、“-”或“.”，以字母或数字开头，以字母或数字结尾
-    name: hello-world
+    name: todolist
   spec:
     enabled: true
-    # 支持的 Halo 版本，SemVer expression, e.g. ">=2.0.0"
     requires: ">=2.0.0"
-    # 插件作者名
-    author: halo-dev
-    # 插件 logo，可以是域名或相对于项目 src/main/resources 目录的相对文件路径
+    author:
+      name: halo-dev
+      website: https://halo.run
     logo: https://halo.run/logo
-    # 插件配置表单名称，参考表单定义，不需要则可删除，这里先注释它
-    # settingName: hello-world-settings
-    # 表单定义对应的值标识名, 推荐命名为 "插件名-configmap"，没有配置 settingName 则可删除此项
-    # configMapName: hello-world-configmap
-    # 通常为插件的 Github 仓库链接，或可联系到插件作者或插件官网或帮助中心链接等
     homepage: https://github.com/guqing/halo-plugin-hello-world
-    # 插件的显示名称，它通常是以少数几个字来概括插件的用途
-    displayName: "插件 Hello world"
-    # 插件描述，用一段话来介绍插件的用途
+    displayName: "插件 Todo List"
     description: "插件开发的 hello world，用于学习如何开发一个简单的 Halo 插件"
-    # 插件使用的软件协议 https://en.wikipedia.org/wiki/Software_license
     license:
       - name: "MIT"
   ```
@@ -61,7 +53,7 @@ description: 这个例子展示了如何开发 Todo List 插件
 
 为了看到效果，首先我们需要让插件能最简单的运行起来。
 
-1. 在 `src/main/java` 下创建包，如 `run.halo.tutorial`，在创建一个类 `HelloWorldPlugin`，它继承自 `BasePlugin` 类内容如下：
+1. 在 `src/main/java` 下创建包，如 `run.halo.tutorial`，在创建一个类 `TodoListPlugin`，它继承自 `BasePlugin` 类内容如下：
 
 ```java
 package run.halo.tutorial;
@@ -71,8 +63,8 @@ import org.springframework.stereotype.Component;
 import run.halo.app.plugin.BasePlugin;
 
 @Component
-public class HelloWorldPlugin extends BasePlugin {
-    public HelloWorldPlugin(PluginWrapper wrapper) {
+public class TodoListPlugin extends BasePlugin {
+    public TodoListPlugin(PluginWrapper wrapper) {
         super(wrapper);
     }
 }
@@ -85,7 +77,7 @@ public class HelloWorldPlugin extends BasePlugin {
 └── run
     └── halo
         └── tutorial
-            └── HelloWorldPlugin.java
+            └── TodoListPlugin.java
 ```
 
 然后在项目目录执行命令
@@ -103,67 +95,17 @@ halo:
     plugins-root: ${halo.work-dir}/plugins
     fixed-plugin-path:
       # 配置为插件绝对路径
-      - /Users/guqing/halo-plugin-hello-world
+      - /Users/guqing/halo-plugin-todolist
 ```
 
 使用此 local profile 启动 Halo，然后访问 `http://localhost:8090/console`
 
 在插件列表将能看到插件已经被正确启动
-![hello-world-in-plugin-list](/img/hello-world-plugin-list.png)
-
-## 插件的生命周期
-
-让我们继续修改一下 `HelloWorldPlugin` 这个类
-
-```diff
-@Component
-public class HelloWorldPlugin extends BasePlugin {
-    public HelloWorldPlugin(PluginWrapper wrapper) {
-        super(wrapper);
-    }
-
-+    @Override
-+    public void start() {
-+        System.out.println("Hello world 插件启动了!");
-+    }
-+
-+    @Override
-+    public void stop() {
-+        System.out.println("Hello world 被停止!");
-+    }
-+
-+    @Override
-+    public void delete() {
-+        System.out.println("Hello world 被卸载");
-+    }
-}
-```
-
-可以看到我们覆盖了 `BasePlugin` 的三个方法，它们就是插件的生命周期方法：
-
-- start: 在插件被启用时执行
-- stop: 在插件被停用时执行
-- delete: 在插件被卸载时执行
-
-然后重新 build 一下代码
-
-```shell
-./gradlew build 
-```
-
-再重启 Halo，将在控制台看到以下日志
-
-```text
-2022-11-28T16:29:03.494+08:00  INFO 81006 --- [nReconciler-t-1] run.halo.app.plugin.HaloPluginManager    : Start plugin 'hello-world@1.0.0-SNAPSHOT'
-Hello world 插件启动了!
-```
-
-本章节我们通过一个 TodoList 示例来更近一步了解 Halo 的插件开发。
+![plugin-todolist-in-list-view](/img/todolist-in-list.png)
 
 ## 创建一个自定义模型
 
-首先我们希望 TODOList 能够被持久化以避免重启后数据丢失，Halo 提供了一种[自定义模型机制](https://github.com/halo-dev/rfcs/tree/main/extension)
-自定义模型允许你只需要创建一个资源类别即可获得一组 CRUD APIs。
+我们希望 TodoList 能够被持久化以避免重启后数据丢失，因此需要创建一个自定义模型来进行数据持久化。
 
 首先创建一个 `class` 名为 `Todo` 并写入如下内容：
 
@@ -199,30 +141,18 @@ public class Todo extends AbstractExtension {
 }
 ```
 
-:::tip 释义
-
-- @GVK：此注解标识该类为一个自定义模型，同时必须继承 `AbstractExtension`。
-  - kind：表示自定义模型所表示的 REST 资源。
-  - group：表示一组公开的资源，通常采用域名形式，Halo 项目保留使用空组和任何以“*.halo.run”结尾的组名供其单独使用。
-  选择群组名称时，我们建议选择你的群组或组织拥有的子域，例如“widget.mycompany.com”。
-  - version：API 的版本，它与 group 组合使用为 apiVersion=“GROUP/VERSION”，例如“api.halo.run/v1alpha1”。
-  - singular: 资源的单数名称，这允许客户端不透明地处理复数和单数，必须全部小写。通常为小写的“kind”。
-  - plural： 资源的复数名称，自定义资源在 `/apis/<group>/<version>/.../<plural>` 下提供，必须为全部小写。
-- @Schema：属性校验注解，会在创建/修改资源前对资源校验，参考 [schema-validator](https://www.openapi4j.org/schema-validator.html)。
-:::
-
-然后在 `HelloWorldPlugin` 的 `start` 生命周期方法中注册此自定义模型到 Halo 中。
+然后在 `TodoListPlugin` 的 `start` 生命周期方法中注册此自定义模型到 Halo 中。
 
 ```diff
 // ...
 + import run.halo.app.extension.SchemeManager;
 
 @Component
-public class HelloWorldPlugin extends BasePlugin {
+public class TodoListPlugin extends BasePlugin {
 +   private final SchemeManager schemeManager;
 
--    public HelloWorldPlugin(PluginWrapper wrapper) {
-+    public HelloWorldPlugin(PluginWrapper wrapper, SchemeManager schemeManager) {
+-    public TodoListPlugin(PluginWrapper wrapper) {
++    public TodoListPlugin(PluginWrapper wrapper, SchemeManager schemeManager) {
         super(wrapper);
 +       this.schemeManager = schemeManager;
     }
@@ -345,12 +275,6 @@ export default definePlugin({
 });
 ```
 
-配置好之后还是一样重新 Build:
-
-```groovy
-./gradlew build 
-```
-
 完成此步骤后 Console 左侧菜单多了一个名 `工具` 的组，其下有 `Todo List`，浏览器标签页名称也是 `Todo List`。
 
 接来下我们需要在右侧内容区域实现 [目标](#目标) 中图示的 Todo 样式，为了快速上手，我们使用 [todomvc](https://todomvc.com/examples/vue/) 提供的 Vue 标准实现。
@@ -382,7 +306,7 @@ export default definePlugin({
 pnpm install axios
 ```
 
-为了更好的看懂代码，将用 TypeScript 改造之前的 todomvc 示例：
+为了符合最佳实践，将用 TypeScript 改造之前的 todomvc 示例：
 
 1. 创建 types 文件 `console/src/types/index.ts`
 

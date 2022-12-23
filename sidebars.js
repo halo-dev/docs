@@ -63,7 +63,7 @@ module.exports = {
         "user-guide/plugins",
         "user-guide/users",
         "user-guide/settings",
-        "user-guide/faq"
+        "user-guide/faq",
       ],
     },
     {
@@ -98,6 +98,43 @@ module.exports = {
             "developer-guide/plugin/prepare",
             "developer-guide/plugin/hello-world",
             "developer-guide/plugin/publish",
+            {
+              type: "category",
+              label: "基础",
+              link: {
+                type: "doc",
+                id: "developer-guide/plugin/structure",
+              },
+              items: [
+                "developer-guide/plugin/structure",
+                "developer-guide/plugin/lifecycle",
+                "developer-guide/plugin/manifest",
+                "developer-guide/plugin/object-management",
+              ],
+            },
+            {
+              type: "category",
+              label: "示例",
+              link: {
+                type: "doc",
+                id: "developer-guide/plugin/examples/todolist",
+              },
+              items: ["developer-guide/plugin/examples/todolist"],
+            },
+            {
+              type: "category",
+              label: "API 参考",
+              link: {
+                type: "doc",
+                id: "developer-guide/plugin/api-reference/extension",
+              },
+              items: [
+                "developer-guide/plugin/api-reference/extension",
+                "developer-guide/plugin/api-reference/role-template",
+                "developer-guide/plugin/api-reference/extension-client",
+                "developer-guide/plugin/api-reference/reverseproxy",
+              ],
+            },
           ],
         },
         {
