@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "2.0.0-SNAPSHOT",
+    "message": "2.1.0-SNAPSHOT",
     "description": "The label for version current"
   },
   "sidebar.tutorialSidebar.category.入门": {
@@ -10,6 +10,14 @@
   "sidebar.tutorialSidebar.category.安装指南": {
     "message": "安装指南",
     "description": "The label for category 安装指南 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.其他指南": {
+    "message": "其他指南",
+    "description": "The label for category 其他指南 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.用户指南": {
+    "message": "用户指南",
+    "description": "The label for category 用户指南 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.开发者指南": {
     "message": "开发者指南",
@@ -26,6 +34,14 @@
   "sidebar.tutorialSidebar.category.主题开发": {
     "message": "主题开发",
     "description": "The label for category 主题开发 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.模板变量": {
+    "message": "模板变量",
+    "description": "The label for category 模板变量 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Finder API": {
+    "message": "Finder API",
+    "description": "The label for category Finder API in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.参与贡献": {
     "message": "参与贡献",

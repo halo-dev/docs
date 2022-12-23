@@ -10,8 +10,8 @@ const config = {
   tagline: "Halo 博客系统的文档站点",
   url: "https://docs.halo.run",
   baseUrl: "/",
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon-96x96.png",
   i18n: {
     defaultLocale: "zh-Hans",
@@ -34,11 +34,11 @@ const config = {
           showLastUpdateAuthor: true,
           remarkPlugins: [math, mermaid],
           rehypePlugins: [katex],
-          lastVersion: "1.6",
+          lastVersion: "2.0",
           versions: {
             current: {
-              label: "2.0.0-SNAPSHOT",
-              path: "2.0.0-SNAPSHOT",
+              label: "2.1.0-SNAPSHOT",
+              path: "2.1.0-SNAPSHOT",
             },
           },
         },
@@ -189,7 +189,7 @@ const config = {
       {
         redirects: [
           {
-            to: "/getting-started/install/linux",
+            to: "/1.6/getting-started/install/linux",
             from: [
               "/zh/install",
               "/install",
@@ -204,7 +204,7 @@ const config = {
             from: ["/zh/install/docker", "/install/docker"],
           },
           {
-            to: "/getting-started/install/other/bt-panel",
+            to: "/1.6/getting-started/install/other/bt-panel",
             from: ["/zh/install/bt-panel", "/install/bt-panel"],
           },
           {
@@ -212,7 +212,7 @@ const config = {
             from: ["/zh/install/oneinstack", "/install/oneinstack"],
           },
           {
-            to: "/getting-started/install/other/tencent-cloudbase",
+            to: "/1.6/getting-started/install/other/tencent-cloudbase",
             from: [
               "/zh/install/tencent-cloudbase",
               "/install/tencent-cloudbase",
@@ -227,7 +227,7 @@ const config = {
             from: ["/zh/install/config", "/install/config"],
           },
           {
-            to: "/getting-started/upgrade",
+            to: "/1.6/getting-started/upgrade",
             from: ["/zh/install/upgrade", "/install/upgrade"],
           },
           {
@@ -271,6 +271,11 @@ const config = {
           }
           if (existingPath.startsWith("/1.4/")) {
             return [existingPath.replace("/1.4/", "/1.4.17/")];
+          }
+          if (existingPath.startsWith("/2.1.0-SNAPSHOT/")) {
+            return [
+              existingPath.replace("/2.1.0-SNAPSHOT/", "/2.0.0-SNAPSHOT/"),
+            ];
           }
           return undefined;
         },
