@@ -86,21 +86,21 @@ docker compose up -d     # 如果你用的是 docker-compose-plugin 的话，用
 
 首先我们登陆网页端之后，会弹出修改用户名和密码的对话框，我们根据自己的实际来修改自己的用户名和邮箱。
 
-![iShot_2022-12-12_16.44.51](https://img.laoda.de/i/2022/12/12/r7qwgr-2.webp)
+![Nginx Proxy Manager 1](/img/nginx-proxy-manager/Nginx-Proxy-Manager-1.png)
 
 保存之后，会让我们修改密码（建议用一个复杂的密码）。
 
-![image-20221212164639702](https://img.laoda.de/i/2022/12/12/r88bvl-2.webp)
+![Nginx Proxy Manager 2](/img/nginx-proxy-manager/Nginx-Proxy-Manager-2.png)
 
 接着我们就可以来给 Halo 来添加一个反向代理了。
 
 点击 `Proxy Hosts`，
 
-![image-20221212165447656](https://img.laoda.de/i/2022/12/12/rd1a5e-2.webp)
+![Nginx Proxy Manager 3](/img/nginx-proxy-manager/Nginx-Proxy-Manager-3.png)
 
 接着点击 `Add Proxy Host`，弹出如下对话框：
 
-![image-20221212165912118](https://img.laoda.de/i/2022/12/12/rftexf-2.webp)
+![Nginx Proxy Manager 4](/img/nginx-proxy-manager/Nginx-Proxy-Manager-4.png)
 
 看起来都是英文，很复杂，但是其实很简单，我们只要用到其中的几个功能即可，这边稍微解释一下：
 
@@ -115,7 +115,7 @@ docker compose up -d     # 如果你用的是 docker-compose-plugin 的话，用
 
 以下是一个样列：
 
-![image-20221212165113531](https://img.laoda.de/i/2022/12/12/rb22bk-2.webp)
+![Nginx Proxy Manager 5](/img/nginx-proxy-manager/Nginx-Proxy-Manager-5.png)
 
 因为样例的 NPM 和 Halo 搭建在同一台 VPS 上，所以这边的 IP，图中填的是 `172.17.0.1`，为 Docker 容器内部的 IP 地址，
 
@@ -125,7 +125,12 @@ docker compose up -d     # 如果你用的是 docker-compose-plugin 的话，用
 ip addr show docker0
 ```
 
-![image-20221212171134006](https://img.laoda.de/i/2022/12/12/sawc56-2.webp)
+```bash {3}
+4: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 02:42:e4:a3:b5:b9 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+```
 
 这边的 IP 是 `172.17.0.1`，填入这个 IP，可以不用打开防火墙的 `8090` 端口。
 
@@ -135,9 +140,9 @@ ip addr show docker0
 
 接着我们来申请一张 SSL 证书，让我们的网站支持 `https` 访问。
 
-![image-20221212165406296](https://img.laoda.de/i/2022/12/12/rcskzu-2.webp)
+![Nginx Proxy Manager 6](/img/nginx-proxy-manager/Nginx-Proxy-Manager-6.png)
 
-![image-20221212171814387](https://img.laoda.de/i/2022/12/12/sey05n-2.webp)
+![Nginx Proxy Manager 7](/img/nginx-proxy-manager/Nginx-Proxy-Manager-7.png)
 
 如图所示，记得打开强制 SSL，其他四个的功能请自行研究，这边不多做讨论。
 
@@ -152,7 +157,7 @@ ip addr show docker0
 
 再次点开配置，查看一下，将强制 SSL 打开。
 
-![image-20221212165346472](https://img.laoda.de/i/2022/12/12/rcfn9x-2.webp)
+![Nginx Proxy Manager 8](/img/nginx-proxy-manager/Nginx-Proxy-Manager-8.png)
 
 至此，你已经成功完成了 Halo 的反向代理，快尝试使用域名访问一下看看吧！
 
