@@ -3,7 +3,7 @@ title: 使用 Docker Compose 部署
 description: 使用 Docker Compose 部署
 ---
 
-import DockerEnv from "./slots/docker-env.md"
+import DockerArgs from "./slots/docker-args.md"
 
 :::info
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare.md)，这可以快速帮助你了解 Halo。
@@ -188,9 +188,9 @@ import DockerEnv from "./slots/docker-env.md"
           - --halo.security.initializer.superadminpassword=P@88w0rd
     ```
 
-  环境变量详解：
+  参数详解：
 
-  <DockerEnv />
+  <DockerArgs />
 
 3. 启动 Halo 服务
 

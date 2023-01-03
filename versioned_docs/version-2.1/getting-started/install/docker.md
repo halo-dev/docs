@@ -3,7 +3,7 @@ title: 使用 Docker 部署
 description: 使用 Docker 部署
 ---
 
-import DockerEnv from "./slots/docker-env.md"
+import DockerArgs from "./slots/docker-args.md"
 
 :::info
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare)，这可以快速帮助你了解 Halo。
@@ -57,14 +57,10 @@ import DockerEnv from "./slots/docker-env.md"
     - **--name**：为容器指定一个名称
     - **-p**：端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
     - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/.halo2`，后者不能修改。
-    - **-e**：环境变量
-      - `HALO_EXTERNAL_URL`: 外部可访问的链接。例如：<https://域名/>
-      - `HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME`: 超级管理员用户名
-      - `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`: 超级管理员用户（admin）的初始化密码。如果该环境变量没有设置，系统将会生成随机密码并打印在日志中。
 
-    环境变量详解：
+    参数详解：
 
-    <DockerEnv />
+    <DockerArgs />
 
 1. 用浏览器访问 `$HALO_EXTERNAL_URL/console/`（外部访问链接）即可进入 Halo 管理端。管理员用户名为 `admin`，登录密码为上方设置的 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`。
 
