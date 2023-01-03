@@ -49,7 +49,7 @@ import DockerEnv from "./slots/docker-env.md"
 
     1. 创建 Halo + PostgreSQL 的实例：
 
-    ```yaml {18-28,46} title="~/halo/docker-compose.yaml"
+    ```yaml {18-28,45} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
@@ -66,19 +66,18 @@ import DockerEnv from "./slots/docker-env.md"
           - ./:/root/.halo2
         ports:
           - "8090:8090"
-        environment:
-          - SPRING_R2DBC_URL=r2dbc:pool:postgresql://halodb/halo
-          - SPRING_R2DBC_USERNAME=halo
+        command:
+          - --spring.r2dbc.url=r2dbc:pool:postgresql://halodb/halo
+          - --spring.r2dbc.username=halo
           # PostgreSQL 的密码，请保证与下方 POSTGRES_PASSWORD 的变量值一致。
-          - SPRING_R2DBC_PASSWORD=openpostgresql
-          - SPRING_SQL_INIT_PLATFORM=postgresql
+          - --spring.r2dbc.password=openpostgresql
+          - --spring.sql.init.platform=postgresql
           # 外部访问地址，请根据实际需要修改
-          - HALO_EXTERNAL_URL=http://localhost:8090/
+          - --halo.external-url=http://localhost:8090/
           # 初始化的超级管理员用户名
-          - HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME=admin
+          - --halo.security.initializer.superadminusername=admin
           # 初始化的超级管理员密码
-          - HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd
-
+          - --halo.security.initializer.superadminpassword=P@88w0rd
       halodb:
         image: postgres:latest
         container_name: halodb
@@ -106,7 +105,7 @@ import DockerEnv from "./slots/docker-env.md"
 
     2. 创建 Halo + MySQL 的实例：
 
-    ```yaml
+    ```yaml {18-28,53} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
@@ -123,18 +122,18 @@ import DockerEnv from "./slots/docker-env.md"
           - ./:/root/.halo2
         ports:
           - "8090:8090"
-        environment:
-          - SPRING_R2DBC_URL=r2dbc:pool:mysql://halodb:3306/halo
-          - SPRING_R2DBC_USERNAME=root
+        command:
+          - --spring.r2dbc.url=r2dbc:pool:mysql://halodb:3306/halo
+          - --spring.r2dbc.username=root
           # MySQL 的密码，请保证与下方 MYSQL_ROOT_PASSWORD 的变量值一致。
-          - SPRING_R2DBC_PASSWORD=o#DwN&JSa56
-          - SPRING_SQL_INIT_PLATFORM=mysql
+          - --spring.r2dbc.password=o#DwN&JSa56
+          - --spring.sql.init.platform=mysql
           # 外部访问地址，请根据实际需要修改
-          - HALO_EXTERNAL_URL=http://localhost:8090/
+          - --halo.external-url=http://localhost:8090/
           # 初始化的超级管理员用户名
-          - HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME=admin
+          - --halo.security.initializer.superadminusername=admin
           # 初始化的超级管理员密码
-          - HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd
+          - --halo.security.initializer.superadminpassword=P@88w0rd
 
       halodb:
         image: mysql:8.0.27
@@ -142,10 +141,11 @@ import DockerEnv from "./slots/docker-env.md"
         restart: on-failure:3
         networks:
           halo_network:
-        command: --default-authentication-plugin=mysql_native_password
-          --character-set-server=utf8mb4
-          --collation-server=utf8mb4_general_ci
-          --explicit_defaults_for_timestamp=true
+        command: 
+          - --default-authentication-plugin=mysql_native_password
+          - --character-set-server=utf8mb4
+          - --collation-server=utf8mb4_general_ci
+          - --explicit_defaults_for_timestamp=true
         volumes:
           - ./mysql:/var/lib/mysql
           - ./mysqlBackup:/data/mysqlBackup
@@ -179,13 +179,13 @@ import DockerEnv from "./slots/docker-env.md"
           - ./:/root/.halo2
         ports:
           - "8090:8090"
-        environment:
+        command:
           # 外部访问地址，请根据实际需要修改
-          - HALO_EXTERNAL_URL=http://localhost:8090/
+          - --halo.external-url=http://localhost:8090/
           # 初始化的超级管理员用户名
-          - HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME=admin
+          - --halo.security.initializer.superadminusername=admin
           # 初始化的超级管理员密码
-          - HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd
+          - --halo.security.initializer.superadminpassword=P@88w0rd
     ```
 
   环境变量详解：

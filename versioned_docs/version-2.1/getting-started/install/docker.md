@@ -42,10 +42,10 @@ import DockerEnv from "./slots/docker-env.md"
       --name halo \
       -p 8090:8090 \
       -v ~/.halo2:/root/.halo2 \
-      -e HALO_EXTERNAL_URL=http://localhost:8090/ \
-      -e HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME=admin \
-      -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo:2.1.0
+      halohub/halo:2.1.0 \
+      --halo.external-url=http://localhost:8090/ \
+      --halo.security.initializer.superadminuser=admin \
+      --halo.security.initializer.superadminpassword=P@88w0rd  
     ```
 
     :::info
