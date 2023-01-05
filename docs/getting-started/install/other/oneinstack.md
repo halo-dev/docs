@@ -52,6 +52,9 @@ Nginx install dir:              /usr/local/nginx
   ```bash
   sh vhost.sh
   ```
+  :::info
+  如果出现以下异常：`vhost.sh: 23: pushd: not found`，请使用命令：`sudo ./vhost.sh`
+  :::
 
 2. 按照提示选择或输入相关信息
 
