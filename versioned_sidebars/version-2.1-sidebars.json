@@ -93,6 +93,7 @@
             "developer-guide/theme/template-route-mapping",
             "developer-guide/theme/static-resources",
             "developer-guide/theme/settings",
+            "developer-guide/theme/annotations",
             {
               "type": "category",
               "label": "模板变量",
@@ -134,7 +135,8 @@
             "developer-guide/theme/code-snippets"
           ]
         },
-        "developer-guide/form-schema"
+        "developer-guide/form-schema",
+        "developer-guide/annotations-form"
       ]
     },
     {
