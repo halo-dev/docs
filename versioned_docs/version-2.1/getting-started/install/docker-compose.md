@@ -136,7 +136,7 @@ import DockerArgs from "./slots/docker-args.md"
           - --halo.security.initializer.superadminpassword=P@88w0rd
 
       halodb:
-        image: mysql:8.0.27
+        image: mysql:8.0.31
         container_name: halodb
         restart: on-failure:3
         networks:
