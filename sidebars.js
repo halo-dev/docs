@@ -111,6 +111,7 @@ module.exports = {
             "developer-guide/theme/template-route-mapping",
             "developer-guide/theme/static-resources",
             "developer-guide/theme/settings",
+            "developer-guide/theme/annotations",
             {
               type: "category",
               label: "模板变量",
@@ -153,6 +154,7 @@ module.exports = {
           ],
         },
         "developer-guide/form-schema",
+        "developer-guide/annotations-form",
         // {
         //   type: "link",
         //   label: "REST API",

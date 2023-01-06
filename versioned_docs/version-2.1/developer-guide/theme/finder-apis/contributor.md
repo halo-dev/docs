@@ -26,7 +26,7 @@ contributorFinder.getContributor(name)
 ### 示例
 
 ```html
-<div th:with="contributor = ${contributorFinder.getByName('contributor-foo')}">
+<div th:with="contributor = ${contributorFinder.getContributor('contributor-foo')}">
   <h1 th:text="${contributor.displayName}"></h1>
 </div>
 ```
@@ -52,7 +52,7 @@ List<[#Contributor](#contributor)>
 ### 示例
 
 ```html
-<div th:with="contributors = ${contributorFinder.getByNames(['contributor-foo, 'contributor-bar'])}">
+<div th:with="contributors = ${contributorFinder.getContributors(['contributor-foo, 'contributor-bar'])}">
   <span th:each="contributor : ${contributors}" th:text="${contributor.displayName}"></span>
 </div>
 ```
