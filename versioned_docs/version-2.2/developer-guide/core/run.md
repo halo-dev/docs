@@ -65,6 +65,19 @@ VITE v3.1.6  ready in 638 ms
 ➜  Local:   http://localhost:3000/console/
 ```
 
+:::info 提示
+请不要直接使用 Console 的运行端口（3000）访问，会因为跨域问题导致无法正常登录，建议按照后续的步骤以 dev 的配置文件运行 Halo，在 dev 的配置文件中，我们默认代理了 Console 的访问地址，所以后续访问 Console 使用 `http://localhost:8090/console` 访问即可，代理的相关配置：
+
+```yaml
+halo:
+  console:
+    proxy:
+      endpoint: http://localhost:3000/
+      enabled: true
+```
+
+:::
+
 ## 运行 Halo
 
 1. 在 IntelliJ IDEA 中打开 Halo 项目，等待 Gradle 初始化和依赖下载完成。
