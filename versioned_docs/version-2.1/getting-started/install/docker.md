@@ -70,20 +70,20 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 升级版本
 
-0. 拉取新版本镜像
+1. 拉取新版本镜像
 
   ```bash
   docker pull halohub/halo:2.1.0
   ```
 
-1. 停止运行中的容器
+2. 停止运行中的容器
 
   ```bash
   docker stop halo
   docker rm halo
   ```
 
-2. 备份数据（重要）
+3. 备份数据（重要）
 
   ```bash
   cp -r ~/.halo2 ~/halo2.archive
@@ -91,7 +91,7 @@ import DockerArgs from "./slots/docker-args.md"
 
   > 需要注意的是，`halo2.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
 
-3. 更新 Halo
+4. 更新 Halo
 
   修改版本号后，按照最初安装的方式，重新创建容器即可。
 
