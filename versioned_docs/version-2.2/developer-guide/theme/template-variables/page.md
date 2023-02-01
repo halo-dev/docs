@@ -4,7 +4,7 @@ description: page.html - /:slug
 ---
 
 import SinglePageVo from "../vo/SinglePageVo.md"
-import Contributor from "../vo/Contributor.md"
+import ContributorVo from "../vo/ContributorVo.md"
 import ContentVo from "../vo/ContentVo.md"
 
 ## 路由信息
@@ -42,12 +42,12 @@ import ContentVo from "../vo/ContentVo.md"
 <SinglePageVo />
 
 - [#ContentVo](#contentvo)
-- [#Contributor](#contributor)
+- [#ContributorVo](#contributorvo)
 
 ### ContentVo
 
 <ContentVo />
 
-### Contributor
+### ContributorVo
 
-<Contributor />
+<ContributorVo />

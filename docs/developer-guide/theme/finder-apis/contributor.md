@@ -3,7 +3,7 @@ title: 作者
 description: 作者 - ContributorFinder
 ---
 
-import Contributor from "../vo/Contributor.md"
+import ContributorVo from "../vo/ContributorVo.md"
 
 ## getContributor(name)
 
@@ -21,7 +21,7 @@ contributorFinder.getContributor(name)
 
 ### 返回值
 
-[#Contributor](#contributor)
+[#ContributorVo](#contributorvo)
 
 ### 示例
 
@@ -47,7 +47,7 @@ contributorFinder.getContributors(names)
 
 ### 返回值
 
-List<[#Contributor](#contributor)>
+List<[#ContributorVo](#contributorvo)>
 
 ### 示例
 
@@ -59,6 +59,6 @@ List<[#Contributor](#contributor)>
 
 ## 类型定义
 
-### Contributor
+### ContributorVo
 
-<Contributor />
+<ContributorVo />

@@ -16,7 +16,7 @@
     "releaseSnapshot": "string",
     "headSnapshot": "string",
     "baseSnapshot": "string",
-    "owner": "string",                                  // 创建者名称，即 Contributor 的 metadata.name，非显示名称
+    "owner": "string",                                  // 创建者名称，即 ContributorVo 的 metadata.name，非显示名称
     "template": "string",                               // 自定义渲染模板
     "cover": "string",                                  // 封面图
     "deleted": false,
@@ -47,14 +47,14 @@
     "excerpt": "string",                                // 最终生成的摘要
     "inProgress": true,
     "commentsCount": 0,                                 // 评论数
-    "contributors": [                                   // 贡献者名称，Contributor 的 metadata.name 的集合
+    "contributors": [                                   // 贡献者名称，ContributorVo 的 metadata.name 的集合
       "string"
     ]
   },
   "categories": "List<#CategoryVo>",                    // 分类的集合
   "tags": "List<#TagVo>",                               // 标签的集合
-  "contributors": "List<#Contributor>",                 // 贡献者的集合
-  "owner": "#Contributor",                              // 创建者
+  "contributors": "List<#ContributorVo>",               // 贡献者的集合
+  "owner": "#ContributorVo",                            // 创建者
   "stats": {
     "visit": 0,                                         // 访问数量
     "upvote": 0,                                        // 点赞数量

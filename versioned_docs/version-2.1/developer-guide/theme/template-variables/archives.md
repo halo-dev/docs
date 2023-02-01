@@ -5,7 +5,7 @@ description: archives.html - /archives
 
 import CategoryVo from "../vo/CategoryVo.md";
 import TagVo from "../vo/TagVo.md";
-import Contributor from "../vo/Contributor.md";
+import ContributorVo from "../vo/ContributorVo.md";
 import ListedPostVo from "../vo/ListedPostVo.md";
 
 ## 路由信息
@@ -59,9 +59,9 @@ import ListedPostVo from "../vo/ListedPostVo.md";
 
 <TagVo />
 
-### Contributor
+### ContributorVo
 
-<Contributor />
+<ContributorVo />
 
 ### ListedPostVo
 
@@ -69,7 +69,7 @@ import ListedPostVo from "../vo/ListedPostVo.md";
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)
-- [#Contributor](#contributor)
+- [#ContributorVo](#contributorvo)
 
 ### PostArchiveVo
 

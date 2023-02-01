@@ -1,25 +1,26 @@
 ---
-title: 分类归档
-description: category.html - /categories/:slug
+title: 作者归档
+description: author.html - /authors/:name
 ---
 
+import UserVo from "../vo/UserVo.md"
 import CategoryVo from "../vo/CategoryVo.md"
 import TagVo from "../vo/TagVo.md"
-import ContributorVo from "../vo/ContributorVo.md";
+import ContributorVo from "../vo/ContributorVo.md"
 import ListedPostVo from "../vo/ListedPostVo.md"
 
 ## 路由信息
 
-- 模板路径：`/templates/category.html`
-- 访问路径：`/categories/:slug`
+- 模板路径：`/templates/author.html`
+- 访问路径：`/authors/:name`
 
 ## 变量
 
-### category
+### author
 
 #### 变量类型
 
-[#CategoryVo](#categoryvo)
+[#UserVo](#uservo)
 
 ### posts
 
@@ -29,9 +30,9 @@ import ListedPostVo from "../vo/ListedPostVo.md"
 
 #### 示例
 
-```html title="/templates/category.html"
+```html title="/templates/author.html"
 <div>
-  <h1 th:text="${category.spec.displayName}"></h1>
+  <h1 th:text="${author.spec.displayName}"></h1>
   <ul>
     <li th:each="post : ${posts.items}">
       <a
@@ -56,13 +57,11 @@ import ListedPostVo from "../vo/ListedPostVo.md"
 </div>
 ```
 
-### _templateId
-
-#### 变量值
-
-`category`
-
 ## 类型定义
+
+### UserVo
+
+<UserVo />
 
 ### CategoryVo
 
