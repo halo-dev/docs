@@ -6,7 +6,7 @@ description: post.html - /archives/:slug
 import CategoryVo from "../vo/CategoryVo.md"
 import TagVo from "../vo/TagVo.md"
 import ContentVo from "../vo/ContentVo.md"
-import Contributor from "../vo/Contributor.md"
+import ContributorVo from "../vo/ContributorVo.md"
 import PostVo from "../vo/PostVo.md"
 
 ## 路由信息
@@ -47,9 +47,9 @@ import PostVo from "../vo/PostVo.md"
 
 <TagVo />
 
-### Contributor
+### ContributorVo
 
-<Contributor />
+<ContributorVo />
 
 ### ContentVo
 
@@ -61,5 +61,5 @@ import PostVo from "../vo/PostVo.md"
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)
-- [#Contributor](#contributor)
+- [#ContributorVo](#contributorvo)
 - [#ContentVo](#contentvo)

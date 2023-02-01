@@ -5,7 +5,7 @@ description: 独立页面 - SinglePageFinder
 
 import SinglePageVo from "../vo/SinglePageVo.md"
 import ListedSinglePageVo from "../vo/ListedSinglePageVo.md"
-import Contributor from "../vo/Contributor.md"
+import ContributorVo from "../vo/ContributorVo.md"
 import ContentVo from "../vo/ContentVo.md"
 
 ## getByName(pageName)
@@ -95,12 +95,12 @@ singlePageFinder.list(page,size)
 
 <SinglePageVo />
 
-- [#Contributor](#contributor)
+- [#ContributorVo](#contributorvo)
 - [#ContentVo](#contentvo)
 
 ### ListedSinglePageVo
 
-- [#Contributor](#contributor)
+- [#ContributorVo](#contributorvo)
 
 <ListedSinglePageVo />
 
@@ -126,6 +126,6 @@ singlePageFinder.list(page,size)
 
 <ContentVo />
 
-### Contributor
+### ContributorVo
 
-<Contributor />
+<ContributorVo />

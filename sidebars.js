@@ -128,6 +128,7 @@ module.exports = {
                 "developer-guide/theme/template-variables/tag",
                 "developer-guide/theme/template-variables/categories",
                 "developer-guide/theme/template-variables/category",
+                "developer-guide/theme/template-variables/author",
               ],
             },
             {
