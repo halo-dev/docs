@@ -70,6 +70,12 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 升级版本
 
+0. 拉取新版本镜像
+
+  ```bash
+  docker pull halohub/halo:2.2.0
+  ```
+
 1. 停止运行中的容器
 
   ```bash
