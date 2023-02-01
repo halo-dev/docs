@@ -40,6 +40,7 @@
     "permalink": "string",                              // 固定链接
     "excerpt": "string",                                // 最终生成的摘要
     "inProgress": true,
+    "lastModifyTime": "2022-11-20T13:06:38.505Z",       // 最后修改时间
     "commentsCount": 0,                                 // 评论数
     "contributors": [                                   // 贡献者名称，Contributor 的 metadata.name 的集合
       "string"
