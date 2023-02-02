@@ -17,7 +17,7 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 环境搭建
 
-- Docker 安装文档：<https://docs.docker.com/get-docker/>
+- Docker 安装文档：<https://docs.docker.com/engine/install/>
 
 :::tip
 我们推荐按照 Docker 官方文档安装 Docker，因为部分 Linux 发行版软件仓库中的 Docker 版本可能过旧。
@@ -67,3 +67,42 @@ import DockerArgs from "./slots/docker-args.md"
     :::tip
     如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
     :::
+
+## 升级版本
+
+1. 拉取新版本镜像
+
+  ```bash
+  docker pull halohub/halo:2.1.0
+  ```
+
+2. 停止运行中的容器
+
+  ```bash
+  docker stop halo
+  docker rm halo
+  ```
+
+3. 备份数据（重要）
+
+  ```bash
+  cp -r ~/.halo2 ~/halo2.archive
+  ```
+
+  > 需要注意的是，`halo2.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
+
+4. 更新 Halo
+
+  修改版本号后，按照最初安装的方式，重新创建容器即可。
+
+    ```bash {6}
+    docker run \
+      -it -d \
+      --name halo \
+      -p 8090:8090 \
+      -v ~/.halo2:/root/.halo2 \
+      halohub/halo:2.1.0 \
+      --halo.external-url=http://localhost:8090/ \
+      --halo.security.initializer.superadminuser=admin \
+      --halo.security.initializer.superadminpassword=P@88w0rd  
+    ```
