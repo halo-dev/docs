@@ -38,6 +38,7 @@ module.exports = {
               type: "category",
               label: "其他指南",
               items: [
+                "getting-started/install/other/traefik",
                 "getting-started/install/other/oneinstack",
                 "getting-started/install/other/nginxproxymanager",
               ],

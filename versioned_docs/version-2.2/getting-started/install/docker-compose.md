@@ -6,7 +6,7 @@ description: 使用 Docker Compose 部署
 import DockerArgs from "./slots/docker-args.md"
 
 :::info
-在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare.md)，这可以快速帮助你了解 Halo。
+在继续操作之前，我们推荐您先阅读 [《写在前面》](../prepare.md)，这可以快速帮助你了解 Halo。
 :::
 
 ## 环境搭建
@@ -207,7 +207,7 @@ import DockerArgs from "./slots/docker-args.md"
 4. 用浏览器访问 `$HALO_EXTERNAL_URL/console/`（外部访问链接）即可进入 Halo 管理端。管理员用户名为 `admin`，登录密码为上方设置的 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`。
 
   :::tip
-  如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
+  如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip: 端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
   :::
 
 ## 更新容器组
@@ -247,7 +247,56 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 反向代理
 
-你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。如果你对 Nginx 不熟悉，我们推荐使用 [OneinStack](../install/other/oneinstack.md) 来管理 Nginx。
+你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。 如果你对它们没有任何了解，可以参考我们更为详细的反向代理文档：
+
+1. 使用 [Traefik](../install/other/traefik.md) **_推荐_**
+
+2. 使用 [OneinStack](../install/other/oneinstack.md)
+
+3. 使用 [Nginx Proxy Manager](../install/other/nginxproxymanger.md)
+
+### Traefik
+
+更新 halo 容器组的配置
+
+1. `networks`中引入已存在的网络`traefik` （此网络需要 [提前创建](../install/other/traefik.md#创建-traefik)）
+2. `services.halo.networks`中添加网络`traefik`
+3. 修改外部地址为你的域名
+4. 声明路由规则、开启 TLS
+
+```yaml {4-5,16,20,25-31} showLineNumbers
+version: "3.8"
+
+networks:
+  traefik:
+    external: true
+  halo:
+
+services:
+  halo:
+    image: halohub/halo:2.2.0
+    container_name: halo
+    restart: on-failure:3
+    volumes:
+      - ./:/root/.halo2
+    networks:
+      - traefik
+      - halo
+    command:
+      # 外部访问地址，请根据实际需要修改
+      - --halo.external-url=https://yourdomain.com
+      # 初始化的超级管理员用户名
+      - --halo.security.initializer.superadminusername=admin
+      # 初始化的超级管理员密码
+      - --halo.security.initializer.superadminpassword=P@88w0rd
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: traefik
+      traefik.http.routers.halo.rule: Host(`yourdomain.com`)
+      traefik.http.routers.halo.tls: "true"
+      traefik.http.routers.halo.tls.certresolver: myresolver
+      traefik.http.services.halo.loadbalancer.server.port: 8090
+```
 
 ### Nginx
 
