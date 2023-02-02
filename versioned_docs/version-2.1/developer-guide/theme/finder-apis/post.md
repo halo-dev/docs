@@ -7,7 +7,7 @@ import CategoryVo from "../vo/CategoryVo.md";
 import TagVo from "../vo/TagVo.md";
 import PostVo from "../vo/PostVo.md";
 import ContentVo from "../vo/ContentVo.md"
-import Contributor from "../vo/Contributor.md"
+import ContributorVo from "../vo/ContributorVo.md"
 import ListedPostVo from "../vo/ListedPostVo.md"
 
 ## getByName(postName)
@@ -340,9 +340,9 @@ postFinder.archives(page, size, year, month);
 
 <TagVo />
 
-### Contributor
+### ContributorVo
 
-<Contributor />
+<ContributorVo />
 
 ### PostVo
 
@@ -350,7 +350,7 @@ postFinder.archives(page, size, year, month);
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)
-- [#Contributor](#contributor)
+- [#ContributorVo](#contributorvo)
 - [#ContentVo](#contentvo)
 
 ### ContentVo
@@ -375,7 +375,7 @@ postFinder.archives(page, size, year, month);
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)
-- [#Contributor](#contributor)
+- [#ContributorVo](#contributorvo)
 
 ### ListResult<ListedPostVo\>
 
