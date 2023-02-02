@@ -11,7 +11,7 @@ import DockerEnv from "./slots/docker-env.md"
 
 ## 环境搭建
 
-- Docker 安装文档：<https://docs.docker.com/get-docker/>
+- Docker 安装文档：<https://docs.docker.com/engine/install/>
 - Docker Compose 安装文档：<https://docs.docker.com/compose/install/>
 
 :::tip
