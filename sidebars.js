@@ -152,6 +152,7 @@ module.exports = {
               ],
             },
             "developer-guide/theme/global-variables",
+            "developer-guide/theme/template-tag",
             "developer-guide/theme/code-snippets",
           ],
         },

@@ -76,9 +76,7 @@
           "link": {
             "type": "generated-index"
           },
-          "items": [
-            "developer-guide/plugin/prepare"
-          ]
+          "items": ["developer-guide/plugin/prepare"]
         },
         {
           "type": "category",
@@ -134,6 +132,7 @@
               ]
             },
             "developer-guide/theme/global-variables",
+            "developer-guide/theme/template-tag",
             "developer-guide/theme/code-snippets"
           ]
         },
@@ -147,10 +146,7 @@
       "link": {
         "type": "generated-index"
       },
-      "items": [
-        "contribution/issue",
-        "contribution/pr"
-      ]
+      "items": ["contribution/issue", "contribution/pr"]
     },
     "about"
   ]
