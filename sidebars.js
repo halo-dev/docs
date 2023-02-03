@@ -152,6 +152,8 @@ module.exports = {
                 "developer-guide/theme/finder-apis/plugin",
               ],
             },
+            "developer-guide/theme/global-variables",
+            "developer-guide/theme/template-tag",
             "developer-guide/theme/code-snippets",
           ],
         },
