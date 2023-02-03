@@ -37,7 +37,10 @@ module.exports = {
             {
               type: "category",
               label: "其他指南",
-              items: ["getting-started/install/other/oneinstack"],
+              items: [
+                "getting-started/install/other/oneinstack",
+                "getting-started/install/other/nginxproxymanager",
+              ],
             },
           ],
         },
@@ -150,6 +153,7 @@ module.exports = {
             "developer-guide/theme/template-route-mapping",
             "developer-guide/theme/static-resources",
             "developer-guide/theme/settings",
+            "developer-guide/theme/annotations",
             {
               type: "category",
               label: "模板变量",
@@ -166,6 +170,7 @@ module.exports = {
                 "developer-guide/theme/template-variables/tag",
                 "developer-guide/theme/template-variables/categories",
                 "developer-guide/theme/template-variables/category",
+                "developer-guide/theme/template-variables/author",
               ],
             },
             {
@@ -192,6 +197,7 @@ module.exports = {
           ],
         },
         "developer-guide/form-schema",
+        "developer-guide/annotations-form",
         // {
         //   type: "link",
         //   label: "REST API",
