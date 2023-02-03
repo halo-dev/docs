@@ -22,7 +22,7 @@ description: 使用 Traefik 管理 Halo 服务的反向代理
 下面的配置中，创建了 Traefik 实例。并且做了基础的几项配置：
 
 1. 监听了宿主机的 80、443 端口，并自动将 80 端口的请求重定向到 443 端口。[文档](https://doc.traefik.io/traefik/routing/entrypoints/)
-2. 开启 Docker 服务发现，监听检测 docker 容器声明的服务关系。[文档](https://doc.traefik.io/traefik/providers/docker/#provider-configuration)
+2. 开启 Docker 服务发现，监听检测 Docker 容器声明的服务关系。[文档](https://doc.traefik.io/traefik/providers/docker/#provider-configuration)
 3. 开启 Traefik Dashboard，建议使用二级域名的形式（示例：`traefik.yourdomain.com`）。[文档](https://doc.traefik.io/traefik/operations/dashboard/#dashboard-router-rule)
 4. 开启证书自动生成，通过 ACME 自动管理 TLS 证书的申请、校验与续期。[文档](https://doc.traefik.io/traefik/https/acme/)
 
@@ -79,7 +79,7 @@ services:
 
 这里以最简配置（h2 数据库）Halo 服务的 Docker 配置举例。只需做以下调整：
 
-1. 顶层 `networks` 中添加了外部网络`traefik`，
+1. 顶层 `networks` 中添加了外部网络 `traefik`
 2. `services.halo.networks` 中添加了 `traefik` 网络
 3. `services.halo.labels` 中声明了 Traefik 配置
    1. 路由规则为 `yourdomain.com`
