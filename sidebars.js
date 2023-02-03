@@ -40,6 +40,7 @@ module.exports = {
               items: [
                 "getting-started/install/other/oneinstack",
                 "getting-started/install/other/nginxproxymanager",
+                "getting-started/install/other/traefik",
               ],
             },
           ],
