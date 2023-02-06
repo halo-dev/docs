@@ -40,6 +40,7 @@ module.exports = {
               items: [
                 "getting-started/install/other/oneinstack",
                 "getting-started/install/other/nginxproxymanager",
+                "getting-started/install/other/traefik",
               ],
             },
           ],
@@ -193,6 +194,8 @@ module.exports = {
                 "developer-guide/theme/finder-apis/plugin",
               ],
             },
+            "developer-guide/theme/global-variables",
+            "developer-guide/theme/template-tag",
             "developer-guide/theme/code-snippets",
           ],
         },
