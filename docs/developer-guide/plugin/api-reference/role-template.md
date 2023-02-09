@@ -70,7 +70,7 @@ rules:
 
 `metadata.annotations` 中：
 
-- `rbac.authorization.halo.run/dependencies`：用于声明角色间的依赖关系，例如管理角色必须要依赖查看角色，以避免勾选管理权限却没有查看权限的情况。
+- `rbac.authorization.halo.run/dependencies`：用于声明角色间的依赖关系，例如管理角色必须要依赖查看角色，以避免分配了管理权限却没有查看权限的情况。
 - `rbac.authorization.halo.run/module`：角色模板分组名称。在此示例中，管理 Person 的模板角色将和查看 Person 的模板角色将被在 UI 层面归为一组展示。
 - `rbac.authorization.halo.run/display-name`：模板角色的显示名称，用于展示为用户可读的名称信息。
 - `rbac.authorization.halo.run/ui-permissions`：用于控制 UI 权限，规则为 `plugin:{your-plugin-name}:scope-name`，使用示例为在插件前端部分入口文件 `index.ts` 中用于控制菜单是否显示或者控制页面按钮是否展示：

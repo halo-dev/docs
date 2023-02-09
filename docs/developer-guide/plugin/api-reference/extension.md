@@ -3,7 +3,7 @@ title: 自定义模型
 description: 了解什么是自定义模型及如何创建
 ---
 
-Halo 自定义模型主要参考自 [Kubernetes CRD](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) 。自定义模型主要遵循 [OpenAPI v3](https://spec.openapis.org/oas/v3.1.0)。设计目的在于为插件提供自定义数据支持。比如某插件需要存储自定义数据，同时也想读取和操作自定义数据。
+Halo 自定义模型主要参考自 [Kubernetes CRD](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/) 。自定义模型遵循 [OpenAPI v3](https://spec.openapis.org/oas/v3.1.0)。设计目的在于为插件提供自定义数据支持。比如某插件需要存储自定义数据，同时也想读取和操作自定义数据。
 
 一个典型的自定义模型 `Java` 代码示例如下：
 
@@ -100,7 +100,7 @@ DELETE /apis/my-plugin.halo.run/v1alpha1/persons/{name}
 
 在一些场景下，只有自动生成的 `CRUD` API 往往是不够用的，此时可以通过自定义一些 API 来满足功能。
 
-你可以使用 `SpringBoot` 的控制器写法来暴露 API，不同的是需要添加 `@ApiVersion` 注解，没有此注册的 `Controller` 将被忽略：
+你可以使用 `SpringBoot` 的控制器写法来暴露 API，不同的是需要添加 `@ApiVersion` 注解，没有此注解的 `Controller` 将被忽略：
 
 ```java
 @ApiVersion("v1alpha1")

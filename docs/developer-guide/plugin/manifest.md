@@ -38,3 +38,7 @@ description: 了解插件资源文件 plugin.yaml 如何配置
 - `spec.displayName`：插件的显示名称，它通常是以少数几个字来概括插件的用途。
 - `spec.description`：插件描述，用一段话来介绍插件的用途。
 - `spec.license`：插件使用的软件协议，参考：<https://en.wikipedia.org/wiki/Software_license>。
+
+:::tip Note
+如果你在 plugin.yaml 中配置了 `settingName` 但确没有对应的 `Setting` 自定义模型资源文件，会导致插件无法启动，原因是 `Setting` 模型 `metadata.name` 为你配置的 `settingName` 的资源无法找到。
+:::

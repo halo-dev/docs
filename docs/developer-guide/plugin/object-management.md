@@ -22,7 +22,7 @@ public class FruitService {
 }
 ```
 
-你可以在任何同样声明为 Bean 的类中使用依赖注入来使用它：
+你可以在任何同样声明为 Bean 的类中使用[依赖注入](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-dependencies)来使用它：
 
 ```java
 @Component

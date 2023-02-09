@@ -47,7 +47,7 @@ description: 这个例子展示了如何开发 Todo List 插件
 - [SemVer expression](https://github.com/zafarkhaja/jsemver#semver-expressions-api-ranges)
 - [表单定义](../form-schema.md)
 
-此时我们已经准备好了可以开发一个 hello world 插件的一切，下面让我们正式进入 hello world 插件开发教程。
+此时我们已经准备好了可以开发一个 TodoList 插件的一切，下面让我们正式进入 TodoList 插件开发教程。
 
 ## 运行插件
 
@@ -86,21 +86,20 @@ public class TodoListPlugin extends BasePlugin {
 ./gradlew build 
 ```
 
-使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../core/run.md)并对 `application-local.yaml` 做如下配置：
+使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../core/run.md) 及 [插件入门](../hello-world.md) 配置插件的运行模式和路径：
 
 ```yaml
 halo:
   plugin:
     runtime-mode: development
-    plugins-root: ${halo.work-dir}/plugins
     fixed-plugin-path:
       # 配置为插件绝对路径
       - /Users/guqing/halo-plugin-todolist
 ```
 
-使用此 local profile 启动 Halo，然后访问 `http://localhost:8090/console`
+启动 Halo，然后访问 `http://localhost:8090/console`
 
-在插件列表将能看到插件已经被正确启动
+在插件列表将能看到插件已经被正确启用
 ![plugin-todolist-in-list-view](/img/todolist-in-list.png)
 
 ## 创建一个自定义模型
@@ -175,7 +174,7 @@ public class TodoListPlugin extends BasePlugin {
 }
 ```
 
-然后 build 项目，重启 Halo，访问 `http://localhost:8090/webjars/swagger-ui/index.html`，
+然后 build 项目，重启 Halo，访问 `http://localhost:8090/swagger-ui.html`，
 可以找到如下 Todo APIs：
 
 ![hello world plugin swagger api for toto](/img/halo-plugin-hello-world-todo-swagger-api.png)
@@ -197,7 +196,7 @@ public class TodoListPlugin extends BasePlugin {
 }
 ```
 
-至此我们完成了一个自定义模型的创建和使用插件生命周期方法实现了自定义模型的注册和删除，下一步我们将编写用户界面使用这些 APIs 完成 TodoList 功能。
+至此我们完成了一个自定义模型的创建和使用插件生命周期方法实现了自定义模型的注册和删除，下一步我们将编写用户界面，使用这些 APIs 完成 TodoList 功能。
 
 ## 编写用户界面
 
@@ -227,7 +226,7 @@ public class TodoListPlugin extends BasePlugin {
 
 修改前端项目不需要重启 Halo，只需要 build 然后刷新页面，此时能看到多出来一个菜单项：
 
-![starter-ui-example](/img/starter-ui-example.png)
+![hello-world-in-plugin-list](/img/plugin-hello-world.png)
 
 而我们需要实现的目标中也需要一个菜单项，所以直接修改它即可。
 
@@ -242,23 +241,23 @@ export default definePlugin({
     {
       parentName: "Root",
       route: {
--       path: "/hello-world",
+-       path: "/example",
 +       path: "/todos", // TodoList 的路由 path
         children: [
           {
             path: "",
--            name: "HelloWorld",
+-            name: "Example",
 +            name: "TodoList",// 菜单标识名
             component: DefaultView,
             meta: {
 -              permissions: ["plugin:apples:view"],
--              title: "HelloWorld",
+-              title: "示例页面",
 +              title: "Todo List",//菜单页的浏览器 tab 标题
               searchable: true,
               menu: {
--               name: "迁移",
+-               name: "示例页面",
 +               name: "Todo List",// TODO 菜单显示名称
--               group: "From PluginStarter",
+-               group: "示例分组",
 =               group: "工具",// 所在组名
                 icon: markRaw(IconGrid),
                 priority: 0,
@@ -672,3 +671,5 @@ export default definePlugin({
       </h1>
 //...
 ```
+
+至此，我们完成了从零开始创建一个 TodoList 插件的所有步骤，希望可以帮助你对 Halo 的插件开发有一个整体的了解。

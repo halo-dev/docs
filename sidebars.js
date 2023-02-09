@@ -111,6 +111,7 @@ module.exports = {
               },
               items: [
                 "developer-guide/plugin/structure",
+                "developer-guide/plugin/runtime-mode",
                 "developer-guide/plugin/lifecycle",
                 "developer-guide/plugin/manifest",
                 "developer-guide/plugin/object-management",

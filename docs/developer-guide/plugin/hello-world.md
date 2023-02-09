@@ -15,7 +15,8 @@ Halo 提供了一个模板仓库用于创建插件：
 ## 运行插件
 
 现在有了一个空项目，我们需要让插件能最最小化的运行起来。
-这很简单，你只需要在 `halo-plugin-hello-world` 项目目录下执行 Gradle 命令
+
+这很简单，首先你需要构建插件：只需要在 `halo-plugin-hello-world` 项目目录下执行 Gradle 命令
 
 ```shell
 ./gradlew build 
@@ -25,20 +26,30 @@ Halo 提供了一个模板仓库用于创建插件：
 
 第二步就是使用它。
 
-你需要使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../core/run.md)并对 `application-local.yaml` 做如下配置：
+使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../core/run.md)。
+然后在 `src/main/resources` 下创建一个 `application-local.yaml` 文件并做如下配置：
 
 ```yaml
 halo:
   plugin:
     runtime-mode: development
-    plugins-root: ${halo.work-dir}/plugins
     fixed-plugin-path:
       # 配置为插件绝对路径
       - /Users/guqing/halo-plugin-hello-world
 ```
 
-使用此 local profile 启动 Halo，然后访问 `http://localhost:8090/console`
+使用此 local profile 启动 Halo：
 
-在插件列表将能看到插件已经被正确启动，并且在左侧菜单添加了一个组，其下有一个名叫迁移的菜单。
+```shell
+# macOS / Linux
+./gradlew bootRun --args="--spring.profiles.active=dev,local"
+
+# Windows
+gradlew.bat bootRun --args="--spring.profiles.active=dev,win,local"
+```
+
+然后访问 `http://localhost:8090/console`
+
+在插件列表将能看到插件已经被正确启动，并且在左侧菜单添加了一个 `示例分组`，其下有一个名 `示例页面` 的菜单。
 
 ![hello-world-in-plugin-list](/img/plugin-hello-world.png)
