@@ -7,7 +7,7 @@ description: 插件开发的准备工作
 
 在创建你的第一个插件之前，请确保你具备以下条件：
 
-- 你能成功运行 Halo 2.0.0 版本。
+- 你能成功[运行 Halo 2.0.0 及以上版本](../core/run.md)。
 - 你应该能够熟练使用 [IntelliJ IDEA](https://www.jetbrains.com/idea/old)。
 - 你需要在计算机上安装最新的 LTS 版本的 Node.js。如果你还没有Node.js安装，你可以在这里下载 [Node.js 16 LTS](https://nodejs.org/)。
 - 你熟悉 Vue 和 TypeScript。
