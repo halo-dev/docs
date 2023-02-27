@@ -44,7 +44,7 @@ import DockerArgs from "./slots/docker-args.md"
       -v ~/.halo2:/root/.halo2 \
       halohub/halo:2.2.0 \
       --halo.external-url=http://localhost:8090/ \
-      --halo.security.initializer.superadminuser=admin \
+      --halo.security.initializer.superadminusername=admin \
       --halo.security.initializer.superadminpassword=P@88w0rd  
     ```
 
@@ -103,6 +103,6 @@ import DockerArgs from "./slots/docker-args.md"
       -v ~/.halo2:/root/.halo2 \
       halohub/halo:2.2.0 \
       --halo.external-url=http://localhost:8090/ \
-      --halo.security.initializer.superadminuser=admin \
+      --halo.security.initializer.superadminusername=admin \
       --halo.security.initializer.superadminpassword=P@88w0rd  
     ```
