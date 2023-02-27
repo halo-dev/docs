@@ -103,3 +103,16 @@ halo:
     ```
 
 5. 最终访问 `http://localhost:8090/console` 即可进入控制台。访问 `http://localhost:8090` 即可进入站点首页。
+
+:::info
+开发环境下，超级管理员的默认用户名为 `admin`，默认密码为 `admin`。也可通过修改 `application-dev.yaml` 配置文件进行更改：
+
+```yaml
+halo:
+  security:
+    initializer:
+      super-admin-username: admin
+      super-admin-password: admin
+```
+
+:::
