@@ -66,6 +66,12 @@ import DockerArgs from "./slots/docker-args.md"
           - ./:/root/.halo2
         ports:
           - "8090:8090"
+        healthcheck:
+          test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+          interval: 30s
+          timeout: 5s
+          retries: 5
+          start_period: 30s          
         command:
           - --spring.r2dbc.url=r2dbc:pool:postgresql://halodb/halo
           - --spring.r2dbc.username=halo
@@ -122,6 +128,12 @@ import DockerArgs from "./slots/docker-args.md"
           - ./:/root/.halo2
         ports:
           - "8090:8090"
+        healthcheck:
+          test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+          interval: 30s
+          timeout: 5s
+          retries: 5
+          start_period: 30s          
         command:
           - --spring.r2dbc.url=r2dbc:pool:mysql://halodb:3306/halo
           - --spring.r2dbc.username=root
@@ -179,6 +191,12 @@ import DockerArgs from "./slots/docker-args.md"
           - ./:/root/.halo2
         ports:
           - "8090:8090"
+        healthcheck:
+          test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+          interval: 30s
+          timeout: 5s
+          retries: 5
+          start_period: 30s          
         command:
           # 外部访问地址，请根据实际需要修改
           - --halo.external-url=http://localhost:8090/
