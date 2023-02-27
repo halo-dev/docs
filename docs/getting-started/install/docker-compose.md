@@ -67,7 +67,7 @@ import DockerArgs from "./slots/docker-args.md"
         ports:
           - "8090:8090"
         healthcheck:
-          test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/globalinfo"]
+          test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
           interval: 30s
           timeout: 5s
           retries: 5
@@ -129,7 +129,7 @@ import DockerArgs from "./slots/docker-args.md"
         ports:
           - "8090:8090"
         healthcheck:
-          test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/globalinfo"]
+          test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
           interval: 30s
           timeout: 5s
           retries: 5
@@ -192,7 +192,7 @@ import DockerArgs from "./slots/docker-args.md"
         ports:
           - "8090:8090"
         healthcheck:
-          test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/globalinfo"]
+          test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
           interval: 30s
           timeout: 5s
           retries: 5
