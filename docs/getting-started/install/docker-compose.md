@@ -49,7 +49,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     1. 创建 Halo + PostgreSQL 的实例：
 
-    ```yaml {18-28,45} title="~/halo/docker-compose.yaml"
+    ```yaml {24-34,51} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
@@ -111,7 +111,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     2. 创建 Halo + MySQL 的实例：
 
-    ```yaml {18-28,53} title="~/halo/docker-compose.yaml"
+    ```yaml {24-34,59} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
@@ -179,7 +179,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     3. 仅创建 Halo 实例（使用默认的 H2 数据库，**不推荐用于生产环境，建议体验和测试的时候使用**）：
 
-    ```yaml {13-20} title="~/halo/docker-compose.yaml"
+    ```yaml {19-24} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
