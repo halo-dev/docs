@@ -17,7 +17,7 @@
     "children": [                                       // 下级菜单项，菜单项的 metadata.name 集合
       "string"
     ],
-    "target": "#MenuItemTargetEnum",                    // 菜单页面打开方式，枚举类型
+    "target": "#MenuItemTarget",                    // 菜单页面打开方式，枚举类型
     "targetRef": {                                      // 与其他资源比如文章的关联，一般无需直接使用
       "group": "string",
       "version": "string",
@@ -34,7 +34,7 @@
 }
 ```
 
-```java title="MenuItemTargetEnum"
+```java title="MenuItemTarget"
 enum Target {
     BLANK("_blank"),                                     // 在新窗口打开
     SELF("_self"),                                       // 在当前窗口打开

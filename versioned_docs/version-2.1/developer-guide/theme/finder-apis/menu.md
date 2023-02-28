@@ -85,7 +85,3 @@ menuFinder.getPrimary()
 ### MenuItemVo
 
 <MenuItemVo />
-
-### MenuItemTargetEnum
-
-<MenuItemTargetEnum />
