@@ -11,9 +11,9 @@ description: 开发环境运行的指南
 
 目前如果需要完整的运行 Halo，总共需要三个部分：
 
-1. Halo 主项目([halo-dev/halo](https://github.com/halo-dev/halo))
-2. Console 控制台([halo-dev/console](https://github.com/halo-dev/console))
-3. 主题
+1. Halo 主项目（[halo-dev/halo](https://github.com/halo-dev/halo)）
+2. Console 控制台（托管在 Halo 主项目）
+3. 主题（Halo 主项目内已包含默认主题）
 
 :::info 说明
 当前 Halo 主项目并不会将 Console 的构建资源托管到 Git 版本控制，所以在开发环境是需要同时运行 Console 项目的。当然，在我们的最终发布版本的时候会在 CI 中自动构建 Console 到 Halo 主项目。
@@ -31,29 +31,33 @@ git clone https://github.com/halo-dev/halo
 git clone git@github.com:halo-dev/halo.git
 ```
 
-```bash
-git clone https://github.com/halo-dev/console
+:::warning
+从 2.4.0 开始，Console 项目已经合并到 Halo 主项目，所以不再需要单独克隆 Console 的项目仓库。
 
-# 或者使用 ssh 的方式 clone（推荐）
-
-git clone git@github.com:halo-dev/console.git
-```
+详情可查阅：<https://github.com/halo-dev/halo/issues/3393>
+:::
 
 ## 运行 Console
 
 ```bash
-cd path/to/console
+cd path/to/halo
 ```
 
-```bash
-pnpm install 
-```
+Linux / macOS 平台：
 
 ```bash
+make -C console dev
+```
+
+Windows 平台：
+
+```bash
+cd console
+
+pnpm install
+
 pnpm build:packages
-```
 
-```bash
 pnpm dev
 ```
 

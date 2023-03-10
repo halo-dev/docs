@@ -27,43 +27,39 @@ cd halo
 git checkout v2.0.0
 ```
 
-```bash
-git clone https://github.com/halo-dev/console
-
-# 或者使用 ssh 的方式 clone（推荐）
-
-git clone git@github.com:halo-dev/console.git
-
-# 切换到最新的 tag
-
-cd console
-
-git checkout v2.0.0
-```
-
 :::tip
 请务必按照以上要求切换到最新的 tag，而不是直接使用 main 分支构建，main 分支是我们的开发分支。此文档以 `2.0.0` 为例，查看最新的 tag 可使用 `git tag --column` 查看。
+:::
+
+:::warning
+从 2.4.0 开始，Console 项目已经合并到 Halo 主项目，所以不再需要单独克隆 Console 的项目仓库。
+
+详情可查阅：<https://github.com/halo-dev/halo/issues/3393>
 :::
 
 ## 构建 Console
 
 ```bash
-cd path/to/console
+cd path/to/halo
 ```
 
+Linux / macOS 平台：
+
 ```bash
+make -C console build
+```
+
+Windows 平台：
+
+```bash
+cd console
+
 pnpm install
-```
 
-```bash
 pnpm build:packages
-```
 
-```bash
 pnpm build
 ```
-
-构建完成之后，在 console 目录下产生的 `dist` 目录即为构建完成的文件。最后将 `dist` 目录的所有文件复制到 halo 项目的 `src/main/resources/console` 目录。
 
 ## 构建 Fat Jar
 
