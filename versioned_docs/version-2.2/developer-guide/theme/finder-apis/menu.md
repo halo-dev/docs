@@ -30,9 +30,14 @@ menuFinder.getByName(name)
 <div th:with="menu = ${menuFinder.getByName('menu-foo')}">
   <ul th:with="menuItems = ${menu.menuItems}">
     <li th:each="menuItem : ${menuItems}">
-      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.spec.displayName}"></a>
+      <a
+        th:href="@{${menuItem.status.href}}"
+        th:text="${menuItem.spec.displayName}"
+        th:target="${menuItem.spec.target?.value}"
+      >
+      </a>
     </li>
-   </ul>
+  </ul>
 </div>
 ```
 
@@ -60,9 +65,14 @@ menuFinder.getPrimary()
 <div th:with="menu = ${menuFinder.getPrimary()}">
   <ul th:with="menuItems = ${menu.menuItems}">
     <li th:each="menuItem : ${menuItems}">
-      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.spec.displayName}"></a>
+      <a
+        th:href="@{${menuItem.status.href}}"
+        th:text="${menuItem.spec.displayName}"
+        th:target="${menuItem.spec.target?.value}"
+      >
+      </a>
     </li>
-   </ul>
+  </ul>
 </div>
 ```
 
