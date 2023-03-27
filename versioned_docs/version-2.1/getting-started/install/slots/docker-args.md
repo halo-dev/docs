@@ -4,7 +4,7 @@
 | `spring.r2dbc.username`                        | 数据库用户名                                                                     |
 | `spring.r2dbc.password`                        | 数据库密码                                                                       |
 | `spring.sql.init.platform`                     | 数据库平台名称，支持 `postgresql`、`mysql`、`h2`，需要与 `SPRING_R2DBC_URL` 对应 |
-| `halo.external-url`                            | 外部访问链接，如果需要再公网访问，需要配置为实际访问地址                         |
+| `halo.external-url`                            | 外部访问链接，如果需要在公网访问，需要配置为实际访问地址                         |
 | `halo.security.initializer.superadminusername` | 初始超级管理员用户名                                                             |
 | `halo.security.initializer.superadminpassword` | 初始超级管理员密码                                                               |
 
