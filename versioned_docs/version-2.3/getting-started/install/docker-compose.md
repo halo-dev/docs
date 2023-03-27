@@ -237,6 +237,8 @@ import DockerArgs from "./slots/docker-args.md"
           - --halo.security.initializer.superadminusername=admin
           # 初始化的超级管理员密码
           - --halo.security.initializer.superadminpassword=P@88w0rd
+          # 端口号 默认8090
+          - --server.port=8090
 
     ```
 
