@@ -34,6 +34,7 @@ module.exports = {
           items: [
             "getting-started/install/docker-compose",
             "getting-started/install/docker",
+            "getting-started/install/1panel",
             {
               type: "category",
               label: "其他指南",

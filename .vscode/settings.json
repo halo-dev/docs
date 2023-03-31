@@ -1,5 +1,8 @@
 {
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-  }
+  },
+  "i18n-ally.localesPaths": [
+    "i18n"
+  ]
 }
