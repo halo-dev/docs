@@ -24,11 +24,11 @@ git clone git@github.com:halo-dev/halo.git
 
 cd halo
 
-git checkout v2.0.0
+git checkout v2.4.0
 ```
 
 :::tip
-请务必按照以上要求切换到最新的 tag，而不是直接使用 main 分支构建，main 分支是我们的开发分支。此文档以 `2.0.0` 为例，查看最新的 tag 可使用 `git tag --column` 查看。
+请务必按照以上要求切换到最新的 tag，而不是直接使用 main 分支构建，main 分支是我们的开发分支。此文档以 `2.4.0` 为例，查看最新的 tag 可使用 `git tag --column` 查看。
 :::
 
 :::warning
@@ -63,7 +63,7 @@ pnpm build
 
 ## 构建 Fat Jar
 
-构建之前需要修改 `gradle.properties` 中的 `version` 为当前 tag 的版本号，如：`version=2.0.0`
+构建之前需要修改 `gradle.properties` 中的 `version` 为当前 tag 的版本号，如：`version=2.4.0`
 
 ```bash
 cd path/to/halo
@@ -71,24 +71,24 @@ cd path/to/halo
 
 ```bash
 # Windows
-./gradlew.bat clean build -x check -x jar
+./gradlew.bat clean build -x check
 
 # macOS / Linux
-./gradlew clean build -x check -x jar
+./gradlew clean build -x check
 ```
 
-构建完成之后，在 halo 项目下产生的 `build/libs/halo-2.0.0.jar` 即为构建完成的文件。
+构建完成之后，在 halo 项目下产生的 `application/build/libs/halo-2.4.0.jar` 即为构建完成的文件。
 
 ## 构建 Docker 镜像
 
-在进行之前，请确保已经完成上述操作，最终需要确认在 halo 项目的 `build/libs/` 目录已经包含了 `halo-2.0.0.jar` 文件。
+在进行之前，请确保已经完成上述操作，最终需要确认在 halo 项目的 `application/build/libs/` 目录已经包含了 `halo-2.4.0.jar` 文件。
 
 ```bash
 cd path/to/halo
 ```
 
 ```bash
-docker build -t halo-dev/halo:2.0.0 .
+docker build -t halo-dev/halo:2.4.0 .
 ```
 
 ```bash
