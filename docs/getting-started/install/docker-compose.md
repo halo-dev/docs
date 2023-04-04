@@ -20,13 +20,18 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 创建容器组
 
-可用的 Halo 2.4.1 的 Docker 镜像：
+可用的 Halo 2.4 的 Docker 镜像：
 
 - [halohub/halo](https://hub.docker.com/r/halohub/halo)
 - [ghcr.io/halo-dev/halo](https://github.com/halo-dev/halo/pkgs/container/halo)
 
 :::info 注意
-目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.4.1`。
+目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.4` 或者 `halohub/halo:2.4.0`。
+
+- `halohub/halo:2.4`：表示最新的 2.4.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.4` 镜像。
+- `halohub/halo:2.4.0`：表示一个具体的版本。
+
+后续文档以 `halohub/halo:2.4` 为例。
 :::
 
 1. 在系统任意位置创建一个文件夹，此文档以 `~/halo` 为例。
@@ -44,7 +49,7 @@ import DockerArgs from "./slots/docker-args.md"
   此文档提供两种场景的 Docker Compose 配置文件，请根据你的需要**选择一种**。
 
   :::info
-  需要注意的是，此文档为了更加方便的管理配置，所有与 Halo 相关的配置都使用 Docker 环境变量代替，所以无需创建 application.yaml 文件。
+  需要注意的是，此文档为了更加方便的管理配置，所有与 Halo 相关的配置都使用 Docker 容器启动参数代替，所以无需创建 application.yaml 文件。
   :::
 
     1. 创建 Halo + PostgreSQL 的实例：
@@ -54,7 +59,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     services:
       halo:
-        image: halohub/halo:2.4.1
+        image: halohub/halo:2.4
         container_name: halo
         restart: on-failure:3
         depends_on:
@@ -116,7 +121,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     services:
       halo:
-        image: halohub/halo:2.4.1
+        image: halohub/halo:2.4
         container_name: halo
         restart: on-failure:3
         depends_on:
@@ -184,7 +189,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     services:
       halo:
-        image: halohub/halo:2.4.1
+        image: halohub/halo:2.4
         container_name: halo
         restart: on-failure:3
         volumes:
@@ -251,12 +256,12 @@ import DockerArgs from "./slots/docker-args.md"
   ```yaml {3}
   services:
     halo:
-      image: halohub/halo:2.4.1
+      image: halohub/halo:2.4
       container_name: halo
   ```
 
   ```bash
-  docker-compose pull
+  docker-compose pull halo
   ```
 
   ```bash
@@ -290,7 +295,7 @@ networks:
 
 services:
   halo:
-    image: halohub/halo:2.4.1
+    image: halohub/halo:2.4
     container_name: halo
     restart: on-failure:3
     volumes:
