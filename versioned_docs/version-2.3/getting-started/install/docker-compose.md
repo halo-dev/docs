@@ -211,7 +211,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     services:
       halo:
-        image: halohub/halo:2.3.0
+        image: halohub/halo:2.3
         container_name: halo
         restart: on-failure:3
         network_mode: "host"
