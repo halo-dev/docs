@@ -205,6 +205,34 @@ import DockerArgs from "./slots/docker-args.md"
           # 初始化的超级管理员密码
           - --halo.security.initializer.superadminpassword=P@88w0rd
     ```
+    4. 仅创建 Halo 实例（使用已有外部数据库，MySQL 为例）：
+    ```yaml {8,21-24} title="~/halo/docker-compose.yaml"
+    version: "3"
+
+    services:
+      halo:
+        image: halohub/halo:2.3
+        container_name: halo
+        restart: on-failure:3
+        network_mode: "host"
+        volumes:
+          - ./:/root/.halo2
+        command:
+          # 修改为自己已有的 MySQL 配置
+          - --spring.r2dbc.url=r2dbc:pool:mysql://localhost:3306/halo
+          - --spring.r2dbc.username=root
+          - --spring.r2dbc.password=
+          - --spring.sql.init.platform=mysql
+          # 外部访问地址，请根据实际需要修改
+          - --halo.external-url=http://localhost:8090/
+          # 初始化的超级管理员用户名
+          - --halo.security.initializer.superadminusername=admin
+          # 初始化的超级管理员密码
+          - --halo.security.initializer.superadminpassword=P@88w0rd
+          # 端口号 默认8090
+          - --server.port=8090
+
+    ```
 
   参数详解：
 
