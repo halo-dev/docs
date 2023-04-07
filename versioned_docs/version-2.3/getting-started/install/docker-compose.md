@@ -215,16 +215,8 @@ import DockerArgs from "./slots/docker-args.md"
         container_name: halo
         restart: on-failure:3
         network_mode: "host"
-        networks:
-          halo_network:
         volumes:
           - ./:/root/.halo2
-        healthcheck:
-          test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
-          interval: 30s
-          timeout: 5s
-          retries: 5
-          start_period: 30s
         command:
           # 修改为自己已有的 MySQL 配置
           - --spring.r2dbc.url=r2dbc:pool:mysql://localhost:3306/halo
