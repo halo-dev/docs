@@ -47,17 +47,34 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 
 ## 移动附件
 
-- 本地存储的附件，只需要将 1.x 工作目录的 `upload` 目录里面的所有文件夹移动到 2.0 工作目录下的 `attachments\migrate-from-1.x` 文件夹即可。
+- 本地存储的附件，只需要将 1.x 工作目录的 `upload` 目录里面的所有文件夹移动到 2.0 工作目录下的 `attachments/migrate-from-1.x` 文件夹即可。
 - 云存储的附件迁移会在迁移插件中进行。
 
-## 安装迁移插件
+## 安装插件
 
-需要在 <https://halo.run/store/apps/app-TlUBt> 中下载最新版本的插件 JAR 包，然后在 Halo 2.0 的插件管理中安装即可，安装完成即可在左侧菜单中看到迁移菜单。
+在迁移过程中，需要提前安装必要的插件：
 
-![Migrate Plugin](/img/migrate/halo2.0-migrate-plugin.png)
+- 站点迁移：<https://halo.run/store/apps/app-TlUBt>
+- 链接管理：<https://halo.run/store/apps/app-hfbQg>
+- 图库：<https://halo.run/store/apps/app-BmQJW>
+- 瞬间（原日志）：<https://halo.run/store/apps/app-SnwWD>
+- S3（如果需要迁移存在云存储的附件，需要安装）：<https://halo.run/store/apps/app-Qxhpp>
+
+## 配置存储策略
+
+> 如果在 Halo 1.x 中未使用云存储，可以跳过此步骤。
+
+1. 安装 S3 插件。
+2. 进入附件管理页面。
+3. 点击页面右上角的 **存储策略** 按钮。
+4. 创建存储策略，选择 **S3 Object Storage**。
+5. 填写相关配置，点击 **保存** 即可。
 
 ## 迁移
 
+![Migrate Plugin](/img/migrate/halo2.0-migrate-plugin.png)
+
 1. 点击左侧菜单的迁移进入迁移页面。
 2. 点击 **选择文件** 按钮，选择在 Halo 1.5.x / 1.6.x 导出的数据文件（JSON 格式）。
-3. 最后点击页面下方的 **执行导入** 即可。
+3. 如果在 1.x 中使用了云存储，会弹出选择云存储的对话框，选择之前创建的存储策略即可。
+4. 最后点击页面下方的 **执行导入** 即可。
