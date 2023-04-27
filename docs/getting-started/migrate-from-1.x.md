@@ -6,15 +6,17 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 因为 Halo 2.0 的底层架构变动，无法兼容 1.x 的数据，导致无法平滑升级，所以需要进行数据迁移。为此，我们提供了从 Halo 1.5 / 1.6 版本迁移的插件。在进行迁移之前，**有几点注意事项和要求，如果你目前无法满足，建议先暂缓迁移。**
 
 - Halo 版本必须为 1.5.x 或 1.6.x。如果不满足，需要先升级到 1.5.x 或 1.6.x 版本。
-- Halo 2.0 不兼容 1.x 的主题，建议在升级前先查询你正在使用的主题是否已经支持 2.0。你可以访问 [halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo) 查阅目前支持的主题。
+- Halo 2.0 不兼容 1.x 的主题，建议在升级前先查询你正在使用的主题是否已经支持 2.0。你可以访问 [halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo) 或 [应用市场](https://halo.run/store/apps?type=THEME) 查阅目前支持的主题。
 - Halo 2.0 目前没有内置 Markdown 编辑器，如果需要重新编辑迁移后的文章，需要额外安装 Markdown 编辑器插件。目前社区已经提供了以下插件：
-  - <https://github.com/halo-sigs/plugin-bytemd>
-  - <https://github.com/halo-sigs/plugin-stackedit>
-- 暂时不支持友情链接、日志、图库的数据迁移，如果你在 1.x 版本中使用了这些功能，建议先暂缓迁移。
-- Halo 2.0 不在内置外部云存储的支持。需要安装额外的插件，目前官方已提供：
-  - <https://github.com/halo-sigs/plugin-alioss>
-  - <https://github.com/halo-sigs/plugin-s3>
-- 关于附件，目前仅支持将本地附件代理，不支持在后台管理，也不支持迁移外部云存储的附件。如果你对外部云存储的附件有强需求，建议先暂缓迁移。
+  - StackEdit：<https://halo.run/store/apps/app-hDXMG>
+  - ByteMD：<https://halo.run/store/apps/app-HTyhC>
+- Halo 2.0 不再内置友情链接、日志、图库等模块，需要安装额外的插件，目前官方已提供：
+  - 链接管理：<https://halo.run/store/apps/app-hfbQg>
+  - 图库：<https://halo.run/store/apps/app-BmQJW>
+  - 瞬间（原日志）：<https://halo.run/store/apps/app-SnwWD>
+- Halo 2.0 不再内置外部云存储的支持。需要安装额外的插件，目前官方已提供：
+  - S3（兼容国内主流的云存储）：<https://halo.run/store/apps/app-Qxhpp>
+  - 阿里云 OSS：<https://halo.run/store/apps/app-wCJCD>
 - 在迁移过程中不会保留旧版本的用户数据，迁移完成之后，关于文章等数据的关联都将改为 Halo 2.0 的新用户。
 - 为了防止直接升级 2.0 导致 1.x 的数据受到破坏，我们已经将工作目录由 `~/.halo` 变更为 `~/.halo2`。
 - 目前 Halo 2.0 仅提供 Docker 部署方式，没有提供可执行 JAR 包，但可以自编译，请参考 [构建](../developer-guide/core/build.md) 文档
@@ -45,16 +47,34 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 
 ## 移动附件
 
-只需要将 1.x 工作目录的 `upload` 目录里面的所有文件夹移动到 2.0 工作目录下的 `attachments\migrate-from-1.x` 文件夹即可。**但需要注意的是，此操作仅为了让附件资源可以正常访问，目前暂不支持在后台进行管理。**
+- 本地存储的附件，只需要将 1.x 工作目录的 `upload` 目录里面的所有文件夹移动到 2.0 工作目录下的 `attachments/migrate-from-1.x` 文件夹即可。
+- 云存储的附件迁移会在迁移插件中进行。
 
-## 安装迁移插件
+## 安装插件
 
-需要在 <https://github.com/halo-sigs/plugin-migrate/releases> 中下载最新版本的插件 JAR 包，然后在 Halo 2.0 的插件管理中安装即可，安装完成即可在左侧菜单中看到迁移菜单。
+在迁移过程中，需要提前安装必要的插件：
 
-![Migrate Plugin](/img/migrate/halo2.0-migrate-plugin.png)
+- 站点迁移：<https://halo.run/store/apps/app-TlUBt>
+- 链接管理：<https://halo.run/store/apps/app-hfbQg>
+- 图库：<https://halo.run/store/apps/app-BmQJW>
+- 瞬间（原日志）：<https://halo.run/store/apps/app-SnwWD>
+- S3（如果需要迁移存在云存储的附件，需要安装）：<https://halo.run/store/apps/app-Qxhpp>
+
+## 配置存储策略
+
+> 如果在 Halo 1.x 中未使用云存储，可以跳过此步骤。
+
+1. 安装 S3 插件。
+2. 进入附件管理页面。
+3. 点击页面右上角的 **存储策略** 按钮。
+4. 创建存储策略，选择 **S3 Object Storage**。
+5. 填写相关配置，点击 **保存** 即可。
 
 ## 迁移
 
+![Migrate Plugin](/img/migrate/halo2.0-migrate-plugin.png)
+
 1. 点击左侧菜单的迁移进入迁移页面。
 2. 点击 **选择文件** 按钮，选择在 Halo 1.5.x / 1.6.x 导出的数据文件（JSON 格式）。
-3. 最后点击页面下方的 **执行导入** 即可。
+3. 如果在 1.x 中使用了云存储，会弹出选择云存储的对话框，选择之前创建的存储策略即可。
+4. 最后点击页面下方的 **执行导入** 即可。
