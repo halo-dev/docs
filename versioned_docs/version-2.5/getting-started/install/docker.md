@@ -50,7 +50,7 @@ import DockerArgs from "./slots/docker-args.md"
       halohub/halo:2.5 \
       --halo.external-url=http://localhost:8090/ \
       --halo.security.initializer.superadminusername=admin \
-      --halo.security.initializer.superadminpassword=P@88w0rd  
+      --halo.security.initializer.superadminpassword=P@88w0rd
     ```
 
     :::info
@@ -67,7 +67,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     <DockerArgs />
 
-1. 用浏览器访问 `$HALO_EXTERNAL_URL/console/`（外部访问链接）即可进入 Halo 管理端。管理员用户名为 `admin`，登录密码为上方设置的 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`。
+1. 用浏览器访问 `/console` 即可进入 Halo 管理页面，用户名和密码为启动参数中的 `superadminusername` 和 `superadminpassword`。
 
     :::tip
     如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
