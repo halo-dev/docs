@@ -256,7 +256,7 @@ import DockerArgs from "./slots/docker-args.md"
   docker-compose logs -f
   ```
 
-4. 用浏览器访问 `$HALO_EXTERNAL_URL/console/`（外部访问链接）即可进入 Halo 管理端。管理员用户名为 `admin`，登录密码为上方设置的 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`。
+4. 用浏览器访问 `/console` 即可进入 Halo 管理页面，用户名和密码为在 `docker-compose.yaml` 文件中设置的 `superadminusername` 和 `superadminpassword`。
 
   :::tip
   如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
@@ -305,6 +305,37 @@ import DockerArgs from "./slots/docker-args.md"
 2. 使用 [Nginx Proxy Manager](../install/other/nginxproxymanager.md)
 3. 使用 [Traefik](../install/other/traefik.md)
 
+### Nginx
+
+```nginx {2,7,10}
+upstream halo {
+  server 127.0.0.1:8090;
+}
+server {
+  listen 80;
+  listen [::]:80;
+  server_name www.yourdomain.com;
+  client_max_body_size 1024m;
+  location / {
+    proxy_pass http://halo;
+    proxy_set_header HOST $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+}
+```
+
+### Caddy 2
+
+```txt {1,5}
+www.yourdomain.com
+
+encode gzip
+
+reverse_proxy 127.0.0.1:8090
+```
+
 ### Traefik
 
 更新 halo 容器组的配置
@@ -314,7 +345,7 @@ import DockerArgs from "./slots/docker-args.md"
 3. 修改外部地址为你的域名
 4. 声明路由规则、开启 TLS
 
-```yaml {4-5,16,20,25-31} showLineNumbers
+```yaml {4-5,16,20,25-31}
 version: "3.8"
 
 networks:
@@ -346,35 +377,4 @@ services:
       traefik.http.routers.halo.tls: "true"
       traefik.http.routers.halo.tls.certresolver: myresolver
       traefik.http.services.halo.loadbalancer.server.port: 8090
-```
-
-### Nginx
-
-```nginx {2,7,10}
-upstream halo {
-  server 127.0.0.1:8090;
-}
-server {
-  listen 80;
-  listen [::]:80;
-  server_name www.yourdomain.com;
-  client_max_body_size 1024m;
-  location / {
-    proxy_pass http://halo;
-    proxy_set_header HOST $host;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-  }
-}
-```
-
-### Caddy 2
-
-```txt {1,5}
-www.yourdomain.com
-
-encode gzip
-
-reverse_proxy 127.0.0.1:8090
 ```
