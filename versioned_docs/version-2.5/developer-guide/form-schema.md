@@ -120,12 +120,20 @@ UI 效果：
 
 附件类型的输入框，支持直接调用附件库弹框选择附件。
 
+#### 参数
+
+- `accepts`：文件类型，数据类型为 `string[]`。
+
 #### 示例
 
 ```yaml
 - $formkit: attachment
   name: logo
   label: Logo
+  accepts:
+    - "image/png"
+    - "video/mp4"
+    - "audio/*"
   value: ""
 ```
 
