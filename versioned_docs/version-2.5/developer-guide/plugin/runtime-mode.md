@@ -23,11 +23,21 @@ halo:
 而如果你想以 `DEVELOPMENT` 运行插件或开发插件则将 `runtime-mode` 修改为 `development`，同时配置 `fixed-plugin-path` 为插件项目路径，可以配置多个。
 
 ```yaml
+# macOS / Linux
+plugin:
+  runtime-mode: development
+  fixed-plugin-path:
+    # 配置为插件绝对路径
+    - /Users/guqing/halo-plugin-hello-world
+
+# Windows
 halo:
   plugin:
-    runtime-mode: deployment
+    runtime-mode: development
     fixed-plugin-path:
-      - /path/to/your/plugin/plugin-starter
+      # 配置为插件绝对路径
+      - C:\Users\guqing\halo-plugin-hello-world
+
 ```
 
 :::tip Note
