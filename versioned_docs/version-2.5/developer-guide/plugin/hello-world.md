@@ -36,7 +36,7 @@ halo:
     runtime-mode: development
     fixed-plugin-path:
       # 配置为插件绝对路径
-      - /path/to/plugin-xxx
+      - /Users/guqing/halo-plugin-hello-world
         
 # Windows
 halo:
@@ -44,7 +44,7 @@ halo:
     runtime-mode: development
     fixed-plugin-path:
       # 配置为插件绝对路径
-      - C:\path\to\plugin-xxx
+      - C:\Users\guqing\halo-plugin-hello-world
 ```
 
 使用此 local profile 启动 Halo：
