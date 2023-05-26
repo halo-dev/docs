@@ -25,7 +25,7 @@ halo:
 ```yaml
 halo:
   plugin:
-    runtime-mode: deployment
+    runtime-mode: development
     fixed-plugin-path:
       - /path/to/your/plugin/plugin-starter
 ```
