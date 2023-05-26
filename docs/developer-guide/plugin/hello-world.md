@@ -30,12 +30,21 @@ Halo 提供了一个模板仓库用于创建插件：
 然后在 `src/main/resources` 下创建一个 `application-local.yaml` 文件并做如下配置：
 
 ```yaml
+# macOS / Linux
 halo:
   plugin:
     runtime-mode: development
     fixed-plugin-path:
       # 配置为插件绝对路径
-      - /Users/guqing/halo-plugin-hello-world
+      - /path/to/plugin-xxx
+
+# Windows
+halo:
+  plugin:
+    runtime-mode: development
+    fixed-plugin-path:
+      # 配置为插件绝对路径
+      - C:\path\to\plugin-xxx
 ```
 
 使用此 local profile 启动 Halo：

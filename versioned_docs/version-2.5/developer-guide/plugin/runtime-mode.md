@@ -28,7 +28,7 @@ plugin:
   runtime-mode: development
   fixed-plugin-path:
     # 配置为插件绝对路径
-    - /Users/guqing/halo-plugin-hello-world
+    - /path/to/plugin-xxx
 
 # Windows
 halo:
@@ -36,7 +36,7 @@ halo:
     runtime-mode: development
     fixed-plugin-path:
       # 配置为插件绝对路径
-      - C:\Users\guqing\halo-plugin-hello-world
+      - C:\path\to\plugin-xxx
 
 ```
 
