@@ -8,9 +8,7 @@ title: 表单定义
 
 FormKit 相关文档：
 
-- Form Schema:
-  - <https://formkit.com/essentials/generation>
-  - <https://formkit.com/advanced/schema>
+- Form Schema: <https://formkit.com/essentials/schema>
 - FormKit Inputs: <https://formkit.com/inputs>
 
 :::tip
