@@ -110,20 +110,22 @@ server {
       -it -d \
       --name halo-1 \
       -p 8090:8090 \
-      -v ~/.halo2.1:/root/.halo2 \
-      -e HALO_EXTERNAL_URL=http://localhost:8090/ \
-      -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo:2.6
+      -v ~/.halo2:/root/.halo2 \
+      halohub/halo:2.6 \
+      --halo.external-url=http://localhost:8090/ \
+      --halo.security.initializer.superadminusername=admin \
+      --halo.security.initializer.superadminpassword=P@88w0rd
 
     # 第二个 Halo 容器
     docker run \
       -it -d \
       --name halo-2 \
-      -p 8090:8090 \
-      -v ~/.halo2.2:/root/.halo2 \
-      -e HALO_EXTERNAL_URL=http://localhost:8090/ \
-      -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo:2.6
+      -p 8091:8090 \
+      -v ~/.halo2_2:/root/.halo2 \
+      halohub/halo:2.6 \
+      --halo.external-url=http://localhost:8091/ \
+      --halo.security.initializer.superadminusername=admin \
+      --halo.security.initializer.superadminpassword=P@88w0rd
     ```
 
 更多 Docker 相关的教程请参考：[使用 Docker 部署 Halo](../getting-started/install/docker.md)
