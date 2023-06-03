@@ -6,7 +6,10 @@ description: 插件管理相关功能说明
 插件时用于扩展 Halo 功能的软件包。插件独立于 Halo 核心应用，可以单独安装、升级、卸载。
 
 :::info
-当前 Halo 支持的插件可在[Awesome Halo](https://github.com/halo-sigs/awesome-halo)仓库查看。
+目前有两个官方渠道可以获取插件：
+
+- 应用市场：<https://halo.run/store/apps>
+- Awesome Halo：<https://github.com/halo-sigs/awesome-halo>
 :::
 
 本文档仅对插件的基本管理功能进行说明，关于插件的详细使用说明请参考对应插件的文档。

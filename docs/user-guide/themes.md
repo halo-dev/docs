@@ -4,8 +4,12 @@ description: 主题管理相关功能说明
 ---
 
 主题包含了各种站点页面模板的资源包。用户访问 Halo 站点浏览到的内容及样式，由 Halo 管理端所配置使用的主题所决定。
+
 :::info
-当前 Halo 支持的主题可在[Awesome Halo](https://github.com/halo-sigs/awesome-halo)仓库查看。
+目前有两个官方渠道可以获取主题：
+
+- 应用市场：<https://halo.run/store/apps>
+- Awesome Halo：<https://github.com/halo-sigs/awesome-halo>
 :::
 
 ## 安装主题

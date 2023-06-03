@@ -136,7 +136,7 @@ server {
 # '-f' 滚动更新日志
 # '-n 200' 从倒数第200行开始查看
 # 更多帮助可以查看 'docker logs --help'
-docker logs -f halo_next -n 200
+docker logs -f halo -n 200
 ```
 
 ### 前台样式丢失，如何解决？
