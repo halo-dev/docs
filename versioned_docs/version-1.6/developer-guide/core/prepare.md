@@ -55,7 +55,7 @@ git clone --recursive git@github.com:halo-dev/halo.git
 在项目根目录下运行以下命令：
 
 ```bash
-# 类 Unix 用户
+# 类 UNIX 用户
 ./gradlew bootRun
 
 # Windows 用户
@@ -65,7 +65,7 @@ git clone --recursive git@github.com:halo-dev/halo.git
 如果需要手动指定配置，可添加 `--args` 参数（这里推荐采用上文的[自定义配置](#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE)），例如：
 
 ```bash
-# 类 Unix 用户
+# 类 UNIX 用户
 ./gradlew bootRun --args="--spring.profiles.active=dev --server.port=2333"
 
 # Windows 用户

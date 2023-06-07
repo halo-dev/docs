@@ -571,7 +571,7 @@ const handleDelete = (todo: Todo) => {
 </style>
 ```
 
-这在原先的基础上替换为了 `TypeScipt` 写法，并去除了数据保存到 `LocalStorage` 的逻辑，这也是我们推荐的方式，可读性更强，且有 `TypeScript` 提供类型提示。
+这在原先的基础上替换为了 `TypeScript` 写法，并去除了数据保存到 `LocalStorage` 的逻辑，这也是我们推荐的方式，可读性更强，且有 `TypeScript` 提供类型提示。
 
 至此我们就完成了与插件后端 APIs 实现 Todo List 数据交互的部分。
 
