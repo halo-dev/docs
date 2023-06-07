@@ -34,7 +34,7 @@ description: 了解插件资源文件 plugin.yaml 如何配置
 - `spec.logo`：插件 logo，可以是域名或相对于项目 src/main/resources 目录的相对文件路径。
 - `spec.settingName`：插件配置表单名称，参考表单定义，不需要表单设置则可删除。
 - `spec.configMapName`：表单定义对应的值标识名, 推荐命名为 "插件名-configmap"，没有配置 `settingName` 则不需要配置此项。
-- `spec.homepage`：通常为插件的 Github 仓库链接，或可联系到插件作者或插件官网或帮助中心链接等。
+- `spec.homepage`：通常为插件的 GitHub 仓库链接，或可联系到插件作者或插件官网或帮助中心链接等。
 - `spec.displayName`：插件的显示名称，它通常是以少数几个字来概括插件的用途。
 - `spec.description`：插件描述，用一段话来介绍插件的用途。
 - `spec.license`：插件使用的软件协议，参考：<https://en.wikipedia.org/wiki/Software_license>。

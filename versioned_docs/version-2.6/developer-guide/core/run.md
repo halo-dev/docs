@@ -89,7 +89,7 @@ halo:
 2. 修改 IntelliJ IDEA 的运行配置
     1. macOS / Linux
     将 Active Profiles 改为 `dev`，如图所示：
-    ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-MacOs.png)
+    ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-macOS.png)
     2. Windows
     将 Active Profiles 改为 `dev,win`，如图所示：
     ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-Win.png)
