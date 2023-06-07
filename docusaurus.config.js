@@ -6,8 +6,8 @@ const VersionsArchived = require("./versionsArchived.json");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Halo Documents",
-  tagline: "Halo 博客系统的文档站点",
+  title: "Halo 文档",
+  tagline: "Halo 的文档站点",
   url: "https://docs.halo.run",
   baseUrl: "/",
   onBrokenLinks: "warn",
@@ -49,6 +49,18 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
+          ignorePatterns: [
+            "/1.4/**",
+            "/1.5/**",
+            "/1.6/**",
+            "/2.0/**",
+            "/2.1/**",
+            "/2.2/**",
+            "/2.3/**",
+            "/2.4/**",
+            "/2.5/**",
+            "/2.6/**",
+          ],
         },
         googleAnalytics: {
           trackingID: "UA-110780416-7",
@@ -69,7 +81,7 @@ const config = {
         },
       },
       navbar: {
-        title: "Halo Documents",
+        title: "Halo 文档",
         logo: {
           alt: "Halo Logo",
           src: "https://halo.run/upload/2021/03/Adaptive256-463ca9b92e2d40268431018c07735842.png",
@@ -114,7 +126,7 @@ const config = {
       },
       footer: {
         style: "dark",
-        copyright: `Copyright © 2022 <a target="_blank" href="https://www.fit2cloud.com/">FIT2CLOUD 飞致云</a>. Built with Docusaurus.`,
+        copyright: `Copyright © 2023 凌霞软件. Built with Docusaurus.`,
         links: [
           {
             title: "关于",
@@ -124,8 +136,8 @@ const config = {
                 href: "https://halo.run",
               },
               {
-                label: "主题仓库",
-                href: "https://halo.run/themes.html",
+                label: "应用市场",
+                href: "https://halo.run/store/apps",
               },
               {
                 label: "GitHub 组织",
@@ -151,10 +163,6 @@ const config = {
               {
                 label: "微信公众号",
                 href: "https://halo.run/upload/2021/03/B3C27F16-4890-4633-81CC-20BA4B28F94F-2415126255c749b290312ca22d9bdeb0.jpeg",
-              },
-              {
-                label: "微信群申请",
-                href: "https://wj.qq.com/s2/8434455/9170/",
               },
               {
                 label: "GitHub Issues",
