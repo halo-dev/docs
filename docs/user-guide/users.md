@@ -93,3 +93,23 @@ Halo 提供了全新创建和基于已有角色创建两种角色创建方式。
 :::warning
 删除角色后，分配了该角色的用户会丧失对应的权限，影响用户使用。此操作不可恢复。
 :::
+
+## 身份认证
+
+目前 Halo 默认仅支持本地身份认证，但可以通过插件的方式拓展其他三方的身份认证方式。
+
+:::info
+目前 Halo 官方提供的身份认证插件：
+
+- OAuth2 认证：<https://halo.run/store/apps/app-ESVDK>
+:::
+
+你可以在用户管理界面的右上角点击 `身份认证` 按钮，进入身份认证管理页面。
+
+![身份认证](/img/user-guide/users/auth-providers-entry.png)
+
+进入身份认证管理页面之后，如果你已经安装了提供身份认证方式的插件，你就可以在列表中看到对应的身份认证方式，你可以对其进行设置并启用。
+
+![身份认证方式](/img/user-guide/users/auth-providers.png)
+
+> 这里是安装了 [OAuth2 认证](https://halo.run/store/apps/app-ESVDK) 插件，提供了 `GitHub`、`GitLab`、`Gitee` 三种 OAuth2 认证方式。
