@@ -46,7 +46,7 @@ TDB
 
 ![插件设置](/img/user-guide/plugins/plugin-setting.png)
 
-以 Unsplash 插件为例，该提供仅在基本设置组中提供了 `Access Key` 一项配置，用于调用 Unsplash 接口。
+此处以 `plugin-umami` 插件为例。
 
 :::info
 你可以点击插件列表指定插件所在行后方的 `···` 更多操作按钮，选择其中的 `重置` 选项将插件提供的设置项恢复为默认值。
