@@ -11,9 +11,9 @@
     "message": "官网",
     "description": "The label of footer link with label=官网 linking to https://halo.run"
   },
-  "link.item.label.主题仓库": {
-    "message": "主题仓库",
-    "description": "The label of footer link with label=主题仓库 linking to https://halo.run/themes.html"
+  "link.item.label.应用市场": {
+    "message": "应用市场",
+    "description": "The label of footer link with label=应用市场 linking to https://halo.run/store/apps"
   },
   "link.item.label.GitHub 组织": {
     "message": "GitHub 组织",
@@ -35,10 +35,6 @@
     "message": "微信公众号",
     "description": "The label of footer link with label=微信公众号 linking to https://halo.run/upload/2021/03/B3C27F16-4890-4633-81CC-20BA4B28F94F-2415126255c749b290312ca22d9bdeb0.jpeg"
   },
-  "link.item.label.微信群申请": {
-    "message": "微信群申请",
-    "description": "The label of footer link with label=微信群申请 linking to https://wj.qq.com/s2/8434455/9170/"
-  },
   "link.item.label.GitHub Issues": {
     "message": "GitHub Issues",
     "description": "The label of footer link with label=GitHub Issues linking to https://github.com/halo-dev/halo/issues"
@@ -52,7 +48,7 @@
     "description": "The label of footer link with label=Telegram Group linking to https://t.me/HaloBlog"
   },
   "copyright": {
-    "message": "Copyright © 2022 <a target=\"_blank\" href=\"https://www.fit2cloud.com/\">FIT2CLOUD 飞致云</a>. Built with Docusaurus.",
+    "message": "Copyright © 2023 凌霞软件. Built with Docusaurus.",
     "description": "The footer copyright"
   }
 }
