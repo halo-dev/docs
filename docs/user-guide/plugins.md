@@ -5,14 +5,14 @@ description: 插件管理相关功能说明
 
 插件时用于扩展 Halo 功能的软件包。插件独立于 Halo 核心应用，可以单独安装、升级、卸载。
 
+本文档仅对插件的基本管理功能进行说明，关于插件的详细使用说明请参考对应插件的文档。
+
 :::info
 目前有两个官方渠道可以获取插件：
 
 - 应用市场：<https://halo.run/store/apps>
 - Awesome Halo：<https://github.com/halo-sigs/awesome-halo>
 :::
-
-本文档仅对插件的基本管理功能进行说明，关于插件的详细使用说明请参考对应插件的文档。
 
 ## 安装插件
 
@@ -69,6 +69,7 @@ TDB
 ## 卸载插件
 
 点击插件列表指定插件所在行后方的 `···` 更多操作按钮，选择其中的 `卸载` 选项即可对当前插件进行卸载。
+
 ![卸载插件](/img/user-guide/plugins/plugin-uninstall.png)
 
 :::info

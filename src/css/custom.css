@@ -27,6 +27,12 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
-html[data-theme='dark'] .docusaurus-highlight-code-line {
+html[data-theme="dark"] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+p > img {
+  border-radius: 0.4rem;
+  box-shadow: 2px 2px 0.4rem 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
