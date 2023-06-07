@@ -29,7 +29,7 @@ description: 系统功能的相关配置说明
 
 很多人反映评论中自己的头像不显示，其实评论部分调用的头像并不是在个人资料中设置的那个，而是 `Gravatar`。所以这一点怪我，从 Halo 发布至今我都没有说明这个事情。
 
-至于什么是 `Gravatar`，引用 `Gravatar` 官方的说明：`全球公认的头像`。这可不是在吹牛，因为只要接入了 Gravatar 的网站，你在网站上使用在 Gravatar 注册的邮箱之后，都会显示你设置的头像，而不需要额外设置。比较出名的网站有 `GitHub`，`GitLab`，`V2ex` 等。所以点击 <https://cn.gravatar.com/> 注册一个吧。
+至于什么是 `Gravatar`，引用 `Gravatar` 官方的说明：`全球公认的头像`。这可不是在吹牛，因为只要接入了 Gravatar 的网站，你在网站上使用在 Gravatar 注册的邮箱之后，都会显示你设置的头像，而不需要额外设置。比较出名的网站有 `GitHub`，`GitLab`，`V2EX` 等。所以点击 <https://cn.gravatar.com/> 注册一个吧。
 
 ## 设置用户头像/Logo/Favicon
 
