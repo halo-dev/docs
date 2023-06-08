@@ -3,7 +3,8 @@ title: 第一篇文章
 description: 安装完成后，如何写下第一篇文章。
 ---
 
-<video src="/video/first-post.mp4" controls style={{width: '100%', borderRadius: '8px'}}/>
+<!-- markdownlint-disable MD034 -->
+<video src="https://assets.halo.run/first-post.mp4" controls style={{width: '100%', borderRadius: '8px'}}/>
 
 ## 登录管理端
 

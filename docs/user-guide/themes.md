@@ -34,7 +34,8 @@ description: 主题管理相关功能说明
 
 此外， Halo 的[应用市场](https://halo.run/store/apps)也支持通过输入站点地址的方式自动跳转到你的站点进行安装，演示视频：
 
-<video src="/video/install-theme-from-store.mp4" controls style={{width: '100%', borderRadius: '8px'}}/>
+<!-- markdownlint-disable MD034 -->
+<video src="https://assets.halo.run/install-theme-from-store.mp4" controls style={{width: '100%', borderRadius: '8px'}}/>
 
 ## 切换主题
 
@@ -68,7 +69,8 @@ description: 主题管理相关功能说明
 
 演示视频：
 
-<video src="/video/theme-preview.mp4" controls style={{width: '100%', borderRadius: '8px'}}/>
+<!-- markdownlint-disable MD034 -->
+<video src="https://assets.halo.run/theme-preview.mp4" controls style={{width: '100%', borderRadius: '8px'}}/>
 
 ## 升级主题
 
