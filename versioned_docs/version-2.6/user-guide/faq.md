@@ -9,7 +9,7 @@ description: 使用上的常见问题
 
 ### 忘记密码怎么办？
 
-如果安装时没有指定 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD` 环境变量，系统会随机一个初始化密码，可以通过下面的命令进行查看。
+如果安装时没有指定 `halo.security.initializer.superadminpassword` 参数，系统会随机一个初始化密码，可以通过下面的命令进行查看。
 
 ```bash
 docker logs halo | grep 'Generated random password:' | tail -1
@@ -25,7 +25,7 @@ docker logs halo | grep 'Generated random password:' | tail -1
   docker stop halo
   ```
 
-2. 连接 Halo 使用的数据库，删除 admin 用户记录
+2. 连接 Halo 使用的数据库，删除管理员的用户记录（配置文件中的 `halo.security.initializer.superadminusername`），这里以 `admin` 为例
 
   以容器化部署的 PostgreSQL 为例，假设容器名称为 `halo_db`。
 
@@ -49,23 +49,13 @@ docker logs halo | grep 'Generated random password:' | tail -1
 
 4. 登录 Halo 控制台
 
-  如果部署时通过 `HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME` 和 `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD` 环境变量指定了初始化用户名和密码，使用该用户名密码登录控制台。
+  如果部署时通过 `halo.security.initializer.superadminusername` 和 `halo.security.initializer.superadminpassword` 参数指定了初始化用户名和密码，使用该用户名密码登录控制台。
   
   如果未指定该配置，则默认用户名为 `admin`，默认密码将打印在 Halo 容器日志中，可以通过如下命令查看。
 
   ```bash
   docker logs halo | grep 'Generated random password:' | tail -1
   ```
-
-### 为什么百度无法搜索到我的站点？
-
-这是一个暂时无法解答的问题。所涉及到的问题过多，受影响因素可能有域名、服务器 IP 位置、建站时间、网站结构、内容等等。建议了解一下 SEO 相关知识对网站进行优化，目前我们在程序方面做的优化有：
-
-- 支持 sitemap 站点地图：可访问 `/sitemap.xml` 或 `/sitemap.html`
-- 全站绝对路径
-- 页面静态化
-- 支持自定义文章关键字和描述
-- 支持自定义站点关键字以及站点描述
 
 ### 附件上传提示 `413 Request Entity Too Large` 如何解决？
 
@@ -110,34 +100,37 @@ server {
       -it -d \
       --name halo-1 \
       -p 8090:8090 \
-      -v ~/.halo2.1:/root/.halo2 \
-      -e HALO_EXTERNAL_URL=http://localhost:8090/ \
-      -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo:2.6
+      -v ~/.halo2:/root/.halo2 \
+      halohub/halo:2.6 \
+      --halo.external-url=http://localhost:8090/ \
+      --halo.security.initializer.superadminusername=admin \
+      --halo.security.initializer.superadminpassword=P@88w0rd
 
     # 第二个 Halo 容器
     docker run \
       -it -d \
       --name halo-2 \
-      -p 8090:8090 \
-      -v ~/.halo2.2:/root/.halo2 \
-      -e HALO_EXTERNAL_URL=http://localhost:8090/ \
-      -e HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd \
-      halohub/halo:2.6
+      -p 8091:8090 \
+      -v ~/.halo2_2:/root/.halo2 \
+      halohub/halo:2.6 \
+      --halo.external-url=http://localhost:8091/ \
+      --halo.security.initializer.superadminusername=admin \
+      --halo.security.initializer.superadminpassword=P@88w0rd
     ```
 
 更多 Docker 相关的教程请参考：[使用 Docker 部署 Halo](../getting-started/install/docker.md)
 
 ### 如何查看运行日志？
 
-使用 docker logs 命令进行查看。
+1. 可以在 Console 端的概览页面下载最近的日志文件。
+2. 使用 docker logs 命令进行查看。
 
-```bash
-# '-f' 滚动更新日志
-# '-n 200' 从倒数第200行开始查看
-# 更多帮助可以查看 'docker logs --help'
-docker logs -f halo_next -n 200
-```
+  ```bash
+  # '-f' 滚动更新日志
+  # '-n 200' 从倒数第200行开始查看
+  # 更多帮助可以查看 'docker logs --help'
+  docker logs -f halo -n 200
+  ```
 
 ### 前台样式丢失，如何解决？
 
