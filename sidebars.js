@@ -38,6 +38,9 @@ module.exports = {
             {
               type: "category",
               label: "其他指南",
+              link: {
+                type: "generated-index",
+              },
               items: [
                 "getting-started/install/other/oneinstack",
                 "getting-started/install/other/nginxproxymanager",
