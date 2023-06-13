@@ -67,11 +67,16 @@ spec:
 
 除了 FormKit 官方提供的常用输入组件之外，Halo 还额外提供了一些输入组件，这些输入组件可以在 Form Schema 中使用。
 
-### Repeater
+### repeater
 
 #### 描述
 
 一组重复的输入组件，可以用于定义一组数据，最终得到的数据为一个对象的数组，可以方便地让使用者对其进行增加、移除、排序等操作。
+
+#### 参数
+
+- `min`：数组最小要求数量，默认为 `0`
+- `max`：数组最大容量，默认为 `Infinity`，即无限制。
 
 #### 示例
 
@@ -80,6 +85,8 @@ spec:
   name: socials
   label: 社交账号
   value: []
+  max: 5
+  min: 1
   children:
     - $formkit: text
       name: name
@@ -112,11 +119,15 @@ UI 效果：
 
 <img src="/img/formkit/formkit-repeater.png" width="50%" />
 
-### Attachment
+### attachment
 
 #### 描述
 
 附件类型的输入框，支持直接调用附件库弹框选择附件。
+
+#### 参数
+
+- `accepts`：文件类型，数据类型为 `string[]`。
 
 #### 示例
 
@@ -124,10 +135,14 @@ UI 效果：
 - $formkit: attachment
   name: logo
   label: Logo
+  accepts:
+    - "image/png"
+    - "video/mp4"
+    - "audio/*"
   value: ""
 ```
 
-### Code
+### code
 
 #### 描述
 
