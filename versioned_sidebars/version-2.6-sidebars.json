@@ -23,6 +23,9 @@
             {
               "type": "category",
               "label": "其他指南",
+              "link": {
+                "type": "generated-index"
+              },
               "items": [
                 "getting-started/install/other/oneinstack",
                 "getting-started/install/other/nginxproxymanager",
@@ -105,9 +108,7 @@
                 "type": "doc",
                 "id": "developer-guide/plugin/examples/todolist"
               },
-              "items": [
-                "developer-guide/plugin/examples/todolist"
-              ]
+              "items": ["developer-guide/plugin/examples/todolist"]
             },
             {
               "type": "category",
@@ -193,10 +194,7 @@
       "link": {
         "type": "generated-index"
       },
-      "items": [
-        "contribution/issue",
-        "contribution/pr"
-      ]
+      "items": ["contribution/issue", "contribution/pr"]
     },
     "about"
   ]

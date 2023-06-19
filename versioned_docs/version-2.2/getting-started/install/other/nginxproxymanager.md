@@ -3,15 +3,15 @@ title: 与 Nginx Proxy Manager 配合使用
 description: 使用 Nginx Proxy Manager 管理 Halo 服务的反向代理
 ---
 
-### Halo 部署
+## Halo 部署
 
-参见 [使用 Docker Compose 部署](https://docs.halo.run/getting-started/install/docker-compose)
+参见 [使用 Docker Compose 部署](../docker-compose)
 
 :::info
 `「反向代理」` 部分不进行操作，保证 Halo 服务运行无误即可。
 :::
 
-### 简介
+## 简介
 
 顾名思义，Nginx Proxy Manager 就是一个 Nginx 的代理管理器，它最大的特点是简单方便。
 
@@ -21,9 +21,9 @@ Nginx Proxy Manager 后台还可以一键申请 SSL 证书，并且会自动续�
 
 下面我们就来介绍如何用 Nginx Proxy Manger 来配合 Halo，实现反向代理和 HTTPS 访问。
 
-### 安装 Nginx Proxy Manager
+## 安装 Nginx Proxy Manager
 
-> 说明：默认你的服务器已经安装了 Docker 和 Docker Compose，如果你没有安装，可以参考：[使用 Docker Compose 部署](https://docs.halo.run/getting-started/install/docker-compose) 的环境搭建部分来进行安装。
+> 说明：默认你的服务器已经安装了 Docker 和 Docker Compose，如果你没有安装，可以参考：[使用 Docker Compose 部署](../docker-compose) 的环境搭建部分来进行安装。
 
 点击下方链接进入 Nginx Proxy Manager（以下简称 NPM） 官网：<https://nginxproxymanager.com/>
 
@@ -82,7 +82,7 @@ docker compose up -d     # 如果你用的是 docker-compose-plugin 的话，用
 
 至此，我们已经完成了 Nginx Proxy Manager 的搭建，之后就可以用它给我们的 Halo 或者其他 Web 应用做反向代理了。
 
-### 配置 Halo 的反向代理
+## 配置 Halo 的反向代理
 
 首先我们登陆网页端之后，会弹出修改用户名和密码的对话框，我们根据自己的实际来修改自己的用户名和邮箱。
 
@@ -136,7 +136,7 @@ ip addr show docker0
 
 当然，如果你的 NPM 和 Halo 不在同一台服务上，你需要在 IP 部分填入 **你的 Halo 所在的服务器的 IP**，并在服务商（部分服务商如腾讯、阿里）的后台打开 `8090` 端口。
 
-### 一键申请 SSL 证书
+## 一键申请 SSL 证书
 
 接着我们来申请一张 SSL 证书，让我们的网站支持 `https` 访问。
 
