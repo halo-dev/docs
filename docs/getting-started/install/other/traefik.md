@@ -96,7 +96,7 @@ networks:
 
 services:
   halo:
-    image: halohub/halo:2.6
+    image: halohub/halo:2.7
     container_name: halo
     restart: on-failure:3
     volumes:

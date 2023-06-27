@@ -101,7 +101,7 @@ server {
       --name halo-1 \
       -p 8090:8090 \
       -v ~/.halo2:/root/.halo2 \
-      halohub/halo:2.6 \
+      halohub/halo:2.7 \
       --halo.external-url=http://localhost:8090/ \
       --halo.security.initializer.superadminusername=admin \
       --halo.security.initializer.superadminpassword=P@88w0rd
@@ -112,7 +112,7 @@ server {
       --name halo-2 \
       -p 8091:8090 \
       -v ~/.halo2_2:/root/.halo2 \
-      halohub/halo:2.6 \
+      halohub/halo:2.7 \
       --halo.external-url=http://localhost:8091/ \
       --halo.security.initializer.superadminusername=admin \
       --halo.security.initializer.superadminpassword=P@88w0rd

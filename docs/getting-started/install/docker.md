@@ -25,18 +25,18 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 使用 Docker 镜像
 
-可用的 Halo 2.6 的 Docker 镜像：
+可用的 Halo 2.7 的 Docker 镜像：
 
 - [halohub/halo](https://hub.docker.com/r/halohub/halo)
 - [ghcr.io/halo-dev/halo](https://github.com/halo-dev/halo/pkgs/container/halo)
 
 :::info 注意
-目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.6` 或者 `halohub/halo:2.6.0`。
+目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.7` 或者 `halohub/halo:2.7.0`。
 
-- `halohub/halo:2.6`：表示最新的 2.6.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.6` 镜像。
-- `halohub/halo:2.6.0`：表示一个具体的版本。
+- `halohub/halo:2.7`：表示最新的 2.7.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.7` 镜像。
+- `halohub/halo:2.7.0`：表示一个具体的版本。
 
-后续文档以 `halohub/halo:2.6` 为例。
+后续文档以 `halohub/halo:2.7` 为例。
 :::
 
 1. 创建容器
@@ -47,7 +47,7 @@ import DockerArgs from "./slots/docker-args.md"
       --name halo \
       -p 8090:8090 \
       -v ~/.halo2:/root/.halo2 \
-      halohub/halo:2.6 \
+      halohub/halo:2.7 \
       --halo.external-url=http://localhost:8090/ \
       --halo.security.initializer.superadminusername=admin \
       --halo.security.initializer.superadminpassword=P@88w0rd
@@ -78,7 +78,7 @@ import DockerArgs from "./slots/docker-args.md"
 1. 拉取新版本镜像
 
   ```bash
-  docker pull halohub/halo:2.6
+  docker pull halohub/halo:2.7
   ```
 
 2. 停止运行中的容器
@@ -106,7 +106,7 @@ import DockerArgs from "./slots/docker-args.md"
       --name halo \
       -p 8090:8090 \
       -v ~/.halo2:/root/.halo2 \
-      halohub/halo:2.6 \
+      halohub/halo:2.7 \
       --halo.external-url=http://localhost:8090/ \
       --halo.security.initializer.superadminusername=admin \
       --halo.security.initializer.superadminpassword=P@88w0rd  
