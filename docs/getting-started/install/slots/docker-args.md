@@ -7,7 +7,7 @@
 | `halo.external-url`                            | 外部访问链接，如果需要在公网访问，需要配置为实际访问地址                       |
 | `halo.security.initializer.superadminusername` | 初始超级管理员用户名                                                           |
 | `halo.security.initializer.superadminpassword` | 初始超级管理员密码                                                             |
-| `halo.cache.disabled`                          | 是否禁用页面缓存，默认为禁用，如需页面缓存可以手动添加此配置，并设置为 `false` |
+| `halo.cache.page.disabled`                     | 是否禁用页面缓存，默认为禁用，如需页面缓存可以手动添加此配置，并设置为 `false` |
 
 数据库配置：
 
