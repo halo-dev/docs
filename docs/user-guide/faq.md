@@ -8,7 +8,7 @@ description: 使用上的常见问题
 **Halo** [ˈheɪloʊ]，是一款好用又强大的[开源建站工具](https://github.com/halo-dev/halo)，配合上不同的模板与插件，可以很好地帮助你构建你心中的理想站点。它可以是你公司的官方网站，可以是你的个人博客，也可以是团队共享的知识库，甚至可以是一个论坛、一个商城。
 
 ### 忘记密码怎么办？
-
+#### 使用Docker部署
 如果安装时没有指定 `halo.security.initializer.superadminpassword` 参数，系统会随机一个初始化密码，可以通过下面的命令进行查看。
 
 ```bash
@@ -56,7 +56,8 @@ docker logs halo | grep 'Generated random password:' | tail -1
   ```bash
   docker logs halo | grep 'Generated random password:' | tail -1
   ```
-
+#### 使用1panel部署
+可以直接在1panel的应用商店中，找到halo应用，查看参数即可，超级管理员用户名就是halo的用户名，超级管理员密码就是halo的密码
 ### 附件上传提示 `413 Request Entity Too Large` 如何解决？
 
 这可能是由于 Nginx 的上传大小限制所导致的。可以在 Nginx 的配置文件下的 server 节点加入 `client_max_body_size 1024m;` 即可解决，如果 1024m 还不够，请自行断定，详细配置参考如下：
