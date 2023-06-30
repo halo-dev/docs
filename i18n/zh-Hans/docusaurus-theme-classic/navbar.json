@@ -3,6 +3,10 @@
     "message": "Halo 文档",
     "description": "The title in the navbar"
   },
+  "logo.alt": {
+    "message": "Halo Logo",
+    "description": "The alt text of navbar logo"
+  },
   "item.label.官网": {
     "message": "官网",
     "description": "Navbar item with label 官网"
