@@ -56,7 +56,17 @@ docker logs halo | grep 'Generated random password:' | tail -1
   ```bash
   docker logs halo | grep 'Generated random password:' | tail -1
   ```
-#### 使用1panel部署
+### 如何获得管理员初始密码
+#### docker或docker compose部署
+无论是用docker还是用docker compose的话都会用到两个参数，这两个参数就是用来设置超级管理员的账号和密码的
+```bash
+      # 初始化的超级管理员账号
+      - --halo.security.initializer.superadminusername=admin
+      # 初始化的超级管理员密码
+      - --halo.security.initializer.superadminpassword=P@88w0rd
+```
+> 账号默认是admin 密码默认是P@88w0rd
+#### 1panel部署
 可以直接在1panel的应用商店中，找到halo应用，查看参数即可，超级管理员用户名就是halo的用户名，超级管理员密码就是halo的密码
 ### 附件上传提示 `413 Request Entity Too Large` 如何解决？
 
