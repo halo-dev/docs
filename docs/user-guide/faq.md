@@ -60,10 +60,10 @@ docker logs halo | grep 'Generated random password:' | tail -1
 #### docker或docker compose部署
 无论是用docker还是用docker compose的话都会用到两个参数，这两个参数就是用来设置超级管理员的账号和密码的
 ```bash
-      # 初始化的超级管理员账号
-      - --halo.security.initializer.superadminusername=admin
-      # 初始化的超级管理员密码
-      - --halo.security.initializer.superadminpassword=P@88w0rd
+# 初始化的超级管理员账号
+- --halo.security.initializer.superadminusername=admin
+# 初始化的超级管理员密码
+- --halo.security.initializer.superadminpassword=P@88w0rd
 ```
 > 账号默认是admin 密码默认是P@88w0rd
 #### 1panel部署
