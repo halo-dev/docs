@@ -41,14 +41,6 @@
     "message": "警告",
     "description": "The default label used for the Caution admonition (:::caution)"
   },
-  "theme.blog.archive.title": {
-    "message": "历史博文",
-    "description": "The page & hero title of the blog archive page"
-  },
-  "theme.blog.archive.description": {
-    "message": "历史博文",
-    "description": "The page & hero description of the blog archive page"
-  },
   "theme.BackToTopButton.buttonAriaLabel": {
     "message": "回到顶部",
     "description": "The ARIA label for the back to top button"
@@ -64,6 +56,14 @@
   "theme.blog.paginator.olderEntries": {
     "message": "较旧的博文",
     "description": "The label used to navigate to the older blog posts page (next page)"
+  },
+  "theme.blog.archive.title": {
+    "message": "历史博文",
+    "description": "The page & hero title of the blog archive page"
+  },
+  "theme.blog.archive.description": {
+    "message": "历史博文",
+    "description": "The page & hero description of the blog archive page"
   },
   "theme.blog.post.paginator.navAriaLabel": {
     "message": "博文分页导航",
@@ -124,10 +124,6 @@
   "theme.docs.versionBadge.label": {
     "message": "版本：{versionLabel}"
   },
-  "theme.common.editThisPage": {
-    "message": "编辑此页",
-    "description": "The link label to edit the current page"
-  },
   "theme.docs.versions.unreleasedVersionLabel": {
     "message": "此为 {siteTitle} {versionLabel} 版尚未发行的文档。",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
@@ -144,6 +140,18 @@
     "message": "最新版本",
     "description": "The label used for the latest version suggestion link label"
   },
+  "theme.common.editThisPage": {
+    "message": "编辑此页",
+    "description": "The link label to edit the current page"
+  },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "{count} 篇文档带有标签",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "{nDocsTagged}「{tagName}」",
+    "description": "The title of the page for a docs tag"
+  },
   "theme.common.headingLinkTitle": {
     "message": "{heading}的直接链接",
     "description": "Title for link to heading"
@@ -159,14 +167,6 @@
   "theme.lastUpdated.lastUpdatedAtBy": {
     "message": "最后{byUser}{atDate}更新",
     "description": "The sentence used to display when a page has been last updated, and by who"
-  },
-  "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "{count} 篇文档带有标签",
-    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.docs.tagDocListPageTitle": {
-    "message": "{nDocsTagged}「{tagName}」",
-    "description": "The title of the page for a docs tag"
   },
   "theme.navbar.mobileVersionsDropdown.label": {
     "message": "选择版本",
@@ -240,6 +240,10 @@
     "message": "文档侧边栏",
     "description": "The ARIA label for the sidebar navigation"
   },
+  "theme.docs.breadcrumbs.home": {
+    "message": "主页面",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
   "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
     "message": "关闭导航栏",
     "description": "The ARIA label for close button of mobile sidebar"
@@ -251,10 +255,6 @@
   "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
     "message": "切换导航栏",
     "description": "The ARIA label for hamburger menu button of mobile navigation"
-  },
-  "theme.docs.breadcrumbs.home": {
-    "message": "主页面",
-    "description": "The ARIA label for the home page in the breadcrumbs"
   },
   "theme.docs.sidebar.expandButtonTitle": {
     "message": "展开侧边栏",
