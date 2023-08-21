@@ -300,10 +300,9 @@ const config = {
   ],
   scripts: [
     {
-      src: "https://analytics.halo.run/umami.js",
+      src: "https://analytics.halo.run/script.js",
       async: true,
-      defer: true,
-      "data-website-id": "7e8d48ad-973d-4b44-b36d-ea1f1df25baa",
+      "data-website-id": "f9995c32-81e9-4e07-91f2-c276a0d63c9f",
     },
   ],
   stylesheets: [
