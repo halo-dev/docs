@@ -69,6 +69,18 @@ pnpm build
 cd path/to/halo
 ```
 
+下载预设插件：
+
+```bash
+# Windows
+./gradlew.bat downloadPluginPresets
+
+# macOS / Linux
+./gradlew downloadPluginPresets
+```
+
+构建：
+
 ```bash
 # Windows
 ./gradlew.bat clean build -x check
