@@ -54,7 +54,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     1. 创建 Halo + PostgreSQL 的实例：
 
-    ```yaml {24-34,51} title="~/halo/docker-compose.yaml"
+    ```yaml {24-30,47} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
@@ -85,10 +85,6 @@ import DockerArgs from "./slots/docker-args.md"
           - --spring.sql.init.platform=postgresql
           # 外部访问地址，请根据实际需要修改
           - --halo.external-url=http://localhost:8090/
-          # 初始化的超级管理员用户名
-          - --halo.security.initializer.superadminusername=admin
-          # 初始化的超级管理员密码
-          - --halo.security.initializer.superadminpassword=P@88w0rd
       halodb:
         image: postgres:latest
         container_name: halodb
@@ -116,7 +112,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     2. 创建 Halo + MySQL 的实例：
 
-    ```yaml {24-34,59} title="~/halo/docker-compose.yaml"
+    ```yaml {24-30,55} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
@@ -147,10 +143,6 @@ import DockerArgs from "./slots/docker-args.md"
           - --spring.sql.init.platform=mysql
           # 外部访问地址，请根据实际需要修改
           - --halo.external-url=http://localhost:8090/
-          # 初始化的超级管理员用户名
-          - --halo.security.initializer.superadminusername=admin
-          # 初始化的超级管理员密码
-          - --halo.security.initializer.superadminpassword=P@88w0rd
 
       halodb:
         image: mysql:8.0.31
@@ -205,14 +197,10 @@ import DockerArgs from "./slots/docker-args.md"
         command:
           # 外部访问地址，请根据实际需要修改
           - --halo.external-url=http://localhost:8090/
-          # 初始化的超级管理员用户名
-          - --halo.security.initializer.superadminusername=admin
-          # 初始化的超级管理员密码
-          - --halo.security.initializer.superadminpassword=P@88w0rd
     ```
     4. 仅创建 Halo 实例（使用已有外部数据库，MySQL 为例）：
     
-    ```yaml {8,21-24} title="~/halo/docker-compose.yaml"
+    ```yaml {8,12-20} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
@@ -231,13 +219,8 @@ import DockerArgs from "./slots/docker-args.md"
           - --spring.sql.init.platform=mysql
           # 外部访问地址，请根据实际需要修改
           - --halo.external-url=http://localhost:8090/
-          # 初始化的超级管理员用户名
-          - --halo.security.initializer.superadminusername=admin
-          # 初始化的超级管理员密码
-          - --halo.security.initializer.superadminpassword=P@88w0rd
           # 端口号 默认8090
           - --server.port=8090
-
     ```
 
   参数详解：
@@ -256,7 +239,7 @@ import DockerArgs from "./slots/docker-args.md"
   docker-compose logs -f
   ```
 
-4. 用浏览器访问 `/console` 即可进入 Halo 管理页面，用户名和密码为在 `docker-compose.yaml` 文件中设置的 `superadminusername` 和 `superadminpassword`。
+4. 用浏览器访问 /console 即可进入 Halo 管理页面，首次启动会进入初始化页面。
 
   :::tip
   如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
@@ -366,10 +349,6 @@ services:
     command:
       # 外部访问地址，请根据实际需要修改
       - --halo.external-url=https://yourdomain.com
-      # 初始化的超级管理员用户名
-      - --halo.security.initializer.superadminusername=admin
-      # 初始化的超级管理员密码
-      - --halo.security.initializer.superadminpassword=P@88w0rd
     labels:
       traefik.enable: "true"
       traefik.docker.network: traefik

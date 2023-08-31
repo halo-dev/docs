@@ -107,10 +107,6 @@ services:
     command:
       # 外部访问地址，请根据实际需要修改
       - --halo.external-url=https://yourdomain.com
-      # 初始化的超级管理员用户名
-      - --halo.security.initializer.superadminusername=admin
-      # 初始化的超级管理员密码
-      - --halo.security.initializer.superadminpassword=P@88w0rd
     labels:
       traefik.enable: "true"
       traefik.docker.network: traefik
