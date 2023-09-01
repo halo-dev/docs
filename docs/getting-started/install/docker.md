@@ -48,9 +48,7 @@ import DockerArgs from "./slots/docker-args.md"
       -p 8090:8090 \
       -v ~/.halo2:/root/.halo2 \
       halohub/halo:2.8 \
-      --halo.external-url=http://localhost:8090/ \
-      --halo.security.initializer.superadminusername=admin \
-      --halo.security.initializer.superadminpassword=P@88w0rd
+      --halo.external-url=http://localhost:8090/
     ```
 
     :::info
@@ -67,7 +65,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     <DockerArgs />
 
-1. 用浏览器访问 `/console` 即可进入 Halo 管理页面，用户名和密码为启动参数中的 `superadminusername` 和 `superadminpassword`。
+1. 用浏览器访问 `/console` 即可进入 Halo 管理页面，首次启动会进入初始化页面。
 
     :::tip
     如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
@@ -107,7 +105,5 @@ import DockerArgs from "./slots/docker-args.md"
       -p 8090:8090 \
       -v ~/.halo2:/root/.halo2 \
       halohub/halo:2.8 \
-      --halo.external-url=http://localhost:8090/ \
-      --halo.security.initializer.superadminusername=admin \
-      --halo.security.initializer.superadminpassword=P@88w0rd  
+      --halo.external-url=http://localhost:8090/
     ```

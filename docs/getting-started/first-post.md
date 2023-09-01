@@ -8,11 +8,7 @@ description: 安装完成后，如何写下第一篇文章。
 
 ## 登录管理端
 
-浏览器访问 `/console` 即可进入 Halo 管理端。用户名密码为部署在配置文件中时设置的 `halo.security.initializer.superadminusername` 和 `halo.security.initializer.superadminpassword`。
-
-:::info
-如果你在安装时没有设置 `halo.security.initializer.superadminpassword` 变量或忘记了设置的密码，可以参考[常见问题中的忘记密码章节](../user-guide/faq.md#忘记密码怎么办)进行处理。
-:::
+浏览器访问 `/console` 即可进入 Halo 管理端。
 
 ## 新建文章
 
