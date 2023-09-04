@@ -151,7 +151,7 @@ import DockerArgs from "./slots/docker-args.md"
         networks:
           halo_network:
         command: 
-          - --default-authentication-plugin=mysql_native_password
+          - --default-authentication-plugin=caching_sha2_password
           - --character-set-server=utf8mb4
           - --collation-server=utf8mb4_general_ci
           - --explicit_defaults_for_timestamp=true
