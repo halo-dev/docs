@@ -145,7 +145,7 @@ import DockerArgs from "./slots/docker-args.md"
           - --halo.external-url=http://localhost:8090/
 
       halodb:
-        image: mysql:latest
+        image: mysql:8.1.0
         container_name: halodb
         restart: on-failure:3
         networks:
