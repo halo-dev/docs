@@ -190,8 +190,12 @@ const config = {
         contextualSearch: true,
         appId: "OG53LY1OQH",
       },
+      zoom: {
+        selector: ".markdown :not(a) > img",
+      },
     }),
   plugins: [
+    require.resolve("docusaurus-plugin-image-zoom"),
     [
       "@docusaurus/plugin-client-redirects",
       {
