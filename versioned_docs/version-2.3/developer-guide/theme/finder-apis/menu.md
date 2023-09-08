@@ -32,7 +32,7 @@ menuFinder.getByName(name)
     <li th:each="menuItem : ${menuItems}">
       <a
         th:href="@{${menuItem.status.href}}"
-        th:text="${menuItem.spec.displayName}"
+        th:text="${menuItem.status.displayName}"
         th:target="${menuItem.spec.target?.value}"
       >
       </a>
@@ -67,7 +67,7 @@ menuFinder.getPrimary()
     <li th:each="menuItem : ${menuItems}">
       <a
         th:href="@{${menuItem.status.href}}"
-        th:text="${menuItem.spec.displayName}"
+        th:text="${menuItem.status.displayName}"
         th:target="${menuItem.spec.target?.value}"
       >
       </a>
