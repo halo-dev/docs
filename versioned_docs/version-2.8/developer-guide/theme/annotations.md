@@ -19,7 +19,7 @@ title: 模型元数据
   <ul th:with="menuItems = ${menu.menuItems}">
     <li th:each="menuItem : ${menuItems}">
       <i th:class="${#annotations.get(menuItem, 'icon')}"></i>
-      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.spec.displayName}"></a>
+      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"></a>
     </li>
    </ul>
 </div>
@@ -38,7 +38,7 @@ title: 模型元数据
   <ul th:with="menuItems = ${menu.menuItems}">
     <li th:each="menuItem : ${menuItems}">
       <i th:class="${#annotations.getOrDefault(menuItem, 'icon', 'fa')}"></i>
-      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.spec.displayName}"></a>
+      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"></a>
     </li>
    </ul>
 </div>
@@ -57,7 +57,7 @@ title: 模型元数据
   <ul th:with="menuItems = ${menu.menuItems}">
     <li th:each="menuItem : ${menuItems}">
       <i th:if="${#annotations.contains(menuItem, 'icon')}" th:class="${#annotations.get(menuItem, 'icon')}"></i>
-      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.spec.displayName}"></a>
+      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"></a>
     </li>
    </ul>
 </div>
