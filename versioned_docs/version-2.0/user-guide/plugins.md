@@ -3,7 +3,7 @@ title: 插件
 description: 插件管理相关功能说明
 ---
 
-插件时用于扩展 Halo 功能的软件包。插件独立于 Halo 核心应用，可以单独安装、升级、卸载。
+插件是用于扩展 Halo 功能的软件包。插件独立于 Halo 核心应用，可以单独安装、升级、卸载。
 
 :::info
 当前 Halo 支持的插件可在[Awesome Halo](https://github.com/halo-sigs/awesome-halo)仓库查看。
