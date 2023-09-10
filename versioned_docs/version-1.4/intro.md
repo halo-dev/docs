@@ -22,10 +22,10 @@ slug: /
 <a href="https://github.com/halo-dev/halo/commits"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/halo-dev/halo.svg?style=flat-square" /></a>
 <a href="https://github.com/halo-dev/halo/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/halo-dev/halo/Halo%20CI?style=flat-square" /></a>
 <br></br>
-<a href="https://halo.run">官网</a>
-<a href="https://docs.halo.run">文档</a>
-<a href="https://bbs.halo.run">社区</a>
-<a href="https://gitee.com/halo-dev">Gitee</a>
+<a href="https://halo.run">官网</a>&nbsp;
+<a href="https://docs.halo.run">文档</a>&nbsp;
+<a href="https://bbs.halo.run">社区</a>&nbsp;
+<a href="https://gitee.com/halo-dev">Gitee</a>&nbsp;
 <a href="https://t.me/halo_dev">Telegram 频道</a>
 </p>
 
