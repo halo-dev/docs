@@ -85,7 +85,7 @@ import DockerArgs from "./slots/docker-args.md"
           # 初始化的超级管理员密码
           - --halo.security.initializer.superadminpassword=P@88w0rd
       halodb:
-        image: postgres:latest
+        image: postgres:15.4
         container_name: halodb
         restart: on-failure:3
         networks:
