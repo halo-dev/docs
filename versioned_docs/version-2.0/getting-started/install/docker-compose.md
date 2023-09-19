@@ -80,7 +80,7 @@ import DockerEnv from "./slots/docker-env.md"
           - HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD=P@88w0rd
 
       halodb:
-        image: postgres:latest
+        image: postgres:15.4
         container_name: halodb
         restart: on-failure:3
         networks:
