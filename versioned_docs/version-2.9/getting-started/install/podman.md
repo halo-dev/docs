@@ -127,9 +127,9 @@ Podman 没有和 Docker 类似的管理进程，在低配置的主机上更友�
   Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"
   Environment=TZ=Asia/Shanghai
   Volume=/opt/podman-data/halo:/.halo
-  PublishPort=192.168.1.20:8090:8090
+  PublishPort=127.0.0.1:8090:8090
   Image=ghcr.io/halo-dev/halo:2.9
-  Exec=--halo.external-url=https://xxx.com --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/mty-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
+  Exec=--halo.external-url=https://xxx.com --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
 
   [Service]
   Restart=always
@@ -144,7 +144,9 @@ Podman 没有和 Docker 类似的管理进程，在低配置的主机上更友�
 
   ```bash
   systemctl daemon-reload
-  systemctl enable --now halo
+  systemctl start halo
+  # 只需要systemctl start halo.
+  # 之后重启会自动启动不需要enable服务.
   ```
 
 Podman Quadlet 解析:
@@ -190,10 +192,10 @@ Podman Quadlet 解析:
   [Container]
   AutoUpdate=registry
   ContainerName=halo
-  Volume=/opt/podman-data/halo:/.halo
-  PublishPort=192.168.1.20:8090:8090
+  Volume=/opt/podman-data/halo:/root/.halo
+  PublishPort=127.0.0.1:8090:8090
   Image=ghcr.io/halo-dev/halo:2.9
-  Exec=--halo.external-url=https://xxx.com --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/mty-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
+  Exec=--halo.external-url=https://xxx.com --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
 
   [Service]
   Restart=always
