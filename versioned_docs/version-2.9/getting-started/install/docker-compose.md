@@ -86,7 +86,7 @@ import DockerArgs from "./slots/docker-args.md"
           # 外部访问地址，请根据实际需要修改
           - --halo.external-url=http://localhost:8090/
       halodb:
-        image: postgres:latest
+        image: postgres:15.4
         container_name: halodb
         restart: on-failure:3
         networks:
