@@ -5,14 +5,33 @@ description: 使用 Podman 部署
 
 import DockerArgs from "./slots/docker-args.md"
 
+## 前言
+
 :::info
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare)，这可以快速帮助你了解 Halo。
 :::
 
-:::tip
-此文档仅提供使用默认 H2 数据库的 Podman 运行方式，主要用于体验和测试，在生产环境我们不推荐使用 H2 数据库。
+:::info
+什么是 Podman ?
 
-如果需要使用其他数据库部署，我们推荐使用 Docker Compose 部署：[使用 Docker Compose 部署](./docker-compose)
+Podman（全称 POD 管理器）是一款用于在 Linux® 系统上开发、管理和运行容器的开源工具。Podman 最初由红帽® 工程师联合开源社区一同开发，它可利用 lipod 库来管理整个容器生态系统。
+Podman 采用无守护进程的包容性架构，因此可以更安全、更简单地进行容器管理，再加上 Buildah 和 Skopeo 等与之配套的工具和功能，开发人员能够按照自身需求来量身定制容器环境。
+
+为什么选择 Podman 而不是 Docker ?
+
+这个需要视情况而定, 如果您的主机配置不是很高, 您使用 Docker 时, 因为 Docker 自带的守护进程可能会雪上加霜, 它会大量占用您的资源。
+而 Podman 采用无守护进程架构，而且容器是无根模式，您可以在占用资源极小的情况下运行镜像，并且获得很高的安全性。
+而且 Podman 与 Docker 高度兼容，您不需要做特别配置即可将 Docker 容器运行在Podman 上。
+
+[什么是 Podman?](https://www.redhat.com/zh/topics/containers/what-is-podman)
+
+[Podman ArchWiki](https://wiki.archlinux.org/title/Podman)
+
+[Podman 官网](https://podman.io/)
+:::
+
+:::tip
+此文档提供使用默认 H2 数据库和 Postgresql 数据库的 Podman 运行示例，在生产环境我们不推荐使用 H2 数据库。
 :::
 
 ## 环境搭建
@@ -20,10 +39,16 @@ import DockerArgs from "./slots/docker-args.md"
 - Podman 安装文档：<https://podman.io/docs/installation>
 
 :::tip
-我们推荐按照 Podman 官方文档安装 Podman 。
+我们推荐您先阅读 Podman 官方文档对 Podman 有了相关了解后，再考虑通过Linux包管理系统安装 Podman 或者使用文档中指定的方式安装 。
 :::
 
 ## 使用 Docker 镜像
+
+:::tip
+为什么是 Docker 镜像?
+
+通过[前言](#前言)我们已经了解了 Podman ，其中提到 ***Podman 与 Docker 高度兼容*** ，正是因为 Podman 完全是为了替代 Docker 而诞生，所以原本的 Docker 生态中的镜像我们可以无需更改直接使用。
+:::
 
 可用的 Halo 2.9 的 Docker 镜像：
 
@@ -157,7 +182,7 @@ Podman Quadlet 解析:
 
 `[Container]` 部分:
 
-- `AutoUpdate=registry`指定了自动拉取容器。假设后续Halo镜像支持了`latest`标签，你需要`systemctl enable --now podman-auto-update.timer`以启用容器自动更新。
+- `AutoUpdate=registry`指定了自动拉取容器。假设后续Halo镜像支持了`latest`标签，你需要`systemctl enable --now podman-auto-update.timer`以启用容器自动更新。本文示例`ghcr.io/halo-dev/halo:2.9`，将会自动更新适用与`2.9`版本的patch，例如您创建容器时是`2.9.1`，在官方发布`2.9.2`版本时，容器会自动更新到`2.9.2`。
 - `ContainerName=`指定了 systemd 将生成的服务名称。
 - `User=60000 Group=60000 UserNS=keep-id:uid=60000,gid=60000` 限制容器以 id 60000 的用户运行，提高安全性。注意这个id 60000请根据你实际想要运行的用户名来修改，可通过`id user`获得你的用户的id.
 - `Environment=`字段指定了容器的环境变量，其中你需要注意的是`Environment=HALO_WORK_DIR="/.halo"` `Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"`这两个变量中的`/.halo`路径。
