@@ -67,6 +67,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 1. 创建容器
 
     ```bash
+    mkdir -p ~/.halo2
     podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.9
     ```
 
@@ -118,6 +119,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
   修改版本号后，按照最初安装的方式，重新创建容器即可。
 
     ```bash
+    mkdir -p ~/.halo2
     podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.9
     ```
 
@@ -131,6 +133,7 @@ Podman 没有和 Docker 类似的管理进程，在低配置的主机上更友�
 下面是一个使用 Podstgresql 数据库的示例:
 
   ```bash
+  mkdir -p /opt/podman-data/halo
   mkdir -p /etc/containers/systemd
   vim /etc/containers/systemd/halo.container
   ```
@@ -208,6 +211,8 @@ Podman Quadlet 解析:
 示例:
 
   ```conf
+  # mkdir -p /opt/podman-data/halo
+  # mkdir -p /etc/containers/systemd
   # /etc/containers/systemd/halo.container
   [Unit]
   Description=The halo container
