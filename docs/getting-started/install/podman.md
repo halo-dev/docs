@@ -210,9 +210,13 @@ Podman Quadlet 解析:
 使用默认的 root 用户运行时无需定义 `User=60000 Group=60000 UserNS=keep-id:uid=60000,gid=60000` 与 `Environment=HALO_WORK_DIR="/.halo"` `Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"`，
 示例:
 
+  ```bash
+  mkdir -p /opt/podman-data/halo
+  mkdir -p /etc/containers/systemd
+  vim /etc/containers/systemd/halo.container
+  ```
+
   ```conf
-  # mkdir -p /opt/podman-data/halo
-  # mkdir -p /etc/containers/systemd
   # /etc/containers/systemd/halo.container
   [Unit]
   Description=The halo container
