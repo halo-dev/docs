@@ -36,6 +36,7 @@ module.exports = {
             "getting-started/install/docker",
             "getting-started/install/1panel",
             "getting-started/install/helm",
+            "getting-started/install/podman",
             {
               type: "category",
               label: "其他指南",
