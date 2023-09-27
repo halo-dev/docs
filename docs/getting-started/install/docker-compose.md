@@ -68,7 +68,7 @@ import DockerArgs from "./slots/docker-args.md"
         networks:
           halo_network:
         volumes:
-          - ./:/root/.halo2
+          - ./halo2:/root/.halo2
         ports:
           - "8090:8090"
         healthcheck:
@@ -126,7 +126,7 @@ import DockerArgs from "./slots/docker-args.md"
         networks:
           halo_network:
         volumes:
-          - ./:/root/.halo2
+          - ./halo2:/root/.halo2
         ports:
           - "8090:8090"
         healthcheck:
@@ -185,7 +185,7 @@ import DockerArgs from "./slots/docker-args.md"
         container_name: halo
         restart: on-failure:3
         volumes:
-          - ./:/root/.halo2
+          - ./halo2:/root/.halo2
         ports:
           - "8090:8090"
         healthcheck:
@@ -210,7 +210,7 @@ import DockerArgs from "./slots/docker-args.md"
         restart: on-failure:3
         network_mode: "host"
         volumes:
-          - ./:/root/.halo2
+          - ./halo2:/root/.halo2
         command:
           # 修改为自己已有的 MySQL 配置
           - --spring.r2dbc.url=r2dbc:pool:mysql://localhost:3306/halo
@@ -342,7 +342,7 @@ services:
     container_name: halo
     restart: on-failure:3
     volumes:
-      - ./:/root/.halo2
+      - ./halo2:/root/.halo2
     networks:
       - traefik
       - halo

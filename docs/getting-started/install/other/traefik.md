@@ -100,7 +100,7 @@ services:
     container_name: halo
     restart: on-failure:3
     volumes:
-      - ./:/root/.halo2
+      - ./halo2:/root/.halo2
     networks:
       - traefik
       - halo
