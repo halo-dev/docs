@@ -23,3 +23,4 @@ description: 如果 Halo 对你有帮助，不妨赞助我们
 
 - 阿里云：<https://www.aliyun.com/daily-act/ecs/activity_selection?userCode=j57gyupo>
 - 阿里云新人专享：<https://www.aliyun.com/minisite/goods?userCode=j57gyupo>
+- 腾讯云：<https://curl.qcloud.com/9Ogon25Y>
