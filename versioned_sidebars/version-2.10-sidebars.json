@@ -201,7 +201,8 @@
       },
       "items": [
         "contribution/issue",
-        "contribution/pr"
+        "contribution/pr",
+        "contribution/sponsor"
       ]
     },
     "about"
