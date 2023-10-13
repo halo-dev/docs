@@ -3,6 +3,12 @@ title: 与 OneinStack 配合使用
 description: 使用 OneinStack 管理 Halo 服务的反向代理
 ---
 
+:::warning 提醒
+OneinStack 近期被发现安装包包含恶意代码，请谨慎使用，详见：<https://github.com/oneinstack/oneinstack/issues/511>
+
+如果近期有安装过 OneinStack，建议根据上面的 issue 内容进行检查。
+:::
+
 ## Halo 部署
 
 参见 [使用 Docker Compose 部署](../docker-compose.md)
