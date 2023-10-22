@@ -108,4 +108,4 @@ docker build -t halo-dev/halo:2.8.0 .
 docker images | grep halo
 ```
 
-最终部署文档可参考：[使用 Docker Compose 部署](./docker-compose)
+最终部署文档可参考：[使用 Docker Compose 部署](../../getting-started/install/docker-compose.md)

@@ -12,7 +12,7 @@ description: 与宝塔面板配合使用的指南
 
 ## Halo 部署
 
-参见 [在 Linux 环境部署](/getting-started/install/linux)
+参见 [在 Linux 环境部署](../linux.md)
 
 :::info
 `「作为服务运行」` 部分可以不进行操作，只需测试启动无误即可，后面将使用宝塔面板软件包中的 `Supervisor` 托管 Halo 进程。
@@ -32,7 +32,7 @@ description: 与宝塔面板配合使用的指南
 需要填写的表单信息如下：
 
 - **名称**：随意
-- **启动用户**：如果您按照 [在 Linux 环境部署](/getting-started/install/linux) 创建了用于运行 Halo 的用户，则选择您创建的用户即可。否则选择默认的 root。
+- **启动用户**：如果您按照 [在 Linux 环境部署](../linux.md) 创建了用于运行 Halo 的用户，则选择您创建的用户即可。否则选择默认的 root。
 - **运行目录**：运行包的存放目录，按照实际情况填写，需要保证你所选的目录包含运行包。
 - **启动命令**：`java -server -Xms256m -Xmx256m -jar halo.jar`
 

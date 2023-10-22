@@ -451,4 +451,4 @@ sequenceDiagram
 
 ## 短连接
 
-参考 [1.4.17/Markdown 语法](../../versioned_docs/version-1.4/user-guide/markdown.md#短连接)。目前已经在 1.5.x 移除，建议直接使用官方提供的嵌入代码。
+参考 [1.4.17/Markdown 语法](https://docs.halo.run/1.4/user-guide/markdown#短连接)。目前已经在 1.5.x 移除，建议直接使用官方提供的嵌入代码。
