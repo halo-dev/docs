@@ -45,7 +45,7 @@ description: 这个例子展示了如何开发 Todo List 插件
 参考链接：
 
 - [SemVer expression](https://github.com/zafarkhaja/jsemver#semver-expressions-api-ranges)
-- [表单定义](../form-schema.md)
+- [表单定义](../../form-schema.md)
 
 此时我们已经准备好了可以开发一个 TodoList 插件的一切，下面让我们正式进入 TodoList 插件开发教程。
 
@@ -86,7 +86,7 @@ public class TodoListPlugin extends BasePlugin {
 ./gradlew build 
 ```
 
-使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../core/run.md) 及 [插件入门](../hello-world.md) 配置插件的运行模式和路径：
+使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../../core/run.md) 及 [插件入门](../hello-world.md) 配置插件的运行模式和路径：
 
 ```yaml
 halo:

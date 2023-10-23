@@ -10,8 +10,6 @@ const config = {
   tagline: "Halo 的文档站点",
   url: "https://docs.halo.run",
   baseUrl: "/",
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon-96x96.png",
   i18n: {
     defaultLocale: "zh-Hans",

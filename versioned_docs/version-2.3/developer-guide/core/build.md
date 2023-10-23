@@ -4,7 +4,7 @@ description: 构建为可执行 JAR 和 Docker 镜像的文档
 ---
 
 :::info
-在此之前，我们推荐你先阅读[《准备工作》](./prepare)，检查本地环境是否满足要求。
+在此之前，我们推荐你先阅读[《准备工作》](./prepare.md)，检查本地环境是否满足要求。
 :::
 
 一般情况下，为了保证版本一致性和可维护性，我们并不推荐自行构建和二次开发。但考虑到我们目前仅提供 Docker 镜像的发行版本，不再提供可执行 JAR 的发行版本，因此我们提供了构建的文档，以供用户自行构建。
@@ -100,4 +100,4 @@ docker build -t halo-dev/halo:2.0.0 .
 docker images | grep halo
 ```
 
-最终部署文档可参考：[使用 Docker Compose 部署](./docker-compose)
+最终部署文档可参考：[使用 Docker Compose 部署](../../getting-started/install/docker-compose.md)

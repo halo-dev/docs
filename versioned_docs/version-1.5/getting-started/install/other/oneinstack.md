@@ -5,7 +5,7 @@ description: 使用 OneinStack 的 vhost 脚本创建 Halo 站点的 Nginx 配�
 
 ## Halo 部署
 
-参见 [在 Linux 环境部署](/getting-started/install/linux)
+参见 [在 Linux 环境部署](../linux.md)
 
 :::info
 `「反向代理」` 部分不进行操作，保证 Halo 服务运行无误即可。
