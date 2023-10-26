@@ -93,7 +93,7 @@ cd path/to/halo
 
 ## 构建 Docker 镜像
 
-在进行之前，请确保已经完成上述操作，最终需要确认在 halo 项目的 `application/build/libs/` 目录已经包含了 `application-2.10.1-SNAPSHOT.jar` 文件。
+在进行之前，请确保已经完成上述操作，最终需要确认在 halo 项目的 `application/build/libs/` 目录已经包含了 `application-$version.jar` 文件。
 
 ```bash
 cd path/to/halo
