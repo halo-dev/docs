@@ -55,51 +55,52 @@ description: 这个例子展示了如何开发 Todo List 插件
 
 1. 在 `src/main/java` 下创建包，如 `run.halo.tutorial`，在创建一个类 `TodoListPlugin`，它继承自 `BasePlugin` 类内容如下：
 
-```java
-package run.halo.tutorial;
+   ```java
+   package run.halo.tutorial;
 
-import org.pf4j.PluginWrapper;
-import org.springframework.stereotype.Component;
-import run.halo.app.plugin.BasePlugin;
+   import org.pf4j.PluginWrapper;
+   import org.springframework.stereotype.Component;
+   import run.halo.app.plugin.BasePlugin;
 
-@Component
-public class TodoListPlugin extends BasePlugin {
-    public TodoListPlugin(PluginWrapper wrapper) {
-        super(wrapper);
-    }
-}
-```
+   @Component
+   public class TodoListPlugin extends BasePlugin {
+       public TodoListPlugin(PluginWrapper wrapper) {
+           super(wrapper);
+       }
+   }
+   ```
 
-`src/main/java` 下的文件结构如下：
+   `src/main/java` 下的文件结构如下：
 
-```text
-.
-└── run
-    └── halo
-        └── tutorial
-            └── TodoListPlugin.java
-```
+   ```text
+   .
+   └── run
+       └── halo
+           └── tutorial
+               └── TodoListPlugin.java
+   ```
 
-然后在项目目录执行命令
+2. 然后在项目目录执行命令
 
-```shell
-./gradlew build 
-```
+  ```shell
+  ./gradlew build 
+  ```
 
-使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../../core/run.md) 及 [插件入门](../hello-world.md) 配置插件的运行模式和路径：
+3. 使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../../core/run.md) 及 [插件入门](../hello-world.md) 配置插件的运行模式和路径：
 
-```yaml
-halo:
-  plugin:
-    runtime-mode: development
-    fixed-plugin-path:
-      # 配置为插件绝对路径
-      - /Users/guqing/halo-plugin-todolist
-```
+   ```yaml
+   halo:
+     plugin:
+       runtime-mode: development
+       fixed-plugin-path:
+         # 配置为插件绝对路径
+         - /Users/guqing/halo-plugin-todolist
+   ```
 
-启动 Halo，然后访问 `http://localhost:8090/console`
+4. 启动 Halo，然后访问 `http://localhost:8090/console`
 
-在插件列表将能看到插件已经被正确启用
+在插件列表将能看到插件已经被正确启用：
+
 ![plugin-todolist-in-list-view](/img/todolist-in-list.png)
 
 ## 创建一个自定义模型
@@ -283,13 +284,13 @@ export default definePlugin({
 2. ` pnpm install todomvc-app-css `。
 3. 修改 `console/src/views/DefaultView.vue` 最底部的 `style` 标签。
 
-```diff
-- <style>
-+ <style scoped>
--  @import "https://unpkg.com/todomvc-app-css@2.4.1/index.css";
-+  @import "todomvc-app-css/index.css";
-  </style>
-```
+   ```diff
+   - <style>
+   + <style scoped>
+   -  @import "https://unpkg.com/todomvc-app-css@2.4.1/index.css";
+   +  @import "todomvc-app-css/index.css";
+     </style>
+   ```
 
 4. 重新 Build 后刷新页面，便能看到目标图所示效果。
 
@@ -307,7 +308,7 @@ pnpm install axios
 
 为了符合最佳实践，将用 TypeScript 改造之前的 todomvc 示例：
 
-1. 创建 types 文件 `console/src/types/index.ts`
+创建 types 文件 `console/src/types/index.ts`
 
 ```typescript
 export interface Metadata {
@@ -575,87 +576,9 @@ const handleDelete = (todo: Todo) => {
 
 至此我们就完成了与插件后端 APIs 实现 Todo List 数据交互的部分。
 
-### 使用 Icon
-
-目前 Todo 的菜单还是默认的网格样式 Icon，在 `console/src/index.ts` 文件中配置有一个 `icon: markRaw(IconGrid)`。以此为例说明该如何使用其他 `Icon`。
-
-1. 安装 [unplugin-icons](https://github.com/antfu/unplugin-icons)。
-
-```shell
-pnpm install -D unplugin-icons
-pnpm install -D @iconify/json
-pnpm install -D @vue/compiler-sfc
-```
-
-2. 编辑 `console/vite.config.ts`，在 `defineConfig` 的 `plugins` 中添加配置，修改如下。
-
-```diff
-+ import Icons from "unplugin-icons/vite";
-
-// https://vitejs.dev/config/
-export default defineConfig({
--  plugins: [vue(), vueJsx()],
-+  plugins: [vue(), vueJsx(), Icons({ compiler: "vue3" })],
-```
-
-3. 在 `console/tsconfig.app.json` 中加入 `unplugni-icons` 的 `types` 配置。
-
-```diff
-{
-  // ...
-  "compilerOptions": {
-    // ...
-    "paths": {
-      "@/*": ["./src/*"]
--    }
-+    },
-+    "types": ["unplugin-icons/types/vue"]
-  }
-}
-```
-
-4. 到 [icones](https://icones.js.org/) 搜索你想要使用的图标，并点击它，然后选择 `Unplugin Icons`，会复制到剪贴板。
-
-![unplugin icons selector](/img/unplugin-icons-example.png)
-
-5. 编辑 `console/src/index.ts` 在 `import` 区域粘贴，并 `icon` 属性。
-
-```diff
-- import { IconGrid } from "@halo-dev/components";
-+ import VscodeIconsFileTypeLightTodo from "~icons/vscode-icons/file-type-light-todo";
-
-export default definePlugin({
-  routes: [
-    {
-     // ...
-      route: {
-        path: "/todos",
-        children: [
-          {
-            // ...
-            meta: {
-              // ...
-              menu: {
-                // ...
--               icon: markRaw(IconGrid),
-+               icon: markRaw(VscodeIconsFileTypeLightTodo),
-                priority: 0,
-              },
-            },
-          },
-        ],
-      },
-    },
-  ],
-  // ...
-});
-```
-
 ### 用户界面使用静态资源
 
-如果你想在用户界面中使用图片，你可以放到 `console/src/assets` 中，例如 `logo.png`，并将其作为 Todo 的 Logo 放到标题旁边
-
-![todo logo example](/img/todo-logo-check-48.png)
+如果你想在用户界面中使用图片，你可以放到 `console/src/assets` 中，例如 `logo.png`，并将其作为 Todo 的 Logo 放到标题旁边。
 
 需要修改 `console/src/views/DefaultView.vue` 示例如下：
 
