@@ -136,7 +136,7 @@ import DockerArgs from "./slots/docker-args.md"
           retries: 5
           start_period: 30s
         command:
-          - --spring.r2dbc.url=r2dbc:pool:mysql://halodb:3306/halo
+          - --spring.r2dbc.url=r2dbc:pool:mysql://halodb/halo
           - --spring.r2dbc.username=root
           # MySQL 的密码，请保证与下方 MYSQL_ROOT_PASSWORD 的变量值一致。
           - --spring.r2dbc.password=o#DwN&JSa56
