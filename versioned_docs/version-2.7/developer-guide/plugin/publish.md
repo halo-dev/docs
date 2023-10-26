@@ -8,7 +8,7 @@ description: 了解如何与我们的社区分享你的插件
 
 当你完成了你的插件并进行充分测试后，切换到插件目录 Build 一次，当没有发生任何错误你就可以推送到 GitHub 并 `Create a new release`。
 
-然后填写 `Release Tag` 和描述点击创建，项目目录下的 `.github/workflows/workflow.yaml` 文件会被 `GitHub Action` 触发并执行，脚本会自动根据你的 `Release Tag` 修改插件版本号然后在 `Release` 的 `Asserts` 中包含打包产物--插件的 JAR 文件。
+然后填写 `Release Tag` 和描述点击创建，项目目录下的 `.github/workflows/workflow.yaml` 文件会被 `GitHub Action` 触发并执行，脚本会自动根据你的 `Release Tag` 修改插件版本号然后在 `Release` 的 `Assets` 中包含打包产物--插件的 JAR 文件。
 
 ## 分享你的插件
 
