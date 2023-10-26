@@ -89,7 +89,7 @@ cd path/to/halo
 ./gradlew clean build -x check
 ```
 
-构建完成之后，在 halo 项目下产生的 `application/build/libs/application-2.10.1-SNAPSHOT.jar` 即为构建完成的文件。
+构建完成之后，在 halo 项目下产生的 `application/build/libs/application-$version.jar` 即为构建完成的文件。
 
 ## 构建 Docker 镜像
 
