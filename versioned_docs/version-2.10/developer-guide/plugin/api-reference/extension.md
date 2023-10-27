@@ -74,10 +74,10 @@ gender: male
 
 - @GVK：此注解标识该类为一个自定义模型，同时必须继承 `AbstractExtension`。
   - kind：表示自定义模型所表示的 REST 资源。
-  - group：表示一组公开的资源，通常采用域名形式，Halo 项目保留使用空组和任何以“*.halo.run”结尾的组名供其单独使用。
-  选择群组名称时，我们建议选择你的群组或组织拥有的子域，例如“widget.mycompany.com”。
-  - version：API 的版本，它与 group 组合使用为 apiVersion=“GROUP/VERSION”，例如“api.halo.run/v1alpha1”。
-  - singular: 资源的单数名称，这允许客户端不透明地处理复数和单数，必须全部小写。通常为小写的“kind”。
+  - group：表示一组公开的资源，通常采用域名形式，Halo 项目保留使用空组和任何以 `*.halo.run` 结尾的组名供其单独使用。
+  选择群组名称时，我们建议选择你的群组或组织拥有的子域，例如 `widget.mycompany.com`。
+  - version：API 的版本，它与 group 组合使用为 `apiVersion=GROUP/VERSION`，例如`api.halo.run/v1alpha1`。
+  - singular: 资源的单数名称，这允许客户端不透明地处理复数和单数，必须全部小写，通常为小写的 `kind`。
   - plural： 资源的复数名称，自定义资源在 `/apis/<group>/<version>/.../<plural>` 下提供，必须为全部小写。
 - @Schema：属性校验注解，会在创建/修改资源前对资源校验，参考 [schema-validator](https://www.openapi4j.org/schema-validator.html)。
 :::

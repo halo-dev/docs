@@ -58,15 +58,15 @@ rules:
 - `resources` 对应 API 中的 resource 部分，`my-plugin` 表示插件名称。
 - `verbs` 表示请求动词，可选值为 "create", "delete", "deletecollection", "get", "list", "patch", "update"。对应的 HTTP 请求方式如下表所示：
 
-| HTTP verb | request verb                                                 |
-| --------- | ------------------------------------------------------------ |
-| POST      | create                                                       |
-| GET, HEAD | get (for individual resources), list (for collections, including full object content), watch (for watching an individual resource or collection of resources) |
-| PUT       | update                                                       |
-| PATCH     | patch                                                        |
-| DELETE    | delete (for individual resources), deletecollection (for collections) |
+  | HTTP verb | request verb                                                 |
+  | --------- | ------------------------------------------------------------ |
+  | POST      | create                                                       |
+  | GET, HEAD | get (for individual resources), list (for collections, including full object content), watch (for watching an individual resource or collection of resources) |
+  | PUT       | update                                                       |
+  | PATCH     | patch                                                        |
+  | DELETE    | delete (for individual resources), deletecollection (for collections) |
 
-`metadata.labels` 中必须包含 `halo.run/role-template: "true"` 以表示它此资源要作为角色模板。
+  `metadata.labels` 中必须包含 `halo.run/role-template: "true"` 以表示它此资源要作为角色模板。
 
 `metadata.annotations` 中：
 
@@ -75,16 +75,16 @@ rules:
 - `rbac.authorization.halo.run/display-name`：模板角色的显示名称，用于展示为用户可读的名称信息。
 - `rbac.authorization.halo.run/ui-permissions`：用于控制 UI 权限，规则为 `plugin:{your-plugin-name}:scope-name`，使用示例为在插件前端部分入口文件 `index.ts` 中用于控制菜单是否显示或者控制页面按钮是否展示：
 
-```javascript
-{
-  path: "",
-  name: "HelloWorld",
-  component: DefaultView,
-  meta: {
-    permissions: ["plugin:my-plugin:person:view"]
+  ```javascript
+  {
+    path: "",
+    name: "HelloWorld",
+    component: DefaultView,
+    meta: {
+      permissions: ["plugin:my-plugin:person:view"]
+    }
   }
-}
-```
+  ```
 
 以上定义角色模板的方式适合资源型请求，即需要符合以下规则
 

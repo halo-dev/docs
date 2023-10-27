@@ -6,20 +6,20 @@ description: 了解插件从启动到卸载的过程
 根据[插件项目文件结构](./structure.md)所展示的 `StarterPlugin.java` 中，具有如下方法：
 
 ```java
-    @Override
-    public void start() {
-        System.out.println("插件启动成功！");
-    }
+@Override
+public void start() {
+    System.out.println("插件启动成功！");
+}
 
-    @Override
-    public void stop() {
-        System.out.println("插件停止！");
-    }
+@Override
+public void stop() {
+    System.out.println("插件停止！");
+}
 
-    @Override
-    public void delete() {
-        System.out.println("插件被删除！");
-    }
+@Override
+public void delete() {
+    System.out.println("插件被删除！");
+}
 ```
 
 ### 插件启动
