@@ -8,7 +8,7 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 ## 创建插件项目
 
 1. 打开 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter)。
-  
+
   > 这是一个插件的初始模板，你可以基于它来开发自己的插件。
 
 2. 点击 `Use this template` -> `Create a new repository`。
@@ -25,6 +25,7 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 这很简单，首先你需要构建插件：只需要在 `halo-plugin-hello-world` 项目目录下执行 Gradle 命令
 
 ```shell
+./gradlew pnpmInstall
 ./gradlew build 
 ```
 
