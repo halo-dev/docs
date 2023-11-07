@@ -18,7 +18,6 @@
               "label": "其他指南",
               "items": [
                 "getting-started/install/other/bt-panel",
-                "getting-started/install/other/oneinstack",
                 "getting-started/install/other/tencent-cloudbase",
                 "getting-started/install/other/docker-mysql",
                 {

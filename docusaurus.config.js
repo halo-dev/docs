@@ -218,10 +218,6 @@ const config = {
             from: ["/zh/install/bt-panel", "/install/bt-panel"],
           },
           {
-            to: "/getting-started/install/other/oneinstack",
-            from: ["/zh/install/oneinstack", "/install/oneinstack"],
-          },
-          {
             to: "/1.6/getting-started/install/other/tencent-cloudbase",
             from: [
               "/zh/install/tencent-cloudbase",
