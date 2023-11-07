@@ -67,26 +67,19 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 升级版本
 
-1. 拉取新版本镜像
+1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份。
+2. 拉取新版本镜像
 
   ```bash
   docker pull halohub/halo:2.10
   ```
 
-2. 停止运行中的容器
+3. 停止运行中的容器
 
   ```bash
   docker stop halo
   docker rm halo
   ```
-
-3. 备份数据（重要）
-
-  ```bash
-  cp -r ~/.halo2 ~/halo2.archive
-  ```
-
-  > 需要注意的是，`halo2.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
 
 4. 更新 Halo
 
