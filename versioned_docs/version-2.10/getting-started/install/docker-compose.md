@@ -117,14 +117,13 @@ import DockerArgs from "./slots/docker-args.md"
 
     services:
       halo:
-        image: halohub/halo:2.10
+        image: halohub/halo:2.10.2
         container_name: halo
         restart: on-failure:3
         depends_on:
-          halodb:
-            condition: service_healthy
+          - halodb
         networks:
-          halo_network:
+          - halo_network
         volumes:
           - ./halo2:/root/.halo2
         ports:
@@ -134,7 +133,6 @@ import DockerArgs from "./slots/docker-args.md"
           interval: 30s
           timeout: 5s
           retries: 5
-          start_period: 30s
         command:
           - --spring.r2dbc.url=r2dbc:pool:mysql://halodb:3306/halo
           - --spring.r2dbc.username=root
@@ -149,7 +147,7 @@ import DockerArgs from "./slots/docker-args.md"
         container_name: halodb
         restart: on-failure:3
         networks:
-          halo_network:
+          - halo_network
         command: 
           - --default-authentication-plugin=caching_sha2_password
           - --character-set-server=utf8mb4
@@ -161,10 +159,9 @@ import DockerArgs from "./slots/docker-args.md"
         ports:
           - "3306:3306"
         healthcheck:
-          test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+          test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
           interval: 3s
           retries: 5
-          start_period: 30s
         environment:
           # 请修改此密码，并对应修改上方 Halo 服务的 SPRING_R2DBC_PASSWORD 变量值
           - MYSQL_ROOT_PASSWORD=o#DwN&JSa56
@@ -172,6 +169,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     networks:
       halo_network:
+
     ```
 
     3. 仅创建 Halo 实例（使用默认的 H2 数据库，**不推荐用于生产环境，建议体验和测试的时候使用**）：
