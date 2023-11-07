@@ -247,21 +247,8 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 更新容器组
 
-1. 停止运行中的容器组
-
-  ```bash
-  cd ~/halo && docker-compose down
-  ```
-
-2. 备份数据（重要）
-
-  ```bash
-  cp -r ~/halo ~/halo.archive
-  ```
-
-  > 需要注意的是，`halo.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
-
-3. 更新 Halo 服务
+1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份。
+2. 更新 Halo 服务
 
   修改 `docker-compose.yaml` 中配置的镜像版本。
 
@@ -270,10 +257,6 @@ import DockerArgs from "./slots/docker-args.md"
     halo:
       image: halohub/halo:2.10
       container_name: halo
-  ```
-
-  ```bash
-  docker-compose pull halo
   ```
 
   ```bash
