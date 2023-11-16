@@ -86,17 +86,32 @@ halo:
 
 1. 在 IntelliJ IDEA 中打开 Halo 项目，等待 Gradle 初始化和依赖下载完成。
 
-2. 修改 IntelliJ IDEA 的运行配置
-    1. macOS / Linux
-    将 Active Profiles 改为 `dev`，如图所示：
-    ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-macOS.png)
-    2. Windows
-    将 Active Profiles 改为 `dev,win`，如图所示：
-    ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-Win.png)
+2. 下载预设插件（可选）
 
-3. 点击 IntelliJ IDEA 的运行按钮，等待项目启动完成。
+    ```bash
+    # Windows
+    ./gradlew.bat downloadPluginPresets
 
-4. 或者使用 Gradle 运行
+    # macOS / Linux
+    ./gradlew downloadPluginPresets
+    ```
+
+3. 修改 IntelliJ IDEA 的运行配置
+    - macOS / Linux
+
+      将 Active Profiles 改为 `dev`，如图所示：
+
+      ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-macOS.png)
+
+    - Windows
+
+      将 Active Profiles 改为 `dev,win`，如图所示：
+
+      ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-Win.png)
+
+4. 点击 IntelliJ IDEA 的运行按钮，等待项目启动完成。
+
+5. 或者使用 Gradle 运行
 
     ```bash
     # macOS / Linux
@@ -106,4 +121,4 @@ halo:
     gradlew.bat bootRun --args="--spring.profiles.active=dev,win"
     ```
 
-5. 最终访问 `http://localhost:8090/console` 即可进入控制台。访问 `http://localhost:8090` 即可进入站点首页。
+6. 最终访问 `http://localhost:8090/console` 即可进入控制台。访问 `http://localhost:8090` 即可进入站点首页。
