@@ -174,7 +174,11 @@ import DockerArgs from "./slots/docker-args.md"
       halo_network:
     ```
 
-    3. 仅创建 Halo 实例（使用默认的 H2 数据库，**不推荐用于生产环境，建议体验和测试的时候使用**）：
+    3. 仅创建 Halo 实例（使用默认的 H2 数据库）：
+
+    :::caution
+    不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
+    :::
 
     ```yaml {19-24} title="~/halo/docker-compose.yaml"
     version: "3"
