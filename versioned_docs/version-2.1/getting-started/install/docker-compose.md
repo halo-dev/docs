@@ -188,7 +188,7 @@ import DockerArgs from "./slots/docker-args.md"
           - --halo.security.initializer.superadminpassword=P@88w0rd
     ```
 
-  参数详解：
+  运行参数详解：
 
   <DockerArgs />
 

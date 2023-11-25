@@ -223,7 +223,7 @@ import DockerArgs from "./slots/docker-args.md"
           - --server.port=8090
     ```
 
-  参数详解：
+  运行参数详解：
 
   <DockerArgs />
 
