@@ -234,7 +234,7 @@ import DockerArgs from "./slots/docker-args.md"
 
     ```
 
-  参数详解：
+  运行参数详解：
 
   <DockerArgs />
 

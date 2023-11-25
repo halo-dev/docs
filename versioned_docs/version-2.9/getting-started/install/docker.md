@@ -55,7 +55,7 @@ import DockerArgs from "./slots/docker-args.md"
     - **-p**：端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
     - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/.halo2`，后者不能修改。
 
-    变量详解：
+    运行参数详解：
 
     <DockerArgs />
 
