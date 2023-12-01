@@ -32,11 +32,11 @@ const config = {
           showLastUpdateAuthor: true,
           remarkPlugins: [math, mermaid],
           rehypePlugins: [katex],
-          lastVersion: "2.10",
+          lastVersion: "2.11",
           versions: {
             current: {
-              label: "2.11.0-SNAPSHOT",
-              path: "2.11.0-SNAPSHOT",
+              label: "2.12.0-SNAPSHOT",
+              path: "2.12.0-SNAPSHOT",
             },
           },
         },
@@ -278,19 +278,20 @@ const config = {
           if (existingPath.startsWith("/1.4/")) {
             return [existingPath.replace("/1.4/", "/1.4.17/")];
           }
-          if (existingPath.startsWith("/2.11.0-SNAPSHOT/")) {
+          if (existingPath.startsWith("/2.12.0-SNAPSHOT/")) {
             return [
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.0.0-SNAPSHOT/"),
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.1.0-SNAPSHOT/"),
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.2.0-SNAPSHOT/"),
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.3.0-SNAPSHOT/"),
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.4.0-SNAPSHOT/"),
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.5.0-SNAPSHOT/"),
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.6.0-SNAPSHOT/"),
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.7.0-SNAPSHOT/"),
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.8.0-SNAPSHOT/"),
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.9.0-SNAPSHOT/"),
-              existingPath.replace("/2.11.0-SNAPSHOT/", "/2.10.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.0.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.1.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.2.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.3.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.4.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.5.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.6.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.7.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.8.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.9.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.10.0-SNAPSHOT/"),
+              existingPath.replace("/2.12.0-SNAPSHOT/", "/2.11.0-SNAPSHOT/"),
             ];
           }
           return undefined;
