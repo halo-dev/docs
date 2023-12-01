@@ -14,7 +14,8 @@ Halo 为满足部分代码注入和模板扩展点的需求，提供了一些专
 ### 使用示例
 
 ```html title="/templates/post.html"
-<div th:if="${pluginFinder.available('PluginCommentWidget')}">
+<!-- 需要判断当前评论组件是否满足显示的条件，这个变量可能是是否安装评论插件、文章是否开启评论等条件的组合 -->
+<div th:if="${haloCommentEnabled}">
     <halo:comment
         group="content.halo.run"
         kind="Post"
