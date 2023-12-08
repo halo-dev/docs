@@ -36,6 +36,7 @@
           ]
         },
         "getting-started/migrate-from-1.x",
+        "getting-started/setup",
         "getting-started/first-post"
       ]
     },
@@ -47,6 +48,7 @@
       },
       "items": [
         "user-guide/common",
+        "user-guide/user-center",
         "user-guide/posts",
         "user-guide/pages",
         "user-guide/attachments",
