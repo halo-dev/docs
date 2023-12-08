@@ -179,6 +179,7 @@ module.exports = {
                 "developer-guide/theme/template-variables/categories",
                 "developer-guide/theme/template-variables/category",
                 "developer-guide/theme/template-variables/author",
+                "developer-guide/theme/template-variables/error",
               ],
             },
             {
