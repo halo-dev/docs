@@ -20,18 +20,53 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 
 ## 运行插件
 
-现在有了一个空项目，我们需要让插件能最最小化的运行起来。
+现在有了一个空项目，我们需要让插件能最最小化的运行起来，这里提供两种运行方式。
 
-这很简单，首先你需要构建插件：只需要在 `halo-plugin-hello-world` 项目目录下执行 Gradle 命令
+### 方式 1（推荐）
+
+> 此方式需要本地安装 Docker
 
 ```shell
+# macOS / Linux
 ./gradlew pnpmInstall
-./gradlew build 
+
+# Windows
+./gradlew.bat pnpmInstall
 ```
 
-或者使用 `IntelliJ IDEA` 提供的 `Gradle build` 即可完成插件项目的构建。
+```shell
+# macOS / Linux
+./gradlew haloServer
 
-然后使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../core/run.md)，在 `src/main/resources` 下创建一个 `application-local.yaml` 文件并做如下配置：
+# Windows
+./gradlew.bat haloServer
+```
+
+执行此命令后，会自动创建一个 Halo 的 Docker 容器并加载当前的插件，更多文档可查阅：<https://github.com/halo-sigs/halo-gradle-plugin>
+
+## 运行方式 2
+
+> 此方式需要使用源码运行 Halo，请确保已经在开发环境运行了 Halo，可以参考 [Halo 开发环境运行](../core/run.md)
+
+编译插件：
+
+```shell
+# macOS / Linux
+./gradlew pnpmInstall
+
+# Windows
+./gradlew.bat pnpmInstall
+```
+
+```shell
+# macOS / Linux
+./gradlew build
+
+# Windows
+./gradlew.bat build
+```
+
+修改配置文件：
 
 ```yaml
 # macOS / Linux
@@ -51,15 +86,7 @@ halo:
       - C:\path\to\halo-plugin-hello-world
 ```
 
-使用此 local profile 启动 Halo：
-
-```shell
-# macOS / Linux
-./gradlew bootRun --args="--spring.profiles.active=dev,local"
-
-# Windows
-gradlew.bat bootRun --args="--spring.profiles.active=dev,win,local"
-```
+最后启动 Halo 即可。
 
 然后访问 `http://localhost:8090/console`
 
