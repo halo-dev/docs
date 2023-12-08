@@ -31,13 +31,7 @@ git checkout v2.4.0
 请务必按照以上要求切换到最新的 tag，而不是直接使用 main 分支构建，main 分支是我们的开发分支。此文档以 `2.11.0` 为例，查看最新的 tag 可使用 `git tag --column` 查看。
 :::
 
-:::warning
-从 2.4.0 开始，Console 项目已经合并到 Halo 主项目，所以不再需要单独克隆 Console 的项目仓库。
-
-详情可查阅：<https://github.com/halo-dev/halo/issues/3393>
-:::
-
-## 构建 Console
+## 构建 Console 和个人中心
 
 ```bash
 cd path/to/halo
