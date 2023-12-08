@@ -76,7 +76,13 @@ spec:
 #### 参数
 
 - `min`：数组最小要求数量，默认为 `0`
-- `max`：数组最大容量，默认为 `Infinity`，即无限制。
+- `max`：数组最大容量，默认为 `Infinity`，即无限制
+- `addButton`：是否显示添加按钮
+- `addLabel`：添加按钮的文本
+- `upControl`：是否显示上移按钮
+- `downControl`：是否显示下移按钮
+- `insertControl`：是否显示插入按钮
+- `removeControl`：是否显示移除按钮
 
 #### 示例
 
@@ -88,11 +94,23 @@ spec:
   max: 5
   min: 1
   children:
+    - $formkit: select
+      name: enabled
+      id: enabled
+      label: 是否启用
+      options:
+        - label: 是
+          value: true
+        - label: 否
+          value: false
     - $formkit: text
+      # 在 Repeater 中进行条件判断的方式，当 enabled 为 true 时才显示
+      if: "$value.enabled === true",
       name: name
       label: 名称
       value: ""
     - $formkit: text
+      if: "$value.enabled === true",
       name: url
       label: 地址
       value: ""
