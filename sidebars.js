@@ -51,6 +51,7 @@ module.exports = {
           ],
         },
         "getting-started/migrate-from-1.x",
+        "getting-started/setup",
         "getting-started/first-post",
         // "getting-started/config",
         // "getting-started/upgrade",
