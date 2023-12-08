@@ -100,9 +100,6 @@ module.exports = {
         {
           type: "category",
           label: "插件开发",
-          link: {
-            type: "generated-index",
-          },
           items: [
             "developer-guide/plugin/introduction",
             "developer-guide/plugin/prepare",
@@ -112,40 +109,78 @@ module.exports = {
               type: "category",
               label: "基础",
               link: {
-                type: "doc",
-                id: "developer-guide/plugin/structure",
+                type: "generated-index",
               },
               items: [
-                "developer-guide/plugin/structure",
-                "developer-guide/plugin/runtime-mode",
-                "developer-guide/plugin/lifecycle",
-                "developer-guide/plugin/manifest",
-                "developer-guide/plugin/object-management",
+                "developer-guide/plugin/basics/framework",
+                "developer-guide/plugin/basics/structure",
+                "developer-guide/plugin/basics/manifest",
+                {
+                  type: "category",
+                  label: "服务端",
+                  link: {
+                    type: "generated-index",
+                  },
+                  items: [
+                    "developer-guide/plugin/basics/server/lifecycle",
+                    "developer-guide/plugin/basics/server/object-management",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "UI",
+                  link: {
+                    type: "generated-index",
+                  },
+                  items: [
+                    "developer-guide/plugin/basics/ui/intro",
+                    "developer-guide/plugin/basics/ui/entry",
+                  ],
+                },
               ],
-            },
-            {
-              type: "category",
-              label: "示例",
-              link: {
-                type: "doc",
-                id: "developer-guide/plugin/examples/todolist",
-              },
-              items: ["developer-guide/plugin/examples/todolist"],
             },
             {
               type: "category",
               label: "API 参考",
               link: {
-                type: "doc",
-                id: "developer-guide/plugin/api-reference/extension",
+                type: "generated-index",
               },
               items: [
-                "developer-guide/plugin/api-reference/extension",
-                "developer-guide/plugin/api-reference/role-template",
-                "developer-guide/plugin/api-reference/extension-client",
-                "developer-guide/plugin/api-reference/reverseproxy",
+                {
+                  type: "category",
+                  label: "服务端",
+                  link: {
+                    type: "generated-index",
+                  },
+                  items: [
+                    "developer-guide/plugin/api-reference/server/extension",
+                    "developer-guide/plugin/api-reference/server/role-template",
+                    "developer-guide/plugin/api-reference/server/extension-client",
+                    "developer-guide/plugin/api-reference/server/reverseproxy",
+                    "developer-guide/plugin/api-reference/server/extension-points",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "UI",
+                  link: {
+                    type: "generated-index",
+                  },
+                  items: [
+                    "developer-guide/plugin/api-reference/ui/extension-points",
+                  ],
+                },
               ],
             },
+            {
+              type: "category",
+              label: "案例和最佳实践",
+              link: {
+                type: "generated-index",
+              },
+              items: ["developer-guide/plugin/examples/todolist"],
+            },
+            "developer-guide/plugin/appendices",
           ],
         },
         {
