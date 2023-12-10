@@ -3,7 +3,7 @@ title: 生命周期
 description: 了解插件从启动到卸载的过程
 ---
 
-根据[插件项目文件结构](./structure.md)所展示的 `StarterPlugin.java` 中，具有如下方法：
+根据[插件项目文件结构](../../basics/structure.md)所展示的 `StarterPlugin.java` 中，具有如下方法：
 
 ```java
 @Override
