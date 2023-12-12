@@ -102,6 +102,9 @@ module.exports = {
         {
           type: "category",
           label: "插件开发",
+          link: {
+            type: "generated-index",
+          },
           items: [
             "developer-guide/plugin/introduction",
             "developer-guide/plugin/prepare",
@@ -169,7 +172,32 @@ module.exports = {
                     type: "generated-index",
                   },
                   items: [
-                    "developer-guide/plugin/api-reference/ui/extension-points",
+                    "developer-guide/plugin/api-reference/ui/route",
+                    {
+                      type: "category",
+                      label: "扩展点",
+                      link: {
+                        type: "doc",
+                        id: "developer-guide/plugin/api-reference/ui/extension-points/index",
+                      },
+                      items: [
+                        "developer-guide/plugin/api-reference/ui/extension-points/attachment-selector-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/editor-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/plugin-self-tabs-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/comment-subject-ref-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/backup-tabs-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/plugin-installation-tabs-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/theme-list-tabs-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/post-list-item-operation-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/plugin-list-item-operation-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/backup-list-item-operation-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/attachment-list-item-operation-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/theme-list-item-operation-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/plugin-list-item-field-create",
+                        "developer-guide/plugin/api-reference/ui/extension-points/post-list-item-field-create",
+                      ],
+                    },
                   ],
                 },
               ],
