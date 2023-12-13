@@ -106,7 +106,9 @@ Halo 提供了以下站点基本信息设置：
 
 > 常见邮箱服务商的文档如下：
 >
-> - [QQ 邮箱](https://service.mail.qq.com/detail/0/310)
+> - QQ 邮箱
+>   1. [开启 POP/IMAP 服务](https://service.mail.qq.com/detail/123/141)
+>   2. [设置 POP3/SMTP](https://service.mail.qq.com/detail/0/310)
 > - [163 邮箱](https://help.mail.163.com/faqDetail.do?code=d7a5dc8471cd0c0e8b4b8f4f8e49998b374173cfe9171305fa1ce630d7f67ac2a5feb28b66796d3b)
 > - [Gmail](https://support.google.com/mail/answer/7104828?hl=zh-Hans)
 > - [阿里云企业邮箱](https://help.aliyun.com/document_detail/36687.html)
