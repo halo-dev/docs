@@ -19,16 +19,34 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 你现在已经基于 Halo 插件模板创建了自己的存储库。接下来，你需要将它克隆到你的计算机上并使用 `IntelliJ IDEA` 打开它。
 
 ## 运行插件
-
 现在有了一个空项目，我们需要让插件能最最小化的运行起来。
 
-这很简单，首先你需要构建插件：只需要在 `halo-plugin-hello-world` 项目目录下执行 Gradle 命令
+这很简单，首先你需要构建插件：只需要在 `halo-plugin-hello-world` 项目目录下执行 Gradle 命令。
+### 运行方式1(推荐)
+> 此方法需要本地安装 Docker 环境，如果你没有安装，请先安装 Docker。
+```shell
+# macOS / Linux
+./gradlew pnpmInstall
+
+# Windows
+./gradlew.bat pnpmInstall
+```
+```shell
+# macOS / Linux
+./gradlew haloServer
+
+# Windows
+./gradlew.bat haloServer
+```
+执行此命令后，会自动创建一个 Halo 的 Docker 容器并加载当前的插件，更多文档可查阅：https://github.com/halo-sigs/halo-gradle-plugin
+
+### 运行方式2
+> 此方式需要使用源码运行Halo
 
 ```shell
 ./gradlew pnpmInstall
 ./gradlew build 
 ```
-
 或者使用 `IntelliJ IDEA` 提供的 `Gradle build` 即可完成插件项目的构建。
 
 然后使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../core/run.md)，在 `src/main/resources` 下创建一个 `application-local.yaml` 文件并做如下配置：
@@ -60,6 +78,7 @@ halo:
 # Windows
 gradlew.bat bootRun --args="--spring.profiles.active=dev,win,local"
 ```
+
 
 然后访问 `http://localhost:8090/console`
 
