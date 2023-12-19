@@ -5,6 +5,8 @@ description: 扩展插件数据列表操作菜单 - plugin:list-item:operation:c
 
 此扩展点用于扩展插件数据列表的操作菜单项。
 
+![插件数据列表操作菜单](/img/developer-guide/plugin/api-reference/ui/extension-points/plugin-list-item-operation-create.png)
+
 ## 类型定义
 
 ```ts

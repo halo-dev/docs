@@ -5,6 +5,8 @@ description: 扩展主题数据列表操作菜单 - theme:list-item:operation:cr
 
 此扩展点用于扩展主题数据列表的操作菜单项。
 
+![主题数据列表操作菜单](/img/developer-guide/plugin/api-reference/ui/extension-points/theme-list-item-operation-create.png)
+
 ## 类型定义
 
 ```ts

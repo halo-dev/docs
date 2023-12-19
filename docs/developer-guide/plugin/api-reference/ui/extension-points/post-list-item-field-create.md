@@ -5,6 +5,8 @@ description: 扩展文章数据列表显示字段 - plugin:list-item:field:creat
 
 此扩展点用于扩展文章数据列表的显示字段。
 
+![文章数据列表显示字段](/img/developer-guide/plugin/api-reference/ui/extension-points/post-list-item-field-create.png)
+
 ## 类型定义
 
 ```ts
