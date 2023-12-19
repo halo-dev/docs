@@ -5,7 +5,7 @@ description: 扩展附件选择组件的选项卡 - attachment:selector:create
 
 此扩展点用于扩展附件选择组件的选项卡，目前 Halo 仅包含内置的附件库，你可以通过此扩展点添加自定义的选项卡。
 
-// TODO 补充截图，用于说明扩展点的位置
+![附件选择选项卡](/img/developer-guide/plugin/api-reference/ui/extension-points/attachment-selector-create.png)
 
 ## 类型定义
 

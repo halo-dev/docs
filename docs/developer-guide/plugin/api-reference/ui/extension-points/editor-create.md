@@ -5,6 +5,8 @@ description: 通过实现扩展点为文章提供新的编辑器 - editor:create
 
 此扩展点可以为文章提供新的独立编辑器。
 
+![编辑器集成](/img/developer-guide/plugin/api-reference/ui/extension-points/editor-create.png)
+
 ## 类型定义
 
 ```ts
