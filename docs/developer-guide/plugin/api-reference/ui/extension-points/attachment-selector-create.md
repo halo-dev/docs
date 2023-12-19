@@ -85,7 +85,7 @@ export default definePlugin({
 });
 ```
 
-```ts title="StickerSelectorProvider.vue"
+```html title="StickerSelectorProvider.vue"
 <script lang="ts" setup>
 const props = withDefaults(
   defineProps<{

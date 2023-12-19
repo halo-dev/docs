@@ -181,6 +181,7 @@ const config = {
       prism: {
         theme: darkCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ["java"],
       },
       algolia: {
         apiKey: "739f2a55c6d13d93af146c22a4885669",
