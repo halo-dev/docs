@@ -7,14 +7,31 @@ description: 扩展文章数据列表操作菜单 - post:list-item:operation:cre
 
 ![文章数据列表操作菜单](/img/developer-guide/plugin/api-reference/ui/extension-points/post-list-item-operation-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "post:list-item:operation:create"?: (
-    post: Ref<ListedPost>
-  ) => OperationItem<ListedPost>[] | Promise<OperationItem<ListedPost>[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "post:list-item:operation:create": (
+      post: Ref<ListedPost>
+    ): OperationItem<ListedPost>[] | Promise<OperationItem<ListedPost>[]> => {
+      return [
+        {
+          priority: 10,
+          component: markRaw<VDropdownItem>,
+          props: {},
+          action: (item?: ListedPost) => {
+            // do something
+          },
+          label: "foo",
+          hidden: false,
+          permissions: [],
+          children: [],
+        },
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="OperationItem"

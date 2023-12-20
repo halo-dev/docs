@@ -7,12 +7,24 @@ description: 通过实现扩展点为文章提供新的编辑器 - editor:create
 
 ![编辑器集成](/img/developer-guide/plugin/api-reference/ui/extension-points/editor-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "editor:create"?: () => EditorProvider[] | Promise<EditorProvider[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "editor:create": (): EditorProvider[] | Promise<EditorProvider[]> => {
+      return [
+        {
+          name: "foo",
+          displayName: "foo",
+          logo: "/plugins/plugin-foo/assets/logo.png",
+          component: FooComponent,
+          rawType: "markdown",
+        },
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="EditorProvider"

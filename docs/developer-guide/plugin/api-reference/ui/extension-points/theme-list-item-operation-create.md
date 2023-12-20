@@ -7,14 +7,31 @@ description: 扩展主题数据列表操作菜单 - theme:list-item:operation:cr
 
 ![主题数据列表操作菜单](/img/developer-guide/plugin/api-reference/ui/extension-points/theme-list-item-operation-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "theme:list-item:operation:create"?: (
-    theme: Ref<Theme>
-  ) => OperationItem<Theme>[] | Promise<OperationItem<Theme>[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "theme:list-item:operation:create": (
+      theme: Ref<Theme>
+    ): OperationItem<Theme>[] | Promise<OperationItem<Theme>[]> => {
+      return [
+        {
+          priority: 10,
+          component: markRaw<VDropdownItem>,
+          props: {},
+          action: (item?: Theme) => {
+            // do something
+          },
+          label: "foo",
+          hidden: false,
+          permissions: [],
+          children: [],
+        },
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="OperationItem"

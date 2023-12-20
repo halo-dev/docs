@@ -17,7 +17,7 @@ export default definePlugin({
         {
           id: "foo",
           label: "foo",
-          component: FooComponent,
+          component: markRaw(FooComponent),
           permissions: [],
         },
       ];

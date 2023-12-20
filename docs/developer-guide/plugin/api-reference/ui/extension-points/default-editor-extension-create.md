@@ -5,12 +5,16 @@ description: 扩展默认编辑器 - default:editor:extension:create
 
 此扩展点用于扩展默认编辑器的功能。
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "default:editor:extension:create"?: () => AnyExtension[] | Promise<AnyExtension[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "default:editor:extension:create": (): AnyExtension[] | Promise<AnyExtension[]> => {
+      return [FooExtension];
+    },
+  },
+});
 ```
 
 :::info 提示

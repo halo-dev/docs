@@ -7,12 +7,25 @@ description: 扩展主题管理界面选项卡 - theme:list:tabs:create
 
 ![主题管理界面选项卡](/img/developer-guide/plugin/api-reference/ui/extension-points/theme-list-tabs-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "theme:list:tabs:create"?: () => ThemeListTab[] | Promise<ThemeListTab[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "theme:list:tabs:create": (): ThemeListTab[] | Promise<ThemeListTab[]> => {
+      return [
+        {
+          id: "foo",
+          label: "foo",
+          component: markRaw(FooComponent),
+          props: {},
+          permissions: [],
+          priority: 0,
+        }
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="ThemeListTab"

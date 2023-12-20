@@ -7,14 +7,31 @@ description: 扩展插件数据列表操作菜单 - plugin:list-item:operation:c
 
 ![插件数据列表操作菜单](/img/developer-guide/plugin/api-reference/ui/extension-points/plugin-list-item-operation-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "plugin:list-item:operation:create"?: (
-    plugin: Ref<Plugin>
-  ) => OperationItem<Plugin>[] | Promise<OperationItem<Plugin>[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "plugin:list-item:operation:create": (
+      plugin: Ref<Plugin>
+    ): OperationItem<Plugin>[] | Promise<OperationItem<Plugin>[]> => {
+      return [
+        {
+          priority: 10,
+          component: markRaw<VDropdownItem>,
+          props: {},
+          action: (item?: Plugin) => {
+            // do something
+          },
+          label: "foo",
+          hidden: false,
+          permissions: [],
+          children: [],
+        },
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="OperationItem"

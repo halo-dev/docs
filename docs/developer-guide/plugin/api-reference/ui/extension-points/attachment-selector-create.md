@@ -7,12 +7,22 @@ description: 扩展附件选择组件的选项卡 - attachment:selector:create
 
 ![附件选择选项卡](/img/developer-guide/plugin/api-reference/ui/extension-points/attachment-selector-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "attachment:selector:create"?: () => AttachmentSelectProvider[]| Promise<AttachmentSelectProvider[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "attachment:selector:create": (): AttachmentSelectProvider[]| Promise<AttachmentSelectProvider[]> => {
+      return [
+        {
+          id: "foo",
+          label: "foo",
+          component: markRaw(FooComponent),
+        },
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="AttachmentSelectProvider"

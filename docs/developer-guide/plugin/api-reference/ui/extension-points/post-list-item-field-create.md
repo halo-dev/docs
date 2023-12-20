@@ -7,14 +7,25 @@ description: 扩展文章数据列表显示字段 - plugin:list-item:field:creat
 
 ![文章数据列表显示字段](/img/developer-guide/plugin/api-reference/ui/extension-points/post-list-item-field-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "plugin:list-item:field:create"?: (
-    plugin: Ref<Plugin>
-  ) => EntityFieldItem[] | Promise<EntityFieldItem[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "post:list-item:field:create": (post: Ref<ListedPost>): EntityFieldItem[] | Promise<EntityFieldItem[]> => {
+      return [
+        {
+          priority: 0,
+          position: "start",
+          component: markRaw(FooComponent),
+          props: {},
+          permissions: [],
+          hidden: false,
+        }
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="EntityFieldItem"

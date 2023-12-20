@@ -7,14 +7,31 @@ description: 扩展附件数据列表操作菜单 - attachment:list-item:operati
 
 ![附件数据列表操作菜单](/img/developer-guide/plugin/api-reference/ui/extension-points/attachment-list-item-operation-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "attachment:list-item:operation:create"?: (
-    attachment: Ref<Attachment>
-  ) => OperationItem<Attachment>[] | Promise<OperationItem<Attachment>[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "attachment:list-item:operation:create": (
+      attachment: Ref<Attachment>
+    ): OperationItem<Attachment>[] | Promise<OperationItem<Attachment>[]> => {
+      return [
+        {
+          priority: 10,
+          component: markRaw<VDropdownItem>,
+          props: {},
+          action: (item?: Attachment) => {
+            // do something
+          },
+          label: "foo",
+          hidden: false,
+          permissions: [],
+          children: [],
+        },
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="OperationItem"

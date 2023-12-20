@@ -7,14 +7,31 @@ description: 扩展备份数据列表操作菜单 - backup:list-item:operation:c
 
 ![备份数据列表操作菜单](/img/developer-guide/plugin/api-reference/ui/extension-points/backup-list-item-operation-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "backup:list-item:operation:create"?: (
-    backup: Ref<Backup>
-  ) => OperationItem<Backup>[] | Promise<OperationItem<Backup>[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "backup:list-item:operation:create": (
+      backup: Ref<Backup>
+    ): OperationItem<Backup>[] | Promise<OperationItem<Backup>[]> => {
+      return [
+        {
+          priority: 10,
+          component: markRaw<VDropdownItem>,
+          props: {},
+          action: (item?: Backup) => {
+            // do something
+          },
+          label: "foo",
+          hidden: false,
+          permissions: [],
+          children: [],
+        },
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="OperationItem"

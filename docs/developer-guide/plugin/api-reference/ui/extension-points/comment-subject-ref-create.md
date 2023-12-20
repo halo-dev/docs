@@ -11,12 +11,31 @@ Console 的评论管理列表的评论来源默认仅支持显示来自文章和
 
 ![评论来源显示](/img/developer-guide/plugin/api-reference/ui/extension-points/comment-subject-ref-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "comment:subject-ref:create"?: () => CommentSubjectRefProvider[];
-}
+export default definePlugin({
+  extensionPoints: {
+    "comment:subject-ref:create": (): CommentSubjectRefProvider[] => {
+      return [
+        {
+          kind: "Example",
+          group: "example.halo.run",
+          resolve: (subject: Extension): CommentSubjectRefResult => {
+            return {
+              label: "foo",
+              title: subject.title,
+              externalUrl: `/example/${subject.metadata.name}`,
+              route: {
+                name: "Example",
+              },
+            };
+          },
+        },
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="CommentSubjectRefProvider"

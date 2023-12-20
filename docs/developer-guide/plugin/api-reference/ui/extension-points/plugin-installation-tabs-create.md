@@ -7,12 +7,25 @@ description: 扩展插件安装界面选项卡 - plugin:installation:tabs:create
 
 ![插件安装界面选项卡](/img/developer-guide/plugin/api-reference/ui/extension-points/plugin-installation-tabs-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "plugin:installation:tabs:create"?: () => PluginInstallationTab[] | Promise<PluginInstallationTab[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "plugin:installation:tabs:create": (): PluginInstallationTab[] | Promise<PluginInstallationTab[]> => {
+      return [
+        {
+          id: "foo",
+          label: "foo",
+          component: markRaw(FooComponent),
+          props: {},
+          permissions: [],
+          priority: 0,
+        }
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="PluginInstallationTab"

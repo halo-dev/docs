@@ -7,12 +7,23 @@ description: 扩展备份页面选项卡 - backup:tabs:create
 
 ![备份页面选项卡](/img/developer-guide/plugin/api-reference/ui/extension-points/backup-tabs-create.png)
 
-## 类型定义
+## 定义方式
 
 ```ts
-{
-  "backup:tabs:create"?: () => BackupTab[] | Promise<BackupTab[]>;
-}
+export default definePlugin({
+  extensionPoints: {
+    "backup:tabs:create": (): BackupTab[] | Promise<BackupTab[]> => {
+      return [
+        {
+          id: "foo",
+          label: "foo",
+          component: markRaw(FooComponent),
+          permissions: [],
+        },
+      ];
+    },
+  },
+});
 ```
 
 ```ts title="BackupTab"
