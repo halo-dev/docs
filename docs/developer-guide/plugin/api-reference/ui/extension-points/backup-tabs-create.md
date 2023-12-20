@@ -17,10 +17,10 @@ description: 扩展备份页面选项卡 - backup:tabs:create
 
 ```ts title="BackupTab"
 export interface BackupTab {
-  id: string;
-  label: string;
-  component: Raw<Component>;
-  permissions?: string[];
+  id: string;                 // 选项卡 ID
+  label: string;              // 选项卡标题
+  component: Raw<Component>;  // 选项卡面板组件
+  permissions?: string[];     // 选项卡权限
 }
 ```
 
