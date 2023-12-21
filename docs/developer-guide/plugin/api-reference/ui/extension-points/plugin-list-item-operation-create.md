@@ -18,7 +18,7 @@ export default definePlugin({
       return [
         {
           priority: 10,
-          component: markRaw<VDropdownItem>,
+          component: markRaw(VDropdownItem),
           props: {},
           action: (item?: Plugin) => {
             // do something

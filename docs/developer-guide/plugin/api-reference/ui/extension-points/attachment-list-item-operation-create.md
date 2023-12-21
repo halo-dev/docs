@@ -18,7 +18,7 @@ export default definePlugin({
       return [
         {
           priority: 10,
-          component: markRaw<VDropdownItem>,
+          component: markRaw(VDropdownItem),
           props: {},
           action: (item?: Attachment) => {
             // do something
@@ -38,6 +38,49 @@ export default definePlugin({
 import OperationItem from "./interface/OperationItem.md";
 
 <OperationItem />
+```
+
+## 示例
+
+此示例将实现一个下载附件到本地的操作菜单项。
+
+```ts
+import { definePlugin, type OperationItem } from "@halo-dev/console-shared";
+import { Toast, VDropdownItem } from "@halo-dev/components";
+import { markRaw, type Ref } from "vue";
+import type { Attachment } from "@halo-dev/api-client";
+
+export default definePlugin({
+  extensionPoints: {
+    "attachment:list-item:operation:create": (
+      attachment: Ref<Attachment>
+    ): OperationItem<Attachment>[] | Promise<OperationItem<Attachment>[]> => {
+      return [
+        {
+          priority: 10,
+          component: markRaw(VDropdownItem),
+          props: {},
+          action: (item?: Attachment) => {
+            if (!item?.status?.permalink) {
+              Toast.error("该附件没有下载地址");
+              return;
+            }
+
+            const a = document.createElement("a");
+            a.href = item.status.permalink;
+            a.download = item?.spec.displayName || item.metadata.name;
+            a.click();
+          },
+          label: "下载",
+          hidden: false,
+          permissions: [],
+          children: [],
+        },
+      ];
+    },
+  },
+});
+
 ```
 
 ## 实现案例
