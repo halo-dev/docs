@@ -40,3 +40,41 @@ export interface EntityFieldItem {
 ```
 
 ## 示例
+
+此示例将添加一个显示文章 slug（别名）的字段。
+
+```ts
+import { definePlugin } from "@halo-dev/console-shared";
+import { markRaw, type Ref } from "vue";
+import type { ListedPost } from "@halo-dev/api-client";
+import { VEntityField } from "@halo-dev/components";
+
+export default definePlugin({
+  extensionPoints: {
+    "post:list-item:field:create": (post: Ref<ListedPost>) => {
+      return [
+        {
+          priority: 0,
+          position: "end",
+          component: markRaw(VEntityField),
+          props: {
+            description: post.value.post.spec.slug,
+          },
+          permissions: [],
+          hidden: false,
+        },
+      ];
+    },
+  },
+});
+```
+
+## 类型定义
+
+### ListedPost
+
+```mdx-code-block
+import ListedPost from "./interface/ListedPost.md";
+
+<ListedPost />
+```

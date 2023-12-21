@@ -30,12 +30,12 @@ export default definePlugin({
 
 ```ts title="ThemeListTab"
 export interface ThemeListTab {
-  id: string;
-  label: string;
-  component: Raw<Component>;
-  props?: Record<string, unknown>;
-  permissions?: string[];
-  priority: number;
+  id: string;                       // 选项卡 ID
+  label: string;                    // 选项卡标题
+  component: Raw<Component>;        // 选项卡面板组件
+  props?: Record<string, unknown>;  // 选项卡面板组件属性
+  permissions?: string[];           // 选项卡 UI 权限
+  priority: number;                 // 选项卡排序优先级
 }
 ```
 

@@ -57,7 +57,33 @@ export interface CommentSubjectRefResult {
 
 ## 示例
 
-// TODO
+此示例以[瞬间插件](https://github.com/halo-sigs/plugin-moments)为例，目前瞬间插件中的评论是通过 Halo 的内置的评论功能实现的，所以需要扩展评论来源显示。
+
+```ts
+export default definePlugin({
+  extensionPoints: {
+    "comment:subject-ref:create": () => {
+      return [
+        {
+          kind: "Moment",
+          group: "moment.halo.run",
+          resolve: (subject: Extension): CommentSubjectRefResult => {
+            const moment = subject as Moment;
+            return {
+              label: "瞬间",
+              title: determineMomentTitle(moment),
+              externalUrl: `/moments/${moment.metadata.name}`,
+              route: {
+                name: "Moments",
+              },
+            };
+          },
+        },
+      ];
+    },
+  },
+});
+```
 
 ## 实现案例
 

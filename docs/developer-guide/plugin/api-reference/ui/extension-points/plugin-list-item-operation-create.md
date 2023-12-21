@@ -34,17 +34,10 @@ export default definePlugin({
 });
 ```
 
-```ts title="OperationItem"
-export interface OperationItem<T> {
-  priority: number;
-  component: Raw<Component>;
-  props?: Record<string, unknown>;
-  action?: (item?: T) => void;
-  label?: string;
-  hidden?: boolean;
-  permissions?: string[];
-  children?: OperationItem<T>[];
-}
+```mdx-code-block
+import OperationItem from "./interface/OperationItem.md";
+
+<OperationItem />
 ```
 
 ## 示例
@@ -52,3 +45,13 @@ export interface OperationItem<T> {
 ## 实现案例
 
 - <https://github.com/halo-dev/plugin-app-store>
+
+## 类型定义
+
+### Plugin
+
+```mdx-code-block
+import Plugin from "./interface/Plugin.md";
+
+<Plugin />
+```

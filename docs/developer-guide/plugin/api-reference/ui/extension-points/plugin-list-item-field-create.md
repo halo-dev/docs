@@ -41,6 +41,44 @@ export interface EntityFieldItem {
 
 ## 示例
 
+此示例将添加一个显示插件 requires（版本要求）的字段。
+
+```ts
+import { definePlugin } from "@halo-dev/console-shared";
+import { markRaw, type Ref } from "vue";
+import type { Plugin } from "@halo-dev/api-client";
+import { VEntityField } from "@halo-dev/components";
+
+export default definePlugin({
+  extensionPoints: {
+    "plugin:list-item:field:create": (plugin: Ref<Plugin>) => {
+      return [
+        {
+          priority: 0,
+          position: "end",
+          component: markRaw(VEntityField),
+          props: {
+            description: plugin.value.spec.requires,
+          },
+          permissions: [],
+          hidden: false,
+        },
+      ];
+    },
+  },
+});
+```
+
 ## 实现案例
 
 - <https://github.com/halo-dev/plugin-app-store>
+
+## 类型定义
+
+### Plugin
+
+```mdx-code-block
+import Plugin from "./interface/Plugin.md";
+
+<Plugin />
+```

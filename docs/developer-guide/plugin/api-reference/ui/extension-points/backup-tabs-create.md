@@ -34,5 +34,3 @@ export interface BackupTab {
   permissions?: string[];     // 选项卡权限
 }
 ```
-
-## 示例

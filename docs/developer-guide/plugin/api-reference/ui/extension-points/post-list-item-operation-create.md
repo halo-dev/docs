@@ -34,19 +34,49 @@ export default definePlugin({
 });
 ```
 
-```ts title="OperationItem"
-export interface OperationItem<T> {
-  priority: number;
-  component: Raw<Component>;
-  props?: Record<string, unknown>;
-  action?: (item?: T) => void;
-  label?: string;
-  hidden?: boolean;
-  permissions?: string[];
-  children?: OperationItem<T>[];
-}
+```mdx-code-block
+import OperationItem from "./interface/OperationItem.md";
+
+<OperationItem />
 ```
 
 ## 示例
 
-## 实现案例
+此示例将实现一个操作菜单项，点击后会将文章内容作为文件下载到本地。
+
+```ts
+import type { ListedPost } from "@halo-dev/api-client";
+import { VDropdownItem } from "@halo-dev/components";
+import { definePlugin } from "@halo-dev/console-shared";
+import axios from "axios";
+import { markRaw } from "vue";
+
+export default definePlugin({
+  extensionPoints: {
+    "post:list-item:operation:create": () => {
+      return [
+        {
+          priority: 21,
+          component: markRaw(VDropdownItem),
+          label: "下载到本地",
+          visible: true,
+          permissions: [],
+          action: async (post: ListedPost) => {
+            const { data } = await axios.get(
+              `/apis/api.console.halo.run/v1alpha1/posts/${post.post.metadata.name}/head-content`
+            );
+            const blob = new Blob([data.raw], {
+              type: "text/plain;charset=utf-8",
+            });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `${post.post.spec.title}.${data.rawType}`;
+            link.click();
+          },
+        },
+      ];
+    },
+  },
+});
+```
