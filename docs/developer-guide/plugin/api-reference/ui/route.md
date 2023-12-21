@@ -63,7 +63,10 @@ export default definePlugin({
 ## 类型定义
 
 ```ts
-routes?: RouteRecordRaw[] | RouteRecordAppend[];
+{
+  routes?: RouteRecordRaw[] | RouteRecordAppend[];
+  ucRoutes?: RouteRecordRaw[] | RouteRecordAppend[];
+}
 ```
 
 ```ts
