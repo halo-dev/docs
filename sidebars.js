@@ -162,7 +162,17 @@ module.exports = {
                     "developer-guide/plugin/api-reference/server/role-template",
                     "developer-guide/plugin/api-reference/server/extension-client",
                     "developer-guide/plugin/api-reference/server/reverseproxy",
-                    "developer-guide/plugin/api-reference/server/extension-points",
+                    {
+                      type: "category",
+                      label: "扩展点",
+                      link: {
+                        type: "doc",
+                        id: "developer-guide/plugin/api-reference/server/extension-points/index",
+                      },
+                      items: [
+                        "developer-guide/plugin/api-reference/server/extension-points/todo",
+                      ],
+                    },
                   ],
                 },
                 {
