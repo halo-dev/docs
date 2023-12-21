@@ -39,8 +39,6 @@ export interface PluginInstallationTab {
 }
 ```
 
-## 示例
-
 ## 实现案例
 
 - <https://github.com/halo-dev/plugin-app-store>

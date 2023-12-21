@@ -60,6 +60,15 @@ export interface CommentSubjectRefResult {
 此示例以[瞬间插件](https://github.com/halo-sigs/plugin-moments)为例，目前瞬间插件中的评论是通过 Halo 的内置的评论功能实现的，所以需要扩展评论来源显示。
 
 ```ts
+import {
+  definePlugin,
+  type CommentSubjectRefResult,
+} from "@halo-dev/console-shared";
+import { markRaw } from "vue";
+import type { Moment } from "@/types";
+import { formatDatetime } from "./utils/date";
+import type { Extension } from "@halo-dev/api-client/index";
+
 export default definePlugin({
   extensionPoints: {
     "comment:subject-ref:create": () => {
@@ -83,6 +92,21 @@ export default definePlugin({
     },
   },
 });
+
+const determineMomentTitle = (moment: Moment) => {
+  const pureContent = stripHtmlTags(moment.spec.content.raw);
+  const title = !pureContent?.trim()
+    ? formatDatetime(new Date(moment.spec.releaseTime || ""))
+    : pureContent;
+  return title?.substring(0, 100);
+};
+
+const stripHtmlTags = (str: string) => {
+  // strip html tags
+  const stripped = str?.replace(/<\/?[^>]+(>|$)/gi, "") || "";
+  // strip newlines and collapse spaces
+  return stripped.replace(/\n/g, " ").replace(/\s+/g, " ");
+};
 ```
 
 ## 实现案例

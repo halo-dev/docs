@@ -40,8 +40,6 @@ import OperationItem from "./interface/OperationItem.md";
 <OperationItem />
 ```
 
-## 示例
-
 ## 实现案例
 
 - <https://github.com/halo-dev/plugin-app-store>
