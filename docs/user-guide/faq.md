@@ -9,53 +9,48 @@ description: 使用上的常见问题
 
 ### 忘记密码怎么办？
 
-如果安装时没有指定 `halo.security.initializer.superadminpassword` 参数，系统会随机一个初始化密码，可以通过下面的命令进行查看。
-
-```bash
-docker logs halo | grep 'Generated random password:' | tail -1
-```
-
-如果你已经修改过初始化密码后忘记了密码，假设系统中还有可用的具有用户管理权限的其他用户，可以通过该用户参考[修改用户密码](./users#修改用户密码)部分，修改指定用户的密码。没有可用的具有用户管理权限的管理员用户时，目前需要通过删除数据库记录的方式，触发管理员用户的初始化任务进行密码重置。
-
-假设 Halo 使用容器方式运行，容器名称为 `halo`，具体操作如下。
-
-1. 停止 Halo 服务
-
-  ```bash
-  docker stop halo
-  ```
-
-2. 连接 Halo 使用的数据库，删除管理员的用户记录（配置文件中的 `halo.security.initializer.superadminusername`），这里以 `admin` 为例
-
-  以容器化部署的 PostgreSQL 为例，假设容器名称为 `halo_db`。
-
-  ```bash
-  # 进入 psql 命令行
-  docker exec -it halo_db psql halo
-
-  # 执行下面的 SQL 删除 admin 用户记录
-  delete from extensions where name like '/registry/users/admin';
-  ```
-
-  :::info
-  其他类型的数据库处理方式类似，先通过命令行或数据库连接工具连接到数据库后，再执行上面的 `delete` SQL 语句。
-  :::
-
-3. 重新启动 Halo 服务
-
-  ```bash
-  docker start halo
-  ```
-
-4. 登录 Halo 控制台
-
-  如果部署时通过 `halo.security.initializer.superadminusername` 和 `halo.security.initializer.superadminpassword` 参数指定了初始化用户名和密码，使用该用户名密码登录控制台。
+1. 站点管理员已经配置好邮件通知，并且用户已完成电子邮箱验证时，可以点击登录页面的 `找回密码` 选项或直接访问 `/console/reset-password` 地址，填写用户名及对应邮箱后，系统将向该邮箱发送密码重置链接，用户可通过该链接重置密码；
+2. 如果不满足上述条件，或者密码重置邮件不能发送成功，请直接联系具有用户管理权限的管理员进行密码重置操作，管理员可参考文档[修改用户密码](./users#修改用户密码)部分修改指定用户的密码；
+3. 如果系统没有任何一个能够正常登录控制台且具有用户管理权限的管理员账号，则用户需要通过更新数据库记录的方式重置指定用户的密码。
   
-  如果未指定该配置，则默认用户名为 `admin`，默认密码将打印在 Halo 容器日志中，可以通过如下命令查看。
+  :::info 参考 SQL 语句
 
-  ```bash
-  docker logs halo | grep 'Generated random password:' | tail -1
+  通过以下 SQL 语句，可以将 `admin` 用户的密码重置为 `password`，密码重置后请尽快修改为更加安全的密码。
+  
+  **PostgreSQL** 数据库
+
+  ```SQL
+    UPDATE
+        extensions
+    SET
+        data = convert_to(
+            jsonb_set(
+                convert_from(data, 'UTF-8') :: jsonb,
+                '{spec,password}',
+                '"{bcrypt}$2a$10$7tBEL1sNQSr/uWtLZHLmCeA9IGx0I9/Jz//3Uwo/anIm9xdxv.xrO"'
+            ) :: text,
+            'UTF-8'
+        )
+    WHERE
+        name LIKE '/registry/users/admin';
   ```
+
+  **MySQL** 数据库
+
+  ```SQL
+  UPDATE
+      extensions
+  SET
+      data = JSON_SET(
+          CONVERT(data USING utf8mb4),
+          '$.spec.password',
+          '{bcrypt}$2a$10$7tBEL1sNQSr/uWtLZHLmCeA9IGx0I9/Jz//3Uwo/anIm9xdxv.xrO'
+      )
+  WHERE
+      name LIKE '/registry/users/admin';
+  ```
+  
+  :::
 
 ### 附件上传提示 `413 Request Entity Too Large` 如何解决？
 
