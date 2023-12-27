@@ -44,7 +44,7 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 
 执行此命令后，会自动创建一个 Halo 的 Docker 容器并加载当前的插件，更多文档可查阅：<https://github.com/halo-sigs/halo-gradle-plugin>
 
-## 运行方式 2
+### 运行方式 2
 
 > 此方式需要使用源码运行 Halo，请确保已经在开发环境运行了 Halo，可以参考 [Halo 开发环境运行](../core/run.md)
 
