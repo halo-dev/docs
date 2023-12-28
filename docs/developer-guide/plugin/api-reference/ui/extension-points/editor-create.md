@@ -42,6 +42,7 @@ export interface EditorProvider {
 1. 组件必须包含以下 props：
    1. `raw:string`：用于接收原始内容。
    2. `content:string`：用于接收渲染后的内容。
+   3. `uploadImage?: (file: File) => Promise<Attachment>`：用于上传图片，在编辑器内部获取到 File 之后直接调用此方法即可得到上传后的附件信息。
 2. 组件必须包含以下 emit 事件：
    1. `update:raw`：用于更新原始内容。
    2. `update:content`：用于更新渲染后的内容。
@@ -74,19 +75,22 @@ export default definePlugin({
 ```
 
 ```html title="./components/markdown-editor.vue"
-<script setup>
-import { marked } from 'marked'
-import { debounce } from 'lodash-es'
-import { ref, computed } from 'vue'
+<script setup lang="ts">
+import { marked } from "marked";
+import { debounce } from "lodash-es";
+import { ref, computed, onMounted } from "vue";
+import type { Attachment } from "@halo-dev/api-client";
 
 const props = withDefaults(
   defineProps<{
     raw: string;
     content: string;
+    uploadImage?: (file: File) => Promise<Attachment>;
   }>(),
   {
     raw: "",
-    content: ""
+    content: "",
+    uploadImage: undefined,
   }
 );
 
@@ -96,21 +100,43 @@ const emit = defineEmits<{
   (event: "update", value: string): void;
 }>();
 
-const output = computed(() => marked(raw.value))
+const output = computed(() => marked(props.raw));
 
 const update = debounce((e) => {
-  emit("update:raw", e.target.value)
-  emit("update:content", marked(e.target.value))
+  emit("update:raw", e.target.value);
+  emit("update:content", marked(e.target.value));
 
-  if(e.target.value !== raw.value) {
-    emit("update", e.target.value)
+  if (e.target.value !== props.raw) {
+    emit("update", e.target.value);
   }
-}, 100)
+}, 100);
+
+const textareaRef = ref();
+
+onMounted(() => {
+  textareaRef.value.addEventListener("paste", (e) => {
+    if (e.clipboardData && e.clipboardData.items) {
+      const items = e.clipboardData.items;
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf("image") !== -1) {
+          const file = items[i].getAsFile();
+          props.uploadImage?.(file).then((attachment: Attachment) => {
+            emit(
+              "update:raw",
+              props.raw +
+                `![${attachment.spec.displayName}](${attachment.status?.permalink})`
+            );
+          });
+        }
+      }
+    }
+  });
+});
 </script>
 
 <template>
   <div class="editor">
-    <textarea class="input" :value="raw" @input="update"></textarea>
+    <textarea ref="textareaRef" class="input" :value="raw" @input="update"></textarea>
     <div class="output" v-html="output"></div>
   </div>
 </template>
