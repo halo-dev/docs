@@ -84,28 +84,25 @@ server {
 
 ### 如何在一台服务器上部署多个站点？
 
-参考 [写在前面/工作目录](../getting-started/prepare.md#工作目录) 我们可以知道，工作目录对于 Halo 主程序来说是固定的。如果我们需要部署多个站点，我们提供以下两种方式以供参考：
+使用 Docker 创建多个容器，因为使用 Docker 可以将内部的工作目录映射到宿主机的任何目录，可以参考以下创建容器的方式：
 
-1. 创建多个 Linux 账户，并在每个账户上运行一个独立的 Halo。因为工作目录是基于账户的，所以每个账户都有自己的工作目录。但是有一点需要注意，就是需要修改每一个 Halo 的运行端口，参考：[配置参考/端口](../getting-started/config#%E7%AB%AF%E5%8F%A3)
-2. 使用 Docker 创建多个容器，因为使用 Docker 可以将内部的工作目录映射到宿主机的任何目录，可以参考以下创建容器的方式：
+ ```bash
+ # 第一个 Halo 容器
+ docker run \
+   -it -d \
+   --name halo-1 \
+   -p 8090:8090 \
+   -v ~/.halo2:/root/.halo2 \
+   halohub/halo:2.11 \
 
-    ```bash
-    # 第一个 Halo 容器
-    docker run \
-      -it -d \
-      --name halo-1 \
-      -p 8090:8090 \
-      -v ~/.halo2:/root/.halo2 \
-      halohub/halo:2.11 \
-
-    # 第二个 Halo 容器
-    docker run \
-      -it -d \
-      --name halo-2 \
-      -p 8091:8090 \
-      -v ~/.halo2_2:/root/.halo2 \
-      halohub/halo:2.11 \
-    ```
+ # 第二个 Halo 容器
+ docker run \
+   -it -d \
+   --name halo-2 \
+   -p 8091:8090 \
+   -v ~/.halo2_2:/root/.halo2 \
+   halohub/halo:2.11 \
+ ```
 
 更多 Docker 相关的教程请参考：[使用 Docker 部署 Halo](../getting-started/install/docker.md)
 
