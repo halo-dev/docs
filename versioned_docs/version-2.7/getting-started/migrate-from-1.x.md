@@ -26,7 +26,7 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 
 ## 备份数据
 
-在进行迁移操作之前，我们强烈建议先**完整备份所有数据**，可以参考 [备份迁移](https://docs.halo.run/user-guide/backup-migration) 进行整站备份。
+在进行迁移操作之前，我们强烈建议先**完整备份所有数据**，可以参考 [备份迁移](https://v1.legacy-docs.halo.run/user-guide/backup-migration) 进行整站备份。
 
 ## 导出数据文件
 
