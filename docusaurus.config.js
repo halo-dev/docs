@@ -1,7 +1,4 @@
 const darkCodeTheme = require("prism-react-renderer/themes/palenight");
-const math = require("remark-math");
-const katex = require("rehype-katex");
-const mermaid = require("mdx-mermaid");
 const VersionsArchived = require("./versionsArchived.json");
 
 /** @type {import('@docusaurus/types').Config} */
@@ -30,8 +27,6 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          remarkPlugins: [math, mermaid],
-          rehypePlugins: [katex],
           lastVersion: "2.11",
           versions: {
             current: {
@@ -48,9 +43,6 @@ const config = {
           changefreq: "weekly",
           priority: 0.5,
           ignorePatterns: [
-            "/1.4/**",
-            "/1.5/**",
-            "/1.6/**",
             "/2.0/**",
             "/2.1/**",
             "/2.2/**",
@@ -104,6 +96,10 @@ const config = {
                   href: versionUrl,
                 })
               ),
+              {
+                to: "https://v1.legacy-docs.halo.run",
+                label: "1.x",
+              },
               {
                 to: "/versions",
                 label: "All versions",
@@ -200,54 +196,12 @@ const config = {
       {
         redirects: [
           {
-            to: "/1.6/getting-started/install/linux",
-            from: [
-              "/zh/install",
-              "/install",
-              "/zh/install/index",
-              "/install/index",
-              "/zh/install/linux",
-              "/install/linux",
-            ],
-          },
-          {
             to: "/getting-started/install/docker",
             from: ["/zh/install/docker", "/install/docker"],
           },
           {
-            to: "/1.6/getting-started/install/other/bt-panel",
-            from: ["/zh/install/bt-panel", "/install/bt-panel"],
-          },
-          {
-            to: "/1.6/getting-started/install/other/tencent-cloudbase",
-            from: [
-              "/zh/install/tencent-cloudbase",
-              "/install/tencent-cloudbase",
-            ],
-          },
-          {
             to: "/getting-started/prepare",
             from: ["/zh/install/prepare", "/install/prepare"],
-          },
-          {
-            to: "/getting-started/config",
-            from: ["/zh/install/config", "/install/config"],
-          },
-          {
-            to: "/1.6/getting-started/upgrade",
-            from: ["/zh/install/upgrade", "/install/upgrade"],
-          },
-          {
-            to: "/getting-started/downloads",
-            from: ["/zh/install/downloads", "/install/downloads"],
-          },
-          {
-            to: "/user-guide/backup-migration",
-            from: ["/zh/user-guide/backup-migration"],
-          },
-          {
-            to: "/user-guide/markdown",
-            from: ["/zh/user-guide/markdown"],
           },
           {
             to: "/developer-guide/core/structure",
@@ -267,18 +221,6 @@ const config = {
           },
         ],
         createRedirects(existingPath) {
-          if (existingPath.startsWith("/1.5/")) {
-            return [
-              existingPath.replace("/1.5/", "/1.5.4/"),
-              existingPath.replace("/1.5/", "/1.5.3/"),
-              existingPath.replace("/1.5/", "/1.5.2/"),
-              existingPath.replace("/1.5/", "/1.5.1/"),
-              existingPath.replace("/1.5/", "/1.5.0/"),
-            ];
-          }
-          if (existingPath.startsWith("/1.4/")) {
-            return [existingPath.replace("/1.4/", "/1.4.17/")];
-          }
           if (existingPath.startsWith("/2.12.0-SNAPSHOT/")) {
             return [
               existingPath.replace("/2.12.0-SNAPSHOT/", "/2.0.0-SNAPSHOT/"),
@@ -305,12 +247,6 @@ const config = {
       src: "https://analytics.halo.run/script.js",
       async: true,
       "data-website-id": "f9995c32-81e9-4e07-91f2-c276a0d63c9f",
-    },
-  ],
-  stylesheets: [
-    {
-      href: "https://unpkg.com/katex@0.12.0/dist/katex.min.css",
-      type: "text/css",
     },
   ],
 };
