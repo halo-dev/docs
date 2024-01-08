@@ -1,4 +1,4 @@
 ---
 title: UppyUpload
-description: 文件上传组件。
+description: 文件上传组件
 ---
