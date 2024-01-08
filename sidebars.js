@@ -208,6 +208,17 @@ module.exports = {
                         "developer-guide/plugin/api-reference/ui/extension-points/post-list-item-field-create",
                       ],
                     },
+                    {
+                      type: "category",
+                      label: "组件",
+                      link: {
+                        type: "doc",
+                        id: "developer-guide/plugin/api-reference/ui/components/index",
+                      },
+                      items: [
+                        "developer-guide/plugin/api-reference/ui/components/uppy-upload",
+                      ],
+                    },
                   ],
                 },
               ],
