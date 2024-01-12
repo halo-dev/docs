@@ -221,6 +221,7 @@ module.exports = {
                         "developer-guide/plugin/api-reference/ui/components/filter-clean-button",
                         "developer-guide/plugin/api-reference/ui/components/annotations-form",
                         "developer-guide/plugin/api-reference/ui/components/attachment-file-type-icon",
+                        "developer-guide/plugin/api-reference/ui/components/attachment-selector-modal",
                         "developer-guide/plugin/api-reference/ui/components/has-permission",
                         "developer-guide/plugin/api-reference/ui/components/search-input",
                         "developer-guide/plugin/api-reference/ui/components/v-codemirror",
