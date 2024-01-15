@@ -7,8 +7,8 @@ description: 插件开发的准备工作
 
 在创建你的第一个插件之前，请确保你具备以下条件：
 
-- 你能成功在[开发环境运行 Halo](../core/run.md)。
-- 你应该能够熟练使用 [IntelliJ IDEA](https://www.jetbrains.com/idea)。
+- 你能通过 [Docker 运行 Halo](../../getting-started/install/docker) 或在[开发环境运行 Halo](../core/run.md)。
+- 你熟悉 Java Web 开发并掌握 [Spring Boot](https://spring.io/projects/spring-boot/) 框架。
 - 你需要在计算机上安装最新的 LTS 版本的 Node.js，如果你还没有Node.js安装，你可以在这里下载 [Node.js 18 LTS](https://nodejs.org/)。
 - 你熟悉 Vue 和 TypeScript。
 - 你应该熟悉使用 Node.js 包管理器。

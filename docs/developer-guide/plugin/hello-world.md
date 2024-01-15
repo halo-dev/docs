@@ -16,7 +16,15 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 
   ![create-repository-for-hello-world-plugin](/img/create-repository-for-hello-world-plugin.png)
 
-你现在已经基于 Halo 插件模板创建了自己的存储库。接下来，你需要将它克隆到你的计算机上并使用 `IntelliJ IDEA` 打开它。
+你现在已经基于 Halo 插件模板创建了自己的存储库。接下来，你需要将它克隆到你的计算机上。
+
+```shell
+# clone your repository
+git clone https://github.com/<your-username>/halo-plugin-hello-world.git
+
+# enter the directory
+cd halo-plugin-hello-world
+```
 
 ## 运行插件
 
@@ -24,7 +32,9 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 
 ### 方式 1（推荐）
 
-> 此方式需要本地安装 Docker
+如果你的电脑上已经安装了 Docker，那么我们推荐你使用以下方式运行插件，只需要执行以下命令即可。
+
+1. 执行前端部分的依赖安装命令：
 
 ```shell
 # macOS / Linux
@@ -33,6 +43,8 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 # Windows
 ./gradlew.bat pnpmInstall
 ```
+
+2. 运行插件：
 
 ```shell
 # macOS / Linux
@@ -42,13 +54,27 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 ./gradlew.bat haloServer
 ```
 
-执行此命令后，会自动创建一个 Halo 的 Docker 容器并加载当前的插件，更多文档可查阅：<https://github.com/halo-sigs/halo-gradle-plugin>
+执行此命令后，会自动创建一个 Halo 的 Docker 容器并加载当前的插件，更多文档可查阅 [Halo Gradle 插件使用说明](https://github.com/halo-sigs/halo-gradle-plugin)。
+
+3. 启动成功后，可以看到如下日志输出：
+
+```shell
+Halo 初始化成功，访问： http://localhost:8090/console
+用户名：admin
+密码：admin
+```
+
+然后访问 `http://localhost:8090/console`
+
+在插件列表将能看到插件已经被正确启动，并且在左侧菜单添加了一个 `示例分组`，其下有一个名 `示例页面` 的菜单。
+
+![hello-world-in-plugin-list](/img/plugin-hello-world.png)
 
 ### 运行方式 2
 
-> 此方式需要使用源码运行 Halo，请确保已经在开发环境运行了 Halo，可以参考 [Halo 开发环境运行](../core/run.md)
+此方式需要使用源码运行 Halo，请确保已经在开发环境运行了 Halo，可以参考 [Halo 开发环境运行](../core/run.md)
 
-编译插件：
+1. 安装前端部分的依赖
 
 ```shell
 # macOS / Linux
@@ -58,6 +84,8 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 ./gradlew.bat pnpmInstall
 ```
 
+2. 编译插件
+
 ```shell
 # macOS / Linux
 ./gradlew build
@@ -66,7 +94,17 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 ./gradlew.bat build
 ```
 
-修改配置文件：
+3. 修改 Halo 配置文件：
+
+```shell
+# 进入 Halo 项目根目录后，使用 cd 命令进入配置文件目录
+cd application/src/main/resources
+
+# 创建 application-local.yaml 文件
+touch application-local.yaml
+```
+
+根据你的操作系统，将以下内容添加到 `application-local.yaml` 文件中。
 
 ```yaml
 # macOS / Linux
@@ -74,7 +112,7 @@ halo:
   plugin:
     runtime-mode: development
     fixed-plugin-path:
-      # 配置为插件绝对路径
+      # 配置为插件项目目录绝对路径
       - /path/to/halo-plugin-hello-world
 
 # Windows
@@ -82,11 +120,19 @@ halo:
   plugin:
     runtime-mode: development
     fixed-plugin-path:
-      # 配置为插件绝对路径
+      # 配置为插件项目目录绝对路径
       - C:\path\to\halo-plugin-hello-world
 ```
 
-最后启动 Halo 即可。
+4. 启动 Halo
+
+```shell
+# macOS / Linux
+./gradlew bootRun --args="--spring.profiles.active=dev,local"
+
+# Windows
+gradlew.bat bootRun --args="--spring.profiles.active=dev,win,local"
+```
 
 然后访问 `http://localhost:8090/console`
 
