@@ -14,7 +14,7 @@ Halo 由以下几个核心模块组成：
 
 ## Halo 核心概念和 Extension
 
-### 自定义模型
+### 自定义模型 {#extension}
 
 Extension 自定义模型提供了一种声明和管理数据模型的方法，它是 Halo 的核心概念之一。Halo 中的所有数据模型都是通过 Extension 来定义的，包括文章、分类、标签、评论、附件、页面、菜单、设置等，这便于插件系统可以灵活的进行数据模型的扩展，设计文档参考：[自定义模型设计](https://github.com/halo-dev/rfcs/tree/main/extension)。
 
@@ -30,7 +30,7 @@ Extension 自定义模型提供了一种声明和管理数据模型的方法，�
 
 在 Halo 中，用户通过自定义模型定义资源的期望状态，Controller 负责监视资源的实际状态，当资源的实际状态和“期望状态”不一致时，Controller 则对系统进行必要的更改，以确保两者一致，这个过程被称之为调谐（Reconcile），而实现调谐的逻辑被称之为 Reconciler。Reconciler 获取对象的名称并返回是否需要重试（例如发生一些错误），如果需要重试，则 Controller 会在稍后再次调用 Reconciler，而这个过程会一直重复，直到 Reconciler 返回成功为止，这个过程被称之为调谐循环（Reconciliation Loop）。
 
-### 自定义模型生命周期
+### 自定义模型生命周期 {#extension-lifecycle}
 
 所有 Halo 的自定义模型对象都遵循一个共同的生命周期，可以将其视为状态机，尽管某些特定的自定义模型扩展了这一点并提供了更多状态。要编写正确的控制器，了解公共对象生命周期非常重要。
 
@@ -73,21 +73,21 @@ Extension 自定义模型提供了一种声明和管理数据模型的方法，�
 
 总结：自定义模型对象的删除并不是立即生效的，而是需要经过两个步骤，第一步是将对象的 `metadata.deletionTimestamp` 字段设置为当前时间，第二步是将对象的 `metadata.finalizers` 字段设置为空，这样对象才会真正被删除，第一步是由用户发起的，第二步是由 Halo 控制器发起的。
 
-### Secret
+### Secret {#secret}
 
 Secret 用于解决密码、token、密钥等敏感数据的配置问题，而不需要把这些敏感数据暴露到自定义模型的 Spec 中，或 API 响应中。
 
-### ConfigMap
+### ConfigMap {#configmap}
 
 ConfigMap 自定义模型用来保存 key-value pair 配置数据，这个数据可以在 Reconciler 里使用，或者被用来为插件或者主题存储配置数据。
 
 虽然 ConfigMap 跟 Secret 类似，但是 ConfigMap 更方便的处理不含敏感信息的字符串。
 
-### Setting
+### Setting {#setting}
 
 Setting 自定义模型用于提供用户配置声明，用户可以通过 Setting 来声明一些模板需要的配置，比如主题设置、插件设置、系统设置等都可以通过 Setting 来声明，就能在 UI 层面提供配置入口，用户可以通过 UI 来配置这些设置，而不需要修改配置文件。
 
-### 基于角色的访问控制（RBAC）
+### 基于角色的访问控制（RBAC）{#rbac}
 
 Halo 使用基于角色的访问控制（Role-based Access Control，RBAC）来控制用户对资源的访问权限，RBAC 通过将角色分配给用户来实现访问控制，用户可以通过角色来访问资源，角色可以通过权限来访问资源。
 

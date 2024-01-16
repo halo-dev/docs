@@ -3,9 +3,9 @@ title: 与自定义模型交互
 description: 了解如果通过代码的方式操作数据
 ---
 
-Halo 提供了两个类用于与自定义模型数据交互 `ExtensionClient` 和 `ReactiveExtensionClient`。
+Halo 提供了两个类用于与自定义模型对象交互 `ExtensionClient` 和 `ReactiveExtensionClient`。
 
-它们的本质就是操作数据库，区别在于 `ExtensionClient` 是阻塞式 API，而 `ReactiveExtensionClient` 是响应式 API，接口返回值只有两种 Mono 或 Flux，它们由 [reactor](https://projectreactor.io/) 提供。
+它们提供了对自定义模型对象的增删改查操作，`ExtensionClient` 是阻塞式的用于后台任务如控制器中操作数据，而 `ReactiveExtensionClient` 返回值都是 Mono 或 Flux 是反应式非阻塞的，它们由 [reactor](https://projectreactor.io/) 提供。
 
 ```java
 public interface ReactiveExtensionClient {
@@ -84,21 +84,31 @@ public interface ReactiveExtensionClient {
 如果你想在插件中根据 name 参数查询获取到 Person 自定义模型的数据，则可以这样写：
 
 ```java
-private final ReactiveExtensionClient client;
+@Service
+@RequiredArgsConstructor
+public PersonService {
+    private final ReactiveExtensionClient client;
     
-Mono<Person> getPerson(String name) {
-    return client.fetch(Person.class, name);
+    Mono<Person> getPerson(String name) {
+        return client.fetch(Person.class, name);
+    }
 }
 ```
 
-或者使用阻塞式 API:
+或者使用阻塞式 Client
 
 ```java
-private final ExtensionClient client;
-
-Optional<Person> getPerson(String name) {
-  return client.fetch(Person.class, name);
+@Service
+@RequiredArgsConstructor
+public PersonService {
+    private final ExtensionClient client;
+    
+    Optional<Person> getPerson(String name) {
+        return client.fetch(Person.class, name);
+    }
 }
 ```
+
+注意：非阻塞线程中不能调用阻塞式方法。
 
 我们建议你更多的使用响应式的 `ReactiveExtensionClient` 去替代 `ExtensionClient`。
