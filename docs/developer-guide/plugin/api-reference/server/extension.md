@@ -223,3 +223,12 @@ ServerRequest 和 ServerResponse 是不可变的接口，它们提供了对 HTTP
 [Reactive Streams](https://www.reactive-streams.org/) 的背压（back pressure）。请求主体用 Reactor Flux 或 Mono 表示。
 响应主体可用任何响应式流发布者（Publisher）表示，包括 Flux 和 Mono。
 更多相关信息，请参见 [Reactor 3 Reference Guide](https://projectreactor.io/docs/core/release/reference/) 和 [Webflux](https://docs.spring.io/spring-framework/reference/web/webflux.html)。
+
+操作自定义模型对象的自定义 APIs 的路由规则建议遵循以下规则：
+
+1. 以 `/apis/<group>/<version>/<plural>[/<resourceName>/<subresource>]` 规则组成 APIs。
+2. 由于自动生成的 APIs 不能覆盖，因此通过不同的 group 来区分，自定义的 APIs 的 group 建议遵循以下规则：
+
+- 在 Console 端使用的自定义 APIs 的 group 规则 `console.api.<group>`，例如对于 Person 自定义模型需要一个一个在 Console 端使用的自定义 API 的 group 为 `console.api.my-plugin.halo.run`。
+- 在个人中心使用的自定义 APIs 的 group 规则 `uc.api.<group>`，例如 `uc.api.my-plugin.halo.run`。
+- 为主题端提供的公开的自定义 APIs 的 group 规则 `api.<group>`，例如 `api.my-plugin.halo.run`。
