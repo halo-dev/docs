@@ -26,7 +26,7 @@ Extension 自定义模型提供了一种声明和管理数据模型的方法，�
 
 每个自定义模型注册后都会默认生成 CRUD APIs，通过这些 APIs 就可以对自定义模型对象进行增删改查的操作，然后只需要编写控制器来实现自定义模型的业务逻辑即可，这就是 Halo 的异步编程模型。
 
-### 控制器
+### 控制器 {#controller}
 
 在 Halo 中，用户通过自定义模型定义资源的期望状态，Controller 负责监视资源的实际状态，当资源的实际状态和“期望状态”不一致时，Controller 则对系统进行必要的更改，以确保两者一致，这个过程被称之为调谐（Reconcile），而实现调谐的逻辑被称之为 Reconciler。Reconciler 获取对象的名称并返回是否需要重试（例如发生一些错误），如果需要重试，则 Controller 会在稍后再次调用 Reconciler，而这个过程会一直重复，直到 Reconciler 返回成功为止，这个过程被称之为调谐循环（Reconciliation Loop）。
 

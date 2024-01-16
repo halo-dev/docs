@@ -35,7 +35,6 @@ description: 了解插件项目的文件结构
 │           │   └── style.css
 │           └── plugin.yaml
 ├── LICENSE
-├── OWNERS
 ├── README.md
 ├── build.gradle
 ├── gradle.properties
@@ -50,8 +49,8 @@ description: 了解插件项目的文件结构
 
 所有的后端代码都放在 `src` 目录下，它是一个常规的 `Java` 项目目录结构。
 
-- `StarterPlugin.java` 为插件的后端入口文件。
-- `resources` 下的 `plugin.yaml` 为插件的资源描述文件，它是必须的。
+- `StarterPlugin.java` 为插件的后端入口示例文件，类名可以任意但它必须继承 `run.halo.app.plugin.BasePlugin` 类来标记它作为插件入口。
+- `resources` 下的 `plugin.yaml` 为插件的资源描述文件，它是必须的，它描述了插件的基本信息，包括插件的名称、版本、作者、描述、依赖等。
 - `resources/console` 下的两个文件 `main.js` 和 `style.css` 是前端插件部分打包时输出的产物。一个插件可以没有前端部分，因此 `resources/console` 同样可以不存在。
 
 :::caution 注意
