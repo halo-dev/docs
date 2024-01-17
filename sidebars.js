@@ -159,6 +159,7 @@ module.exports = {
                   },
                   items: [
                     "developer-guide/plugin/api-reference/server/extension",
+                    "developer-guide/plugin/api-reference/server/reconciler",
                     "developer-guide/plugin/api-reference/server/role-template",
                     "developer-guide/plugin/api-reference/server/extension-client",
                     "developer-guide/plugin/api-reference/server/reverseproxy",
