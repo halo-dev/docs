@@ -95,7 +95,7 @@ public void start() {
 
 其中 `apiVersion`、`kind`、`metadata`都包含在了 AbstractExtension 类中，所以我们只需要关注 `spec` 和 `status` 即可，参考：[Halo 架构概览之自定义模型](../../basics/framework.md#extension)
 
-### 声明自定义模型对象 {#declare-extension-object}
+## 声明自定义模型对象 {#declare-extension-object}
 
 有了自定义模型后可以通过在插件项目的 `src/main/resources/extensions` 目录下声明 `yaml` 文件来创建一个自定义模型对象，
 此目录下的所有自定义模型 `yaml` 都会在插件启动后被创建：
@@ -113,13 +113,13 @@ spec:
 
 在该目录下声明自定义模型对象所使用的 `yaml` 文件的文件名是任意的，只根据 `kind` 和 `apiVersion` 来确定自定义模型对象的类型。
 
-### 命名规范 {#naming-conventions}
+## 命名规范 {#naming-conventions}
 
-#### metadata name {#metadata-name}
+### metadata name {#metadata-name}
 
 `metadata.name` 它是自定义模型对象的唯一标识名，包含不超过 253 个字符，仅包含小写字母、数字或`-`，以字母或数字开头，以字母或数字结尾。
 
-#### labels
+### labels
 
 `labels` 它是一个字符串键值对集合， Key 的基本结构为 `<prefix>/<name>`，完整的 label 键通常包括一个可选的前缀和名称，二者通过斜杠（/）分隔。
 
@@ -150,23 +150,92 @@ spec:
 - labels 应直观地反映其代表的信息或用途。
 - 不要在 labels 中包含敏感信息，例如用户凭据或个人识别信息。
 
-### 自定义模型 APIs
+## 使用索引
+
+自定义模型虽然带来了很大的灵活性可扩展性，但也引入了查询问题，自定义模型对象存储在数据库中是 `byte[]` 的形式存在的，从而实现不依赖于数据库特性，你可以使用 `MySQL`，`PostgreSQL`，`H2` 等数据库来来作为存储介质，但查询自定义模型对象时无法使用数据库的索引特性，这就导致了查询自定义模型对象的效率问题，Halo 自己实现了一套索引机制来解决这个问题。
+
+索引是一种存储数据结构，可提供对数据集中字段的高效查找。索引将自定义模型中的字段映射到数据库行，以便在查询特定字段时不需要完整的扫描。查询数据之前，必须对需要查询的字段创建索引。索引可以包含一个或多个字段的值。索引可以包含唯一值或重复值。索引中的值按照索引中的顺序进行排序。
+
+索引可以提高查询性能，但会占用额外的存储空间，因为它们需要存储索引字段的副本。索引的大小取决于字段的数据类型和索引的类型，因此，创建索引时应该考虑存储成本和性能收益。
+
+你可以通过以下方式在注册自定义模型时声明索引：
+
+```java
+@Override
+public void start() {
+  schemeManager.register(Moment.class, indexSpecs -> {
+    indexSpecs.add(new IndexSpec()
+      .setName("spec.tags")
+      .setIndexFunc(multiValueAttribute(Moment.class, moment -> {
+          var tags = moment.getSpec().getTags();
+          return tags == null ? Set.of() : tags;
+      }))
+  );
+  // more index spec
+}
+```
+
+`IndexSpec` 用于声明索引项，它包含以下属性：
+
+- name：索引名称，在同一个自定义模型的索引中必须唯一，一般建议使用字段路径作为索引名称，例如 `spec.slug`。
+- order：对索引值的排序方式，支持 `ASC` 和 `DESC`，默认为 `ASC`。
+- unique：是否唯一索引，如果为 `true` 则索引值必须唯一，如果创建自定义模型对象时检测到此索引字段有重复值则会创建失败。
+- indexFunc：索引函数，用于获取索引值，接收当前自定义模型对象，返回一个索引值，索引值必须是字符串任意类型，如果不是字符串类型则需要自己转为字符串，可以使用 `IndexAttributeFactory` 提供的静态方法来创建 `indexFunc`：
+  - `simpleAttribute()`：用于得到一个返回单个值的索引函数，例如 `moment -> moment.getSpec().getSlug()`。
+  - `multiValueAttribute()`：用于得到一个返回多个值的索引函数，例如 `moment -> moment.getSpec().getTags()`。
+
+当注册自定义模型时声明了索引后，Halo 会在插件启动时构建索引，在构建索引期间插件出于未启动状态。
+
+Halo 默认会为每个自定义模型建立以下几个索引，因此不需要为下列字段再次声明索引：
+
+- `metadata.name` 创建唯一索引
+- `metadata.labels`
+- `metadata.creationTimestamp`
+- `metadata.deletionTimestamp`
+
+创建了索引的字段可以在查询时使用 `fieldSelector` 参数来查询，参考 [自定义模型 APIs](#extension-apis)。
+
+## 自定义模型 APIs {#extension-apis}
 
 定义好自定义模型并注册后，会根据 `GVK` 注解自动生成一组 `CRUD` APIs，规则为：
 `/apis/<group>/<version>/<extension>/{extensionname}/<subextension>`
 
 对于上述 Person 自定义模型将有以下 APIs：
 
-```text
+```shell
+# 用于列出所有 Person 自定义模型对象
 GET /apis/my-plugin.halo.run/v1alpha1/persons
+
+# 用于查询指定名称更新自定义模型对象
 PUT /apis/my-plugin.halo.run/v1alpha1/persons/{name}
+
+# 用于创建自定义模型对象
 POST /apis/my-plugin.halo.run/v1alpha1/persons
+
+# 用于根据指定名称删除自定义模型对象
 DELETE /apis/my-plugin.halo.run/v1alpha1/persons/{name}
 ```
 
 对于这组自动生成的 `CRUD` APIs，你可以通过定义[控制器](../../basics/framework.md#controller)来完成对数据修改后的业务逻辑处理来满足大部分的场景需求。
 
-### 自定义 API
+`GET /apis/my-plugin.halo.run/v1alpha1/persons` 这个 API 用于查询自定义模型对象，它支持以下参数：
+
+- page：页码，从 1 开始。
+- size：每页数据量，如果不传此参数默认为查询所有。
+- sort：排序字段，格式为 `字段名,排序方式`，例如 `name,desc`，如果不传此参数默认为按照 `metadata.creationTimestamp` 降序排序，排序使用的字段必须是注册为索引的字段。
+- labelSelector：标签选择器，格式为 `key=value`，例如 `labelSelector=name=halo`，如果不传此参数默认为查询所有，此标签选择器筛选的是 `metadata.labels`，支持的操作符有 `=`、 `!=`、`!` 和 `存在检查`：
+  - `=` 表示等于，例如 `labelSelector=name=halo` 表示查询 `metadata.labels` 中 `name` 的值等于 `halo` 的自定义模型对象。
+  - `!=` 表示不等于，例如 `labelSelector=name!=halo` 表示查询 `metadata.labels` 中 `name` 的值不等于 `halo`的自定义模型对象。
+  - `!` 表示不存在 key，例如 `labelSelector=!name` 表示查询 `metadata.labels` 不存在 `name` 这个 key 的自定义模型对象。
+  - `存在检查` 表示查询存在 key 的对象，例如 `labelSelector=name` 表示查询 `metadata.labels` 存在 `name` 这个 key 的自定义模型对象。
+- fieldSelector：字段选择器，格式与 `labelSelector` 类似，但需要确保对应的字段是注册为索引的字段，例如 `fieldSelector=spec.name=slug` 表示查询 `spec.slug` 的值等于 `halo` 的自定义模型对象，支持的操作符有 `=`、`!=` 和 `in`。
+  - `=` 表示等于，例如 `fieldSelector=spec.slug=halo` 表示查询 `spec.slug` 的值等于 `halo` 的自定义模型对象。
+  - `!=` 表示不等于，例如 `fieldSelector=spec.slug!=halo` 表示查询 `spec.slug` 的值不等于 `halo` 的自定义模型对象。
+  - `in` 表示在集合中，例如 `fieldSelector=spec.slug=(halo,halo2)` 表示查询 `spec.slug` 的值在 `halo` 和 `halo2` 中的自定义模型对象。
+
+这些查询参数是 `AND` 的关系，例如 `page=1&size=10&sort=name,desc&labelSelector=name=halo&fieldSelector=spec.slug=halo` 表示查询 `metadata.labels` 中 `name` 的值等于 `halo` 且 `spec.slug` 的值等于 `halo` 的自定义模型对象，并按照 `name` 字段降序排序，查询第 1 页，每页 10 条数据。
+
+## 自定义 API
 
 在一些场景下，只有自动生成的 `CRUD` API 往往是不够用的，此时可以通过自定义一些 APIs 来满足功能。
 
