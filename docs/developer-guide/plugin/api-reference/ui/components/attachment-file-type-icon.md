@@ -19,7 +19,7 @@ description: 附件文件类型图标组件
 
 | 属性名       | 类型                 | 默认值         | 描述                                         |
 |--------------|----------------------|----------------|----------------------------------------------|
-| `fileName`   | string \| undefined | `undefined`    | 文件名，可以是字符串或未定义。                 |
-| `displayExt` | boolean            | `true`         | 可选。是否显示文件扩展名，默认为 true。        |
-| `width`      | number             | `10`           | 可选。组件宽度，默认为 10。                    |
-| `height`     | number             | `10`           | 可选。组件高度，默认为 10。                    |
+| `fileName`   | string \| undefined | undefined    | 文件名，可以是字符串或未定义。                 |
+| `displayExt` | boolean            | true         | 可选，是否显示文件扩展名，默认为 true。        |
+| `width`      | number             | 10           | 可选，组件宽度，默认为 10。                    |
+| `height`     | number             | 10           | 可选，组件高度，默认为 10。                    |

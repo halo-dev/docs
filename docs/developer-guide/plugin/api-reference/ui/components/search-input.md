@@ -23,8 +23,8 @@ const keyword = ref("")
 
 | 属性名         | 类型        | 默认值      | 描述                                  |
 |----------------|-------------|-------------|---------------------------------------|
-| `placeholder`  | string    | `undefined` | 可选。用于指定输入字段的占位符文本。   |
-| `modelValue`   | string    | *无默认值*  | 必填。用于绑定输入字段的值。           |
+| `placeholder`  | string    | undefined | 可选，用于指定输入字段的占位符文本。   |
+| `modelValue`   | string    | 无，必填  | 用于绑定输入字段的值。           |
 
 ## Emits
 

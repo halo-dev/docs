@@ -36,10 +36,10 @@ function onAttachmentSelect (attachments: AttachmentLike[]) {
 
 | 属性名    | 类型          | 默认值           | 描述                                              |
 |-----------|---------------|------------------|---------------------------------------------------|
-| `visible` | boolean     | `false`          | 控制组件是否可见。                                |
-| `accepts` | string[]    | `() => ["*/*"]`  | 可选，定义可接受的文件类型。                      |
-| `min`     | number      | `undefined`      | 可选，定义最小选择数量。                            |
-| `max`     | number      | `undefined`      | 可选，定义最大选择数量。                            |
+| `visible` | boolean     | false          | 控制组件是否可见。                                |
+| `accepts` | string[]    | () => ["*/*"]  | 可选，定义可接受的文件类型。                      |
+| `min`     | number      | undefined      | 可选，定义最小选择数量。                            |
+| `max`     | number      | undefined      | 可选，定义最大选择数量。                            |
 
 ## Emits
 
