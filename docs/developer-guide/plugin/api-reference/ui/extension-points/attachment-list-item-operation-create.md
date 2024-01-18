@@ -86,3 +86,13 @@ export default definePlugin({
 ## 实现案例
 
 - <https://github.com/halo-dev/plugin-s3>
+
+## 类型定义
+
+### Attachment
+
+```mdx-code-block
+import Attachment from "./interface/Attachment.md";
+
+<Attachment />
+```

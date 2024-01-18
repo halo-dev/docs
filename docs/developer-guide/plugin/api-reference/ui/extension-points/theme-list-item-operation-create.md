@@ -79,3 +79,13 @@ export default definePlugin({
 ## 实现案例
 
 - <https://github.com/halo-dev/plugin-app-store>
+
+## 类型定义
+
+### Theme
+
+```mdx-code-block
+import Theme from "./interface/Theme.md";
+
+<Theme />
+```

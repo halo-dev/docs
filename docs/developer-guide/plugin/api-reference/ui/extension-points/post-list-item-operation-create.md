@@ -80,3 +80,13 @@ export default definePlugin({
   },
 });
 ```
+
+## 类型定义
+
+### ListedPost
+
+```mdx-code-block
+import ListedPost from "./interface/ListedPost.md";
+
+<ListedPost />
+```
