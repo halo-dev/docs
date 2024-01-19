@@ -152,7 +152,7 @@ FieldSelector.of(QueryFactory.and(
 | contains                     | 包含指定字符串   | contains("name", "test")                                                      |
 | all                          | 指定字段的所有值 | all("age")                                                                    |
 
-在 `FieldSelector` 中使用的所有字段都必须添加为索引，否则会抛出异常表示不支持该字段。关于如何使用索引请参考 [自定义模型使用索引](/docs/developer-guide/plugin/extension.md#using-indexes)。
+在 `FieldSelector` 中使用的所有字段都必须添加为索引，否则会抛出异常表示不支持该字段。关于如何使用索引请参考 [自定义模型使用索引](./extension.md#using-indexes)。
 
 可以通过 `and` 和 `or` 方法组合和嵌套查询条件：
 
