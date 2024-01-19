@@ -181,7 +181,7 @@ Sort.by(Sort.Order.asc("metadata.name"))
 
 通过 `Sort.by` 方法可以构建排序条件，`Sort.Order` 用于指定排序字段和排序方式，`asc` 表示升序，`desc` 表示降序。
 
-排序中使用的字段必须是添加为索引的字段，否则会抛出异常表示不支持该字段。关于如何使用索引请参考 [自定义模型使用索引](/docs/developer-guide/plugin/extension.md#using-indexes)。
+排序中使用的字段必须是添加为索引的字段，否则会抛出异常表示不支持该字段。关于如何使用索引请参考 [自定义模型使用索引](./extension.md#using-indexes)。
 
 ### 分页
 
