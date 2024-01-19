@@ -126,25 +126,25 @@ FieldSelector.of(QueryFactory.and(
 
 支持的查询条件如下：
 
-| 方法 | 说明 | 示例 |
-| --- | --- | --- |
-| equal | 等于 | equal("name", "test"), name 是字段名，test 是字段值 |
-| notEqual | 不等于 | notEqual("name", "test") |
-| greaterThan | 大于 | greaterThan("age", 18) |
-| greaterThanOrEqual | 大于等于 | greaterThanOrEqual("age", 18) |
-| lessThan | 小于 | lessThan("age", 18) |
-| lessThanOrEqual | 小于等于 | lessThanOrEqual("age", 18) |
-| in | 在范围内 | in("age", 18, 19, 20) |
-| and | 且 | and(equal("name", "test"), equal("age", 18)) |
-| or | 或 | or(equal("name", "test"), equal("age", 18)) |
-| between | 在范围内 | between("age", 18, 20), 包含 18 和 20 |
-| betweenExclusive | 在范围内 | betweenExclusive("age", 18, 20), 不包含 18 和 20 |
-| betweenLowerExclusive | 在范围内 | betweenLowerExclusive("age", 18, 20), 不包含 18，包含 20 |
-| betweenUpperExclusive | 在范围内 | betweenUpperExclusive("age", 18, 20), 包含 18，不包含 20 |
-| startsWith | 以指定字符串开头 | startsWith("name", "test") |
-| endsWith | 以指定字符串结尾 | endsWith("name", "test") |
-| contains | 包含指定字符串 | contains("name", "test") |
-| all | 指定字段的所有值 | all("age") |
+| 方法                  | 说明             | 示例                                                     |
+| --------------------- | ---------------- | -------------------------------------------------------- |
+| equal                 | 等于             | equal("name", "test"), name 是字段名，test 是字段值      |
+| notEqual              | 不等于           | notEqual("name", "test")                                 |
+| greaterThan           | 大于             | greaterThan("age", 18)                                   |
+| greaterThanOrEqual    | 大于等于         | greaterThanOrEqual("age", 18)                            |
+| lessThan              | 小于             | lessThan("age", 18)                                      |
+| lessThanOrEqual       | 小于等于         | lessThanOrEqual("age", 18)                               |
+| in                    | 在范围内         | in("age", 18, 19, 20)                                    |
+| and                   | 且               | and(equal("name", "test"), equal("age", 18))             |
+| or                    | 或               | or(equal("name", "test"), equal("age", 18))              |
+| between               | 在范围内         | between("age", 18, 20), 包含 18 和 20                    |
+| betweenExclusive      | 在范围内         | betweenExclusive("age", 18, 20), 不包含 18 和 20         |
+| betweenLowerExclusive | 在范围内         | betweenLowerExclusive("age", 18, 20), 不包含 18，包含 20 |
+| betweenUpperExclusive | 在范围内         | betweenUpperExclusive("age", 18, 20), 包含 18，不包含 20 |
+| startsWith            | 以指定字符串开头 | startsWith("name", "test")                               |
+| endsWith              | 以指定字符串结尾 | endsWith("name", "test")                                 |
+| contains              | 包含指定字符串   | contains("name", "test")                                 |
+| all                   | 指定字段的所有值 | all("age")                                               |
 
 在 `FieldSelector` 中使用的所有字段都必须添加为索引，否则会抛出异常表示不支持该字段。关于如何使用索引请参考 [自定义模型使用索引](/docs/developer-guide/plugin/extension.md#using-indexes)。
 
