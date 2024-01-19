@@ -76,7 +76,22 @@ export interface RouteRecordAppend {
 }
 ```
 
-- `parentName`：父路由名称，主要用于确认页面 Layout，如果想要添加到顶级路由，可以设置为 `Root`。如果不需要设置父路由，可以完全使用 `RouteRecordRaw` 定义。
+- `parentName`：父路由名称，主要用于确认页面 Layout，如果想要添加到顶级路由，可以设置为 `Root`。如果不需要设置父路由，可以完全使用 `RouteRecordRaw` 定义。此外，如果同时设置了 `parentName` 以及其下路由设置了 `meta.menu`，那么此路由的菜单项将成为父菜单的子菜单项，可支持的父路由名称如下：
+  - Console：
+    - `AttachmentsRoot`（附件）
+    - `CommentsRoot`（评论）
+    - `SinglePagesRoot`（页面）
+    - `PostsRoot`（文章）
+    - `MenusRoot`（菜单）
+    - `ThemeRoot`（主题）
+    - `OverviewRoot`（概览）
+    - `BackupRoot`（备份）
+    - `PluginsRoot`（插件）
+    - `SettingsRoot`（设置）
+    - `UsersRoot`（用户）
+  - UC：
+    - `PostsRoot`（文章）
+    - `NotificationsRoot`（消息）
 
 :::info 提示
 `RouteRecordRaw` 来自 Vue Router，详见 [API 文档 | Vue Router](https://router.vuejs.org/zh/api/#Type-Aliases-RouteRecordRaw)
