@@ -32,7 +32,7 @@ cd halo-plugin-hello-world
 
 ### 使用 DevTools 运行（推荐）{#run-with-devtools}
 
-Halo 提供了一个用于插件开发的 DevTools，它可以帮助你快速的运行和调试插件，在模板插件项目中已经集成了 DevTools，可查阅 [Halo Plugin DevTools 使用说明](https://github.com/halo-sigs/halo-gradle-plugin)。
+Halo 提供了一个用于插件开发的 DevTools，它可以帮助你快速的运行和调试插件，在模板插件项目中已经集成了 DevTools，可查阅 [DevTools 使用说明](./basics/devtools.md)。
 
 使用 DevTools 运行插件的前提是需要你的电脑上已经安装了 Docker 环境，这是我们推荐的用户开发时运行插件的方式，只需要执行以下命令即可。
 
