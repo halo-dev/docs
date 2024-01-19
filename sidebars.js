@@ -120,6 +120,7 @@ module.exports = {
                 "developer-guide/plugin/basics/framework",
                 "developer-guide/plugin/basics/structure",
                 "developer-guide/plugin/basics/manifest",
+                "developer-guide/plugin/basics/devtools",
                 {
                   type: "category",
                   label: "服务端",
