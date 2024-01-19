@@ -38,39 +38,39 @@ Halo 提供了一个用于插件开发的 DevTools，它可以帮助你快速的
 
 1. 执行前端部分的依赖安装命令：
 
-```shell
-# macOS / Linux
-./gradlew pnpmInstall
+   ```shell
+   # macOS / Linux
+   ./gradlew pnpmInstall
 
-# Windows
-./gradlew.bat pnpmInstall
-```
+   # Windows
+   ./gradlew.bat pnpmInstall
+   ```
 
 2. 运行插件：
 
-```shell
-# macOS / Linux
-./gradlew haloServer
+   ```shell
+   # macOS / Linux
+   ./gradlew haloServer
 
-# Windows
-./gradlew.bat haloServer
-```
+   # Windows
+   ./gradlew.bat haloServer
+   ```
 
-执行此命令后，会自动创建一个 Halo 的 Docker 容器并加载当前的插件。
+   执行此命令后，会自动创建一个 Halo 的 Docker 容器并加载当前的插件。
 
 3. 启动成功后，可以看到如下日志输出：
 
-```shell
-Halo 初始化成功，访问： http://localhost:8090/console
-用户名：admin
-密码：admin
-```
+   ```shell
+   Halo 初始化成功，访问： http://localhost:8090/console
+   用户名：admin
+   密码：admin
+   ```
 
-然后访问 `http://localhost:8090/console`
+   然后访问 `http://localhost:8090/console`
 
-在插件列表将能看到插件已经被正确启动，并且在左侧菜单添加了一个 `示例分组`，其下有一个名 `示例页面` 的菜单。
+   在插件列表将能看到插件已经被正确启动，并且在左侧菜单添加了一个 `示例分组`，其下有一个名 `示例页面` 的菜单。
 
-![hello-world-in-plugin-list](/img/plugin-hello-world.png)
+   ![hello-world-in-plugin-list](/img/plugin-hello-world.png)
 
 ### 传统方式运行 {#run-with-traditional-way}
 
@@ -80,66 +80,66 @@ Halo 初始化成功，访问： http://localhost:8090/console
 
 1. 安装前端部分的依赖
 
-```shell
-# macOS / Linux
-./gradlew pnpmInstall
+   ```shell
+   # macOS / Linux
+   ./gradlew pnpmInstall
 
-# Windows
-./gradlew.bat pnpmInstall
-```
+   # Windows
+   ./gradlew.bat pnpmInstall
+   ```
 
 2. 编译插件
 
-```shell
-# macOS / Linux
-./gradlew build
+   ```shell
+   # macOS / Linux
+   ./gradlew build
 
-# Windows
-./gradlew.bat build
-```
+   # Windows
+   ./gradlew.bat build
+   ```
 
 3. 修改 Halo 配置文件：
 
-```shell
-# 进入 Halo 项目根目录后，使用 cd 命令进入配置文件目录
-cd application/src/main/resources
+   ```shell
+   # 进入 Halo 项目根目录后，使用 cd 命令进入配置文件目录
+   cd application/src/main/resources
 
-# 创建 application-local.yaml 文件
-touch application-local.yaml
-```
+   # 创建 application-local.yaml 文件
+   touch application-local.yaml
+   ```
 
-根据你的操作系统，将以下内容添加到 `application-local.yaml` 文件中。
+   根据你的操作系统，将以下内容添加到 `application-local.yaml` 文件中。
 
-```yaml
-# macOS / Linux
-halo:
-  plugin:
-    runtime-mode: development
-    fixed-plugin-path:
-      # 配置为插件项目目录绝对路径
-      - /path/to/halo-plugin-hello-world
+   ```yaml
+   # macOS / Linux
+   halo:
+     plugin:
+       runtime-mode: development
+       fixed-plugin-path:
+         # 配置为插件项目目录绝对路径
+         - /path/to/halo-plugin-hello-world
 
-# Windows
-halo:
-  plugin:
-    runtime-mode: development
-    fixed-plugin-path:
-      # 配置为插件项目目录绝对路径
-      - C:\path\to\halo-plugin-hello-world
-```
+   # Windows
+   halo:
+     plugin:
+       runtime-mode: development
+       fixed-plugin-path:
+         # 配置为插件项目目录绝对路径
+         - C:\path\to\halo-plugin-hello-world
+   ```
 
 4. 启动 Halo
 
-```shell
-# macOS / Linux
-./gradlew bootRun --args="--spring.profiles.active=dev,local"
+   ```shell
+   # macOS / Linux
+   ./gradlew bootRun --args="--spring.profiles.active=dev,local"
 
-# Windows
-gradlew.bat bootRun --args="--spring.profiles.active=dev,win,local"
-```
+   # Windows
+   gradlew.bat bootRun --args="--spring.profiles.active=dev,win,local"
+   ```
 
-然后访问 `http://localhost:8090/console`
+   然后访问 `http://localhost:8090/console`
 
-在插件列表将能看到插件已经被正确启动，并且在左侧菜单添加了一个 `示例分组`，其下有一个名 `示例页面` 的菜单。
+   在插件列表将能看到插件已经被正确启动，并且在左侧菜单添加了一个 `示例分组`，其下有一个名 `示例页面` 的菜单。
 
-![hello-world-in-plugin-list](/img/plugin-hello-world.png)
+   ![hello-world-in-plugin-list](/img/plugin-hello-world.png)
