@@ -26,7 +26,7 @@ public interface CommentSubject<T extends Extension> extends ExtensionPoint {
 - `getSubjectDisplay` 方法用于获取评论主体的展示信息，返回值为 `Mono<SubjectDisplay>`，其中 `SubjectDisplay` 为评论主体的展示信息，包含标题、链接和类型名称，用于在主题端展示评论主体的信息。
 - `supports` 方法用于判断是否支持该评论主体，返回值为 `boolean`，如果支持则返回 `true`，否则返回 `false`。
 
-实现该扩展点后，评论列表会通过 `get` 方法将主体的自定义模型对象带到评论列表中，可以配置前端的扩展点来决定如何展示评论主体的信息。
+实现该扩展点后，评论列表会通过 `get` 方法将主体的自定义模型对象带到评论列表中，可以配置前端的扩展点来决定如何展示评论主体的信息，参考：[UI 评论来源显示](../../ui/extension-points//comment-subject-ref-create.md)
 
 例如对于文章是支持评论的，所以文章的评论主体扩展点实现如下：
 
