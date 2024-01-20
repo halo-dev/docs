@@ -474,3 +474,4 @@ addOptions() {
 
 - <https://github.com/halo-sigs/plugin-hybrid-edit-block>
 - <https://github.com/halo-sigs/plugin-katex>
+- <https://github.com/halo-sigs/plugin-text-diagram>
