@@ -108,3 +108,95 @@ rules:
   - nonResourceURLs: ["/healthz", "/healthz/*"]
     verbs: [ "get", "create"]
 ```
+
+## 默认角色
+
+在 Halo 中，每个访问者都至少有一个角色，包括未登陆的用户（被称为匿名用户）它们会拥有角色为 `anonymous` 的角色，而已登陆的用户则会至少拥有一个角色名为 `authenticated` 的角色，
+但这两个角色不会显示在角色列表中。
+
+`anonymous` 角色的定义参考 [anonymous 角色](https://github.com/halo-dev/halo/blob/main/application/src/main/resources/extensions/role-template-anonymous.yaml)。
+
+`authenticated` 角色的定义参考 [authenticated 角色](https://github.com/halo-dev/halo/blob/main/application/src/main/resources/extensions/role-template-authenticated.yaml)。
+
+进入角色列表页面，你会看到一些内置角色，用于方便你快速的分配权限给用户，并可以基于这些角色来创建新的角色：
+
+- 超级管理员：拥有所有权限，不可删除，不可编辑。
+- 访客：拥有默认的 `anonymous` 和 `authenticated` 角色的权限。
+- 投稿者：拥有“允许投稿”的权限。
+- 作者：拥有“允许管理自己的文章”和”允许发布自己的文章“的权限。
+- 文章管理员：拥有“允许管理所有文章”的权限。
+
+## 角色绑定
+
+角色绑定用于将角色中定义的权限授予一个或一组用户。它包含主体列表（用户）以及对所授予角色的引用。
+
+角色绑定示例：
+
+```yaml
+apiVersion: v1alpha1
+# 这个角色绑定允许 "guqing" 用户拥有 "post-reader" 角色的权限，你需要在 Halo 中已经定义了一个名为 "post-reader" 的角色。
+kind: RoleBinding
+metadata:
+  name: guqing-post-reader-binding
+roleRef:
+  # "roleRef" 指定了绑定到的角色
+  apiGroup: ''
+  # 这里必须是 Role
+  kind: Role
+  # 这里的 name 必须匹配到一个已经定义的角色
+  name: post-reader
+subjects:
+- apiGroup: ''
+  kind: User
+  # 这里的 name 是用户的 username
+  name: guqing
+```
+
+在 Halo 中，当你给一个用户分配角色后，实际上就是创建了一个 ”RoleBinding” 对象来完成的。
+
+## 聚合角色
+
+你可以聚合角色来将多个角色的权限聚合到一个已有的角色中，这样你就不需要再为每个用户分配多个角色了。
+聚合角色是通过在你定义的角色模板中添加 `"rbac.authorization.halo.run/aggregate-to-` 开头的 label 来实现的，例如
+
+```yaml
+apiVersion: v1alpha1
+kind: "Role"
+metadata:
+  name: role-template-view-categories
+  labels:
+    halo.run/role-template: "true"
+    rbac.authorization.halo.run/aggregate-to-editor: "true"
+  annotations:
+    rbac.authorization.halo.run/ui-permissions: |
+      [ "system:categories:view", "uc:categories:view" ]
+rules:
+  - apiGroups: [ "content.halo.run" ]
+    resources: [ "categories" ]
+    verbs: [ "get", "list" ]
+```
+
+`rbac.authorization.halo.run/aggregate-to-editor` 表示将 `role-template-view-categories` 角色聚合到 `editor` 角色中，这样所有拥有 `editor` 角色的用户都会拥有 `role-template-view-categories` 角色的权限。
+
+如果你想将你写的资源型 APIs 公开给所有用户访问，这时你可以通过聚合角色来将你的资源型 APIs 的角色聚合到 `anonymous` 角色中，这样所有用户都可以访问你的资源型 APIs 了。
+
+```yaml
+apiVersion: v1
+kind: Role
+metadata:
+  name: my-plugin-role-view-persons
+  labels:
+    halo.run/role-template: "true"
+    rbac.authorization.halo.run/aggregate-to-anonymous: "true"
+  annotations:
+    rbac.authorization.halo.run/module: "Persons Management"
+    rbac.authorization.halo.run/display-name: "Person Manage"
+    rbac.authorization.halo.run/ui-permissions: |
+      ["plugin:my-plugin:person:view"]
+rules:
+  - apiGroups: ["my-plugin.halo.run"]
+    resources: ["my-plugin/persons"]
+    verbs: ["*"]
+```
+
+`rbac.authorization.halo.run/aggregate-to-anonymous` 的写法就表示将 `my-plugin-role-view-persons` 角色聚合到 `anonymous` 角色中。
