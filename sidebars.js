@@ -250,7 +250,7 @@ module.exports = {
               },
               items: ["developer-guide/plugin/examples/todolist"],
             },
-            "developer-guide/plugin/appendices",
+            // "developer-guide/plugin/appendices",
           ],
         },
         {
