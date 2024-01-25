@@ -89,6 +89,7 @@ export interface RouteRecordAppend {
     - `PluginsRoot`（插件）
     - `SettingsRoot`（设置）
     - `UsersRoot`（用户）
+    - `ToolsRoot`（工具）
   - UC：
     - `PostsRoot`（文章）
     - `NotificationsRoot`（消息）
