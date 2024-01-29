@@ -165,6 +165,7 @@ module.exports = {
                     "developer-guide/plugin/api-reference/server/extension-client",
                     "developer-guide/plugin/api-reference/server/reverseproxy",
                     "developer-guide/plugin/api-reference/server/finder-for-theme",
+                    "developer-guide/plugin/api-reference/server/template-for-theme",
                     {
                       type: "category",
                       label: "扩展点",
