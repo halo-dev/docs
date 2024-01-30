@@ -3,18 +3,18 @@ title: 静态资源代理
 description: 了解如果使用静态资源代理来访问插件中的静态资源
 ---
 
-插件中的静态资源如图片等如果想被外部访问到，需要放到 `src/main/resources` 目录下，并通过创建 ReverseProxy 自定义模型来进行静态资源代理访问。
+插件中的静态资源如图片等如果想被外部访问到，需要放到 `src/main/resources` 目录下，并通过创建 `ReverseProxy` 自定义模型对象来进行静态资源代理访问。
 
 例如 `src/main/resources` 下的 `static` 目录下有一张 `halo.jpg`:
 
 1. 首先需要在 `src/main/resources/extensions` 下创建一个 `yaml`，文件名可以任意。
-2. 示例配置如下：
+2. 声明 `ReverseProxy` 对象如下：
 
   ```yaml
   apiVersion: plugin.halo.run/v1alpha1
   kind: ReverseProxy
   metadata:
-    # name 为此资源的唯一标识名称，不允许重复，为了避免与其他插件冲突，推荐带上插件名称前缀
+    # 为了避免与其他插件冲突，推荐带上插件名称前缀
     name: my-plugin-fake-reverse-proxy
   rules:
     - path: /res/**
@@ -24,7 +24,7 @@ description: 了解如果使用静态资源代理来访问插件中的静态资�
         filename: halo.jpg
   ```
 
-插件启动后会根据 `/plugins/{plugin-name}/assets/**` 规则生成 API。
+插件启动后会根据 `/plugins/{plugin-name}/assets/**` 规则生成访问路径，
 因此该 `ReverseProxy` 的访问路径为: `/plugins/my-plugin/assets/res/halo.jpg`。
 
 - `rules` 下可以添加多组规则。

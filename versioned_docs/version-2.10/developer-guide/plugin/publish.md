@@ -136,5 +136,5 @@ jobs:
 用户可以在你的仓库 Release 下载使用，但为了方便让 Halo 的用户知道你的插件，可以在以下渠道发布：
 
 1. [halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo)：你可以向这个仓库发起一个 PR 提交的插件的信息即可。
-2. [Halo 应用市场](https://www.halo.run/store/apps)：Halo 官方的应用市场，但目前还不支持开发者注册和发布，如果你想发布到应用市场，可以在 PR 上说明以下，我们会暂时帮你发布。
+2. [Halo 应用市场](https://www.halo.run/store/apps)：Halo 官方的应用市场，但目前还不支持开发者注册和发布，如果你想发布到应用市场，可以在 PR 上说明一下，我们会暂时帮你发布。
 3. [Halo 论坛](https://bbs.halo.run/t/plugins)：你可以在 Halo 官方社区的插件板块发布你的插件。

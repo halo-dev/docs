@@ -3,7 +3,7 @@ title: 生命周期
 description: 了解插件从启动到卸载的过程
 ---
 
-根据[插件项目文件结构](./structure.md)所展示的 `StarterPlugin.java` 中，具有如下方法：
+根据[插件项目文件结构](../../basics/structure.md)所展示的 `StarterPlugin.java` 中，具有如下方法：
 
 ```java
 @Override
@@ -21,6 +21,15 @@ public void delete() {
     System.out.println("插件被删除！");
 }
 ```
+
+它们就是插件的生命周期方法，分别对应插件的启动、停止和删除。
+
+1. 继承 `run.halo.app.plugin.BasePlugin` 类后，你可以重写这些方法来干预插件的生命周期，例如在插件启动时初始化一些资源，在插件停止时清理掉这些资源。
+2. 一个插件项目只允许有一个类继承 `BasePlugin` 类且标记为 Bean，此时这个类将被作为插件的后端入口，如果有多个类继承了 `BasePlugin` 会导致插件无法启动或生命周期方法无法被调用。
+
+:::tip Note
+如果一个类继承了 `BasePlugin` 类但没有标记为 Bean，那么它将不会被 Halo 识别到，其中的生命周期方法也不会被调用。
+:::
 
 ### 插件启动
 
