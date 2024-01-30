@@ -10,10 +10,10 @@ description: 了解如何为主题提供更多获取和使用数据的方法。
 首先，你需要创建一个 `interface`，并在其中定义你需要提供给主题获取数据的方法，方法的返回值可以是 `Mono` 或 `Flux` 类型，例如：
 
 ```java
-public interface MomentFinder {
-  Mono<MomentVo> get(String momentName);
+public interface LinkFinder {
+  Mono<LinkVo> get(String linkName);
 
-  Flux<MomentTagVo> listAllTags();
+  Flux<LinkVo> listAll();
 }
 ```
 
@@ -22,21 +22,23 @@ public interface MomentFinder {
 ```java
 import run.halo.app.theme.finders.Finder;
 
-@Finder("momentFinder")
-public class MomentFinderImpl implements MomentFinder {
+@Finder("myPluginLinkFinder")
+public class LinkFinderImpl implements LinkFinder {
   @Override
-  public Mono<MomentVo> get(String momentName) {
+  public Mono<LinkVo> get(String linkName) {
     // ...
   }
 
   @Override
-  public Flux<MomentTagVo> listAllTags() {
+  public Flux<LinkVo> listAll() {
     // ...
   }
 }
 ```
 
-`@Finder` 注解的值是你在主题中使用的名称，例如，你可以在主题中使用 `momentFinder.get('momentName')` 来获取数据，`momentFinder` 就是你在 `@Finder` 注解中定义的名称。
+`@Finder` 注解的值是你在主题中使用的名称，例如，你可以在主题中使用 `myPluginLinkFinder.get('a-link-name')` 来获取数据，`myPluginLinkFinder` 就是你在 `@Finder` 注解中定义的名称。
+
+## Finder 命名
 
 为了避免与其他插件的 `finder` 名称冲突，建议在 `@Finder` 注解中添加一个你插件名称的前缀作为 `finder` 名称且名称需要是驼峰式的，不能包含除了 `_` 之外的其他特殊字符。
 
@@ -51,7 +53,7 @@ public class MomentFinderImpl implements MomentFinder {
 在主题中，你可以通过 `finder` 名称和方法名及对应的参数来获取数据，例如：
 
 ```html
-<div th:text="${momentFinder.listAllTags()}">
+<div th:text="${myPluginLinkFinder.listAll()}">
 </div>
 ```
 
