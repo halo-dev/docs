@@ -37,6 +37,7 @@ module.exports = {
             "getting-started/install/1panel",
             "getting-started/install/helm",
             "getting-started/install/podman",
+            "getting-started/install/jar-file",
             {
               type: "category",
               label: "其他指南",
