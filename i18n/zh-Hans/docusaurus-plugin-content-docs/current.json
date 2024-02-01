@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "2.12.0-SNAPSHOT",
+    "message": "2.13.0-SNAPSHOT",
     "description": "The label for version current"
   },
   "sidebar.tutorialSidebar.category.入门": {
@@ -35,13 +35,29 @@
     "message": "基础",
     "description": "The label for category 基础 in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.示例": {
-    "message": "示例",
-    "description": "The label for category 示例 in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.服务端": {
+    "message": "服务端",
+    "description": "The label for category 服务端 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.UI": {
+    "message": "UI",
+    "description": "The label for category UI in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.API 参考": {
     "message": "API 参考",
     "description": "The label for category API 参考 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.扩展点": {
+    "message": "扩展点",
+    "description": "The label for category 扩展点 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.组件": {
+    "message": "组件",
+    "description": "The label for category 组件 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.案例和最佳实践": {
+    "message": "案例和最佳实践",
+    "description": "The label for category 案例和最佳实践 in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.主题开发": {
     "message": "主题开发",
