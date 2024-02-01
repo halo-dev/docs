@@ -65,7 +65,7 @@ title: 使用 JAR 文件部署
 4. 创建 [工作目录](../prepare#工作目录)
 
    ```bash
-   mkdir ~/.halo && cd ~/.halo
+   mkdir ~/.halo2 && cd ~/.halo2
    ```
 
 5. 创建 Halo 配置文件
