@@ -126,6 +126,12 @@ title: 使用 JAR 文件部署
    | MariaDB     | `r2dbc:pool:mariadb://{HOST}:{PORT}/{DATABASE}`                                    | mariadb                      |
    | H2 Database | `r2dbc:h2:file:///${halo.work-dir}/db/halo-next?MODE=MySQL&DB_CLOSE_ON_EXIT=FALSE` | h2                         |
 
+   :::info
+   - HOST：数据库服务地址，如 `localhost`
+   - PORT：数据库服务端口，如 `3306`
+   - DATABASE：数据库名称，如 `halo`，需要提前创建
+   :::
+
    :::caution
    不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
    :::
