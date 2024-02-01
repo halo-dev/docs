@@ -32,12 +32,6 @@ title: 使用 JAR 文件部署
    useradd -m halo
    ```
 
-   给予 sudo 权限
-
-   ```bash
-   usermod -aG wheel halo
-   ```
-
    为 halo 用户创建密码
 
    ```bash
