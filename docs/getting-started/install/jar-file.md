@@ -170,24 +170,15 @@ title: 使用 JAR 文件部署
    exit
    ```
 
-2. 下载 halo.service 模板
-
-   ```bash
-   wget https://dl.halo.run/config/halo.service -O /etc/systemd/system/halo.service
-   ```
-
-3. 修改 halo.service
+2. 创建 halo.service 文件
 
    ```bash
    vim /etc/systemd/system/halo.service
    ```
 
-4. 修改配置
+   将以下内容复制到 `halo.service` 中，根据下面的配置说明进行配置。
 
-   - **JAR_PATH**：Halo 运行包的绝对路径，例如 `/home/halo/app/halo.jar`，注意：此路径不支持 `~` 符号。
-   - **USER**：运行 Halo 的系统用户，如果有按照上方教程创建新的用户来运行 Halo，修改为你创建的用户名称即可。反之请删除 `User=USER`。
-
-   ```ini {9,10}
+   ```ini {9,10} title="/etc/systemd/system/halo.service"
    [Unit]
    Description=Halo Service
    Documentation=https://halo.run
@@ -208,23 +199,28 @@ title: 使用 JAR 文件部署
    WantedBy=multi-user.target
    ```
 
+   - **JAR_PATH**：Halo 运行包的绝对路径，例如 `/home/halo/app/halo.jar`，注意：此路径不支持 `~` 符号。
+   - **USER**：运行 Halo 的系统用户，如果有按照上方教程创建新的用户来运行 Halo，修改为你创建的用户名称即可。反之请删除 `User=USER`。
+
    :::tip
    请确保 `/usr/bin/java` 是正确无误的。建议将 `ExecStart` 中的命令复制出来运行一下，保证命令有效。
    :::
 
-5. 重新加载 systemd
+   配置完成之后，保存即可。
+
+3. 重新加载 systemd
 
    ```bash
    systemctl daemon-reload
    ```
 
-6. 运行服务
+4. 运行服务
 
    ```bash
    systemctl start halo
    ```
 
-7. 在系统启动时启动服务
+5. 在系统启动时启动服务
 
    ```bash
    systemctl enable halo
