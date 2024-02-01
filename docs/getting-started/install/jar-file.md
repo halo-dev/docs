@@ -98,6 +98,8 @@ title: 使用 JAR 文件部署
          disabled: true
      # 工作目录位置
      work-dir: ${user.home}/.halo2
+     # 外部访问地址
+     external-url: http://localhost:8090
      # 附件映射配置，通常用于迁移场景
      attachment:
        resource-mappings:
