@@ -16,21 +16,26 @@ description: 开发环境运行的指南
 3. 主题（Halo 主项目内已包含默认主题）
 
 :::info 说明
-从 Halo 2.11 开始，Halo 项目的 console 目录同时包含了 Console（管理控制台）和 UC（个人中心），以下统称为 UI。
+从 Halo 2.13 开始，Halo 项目的 `ui` 目录同时包含了 Console（管理控制台）和 UC（个人中心），以下统称为 UI。
 
 当前 Halo 主项目并不会将 UI 的构建资源托管到 Git 版本控制，所以在开发环境是需要同时运行 UI 项目的。当然，在我们的最终发布版本的时候会在 CI 中自动构建 UI 到 Halo 主项目。
 :::
 
 ## 克隆项目
 
-如果你已经 fork 了相关仓库，请将以下命令中的 halo-dev 替换为你的 GitHub 用户名。
+如果你已经 Fork 了相关仓库，请将以下命令中的 `halo-dev` 替换为你的 GitHub 用户名。
 
 ```bash
 git clone https://github.com/halo-dev/halo
 
 # 或者使用 ssh 的方式 clone（推荐）
+# git clone git@github.com:halo-dev/halo.git
 
-git clone git@github.com:halo-dev/halo.git
+# 或者使用 GitHub CLI 克隆（推荐）
+# gh repo clone halo-dev/halo 
+
+# 或者使用 GitHub CLI Fork（推荐）
+# gh repo fork halo-dev/halo
 ```
 
 ## 运行 UI 服务
@@ -42,19 +47,13 @@ cd path/to/halo
 Linux / macOS 平台：
 
 ```bash
-make -C console dev
+./gradlew :ui:dev
 ```
 
 Windows 平台：
 
 ```bash
-cd console
-
-pnpm install
-
-pnpm build:packages
-
-pnpm dev
+./gradlew.bat :ui:dev
 ```
 
 最终控制台打印了如下信息即代表运行正常：
@@ -101,17 +100,18 @@ halo:
     ```
 
 3. 修改 IntelliJ IDEA 的运行配置
-    - macOS / Linux
-
-      将 Active Profiles 改为 `dev`，如图所示：
-
-      ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-macOS.png)
 
     - Windows
 
       将 Active Profiles 改为 `dev,win`，如图所示：
 
       ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-Win.png)
+
+    - macOS / Linux
+
+      将 Active Profiles 改为 `dev`，如图所示：
+
+      ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-macOS.png)
 
 4. 点击 IntelliJ IDEA 的运行按钮，等待项目启动完成。
 

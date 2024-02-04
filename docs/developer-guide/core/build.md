@@ -7,63 +7,39 @@ description: 构建为可执行 JAR 和 Docker 镜像的文档
 在此之前，我们推荐你先阅读[《准备工作》](./prepare)，检查本地环境是否满足要求。
 :::
 
-一般情况下，为了保证版本一致性和可维护性，我们并不推荐自行构建和二次开发。但考虑到我们目前仅提供 Docker 镜像的发行版本，不再提供可执行 JAR 的发行版本，因此我们提供了构建的文档，以供用户自行构建。
+一般情况下，为了保证版本一致性和可维护性，我们并不推荐自行构建和二次开发。
 
 ## 克隆项目
 
-如果你已经 fork 了相关仓库，请将以下命令中的 halo-dev 替换为你的 GitHub 用户名。
+如果你已经 Fork 了相关仓库，请将以下命令中的 `halo-dev` 替换为你的 GitHub 用户名。
 
 ```bash
 git clone https://github.com/halo-dev/halo
 
 # 或者使用 ssh 的方式 clone（推荐）
+# git clone git@github.com:halo-dev/halo.git
 
-git clone git@github.com:halo-dev/halo.git
+# 或者使用 GitHub CLI 克隆（推荐）
+# gh repo clone halo-dev/halo 
 
-# 切换到最新的 tag
+# 或者使用 GitHub CLI Fork（推荐）
+# gh repo fork halo-dev/halo
 
 cd halo
 
-git checkout v2.4.0
-```
-
-:::tip
-请务必按照以上要求切换到最新的 tag，而不是直接使用 main 分支构建，main 分支是我们的开发分支。此文档以 `2.12.0` 为例，查看最新的 tag 可使用 `git tag --column` 查看。
-:::
-
-## 构建 Console 和个人中心
-
-```bash
-cd path/to/halo
-```
-
-Linux / macOS 平台：
-
-```bash
-make -C console build
-```
-
-Windows 平台：
-
-```bash
-cd console
-
-pnpm install
-
-pnpm build:packages
-
-pnpm build
+# 切换到特定的分支或标签，请替换 ${branch_name}
+git checkout ${branch_name}
 ```
 
 ## 构建 Fat Jar
 
-构建之前需要修改 `gradle.properties` 中的 `version` 为当前 tag 的版本号，如：`version=2.12.0`
+构建之前需要修改 `gradle.properties` 中的 `version` 属性（推荐遵循 [SemVer 规范](https://semver.org/)），例如：`version=2.12.0`
 
 ```bash
 cd path/to/halo
 ```
 
-下载预设插件：
+下载预设插件（可选）：
 
 ```bash
 # Windows
@@ -83,18 +59,21 @@ cd path/to/halo
 ./gradlew clean build -x check
 ```
 
-构建完成之后，在 halo 项目下产生的 `application/build/libs/application-$version.jar` 即为构建完成的文件。
+构建完成之后，在 Halo 项目下产生的 `application/build/libs/halo-${version}.jar` 即为构建完成的文件。
+
+最终部署文档可参考：[使用 JAR 文件部署](../../getting-started/install/jar-file.md)。
 
 ## 构建 Docker 镜像
 
-在进行之前，请确保已经完成上述操作，最终需要确认在 halo 项目的 `application/build/libs/` 目录已经包含了 `application-$version.jar` 文件。
+在此之前，请确认已经构建好了 Fat Jar。
 
 ```bash
 cd path/to/halo
 ```
 
 ```bash
-docker build -t halo-dev/halo:2.12.0 .
+# 请替换 ${tag_name}
+docker build -t halo-dev/halo:${tag_name} .
 ```
 
 ```bash
@@ -102,4 +81,4 @@ docker build -t halo-dev/halo:2.12.0 .
 docker images | grep halo
 ```
 
-最终部署文档可参考：[使用 Docker Compose 部署](../../getting-started/install/docker-compose.md)
+最终部署文档可参考：[使用 Docker Compose 部署](../../getting-started/install/docker-compose.md)。
