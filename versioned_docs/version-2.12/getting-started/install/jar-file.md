@@ -141,7 +141,7 @@ title: 使用 JAR 文件部署
 6. 测试运行 Halo
 
    ```bash
-   cd ~/app && java -jar halo.jar --spring.config.location=/home/halo/.halo2/application.yaml
+   cd ~/app && java -jar halo.jar --spring.config.location="optional:classpath:/;optional:file:$HOME/.halo2/"
    ```
 
    :::info
@@ -185,14 +185,14 @@ title: 使用 JAR 文件部署
    ```ini {9,10} title="/etc/systemd/system/halo.service"
    [Unit]
    Description=Halo Service
-   Documentation=https://halo.run
+   Documentation=https://docs.halo.run
    After=network-online.target
    Wants=network-online.target
 
    [Service]
    Type=simple
    User=USER
-   ExecStart=/usr/bin/java -server -Xms256m -Xmx256m -jar JAR_PATH --spring.config.location=/home/halo/.halo2/application.yaml
+   ExecStart=/usr/bin/java -server -Xms256m -Xmx256m -jar JAR_PATH --spring.config.location="optional:classpath:/;optional:file:/home/halo/.halo2/"
    ExecStop=/bin/kill -s QUIT $MAINPID
    Restart=always
    StandOutput=syslog
