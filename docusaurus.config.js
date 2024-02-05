@@ -78,12 +78,16 @@ const config = {
         },
         items: [
           {
-            href: "https://halo.run",
-            label: "官网",
+            type: "docSidebar",
+            position: "left",
+            sidebarId: "tutorial",
+            label: "使用指南",
           },
           {
-            href: "https://bbs.halo.run",
-            label: "论坛",
+            type: "docSidebar",
+            position: "left",
+            sidebarId: "developer",
+            label: "开发者指南",
           },
           {
             type: "docsVersionDropdown",
@@ -105,6 +109,16 @@ const config = {
                 label: "All versions",
               },
             ],
+          },
+          {
+            href: "https://halo.run",
+            label: "官网",
+            position: "right",
+          },
+          {
+            href: "https://bbs.halo.run",
+            label: "论坛",
+            position: "right",
           },
           {
             href: "https://github.com/halo-dev/halo",
