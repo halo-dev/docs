@@ -53,7 +53,7 @@ title: 使用 JAR 文件部署
 3. 下载运行包
 
    ```bash
-   wget https://dl.halo.run/release/halo-2.12.0.jar -O halo.jar
+   wget https://dl.halo.run/release/halo-2.12.2.jar -O halo.jar
    ```
 
    :::info
@@ -141,8 +141,12 @@ title: 使用 JAR 文件部署
 6. 测试运行 Halo
 
    ```bash
-   cd ~/app && java -jar halo.jar
+   cd ~/app && java -jar halo.jar --spring.config.location=/home/halo/.halo2/application.yaml
    ```
+
+   :::info
+   `/home/halo/.halo2/application.yaml` 为你的配置文件的绝对路径，请确保地址正确。
+   :::
 
 7. 如果没有观察到异常日志，即可尝试访问 Halo
 
@@ -188,7 +192,7 @@ title: 使用 JAR 文件部署
    [Service]
    Type=simple
    User=USER
-   ExecStart=/usr/bin/java -server -Xms256m -Xmx256m -jar JAR_PATH
+   ExecStart=/usr/bin/java -server -Xms256m -Xmx256m -jar JAR_PATH --spring.config.location=/home/halo/.halo2/application.yaml
    ExecStop=/bin/kill -s QUIT $MAINPID
    Restart=always
    StandOutput=syslog
@@ -244,7 +248,7 @@ journalctl -n 20 -u halo
 3. 下载新版本的 Halo 运行包，覆盖原有的运行包
 
    ```bash
-   wget https://dl.halo.run/release/halo-2.12.0.jar -O /home/halo/app/halo.jar
+   wget https://dl.halo.run/release/halo-2.12.2.jar -O /home/halo/app/halo.jar
    ```
 
 4. 启动 Halo 服务
