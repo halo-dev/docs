@@ -144,10 +144,6 @@ title: 使用 JAR 文件部署
    cd ~/app && java -jar halo.jar --spring.config.location="optional:classpath:/;optional:file:$HOME/.halo2/"
    ```
 
-   :::info
-   `/home/halo/.halo2/application.yaml` 为你的配置文件的绝对路径，请确保地址正确。
-   :::
-
 7. 如果没有观察到异常日志，即可尝试访问 Halo
 
    打开 `http://ip:端口号` 即可跳转到初始化页面。
