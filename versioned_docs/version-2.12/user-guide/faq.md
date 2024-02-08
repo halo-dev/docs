@@ -54,7 +54,7 @@ description: 使用上的常见问题
 
 ### 附件上传提示 `413 Request Entity Too Large` 如何解决？
 
-这可能是由于 Nginx 的上传大小限制所导致的。可以在 Nginx 的配置文件下的 server 节点加入 `client_max_body_size 1024m;` 即可解决，如果 1024m 还不够，请自行断定，详细配置参考如下：
+这可能是由于 Nginx 的上传大小限制所导致的，Nginx默认上传为1m。可以在 Nginx 的配置文件下的 server 配置块内加入 `client_max_body_size 1024m;` 即可解决(如果在server配置块内添加后仍未解决，可尝试更换至http配置块内添加此行)，如果 1024m 还不够，请自行断定，详细配置参考如下：
 
 ```nginx {4}
 server {
