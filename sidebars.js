@@ -181,6 +181,7 @@ module.exports = {
                   },
                   items: [
                     "developer-guide/plugin/api-reference/server/extension-points/additional-webfilter",
+                    "developer-guide/plugin/api-reference/server/extension-points/authentication-webfilter",
                     "developer-guide/plugin/api-reference/server/extension-points/attachment",
                     "developer-guide/plugin/api-reference/server/extension-points/comment-subject",
                     "developer-guide/plugin/api-reference/server/extension-points/comment-widget",
