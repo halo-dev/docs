@@ -3,60 +3,56 @@
     "message": "2.11",
     "description": "The label for version 2.11"
   },
-  "sidebar.tutorialSidebar.category.入门": {
+  "sidebar.tutorial.category.入门": {
     "message": "入门",
-    "description": "The label for category 入门 in sidebar tutorialSidebar"
+    "description": "The label for category 入门 in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.安装指南": {
+  "sidebar.tutorial.category.安装指南": {
     "message": "安装指南",
-    "description": "The label for category 安装指南 in sidebar tutorialSidebar"
+    "description": "The label for category 安装指南 in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.其他指南": {
+  "sidebar.tutorial.category.其他指南": {
     "message": "其他指南",
-    "description": "The label for category 其他指南 in sidebar tutorialSidebar"
+    "description": "The label for category 其他指南 in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.用户指南": {
+  "sidebar.tutorial.category.用户指南": {
     "message": "用户指南",
-    "description": "The label for category 用户指南 in sidebar tutorialSidebar"
+    "description": "The label for category 用户指南 in sidebar tutorial"
   },
-  "sidebar.tutorialSidebar.category.开发者指南": {
-    "message": "开发者指南",
-    "description": "The label for category 开发者指南 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.系统开发": {
-    "message": "系统开发",
-    "description": "The label for category 系统开发 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.插件开发": {
-    "message": "插件开发",
-    "description": "The label for category 插件开发 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.基础": {
-    "message": "基础",
-    "description": "The label for category 基础 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.示例": {
-    "message": "示例",
-    "description": "The label for category 示例 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.API 参考": {
-    "message": "API 参考",
-    "description": "The label for category API 参考 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.主题开发": {
-    "message": "主题开发",
-    "description": "The label for category 主题开发 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.模板变量": {
-    "message": "模板变量",
-    "description": "The label for category 模板变量 in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Finder API": {
-    "message": "Finder API",
-    "description": "The label for category Finder API in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.参与贡献": {
+  "sidebar.tutorial.category.参与贡献": {
     "message": "参与贡献",
-    "description": "The label for category 参与贡献 in sidebar tutorialSidebar"
+    "description": "The label for category 参与贡献 in sidebar tutorial"
+  },
+  "sidebar.developer.category.系统开发": {
+    "message": "系统开发",
+    "description": "The label for category 系统开发 in sidebar developer"
+  },
+  "sidebar.developer.category.插件开发": {
+    "message": "插件开发",
+    "description": "The label for category 插件开发 in sidebar developer"
+  },
+  "sidebar.developer.category.基础": {
+    "message": "基础",
+    "description": "The label for category 基础 in sidebar developer"
+  },
+  "sidebar.developer.category.示例": {
+    "message": "示例",
+    "description": "The label for category 示例 in sidebar developer"
+  },
+  "sidebar.developer.category.API 参考": {
+    "message": "API 参考",
+    "description": "The label for category API 参考 in sidebar developer"
+  },
+  "sidebar.developer.category.主题开发": {
+    "message": "主题开发",
+    "description": "The label for category 主题开发 in sidebar developer"
+  },
+  "sidebar.developer.category.模板变量": {
+    "message": "模板变量",
+    "description": "The label for category 模板变量 in sidebar developer"
+  },
+  "sidebar.developer.category.Finder API": {
+    "message": "Finder API",
+    "description": "The label for category Finder API in sidebar developer"
   }
 }
