@@ -235,7 +235,7 @@ DELETE /apis/my-plugin.halo.run/v1alpha1/persons/{name}
 
 这些查询参数是 `AND` 的关系，例如 `page=1&size=10&sort=name,desc&labelSelector=name=halo&fieldSelector=spec.slug=halo` 表示查询 `metadata.labels` 中 `name` 的值等于 `halo` 且 `spec.slug` 的值等于 `halo` 的自定义模型对象，并按照 `name` 字段降序排序，查询第 1 页，每页 10 条数据。
 
-## 自定义 API
+## 自定义 API {#custom-extension-apis}
 
 在一些场景下，只有自动生成的 `CRUD` API 往往是不够用的，此时可以通过自定义一些 APIs 来满足功能。
 
@@ -293,11 +293,13 @@ ServerRequest 和 ServerResponse 是不可变的接口，它们提供了对 HTTP
 响应主体可用任何响应式流发布者（Publisher）表示，包括 Flux 和 Mono。
 更多相关信息，请参见 [Reactor 3 Reference Guide](https://projectreactor.io/docs/core/release/reference/) 和 [Webflux](https://docs.spring.io/spring-framework/reference/web/webflux.html)。
 
-操作自定义模型对象的自定义 APIs 的路由规则建议遵循以下规则：
+### 自定义 API 的路由规则 {#route-rules-for-custom-apis}
+
+自定义模型对象的自定义 APIs 的路由规则建议与自动生成的 CRUD APIs 的路由规则保持一致，这样可以方便用户理解和使用，因此对于自动生成的 CRUD APIs 的路由规则建议遵循以下规则：
 
 1. 以 `/apis/<group>/<version>/<plural>[/<resourceName>/<subresource>]` 规则组成 APIs。
-2. 由于自动生成的 APIs 不能覆盖，因此通过不同的 group 来区分，自定义的 APIs 的 group 建议遵循以下规则：
+2. 为了与自动生成的 CRUD APIs 区分开避免冲突，我们选择通过不同的 group 来区分，自定义 APIs 的 group 建议遵循以下规则，以便保证唯一性的同时能与自定义模型产生关联：
 
-- 在 Console 端使用的自定义 APIs 的 group 规则 `console.api.<group>`，例如对于 Person 自定义模型需要一个一个在 Console 端使用的自定义 API 的 group 为 `console.api.my-plugin.halo.run`。
-- 在个人中心使用的自定义 APIs 的 group 规则 `uc.api.<group>`，例如 `uc.api.my-plugin.halo.run`。
-- 为主题端提供的公开的自定义 APIs 的 group 规则 `api.<group>`，例如 `api.my-plugin.halo.run`。
+   - 在 Console 端使用的自定义 APIs 的 group 规则建议为 `console.api.<group>`，例如对于 Person 自定义模型需要额外的在 Console 端使用的自定义 APIs 那么 group 可以定义为 `console.api.my-plugin.halo.run`，则可能的用于查询 Person 列表的 API 的规则应为 `/apis/console.api.my-plugin.halo.run/v1alpha1/persons`。
+   - 在个人中心使用的自定义 APIs 的 group 规则建议为 `uc.api.<group>`，例如 `uc.api.my-plugin.halo.run`。
+   - 为主题端提供的公开的自定义 APIs 的 group 规则建议为 `api.<group>`，例如 `api.my-plugin.halo.run`。
