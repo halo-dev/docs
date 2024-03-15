@@ -67,7 +67,7 @@ spec:
 
 除了 FormKit 官方提供的常用输入组件之外，Halo 还额外提供了一些输入组件，这些输入组件可以在 Form Schema 中使用。
 
-### verifyForm
+### verificationForm
 
 #### 描述
 
@@ -78,12 +78,11 @@ spec:
 - `actions`：对目标数据进行验证的接口地址
 - `label`：验证按钮文本
 - `submitAttrs`：验证按钮的额外属性
-- `incompleteMessage`：是否在验证按钮旁显示数据不完整时的提示信息
 
 #### 示例
 
 ```yaml
-- $formkit: verifyForm
+- $formkit: verificationForm
   actions: /apis/console.api.halo.run/v1alpha1/verify/verify-password
   label: 账户校验
   children:
@@ -98,7 +97,7 @@ spec:
 ```
 
 :::tip
-尽管 `verifyForm` 本身是一个输入组件，但与其他输入组件不同的是，它仅仅用于包装待验证的数据，所以并不会破坏原始数据的格式。例如上述示例中的值在保存后为：
+尽管 `verificationForm` 本身是一个输入组件，但与其他输入组件不同的是，它仅仅用于包装待验证的数据，所以并不会破坏原始数据的格式。例如上述示例中的值在保存后为：
 
 ```json
 {
@@ -111,7 +110,7 @@ spec:
 
 ```json
 {
-  "verifyForm": {
+  "verificationForm": {
     "username": "admin",
     "password": "admin"
   }
