@@ -13,7 +13,7 @@ Halo 添加了 checkstyle 插件，来保证每位提交者代码的风格保持
 ## 配置 CheckStyle
 
 - 进入 CheckStyle 配置（File | Settings | Tools | Checkstyle）。
-- 选择 Checkstyle 版本：8.39。
+- 选择 Checkstyle 版本：9.3（以文件 `application/build.gradle` 中指定的版本为准）。
 - 在配置文件中点击添加按钮，配置描述可随便填写（推荐 Halo Checks），选择 ./config/checkstyle/checkstyle.xml，点击下一步和完成。
 - 勾选刚刚创建的配置文件。
 
