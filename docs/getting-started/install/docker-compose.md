@@ -54,13 +54,12 @@ import DockerArgs from "./slots/docker-args.md"
 
     1. 创建 Halo + PostgreSQL 的实例：
 
-    ```yaml {24-30,47} title="~/halo/docker-compose.yaml"
+    ```yaml {23-29,43} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
       halo:
         image: halohub/halo:2.13
-        container_name: halo
         restart: on-failure:3
         depends_on:
           halodb:
@@ -87,14 +86,11 @@ import DockerArgs from "./slots/docker-args.md"
           - --halo.external-url=http://localhost:8090/
       halodb:
         image: postgres:15.4
-        container_name: halodb
         restart: on-failure:3
         networks:
           halo_network:
         volumes:
           - ./db:/var/lib/postgresql/data
-        ports:
-          - "5432:5432"
         healthcheck:
           test: [ "CMD", "pg_isready" ]
           interval: 10s
@@ -110,15 +106,18 @@ import DockerArgs from "./slots/docker-args.md"
       halo_network:
     ```
 
+    :::info
+    此示例的 PostgreSQL 数据库容器默认没有设置端口映射，如果需要在容器外部访问数据库，可以自行在 `halodb` 服务中添加端口映射，PostgreSQL 的端口为 `5432`。
+    :::
+
     2. 创建 Halo + MySQL 的实例：
 
-    ```yaml {24-30,55} title="~/halo/docker-compose.yaml"
+    ```yaml {23-29,51} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
       halo:
         image: halohub/halo:2.13
-        container_name: halo
         restart: on-failure:3
         depends_on:
           halodb:
@@ -146,7 +145,6 @@ import DockerArgs from "./slots/docker-args.md"
 
       halodb:
         image: mysql:8.1.0
-        container_name: halodb
         restart: on-failure:3
         networks:
           halo_network:
@@ -158,8 +156,6 @@ import DockerArgs from "./slots/docker-args.md"
         volumes:
           - ./mysql:/var/lib/mysql
           - ./mysqlBackup:/data/mysqlBackup
-        ports:
-          - "3306:3306"
         healthcheck:
           test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
           interval: 3s
@@ -174,6 +170,10 @@ import DockerArgs from "./slots/docker-args.md"
       halo_network:
     ```
 
+    :::info
+    此示例的 MySQL 数据库容器默认没有设置端口映射，如果需要在容器外部访问数据库，可以自行在 `halodb` 服务中添加端口映射，MySQL 的端口为 `3306`。
+    :::
+
     3. 仅创建 Halo 实例（使用默认的 H2 数据库）：
 
     :::caution
@@ -186,7 +186,6 @@ import DockerArgs from "./slots/docker-args.md"
     services:
       halo:
         image: halohub/halo:2.13
-        container_name: halo
         restart: on-failure:3
         volumes:
           - ./halo2:/root/.halo2
@@ -205,13 +204,12 @@ import DockerArgs from "./slots/docker-args.md"
 
     4. 仅创建 Halo 实例（使用已有外部数据库，MySQL 为例）：
     
-    ```yaml {8,12-20} title="~/halo/docker-compose.yaml"
+    ```yaml {7,12-20} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
       halo:
         image: halohub/halo:2.13
-        container_name: halo
         restart: on-failure:3
         network_mode: "host"
         volumes:
@@ -261,7 +259,6 @@ import DockerArgs from "./slots/docker-args.md"
   services:
     halo:
       image: halohub/halo:2.13
-      container_name: halo
   ```
 
   ```bash
@@ -326,7 +323,6 @@ networks:
 services:
   halo:
     image: halohub/halo:2.13
-    container_name: halo
     restart: on-failure:3
     volumes:
       - ./halo2:/root/.halo2
