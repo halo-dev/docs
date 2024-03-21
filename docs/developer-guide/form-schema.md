@@ -75,7 +75,7 @@ spec:
 
 #### 参数
 
-- `actions`：对目标数据进行验证的接口地址
+- `action`：对目标数据进行验证的接口地址
 - `label`：验证按钮文本
 - `submitAttrs`：验证按钮的额外属性
 
@@ -83,7 +83,7 @@ spec:
 
 ```yaml
 - $formkit: verificationForm
-  actions: /apis/console.api.halo.run/v1alpha1/verify/verify-password
+  action: /apis/console.api.halo.run/v1alpha1/verify/verify-password
   label: 账户校验
   children:
     - $formkit: text
