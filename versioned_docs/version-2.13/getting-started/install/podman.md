@@ -68,7 +68,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 
     ```bash
     mkdir -p ~/.halo2
-    podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.13
+    podman run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.13
     ```
 
     :::info
@@ -112,7 +112,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
   修改版本号后，按照最初安装的方式，重新创建容器即可。
 
    ```bash
-   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.13
+   podman run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.13
    ```
 
 ## 使用 [Podman Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)
