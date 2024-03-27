@@ -39,14 +39,16 @@ export interface EditorProvider {
 
 其中，`component` 可以是组件对象或组件名称，且此组件有以下实现要求：
 
-1. 组件必须包含以下 props：
-   1. `raw:string`：用于接收原始内容。
-   2. `content:string`：用于接收渲染后的内容。
-   3. `uploadImage?: (file: File) => Promise<Attachment>`：用于上传图片，在编辑器内部获取到 File 之后直接调用此方法即可得到上传后的附件信息。
-2. 组件必须包含以下 emit 事件：
-   1. `update:raw`：用于更新原始内容。
-   2. `update:content`：用于更新渲染后的内容。
-   3. `update`：发送更新事件。
+1. 组件包含以下 props：
+   1. `title:string`：用于接收标题。
+   2. `raw:string`：用于接收原始内容。
+   3. `content:string`：用于接收渲染后的内容。
+   4. `uploadImage?: (file: File) => Promise<Attachment>`：用于上传图片，在编辑器内部获取到 File 之后直接调用此方法即可得到上传后的附件信息。
+2. 组件包含以下 emit 事件：
+   1. `update:title`：用于更新标题。
+   2. `update:raw`：用于更新原始内容。
+   3. `update:content`：用于更新渲染后的内容。
+   4. `update`：发送更新事件。
 
 ## 示例
 
