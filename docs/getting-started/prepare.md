@@ -29,27 +29,43 @@ description: 在开始前，你需要了解的事项
 
 #### 网络
 
-Halo 目前必须在外网畅通的情况下使用，否则会导致页面异常。
+无特别要求，Halo 目前可以在无公网环境下使用，但部分主题由于使用了第三方资源，可能需要公网环境。
 
 ### 软件环境
 
 Halo 理论上可以运行在任何支持 Docker 及 Java 的平台。
 
-#### Docker
+#### Docker（可选）
 
-必须在运行环境安装好 [Docker](https://www.docker.com/) 环境，目前 Halo 的默认安装运行方式均使用容器。
+我们主要推荐使用 Docker 运行 Halo，这可以避免一些环境配置相关的问题，文档可参考：
+
+- [使用 Docker Compose 部署](./install/docker-compose.md)
+- [使用 Docker 部署](./install/docker.md)
 
 #### JRE（可选）
 
-目前 Halo 的默认及推荐安装方式为 Docker 容器运行，使用 jar 包运行的方式需要用户自行构建 jar 包。
+如果使用 Docker 镜像部署，那么无需在服务器上安装 JRE。但目前我们也提供了 jar 文件部署的方式，文档可参考：
+
+- [使用 JAR 文件部署](./install/jar-file.md)
 
 :::info
 当前版本（2.0）需要 JRE 17 的版本，推荐使用 OpenJDK 17。
 :::
 
-#### PostgreSQL（可选）
+#### 数据库
 
-也可以使用系统自带的 H2 Database 数据库，无需安装。但不推荐在生产环境中使用 H2 Database。
+Halo 目前支持以下数据库：
+
+- PostgreSQL
+- MySQL
+- MariaDB
+- H2
+
+其中，H2 不需要单独运行，其他数据库需要单独安装并配置。一般情况下，推荐按照 [使用 Docker Compose 部署](./install/docker-compose.md) 文档将 Halo 和数据库容器编排在一起。
+
+:::caution
+不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../user-guide/backup.md)。
+:::
 
 #### Web 服务器（可选）
 
@@ -65,8 +81,8 @@ Halo 理论上可以运行在任何支持 Docker 及 Java 的平台。
 
 ## 浏览器支持
 
-1. 用户前台：视主题所支持的情况而定，由于目前的评论模块使用了 [Vuejs](https://cn.vuejs.org/v2/guide/installation.html#%E5%85%BC%E5%AE%B9%E6%80%A7) 开发，所以在 [Vuejs](https://cn.vuejs.org/v2/guide/installation.html#%E5%85%BC%E5%AE%B9%E6%80%A7) 不支持的某些浏览器中无法正常显示评论区域。
-2. 管理后台：支持目前常见的现代浏览器，具体视 [Vuejs](https://cn.vuejs.org/v2/guide/installation.html#%E5%85%BC%E5%AE%B9%E6%80%A7) 框架的支持情况而定。
+1. 用户前台：视主题所支持的情况而定。
+2. 管理后台（Console 和个人中心）：支持目前常见的现代浏览器，具体视 [Vue](https://vuejs.org/about/faq#what-browsers-does-vue-support) 框架的支持情况而定。
 
 ## 名词解释
 
@@ -95,6 +111,10 @@ Halo 理论上可以运行在任何支持 Docker 及 Java 的平台。
 
 包含了各种站点页面模板的资源包。用户访问 Halo 站点浏览到的内容及样式，由 Halo 管理端所配置使用的主题所决定。
 
+相关使用文档：[主题管理相关功能说明](../user-guide/themes.md)
+
 ### 插件
 
 用于扩展 Halo 功能的软件包。插件独立于 Halo 核心应用，可以单独安装、升级、卸载。
+
+相关使用文档：[插件管理相关功能说明](../user-guide/plugins.md)
