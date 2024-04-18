@@ -35,11 +35,13 @@ description: 这个例子展示了如何开发 Todo List 插件
       name: halo-dev
       website: https://halo.run
     logo: https://halo.run/logo
-    homepage: https://github.com/guqing/halo-plugin-hello-world
+    homepage: https://github.com/halo-dev/plugin-starter#readme
+    repo: https://github.com/halo-dev/plugin-starter
     displayName: "插件 Todo List"
     description: "插件开发的 hello world，用于学习如何开发一个简单的 Halo 插件"
     license:
-      - name: "MIT"
+      - name: "GPL-3.0"
+        url: "https://github.com/halo-dev/plugin-starter/blob/main/LICENSE"
   ```
 
 参考链接：
