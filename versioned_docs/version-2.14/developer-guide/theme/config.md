@@ -18,7 +18,7 @@ spec:
     name: Halo
     website: https://www.halo.run
   description: 一个示例主题
-  logo: https://halo.run/logo
+  logo: https://www.halo.run/logo
   homepage: https://github.com/halo-sigs/theme-foo
   repo: https://github.com/halo-sigs/theme-foo.git
   settingName: "theme-foo-setting"
