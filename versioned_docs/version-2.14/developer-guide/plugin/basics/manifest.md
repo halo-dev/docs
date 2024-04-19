@@ -14,16 +14,18 @@ spec:
   enabled: true
   requires: ">=2.0.0"
   author:
-    name: halo-dev
-    website: https://halo.run
-  logo: https://halo.run/logo
+    name: Halo
+    website: https://www.halo.run
+  logo: https://www.halo.run/logo
   # settingName: hello-world-settings
   # configMapName: hello-world-configmap
-  homepage: https://github.com/guqing/halo-plugin-hello-world
+  homepage: https://github.com/halo-dev/plugin-starter#readme
+  repo: https://github.com/halo-dev/plugin-starter
   displayName: "插件 Hello world"
   description: "插件开发的 hello world，用于学习如何开发一个简单的 Halo 插件"
   license:
-    - name: "MIT"
+    - name: "GPL-3.0"
+      url: "https://github.com/halo-dev/plugin-starter/blob/main/LICENSE"
 ```
 
 - `apiVersion` 和 `kind`：为固定写法，每个插件写法都是一样的不可变更。
@@ -48,7 +50,8 @@ spec:
   如果你在 plugin.yaml 中配置了 `settingName` 但确没有对应的 `Setting` 自定义模型资源文件，会导致插件无法启动，原因是 `Setting` 模型 `metadata.name` 为你配置的 `settingName` 的资源无法找到。
   :::
 
-- `spec.homepage`：通常为插件的 GitHub 仓库链接，或可联系到插件作者或插件官网或帮助中心链接等。
+- `spec.homepage`：通常设置为插件官网或帮助中心链接等。
+- `spec.repo`：插件源码地址。
 - `spec.displayName`：插件的显示名称，它通常是以少数几个字来概括插件的用途。
 - `spec.description`：插件描述，用一段简短的说明来介绍插件的用途。
 - `spec.license`：插件使用的软件协议，参考：<https://en.wikipedia.org/wiki/Software_license>。
