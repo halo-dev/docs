@@ -23,16 +23,19 @@ metadata:
 spec:
   displayName: 示例主题
   author:
-    name: halo-dev
-    website: https://halo.run
+    name: Halo
+    website: https://www.halo.run
   description: 一个示例主题
-  logo: https://halo.run/logo
-  website: https://github.com/halo-sigs/theme-foo
+  logo: https://www.halo.run/logo
+  homepage: https://github.com/halo-sigs/theme-foo
   repo: https://github.com/halo-sigs/theme-foo.git
   settingName: "theme-foo-setting"
   configMapName: "theme-foo-configMap"
   version: 1.0.0
-  require: 2.0.0
+  requires: 2.0.0
+  license:
+    - name: "GPL-3.0"
+      url: "https://github.com/halo-sigs/theme-foo/blob/main/LICENSE"
 ```
 
 :::tip
