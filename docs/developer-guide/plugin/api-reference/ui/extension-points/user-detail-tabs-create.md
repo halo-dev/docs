@@ -34,3 +34,8 @@ export interface UserTab {
   priority: number;           // 排序优先级
 }
 ```
+
+其中，`component` 组件有以下实现要求：
+
+1. 组件包含以下 props：
+   1. `user:DetailedUser`：当前用户信息。
