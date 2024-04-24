@@ -224,6 +224,8 @@ module.exports = {
                     "developer-guide/plugin/api-reference/ui/extension-points/theme-list-item-operation-create",
                     "developer-guide/plugin/api-reference/ui/extension-points/plugin-list-item-field-create",
                     "developer-guide/plugin/api-reference/ui/extension-points/post-list-item-field-create",
+                    "developer-guide/plugin/api-reference/ui/extension-points/user-detail-tabs-create",
+                    "developer-guide/plugin/api-reference/ui/extension-points/uc-user-profile-tabs-create",
                   ],
                 },
                 {
