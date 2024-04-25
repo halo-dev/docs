@@ -29,6 +29,7 @@ spec:
   logo: https://www.halo.run/logo
   homepage: https://github.com/halo-sigs/theme-foo
   repo: https://github.com/halo-sigs/theme-foo.git
+  issues: https://github.com/halo-sigs/theme-foo/issues
   settingName: "theme-foo-setting"
   configMapName: "theme-foo-configMap"
   version: 1.0.0

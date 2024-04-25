@@ -37,6 +37,7 @@ description: 这个例子展示了如何开发 Todo List 插件
     logo: https://halo.run/logo
     homepage: https://github.com/halo-dev/plugin-starter#readme
     repo: https://github.com/halo-dev/plugin-starter
+    issues: https://github.com/halo-dev/plugin-starter/issues
     displayName: "插件 Todo List"
     description: "插件开发的 hello world，用于学习如何开发一个简单的 Halo 插件"
     license:
