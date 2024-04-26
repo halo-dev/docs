@@ -176,7 +176,7 @@ public Result reconcile(Request request) {
 
 上述，我们通过 `client.fetch()` 方法获取到了当前变更的 `EventTracker` 对象，然后根据 `EventTracker` 对象的状态来执行响应的操作，例如初始化事件状态为 Planned，检查必要字段的存在和格式正确性等，但需要注意控制器的执行是异步的，如果我们通过 `EventTracker` 的 API 来创建或更改了一个 `EventTracker` 对象，那么 API 会在控制器执行之前返回结果，这意味着在用户界面看到的结果可能不是最新的，并且可能会在稍后更新。
 
-对于上述校验 `eventName` 的逻辑只是保证后续的执行是可靠的，如果有些字段是必须的，那么我们可以通过 `@Schema` 注解来标注，为了让控制器中校验字段失败的信息能够呈现到用户界面，我们通过向 `status.condtions` 中添加了一条 Condition 记录来用于记录这个事件，再用户界面可以展示这个 Condition 记录的信息以让用户知晓。
+对于上述校验 `eventName` 的逻辑只是保证后续的执行是可靠的，如果有些字段是必须的，那么我们可以通过 `@Schema` 注解来标注，为了让控制器中校验字段失败的信息能够呈现到用户界面，我们通过向 `status.conditions` 中添加了一条 Condition 记录来用于记录这个事件，再用户界面可以展示这个 Condition 记录的信息以让用户知晓。
 
 最后，我们通过 `client.update()` 方法来更新 `EventTracker` 对象，这个过程就是将实际状态回写到 `EventTracker` 对象并应用到数据库中，这样就完成了一次调谐。
 
