@@ -21,6 +21,7 @@ spec:
   # configMapName: hello-world-configmap
   homepage: https://github.com/halo-dev/plugin-starter#readme
   repo: https://github.com/halo-dev/plugin-starter
+  issues: https://github.com/halo-dev/plugin-starter/issues
   displayName: "插件 Hello world"
   description: "插件开发的 hello world，用于学习如何开发一个简单的 Halo 插件"
   license:
@@ -52,6 +53,7 @@ spec:
 
 - `spec.homepage`：通常设置为插件官网或帮助中心链接等。
 - `spec.repo`：插件源码地址。
+- `spec.issues`：插件问题反馈地址，如果你的插件是开源在 GitHub 上，可以直接配置为 GitHub Issues 地址。
 - `spec.displayName`：插件的显示名称，它通常是以少数几个字来概括插件的用途。
 - `spec.description`：插件描述，用一段简短的说明来介绍插件的用途。
 - `spec.license`：插件使用的软件协议，参考：<https://en.wikipedia.org/wiki/Software_license>。

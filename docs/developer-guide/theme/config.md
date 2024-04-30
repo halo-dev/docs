@@ -21,6 +21,7 @@ spec:
   logo: https://www.halo.run/logo
   homepage: https://github.com/halo-sigs/theme-foo
   repo: https://github.com/halo-sigs/theme-foo.git
+  issues: https://github.com/halo-sigs/theme-foo/issues
   settingName: "theme-foo-setting"
   configMapName: "theme-foo-configMap"
   customTemplates:
@@ -58,6 +59,7 @@ spec:
 | `spec.logo`                     | 主题 Logo                                                                                     | 否       |
 | `spec.homepage`                 | 主题网站                                                                                      | 否       |
 | `spec.repo`                     | 主题代码托管地址                                                                              | 否       |
+| `spec.issues`                   | 主题问题反馈地址，如果你的主题是开源在 GitHub 上，可以直接配置为 GitHub Issues 地址。            | 否       |
 | `spec.settingName`              | 设置表单定义的名称，需要同时创建对应的 `settings.yaml` 文件                                    | 否       |
 | `spec.configMapName`            | 设置持久化配置的 ConfigMap 名称                                                               | 否       |
 | `spec.customTemplates.post`     | 文章的自定义模板配置，详细文档可查阅 [模板路由](./template-route-mapping#custom-templates)     | 否       |
