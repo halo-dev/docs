@@ -18,4 +18,6 @@
 
 :::caution
 由于 MariaDB 数据库驱动目前存在问题，使用 MariaDB 数据库时也选择使用 MySQL 驱动，即链接地址格式为 `r2dbc:pool:mysql://{HOST}:{PORT}/{DATABASE}`。
+
+详情可见：<https://github.com/halo-dev/halo/issues/5534>
 :::
