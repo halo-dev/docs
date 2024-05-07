@@ -32,6 +32,7 @@ Halo 的主题存放于工作目录的 `themes` 目录下，即 `~/halo2-dev/the
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
+  # 此字段的值需要和主题文件夹名称一致，否则可能导致部分资源无法正常加载。
   name: theme-foo
 spec:
   displayName: 示例主题
@@ -70,6 +71,8 @@ spec:
 
 :::info 提示
 以上 GitHub 都被设置为了模板仓库（Template repository），点击仓库主页的 `Use this template` 按钮即可通过此模板创建一个新的仓库。
+
+创建新的主题仓库并克隆到本地开发环境之后，需要确保主题文件夹名称和 `theme.yaml` 中的 `metadata.name` 字段一致，否则可能导致部分资源无法正常加载。
 :::
 
 ## 创建第一个页面模板
