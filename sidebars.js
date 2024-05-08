@@ -187,6 +187,7 @@ module.exports = {
                     "developer-guide/plugin/api-reference/server/extension-points/comment-subject",
                     "developer-guide/plugin/api-reference/server/extension-points/comment-widget",
                     "developer-guide/plugin/api-reference/server/extension-points/notifier",
+                    "developer-guide/plugin/api-reference/server/extension-points/template-head-processor",
                     "developer-guide/plugin/api-reference/server/extension-points/post-content",
                     "developer-guide/plugin/api-reference/server/extension-points/singlepage-content",
                     "developer-guide/plugin/api-reference/server/extension-points/username-password-authentication-manager",
