@@ -41,7 +41,10 @@ git clone https://github.com/halo-dev/halo
 ## 运行 UI 服务
 
 ```bash
-cd path/to/halo
+cd path/to/halo/ui
+pnpm install
+pnpm build:packages
+pnpm dev
 cd ui && pnpm i && pnpm dev
 ```
 
