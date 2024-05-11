@@ -45,7 +45,6 @@ cd path/to/halo/ui
 pnpm install
 pnpm build:packages
 pnpm dev
-cd ui && pnpm i && pnpm dev
 ```
 
 最终控制台打印了如下信息即代表运行正常：
