@@ -48,20 +48,6 @@ pnpm dev
 cd ui && pnpm i && pnpm dev
 ```
 
-> 不建议使用以下方式, [原因](https://github.com/gradle/gradle/issues/7603)
->
-> Linux / macOS 平台：
-> 
-> ```bash
-> ./gradlew :ui:dev
-> ```
-> 
-> Windows 平台：
-> 
-> ```bash
-> ./gradlew.bat :ui:dev
-> ```
-
 最终控制台打印了如下信息即代表运行正常：
 
 ```bash
