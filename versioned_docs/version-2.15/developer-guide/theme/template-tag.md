@@ -20,7 +20,6 @@ Halo 为满足部分代码注入和模板扩展点的需求，提供了一些专
         group="content.halo.run"
         kind="Post"
         th:attr="name=${post.metadata.name}"
-        colorScheme="window.main.currentColorScheme"
     />
 </div>
 ```
@@ -30,7 +29,6 @@ Halo 为满足部分代码注入和模板扩展点的需求，提供了一些专
 1. `group` - 自定义模型的分组，目前已支持的模型请参考下面表格。
 2. `kind` - 自定义模型的类型，目前已支持的模型请参考下面表格。
 3. `name` - 自定义模型数据的唯一标识。
-4. `colorScheme` - 评论组件的颜色方案，支持 light 和 dark 两种，支持固定或者 JavaScript 变量。需要注意的是，如果需要固定一个值，那么需要添加单引号，如 'dark'。使用 JavaScript 变量时不需要。
 
 已支持的模型列表：
 
