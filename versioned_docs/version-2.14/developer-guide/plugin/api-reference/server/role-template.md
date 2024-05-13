@@ -11,7 +11,7 @@ description: 了解如果对插件中的 API 定义角色模板以接入权限�
 Halo 的权限控制对同一种资源一般只定义两个角色模板的自定义模型对象，一个是只读权限，另一个是管理权限，因此如果没有特殊情况需要更细粒度的控制，我们建议你也保持一致：
 
 ```yaml
-apiVersion: v1
+apiVersion: v1alpha1
 kind: Role
 metadata:
   # 使用 plugin name 作为前缀防止与其他插件冲突，比如这里的 my-plugin
@@ -28,7 +28,7 @@ rules:
     resources: ["my-plugin/persons"]
     verbs: ["*"]
 ---
-apiVersion: v1
+apiVersion: v1alpha1
 kind: Role
 metadata:
   name: my-plugin-role-manage-persons
@@ -181,7 +181,7 @@ rules:
 如果你想将你写的资源型 APIs 公开给所有用户访问，这时你可以通过聚合角色来将你的资源型 APIs 的角色聚合到 `anonymous` 角色中，这样所有用户都可以访问你的资源型 APIs 了。
 
 ```yaml
-apiVersion: v1
+apiVersion: v1alpha1
 kind: Role
 metadata:
   name: my-plugin-role-view-persons
