@@ -60,4 +60,4 @@ description: 使用腾讯云轻量应用服务器的应用模板部署 Halo
 
 ![添加域名](/img/install/tencent-cloud-lighthouse/domain.png)
 
-关于网站管理，可查阅 [1Panel 文档](https://1panel.cn/docs/user_manual/websites/websites/)
+关于网站管理，可查阅 [1Panel 文档](https://1panel.cn/docs/user_manual/websites/websites/)。
