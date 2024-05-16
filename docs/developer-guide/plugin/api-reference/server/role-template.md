@@ -14,7 +14,7 @@ description: 了解如果对插件中的 API 定义角色模板以接入权限�
 - **角色类型**：通常，我们为同一种资源定义两种角色模板：只读权限和管理权限，分别对应 `view` 和 `manage`，如果需要更细粒度的控制，可以定义更多的角色模板。
 - **角色名称**：角色名称必须以插件名作为前缀，以避免与其他插件冲突，例如 `my-plugin-role-view-persons`。
 - **角色依赖**：如果一个角色需要依赖于另一个角色，可以通过 `rbac.authorization.halo.run/dependencies` 作为 key 的 `metadata.annotations` 来声明依赖关系。
-- **UI 权限**：如果需要在前端界面上控制某个角色的权限，可以通过 `rbac.authorization.halo.run/ui-permissions` 作为 key 的 `metadata.annotations` 来来声明。
+- **UI 权限**：如果需要在前端界面上控制某个角色的权限，可以通过 `rbac.authorization.halo.run/ui-permissions` 作为 key 的 `metadata.annotations` 来声明。
 - **角色模板分组**：如果需要将多个角色模板归为一组显示，可以通过 `rbac.authorization.halo.run/module` 作为 key 的 `metadata.annotations` 来声明分组名称。
 - **角色显示名称**：如果需要在前端界面上显示角色的友好名称，可以通过 `rbac.authorization.halo.run/display-name` 作为 key 的 `metadata.annotations` 来声明显示名称。
 - **隐藏角色模板**：如果不想在前端界面上显示某个角色模板，可以通过 `halo.run/hidden: "true"` 的 `metadata.labels` 来隐藏角色模板。
