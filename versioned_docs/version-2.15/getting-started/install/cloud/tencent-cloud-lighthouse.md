@@ -44,7 +44,7 @@ description: 使用腾讯云轻量应用服务器的应用模板部署 Halo
 
 ![预装应用](/img/install/tencent-cloud-lighthouse/installed-apps.png)
 
-关于应用商店，可查阅 [1Panel 文档](https://1panel.cn/docs/user_manual/appstore/appstore/)
+关于应用商店，可查阅 [1Panel 文档](https://1panel.cn/docs/user_manual/appstore/appstore/)。
 
 ## 升级 Halo
 
