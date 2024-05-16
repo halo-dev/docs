@@ -40,6 +40,14 @@ module.exports = {
             "getting-started/install/jar-file",
             {
               type: "category",
+              label: "云平台",
+              link: {
+                type: "generated-index",
+              },
+              items: ["getting-started/install/cloud/tencent-cloud-lighthouse"],
+            },
+            {
+              type: "category",
               label: "其他指南",
               link: {
                 type: "generated-index",
