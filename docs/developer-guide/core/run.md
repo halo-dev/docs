@@ -41,19 +41,10 @@ git clone https://github.com/halo-dev/halo
 ## 运行 UI 服务
 
 ```bash
-cd path/to/halo
-```
-
-Linux / macOS 平台：
-
-```bash
-./gradlew :ui:dev
-```
-
-Windows 平台：
-
-```bash
-./gradlew.bat :ui:dev
+cd path/to/halo/ui
+pnpm install
+pnpm build:packages
+pnpm dev
 ```
 
 最终控制台打印了如下信息即代表运行正常：
