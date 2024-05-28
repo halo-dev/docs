@@ -218,74 +218,50 @@ public class TodoListPlugin extends BasePlugin {
 
 ### 实现
 
-使用模板仓库创建的项目中与 `src` 目录同级有一个 `console` 目录，它即为用户界面的源码目录。
+使用模板仓库创建的项目中与 `src` 目录同级有一个 `ui` 目录，它即为用户界面的源码目录。
 
-在实现用户界面前我们需要先修改 `console/vite.config.ts` 中的 `pluginName` 为 `plugin.yaml` 中的 `metadata.name`，它用来标识此用户界面所属于插件名 pluginName 标识的插件，以便 Halo 加载 console 目录打包产生的文件。
-
-修改完成后执行
-
-```groovy
-./gradlew build 
-```
-
-修改前端项目不需要重启 Halo，只需要 build 然后刷新页面，此时能看到多出来一个菜单项：
-
-![hello-world-in-plugin-list](/img/plugin-hello-world.png)
-
-而我们需要实现的目标中也需要一个菜单项，所以直接修改它即可。
-
-打开 `console/src/index.ts` 文件，修改如下：
+打开 `ui/src/index.ts` 文件，修改如下：
 
 ```diff
 export default definePlugin({
--  name: "PluginStarter",
-+  name: "plugin-hello-world",
-  components: [],
+  components: {},
   routes: [
     {
       parentName: "Root",
       route: {
 -       path: "/example",
 +       path: "/todos", // TodoList 的路由 path
-        children: [
-          {
-            path: "",
--            name: "Example",
-+            name: "TodoList",// 菜单标识名
-            component: DefaultView,
-            meta: {
--              permissions: ["plugin:apples:view"],
--              title: "示例页面",
-+              title: "Todo List",//菜单页的浏览器 tab 标题
-              searchable: true,
-              menu: {
--               name: "示例页面",
-+               name: "Todo List",// TODO 菜单显示名称
--               group: "示例分组",
-=               group: "工具",// 所在组名
-                icon: markRaw(IconGrid),
-                priority: 0,
-              },
-            },
+-       name: "Example",
++       name: "TodoList",// 菜单标识名
+        component: HomeView,
+        meta: {
+-         title: "示例页面",
++         title: "Todo List",//菜单页的浏览器 tab 标题
+          searchable: true,
+          menu: {
+-           name: "示例页面",
++           name: "Todo List",// TODO 菜单显示名称
+-           group: "示例分组",
+=           group: "工具",// 所在组名
+            icon: markRaw(IconPlug),
+            priority: 0,
           },
-        ],
+        },
       },
     },
   ],
   extensionPoints: {},
-  activated() {},
-  deactivated() {},
 });
 ```
 
 完成此步骤后 Console 左侧菜单多了一个名 `工具` 的组，其下有 `Todo List`，浏览器标签页名称也是 `Todo List`。
 
 接来下我们需要在右侧内容区域实现 [目标](#目标) 中图示的 Todo 样式，为了快速上手，我们使用 [todomvc](https://todomvc.com/examples/vue/) 提供的 Vue 标准实现。
-编辑 `console/src/views/DefaultView.vue` 文件，清空它的内容，并拷贝 [examples/#todomvc](https://vuejs.org/examples/#todomvc) 的所有代码粘贴到此文件中，并执行以下步骤：
+编辑 `ui/src/views/HomeView.vue` 文件，清空它的内容，并拷贝 [examples/#todomvc](https://vuejs.org/examples/#todomvc) 的所有代码粘贴到此文件中，并执行以下步骤：
 
-1. `cd console` 切换到 `console` 目录。
+1. `cd ui` 切换到 `ui` 目录。
 2. ` pnpm install todomvc-app-css `。
-3. 修改 `console/src/views/DefaultView.vue` 最底部的 `style` 标签。
+3. 修改 `ui/src/views/HomeView.vue` 最底部的 `style` 标签。
 
    ```diff
    - <style>
@@ -303,7 +279,7 @@ export default definePlugin({
 
 本章节我们将通过使用 `Axios` 来完成与插件后端 APIs 进行数据交互，文档参考 [axios-http](https://axios-http.com/docs)。
 
-首先需要安装 `Axios`， 在 console 目录下执行命令：
+首先需要安装 `Axios`， 在 ui 目录下执行命令：
 
 ```shell
 pnpm install axios
@@ -311,7 +287,7 @@ pnpm install axios
 
 为了符合最佳实践，将用 TypeScript 改造之前的 todomvc 示例：
 
-创建 types 文件 `console/src/types/index.ts`
+创建 types 文件 `ui/src/types/index.ts`
 
 ```typescript
 export interface Metadata {
@@ -358,7 +334,7 @@ export interface TodoList {
 }
 ```
 
-编辑 `console/src/views/DefaultView.vue` 文件，将所有内容替换为如下写法：
+编辑 `ui/src/views/HomeView.vue` 文件，将所有内容替换为如下写法：
 
 ```typescript
 <script setup lang="ts">
@@ -581,12 +557,12 @@ const handleDelete = (todo: Todo) => {
 
 ### 用户界面使用静态资源
 
-如果你想在用户界面中使用图片，你可以放到 `console/src/assets` 中，例如 `logo.png`，并将其作为 Todo 的 Logo 放到标题旁边。
+如果你想在用户界面中使用图片，你可以放到 `ui/src/assets` 中，例如 `logo.svg`，并将其作为 Todo 的 Logo 放到标题旁边。
 
-需要修改 `console/src/views/DefaultView.vue` 示例如下：
+需要修改 `ui/src/views/HomeView.vue` 示例如下：
 
 ```diff
-+ import Logo from "../assets/logo.png";
++ import Logo from "@/assets/logo.svg";
 // ...
 <template>
   <section class="todoapp">
