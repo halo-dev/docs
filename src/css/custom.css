@@ -41,3 +41,12 @@ p > img {
 .medium-zoom-image--opened {
   z-index: 999;
 }
+
+.dropdown-archived-versions {
+  font-size: 0.875rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.dropdown-separator {
+  margin: 0.3rem 0;
+}
