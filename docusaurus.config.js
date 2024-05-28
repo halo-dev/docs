@@ -193,12 +193,6 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ["java"],
       },
-      algolia: {
-        apiKey: "739f2a55c6d13d93af146c22a4885669",
-        indexName: "docs",
-        contextualSearch: true,
-        appId: "OG53LY1OQH",
-      },
       zoom: {
         selector: ".markdown :not(a) > img",
       },
