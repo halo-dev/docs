@@ -47,9 +47,10 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^2.4.1",
-    "esbuild-loader": "^4.1.0",
+    "@swc/core": "^1.5.7",
     "husky": "^7.0.4",
     "markdownlint": "^0.25.1",
-    "markdownlint-cli2": "^0.4.0"
+    "markdownlint-cli2": "^0.4.0",
+    "swc-loader": "^0.2.6"
   }
 }
