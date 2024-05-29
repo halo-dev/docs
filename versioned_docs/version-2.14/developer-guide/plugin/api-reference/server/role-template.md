@@ -111,7 +111,7 @@ rules:
 
 ## 默认角色
 
-在 Halo 中，每个访问者都至少有一个角色，包括未登陆的用户（被称为匿名用户）它们会拥有角色为 `anonymous` 的角色，而已登陆的用户则会至少拥有一个角色名为 `authenticated` 的角色，
+在 Halo 中，每个访问者都至少有一个角色，包括未登录的用户（被称为匿名用户）它们会拥有角色为 `anonymous` 的角色，而已登录的用户则会至少拥有一个角色名为 `authenticated` 的角色，
 但这两个角色不会显示在角色列表中。
 
 `anonymous` 角色的定义参考 [anonymous 角色](https://github.com/halo-dev/halo/blob/main/application/src/main/resources/extensions/role-template-anonymous.yaml)。
