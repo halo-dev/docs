@@ -81,6 +81,7 @@ module.exports = {
         "user-guide/attachments",
         "user-guide/themes",
         "user-guide/plugins",
+        "user-guide/app-store",
         "user-guide/users",
         "user-guide/settings",
         "user-guide/backup",

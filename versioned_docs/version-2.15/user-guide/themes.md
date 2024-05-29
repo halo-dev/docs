@@ -8,15 +8,24 @@ description: 主题管理相关功能说明
 :::info
 目前有两个官方渠道可以获取主题：
 
-- 应用市场：<https://halo.run/store/apps>
+- 应用市场：<https://www.halo.run/store/apps>
 - Awesome Halo：<https://github.com/halo-sigs/awesome-halo>
+
 :::
 
 ## 安装主题
 
 点击主题页面右上方的 `主题管理` 按钮即可弹出主题管理对话框。
 
-目前 Halo 提供了两种主题安装方式。
+### 从内置应用市场安装（推荐）
+
+从 Halo 2.10 开始，内置了应用市场插件，可以更加方便在 Console 直接安装应用市场的主题。
+
+![安装主题](/img/user-guide/app-store/app-store-themes.png)
+
+:::info
+更多关于内置应用市场的使用说明可查阅：[应用市场](./app-store.md)
+:::
 
 ### 本地上传安装
 
@@ -24,18 +33,9 @@ description: 主题管理相关功能说明
 
 ![安装主题](/img/user-guide/themes/theme-install.png)
 
-主题安装成功后，便会出现在已安装主题列表中。
-
 ### 远程下载安装
 
 同样，在安装主题的对话框中，切换到远程下载选项卡，输入主题的下载地址，点击 `下载` 按钮即可开始下载主题。
-
-下载完成后，便会出现在已安装主题列表中。
-
-此外， Halo 的[应用市场](https://halo.run/store/apps)也支持通过输入站点地址的方式自动跳转到你的站点进行安装，演示视频：
-
-<!-- markdownlint-disable MD034 -->
-<video src="https://assets.halo.run/install-theme-from-store.mp4" controls style={{width: '100%', borderRadius: '8px'}}/>
 
 ## 切换主题
 
@@ -74,7 +74,9 @@ description: 主题管理相关功能说明
 
 ## 升级主题
 
-点击主题详情页右上角的 `···` 更多操作按钮，选择其中的 `升级` 选项即可打开升级主题的对话框，与安装主题一样，同时支持本地上传和远程下载。
+如果当前使用了内置的应用市场插件，在主题更新后会在主题列表中显示更新提示，点击 **立即更新** 按钮即可。
+
+手动升级可以点击主题详情页右上角的 `···` 更多操作按钮，选择其中的 `升级` 选项即可打开升级主题的对话框。
 
 ## 重载主题配置
 
