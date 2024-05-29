@@ -73,4 +73,4 @@ spec:
 以下是一些可以参考的项目示例：
 
 - [OAuth2 第三方登录插件](https://github.com/halo-sigs/plugin-oauth2)
-- [Halo 用户名密码登陆](https://github.com/halo-dev/halo/blob/main/application/src/main/java/run/halo/app/security/authentication/login/UsernamePasswordAuthenticator.java)
+- [Halo 用户名密码登录](https://github.com/halo-dev/halo/blob/main/application/src/main/java/run/halo/app/security/authentication/login/UsernamePasswordAuthenticator.java)

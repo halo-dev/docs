@@ -76,15 +76,15 @@ docker compose up -d     # 如果你用的是 docker-compose-plugin 的话，用
 2. 遇到访问不了的情况，请再次检查在宝塔面板的防火墙和服务商的后台防火墙是否打开对应了端口。
 :::
 
-默认登陆的用户名：`admin@example.com` 密码：`changeme`
+默认登录的用户名：`admin@example.com` 密码：`changeme`
 
-第一次登陆会提示更改用户名和密码，建议修改一个复杂一点的密码。
+第一次登录会提示更改用户名和密码，建议修改一个复杂一点的密码。
 
 至此，我们已经完成了 Nginx Proxy Manager 的搭建，之后就可以用它给我们的 Halo 或者其他 Web 应用做反向代理了。
 
 ## 配置 Halo 的反向代理
 
-首先我们登陆网页端之后，会弹出修改用户名和密码的对话框，我们根据自己的实际来修改自己的用户名和邮箱。
+首先我们登录网页端之后，会弹出修改用户名和密码的对话框，我们根据自己的实际来修改自己的用户名和邮箱。
 
 ![Nginx Proxy Manager 1](/img/nginx-proxy-manager/Nginx-Proxy-Manager-1.png)
 
