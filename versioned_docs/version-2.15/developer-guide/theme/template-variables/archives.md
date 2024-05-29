@@ -42,7 +42,7 @@ import ListedPostVo from "../vo/ListedPostVo.md";
   <a th:href="@{${archives.prevUrl}}">
     <span>上一页</span>
   </a>
-  <span th:text="${archives.page} +' / '+ ${archives.total}"></span>
+  <span th:text="${archives.page} +' / '+ ${archives.totalPages}"></span>
   <a th:href="@{${archives.nextUrl}}">
     <span>下一页</span>
   </a>
