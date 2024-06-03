@@ -3,10 +3,10 @@ title: 分类归档
 description: category.html - /categories/:slug
 ---
 
-import CategoryVo from "../vo/CategoryVo.md"
-import TagVo from "../vo/TagVo.md"
-import ContributorVo from "../vo/ContributorVo.md";
-import ListedPostVo from "../vo/ListedPostVo.md"
+import CategoryVo from "../vo/_CategoryVo.md"
+import TagVo from "../vo/_TagVo.md"
+import ContributorVo from "../vo/_ContributorVo.md";
+import ListedPostVo from "../vo/_ListedPostVo.md"
 
 ## 路由信息
 

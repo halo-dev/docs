@@ -3,7 +3,7 @@ title: 作者
 description: 作者 - ContributorFinder
 ---
 
-import ContributorVo from "../vo/ContributorVo.md"
+import ContributorVo from "../vo/_ContributorVo.md"
 
 ## getContributor(name)
 

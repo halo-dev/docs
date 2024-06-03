@@ -3,12 +3,12 @@ title: 文章
 description: 文章 - PostFinder
 ---
 
-import CategoryVo from "../vo/CategoryVo.md";
-import TagVo from "../vo/TagVo.md";
-import PostVo from "../vo/PostVo.md";
-import ContentVo from "../vo/ContentVo.md"
-import ContributorVo from "../vo/ContributorVo.md"
-import ListedPostVo from "../vo/ListedPostVo.md"
+import CategoryVo from "../vo/_CategoryVo.md";
+import TagVo from "../vo/_TagVo.md";
+import PostVo from "../vo/_PostVo.md";
+import ContentVo from "../vo/_ContentVo.md"
+import ContributorVo from "../vo/_ContributorVo.md"
+import ListedPostVo from "../vo/_ListedPostVo.md"
 
 ## getByName(postName)
 

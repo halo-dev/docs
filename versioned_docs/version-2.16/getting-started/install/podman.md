@@ -3,7 +3,7 @@ title: 使用 Podman 部署
 description: 使用 Podman 部署
 ---
 
-import DockerArgs from "./slots/docker-args.md"
+import DockerArgs from "./slots/_docker-args.md"
 
 ## 前言
 

@@ -3,11 +3,11 @@ title: 文章
 description: post.html - /archives/:slug
 ---
 
-import CategoryVo from "../vo/CategoryVo.md"
-import TagVo from "../vo/TagVo.md"
-import ContentVo from "../vo/ContentVo.md"
-import ContributorVo from "../vo/ContributorVo.md"
-import PostVo from "../vo/PostVo.md"
+import CategoryVo from "../vo/_CategoryVo.md"
+import TagVo from "../vo/_TagVo.md"
+import ContentVo from "../vo/_ContentVo.md"
+import ContributorVo from "../vo/_ContributorVo.md"
+import PostVo from "../vo/_PostVo.md"
 
 ## 路由信息
 

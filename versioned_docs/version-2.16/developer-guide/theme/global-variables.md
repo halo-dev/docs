@@ -3,8 +3,8 @@ title: 全局变量
 description: 本文档介绍 Halo 为模板引擎提供的专有全局变量。
 ---
 
-import SiteSettingVo from "./vo/SiteSettingVo.md"
-import ThemeVo from "./vo/ThemeVo.md"
+import SiteSettingVo from "./vo/_SiteSettingVo.md"
+import ThemeVo from "./vo/_ThemeVo.md"
 
 Halo 目前为模板引擎在全局提供了一些变量，本文档将列出已提供的变量以及介绍这些变量的使用方法。
 
