@@ -3,7 +3,7 @@ title: 文章标签集合
 description: tags.html - /tags
 ---
 
-import TagVo from '../vo/TagVo.md'
+import TagVo from '../vo/_TagVo.md'
 
 ## 路由信息
 

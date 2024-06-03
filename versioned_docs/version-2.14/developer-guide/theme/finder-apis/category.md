@@ -3,8 +3,8 @@ title: 文章分类
 description: 文章分类 - CategoryFinder
 ---
 
-import CategoryVo from "../vo/CategoryVo.md"
-import CategoryTreeVo from "../vo/CategoryTreeVo.md"
+import CategoryVo from "../vo/_CategoryVo.md"
+import CategoryTreeVo from "../vo/_CategoryTreeVo.md"
 
 ## getByName(name)
 

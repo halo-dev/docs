@@ -3,8 +3,8 @@ title: 导航菜单
 description: 导航菜单 - MenuFinder
 ---
 
-import MenuItemVo from "../vo/MenuItemVo.md"
-import MenuVo from "../vo/MenuVo.md"
+import MenuItemVo from "../vo/_MenuItemVo.md"
+import MenuVo from "../vo/_MenuVo.md"
 
 ## getByName(name)
 

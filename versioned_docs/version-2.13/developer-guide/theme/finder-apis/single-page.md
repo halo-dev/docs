@@ -3,10 +3,10 @@ title: 独立页面
 description: 独立页面 - SinglePageFinder
 ---
 
-import SinglePageVo from "../vo/SinglePageVo.md"
-import ListedSinglePageVo from "../vo/ListedSinglePageVo.md"
-import ContributorVo from "../vo/ContributorVo.md"
-import ContentVo from "../vo/ContentVo.md"
+import SinglePageVo from "../vo/_SinglePageVo.md"
+import ListedSinglePageVo from "../vo/_ListedSinglePageVo.md"
+import ContributorVo from "../vo/_ContributorVo.md"
+import ContentVo from "../vo/_ContentVo.md"
 
 ## getByName(pageName)
 

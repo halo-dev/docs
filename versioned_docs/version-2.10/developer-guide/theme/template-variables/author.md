@@ -3,11 +3,11 @@ title: 作者归档
 description: author.html - /authors/:name
 ---
 
-import UserVo from "../vo/UserVo.md"
-import CategoryVo from "../vo/CategoryVo.md"
-import TagVo from "../vo/TagVo.md"
-import ContributorVo from "../vo/ContributorVo.md"
-import ListedPostVo from "../vo/ListedPostVo.md"
+import UserVo from "../vo/_UserVo.md"
+import CategoryVo from "../vo/_CategoryVo.md"
+import TagVo from "../vo/_TagVo.md"
+import ContributorVo from "../vo/_ContributorVo.md"
+import ListedPostVo from "../vo/_ListedPostVo.md"
 
 ## 路由信息
 

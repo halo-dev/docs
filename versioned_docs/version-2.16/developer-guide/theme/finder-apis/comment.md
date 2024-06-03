@@ -3,8 +3,8 @@ title: 评论
 description: 评论 - CommentFinder
 ---
 
-import CommentVo from "../vo/CommentVo.md"
-import ReplyVo from "../vo/ReplyVo.md"
+import CommentVo from "../vo/_CommentVo.md"
+import ReplyVo from "../vo/_ReplyVo.md"
 
 ## getByName(name)
 

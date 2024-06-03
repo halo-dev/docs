@@ -3,7 +3,7 @@ title: 使用 Docker Compose 部署
 description: 使用 Docker Compose 部署
 ---
 
-import DockerArgs from "./slots/docker-args.md"
+import DockerArgs from "./slots/_docker-args.md"
 
 :::info
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare.md)，这可以快速帮助你了解 Halo。

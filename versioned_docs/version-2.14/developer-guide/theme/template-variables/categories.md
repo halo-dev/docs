@@ -3,7 +3,7 @@ title: 文章分类集合
 description: categories.html - /categories
 ---
 
-import CategoryTreeVo from "../vo/CategoryTreeVo.md"
+import CategoryTreeVo from "../vo/_CategoryTreeVo.md"
 
 ## 路由信息
 

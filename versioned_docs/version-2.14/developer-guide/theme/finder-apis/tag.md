@@ -3,7 +3,7 @@ title: 文章标签
 description: 文章标签 - TagFinder
 ---
 
-import TagVo from "../vo/TagVo.md"
+import TagVo from "../vo/_TagVo.md"
 
 ## getByName(name)
 
