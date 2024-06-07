@@ -4,6 +4,7 @@ description: 使用 Podman 部署
 ---
 
 import DockerArgs from "./slots/_docker-args.md"
+import DockerRegistryList from "./slots/_docker-registry-list.md"
 
 ## 前言
 
@@ -50,25 +51,13 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 通过[前言](#前言)我们已经了解了 Podman ，其中提到 ***Podman 与 Docker 高度兼容*** ，正是因为 Podman 完全是为了替代 Docker 而诞生，所以原本的 Docker 生态中的镜像我们可以无需更改直接使用。
 :::
 
-可用的 Halo 2.16 的 Docker 镜像：
-
-- [halohub/halo](https://hub.docker.com/r/halohub/halo)
-- [ghcr.io/halo-dev/halo](https://github.com/halo-dev/halo/pkgs/container/halo)
-
-:::info 注意
-目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.16` 或者 `halohub/halo:2.16.0`。
-
-- `halohub/halo:2.16`：表示最新的 2.16.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.16` 镜像。
-- `halohub/halo:2.16.0`：表示一个具体的版本。
-
-后续文档以 `halohub/halo:2.16` 为例。
-:::
+<DockerRegistryList />
 
 1. 创建容器
 
     ```bash
     mkdir -p ~/.halo2
-    podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.16
+    podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo:2.16
     ```
 
     :::info
@@ -97,7 +86,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 2. 拉取新版本镜像
 
   ```bash
-  podman pull halohub/halo:2.16
+  podman pull registry.fit2cloud.com/halo/halo:2.16
   ```
 
 3. 停止运行中的容器
@@ -112,7 +101,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
   修改版本号后，按照最初安装的方式，重新创建容器即可。
 
    ```bash
-   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.16
+   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo:2.16
    ```
 
 ## 使用 [Podman Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)
