@@ -4,6 +4,7 @@ description: 使用 Docker Compose 部署
 ---
 
 import DockerArgs from "./slots/_docker-args.md"
+import DockerRegistryList from "./slots/_docker-registry-list.md"
 
 :::info
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare.md)，这可以快速帮助你了解 Halo。
@@ -20,19 +21,7 @@ import DockerArgs from "./slots/_docker-args.md"
 
 ## 创建容器组
 
-可用的 Halo 2.16 的 Docker 镜像：
-
-- [halohub/halo](https://hub.docker.com/r/halohub/halo)
-- [ghcr.io/halo-dev/halo](https://github.com/halo-dev/halo/pkgs/container/halo)
-
-:::info 注意
-目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.16` 或者 `halohub/halo:2.16.0`。
-
-- `halohub/halo:2.16`：表示最新的 2.16.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.16` 镜像。
-- `halohub/halo:2.16.0`：表示一个具体的版本。
-
-后续文档以 `halohub/halo:2.16` 为例。
-:::
+<DockerRegistryList />
 
 1. 在系统任意位置创建一个文件夹，此文档以 `~/halo` 为例。
 
@@ -59,7 +48,7 @@ import DockerArgs from "./slots/_docker-args.md"
 
     services:
       halo:
-        image: halohub/halo:2.16
+        image: registry.fit2cloud.com/halo/halo:2.16
         restart: on-failure:3
         depends_on:
           halodb:
@@ -117,7 +106,7 @@ import DockerArgs from "./slots/_docker-args.md"
 
     services:
       halo:
-        image: halohub/halo:2.16
+        image: registry.fit2cloud.com/halo/halo:2.16
         restart: on-failure:3
         depends_on:
           halodb:
@@ -185,7 +174,7 @@ import DockerArgs from "./slots/_docker-args.md"
 
     services:
       halo:
-        image: halohub/halo:2.16
+        image: registry.fit2cloud.com/halo/halo:2.16
         restart: on-failure:3
         volumes:
           - ./halo2:/root/.halo2
@@ -209,7 +198,7 @@ import DockerArgs from "./slots/_docker-args.md"
 
     services:
       halo:
-        image: halohub/halo:2.16
+        image: registry.fit2cloud.com/halo/halo:2.16
         restart: on-failure:3
         network_mode: "host"
         volumes:
@@ -258,7 +247,7 @@ import DockerArgs from "./slots/_docker-args.md"
   ```yaml {3}
   services:
     halo:
-      image: halohub/halo:2.16
+      image: registry.fit2cloud.com/halo/halo:2.16
   ```
 
   ```bash
@@ -322,7 +311,7 @@ networks:
 
 services:
   halo:
-    image: halohub/halo:2.16
+    image: registry.fit2cloud.com/halo/halo:2.16
     restart: on-failure:3
     volumes:
       - ./halo2:/root/.halo2

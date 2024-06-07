@@ -96,7 +96,7 @@ networks:
 
 services:
   halo:
-    image: halohub/halo:2.16
+    image: registry.fit2cloud.com/halo/halo:2.16
     container_name: halo
     restart: on-failure:3
     volumes:

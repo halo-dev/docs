@@ -93,7 +93,7 @@ server {
    --name halo-1 \
    -p 8090:8090 \
    -v ~/.halo2:/root/.halo2 \
-   halohub/halo:2.16 \
+   registry.fit2cloud.com/halo/halo:2.16 \
 
  # 第二个 Halo 容器
  docker run \
@@ -101,7 +101,7 @@ server {
    --name halo-2 \
    -p 8091:8090 \
    -v ~/.halo2_2:/root/.halo2 \
-   halohub/halo:2.16 \
+   registry.fit2cloud.com/halo/halo:2.16 \
  ```
 
 更多 Docker 相关的教程请参考：[使用 Docker 部署 Halo](../getting-started/install/docker.md)
