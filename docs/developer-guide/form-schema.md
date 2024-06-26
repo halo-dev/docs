@@ -67,6 +67,55 @@ spec:
 
 除了 FormKit 官方提供的常用输入组件之外，Halo 还额外提供了一些输入组件，这些输入组件可以在 Form Schema 中使用。
 
+### list
+
+#### 描述
+
+列表类型的输入组件，支持动态添加、删除数据项。
+
+#### 参数
+
+- `item-type`：数据项的数据类型，用于初始化数据。可选参数 `string`, `number`, `boolean`, `object`，默认为 `string`
+- `min`：数组最小要求数量，默认为 `0`
+- `max`：数组最大容量，默认为 `Infinity`，即无限制
+- `addButton`：是否显示添加按钮
+- `addLabel`：添加按钮的文本
+- `upControl`：是否显示上移按钮
+- `downControl`：是否显示下移按钮
+- `insertControl`：是否显示插入按钮
+- `removeControl`：是否显示移除按钮
+
+#### 示例
+
+```yaml
+- $formkit: list
+  name: socials
+  label: 社交账号
+  addLabel: 添加账号
+  min: 1
+  max: 5
+  itemType: string
+  children:
+    - $formkit: text
+      index: "$index"
+      validation: required
+```
+
+:::tip
+`list` 组件有且只有一个子节点，并且必须为子节点传递 `index` 属性。若想提供多个字段，则建议使用 `group` 组件包裹，并将 itemType 改为 object。
+:::
+
+最终保存表单之后得到的值为以下形式：
+
+```json
+{
+  "socials": [
+    "GitHub",
+    "Twitter"
+  ]
+}
+```
+
 ### verificationForm
 
 #### 描述
