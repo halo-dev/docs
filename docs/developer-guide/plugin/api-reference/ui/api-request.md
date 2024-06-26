@@ -64,3 +64,7 @@ axiosInstance.get("/apis/foo.halo.run/v1alpha1/bar").then(response => {
 ```
 
 此外，在最新的 `@halo-dev/ui-plugin-bundler-kit@2.17.0` 中，已经排除了 `@halo-dev/api-client`、`axios` 依赖，所以最终产物中的相关依赖会自动使用 Halo 本身提供的依赖，无需关心最终产物大小。
+
+:::info 提醒
+如果插件中使用了 `@halo-dev/api-client@2.17.0` 和 `@halo-dev/ui-plugin-bundler-kit@2.17.0`，需要提升 `plugin.yaml` 中的 `spec.requires` 版本为 `>=2.17.0`。
+:::
