@@ -45,7 +45,7 @@ public class PostReconciler implements Reconciler<Reconciler.Request> {
 
 ### 构建控制器
 
-`setupWith()` 方法用于根据当前类的 `reconcile` 方法构建控制器，你可以通过 `ControllerBuilder` 来构建并定制控制器，`ControllerBuilder` 提供了一系列的方法来配置控制器：
+`setupWith()` 方法用于根据当前类的 `reconcile` 方法构建控制器，你可以通过 `ControllerBuilder` 提供的方法来构建并定制控制器：
 
 ```java
 public class ControllerBuilder {
