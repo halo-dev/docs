@@ -43,6 +43,103 @@ public class PostReconciler implements Reconciler<Reconciler.Request> {
 以上是一个简单的 Reconciler 实现，它实现了 `reconcile()` 方法，然后在 `setupWith()` 方法中将其通过 `ControllerBuilder` 构建为一个控制器并指定了
 它要观察的自定义模型对象为`Post`，当文章自定义模型对象发生变化时，`reconcile()` 方法就会被调用，从 `Request request` 参数中你可以获得当前发生变化的文章自定义模型对象的名称，然后你就可以通过名称来查询到自定义模型对象进行调谐了。
 
+### 构建控制器
+
+`setupWith()` 方法用于根据当前类的 `reconcile` 方法构建控制器，你可以通过 `ControllerBuilder` 提供的方法来构建并定制控制器：
+
+```java
+public class ControllerBuilder {
+    private final String name;
+    private Duration minDelay;
+    private Duration maxDelay;
+    private final Reconciler<Reconciler.Request> reconciler;
+    private Supplier<Instant> nowSupplier;
+    private Extension extension;
+    private ExtensionMatcher onAddMatcher;
+    private ExtensionMatcher onDeleteMatcher;
+    private ExtensionMatcher onUpdateMatcher;
+    private ListOptions syncAllListOptions;
+    private boolean syncAllOnStart = true;
+    private int workerCount = 1;
+}
+```
+
+- `name`：控制器的名称，用于标识控制器。
+- `minDelay`：控制器的最小延迟，用于控制控制器的最小调谐间隔，默认为 5 毫秒。
+- `maxDelay`：控制器的最大延迟，用于控制控制器的最大调谐间隔，默认为 1000 秒。
+- `reconciler`：控制器的调谐器，用于执行调谐逻辑，你需要实现 `Reconciler` 接口。
+- `nowSupplier`：用于获取当前时间的供应商，用于控制器的时间戳，默认使用 `Instant.now()` 获取当前时间。
+- `extension`：控制器要观察的自定义模型对象。
+- `onAddMatcher`：用于匹配添加事件的匹配器，当自定义模型对象被创建时会触发。
+- `onDeleteMatcher`：用于匹配删除事件的匹配器，当自定义模型对象被删除时会触发。
+- `onUpdateMatcher`：用于匹配更新事件的匹配器，当自定义模型对象被更新时会触发。
+- `syncAllListOptions`：用于同步所有自定义模型对象的查询条件，仅当 `syncAllOnStart` 为 `true` 时生效。
+- `syncAllOnStart`：是否在控制器启动时同步所有自定义模型对象，默认为 `true`，可以配合 `syncAllListOptions` 使用以缩小需要同步的对象范围避免不必要的同步，例如只同步某个用户创建的文章或者某个固定名称的 ConfigMap 对象。如果你的控制器不需要同步所有对象，可以将其设置为 `false`。
+- `workerCount`：控制器的工作线程数，用于控制控制器的并发度，如果你的控制器需要处理大量的对象，可以将其设置为大于 1 的值，以提高控制器的处理能力，但需要注意的是并发度越高，系统的负载也会越高。这里的并发度是指控制器的并发度，但是每个控制器还是单线程执行的。
+
+#### ExtensionMatcher
+
+`onAddMatcher/onUpdateMatcher/onDeleteMatcher` 都是 `ExtensionMatcher` 类型，用于决定当自定义模型对象发生变化时是否触发控制器：
+
+```java
+public interface ExtensionMatcher {
+    boolean match(Extension extension);
+}
+```
+
+这里`match` 方法的 `Extension` 参数类型与 `ControllerBuilder` 中的 `extension` 类型始终是一致的，因此可以直接通过强制类型转换来得到需要的类型。
+
+比如我们想要观察文章对象，但是只想观察文章对象中 `visible` 字段为 `PUBLIC` 的文章，可以这样
+
+```java
+public class PostReconciler implements Reconciler<Reconciler.Request> {
+    @Override
+    public Result reconcile(Request request) {
+        return Result.doNotRetry();
+    }
+
+    @Override
+    public Controller setupWith(ControllerBuilder builder) {
+        // 只想观察 VisibleEnum.PUBLIC 的文章
+        ExtensionMatcher extensionMatcher = extension -> {
+            var post = (Post) extension;
+            return VisibleEnum.PUBLIC.equals(post.getSpec().getVisible());
+        };
+        return builder
+            .extension(new Post())
+            .onAddMatcher(extensionMatcher)
+            .onUpdateMatcher(extensionMatcher)
+            .onDeleteMatcher(extensionMatcher)
+            .build();
+    }
+}
+```
+
+#### 控制启动时同步的范围
+
+如果想要在控制器启动时控制同步对象的范围，可以通过 `syncAllListOptions` 和 `syncAllOnStart` 来实现，例如只同步某个用户创建的文章：
+
+```java
+public class PostReconciler implements Reconciler<Reconciler.Request> {
+    @Override
+    public Result reconcile(Request request) {
+        return Result.doNotRetry();
+    }
+
+    @Override
+    public Controller setupWith(ControllerBuilder builder) {
+        return builder
+            .extension(new Post())
+            .syncAllListOptions(ListOptions.builder()
+                .fieldQuery(QueryFactory.equal("spec.owner", "guqing"))
+                .build()
+            )
+            .syncAllOnStart(true)
+            .build();
+    }
+}
+```
+
 ### Reconciler 的返回值
 
 `reconcile()` 方法的返回值是一个 `Result` 对象，它包含了调谐的结果，你可以通过它来告诉控制器是否需要重试，如果需要重试则控制器会在稍后再次调用 `reconcile()` 方法，而这个过程会一直重复，直到 `reconcile()` 方法返回成功为止，这个过程被称之为调谐循环（Reconciliation Loop）。
