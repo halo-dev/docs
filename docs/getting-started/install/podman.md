@@ -138,7 +138,7 @@ Podman 没有和 Docker 类似的管理进程，在低配置的主机上更友�
   Volume=/opt/podman-data/halo:/.halo
   PublishPort=127.0.0.1:8090:8090
   Image=ghcr.io/halo-dev/halo:2.16
-  Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
+  Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password
 
   [Service]
   Restart=always
@@ -210,7 +210,7 @@ Podman Quadlet 解析:
   Volume=/opt/podman-data/halo:/root/.halo
   PublishPort=127.0.0.1:8090:8090
   Image=ghcr.io/halo-dev/halo:2.16
-  Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
+  Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password
 
   [Service]
   Restart=always
