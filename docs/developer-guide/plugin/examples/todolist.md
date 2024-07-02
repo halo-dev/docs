@@ -61,14 +61,14 @@ description: 这个例子展示了如何开发 Todo List 插件
    ```java
    package run.halo.tutorial;
 
-   import org.pf4j.PluginWrapper;
+   import run.halo.app.plugin.PluginContext;
    import org.springframework.stereotype.Component;
    import run.halo.app.plugin.BasePlugin;
 
    @Component
    public class TodoListPlugin extends BasePlugin {
-       public TodoListPlugin(PluginWrapper wrapper) {
-           super(wrapper);
+       public TodoListPlugin(PluginContext pluginContext) {
+           super(pluginContext);
        }
    }
    ```
@@ -154,9 +154,9 @@ public class Todo extends AbstractExtension {
 public class TodoListPlugin extends BasePlugin {
 +   private final SchemeManager schemeManager;
 
--    public TodoListPlugin(PluginWrapper wrapper) {
-+    public TodoListPlugin(PluginWrapper wrapper, SchemeManager schemeManager) {
-        super(wrapper);
+-    public TodoListPlugin(PluginContext pluginContext) {
++    public TodoListPlugin(PluginContext pluginContext, SchemeManager schemeManager) {
+        super(pluginContext);
 +       this.schemeManager = schemeManager;
     }
 
