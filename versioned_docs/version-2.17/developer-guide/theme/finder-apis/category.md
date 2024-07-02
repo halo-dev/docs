@@ -156,6 +156,35 @@ List<[#CategoryTreeVo](#categorytreevo)>
 </ul>
 ```
 
+## getBreadcrumbs(name)
+
+```js
+categoryFinder.getBreadcrumbs('category-foo')
+```
+
+### 描述
+
+获取分类树结构的路径节点，可以通过此方法来构建面包屑导航。
+
+### 参数
+
+- `name:string` - 分类的唯一标识 `metadata.name`，必填。
+
+### 返回值
+
+List<[#CategoryVo](#categoryvo)>
+
+### 示例
+
+```html
+<div>
+  <th:block th:each="category,stats : ${categoryFinder.getBreadcrumbs(category.metadata?.name)}">
+    <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
+    <span th:if="${!stats.last}">/</span>
+  </th:block>
+</div>
+```
+
 ## 类型定义
 
 ### CategoryVo
