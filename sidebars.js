@@ -213,6 +213,7 @@ module.exports = {
               },
               items: [
                 "developer-guide/plugin/api-reference/ui/route",
+                "developer-guide/plugin/api-reference/ui/api-request",
                 {
                   type: "category",
                   label: "扩展点",
