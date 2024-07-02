@@ -118,10 +118,12 @@ public class ListOptions {
 `FieldSelector` 支持比自动生成的 APIs 中更多的查询条件，可以通过 `run.halo.app.extension.index.query.QueryFactory` 来构建。
 
 ```java
-FieldSelector.of(QueryFactory.and(
-    QueryFactory.equal("name", "test"),
-    QueryFactory.equal("age", 18)
-))
+ListOptions.builder()
+    .fieldQuery(QueryFactory.and(
+        QueryFactory.equal("name", "test"),
+        QueryFactory.equal("age", 18)
+    ))
+    .build();
 ```
 
 支持的查询条件如下：
@@ -166,8 +168,26 @@ Query query = and(
     or(equal("dept", "A"), equal("dept", "B")),
     or(equal("age", "19"), equal("age", "18"))
 );
-FieldSelector.of(query);
+ListOptions.builder()
+    .fieldQuery(query)
+    .build();
 ```
+
+### 构建 ListOptions
+
+ListOptions 提供了 `builder` 方法用于构建查询条件，`fieldQuery` 方法用于传递字段查询条件，`labelSelector` 方法用于传递标签查询条件。
+
+```java
+ListOptions.builder()
+    .labelSelector()
+    .eq("key-1", "value-1")
+    .end()
+    .fieldQuery(QueryFactory.equal("key-2", "value-2"))
+    .build();
+```
+
+- `labelSelector` 之后使用 `end` 方法结束标签查询条件的构建。
+- `andQuery` 和 `orQuery` 用于组合多个 `FieldSelector` 查询条件。
 
 ### 排序
 
