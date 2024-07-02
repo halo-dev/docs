@@ -183,6 +183,7 @@ module.exports = {
                 "developer-guide/plugin/api-reference/server/finder-for-theme",
                 "developer-guide/plugin/api-reference/server/template-for-theme",
                 "developer-guide/plugin/api-reference/server/websocket",
+                "developer-guide/plugin/api-reference/server/login-handler-enhancer",
                 {
                   type: "category",
                   label: "扩展点",
