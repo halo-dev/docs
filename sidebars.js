@@ -38,6 +38,7 @@ module.exports = {
             "getting-started/install/helm",
             "getting-started/install/podman",
             "getting-started/install/jar-file",
+            "getting-started/install/offline",
             {
               type: "category",
               label: "云平台",
