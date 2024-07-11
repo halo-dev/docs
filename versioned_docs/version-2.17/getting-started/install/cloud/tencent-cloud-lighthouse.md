@@ -54,6 +54,10 @@ description: 使用腾讯云轻量应用服务器的应用模板部署 Halo
 
 ## 绑定域名
 
+:::info
+该操作要求用户有一个可用的域名，并在 DNS 服务商处添加对应的解析记录。
+:::
+
 在 **网站** 页面中，此镜像默认添加了一个关联 Halo 应用的网站，你可以点击配置按钮然后添加自己的域名。
 
 ![网站](/img/install/tencent-cloud-lighthouse/websites.png)
