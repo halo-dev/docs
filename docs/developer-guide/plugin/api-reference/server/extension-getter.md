@@ -1,11 +1,11 @@
 ---
 title: 获取扩展
-description: 了解如何在插件中获取扩展
+description: 了解如何在插件中使用 `ExtensionGetter` 获取扩展
 ---
 
-Halo 提供了丰富的扩展点，而插件不仅可以实现扩展点，也可以通过使用 `ExtensionGetter` 来获取 Halo 或其他插件所提供的扩展。
+`ExtensionGetter` 用于获取和管理 Halo 或其他插件提供的扩展。它提供了多种方法来根据扩展点获取扩展，确保插件能够灵活地集成和使用各种扩展功能。
 
-关于插件如何实现扩展点的详细信息，请参考：[扩展点](./extension-points/index.md)。
+`ExtensionGetter` 接口的定义如下：
 
 ```java
 public interface ExtensionGetter {
@@ -41,11 +41,23 @@ public interface ExtensionGetter {
 }
 ```
 
+包含以下方法：
+
+1. `getEnabledExtension(Class<T> extensionPoint)`: 获取一个在扩展设置中已启用的扩展。如果没有找到对应配置，将使用 Halo 中的默认扩展，如果 Halo 没有提供默认实现则找到一个由**已启用插件**提供的可用扩展。
+2. `getEnabledExtensions(Class<T> extensionPoint)`: 根据传入的扩展点类获取所有已启用扩展。如果没有在扩展设置页面配置过则会返回所有可用的扩展。
+3. `getExtensions(Class<T> extensionPointClass)`: 获取所有与扩展点类相关的扩展，无论是否在扩展设置中启用它。
+
+:::tip Note
+使用 `getEnabledExtension` 方法或者 `getEnabledExtensions` 方法取决于扩展点声明的 `type` 是 `SINGLETON` 还是 `MULTI_INSTANCE`。
+
+通过使用 `ExtensionGetter`，开发者可以轻松地在插件中访问和管理各种扩展点，提升插件的功能和灵活性。
+
+如果想了解 Halo 提供的扩展点请参考：[扩展点](./extension-points/index.md)。
+:::
+
 ### 示例
 
-#### 单实例扩展点
-
-对于单实例扩展点，例如 `SearchEngine` 扩展点，同一时间只能有一个实例被启用。要在插件中获取启用的搜索引擎扩展，可以使用以下代码：
+如果你想在插件中获取已启用的搜索引擎扩展，可以使用 `ExtensionGetter` 来获取：
 
 ```java
 @Service
@@ -55,96 +67,6 @@ public class SearchService {
 
     Mono<SearchEngine> getSearchEngine() {
         return extensionGetter.getEnabledExtension(SearchEngine.class)
-    }
-}
-```
-
-#### 多实例扩展点
-
-对于多实例扩展点，例如 `ReactiveNotifier` 扩展点，可以同时启用多个实例。要在插件中获取所有启用的通知器扩展，可以使用以下代码：
-
-```java
-@Service
-@RequiredArgsConstructor
-public class NotificationService {
-    private final ExtensionGetter extensionGetter;
-
-    Flux<ReactiveNotifier> getNotifiers() {
-        return extensionGetter.getEnabledExtensions(ReactiveNotifier.class)
-    }
-}
-```
-
-### 进阶使用
-
-拥有 `ExtensionGetter` 后，我们便可以实现插件与插件之间的相互扩展了。
-
-例如，我们在 A 插件中提供了一个扩展点，并且 A 插件基于此扩展点实现了一个默认扩展。此时我们便可以通过 `ExtensionGetter` 在 B 插件中获取 A 插件所提供的扩展了。
-
-下面是一个简单的示例：
-
-1. Plugin A 提供一个扩展点。
-
-```java
-public interface MonitorExtension extends ExtensionPoint {
-
-    Mono<Void> Send(String message);
-}
-```
-
-2. Plugin A 声明一个 `ExtensionPointDefinition` 自定义模型对象，描述 `MonitorExtension` 扩展点的信息。
-
-```yaml
-apiVersion: plugin.halo.run/v1alpha1
-kind: ExtensionPointDefinition
-metadata:
-  name: monitor
-spec:
-  className: run.halo.plugin.extension.MonitorExtension
-  displayName: Monitor
-  type: MULTI_INSTANCE
-  description: "It provides an extension point for listening to messages"
-```
-
-3. Plugin A 实现 `MonitorExtension` 扩展点。
-
-```java
-@Component
-public class PostMonitorExtension implements MonitorExtension {
-
-    @Override
-    public Mono<Void> Send(String message) {
-        return Mono.fromRunnable(() -> {
-            // Send message
-        });
-    }
-}
-```
-
-4. Plugin A 声明一个 `ExtensionDefinition` 自定义模型对象，描述 `PostMonitorExtension` 扩展的信息。
-
-```yaml
-apiVersion: plugin.halo.run/v1alpha1
-kind: ExtensionDefinition
-metadata:
-  name: post-monitor
-spec:
-  className: run.halo.plugin.extension.PostMonitorExtension
-  extensionPointName: monitor
-  displayName: "PostMonitor"
-  description: "Support the monitoring of the content of the post"
-```
-
-4. Plugin B 获取 Plugin A 提供的扩展
-
-```java
-@Service
-@RequiredArgsConstructor
-public class MonitorService {
-    private final ExtensionGetter extensionGetter;
-
-    Flux<MonitorExtension> getMonitorExtensions() {
-        return extensionGetter.getEnabledExtensions(MonitorExtension.class);
     }
 }
 ```
