@@ -83,7 +83,7 @@ public class NotificationService {
 
 下面是一个简单的示例：
 
-1. Plugin A 提供一个扩展点
+1. Plugin A 提供一个扩展点。
 
 ```java
 public interface MonitorExtension extends ExtensionPoint {
@@ -92,7 +92,7 @@ public interface MonitorExtension extends ExtensionPoint {
 }
 ```
 
-2. 声明一个 `ExtensionPointDefinition` 自定义模型对象，描述 `MonitorExtension` 扩展点的信息。
+2. Plugin A 声明一个 `ExtensionPointDefinition` 自定义模型对象，描述 `MonitorExtension` 扩展点的信息。
 
 ```yaml
 apiVersion: plugin.halo.run/v1alpha1
@@ -102,12 +102,49 @@ metadata:
 spec:
   className: run.halo.plugin.extension.MonitorExtension
   displayName: Monitor
-  type: SINGLETON
+  type: MULTI_INSTANCE
   description: "It provides an extension point for listening to messages"
 ```
 
-2. Plugin A 实现了一个默认扩展
+3. Plugin A 实现 `MonitorExtension` 扩展点。
 
 ```java
+@Component
+public class PostMonitorExtension implements MonitorExtension {
 
+    @Override
+    public Mono<Void> Send(String message) {
+        return Mono.fromRunnable(() -> {
+            // Send message
+        });
+    }
+}
+```
+
+4. Plugin A 声明一个 `ExtensionDefinition` 自定义模型对象，描述 `PostMonitorExtension` 扩展的信息。
+
+```yaml
+apiVersion: plugin.halo.run/v1alpha1
+kind: ExtensionDefinition
+metadata:
+  name: post-monitor
+spec:
+  className: run.halo.plugin.extension.PostMonitorExtension
+  extensionPointName: monitor
+  displayName: "PostMonitor"
+  description: "Support the monitoring of the content of the post"
+```
+
+4. Plugin B 获取 Plugin A 提供的扩展
+
+```java
+@Service
+@RequiredArgsConstructor
+public class MonitorService {
+    private final ExtensionGetter extensionGetter;
+
+    Flux<MonitorExtension> getMonitorExtensions() {
+        return extensionGetter.getEnabledExtensions(MonitorExtension.class);
+    }
+}
 ```
