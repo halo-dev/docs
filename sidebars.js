@@ -185,6 +185,7 @@ module.exports = {
                 "developer-guide/plugin/api-reference/server/template-for-theme",
                 "developer-guide/plugin/api-reference/server/websocket",
                 "developer-guide/plugin/api-reference/server/login-handler-enhancer",
+                "developer-guide/plugin/api-reference/server/extension-getter",
                 {
                   type: "category",
                   label: "扩展点",

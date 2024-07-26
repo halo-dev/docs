@@ -1,6 +1,6 @@
 ---
 title: API 权限控制
-description: 了解如果对插件中的 API 定义角色模板以接入权限控制
+description: 了解如何对插件中的 API 定义角色模板以接入权限控制
 ---
 
 插件中的 APIs 无论是自定义模型自动生成的 APIs 或者是通过 `@Controller` 自定义的 APIs 都只有超级管理员能够访问，如果想将这些 APIs 授权给其他用户访问，
