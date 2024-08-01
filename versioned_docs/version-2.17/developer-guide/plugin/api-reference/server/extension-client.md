@@ -156,6 +156,16 @@ ListOptions.builder()
 
 在 `FieldSelector` 中使用的所有字段都必须添加为索引，否则会抛出异常表示不支持该字段。关于如何使用索引请参考 [自定义模型使用索引](./extension.md#using-indexes)。
 
+:::info
+以下是自定义模型在注册后自动生成的默认索引字段，无需手动添加索引即可直接使用：
+
+- `metadata.name`：自定义模型的名称对应的索引名，使用示例： `Sort.Order.asc("metadata.name")`。
+- `metadata.creationTimestamp`：自定义模型的创建时间对应的索引名。
+- `metadata.deletionTimestamp`：自定义模型的删除时间对应的索引名。
+- `metadata.labels`：自定义模型的标签对应的索引名，可用于 LabelSelector 查询。
+
+:::
+
 可以通过 `and` 和 `or` 方法组合和嵌套查询条件：
 
 ```java
