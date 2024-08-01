@@ -27,11 +27,11 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.17",
+          lastVersion: "2.18",
           versions: {
             current: {
-              label: "2.18.0-SNAPSHOT",
-              path: "2.18.0-SNAPSHOT",
+              label: "2.19.0-SNAPSHOT",
+              path: "2.19.0-SNAPSHOT",
             },
           },
         },
@@ -234,16 +234,17 @@ const config = {
           },
         ],
         createRedirects(existingPath) {
-          if (existingPath.startsWith("/2.18.0-SNAPSHOT/")) {
+          if (existingPath.startsWith("/2.19.0-SNAPSHOT/")) {
             return [
-              existingPath.replace("/2.18.0-SNAPSHOT/", "/2.10.0-SNAPSHOT/"),
-              existingPath.replace("/2.18.0-SNAPSHOT/", "/2.11.0-SNAPSHOT/"),
-              existingPath.replace("/2.18.0-SNAPSHOT/", "/2.12.0-SNAPSHOT/"),
-              existingPath.replace("/2.18.0-SNAPSHOT/", "/2.13.0-SNAPSHOT/"),
-              existingPath.replace("/2.18.0-SNAPSHOT/", "/2.14.0-SNAPSHOT/"),
-              existingPath.replace("/2.18.0-SNAPSHOT/", "/2.15.0-SNAPSHOT/"),
-              existingPath.replace("/2.18.0-SNAPSHOT/", "/2.16.0-SNAPSHOT/"),
-              existingPath.replace("/2.18.0-SNAPSHOT/", "/2.17.0-SNAPSHOT/"),
+              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.10.0-SNAPSHOT/"),
+              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.11.0-SNAPSHOT/"),
+              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.12.0-SNAPSHOT/"),
+              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.13.0-SNAPSHOT/"),
+              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.14.0-SNAPSHOT/"),
+              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.15.0-SNAPSHOT/"),
+              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.16.0-SNAPSHOT/"),
+              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.17.0-SNAPSHOT/"),
+              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.18.0-SNAPSHOT/"),
             ];
           }
           return undefined;
