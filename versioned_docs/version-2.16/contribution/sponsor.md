@@ -15,7 +15,7 @@ description: 如果 Halo 对你有帮助，不妨赞助我们
 
 ### 资金赞助
 
-- 爱发电：<https://afdian.net/a/halo-dev>
+- 爱发电：<https://afdian.com/a/halo-dev>
 
 ### 通过我们的推广链接购买服务器
 
