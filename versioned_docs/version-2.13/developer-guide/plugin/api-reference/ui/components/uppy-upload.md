@@ -27,7 +27,7 @@ const groupName = ref('my-test-group')
 | 属性名              | 类型                                                           | 默认值    | 描述                           |
 |---------------------|----------------------------------------------------------------|-----------|------------------------------|
 | `restrictions`      | Restrictions                                                   | undefined | 可选，指定任何限制。             |
-| `meta`              | Record<string, unknown>                                        | undefined | 可选，要发送的额外元数据。       |
+| `meta`              | Record\<string, unknown\>                                        | undefined | 可选，要发送的额外元数据。       |
 | `autoProceed`       | boolean                                                        | false     | 可选，在某些操作后自动继续。     |
 | `allowedMetaFields` | string[]                                                       | undefined | 可选，指定允许的元数据字段。     |
 | `endpoint`          | string                                                         | 无，必填   | 数据发送到的端点URL。           |

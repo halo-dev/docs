@@ -111,4 +111,4 @@ const stripHtmlTags = (str: string) => {
 
 ## 实现案例
 
-- <https://github.com/halo-sigs/plugin-moments>
+- [https://github.com/halo-sigs/plugin-moments](https://github.com/halo-sigs/plugin-moments)

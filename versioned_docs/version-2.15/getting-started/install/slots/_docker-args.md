@@ -16,8 +16,8 @@
 | MariaDB     | `r2dbc:pool:mysql://{HOST}:{PORT}/{DATABASE}`                                    | mysql                      |
 | H2 Database | `r2dbc:h2:file:///${halo.work-dir}/db/halo-next?MODE=MySQL&DB_CLOSE_ON_EXIT=FALSE` | h2                         |
 
-:::caution
+:::warning
 由于 MariaDB 数据库驱动目前存在问题，使用 MariaDB 数据库时也选择使用 MySQL 驱动，即链接地址格式为 `r2dbc:pool:mysql://{HOST}:{PORT}/{DATABASE}`。
 
-详情可见：<https://github.com/halo-dev/halo/issues/5534>
+详情可见：[https://github.com/halo-dev/halo/issues/5534](https://github.com/halo-dev/halo/issues/5534)
 :::

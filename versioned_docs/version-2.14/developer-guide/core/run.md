@@ -126,6 +126,6 @@ halo:
     ```
 
 6. 最终提供以下访问地址：
-   1. 网站首页：<http://localhost:8090>
-   2. Console 控制台：<http://localhost:8090/console>
-   3. UC 个人中心：<http://localhost:8090/uc>
+   1. 网站首页：[http://localhost:8090](http://localhost:8090)
+   2. Console 控制台：[http://localhost:8090/console](http://localhost:8090/console)
+   3. UC 个人中心：[http://localhost:8090/uc](http://localhost:8090/uc)

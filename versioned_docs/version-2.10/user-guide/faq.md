@@ -21,41 +21,41 @@ docker logs halo | grep 'Generated random password:' | tail -1
 
 1. 停止 Halo 服务
 
-  ```bash
-  docker stop halo
-  ```
+   ```bash
+   docker stop halo
+   ```
 
 2. 连接 Halo 使用的数据库，删除管理员的用户记录（配置文件中的 `halo.security.initializer.superadminusername`），这里以 `admin` 为例
 
-  以容器化部署的 PostgreSQL 为例，假设容器名称为 `halo_db`。
+   以容器化部署的 PostgreSQL 为例，假设容器名称为 `halo_db`。
 
-  ```bash
-  # 进入 psql 命令行
-  docker exec -it halo_db psql halo
+   ```bash
+   # 进入 psql 命令行
+   docker exec -it halo_db psql halo
 
-  # 执行下面的 SQL 删除 admin 用户记录
-  delete from extensions where name like '/registry/users/admin';
-  ```
+   # 执行下面的 SQL 删除 admin 用户记录
+   delete from extensions where name like '/registry/users/admin';
+   ```
 
-  :::info
-  其他类型的数据库处理方式类似，先通过命令行或数据库连接工具连接到数据库后，再执行上面的 `delete` SQL 语句。
-  :::
+   :::info
+   其他类型的数据库处理方式类似，先通过命令行或数据库连接工具连接到数据库后，再执行上面的 `delete` SQL 语句。
+   :::
 
 3. 重新启动 Halo 服务
 
-  ```bash
-  docker start halo
-  ```
+   ```bash
+   docker start halo
+   ```
 
 4. 登录 Halo 控制台
 
-  如果部署时通过 `halo.security.initializer.superadminusername` 和 `halo.security.initializer.superadminpassword` 参数指定了初始化用户名和密码，使用该用户名密码登录控制台。
-  
-  如果未指定该配置，则默认用户名为 `admin`，默认密码将打印在 Halo 容器日志中，可以通过如下命令查看。
+   如果部署时通过 `halo.security.initializer.superadminusername` 和 `halo.security.initializer.superadminpassword` 参数指定了初始化用户名和密码，使用该用户名密码登录控制台。
 
-  ```bash
-  docker logs halo | grep 'Generated random password:' | tail -1
-  ```
+   如果未指定该配置，则默认用户名为 `admin`，默认密码将打印在 Halo 容器日志中，可以通过如下命令查看。
+
+   ```bash
+   docker logs halo | grep 'Generated random password:' | tail -1
+   ```
 
 ### 附件上传提示 `413 Request Entity Too Large` 如何解决？
 
@@ -116,12 +116,12 @@ server {
 1. 可以在 Console 端的概览页面下载最近的日志文件。
 2. 使用 docker logs 命令进行查看。
 
-  ```bash
-  # '-f' 滚动更新日志
-  # '-n 200' 从倒数第200行开始查看
-  # 更多帮助可以查看 'docker logs --help'
-  docker logs -f halo -n 200
-  ```
+   ```bash
+   # '-f' 滚动更新日志
+   # '-n 200' 从倒数第200行开始查看
+   # 更多帮助可以查看 'docker logs --help'
+   docker logs -f halo -n 200
+   ```
 
 ### 前台样式丢失，如何解决？
 
@@ -130,10 +130,10 @@ server {
 1. 后台设置的 `博客地址` 与实际访问地址不一致。也可能是开启了 https 之后，无法正常加载 http 资源，将 `博客地址` 改为 https 协议即可。
 2. Nginx 配置了静态资源缓存，但没有设置 `proxy_pass`，参考如下：
 
-    ```nginx
-    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {
-        proxy_pass http://halo;
-        expires 30d;
-        access_log off;
-    }
-    ```
+   ```nginx
+   location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {
+     proxy_pass http://halo;
+     expires 30d;
+     access_log off;
+   }
+   ```

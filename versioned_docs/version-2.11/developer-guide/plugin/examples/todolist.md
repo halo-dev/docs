@@ -11,24 +11,24 @@ description: 这个例子展示了如何开发 Todo List 插件
 
 1. 修改 `build.gradle` 中的 `group` 为你自己的，如:
 
-  ```groovy
-  group = 'run.halo.tutorial'
-  ```
+   ```groovy
+   group = 'run.halo.tutorial'
+   ```
 
 2. 修改 `settings.gradle` 中的 `rootProject.name`
 
-  ```groovy
-  rootProject.name = 'halo-plugin-todolist'
-  ```
+   ```groovy
+   rootProject.name = 'halo-plugin-todolist'
+   ```
 
 3. 修改插件的描述文件 `plugin.yaml`，它位于 `src/main/resources/plugin.yaml`。示例：
 
-  ```yaml
-  apiVersion: plugin.halo.run/v1alpha1
-  kind: Plugin
-  metadata:
+   ```yaml
+   apiVersion: plugin.halo.run/v1alpha1
+   kind: Plugin
+   metadata:
     name: todolist
-  spec:
+   spec:
     enabled: true
     requires: ">=2.0.0"
     author:
@@ -40,7 +40,7 @@ description: 这个例子展示了如何开发 Todo List 插件
     description: "插件开发的 hello world，用于学习如何开发一个简单的 Halo 插件"
     license:
       - name: "MIT"
-  ```
+   ```
 
 参考链接：
 
@@ -82,9 +82,9 @@ description: 这个例子展示了如何开发 Todo List 插件
 
 2. 然后在项目目录执行命令
 
-  ```shell
-  ./gradlew build 
-  ```
+   ```shell
+   ./gradlew build 
+   ```
 
 3. 使用 `IntelliJ IDEA` 打开 Halo，参考 [Halo 开发环境运行](../../core/run.md) 及 [插件入门](../hello-world.md) 配置插件的运行模式和路径：
 

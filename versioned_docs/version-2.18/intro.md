@@ -37,12 +37,12 @@ slug: /
 docker run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.18
 ```
 
-以上仅作为体验使用，详细部署文档请查阅：<https://docs.halo.run/getting-started/install/docker-compose>
+以上仅作为体验使用，详细部署文档请查阅：[https://docs.halo.run/getting-started/install/docker-compose](https://docs.halo.run/getting-started/install/docker-compose)
 
 ## 在线体验
 
-- 环境地址：<https://demo.halo.run>
-- 后台地址：<https://demo.halo.run/console>
+- 环境地址：[https://demo.halo.run](https://demo.halo.run)
+- 后台地址：[https://demo.halo.run/console](https://demo.halo.run/console)
 - 用户名：`demo`
 - 密码：`P@ssw0rd123..`
 

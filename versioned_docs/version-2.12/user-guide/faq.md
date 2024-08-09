@@ -111,12 +111,12 @@ server {
 1. 可以在 Console 端的概览页面下载最近的日志文件。
 2. 使用 docker logs 命令进行查看。
 
-  ```bash
-  # '-f' 滚动更新日志
-  # '-n 200' 从倒数第200行开始查看
-  # 更多帮助可以查看 'docker logs --help'
-  docker logs -f halo -n 200
-  ```
+   ```bash
+   # '-f' 滚动更新日志
+   # '-n 200' 从倒数第200行开始查看
+   # 更多帮助可以查看 'docker logs --help'
+   docker logs -f halo -n 200
+   ```
 
 ### 前台样式丢失，如何解决？
 
@@ -125,10 +125,10 @@ server {
 1. 后台设置的 `博客地址` 与实际访问地址不一致。也可能是开启了 https 之后，无法正常加载 http 资源，将 `博客地址` 改为 https 协议即可。
 2. Nginx 配置了静态资源缓存，但没有设置 `proxy_pass`，参考如下：
 
-    ```nginx
-    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {
-        proxy_pass http://halo;
-        expires 30d;
-        access_log off;
-    }
-    ```
+   ```nginx
+   location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {
+     proxy_pass http://halo;
+     expires 30d;
+     access_log off;
+   }
+   ```

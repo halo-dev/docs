@@ -143,4 +143,4 @@ const handleSelect = async (url: string) => {
 
 ## 实现案例
 
-- <https://github.com/halo-sigs/plugin-unsplash>
+- [https://github.com/halo-sigs/plugin-unsplash](https://github.com/halo-sigs/plugin-unsplash)

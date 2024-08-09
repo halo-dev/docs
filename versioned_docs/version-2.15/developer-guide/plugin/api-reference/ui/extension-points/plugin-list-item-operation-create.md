@@ -42,7 +42,7 @@ import OperationItem from "./interface/OperationItem.md";
 
 ## 实现案例
 
-- <https://github.com/halo-dev/plugin-app-store>
+- [https://github.com/halo-dev/plugin-app-store](https://github.com/halo-dev/plugin-app-store)
 
 ## 类型定义
 

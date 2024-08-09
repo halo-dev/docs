@@ -177,10 +177,10 @@ code {
 </style>
 ```
 
-> 来源：<https://vuejs.org/examples/#markdown>
+> 来源：[https://vuejs.org/examples/#markdown](https://vuejs.org/examples/#markdown)
 
 ## 实现案例
 
-- <https://github.com/halo-sigs/plugin-stackedit>
-- <https://github.com/halo-sigs/plugin-bytemd>
-- <https://github.com/justice2001/halo-plugin-vditor>
+- [https://github.com/halo-sigs/plugin-stackedit](https://github.com/halo-sigs/plugin-stackedit)
+- [https://github.com/halo-sigs/plugin-bytemd](https://github.com/halo-sigs/plugin-bytemd)
+- [https://github.com/justice2001/halo-plugin-vditor](https://github.com/justice2001/halo-plugin-vditor)

@@ -37,7 +37,7 @@ export interface PluginTab {
 
 其中，`component` 组件可以注入（inject）以下属性：
 
-- `plugin`：当前插件对象，类型为 Ref<[Plugin](#plugin)>。
+- `plugin`：当前插件对象，类型为 Ref\<[Plugin](#plugin)\>。
 
 ## 示例
 
@@ -77,7 +77,7 @@ const plugin = inject<Ref<Plugin | undefined>>("plugin");
 
 ## 实现案例
 
-- <https://github.com/halo-dev/plugin-app-store>
+- [https://github.com/halo-dev/plugin-app-store](https://github.com/halo-dev/plugin-app-store)
 
 ## 类型定义
 

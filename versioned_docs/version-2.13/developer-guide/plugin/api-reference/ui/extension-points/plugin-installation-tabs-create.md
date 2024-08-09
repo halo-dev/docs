@@ -33,7 +33,7 @@ export interface PluginInstallationTab {
   id: string;                       // 选项卡 ID
   label: string;                    // 选项卡标题
   component: Raw<Component>;        // 选项卡面板组件
-  props?: Record<string, unknown>;  // 选项卡面板组件属性
+  props?: Record\<string, unknown\>;  // 选项卡面板组件属性
   permissions?: string[];           // 选项卡 UI 权限
   priority: number;                 // 选项卡排序优先级
 }
@@ -41,4 +41,4 @@ export interface PluginInstallationTab {
 
 ## 实现案例
 
-- <https://github.com/halo-dev/plugin-app-store>
+- [https://github.com/halo-dev/plugin-app-store](https://github.com/halo-dev/plugin-app-store)

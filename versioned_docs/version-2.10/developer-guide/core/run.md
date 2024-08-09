@@ -34,7 +34,7 @@ git clone git@github.com:halo-dev/halo.git
 :::warning
 从 2.4.0 开始，Console 项目已经合并到 Halo 主项目，所以不再需要单独克隆 Console 的项目仓库。
 
-详情可查阅：<https://github.com/halo-dev/halo/issues/3393>
+详情可查阅：[https://github.com/halo-dev/halo/issues/3393](https://github.com/halo-dev/halo/issues/3393)
 :::
 
 ## 运行 Console

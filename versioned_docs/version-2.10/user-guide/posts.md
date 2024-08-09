@@ -21,8 +21,8 @@ description: 文章管理相关功能说明
 :::info
 Halo 支持通过插件来拓展文章编辑器，目前 Halo 官方维护了另外两款编辑器插件，可以按需安装使用：
 
-1. StackEdit：<https://halo.run/store/apps/app-hDXMG>
-2. ByteMD：<https://halo.run/store/apps/app-HTyhC>
+1. StackEdit：[https://halo.run/store/apps/app-hDXMG](https://halo.run/store/apps/app-hDXMG)
+2. ByteMD：[https://halo.run/store/apps/app-HTyhC](https://halo.run/store/apps/app-HTyhC)
 :::
 
 ## 文章设置

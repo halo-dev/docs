@@ -42,4 +42,4 @@ spec:
 - `spec.homepage`：通常为插件的 GitHub 仓库链接，或可联系到插件作者或插件官网或帮助中心链接等。
 - `spec.displayName`：插件的显示名称，它通常是以少数几个字来概括插件的用途。
 - `spec.description`：插件描述，用一段话来介绍插件的用途。
-- `spec.license`：插件使用的软件协议，参考：<https://en.wikipedia.org/wiki/Software_license>。
+- `spec.license`：插件使用的软件协议，参考：[https://en.wikipedia.org/wiki/Software_license](https://en.wikipedia.org/wiki/Software_license)。

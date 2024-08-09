@@ -36,7 +36,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 
 ## 环境搭建
 
-- Podman 安装文档：<https://podman.io/docs/installation>
+- Podman 安装文档：[https://podman.io/docs/installation](https://podman.io/docs/installation)
 
 :::tip
 我们推荐您先阅读 Podman 官方文档对 Podman 有了相关了解后，再考虑通过Linux包管理系统安装 Podman 或者使用文档中指定的方式安装 。
@@ -66,50 +66,50 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 
 1. 创建容器
 
-    ```bash
-    mkdir -p ~/.halo2
-    podman run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.13
-    ```
+   ```bash
+   mkdir -p ~/.halo2
+   podman run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.13
+   ```
 
-    :::info
-    注意：此命令默认使用自带的 H2 Database 数据库。如需使用 PostgreSQL，请参考：[使用 Docker Compose 部署](./docker-compose)
-    :::
+   :::info
+   注意：此命令默认使用自带的 H2 Database 数据库。如需使用 PostgreSQL，请参考：[使用 Docker Compose 部署](./docker-compose)
+   :::
 
-    - **-it**：开启输入功能并连接伪终端
-    - **-d**：后台运行容器
-    - **--name**：为容器指定一个名称
-    - **-p**：端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
-    - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/.halo2`，后者不能修改。
+   - **-it**：开启输入功能并连接伪终端
+   - **-d**：后台运行容器
+   - **--name**：为容器指定一个名称
+   - **-p**：端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
+   - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/.halo2`，后者不能修改。
 
-    运行参数详解：
+   运行参数详解：
 
-    <DockerArgs />
+   <DockerArgs />
 
-1. 用浏览器访问 `/console` 即可进入 Halo 管理页面，首次启动会进入初始化页面。
+2. 用浏览器访问 `/console` 即可进入 Halo 管理页面，首次启动会进入初始化页面。
 
-    :::tip
-    如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
-    :::
+   :::tip
+   如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
+   :::
 
 ## 升级版本
 
 1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份。
 2. 拉取新版本镜像
 
-  ```bash
-  podman pull halohub/halo:2.13
-  ```
+   ```bash
+   podman pull halohub/halo:2.13
+   ```
 
 3. 停止运行中的容器
 
-  ```bash
-  podman stop halo
-  podman rm halo
-  ```
+   ```bash
+   podman stop halo
+   podman rm halo
+   ```
 
 4. 更新 Halo
 
-  修改版本号后，按照最初安装的方式，重新创建容器即可。
+   修改版本号后，按照最初安装的方式，重新创建容器即可。
 
    ```bash
    podman run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.13
@@ -124,50 +124,50 @@ Podman 没有和 Docker 类似的管理进程，在低配置的主机上更友�
 
 下面是一个使用 Podstgresql 数据库的示例:
 
-  ```bash
-  mkdir -p /opt/podman-data/halo
-  mkdir -p /etc/containers/systemd
-  vim /etc/containers/systemd/halo.container
-  ```
+```bash
+mkdir -p /opt/podman-data/halo
+mkdir -p /etc/containers/systemd
+vim /etc/containers/systemd/halo.container
+```
 
-  ```conf
-  [Unit]
-  Description=The halo container
-  Wants=network-online.target
-  After=network-online.target
+```conf
+[Unit]
+Description=The halo container
+Wants=network-online.target
+After=network-online.target
 
-  [Container]
-  AutoUpdate=registry
-  ContainerName=halo
-  User=60000
-  Group=60000
-  UserNS=keep-id:uid=60000,gid=60000
-  Environment=JVM_OPTS="-Xmx512m -Xms256m"
-  Environment=HALO_WORK_DIR="/.halo"
-  Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"
-  Environment=TZ=Asia/Shanghai
-  Volume=/opt/podman-data/halo:/.halo
-  PublishPort=127.0.0.1:8090:8090
-  Image=ghcr.io/halo-dev/halo:2.13
-  Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
+[Container]
+AutoUpdate=registry
+ContainerName=halo
+User=60000
+Group=60000
+UserNS=keep-id:uid=60000,gid=60000
+Environment=JVM_OPTS="-Xmx512m -Xms256m"
+Environment=HALO_WORK_DIR="/.halo"
+Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"
+Environment=TZ=Asia/Shanghai
+Volume=/opt/podman-data/halo:/.halo
+PublishPort=127.0.0.1:8090:8090
+Image=ghcr.io/halo-dev/halo:2.13
+Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
 
-  [Service]
-  Restart=always
-  RestartSec=30s
-  StartLimitInterval=30
-  TimeoutStartSec=900
-  TimeoutStopSec=70
+[Service]
+Restart=always
+RestartSec=30s
+StartLimitInterval=30
+TimeoutStartSec=900
+TimeoutStopSec=70
 
-  [Install]
-  WantedBy=multi-user.target default.target
-  ```
+[Install]
+WantedBy=multi-user.target default.target
+```
 
-  ```bash
-  systemctl daemon-reload
-  systemctl start halo
-  # 只需要systemctl start halo.
-  # 之后重启会自动启动不需要enable服务.
-  ```
+```bash
+systemctl daemon-reload
+systemctl start halo
+# 只需要systemctl start halo.
+# 之后重启会自动启动不需要enable服务.
+```
 
 Podman Quadlet 解析:
 
@@ -202,34 +202,34 @@ Podman Quadlet 解析:
 使用默认的 root 用户运行时无需定义 `User=60000 Group=60000 UserNS=keep-id:uid=60000,gid=60000` 与 `Environment=HALO_WORK_DIR="/.halo"` `Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"`，
 示例:
 
-  ```bash
-  mkdir -p /opt/podman-data/halo
-  mkdir -p /etc/containers/systemd
-  vim /etc/containers/systemd/halo.container
-  ```
+```bash
+mkdir -p /opt/podman-data/halo
+mkdir -p /etc/containers/systemd
+vim /etc/containers/systemd/halo.container
+```
 
-  ```conf
-  # /etc/containers/systemd/halo.container
-  [Unit]
-  Description=The halo container
-  Wants=network-online.target
-  After=network-online.target
+```conf
+# /etc/containers/systemd/halo.container
+[Unit]
+Description=The halo container
+Wants=network-online.target
+After=network-online.target
 
-  [Container]
-  AutoUpdate=registry
-  ContainerName=halo
-  Volume=/opt/podman-data/halo:/root/.halo
-  PublishPort=127.0.0.1:8090:8090
-  Image=ghcr.io/halo-dev/halo:2.13
-  Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
+[Container]
+AutoUpdate=registry
+ContainerName=halo
+Volume=/opt/podman-data/halo:/root/.halo
+PublishPort=127.0.0.1:8090:8090
+Image=ghcr.io/halo-dev/halo:2.13
+Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
 
-  [Service]
-  Restart=always
-  RestartSec=30s
-  StartLimitInterval=30
-  TimeoutStartSec=900
-  TimeoutStopSec=70
+[Service]
+Restart=always
+RestartSec=30s
+StartLimitInterval=30
+TimeoutStartSec=900
+TimeoutStopSec=70
 
-  [Install]
-  WantedBy=multi-user.target default.target
-  ```
+[Install]
+WantedBy=multi-user.target default.target
+```

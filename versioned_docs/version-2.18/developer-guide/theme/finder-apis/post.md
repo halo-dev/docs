@@ -115,7 +115,7 @@ postFinder.listAll();
 
 ### 返回值
 
-List<[#ListedPostVo](#listedpostvo)>
+List\<[#ListedPostVo](#listedpostvo)\>
 
 ### 示例
 
@@ -144,7 +144,7 @@ postFinder.list(page, size);
 
 ### 返回值
 
-[#ListResult<ListedPostVo\>](#listresultlistedpostvo)
+[#ListResult\<ListedPostVo\>](#listresultlistedpostvo)
 
 ### 示例
 
@@ -174,7 +174,7 @@ postFinder.listByCategory(page, size, categoryName);
 
 ### 返回值
 
-[#ListResult<ListedPostVo\>](#listresultlistedpostvo)
+[#ListResult\<ListedPostVo\>](#listresultlistedpostvo)
 
 ### 示例
 
@@ -204,7 +204,7 @@ postFinder.listByTag(page, size, tag);
 
 ### 返回值
 
-[#ListResult<ListedPostVo\>](#listresultlistedpostvo)
+[#ListResult\<ListedPostVo\>](#listresultlistedpostvo)
 
 ### 示例
 
@@ -234,7 +234,7 @@ postFinder.listByOwner(page, size, owner);
 
 ### 返回值
 
-[#ListResult<ListedPostVo\>](#listresultlistedpostvo)
+[#ListResult\<ListedPostVo\>](#listresultlistedpostvo)
 
 ### 示例
 
@@ -263,7 +263,7 @@ postFinder.archives(page, size);
 
 ### 返回值
 
-[#ListResult<PostArchiveVo\>](#listresultpostarchivevo)
+[#ListResult\<PostArchiveVo\>](#listresultpostarchivevo)
 
 ### 示例
 
@@ -301,7 +301,7 @@ postFinder.archives(page, size, year);
 
 ### 返回值
 
-[#ListResult<PostArchiveVo\>](#listresultpostarchivevo)
+[#ListResult\<PostArchiveVo\>](#listresultpostarchivevo)
 
 ### 示例
 
@@ -340,7 +340,7 @@ postFinder.archives(page, size, year, month);
 
 ### 返回值
 
-[#ListResult<PostArchiveVo\>](#listresultpostarchivevo)
+[#ListResult\<PostArchiveVo\>](#listresultpostarchivevo)
 
 ### 示例
 
@@ -401,13 +401,13 @@ postFinder.archives(page, size, year, month);
 
 ### ListedPostVo
 
-<ListedPostVo />
+\<ListedPostVo \/\>
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)
 - [#ContributorVo](#contributorvo)
 
-### ListResult<ListedPostVo\>
+### ListResult\<ListedPostVo\>
 
 ```json title="ListResult<ListedPostVo>"
 {
@@ -441,7 +441,7 @@ postFinder.archives(page, size, year, month);
 
 - [#ListedPostVo](#listedpostvo)
 
-### ListResult<PostArchiveVo\>
+### ListResult\<PostArchiveVo\>
 
 ```json title="ListResult<PostArchiveVo>"
 {

@@ -26,7 +26,7 @@ description: 使用 Traefik 管理 Halo 服务的反向代理
 3. 开启 Traefik Dashboard，建议使用二级域名的形式（示例：`traefik.yourdomain.com`）。[文档](https://doc.traefik.io/traefik/operations/dashboard/#dashboard-router-rule)
 4. 开启证书自动生成，通过 ACME 自动管理 TLS 证书的申请、校验与续期。[文档](https://doc.traefik.io/traefik/https/acme/)
 
-:::caution
+:::warning
 ACME 证书 (`/acme.json`) 一定要 [持久化](https://doc.traefik.io/traefik/https/acme/#storage)，否则每次重启 Traefik 服务，都会去申请签发证书。可能会触发 Let's
 Encrypt 的 [速率限制](https://letsencrypt.org/zh-cn/docs/rate-limits/)，导致签名的域名一段时间内无法签发新的证书。
 :::

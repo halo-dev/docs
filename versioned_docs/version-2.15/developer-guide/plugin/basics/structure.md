@@ -53,7 +53,7 @@ description: 了解插件项目的文件结构
 - `resources` 下的 `plugin.yaml` 为插件的资源描述文件，它是必须的，它描述了插件的基本信息，包括插件的名称、版本、作者、描述、依赖等。
 - `resources/console` 下的两个文件 `main.js` 和 `style.css` 是前端插件部分打包时输出的产物。一个插件可以没有前端部分，因此 `resources/console` 同样可以不存在。
 
-:::caution 注意
+:::warning 注意
 从 2.11 开始，Halo 支持了 UC 个人中心，且个人中心和 Console 的插件机制共享，所以为了避免歧义，`resources/console` 在后续版本会被重命名为 `resources/ui`，但同时也会兼容 `resources/console`。
 :::
 

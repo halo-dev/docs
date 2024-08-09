@@ -85,7 +85,7 @@ export default definePlugin({
 
 ## 实现案例
 
-- <https://github.com/halo-dev/plugin-s3>
+- [https://github.com/halo-dev/plugin-s3](https://github.com/halo-dev/plugin-s3)
 
 ## 类型定义
 

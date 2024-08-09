@@ -51,7 +51,7 @@ spec:
 - `spec.homepage`：通常为插件的 GitHub 仓库链接，或可联系到插件作者或插件官网或帮助中心链接等。
 - `spec.displayName`：插件的显示名称，它通常是以少数几个字来概括插件的用途。
 - `spec.description`：插件描述，用一段简短的说明来介绍插件的用途。
-- `spec.license`：插件使用的软件协议，参考：<https://en.wikipedia.org/wiki/Software_license>。
+- `spec.license`：插件使用的软件协议，参考：[https://en.wikipedia.org/wiki/Software_license](https://en.wikipedia.org/wiki/Software_license)。
 
 Halo 的插件可以在两种模式下运行：`development` 和 `deployment`。
 `deployment`（默认）模式是插件创建的标准工作流程：为每个插件创建一个新的 Gradle 项目，编码插件（声明新的扩展点和/或添加新的扩展），将插件打包成一个 JAR 文件，部署 JAR 文件到 Halo。

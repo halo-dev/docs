@@ -12,8 +12,8 @@ Halo 默认提供了本地的存储策略类型，你还可以通过安装插件
 :::info
 目前 Halo 官方维护了两个存储策略插件，可以根据需要选择安装：
 
-1. 阿里云 OSS：<https://halo.run/store/apps/app-wCJCD>
-2. Amazon S3 协议（主流云存储厂商均支持）：<https://halo.run/store/apps/app-Qxhpp>
+1. 阿里云 OSS：[https://halo.run/store/apps/app-wCJCD](https://halo.run/store/apps/app-wCJCD)
+2. Amazon S3 协议（主流云存储厂商均支持）：[https://halo.run/store/apps/app-Qxhpp](https://halo.run/store/apps/app-Qxhpp)
 :::
 
 你可以点击附件页面右上角的 `存储策略` 按钮对存储策略进行管理。

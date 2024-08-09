@@ -9,7 +9,7 @@ description: 问题反馈渠道及指南
 
 ## GitHub Issues
 
-链接：<https://github.com/halo-dev/halo/issues>
+链接：[https://github.com/halo-dev/halo/issues](https://github.com/halo-dev/halo/issues)
 
 如果你在使用过程中，遇到了一些 bug 或者需要添加某些新特性，请尽量在 GitHub Issues 进行反馈，这非常有助于我们跟踪解决此问题，您也可以很方便的接收到处理状态。
 
@@ -23,6 +23,6 @@ description: 问题反馈渠道及指南
 
 ## Halo 官方社区
 
-链接：<https://bbs.halo.run>
+链接：[https://bbs.halo.run](https://bbs.halo.run)
 
 此平台主要目的用于与其他 Halo 用户进行交流。但如果您对 GitHub 不是很熟悉或者没有账号，您也可以在此平台进行反馈。

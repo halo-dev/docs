@@ -60,7 +60,7 @@ description: 使用腾讯云轻量应用服务器的应用模板部署 Halo
 
 ![添加域名](/img/install/tencent-cloud-lighthouse/domain.png)
 
-除此之外，在绑定域名之后，还需要修改一下 Halo 的 **外部访问地址** 参数为实际的网站访问地址（如：<https://demo.halo.run>），否则 Halo 的部分功能或者插件可能会出现使用问题，只需要按照下图所示修改应用的参数然后点击确认即可。
+除此之外，在绑定域名之后，还需要修改一下 Halo 的 **外部访问地址** 参数为实际的网站访问地址（如：[https://demo.halo.run](https://demo.halo.run)），否则 Halo 的部分功能或者插件可能会出现使用问题，只需要按照下图所示修改应用的参数然后点击确认即可。
 
 ![修改外部访问地址](/img/install/tencent-cloud-lighthouse/external-url.png)
 

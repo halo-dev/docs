@@ -53,7 +53,7 @@ commentFinder.list(ref,page,size)
 
 ### 返回值
 
-[#ListResult<CommentVo\>](#listresultcommentvo)
+[#ListResult\<CommentVo\>](#listresultcommentvo)
 
 ### 示例
 
@@ -84,7 +84,7 @@ commentFinder.listReply(commentName,page,size)
 
 ### 返回值
 
-[#ListResult<ReplyVo\>](#listresultreplyvo)
+[#ListResult\<ReplyVo\>](#listresultreplyvo)
 
 ### 示例
 
@@ -103,7 +103,7 @@ commentFinder.listReply(commentName,page,size)
 
 <CommentVo />
 
-### ListResult<CommentVo\>
+### ListResult\<CommentVo\>
 
 ```json title="ListResult<CommentVo>"
 {
@@ -125,7 +125,7 @@ commentFinder.listReply(commentName,page,size)
 
 <ReplyVo />
 
-### ListResult<ReplyVo\>
+### ListResult\<ReplyVo\>
 
 ```json title="ListResult<ReplyVo>"
 {
