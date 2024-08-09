@@ -9,12 +9,12 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 
 1. 打开 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter)。
 
-  > 这是一个插件的初始模板，你可以基于它来开发自己的插件。
+   > 这是一个插件的初始模板，你可以基于它来开发自己的插件。
 
 2. 点击 `Use this template` -> `Create a new repository`。
 3. 如图所示填写仓库名后点击 `Create repository from template`。
 
-  ![create-repository-for-hello-world-plugin](/img/create-repository-for-hello-world-plugin.png)
+   ![create-repository-for-hello-world-plugin](/img/create-repository-for-hello-world-plugin.png)
 
 你现在已经基于 Halo 插件模板创建了自己的存储库。接下来，你需要将它克隆到你的计算机上并使用 `IntelliJ IDEA` 打开它。
 
