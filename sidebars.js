@@ -235,6 +235,8 @@ module.exports = {
                     "developer-guide/plugin/api-reference/ui/extension-points/plugin-installation-tabs-create",
                     "developer-guide/plugin/api-reference/ui/extension-points/theme-list-tabs-create",
                     "developer-guide/plugin/api-reference/ui/extension-points/post-list-item-operation-create",
+                    "developer-guide/plugin/api-reference/ui/extension-points/comment-list-item-operation-create",
+                    "developer-guide/plugin/api-reference/ui/extension-points/reply-list-item-operation-create",
                     "developer-guide/plugin/api-reference/ui/extension-points/plugin-list-item-operation-create",
                     "developer-guide/plugin/api-reference/ui/extension-points/backup-list-item-operation-create",
                     "developer-guide/plugin/api-reference/ui/extension-points/attachment-list-item-operation-create",
