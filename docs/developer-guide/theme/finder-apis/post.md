@@ -234,7 +234,7 @@ postFinder.listByOwner(page, size, owner);
 
 ### 返回值
 
-[#ListResult<ListedPostVo\>](#listresultlistedpostvo)
+[#ListResult\<ListedPostVo\>](#listresultlistedpostvo)
 
 ### 示例
 

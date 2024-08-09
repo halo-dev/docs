@@ -215,6 +215,7 @@ postFinder.listByTag(page, size, tag);
   </li>
 </ul>
 ```
+
 ## listByOwner(page,size,owner)
 
 ```js
@@ -233,7 +234,7 @@ postFinder.listByOwner(page, size, owner);
 
 ### 返回值
 
-[#ListResult<ListedPostVo\>](#listresultlistedpostvo)
+[#ListResult\<ListedPostVo\>](#listresultlistedpostvo)
 
 ### 示例
 
