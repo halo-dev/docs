@@ -41,49 +41,49 @@ import DockerArgs from "./slots/_docker-args.md"
 
 1. 创建容器
 
-    ```bash
-    docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.14
-    ```
+   ```bash
+   docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.14
+   ```
 
-    :::info
-    注意：此命令默认使用自带的 H2 Database 数据库。如需使用 PostgreSQL，请参考：[使用 Docker Compose 部署](./docker-compose)
-    :::
+   :::info
+   注意：此命令默认使用自带的 H2 Database 数据库。如需使用 PostgreSQL，请参考：[使用 Docker Compose 部署](./docker-compose)
+   :::
 
-    - **-it**：开启输入功能并连接伪终端
-    - **-d**：后台运行容器
-    - **--name**：为容器指定一个名称
-    - **-p**：端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
-    - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/.halo2`，后者不能修改。
+   - **-it**：开启输入功能并连接伪终端
+   - **-d**：后台运行容器
+   - **--name**：为容器指定一个名称
+   - **-p**：端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
+   - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/.halo2`，后者不能修改。
 
-    运行参数详解：
+   运行参数详解：
 
-    <DockerArgs />
+   <DockerArgs />
 
-1. 用浏览器访问 `/console` 即可进入 Halo 管理页面，首次启动会进入初始化页面。
+2. 用浏览器访问 `/console` 即可进入 Halo 管理页面，首次启动会进入初始化页面。
 
-    :::tip
-    如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
-    :::
+   :::tip
+   如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
+   :::
 
 ## 升级版本
 
 1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份。
 2. 拉取新版本镜像
 
-  ```bash
-  docker pull halohub/halo:2.14
-  ```
+   ```bash
+   docker pull halohub/halo:2.14
+   ```
 
 3. 停止运行中的容器
 
-  ```bash
-  docker stop halo
-  docker rm halo
-  ```
+   ```bash
+   docker stop halo
+   docker rm halo
+   ```
 
 4. 更新 Halo
 
-  修改版本号后，按照最初安装的方式，重新创建容器即可。
+   修改版本号后，按照最初安装的方式，重新创建容器即可。
 
     ```bash
     docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.14
