@@ -16,7 +16,7 @@ import CategoryTreeVo from "../vo/_CategoryTreeVo.md"
 
 #### 变量类型
 
-List<[#CategoryTreeVo](#categorytreevo)>
+List\<[#CategoryTreeVo](#categorytreevo)\>
 
 #### 示例
 

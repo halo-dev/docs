@@ -18,7 +18,7 @@ export default definePlugin({
 ```
 
 :::info 提示
-AnyExtension 类型来自 [Tiptap](https://github.com/ueberdosis/tiptap)，这意味着 Halo 默认编辑器的扩展点返回类型与 Tiptap 的扩展完全一致，Tiptap 的扩展文档可参考：<https://tiptap.dev/docs/editor/api/extensions>。此外，Halo 也为默认编辑器的扩展提供了一些独有的参数，用于实现工具栏、指令等扩展。
+AnyExtension 类型来自 [Tiptap](https://github.com/ueberdosis/tiptap)，这意味着 Halo 默认编辑器的扩展点返回类型与 Tiptap 的扩展完全一致，Tiptap 的扩展文档可参考：[https://tiptap.dev/docs/editor/api/extensions](https://tiptap.dev/docs/editor/api/extensions)。此外，Halo 也为默认编辑器的扩展提供了一些独有的参数，用于实现工具栏、指令等扩展。
 :::
 
 ### Halo 独有扩展
@@ -60,7 +60,7 @@ export interface ExtensionOptions {
 
 ![顶部工具栏扩展](/img/developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-toolbar.png)
 
-在 <https://github.com/halo-sigs/richtext-editor/pull/16> 中，我们实现了对顶部工具栏的扩展，如果需要添加额外的功能，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getToolbarItems` 函数即可，如：
+在 [https://github.com/halo-sigs/richtext-editor/pull/16](https://github.com/halo-sigs/richtext-editor/pull/16) 中，我们实现了对顶部工具栏的扩展，如果需要添加额外的功能，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getToolbarItems` 函数即可，如：
 
 ```ts
 {
@@ -130,7 +130,7 @@ addOptions() {
 
 ![工具箱扩展](/img/developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-toolbox.png)
 
-在 <https://github.com/halo-sigs/richtext-editor/pull/27> 中，我们实现了对编辑器工具箱区域的扩展，如果需要添加额外的功能，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getToolboxItems` 函数即可，如：
+在 [https://github.com/halo-sigs/richtext-editor/pull/27](https://github.com/halo-sigs/richtext-editor/pull/27) 中，我们实现了对编辑器工具箱区域的扩展，如果需要添加额外的功能，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getToolboxItems` 函数即可，如：
 
 ```ts
 {
@@ -201,7 +201,7 @@ Slash Command （斜杠命令）的扩展，可用于在当前行快捷执行功
 
 ![Slash Command 扩展](/img/developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-slash-command.png)
 
-在 <https://github.com/halo-sigs/richtext-editor/pull/16> 中，我们实现了对 Slash Command 指令的扩展，如果需要添加额外的功能，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getCommandMenuItems` 函数即可，如：
+在 [https://github.com/halo-sigs/richtext-editor/pull/16](https://github.com/halo-sigs/richtext-editor/pull/16) 中，我们实现了对 Slash Command 指令的扩展，如果需要添加额外的功能，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getCommandMenuItems` 函数即可，如：
 
 ```ts
 {
@@ -263,7 +263,7 @@ addOptions() {
 
 ![悬浮菜单扩展](/img/developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-bubble-menu.png)
 
-在 <https://github.com/halo-sigs/richtext-editor/pull/38> 中，我们重构了对编辑器悬浮区域的扩展，如果需要对某个块进行支持，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getBubbleMenu` 函数即可，如：
+在 [https://github.com/halo-sigs/richtext-editor/pull/38](https://github.com/halo-sigs/richtext-editor/pull/38) 中，我们重构了对编辑器悬浮区域的扩展，如果需要对某个块进行支持，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getBubbleMenu` 函数即可，如：
 
 ```ts
 {
@@ -296,7 +296,7 @@ interface BubbleMenuProps {
     from?: number;
     to?: number;
   }) => boolean;
-  tippyOptions?: Record<string, unknown>;                          // 可自由定制悬浮菜单所用的 tippy 组件的选项
+  tippyOptions?: Record\<string, unknown\>;                          // 可自由定制悬浮菜单所用的 tippy 组件的选项
   getRenderContainer?: (node: HTMLElement) => HTMLElement;         // 悬浮菜单所基准的 DOM
   defaultAnimation?: boolean;                                      // 是否启用默认动画。默认为 true
 }
@@ -373,7 +373,7 @@ addOptions() {
 
 ![拖拽功能扩展](/img/developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-drag.png)
 
-在 <https://github.com/halo-sigs/richtext-editor/pull/48> 中，我们实现了对所有元素的拖拽功能，如果需要让当前扩展支持拖拽，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getDraggable` 函数，并让其返回 true 即可。如：
+在 [https://github.com/halo-sigs/richtext-editor/pull/48](https://github.com/halo-sigs/richtext-editor/pull/48) 中，我们实现了对所有元素的拖拽功能，如果需要让当前扩展支持拖拽，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getDraggable` 函数，并让其返回 true 即可。如：
 
 ```ts
 {
@@ -474,6 +474,6 @@ addOptions() {
 
 ## 实现案例
 
-- <https://github.com/halo-sigs/plugin-hybrid-edit-block>
-- <https://github.com/halo-sigs/plugin-katex>
-- <https://github.com/halo-sigs/plugin-text-diagram>
+- [https://github.com/halo-sigs/plugin-hybrid-edit-block](https://github.com/halo-sigs/plugin-hybrid-edit-block)
+- [https://github.com/halo-sigs/plugin-katex](https://github.com/halo-sigs/plugin-katex)
+- [https://github.com/halo-sigs/plugin-text-diagram](https://github.com/halo-sigs/plugin-text-diagram)

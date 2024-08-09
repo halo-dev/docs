@@ -25,7 +25,7 @@ Nginx Proxy Manager 后台还可以一键申请 SSL 证书，并且会自动续�
 
 > 说明：默认你的服务器已经安装了 Docker 和 Docker Compose，如果你没有安装，可以参考：[使用 Docker Compose 部署](../docker-compose) 的环境搭建部分来进行安装。
 
-点击下方链接进入 Nginx Proxy Manager（以下简称 NPM） 官网：<https://nginxproxymanager.com/>
+点击下方链接进入 Nginx Proxy Manager（以下简称 NPM） 官网：[https://nginxproxymanager.com/](https://nginxproxymanager.com/)
 
 我们可以直接选择 [快速安装](https://nginxproxymanager.com/guide/#quick-setup)。
 

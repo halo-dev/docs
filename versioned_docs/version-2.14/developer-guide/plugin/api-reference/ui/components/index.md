@@ -27,7 +27,7 @@ import { VButton } from "@halo-dev/components";
 </template>
 ```
 
-所有可用的基础组件以及文档可查阅：<https://halo-ui-components.pages.dev>
+所有可用的基础组件以及文档可查阅：[https://halo-ui-components.pages.dev](https://halo-ui-components.pages.dev)
 
 ## 业务组件和指令
 

@@ -73,7 +73,7 @@ spec:
 
 为了方便主题开发者从 1.x 迁移，我们提供了工具用于迁移配置文件。
 
-工具仓库地址：<https://github.com/halo-sigs/convert-theme-config-to-next>
+工具仓库地址：[https://github.com/halo-sigs/convert-theme-config-to-next](https://github.com/halo-sigs/convert-theme-config-to-next)
 
 ```bash
 # 1.x 版本主题

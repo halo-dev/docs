@@ -97,7 +97,7 @@ Halo 提供了全新创建和基于已有角色创建两种角色创建方式。
 :::info
 目前 Halo 官方提供的身份认证插件：
 
-- OAuth2 认证：<https://halo.run/store/apps/app-ESVDK>
+- OAuth2 认证：[https://halo.run/store/apps/app-ESVDK](https://halo.run/store/apps/app-ESVDK)
 :::
 
 你可以在用户管理界面的右上角点击 `身份认证` 按钮，进入身份认证管理页面。

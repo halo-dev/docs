@@ -12,8 +12,8 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
 ## 环境搭建
 
-- Docker 安装文档：<https://docs.docker.com/engine/install/>
-- Docker Compose 安装文档：<https://docs.docker.com/compose/install/>
+- Docker 安装文档：[https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
+- Docker Compose 安装文档：[https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
 :::tip
 我们推荐按照 Docker 官方文档安装 Docker 和 Docker Compose，因为部分 Linux 发行版软件仓库中的 Docker 版本可能过旧。
@@ -165,7 +165,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
     3. 仅创建 Halo 实例（使用默认的 H2 数据库）：
 
-    :::caution
+    :::warning
     不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
     :::
 

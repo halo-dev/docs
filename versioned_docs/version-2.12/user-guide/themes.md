@@ -8,8 +8,8 @@ description: 主题管理相关功能说明
 :::info
 目前有两个官方渠道可以获取主题：
 
-- 应用市场：<https://halo.run/store/apps>
-- Awesome Halo：<https://github.com/halo-sigs/awesome-halo>
+- 应用市场：[https://halo.run/store/apps](https://halo.run/store/apps)
+- Awesome Halo：[https://github.com/halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo)
 :::
 
 ## 安装主题

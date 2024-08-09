@@ -1,5 +1,6 @@
-const darkCodeTheme = require("prism-react-renderer/themes/palenight");
 const VersionsArchived = require("./versionsArchived.json");
+const { themes } = require("prism-react-renderer");
+const darkCodeTheme = themes.palenight;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {

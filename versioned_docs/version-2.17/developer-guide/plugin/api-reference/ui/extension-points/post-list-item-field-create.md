@@ -33,7 +33,7 @@ export interface EntityFieldItem {
   priority: number;
   position: "start" | "end";
   component: Raw<Component>;
-  props?: Record<string, unknown>;
+  props?: Record\<string, unknown\>;
   permissions?: string[];
   hidden?: boolean;
 }

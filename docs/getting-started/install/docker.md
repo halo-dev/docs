@@ -10,7 +10,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare)，这可以快速帮助你了解 Halo。
 :::
 
-:::caution
+:::warning
 此文档仅提供使用默认 H2 数据库的 Docker 运行方式，主要用于体验和测试，在生产环境我们不推荐使用 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
 
 如果需要使用其他数据库部署，我们推荐使用 Docker Compose 部署：[使用 Docker Compose 部署](./docker-compose)
@@ -18,7 +18,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
 ## 环境搭建
 
-- Docker 安装文档：<https://docs.docker.com/engine/install/>
+- Docker 安装文档：[https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 :::tip
 我们推荐按照 Docker 官方文档安装 Docker，因为部分 Linux 发行版软件仓库中的 Docker 版本可能过旧。
@@ -59,21 +59,21 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份。
 2. 拉取新版本镜像
 
-  ```bash
-  docker pull registry.fit2cloud.com/halo/halo:2.18
-  ```
+      ```bash
+      docker pull registry.fit2cloud.com/halo/halo:2.18
+      ```
 
 3. 停止运行中的容器
 
-  ```bash
-  docker stop halo
-  docker rm halo
-  ```
+      ```bash
+      docker stop halo
+      docker rm halo
+      ```
 
 4. 更新 Halo
 
-  修改版本号后，按照最初安装的方式，重新创建容器即可。
+      修改版本号后，按照最初安装的方式，重新创建容器即可。
 
-    ```bash
-    docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo:2.18
-    ```
+      ```bash
+      docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo:2.18
+      ```

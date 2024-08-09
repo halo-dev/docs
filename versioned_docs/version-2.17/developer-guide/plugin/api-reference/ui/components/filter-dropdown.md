@@ -37,7 +37,7 @@ const items = [
 
 | 属性名       | 类型                                                      | 默认值    | 描述                                               |
 |--------------|-----------------------------------------------------------|-----------|--------------------------------------------------|
-| `items`      | { label: string; value?: string \| boolean \| number; }[] | 无，必填   | 包含 `label` 和可选 `value` 的对象数组。            |
+| `items`      | \{ label: string; value?: string \| boolean \| number; \}[] | 无，必填   | 包含 `label` 和可选 `value` 的对象数组。            |
 | `label`      | string                                                    | 无，必填   | 组件的标签文本。                                    |
 | `modelValue` | string \| boolean \| number                               | undefined | 可选，用于绑定到组件的值，可以是字符串、布尔值或数字。 |
 

@@ -58,8 +58,8 @@ title: 使用 JAR 文件部署
 
    :::info
    以下是官方维护的下载地址：
-   1. <https://download.halo.run>
-   2. <https://github.com/halo-dev/halo/releases>
+   1. [https://download.halo.run](https://download.halo.run)
+   2. [https://github.com/halo-dev/halo/releases](https://github.com/halo-dev/halo/releases)
    :::
 
 4. 创建 [工作目录](../prepare#工作目录)
@@ -132,7 +132,7 @@ title: 使用 JAR 文件部署
    - DATABASE：数据库名称，如 `halo`，需要提前创建
    :::
 
-   :::caution
+   :::warning
    不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
    :::
 

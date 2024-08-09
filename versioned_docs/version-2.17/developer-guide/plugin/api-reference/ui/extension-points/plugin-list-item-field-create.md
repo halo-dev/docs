@@ -33,7 +33,7 @@ export interface EntityFieldItem {
   priority: number;
   position: "start" | "end";
   component: Raw<Component>;
-  props?: Record<string, unknown>;
+  props?: Record\<string, unknown\>;
   permissions?: string[];
   hidden?: boolean;
 }
@@ -71,7 +71,7 @@ export default definePlugin({
 
 ## 实现案例
 
-- <https://github.com/halo-dev/plugin-app-store>
+- [https://github.com/halo-dev/plugin-app-store](https://github.com/halo-dev/plugin-app-store)
 
 ## 类型定义
 
