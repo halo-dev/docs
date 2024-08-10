@@ -3,8 +3,12 @@ title: 使用 Docker Compose 部署
 description: 使用 Docker Compose 部署
 ---
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import DockerArgs from "./slots/_docker-args.md"
 import DockerRegistryList from "./slots/_docker-registry-list.md"
+```
 
 :::info
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare.md)，这可以快速帮助你了解 Halo。
@@ -35,185 +39,183 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
 2. 创建 `docker-compose.yaml`
 
-   此文档提供两种场景的 Docker Compose 配置文件，请根据你的需要**选择一种**。
+   此文档提供几种场景的 Docker Compose 配置文件，请根据你的需要**选择一种**。
 
    :::info
    需要注意的是，此文档为了更加方便的管理配置，所有与 Halo 相关的配置都使用 Docker 容器启动参数代替，所以无需创建 application.yaml 文件。
    :::
 
-    1. 创建 Halo + PostgreSQL 的实例：
+   <Tabs queryString="current">
+    <TabItem value="halo-postgresql" label="Halo + PostgreSQL" default>
+         ```yaml {23-29,43} title="~/halo/docker-compose.yaml"
+         version: "3"
 
-       ```yaml {23-29,43} title="~/halo/docker-compose.yaml"
-       version: "3"
+         services:
+           halo:
+             image: registry.fit2cloud.com/halo/halo:2.18
+             restart: on-failure:3
+             depends_on:
+               halodb:
+                 condition: service_healthy
+             networks:
+               halo_network:
+             volumes:
+               - ./halo2:/root/.halo2
+             ports:
+               - "8090:8090"
+             healthcheck:
+               test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+               interval: 30s
+               timeout: 5s
+               retries: 5
+               start_period: 30s
+             command:
+               - --spring.r2dbc.url=r2dbc:pool:postgresql://halodb/halo
+               - --spring.r2dbc.username=halo
+               # PostgreSQL 的密码，请保证与下方 POSTGRES_PASSWORD 的变量值一致。
+               - --spring.r2dbc.password=openpostgresql
+               - --spring.sql.init.platform=postgresql
+               # 外部访问地址，请根据实际需要修改
+               - --halo.external-url=<http://localhost:8090/>
+           halodb:
+             image: postgres:15.4
+             restart: on-failure:3
+             networks:
+               halo_network:
+             volumes:
+               - ./db:/var/lib/postgresql/data
+             healthcheck:
+               test: [ "CMD", "pg_isready" ]
+               interval: 10s
+               timeout: 5s
+               retries: 5
+             environment:
+               - POSTGRES_PASSWORD=openpostgresql
+               - POSTGRES_USER=halo
+               - POSTGRES_DB=halo
+               - PGUSER=halo
 
-       services:
-         halo:
-           image: registry.fit2cloud.com/halo/halo:2.18
-           restart: on-failure:3
-           depends_on:
-             halodb:
-               condition: service_healthy
-           networks:
-             halo_network:
-           volumes:
-             - ./halo2:/root/.halo2
-           ports:
-             - "8090:8090"
-           healthcheck:
-             test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
-             interval: 30s
-             timeout: 5s
-             retries: 5
-             start_period: 30s          
-           command:
-             - --spring.r2dbc.url=r2dbc:pool:postgresql://halodb/halo
-             - --spring.r2dbc.username=halo
-             # PostgreSQL 的密码，请保证与下方 POSTGRES_PASSWORD 的变量值一致。
-             - --spring.r2dbc.password=openpostgresql
-             - --spring.sql.init.platform=postgresql
-             # 外部访问地址，请根据实际需要修改
-             - --halo.external-url=http://localhost:8090/
-         halodb:
-           image: postgres:15.4
-           restart: on-failure:3
-           networks:
-             halo_network:
-           volumes:
-             - ./db:/var/lib/postgresql/data
-           healthcheck:
-             test: [ "CMD", "pg_isready" ]
-             interval: 10s
-             timeout: 5s
-             retries: 5
-           environment:
-             - POSTGRES_PASSWORD=openpostgresql
-             - POSTGRES_USER=halo
-             - POSTGRES_DB=halo
-             - PGUSER=halo
+         networks:
+           halo_network:
+         ```
+         :::info
+         此示例的 PostgreSQL 数据库容器默认没有设置端口映射，如果需要在容器外部访问数据库，可以自行在 `halodb` 服务中添加端口映射，PostgreSQL 的端口为 `5432`。
+         :::
+    </TabItem>
+    <TabItem value="halo-mysql" label="Halo + MySQL">
+         ```yaml {23-29,51} title="~/halo/docker-compose.yaml"
+         version: "3"
 
-       networks:
-         halo_network:
-       ```
+         services:
+           halo:
+             image: registry.fit2cloud.com/halo/halo:2.18
+             restart: on-failure:3
+             depends_on:
+               halodb:
+                 condition: service_healthy
+             networks:
+               halo_network:
+             volumes:
+               - ./halo2:/root/.halo2
+             ports:
+               - "8090:8090"
+             healthcheck:
+               test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+               interval: 30s
+               timeout: 5s
+               retries: 5
+               start_period: 30s
+             command:
+               - --spring.r2dbc.url=r2dbc:pool:mysql://halodb:3306/halo
+               - --spring.r2dbc.username=root
+               # MySQL 的密码，请保证与下方 MYSQL_ROOT_PASSWORD 的变量值一致。
+               - --spring.r2dbc.password=o#DwN&JSa56
+               - --spring.sql.init.platform=mysql
+               # 外部访问地址，请根据实际需要修改
+               - --halo.external-url=http://localhost:8090/
 
-       :::info
-       此示例的 PostgreSQL 数据库容器默认没有设置端口映射，如果需要在容器外部访问数据库，可以自行在 `halodb` 服务中添加端口映射，PostgreSQL 的端口为 `5432`。
-       :::
+           halodb:
+             image: mysql:8.1.0
+             restart: on-failure:3
+             networks:
+               halo_network:
+             command: 
+               - --default-authentication-plugin=caching_sha2_password
+               - --character-set-server=utf8mb4
+               - --collation-server=utf8mb4_general_ci
+               - --explicit_defaults_for_timestamp=true
+             volumes:
+               - ./mysql:/var/lib/mysql
+               - ./mysqlBackup:/data/mysqlBackup
+             healthcheck:
+               test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+               interval: 3s
+               retries: 5
+               start_period: 30s
+             environment:
+               # 请修改此密码，并对应修改上方 Halo 服务的 SPRING_R2DBC_PASSWORD 变量值
+               - MYSQL_ROOT_PASSWORD=o#DwN&JSa56
+               - MYSQL_DATABASE=halo
 
-    2. 创建 Halo + MySQL 的实例：
+         networks:
+           halo_network:
+         ```
 
-       ```yaml {23-29,51} title="~/halo/docker-compose.yaml"
-       version: "3"
+        :::info
+        此示例的 MySQL 数据库容器默认没有设置端口映射，如果需要在容器外部访问数据库，可以自行在 `halodb` 服务中添加端口映射，MySQL 的端口为 `3306`。
+        :::
+    </TabItem>
+    <TabItem value="halo-h2" label="Halo + H2">
+        :::warning
+        不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
+        :::
 
-       services:
-         halo:
-           image: registry.fit2cloud.com/halo/halo:2.18
-           restart: on-failure:3
-           depends_on:
-             halodb:
-               condition: service_healthy
-           networks:
-             halo_network:
-           volumes:
-             - ./halo2:/root/.halo2
-           ports:
-             - "8090:8090"
-           healthcheck:
-             test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
-             interval: 30s
-             timeout: 5s
-             retries: 5
-             start_period: 30s
-           command:
-             - --spring.r2dbc.url=r2dbc:pool:mysql://halodb:3306/halo
-             - --spring.r2dbc.username=root
-             # MySQL 的密码，请保证与下方 MYSQL_ROOT_PASSWORD 的变量值一致。
-             - --spring.r2dbc.password=o#DwN&JSa56
-             - --spring.sql.init.platform=mysql
-             # 外部访问地址，请根据实际需要修改
-             - --halo.external-url=http://localhost:8090/
+        ```yaml {19-24} title="~/halo/docker-compose.yaml"
+        version: "3"
 
-         halodb:
-           image: mysql:8.1.0
-           restart: on-failure:3
-           networks:
-             halo_network:
-           command: 
-             - --default-authentication-plugin=caching_sha2_password
-             - --character-set-server=utf8mb4
-             - --collation-server=utf8mb4_general_ci
-             - --explicit_defaults_for_timestamp=true
-           volumes:
-             - ./mysql:/var/lib/mysql
-             - ./mysqlBackup:/data/mysqlBackup
-           healthcheck:
-             test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
-             interval: 3s
-             retries: 5
-             start_period: 30s
-           environment:
-             # 请修改此密码，并对应修改上方 Halo 服务的 SPRING_R2DBC_PASSWORD 变量值
-             - MYSQL_ROOT_PASSWORD=o#DwN&JSa56
-             - MYSQL_DATABASE=halo
+        services:
+          halo:
+            image: registry.fit2cloud.com/halo/halo:2.18
+            restart: on-failure:3
+            volumes:
+              - ./halo2:/root/.halo2
+            ports:
+              - "8090:8090"
+            healthcheck:
+              test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+              interval: 30s
+              timeout: 5s
+              retries: 5
+              start_period: 30s          
+            command:
+              # 外部访问地址，请根据实际需要修改
+              - --halo.external-url=http://localhost:8090/
+        ```
+    </TabItem>
+    <TabItem value="external-db" label="使用外部数据库">
+        ```yaml {7,12-20} title="~/halo/docker-compose.yaml"
+        version: "3"
 
-       networks:
-         halo_network:
-       ```
-
-       :::info
-       此示例的 MySQL 数据库容器默认没有设置端口映射，如果需要在容器外部访问数据库，可以自行在 `halodb` 服务中添加端口映射，MySQL 的端口为 `3306`。
-       :::
-
-    3. 仅创建 Halo 实例（使用默认的 H2 数据库）：
-
-       :::warning
-       不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
-       :::
-
-       ```yaml {19-24} title="~/halo/docker-compose.yaml"
-       version: "3"
-
-       services:
-         halo:
-           image: registry.fit2cloud.com/halo/halo:2.18
-           restart: on-failure:3
-           volumes:
-             - ./halo2:/root/.halo2
-           ports:
-             - "8090:8090"
-           healthcheck:
-             test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
-             interval: 30s
-             timeout: 5s
-             retries: 5
-             start_period: 30s          
-           command:
-             # 外部访问地址，请根据实际需要修改
-             - --halo.external-url=http://localhost:8090/
-       ```
-
-    4. 仅创建 Halo 实例（使用已有外部数据库，MySQL 为例）：
-
-       ```yaml {7,12-20} title="~/halo/docker-compose.yaml"
-       version: "3"
-
-       services:
-         halo:
-           image: registry.fit2cloud.com/halo/halo:2.18
-           restart: on-failure:3
-           network_mode: "host"
-           volumes:
-             - ./halo2:/root/.halo2
-           command:
-             # 修改为自己已有的 MySQL 配置
-             - --spring.r2dbc.url=r2dbc:pool:mysql://localhost:3306/halo
-             - --spring.r2dbc.username=root
-             - --spring.r2dbc.password=
-             - --spring.sql.init.platform=mysql
-             # 外部访问地址，请根据实际需要修改
-             - --halo.external-url=http://localhost:8090/
-             # 端口号 默认8090
-             - --server.port=8090
-       ```
+        services:
+          halo:
+            image: registry.fit2cloud.com/halo/halo:2.18
+            restart: on-failure:3
+            network_mode: "host"
+            volumes:
+              - ./halo2:/root/.halo2
+            command:
+              # 修改为自己已有的 MySQL 配置
+              - --spring.r2dbc.url=r2dbc:pool:mysql://localhost:3306/halo
+              - --spring.r2dbc.username=root
+              - --spring.r2dbc.password=
+              - --spring.sql.init.platform=mysql
+              # 外部访问地址，请根据实际需要修改
+              - --halo.external-url=http://localhost:8090/
+              # 端口号 默认8090
+              - --server.port=8090
+        ```
+    </TabItem>
+   </Tabs>
 
    运行参数详解：
 
