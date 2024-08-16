@@ -76,7 +76,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
                - --spring.r2dbc.password=openpostgresql
                - --spring.sql.init.platform=postgresql
                # 外部访问地址，请根据实际需要修改
-               - --halo.external-url=<http://localhost:8090/>
+               - --halo.external-url=http://localhost:8090/
            halodb:
              image: postgres:15.4
              restart: on-failure:3
