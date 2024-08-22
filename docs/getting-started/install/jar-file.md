@@ -141,7 +141,7 @@ title: 使用 JAR 文件部署
 6. 测试运行 Halo
 
    ```bash
-   cd ~/app && java -jar halo.jar --spring.config.additional-location=optional:file:$HOME/.halo2/
+   cd ~/app && java -jar halo.jar --spring.config.additional-location=optional:file:$HOME/.halo2/application.yaml
    ```
 
 7. 如果没有观察到异常日志，即可尝试访问 Halo
@@ -188,7 +188,7 @@ title: 使用 JAR 文件部署
    [Service]
    Type=simple
    User=USER
-   ExecStart=/usr/bin/java -server -Xms256m -Xmx256m -jar JAR_PATH --spring.config.additional-location=optional:file:/home/halo/.halo2/
+   ExecStart=/usr/bin/java -server -Xms256m -Xmx256m -jar JAR_PATH --spring.config.additional-location=optional:file:/home/halo/.halo2/application.yaml
    ExecStop=/bin/kill -s QUIT $MAINPID
    Restart=always
    StandOutput=syslog
