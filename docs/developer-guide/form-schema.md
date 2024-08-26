@@ -192,7 +192,7 @@ spec:
 当远程数据具有分页时，可能会出现默认选项不在第一页的情况，此时 Select 组件将会发送另一个查询请求，以获取默认选项的数据。此接口会携带如下参数：
 
 ```ts
-labelSelector: `${requestOption.valueField}=in(value1,value2,value3)`
+fieldSelector: `${requestOption.valueField}=(value1,value2,value3)`
 ```
 
 其中，value1, value2, value3 为默认选项的值。返回值与查询一致，通过 `requestOption` 解析。
