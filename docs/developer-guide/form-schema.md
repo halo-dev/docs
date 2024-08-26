@@ -84,6 +84,7 @@ spec:
 - `multiple`：是否多选，默认为 `false`。
 - `maxCount`：多选时最大可选数量，默认为 `Infinity`。仅在多选时有效。
 - `sortable`：是否支持拖动排序，默认为 `false`。仅在多选时有效。
+- `searchable`: 是否支持搜索，默认为 `false`。
 
 #### 参数类型定义
 
@@ -135,6 +136,7 @@ spec:
   multiple?: boolean;
   maxCount?: number;
   sortable?: boolean;
+  searchable?: boolean;
 }
 ```
 
@@ -147,6 +149,7 @@ spec:
   sortable: true
   multiple: true
   clearable: true
+  searchable: true
   placeholder: Select a country
   options:
     - label: France
