@@ -67,6 +67,137 @@ spec:
 
 除了 FormKit 官方提供的常用输入组件之外，Halo 还额外提供了一些输入组件，这些输入组件可以在 Form Schema 中使用。
 
+### select
+
+#### 描述
+
+自定义的选择器组件，支持静态和动态数据源，支持多选等功能。
+
+#### 参数
+
+- `options`：静态数据源。当 `action` 存在时，此参数无效。
+- `action`：远程动态数据源的接口地址。
+- `requestOption`： 动态数据源的请求参数，可以通过此参数来指定如何获取数据，适配不同的接口。当 `action` 存在时，此参数有效。
+- `remoteOptimize`：是否开启远程数据源优化，默认为 `true`。开启后，将会对远程数据源进行优化，减少请求次数。仅在动态数据源下有效。
+- `allowCreate`：是否允许创建新选项，默认为 `false`。仅在静态数据源下有效。
+- `clearable`：是否允许清空选项，默认为 `false`。
+- `multiple`：是否多选，默认为 `false`。
+- `maxCount`：多选时最大可选数量，默认为 `Infinity`。仅在多选时有效。
+- `sortable`：是否支持拖动排序，默认为 `false`。仅在多选时有效。
+- `searchable`: 是否支持搜索，默认为 `false`。
+
+#### 参数类型定义
+
+```ts
+{
+  options?: Array<
+    Record<string, unknown> & {
+      label: string;
+      value: string;
+    }
+  >;
+  action?: string;
+  requestOption?: {
+    method?: "GET" | "POST";
+
+    /**
+     * 请求结果中 page 的字段名，默认为 `page`。
+     */
+    pageField?: PropertyPath;
+
+    /**
+     * 请求结果中 size 的字段名，默认为 `size`。
+     */
+    sizeField?: PropertyPath;
+
+    /**
+     * 请求结果中 total 的字段名，默认为 `total`。
+     */
+    totalField?: PropertyPath;
+
+    /**
+     * 从请求结果中解析数据的字段名，默认为 `items`。
+     */
+    itemsField?: PropertyPath;
+
+    /**
+     * 从 items 中解析出 label 的字段名，默认为 `label`。
+     */
+    labelField?: PropertyPath;
+
+    /**
+     * 从 items 中解析出 value 的字段名，默认为 `value`。
+     */
+    valueField?: PropertyPath;
+  };
+  remoteOptimize?: boolean;
+  allowCreate?: boolean;
+  clearable?: boolean;
+  multiple?: boolean;
+  maxCount?: number;
+  sortable?: boolean;
+  searchable?: boolean;
+}
+```
+
+#### 静态数据示例
+
+```yaml
+- $formkit: select
+  name: countries
+  label: What country makes the best food?
+  sortable: true
+  multiple: true
+  clearable: true
+  searchable: true
+  placeholder: Select a country
+  options:
+    - label: China
+      value: cn
+    - label: France
+      value: fr
+    - label: Germany
+      value: de
+    - label: Spain
+      value: es
+    - label: Italy
+      value: ie
+    - label: Greece
+      value: gr
+```
+
+#### 远程动态数据示例
+
+支持远程动态数据源，通过 `action` 和 `requestOption` 参数来指定如何获取数据。
+
+请求的接口将会自动拼接 `page`、`size` 与 `keyword` 参数，其中 `keyword` 为搜索关键词。
+
+```yaml
+- $formkit: select
+  name: postName
+  label: Choose an post
+  clearable: true
+  action: /apis/api.console.halo.run/v1alpha1/posts
+  requestOption:
+    method: GET
+    pageField: page
+    sizeField: size
+    totalField: total
+    itemsField: items
+    labelField: post.spec.title
+    valueField: post.metadata.name
+```
+
+:::tip
+当远程数据具有分页时，可能会出现默认选项不在第一页的情况，此时 Select 组件将会发送另一个查询请求，以获取默认选项的数据。此接口会携带如下参数：
+
+```ts
+labelSelector: `${requestOption.valueField}=in(value1,value2,value3)`
+```
+
+其中，value1, value2, value3 为默认选项的值。返回值与查询一致，通过 `requestOption` 解析。
+:::
+
 ### list
 
 #### 描述
