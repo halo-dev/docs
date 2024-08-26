@@ -152,6 +152,8 @@ spec:
   searchable: true
   placeholder: Select a country
   options:
+    - label: China
+      value: cn
     - label: France
       value: fr
     - label: Germany
