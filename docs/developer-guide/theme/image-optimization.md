@@ -25,7 +25,7 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 
 #### 参数
 
-- `url:string` - 图片地址。
+- `uri:string` - 图片地址。
 - `size:string` - 缩略图尺寸，支持以下值：
   - `s` - 宽度 400px
   - `m` - 宽度 800px
