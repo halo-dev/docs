@@ -55,7 +55,7 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 
 ### 接口地址
 
-`GET /apis/api.storage.halo.run/thumbnails/-/via-uri?uri=${url}&width={width}`
+`GET /apis/api.storage.halo.run/thumbnails/-/via-uri?uri=${uri}&size={size}`
 
 #### 参数
 
