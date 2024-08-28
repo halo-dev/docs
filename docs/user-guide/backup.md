@@ -36,6 +36,18 @@ description: 备份与恢复功能说明
 ![Before restore](/img/user-guide/backup/before-restore.png)
 ![Restore](/img/user-guide/backup/restore.png)
 
+Halo 支持三种恢复方式：
+
+1. 上传备份文件：上传已有的备份文件进行恢复。
+2. 远程恢复：从远程 URL 下载备份文件进行恢复。
+3. 从备份文件恢复：支持从 [工作目录](../getting-started/prepare.md#工作目录) 的 backups 目录扫描备份文件，并选择文件进行恢复。
+
+:::info 提示
+如果你的备份文件较大，推荐提前将备份文件上传到服务器，然后选择 `从备份文件恢复` 方式进行恢复，避免因为网络原因导致上传失败。
+:::
+
+使用 `上传备份文件` 方式进行恢复的操作示例：
+
 选择备份文件后，点击 `上传` 按钮即可开始上传备份文件，上传完成后会自动开始恢复。
 
 ![Restore upload](/img/user-guide/backup/restore-upload.png)
