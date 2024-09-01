@@ -19,7 +19,7 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 
 ## Finder API
 
-### `thumbnail.gen(uri,size)`
+### `thumbnail.gen(uri, size)`
 
 获取指定图片和尺寸的缩略图地址。
 
@@ -60,11 +60,11 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 #### 参数
 
 - `uri:string` - 图片地址。
-- size:string - 缩略图尺寸，支持以下值：
-  - s - 宽度 400px
-  - m - 宽度 800px
-  - l - 宽度 1200px
-  - xl - 宽度 1600px
+- `size:string` - 缩略图尺寸，支持以下值：
+  - `s` - 宽度 400px
+  - `m` - 宽度 800px
+  - `l` - 宽度 1200px
+  - `xl` - 宽度 1600px
 
 #### 示例
 
