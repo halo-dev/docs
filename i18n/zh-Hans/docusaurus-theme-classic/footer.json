@@ -9,11 +9,11 @@
   },
   "link.item.label.官网": {
     "message": "官网",
-    "description": "The label of footer link with label=官网 linking to https://halo.run"
+    "description": "The label of footer link with label=官网 linking to https://www.halo.run"
   },
   "link.item.label.应用市场": {
     "message": "应用市场",
-    "description": "The label of footer link with label=应用市场 linking to https://halo.run/store/apps"
+    "description": "The label of footer link with label=应用市场 linking to https://www.halo.run/store/apps"
   },
   "link.item.label.GitHub 组织": {
     "message": "GitHub 组织",
@@ -33,7 +33,7 @@
   },
   "link.item.label.微信公众号": {
     "message": "微信公众号",
-    "description": "The label of footer link with label=微信公众号 linking to https://halo.run/upload/2021/03/B3C27F16-4890-4633-81CC-20BA4B28F94F-2415126255c749b290312ca22d9bdeb0.jpeg"
+    "description": "The label of footer link with label=微信公众号 linking to https://www.halo.run/upload/2021/03/B3C27F16-4890-4633-81CC-20BA4B28F94F-2415126255c749b290312ca22d9bdeb0.jpeg"
   },
   "link.item.label.GitHub Issues": {
     "message": "GitHub Issues",
