@@ -55,7 +55,7 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 
 ### 接口地址
 
-`GET /apis/api.storage.halo.run/thumbnails/-/via-uri?uri=${uri}&size={size}`
+`GET /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=${uri}&size={size}`
 
 #### 参数
 
@@ -71,10 +71,10 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 ```html
 <img
   src="/upload/post-cover.png"
-  srcset="|/apis/api.storage.halo.run/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=s 400w,
-              /apis/api.storage.halo.run/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=m 800w,
-              /apis/api.storage.halo.run/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=l 1200w,
-              /apis/api.storage.halo.run/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=xl 1600w|"
+  srcset="|/apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=s 400w,
+           /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=m 800w,
+           /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=l 1200w,
+           /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=xl 1600w|"
   sizes="(max-width: 1600px) 100vw, 1600px"
 />
 ```
