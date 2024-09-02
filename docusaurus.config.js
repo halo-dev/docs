@@ -28,11 +28,11 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.18",
+          lastVersion: "2.19",
           versions: {
             current: {
-              label: "2.19.0-SNAPSHOT",
-              path: "2.19.0-SNAPSHOT",
+              label: "2.20.0-SNAPSHOT",
+              path: "2.20.0-SNAPSHOT",
             },
           },
         },
@@ -44,13 +44,15 @@ const config = {
           changefreq: "weekly",
           priority: 0.5,
           ignorePatterns: [
-            "/2.0/**",
-            "/2.1/**",
-            "/2.2/**",
-            "/2.3/**",
-            "/2.4/**",
-            "/2.5/**",
-            "/2.6/**",
+            "/2.10/**",
+            "/2.11/**",
+            "/2.12/**",
+            "/2.13/**",
+            "/2.14/**",
+            "/2.15/**",
+            "/2.16/**",
+            "/2.17/**",
+            "/2.18/**",
           ],
         },
         googleAnalytics: {
@@ -147,11 +149,11 @@ const config = {
             items: [
               {
                 label: "官网",
-                href: "https://halo.run",
+                href: "https://www.halo.run",
               },
               {
                 label: "应用市场",
-                href: "https://halo.run/store/apps",
+                href: "https://www.halo.run/store/apps",
               },
               {
                 label: "GitHub 组织",
@@ -176,7 +178,7 @@ const config = {
               },
               {
                 label: "微信公众号",
-                href: "https://halo.run/upload/2021/03/B3C27F16-4890-4633-81CC-20BA4B28F94F-2415126255c749b290312ca22d9bdeb0.jpeg",
+                href: "https://www.halo.run/upload/2021/03/B3C27F16-4890-4633-81CC-20BA4B28F94F-2415126255c749b290312ca22d9bdeb0.jpeg",
               },
               {
                 label: "GitHub Issues",
@@ -235,17 +237,18 @@ const config = {
           },
         ],
         createRedirects(existingPath) {
-          if (existingPath.startsWith("/2.19.0-SNAPSHOT/")) {
+          if (existingPath.startsWith("/2.20.0-SNAPSHOT/")) {
             return [
-              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.10.0-SNAPSHOT/"),
-              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.11.0-SNAPSHOT/"),
-              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.12.0-SNAPSHOT/"),
-              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.13.0-SNAPSHOT/"),
-              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.14.0-SNAPSHOT/"),
-              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.15.0-SNAPSHOT/"),
-              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.16.0-SNAPSHOT/"),
-              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.17.0-SNAPSHOT/"),
-              existingPath.replace("/2.19.0-SNAPSHOT/", "/2.18.0-SNAPSHOT/"),
+              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.10.0-SNAPSHOT/"),
+              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.11.0-SNAPSHOT/"),
+              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.12.0-SNAPSHOT/"),
+              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.13.0-SNAPSHOT/"),
+              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.14.0-SNAPSHOT/"),
+              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.15.0-SNAPSHOT/"),
+              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.16.0-SNAPSHOT/"),
+              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.17.0-SNAPSHOT/"),
+              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.18.0-SNAPSHOT/"),
+              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.19.0-SNAPSHOT/"),
             ];
           }
           return undefined;

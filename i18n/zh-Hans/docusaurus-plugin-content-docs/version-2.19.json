@@ -1,0 +1,78 @@
+{
+  "version.label": {
+    "message": "2.19",
+    "description": "The label for version 2.19"
+  },
+  "sidebar.tutorial.category.入门": {
+    "message": "入门",
+    "description": "The label for category 入门 in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.安装指南": {
+    "message": "安装指南",
+    "description": "The label for category 安装指南 in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.云平台": {
+    "message": "云平台",
+    "description": "The label for category 云平台 in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.其他指南": {
+    "message": "其他指南",
+    "description": "The label for category 其他指南 in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.用户指南": {
+    "message": "用户指南",
+    "description": "The label for category 用户指南 in sidebar tutorial"
+  },
+  "sidebar.tutorial.category.参与贡献": {
+    "message": "参与贡献",
+    "description": "The label for category 参与贡献 in sidebar tutorial"
+  },
+  "sidebar.developer.category.系统开发": {
+    "message": "系统开发",
+    "description": "The label for category 系统开发 in sidebar developer"
+  },
+  "sidebar.developer.category.插件开发": {
+    "message": "插件开发",
+    "description": "The label for category 插件开发 in sidebar developer"
+  },
+  "sidebar.developer.category.基础": {
+    "message": "基础",
+    "description": "The label for category 基础 in sidebar developer"
+  },
+  "sidebar.developer.category.服务端": {
+    "message": "服务端",
+    "description": "The label for category 服务端 in sidebar developer"
+  },
+  "sidebar.developer.category.UI": {
+    "message": "UI",
+    "description": "The label for category UI in sidebar developer"
+  },
+  "sidebar.developer.category.API 参考": {
+    "message": "API 参考",
+    "description": "The label for category API 参考 in sidebar developer"
+  },
+  "sidebar.developer.category.扩展点": {
+    "message": "扩展点",
+    "description": "The label for category 扩展点 in sidebar developer"
+  },
+  "sidebar.developer.category.组件": {
+    "message": "组件",
+    "description": "The label for category 组件 in sidebar developer"
+  },
+  "sidebar.developer.category.案例和最佳实践": {
+    "message": "案例和最佳实践",
+    "description": "The label for category 案例和最佳实践 in sidebar developer"
+  },
+  "sidebar.developer.category.主题开发": {
+    "message": "主题开发",
+    "description": "The label for category 主题开发 in sidebar developer"
+  },
+  "sidebar.developer.category.模板变量": {
+    "message": "模板变量",
+    "description": "The label for category 模板变量 in sidebar developer"
+  },
+  "sidebar.developer.category.Finder API": {
+    "message": "Finder API",
+    "description": "The label for category Finder API in sidebar developer"
+  }
+}
