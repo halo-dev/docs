@@ -127,6 +127,55 @@ List\<[#ListedPostVo](#listedpostvo)\>
 </ul>
 ```
 
+## `list({...})`
+
+```js
+postFinder.list({
+  page: 1,
+  size: 10,
+  tagName: 'fake-tag',
+  categoryName: 'fake-category',
+  ownerName: 'fake-owner',
+  sort: {'spec.publishTime,desc', 'metadata.creationTimestamp,asc'}
+});
+```
+
+### 描述
+
+统一参数的文章列表查询方法，支持分页、标签、分类、创建者、排序等参数，且均为可选参数。
+
+可以使用此方法来代替 `list(page, size)`、`listByCategory(page, size, categoryName)`、`listByTag(page, size, tag)`、`listByOwner(page, size, owner)` 方法。
+
+### 参数
+
+1. `page:int` - 分页页码，从 1 开始
+2. `size:int` - 分页条数
+3. `tagName:string` - 标签唯一标识 `metadata.name`
+4. `categoryName:string` - 分类唯一标识 `metadata.name`
+5. `ownerName:string` - 创建者用户名 `name`
+6. `sort:string[]` - 排序字段，格式为 `字段名,排序方式`，排序方式可选值为 `asc` 或 `desc`，如 `spec.publishTime,desc`，传递时需要使用 `{}` 形式并用逗号分隔表示数组。
+
+### 返回值
+
+[#ListResult\<ListedPostVo\>](#listresultlistedpostvo)
+
+### 示例
+
+```html
+<ul th:with="posts = ${postFinder.list({
+  page: 1,
+  size: 10,
+  tagName: 'fake-tag',
+  categoryName: 'fake-category',
+  ownerName: 'fake-owner',
+  sort: {'spec.publishTime,desc', 'metadata.creationTimestamp,asc'}
+})}">
+  <li th:each="post : ${posts.items}">
+    <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+  </li>
+</ul>
+```
+
 ## list(page,size)
 
 ```js
@@ -136,6 +185,8 @@ postFinder.list(page, size);
 ### 描述
 
 根据分页参数获取文章列表。
+
+**已过时**: 请使用 `list({...})` 方法代替。
 
 ### 参数
 
@@ -165,6 +216,8 @@ postFinder.listByCategory(page, size, categoryName);
 ### 描述
 
 根据分类标识和分页参数获取文章列表。
+
+**已过时**: 请使用 `list({...})` 方法代替。
 
 ### 参数
 
@@ -196,6 +249,8 @@ postFinder.listByTag(page, size, tag);
 
 根据标签标识和分页参数获取文章列表。
 
+**已过时**: 请使用 `list({...})` 方法代替。
+
 ### 参数
 
 1. `page:int` - 分页页码，从 1 开始
@@ -225,6 +280,8 @@ postFinder.listByOwner(page, size, owner);
 ### 描述
 
 根据创建者用户名和分页参数获取文章列表。
+
+**已过时**: 请使用 `list({...})` 方法代替。
 
 ### 参数
 
