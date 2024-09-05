@@ -79,12 +79,13 @@ spec:
 - `action`：远程动态数据源的接口地址。
 - `requestOption`： 动态数据源的请求参数，可以通过此参数来指定如何获取数据，适配不同的接口。当 `action` 存在时，此参数有效。
 - `remoteOptimize`：是否开启远程数据源优化，默认为 `true`。开启后，将会对远程数据源进行优化，减少请求次数。仅在动态数据源下有效。
-- `allowCreate`：是否允许创建新选项，默认为 `false`。仅在静态数据源下有效。
+- `allowCreate`：是否允许创建新选项，默认为 `false`。仅在静态数据源下有效，需要同时开启 `searchable`。
 - `clearable`：是否允许清空选项，默认为 `false`。
 - `multiple`：是否多选，默认为 `false`。
 - `maxCount`：多选时最大可选数量，默认为 `Infinity`。仅在多选时有效。
 - `sortable`：是否支持拖动排序，默认为 `false`。仅在多选时有效。
 - `searchable`: 是否支持搜索，默认为 `false`。
+- `autoSelect`：当初始值不存在时，是否自动选择第一个选项，默认为 `true`。仅在单选时有效。
 
 #### 参数类型定义
 
