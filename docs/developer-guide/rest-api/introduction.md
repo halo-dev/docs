@@ -1,11 +1,11 @@
 ---
 title: 介绍
-description: 介绍 Halo 的 REST API 使用方式
+description: 介绍 Halo 的 RESTful API 使用方式
 ---
 
 Halo 提供了 RESTful 风格的 API，Halo 的前端（主要为 Console 和 UC）与后端的交互都是通过 API 完成的。
 
-此文档将介绍如何使用 Halo 提供的 REST API。
+此文档将介绍如何使用 Halo 提供的 RESTful API。
 
 ## API 在线文档
 
@@ -95,7 +95,7 @@ axios.get('https://demo.halo.run/apis/content.halo.run/v1alpha1/posts', {
 
 ## 示例项目
 
-列举一些使用了 Halo REST API 的项目，以供参考：
+列举一些使用了 Halo RESTful API 的项目，以供参考：
 
 - [halo-sigs/attachment-upload-cli](https://github.com/halo-sigs/attachment-upload-cli)：在 Terminal 中上传文件到 Halo 并得到链接，兼容 Typora 编辑器的图片上传。
 - [halo-sigs/vscode-extension-halo](https://github.com/halo-sigs/vscode-extension-halo)：用于将 Markdown 文件发布到 Halo 的 Visual Studio Code 插件。

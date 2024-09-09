@@ -1,6 +1,6 @@
 ---
-title: Api Client 请求库
-description: 介绍使用 Api Client 请求库发起 API 请求的方式
+title: API Client 请求库
+description: 介绍使用 API Client 请求库发起 API 请求的方式
 ---
 
 在 2.17.0 版本中，Halo 提供了新的 `@halo-dev/api-client` JS 库，用于简化在 Halo 内部、插件的 UI 中、外部应用程序中请求 Halo 接口的逻辑。
@@ -35,14 +35,14 @@ import {
 } from "@halo-dev/api-client"
 ```
 
-- **coreApiClient**: 为 Halo 所有[自定义模型](https://github.com/halo-dev/rfcs/tree/main/extension)的 CRUD 接口封装的 api client。
-- **consoleApiClient**: 为 Halo 针对 Console 提供的接口封装的 api client。
-- **ucApiClient**: 为 Halo 针对 UC 提供的接口封装的 api client。
-- **publicApiClient**: 为 Halo 所有公开访问的接口封装的 api client。
-- **createCoreApiClient**: 用于创建[自定义模型](https://github.com/halo-dev/rfcs/tree/main/extension)的 CRUD 接口封装的 api client，需要传入 axios 实例。
-- **createConsoleApiClient**: 用于创建 Console 接口封装的 api client，需要传入 axios 实例。
-- **createUcApiClient**: 用于创建 UC 接口封装的 api client，需要传入 axios 实例。
-- **createPublicApiClient**: 用于创建公开访问接口封装的 api client，需要传入 axios 实例。
+- **coreApiClient**: 为 Halo 所有[自定义模型](https://github.com/halo-dev/rfcs/tree/main/extension)的 CRUD 接口封装的 API Client。
+- **consoleApiClient**: 为 Halo 针对 Console 提供的接口封装的 API Client。
+- **ucApiClient**: 为 Halo 针对 UC 提供的接口封装的 API Client。
+- **publicApiClient**: 为 Halo 所有公开访问的接口封装的 API Client。
+- **createCoreApiClient**: 用于创建[自定义模型](https://github.com/halo-dev/rfcs/tree/main/extension)的 CRUD 接口封装的 API Client，需要传入 axios 实例。
+- **createConsoleApiClient**: 用于创建 Console 接口封装的 API Client，需要传入 axios 实例。
+- **createUcApiClient**: 用于创建 UC 接口封装的 API Client，需要传入 axios 实例。
+- **createPublicApiClient**: 用于创建公开访问接口封装的 API Client，需要传入 axios 实例。
 - **axiosInstance**: 内部默认创建的 axios 实例。
 
 ## 使用
@@ -67,7 +67,7 @@ coreApiClient.content.post.listPost().then(response => {
 
 ### 在外部程序中使用
 
-在外部程序中使用时，需要自行创建 axios 实例，并使用 `createCoreApiClient`、`createConsoleApiClient`、`createUcApiClient`、`createPublicApiClient` 创建 Api Client，这样可以方便处理异常逻辑和认证逻辑。
+在外部程序中使用时，需要自行创建 axios 实例，并使用 `createCoreApiClient`、`createConsoleApiClient`、`createUcApiClient`、`createPublicApiClient` 创建 API Client，这样可以方便处理异常逻辑和认证逻辑。
 
 ```javascript
 import axios from "axios"

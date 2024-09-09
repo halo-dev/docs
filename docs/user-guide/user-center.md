@@ -31,7 +31,7 @@ description: 关于个人中心的功能说明
 
 ## 个人令牌
 
-个人令牌是一种用于访问 Halo API 的凭证，可以通过个人令牌访问 Halo 的 REST API，而无需通过用户名和密码授权。
+个人令牌是一种用于访问 Halo API 的凭证，可以通过个人令牌访问 Halo 的 RESTful API，而无需通过用户名和密码授权。
 
 ![Entry](/img/uc/uc-pat.png)
 
