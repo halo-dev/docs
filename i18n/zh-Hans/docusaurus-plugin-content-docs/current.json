@@ -74,5 +74,9 @@
   "sidebar.developer.category.Finder API": {
     "message": "Finder API",
     "description": "The label for category Finder API in sidebar developer"
+  },
+  "sidebar.developer.category.RESTful API": {
+    "message": "RESTful API",
+    "description": "The label for category RESTful API in sidebar developer"
   }
 }
