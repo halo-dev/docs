@@ -344,12 +344,18 @@ module.exports = {
         "developer-guide/theme/code-snippets",
       ],
     },
+    {
+      type: "category",
+      label: "REST API",
+      link: {
+        type: "generated-index",
+      },
+      items: [
+        "developer-guide/rest-api/introduction",
+        "developer-guide/rest-api/api-client",
+      ],
+    },
     "developer-guide/form-schema",
     "developer-guide/annotations-form",
-    // {
-    //   type: "link",
-    //   label: "REST API",
-    //   href: "https://api.halo.run",
-    // },
   ],
 };
