@@ -67,7 +67,7 @@ coreApiClient.content.post.listPost().then(response => {
 
 ### 在外部程序中使用
 
-在外部程序中使用时，需要自行创建 axios 实例，并使用 `createCoreApiClient`、`createConsoleApiClient`、`createUcApiClient`、`createPublicApiClient` 创建 api client，这样可以方便处理异常逻辑和认证逻辑。
+在外部程序中使用时，需要自行创建 axios 实例，并使用 `createCoreApiClient`、`createConsoleApiClient`、`createUcApiClient`、`createPublicApiClient` 创建 Api Client，这样可以方便处理异常逻辑和认证逻辑。
 
 ```javascript
 import axios from "axios"
