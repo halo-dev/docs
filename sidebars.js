@@ -346,13 +346,13 @@ module.exports = {
     },
     {
       type: "category",
-      label: "REST API",
+      label: "RESTful API",
       link: {
         type: "generated-index",
       },
       items: [
-        "developer-guide/rest-api/introduction",
-        "developer-guide/rest-api/api-client",
+        "developer-guide/restful-api/introduction",
+        "developer-guide/restful-api/api-client",
       ],
     },
     "developer-guide/form-schema",
