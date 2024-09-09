@@ -344,12 +344,18 @@ module.exports = {
         "developer-guide/theme/code-snippets",
       ],
     },
+    {
+      type: "category",
+      label: "RESTful API",
+      link: {
+        type: "generated-index",
+      },
+      items: [
+        "developer-guide/restful-api/introduction",
+        "developer-guide/restful-api/api-client",
+      ],
+    },
     "developer-guide/form-schema",
     "developer-guide/annotations-form",
-    // {
-    //   type: "link",
-    //   label: "REST API",
-    //   href: "https://api.halo.run",
-    // },
   ],
 };

@@ -79,11 +79,7 @@
       "link": {
         "type": "generated-index"
       },
-      "items": [
-        "contribution/issue",
-        "contribution/pr",
-        "contribution/sponsor"
-      ]
+      "items": ["contribution/issue", "contribution/pr", "contribution/sponsor"]
     },
     "about"
   ],
@@ -264,9 +260,7 @@
           "link": {
             "type": "generated-index"
           },
-          "items": [
-            "developer-guide/plugin/examples/todolist"
-          ]
+          "items": ["developer-guide/plugin/examples/todolist"]
         }
       ]
     },
@@ -328,6 +322,17 @@
         "developer-guide/theme/global-variables",
         "developer-guide/theme/template-tag",
         "developer-guide/theme/code-snippets"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "RESTful API",
+      "link": {
+        "type": "generated-index"
+      },
+      "items": [
+        "developer-guide/restful-api/introduction",
+        "developer-guide/restful-api/api-client"
       ]
     },
     "developer-guide/form-schema",

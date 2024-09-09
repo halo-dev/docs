@@ -29,14 +29,14 @@ import {
 } from "@halo-dev/api-client"
 ```
 
-- **coreApiClient**: 为 Halo 所有自定义模型的 CRUD 接口封装的 api client。
-- **consoleApiClient**: 为 Halo 针对 Console 提供的接口封装的 api client。
-- **ucApiClient**: 为 Halo 针对 UC 提供的接口封装的 api client。
-- **publicApiClient**: 为 Halo 所有公开访问的接口封装的 api client。
-- **createCoreApiClient**: 用于创建自定义模型的 CRUD 接口封装的 api client，需要传入 axios 实例。
-- **createConsoleApiClient**: 用于创建 Console 接口封装的 api client，需要传入 axios 实例。
-- **createUcApiClient**: 用于创建 UC 接口封装的 api client，需要传入 axios 实例。
-- **createPublicApiClient**: 用于创建公开访问接口封装的 api client，需要传入 axios 实例。
+- **coreApiClient**: 为 Halo 所有自定义模型的 CRUD 接口封装的 API Client。
+- **consoleApiClient**: 为 Halo 针对 Console 提供的接口封装的 API Client。
+- **ucApiClient**: 为 Halo 针对 UC 提供的接口封装的 API Client。
+- **publicApiClient**: 为 Halo 所有公开访问的接口封装的 API Client。
+- **createCoreApiClient**: 用于创建自定义模型的 CRUD 接口封装的 API Client，需要传入 axios 实例。
+- **createConsoleApiClient**: 用于创建 Console 接口封装的 API Client，需要传入 axios 实例。
+- **createUcApiClient**: 用于创建 UC 接口封装的 API Client，需要传入 axios 实例。
+- **createPublicApiClient**: 用于创建公开访问接口封装的 API Client，需要传入 axios 实例。
 - **axiosInstance**: 内部默认创建的 axios 实例。
 
 ## 使用
