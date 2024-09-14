@@ -132,7 +132,9 @@ spec:
     valueField?: PropertyPath;
 
     /**
-     * 使用 value 查询详细信息时，fieldSelector 的查询参数 key，默认为 `metadata.name`。
+     * 使用 value 查询详细信息时，fieldSelector 的查询参数 key，默认为 `metadata.name`。 
+     * 
+     * 需要 Halo 版本 >= 2.19.2。
      */
     fieldSelectorKey?: PropertyPath;
   };
