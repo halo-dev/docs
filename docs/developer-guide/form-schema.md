@@ -73,7 +73,7 @@ spec:
 
 自定义的选择器组件，支持静态和动态数据源，支持多选等功能。
 
-#### 参数
+#### 参数 {#select-params}
 
 - `options`：静态数据源。当 `action` 存在时，此参数无效。
 - `action`：远程动态数据源的接口地址。
@@ -438,6 +438,26 @@ UI 效果：
   value: ""
   language: yaml
 ```
+
+### menuSelect
+
+#### 描述
+
+菜单选择器，用于选择系统内的导航菜单，支持单选、多选、排序。
+
+#### 示例
+
+```yaml
+- $formkit: menuSelect
+  name: menus
+  label: 菜单
+  multiple: true
+  value: []
+```
+
+:::info
+menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
+:::
 
 ### menuCheckbox
 
