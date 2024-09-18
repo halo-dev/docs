@@ -130,6 +130,13 @@ spec:
      * 从 items 中解析出 value 的字段名，默认为 `value`。
      */
     valueField?: PropertyPath;
+
+    /**
+     * 使用 value 查询详细信息时，fieldSelector 的查询参数 key，默认为 `metadata.name`。 
+     * 
+     * 需要 Halo 版本 >= 2.19.2。
+     */
+    fieldSelectorKey?: PropertyPath;
   };
   remoteOptimize?: boolean;
   allowCreate?: boolean;
@@ -187,13 +194,14 @@ spec:
     itemsField: items
     labelField: post.spec.title
     valueField: post.metadata.name
+    fieldSelectorKey: metadata.name
 ```
 
 :::tip
 当远程数据具有分页时，可能会出现默认选项不在第一页的情况，此时 Select 组件将会发送另一个查询请求，以获取默认选项的数据。此接口会携带如下参数：
 
 ```ts
-fieldSelector: `${requestOption.valueField}=(value1,value2,value3)`
+fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
 ```
 
 其中，value1, value2, value3 为默认选项的值。返回值与查询一致，通过 `requestOption` 解析。
