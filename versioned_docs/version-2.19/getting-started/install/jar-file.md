@@ -234,7 +234,7 @@ journalctl -n 20 -u halo
 
 ## 版本升级
 
-1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份
+1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份（可选，但推荐备份）。
 2. 停止 Halo 服务
 
    ```bash

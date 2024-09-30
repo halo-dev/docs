@@ -241,7 +241,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
 ## 更新容器组
 
-1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份。
+1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份（可选，但推荐备份）。
 2. 更新 Halo 服务
 
    修改 `docker-compose.yaml` 中配置的镜像版本。
