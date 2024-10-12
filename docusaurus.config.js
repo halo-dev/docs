@@ -16,6 +16,10 @@ const config = {
   organizationName: "halo-dev", // Usually your GitHub org/user name.
   projectName: "halo", // Usually your repo name.
 
+  future: {
+    experimental_faster: true,
+  },
+
   presets: [
     [
       "classic",
@@ -110,7 +114,7 @@ const config = {
                 ([versionName, versionUrl]) => ({
                   label: versionName,
                   href: versionUrl,
-                })
+                }),
               ),
               {
                 to: "/versions",
@@ -206,7 +210,6 @@ const config = {
       },
     }),
   plugins: [
-    require.resolve("docusaurus-plugin-image-zoom"),
     [
       "@docusaurus/plugin-client-redirects",
       {
@@ -256,23 +259,6 @@ const config = {
       },
     ],
   ],
-  webpack: {
-    jsLoader: (isServer) => ({
-      loader: require.resolve("swc-loader"),
-      options: {
-        jsc: {
-          parser: {
-            syntax: "typescript",
-            tsx: true,
-          },
-          target: "es2017",
-        },
-        module: {
-          type: isServer ? "commonjs" : "es6",
-        },
-      },
-    }),
-  },
   scripts: [
     {
       src: "https://analytics.halo.run/script.js",
