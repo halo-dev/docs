@@ -32,7 +32,7 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.19",
+          lastVersion: "2.20",
           versions: {
             current: {
               label: "2.20.0-SNAPSHOT",

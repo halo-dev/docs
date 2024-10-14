@@ -9,14 +9,6 @@
     "message": "页面已崩溃。",
     "description": "The title of the fallback page when the page crashed"
   },
-  "theme.blog.archive.title": {
-    "message": "历史博文",
-    "description": "The page & hero title of the blog archive page"
-  },
-  "theme.blog.archive.description": {
-    "message": "历史博文",
-    "description": "The page & hero description of the blog archive page"
-  },
   "theme.BackToTopButton.buttonAriaLabel": {
     "message": "回到顶部",
     "description": "The ARIA label for the back to top button"
@@ -32,6 +24,14 @@
   "theme.blog.paginator.olderEntries": {
     "message": "较旧的博文",
     "description": "The label used to navigate to the older blog posts page (next page)"
+  },
+  "theme.blog.archive.title": {
+    "message": "历史博文",
+    "description": "The page & hero title of the blog archive page"
+  },
+  "theme.blog.archive.description": {
+    "message": "历史博文",
+    "description": "The page & hero description of the blog archive page"
   },
   "theme.blog.post.paginator.navAriaLabel": {
     "message": "博文分页导航",
@@ -120,6 +120,10 @@
     "message": "编辑此页",
     "description": "The link label to edit the current page"
   },
+  "theme.common.headingLinkTitle": {
+    "message": "{heading}的直接链接",
+    "description": "Title for link to heading"
+  },
   "theme.lastUpdated.atDate": {
     "message": "于 {date} ",
     "description": "The words used to describe on which date a page has been last updated"
@@ -132,17 +136,13 @@
     "message": "最后{byUser}{atDate}更新",
     "description": "The sentence used to display when a page has been last updated, and by who"
   },
-  "theme.common.headingLinkTitle": {
-    "message": "{heading}的直接链接",
-    "description": "Title for link to heading"
+  "theme.navbar.mobileVersionsDropdown.label": {
+    "message": "选择版本",
+    "description": "The label for the navbar versions dropdown on mobile view"
   },
   "theme.NotFound.title": {
     "message": "找不到页面",
     "description": "The title of the 404 page"
-  },
-  "theme.navbar.mobileVersionsDropdown.label": {
-    "message": "选择版本",
-    "description": "The label for the navbar versions dropdown on mobile view"
   },
   "theme.tags.tagsListLabel": {
     "message": "标签：",
@@ -192,10 +192,6 @@
     "message": "复制",
     "description": "The copy button label on code blocks"
   },
-  "theme.CodeBlock.wordWrapToggle": {
-    "message": "切换自动换行",
-    "description": "The title attribute for toggle word wrapping button of code block lines"
-  },
   "theme.DocSidebarItem.expandCategoryAriaLabel": {
     "message": "展开侧边栏分类 '{label}'",
     "description": "The ARIA label to expand the sidebar category"
@@ -204,9 +200,17 @@
     "message": "折叠侧边栏分类 '{label}'",
     "description": "The ARIA label to collapse the sidebar category"
   },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "切换自动换行",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
+  },
   "theme.NavBar.navAriaLabel": {
     "message": "主导航",
     "description": "The ARIA label for the main navigation"
+  },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "选择语言",
+    "description": "The label for the mobile language switcher dropdown"
   },
   "theme.NotFound.p1": {
     "message": "我们找不到您要找的页面。",
@@ -232,6 +236,10 @@
     "message": "阅读需 {readingTime} 分钟",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
+  "theme.docs.breadcrumbs.home": {
+    "message": "主页面",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
   "theme.docs.sidebar.navAriaLabel": {
     "message": "文档侧边栏",
     "description": "The ARIA label for the sidebar navigation"
@@ -244,17 +252,13 @@
     "message": "收起侧边栏",
     "description": "The title attribute for collapse button of doc sidebar"
   },
-  "theme.docs.breadcrumbs.home": {
-    "message": "主页面",
-    "description": "The ARIA label for the home page in the breadcrumbs"
-  },
-  "theme.navbar.mobileLanguageDropdown.label": {
-    "message": "选择语言",
-    "description": "The label for the mobile language switcher dropdown"
-  },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
     "message": "← 回到主菜单",
     "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
+  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+    "message": "关闭导航栏",
+    "description": "The ARIA label for close button of mobile sidebar"
   },
   "theme.docs.sidebar.expandButtonTitle": {
     "message": "展开侧边栏",
@@ -263,10 +267,6 @@
   "theme.docs.sidebar.expandButtonAriaLabel": {
     "message": "展开侧边栏",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
-  },
-  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
-    "message": "关闭导航栏",
-    "description": "The ARIA label for close button of mobile sidebar"
   },
   "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
     "message": "切换导航栏",
