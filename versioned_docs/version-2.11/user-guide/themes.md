@@ -8,7 +8,7 @@ description: 主题管理相关功能说明
 :::info
 目前有两个官方渠道可以获取主题：
 
-- 应用市场：[https://halo.run/store/apps](https://halo.run/store/apps)
+- 应用市场：[https://www.halo.run/store/apps](https://www.halo.run/store/apps)
 - Awesome Halo：[https://github.com/halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo)
 :::
 
@@ -32,7 +32,7 @@ description: 主题管理相关功能说明
 
 下载完成后，便会出现在已安装主题列表中。
 
-此外， Halo 的[应用市场](https://halo.run/store/apps)也支持通过输入站点地址的方式自动跳转到你的站点进行安装，演示视频：
+此外， Halo 的[应用市场](https://www.halo.run/store/apps)也支持通过输入站点地址的方式自动跳转到你的站点进行安装，演示视频：
 
 <!-- markdownlint-disable MD034 -->
 <video src="https://assets.halo.run/install-theme-from-store.mp4" controls style={{width: '100%', borderRadius: '8px'}}/>

@@ -24,9 +24,9 @@ spec:
   displayName: 示例主题
   author:
     name: halo-dev
-    website: https://halo.run
+    website: https://www.halo.run
   description: 一个示例主题
-  logo: https://halo.run/logo
+  logo: https://www.halo.run/logo
   website: https://github.com/halo-sigs/theme-foo
   repo: https://github.com/halo-sigs/theme-foo.git
   settingName: "theme-foo-setting"

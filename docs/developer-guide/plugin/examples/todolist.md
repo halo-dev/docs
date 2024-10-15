@@ -33,8 +33,8 @@ description: 这个例子展示了如何开发 Todo List 插件
     requires: ">=2.0.0"
     author:
       name: halo-dev
-      website: https://halo.run
-    logo: https://halo.run/logo
+      website: https://www.halo.run
+    logo: https://www.halo.run/logo
     homepage: https://github.com/halo-dev/plugin-starter#readme
     repo: https://github.com/halo-dev/plugin-starter
     issues: https://github.com/halo-dev/plugin-starter/issues

@@ -8,8 +8,8 @@ slug: /
 ---
 
 <p align="center">
-    <a href="https://halo.run" target="_blank" rel="noopener noreferrer">
-        <img width="100" src="https://halo.run/logo" alt="Halo logo" />
+    <a href="https://www.halo.run" target="_blank" rel="noopener noreferrer">
+        <img width="100" src="https://www.halo.run/logo" alt="Halo logo" />
     </a>
 </p>
 
@@ -22,7 +22,7 @@ slug: /
 <a href="https://github.com/halo-dev/halo/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/halo-dev/halo/halo.yaml?branch=main&style=flat-square" /></a>
 <a href="https://codecov.io/gh/halo-dev/halo"><img alt="Codecov percentage" src="https://img.shields.io/codecov/c/github/halo-dev/halo/main?style=flat-square&token=YsRUg9fall"/></a>
 <br />
-<a href="https://halo.run">官网</a>
+<a href="https://www.halo.run">官网</a>
 <a href="https://docs.halo.run">文档</a>
 <a href="https://bbs.halo.run">社区</a>
 <a href="https://gitee.com/halo-dev">Gitee</a>

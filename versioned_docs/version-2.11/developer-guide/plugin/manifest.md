@@ -15,8 +15,8 @@ spec:
   requires: ">=2.0.0"
   author:
     name: halo-dev
-    website: https://halo.run
-  logo: https://halo.run/logo
+    website: https://www.halo.run
+  logo: https://www.halo.run/logo
   # settingName: hello-world-settings
   # configMapName: hello-world-configmap
   homepage: https://github.com/guqing/halo-plugin-hello-world
