@@ -16,7 +16,7 @@ Devtools 是使用 Java 开发的一个 [Gradle](https://gradle.org/) 插件，�
 ```groovy
 plugins {
     // ...
-    id "run.halo.plugin.devtools" version "0.0.7"
+    id "run.halo.plugin.devtools" version "0.2.0"
 }
 ```
 
@@ -60,7 +60,7 @@ Halo 初始化成功，访问： http://localhost:8090/console
 
 ```groovy
 halo {
-    version = '2.9.1'
+    version = '2.20'
     superAdminUsername = 'admin'
     superAdminPassword = 'admin'
     externalUrl = 'http://localhost:8090'
@@ -85,7 +85,7 @@ halo {
 - `docker.apiVersion`：Docker 的 API 版本，使用 `docker version` 命令可以查看到，如果你的 Docker 版本过低可能需要更改此配置，示例：
 
   ```shell
-  ➤ docker version                                                                        11:38:06
+  ➤ docker version
   Client:
   Version:           24.0.7
   API version:       1.43
@@ -95,6 +95,10 @@ halo {
 - `debug`：是否开启调试模式，开启后会在启动 Halo 服务时会自动开启调试模式，此时你可以使用 IDE 连接到 Halo 服务进行调试。
 - `debugPort`：调试模式下的调试端口号，默认是自动分配端口号，你可以修改此配置来固定调试端口号。
 - `suspend`：是否在启动时挂起，如果开启则会在启动时挂起直到有调试器连接到 Halo 服务。
+
+:::warning
+由于 Halo 2.20.0 版本更改了初始化和登录流程，如果 `halo.version` 指定 `2.20.x` 版本需要将 `run.halo.plugin.devtools` 版本升级到 `0.2.0` 及以上。
+:::
 
 ## 调试后端代码
 
@@ -122,3 +126,16 @@ halo {
 ```
 
 这样，在点击 `haloServer` 启动插件时会挂起等待在 `Attach debugger` 处，直到你点击 `Attach debugger` 连接调试器后才会继续执行。
+
+## 迁移
+
+### 从旧版本升级到 0.2.x 版本
+
+如果 `run.halo.plugin.devtools` 从旧版本升级到 `0.2.0` 版本，需要先将 Gradle 版本升级到 `8.3` 以上，你可以通过以下命令升级 Gradle 版本：
+
+在插件项目根目录下执行：
+
+```shell
+# 如将 Gradle 版本升级至 8.9
+./gradlew wrapper --gradle-version=8.9 
+```
