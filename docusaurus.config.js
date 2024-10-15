@@ -67,7 +67,7 @@ const config = {
         title: "Halo 文档",
         logo: {
           alt: "Halo Logo",
-          src: "https://halo.run/upload/2021/03/Adaptive256-463ca9b92e2d40268431018c07735842.png",
+          src: "https://www.halo.run/upload/2021/03/Adaptive256-463ca9b92e2d40268431018c07735842.png",
         },
         items: [
           {
@@ -109,7 +109,7 @@ const config = {
             ],
           },
           {
-            href: "https://halo.run",
+            href: "https://www.halo.run",
             label: "官网",
             position: "right",
           },

@@ -6,17 +6,17 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 因为 Halo 2.0 的底层架构变动，无法兼容 1.x 的数据，导致无法平滑升级，所以需要进行数据迁移。为此，我们提供了从 Halo 1.5 / 1.6 版本迁移的插件。在进行迁移之前，**有几点注意事项和要求，如果你目前无法满足，建议先暂缓迁移。**
 
 - Halo 版本必须为 1.5.x 或 1.6.x。如果不满足，需要先升级到 1.5.x 或 1.6.x 版本。
-- Halo 2.0 不兼容 1.x 的主题，建议在升级前先查询你正在使用的主题是否已经支持 2.0。你可以访问 [halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo) 或 [应用市场](https://halo.run/store/apps?type=THEME) 查阅目前支持的主题。
+- Halo 2.0 不兼容 1.x 的主题，建议在升级前先查询你正在使用的主题是否已经支持 2.0。你可以访问 [halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo) 或 [应用市场](https://www.halo.run/store/apps?type=THEME) 查阅目前支持的主题。
 - Halo 2.0 目前没有内置 Markdown 编辑器，如果需要重新编辑迁移后的文章，需要额外安装 Markdown 编辑器插件。目前社区已经提供了以下插件：
-  - StackEdit：[https://halo.run/store/apps/app-hDXMG](https://halo.run/store/apps/app-hDXMG)
-  - ByteMD：[https://halo.run/store/apps/app-HTyhC](https://halo.run/store/apps/app-HTyhC)
+  - StackEdit：[https://www.halo.run/store/apps/app-hDXMG](https://www.halo.run/store/apps/app-hDXMG)
+  - ByteMD：[https://www.halo.run/store/apps/app-HTyhC](https://www.halo.run/store/apps/app-HTyhC)
 - Halo 2.0 不再内置友情链接、日志、图库等模块，需要安装额外的插件，目前官方已提供：
-  - 链接管理：[https://halo.run/store/apps/app-hfbQg](https://halo.run/store/apps/app-hfbQg)
-  - 图库：[https://halo.run/store/apps/app-BmQJW](https://halo.run/store/apps/app-BmQJW)
-  - 瞬间（原日志）：[https://halo.run/store/apps/app-SnwWD](https://halo.run/store/apps/app-SnwWD)
+  - 链接管理：[https://www.halo.run/store/apps/app-hfbQg](https://www.halo.run/store/apps/app-hfbQg)
+  - 图库：[https://www.halo.run/store/apps/app-BmQJW](https://www.halo.run/store/apps/app-BmQJW)
+  - 瞬间（原日志）：[https://www.halo.run/store/apps/app-SnwWD](https://www.halo.run/store/apps/app-SnwWD)
 - Halo 2.0 不再内置外部云存储的支持。需要安装额外的插件，目前官方已提供：
-  - S3（兼容国内主流的云存储）：[https://halo.run/store/apps/app-Qxhpp](https://halo.run/store/apps/app-Qxhpp)
-  - 阿里云 OSS：[https://halo.run/store/apps/app-wCJCD](https://halo.run/store/apps/app-wCJCD)
+  - S3（兼容国内主流的云存储）：[https://www.halo.run/store/apps/app-Qxhpp](https://www.halo.run/store/apps/app-Qxhpp)
+  - 阿里云 OSS：[https://www.halo.run/store/apps/app-wCJCD](https://www.halo.run/store/apps/app-wCJCD)
 - 在迁移过程中不会保留旧版本的用户数据，迁移完成之后，关于文章等数据的关联都将改为 Halo 2.0 的新用户。
 - 为了防止直接升级 2.0 导致 1.x 的数据受到破坏，我们已经将工作目录由 `~/.halo` 变更为 `~/.halo2`。
 - 目前 Halo 2.0 仅提供 Docker 部署方式，没有提供可执行 JAR 包，但可以自编译，请参考 [构建](../developer-guide/core/build.md) 文档
@@ -54,11 +54,11 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 
 在迁移过程中，需要提前安装必要的插件：
 
-- 站点迁移：[https://halo.run/store/apps/app-TlUBt](https://halo.run/store/apps/app-TlUBt)
-- 链接管理：[https://halo.run/store/apps/app-hfbQg](https://halo.run/store/apps/app-hfbQg)
-- 图库：[https://halo.run/store/apps/app-BmQJW](https://halo.run/store/apps/app-BmQJW)
-- 瞬间（原日志）：[https://halo.run/store/apps/app-SnwWD](https://halo.run/store/apps/app-SnwWD)
-- S3（如果需要迁移存在云存储的附件，需要安装）：[https://halo.run/store/apps/app-Qxhpp](https://halo.run/store/apps/app-Qxhpp)
+- 站点迁移：[https://www.halo.run/store/apps/app-TlUBt](https://www.halo.run/store/apps/app-TlUBt)
+- 链接管理：[https://www.halo.run/store/apps/app-hfbQg](https://www.halo.run/store/apps/app-hfbQg)
+- 图库：[https://www.halo.run/store/apps/app-BmQJW](https://www.halo.run/store/apps/app-BmQJW)
+- 瞬间（原日志）：[https://www.halo.run/store/apps/app-SnwWD](https://www.halo.run/store/apps/app-SnwWD)
+- S3（如果需要迁移存在云存储的附件，需要安装）：[https://www.halo.run/store/apps/app-Qxhpp](https://www.halo.run/store/apps/app-Qxhpp)
 
 ## 配置存储策略
 
