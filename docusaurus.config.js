@@ -47,17 +47,7 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
-          ignorePatterns: [
-            "/2.10/**",
-            "/2.11/**",
-            "/2.12/**",
-            "/2.13/**",
-            "/2.14/**",
-            "/2.15/**",
-            "/2.16/**",
-            "/2.17/**",
-            "/2.18/**",
-          ],
+          ignorePatterns: ["/2.16/**", "/2.17/**", "/2.18/**", "/2.19/**"],
         },
         googleAnalytics: {
           trackingID: "UA-110780416-7",
@@ -242,12 +232,6 @@ const config = {
         createRedirects(existingPath) {
           if (existingPath.startsWith("/2.20.0-SNAPSHOT/")) {
             return [
-              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.10.0-SNAPSHOT/"),
-              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.11.0-SNAPSHOT/"),
-              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.12.0-SNAPSHOT/"),
-              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.13.0-SNAPSHOT/"),
-              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.14.0-SNAPSHOT/"),
-              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.15.0-SNAPSHOT/"),
               existingPath.replace("/2.20.0-SNAPSHOT/", "/2.16.0-SNAPSHOT/"),
               existingPath.replace("/2.20.0-SNAPSHOT/", "/2.17.0-SNAPSHOT/"),
               existingPath.replace("/2.20.0-SNAPSHOT/", "/2.18.0-SNAPSHOT/"),
