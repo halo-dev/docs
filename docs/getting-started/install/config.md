@@ -76,7 +76,7 @@ spring:
 | `halo.work-dir`                                    | Halo [工作目录](../prepare.md#工作目录)，通常不建议修改                            | `${user.home}/.halo2`             |
 | `halo.external-url`                                | 网站的实际访问地址，如：`https://www.halo.run`                                     | `http://localhost:8090`           |
 | `halo.use-absolute-permalink`                      | 永久链接是否生成为绝对地址，设置为 `true` 时，请确保正确配置了 `halo.external-url` | `false`                           |
-| `halo.security.frame-options.disabled`             | 是否允许网站通过 iframe 嵌入                                                       | `false`                           |
+| `halo.security.frame-options.disabled`             | 是否禁止网站通过 iframe 嵌入                                                       | `false`                           |
 | `halo.security.frame-options.mode`                 | iframe 嵌入模式，默认为同源                                                        | `SAMEORIGIN`                      |
 | `halo.security.referrer-options.policy`            |                                                                                    | `strict-origin-when-cross-origin` |
 | `halo.security.remember-me.token-validity`         | 保持登录会话的有效期，默认为 14 天（14d）                                          | `14d`                             |
