@@ -80,7 +80,7 @@ spring:
 | `halo.security.frame-options.mode`                 | iframe 嵌入模式，默认为同源                                                        | `SAMEORIGIN`                      |
 | `halo.security.referrer-options.policy`            |                                                                                    | `strict-origin-when-cross-origin` |
 | `halo.security.remember-me.token-validity`         | 保持登录回话的有效期，默认为 14 天（14d）                                          | `14d`                             |
-| `halo.security.basic-auth.disabled`                | 是否开启 API 的 Basic Auth 认证                                                    | `true`                            |
+| `halo.security.basic-auth.disabled`                | 是否禁用 API 的 Basic Auth 认证                                                    | `true`                            |
 | `halo.security.two-factor-auth.disabled`           | 是否禁用系统全局的两步验证                                                             | `false`                           |
 | `halo.attachment.resource-mappings[0].pathPattern` |                                                                                    |                                   |
 | `halo.attachment.resource-mappings[0].locations`   |                                                                                    |                                   |
