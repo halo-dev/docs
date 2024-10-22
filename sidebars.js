@@ -39,6 +39,7 @@ module.exports = {
             "getting-started/install/podman",
             "getting-started/install/jar-file",
             "getting-started/install/offline",
+            "getting-started/install/config",
             {
               type: "category",
               label: "云平台",
