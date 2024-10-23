@@ -19,7 +19,7 @@ description: 文章管理相关功能说明
 4. **发布**：保存并发布文章内容。
 
 :::info
-Halo 支持通过插件来拓展文章编辑器，目前除了 Halo 内置的编辑，应用市场中还有其他的编辑器可用：[https://www.halo.run/store/apps?tag=editor](https://www.halo.run/store/apps?tag=editor)
+Halo 支持通过插件来拓展文章编辑器，目前除了 Halo 内置的编辑器，应用市场中还有其他的编辑器可用：[https://www.halo.run/store/apps?tag=editor](https://www.halo.run/store/apps?tag=editor)
 :::
 
 ## 文章设置
