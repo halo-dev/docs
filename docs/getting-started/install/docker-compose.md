@@ -221,6 +221,10 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
    <DockerArgs />
 
+   :::info
+   为了保持部署流程的简洁，此文档仅提供了必要的配置示例，完整的配置选项列表可查阅：[配置说明](./config.md)
+   :::
+
 3. 启动 Halo 服务
 
    ```bash
