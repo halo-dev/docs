@@ -1,6 +1,6 @@
 ---
-title: 离线环境部署
-description: 离线环境部署
+title: 使用离线包部署
+description: 使用离线包在离线环境部署
 ---
 
 import DockerArgs from "./slots/_docker-args.md"
