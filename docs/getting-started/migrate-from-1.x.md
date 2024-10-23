@@ -7,19 +7,15 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 
 - Halo 版本必须为 1.5.x 或 1.6.x。如果不满足，需要先升级到 1.5.x 或 1.6.x 版本。
 - Halo 2.0 不兼容 1.x 的主题，建议在升级前先查询你正在使用的主题是否已经支持 2.0。你可以访问 [halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo) 或 [应用市场](https://www.halo.run/store/apps?type=THEME) 查阅目前支持的主题。
-- Halo 2.0 目前没有内置 Markdown 编辑器，如果需要重新编辑迁移后的文章，需要额外安装 Markdown 编辑器插件。目前社区已经提供了以下插件：
-  - StackEdit：[https://www.halo.run/store/apps/app-hDXMG](https://www.halo.run/store/apps/app-hDXMG)
-  - ByteMD：[https://www.halo.run/store/apps/app-HTyhC](https://www.halo.run/store/apps/app-HTyhC)
+- Halo 2.0 目前没有内置 Markdown 编辑器，如果需要重新编辑迁移后的文章，需要额外安装 Markdown 编辑器插件，可以在应用市场找到合适的 Markdown 插件：[https://www.halo.run/store/apps?tag=editor](https://www.halo.run/store/apps?tag=editor)
 - Halo 2.0 不再内置友情链接、日志、图库等模块，需要安装额外的插件，目前官方已提供：
   - 链接管理：[https://www.halo.run/store/apps/app-hfbQg](https://www.halo.run/store/apps/app-hfbQg)
   - 图库：[https://www.halo.run/store/apps/app-BmQJW](https://www.halo.run/store/apps/app-BmQJW)
   - 瞬间（原日志）：[https://www.halo.run/store/apps/app-SnwWD](https://www.halo.run/store/apps/app-SnwWD)
 - Halo 2.0 不再内置外部云存储的支持。需要安装额外的插件，目前官方已提供：
   - S3（兼容国内主流的云存储）：[https://www.halo.run/store/apps/app-Qxhpp](https://www.halo.run/store/apps/app-Qxhpp)
-  - 阿里云 OSS：[https://www.halo.run/store/apps/app-wCJCD](https://www.halo.run/store/apps/app-wCJCD)
 - 在迁移过程中不会保留旧版本的用户数据，迁移完成之后，关于文章等数据的关联都将改为 Halo 2.0 的新用户。
 - 为了防止直接升级 2.0 导致 1.x 的数据受到破坏，我们已经将工作目录由 `~/.halo` 变更为 `~/.halo2`。
-- 目前 Halo 2.0 仅提供 Docker 部署方式，没有提供可执行 JAR 包，但可以自编译，请参考 [构建](../developer-guide/core/build.md) 文档
 - 可以考虑先在本地运行一个 Halo 2.0，模拟一下导入，检查导入后是否满足要求。
 
 如果遇到了迁移过程中的问题，也可以向我们提交 Issue: [https://github.com/halo-dev/halo/issues/new/choose](https://github.com/halo-dev/halo/issues/new/choose)，以上暂不支持的功能我们也会陆续完善。
@@ -32,7 +28,7 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 
 在 Halo 1.5.x / 1.6.x 后台的小工具中提供了数据导出的功能，将最新的数据进行备份，然后下载即可。这个数据文件包含了数据库所有的数据，后续我们在 2.0 的导入插件中就是通过这个文件进行数据导入。
 
-![halo-data-export.png](/img/halo-data-export.png)
+![Halo 1.6 export data](/img/migrate/halo1.6-export.png)
 
 ## 部署 Halo 2.0
 
@@ -40,6 +36,7 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 
 - [使用 Docker 部署](./install/docker.md)
 - [使用 Docker Compose 部署](./install/docker-compose.md)
+- [使用 JAR 文件部署](./install/jar-file.md)
 
 :::tip
 可以考虑暂时保留旧版本的 Halo，等到迁移完成之后再移除。如果需要保留旧版本的 Halo，请注意在部署 Halo 2.0 的时候使用其他端口，然后在反向代理（Nginx）中修改为 Halo 2.0 的运行端口即可。
@@ -67,14 +64,19 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 1. 安装 S3 插件。
 2. 进入附件管理页面。
 3. 点击页面右上角的 **存储策略** 按钮。
-4. 创建存储策略，选择 **S3 Object Storage**。
+4. 创建存储策略，选择 **S3 对象存储**。
 5. 填写相关配置，点击 **保存** 即可。
 
 ## 迁移
 
-![Migrate Plugin](/img/migrate/halo2.0-migrate-plugin.png)
+![Migrate Plugin 1](/img/migrate/halo2.0-migrate-plugin-1.png)
+
+![Migrate Plugin 2](/img/migrate/halo2.0-migrate-plugin-2.png)
+
+![Migrate Plugin 3](/img/migrate/halo2.0-migrate-plugin-3.png)
 
 1. 点击左侧菜单的迁移进入迁移页面。
-2. 点击 **选择文件** 按钮，选择在 Halo 1.5.x / 1.6.x 导出的数据文件（JSON 格式）。
-3. 如果在 1.x 中使用了云存储，会弹出选择云存储的对话框，选择之前创建的存储策略即可。
-4. 最后点击页面下方的 **执行导入** 即可。
+2. 选择 **Halo 1.5 / 1.6 数据迁移**。
+3. 点击 **选择文件** 按钮，选择在 Halo 1.5.x / 1.6.x 导出的数据文件（JSON 格式）。
+4. 如果在 1.x 中使用了云存储，会弹出选择云存储的对话框，选择之前创建的存储策略即可。
+5. 最后点击页面下方的 **执行导入** 即可。

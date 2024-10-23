@@ -15,29 +15,29 @@ description: 关于个人中心的功能说明
 详情可见：[创建角色](./users.md#创建角色)
 :::
 
-![Entry](/img/uc/uc-entry.png)
+![Uc entry](/img/uc/uc-entry.png)
 
 ## 个人资料
 
 这个页面会显示和用户相关的一些信息。
 
-![Entry](/img/uc/uc-profile.png)
+![User profile](/img/uc/uc-profile.png)
 
 ## 通知配置
 
 这个页面可以配置用户的通知偏好，可以选择接收哪些类型的通知。
 
-![Entry](/img/uc/uc-notification-preferences.png)
+![Notification preferences](/img/uc/uc-notification-preferences.png)
 
 ## 个人令牌
 
-个人令牌是一种用于访问 Halo API 的凭证，可以通过个人令牌访问 Halo 的 RESTful API，而无需通过用户名和密码授权。
+个人令牌是一种用于访问 Halo API 的凭证，可以通过个人令牌访问 Halo 的 RESTful API，而无需通过用户名和密码授权，使用方式可查阅：[RESTful API 介绍](../developer-guide/restful-api/introduction.md)
 
-![Entry](/img/uc/uc-pat.png)
+![Personal access token](/img/uc/uc-pat.png)
 
 创建新的个人令牌：
 
-![Entry](/img/uc/uc-pat-creation.png)
+![Create personal access token](/img/uc/uc-pat-creation.png)
 
 - **名称**：个人令牌的名称。
 - **过期时间**：个人令牌的过期时间，不选择则表示永不过期。
@@ -46,16 +46,30 @@ description: 关于个人中心的功能说明
 
 创建好的个人令牌：
 
-![Entry](/img/uc/uc-pat-token.png)
+![Personal access token string](/img/uc/uc-pat-token.png)
+
+## 两步验证
+
+在这个选项卡中，我们可以配置登录之后两步验证方式，目前支持 TOTP 验证器。
+
+![Totp](/img/uc/totp.png)
+
+![Totp Config](/img/uc/totp-config.png)
+
+## 登录设备
+
+在这里可以看到当前账号的所有登录设备，你也可以在更多按钮中撤销任意设备。
+
+![User devices](/img/uc/user-devices.png)
 
 ## 消息
 
 此页面用于显示用户收到的站内消息。
 
-![Entry](/img/uc/uc-notifications.png)
+![Notifications](/img/uc/uc-notifications.png)
 
 ## 我的文章
 
 Halo 默认为个人中心提供了管理个人文章的功能，每个用户都可以在个人中心创建、编辑自己的文章。当然，也可以通过配置角色权限，自行决定是否开放此功能，可查阅[创建角色](./users.md#创建角色)。
 
-![Entry](/img/uc/uc-posts.png)
+![My posts](/img/uc/uc-posts.png)

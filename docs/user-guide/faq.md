@@ -7,50 +7,55 @@ description: 使用上的常见问题
 
 **Halo** [ˈheɪloʊ]，是一款好用又强大的[开源建站工具](https://github.com/halo-dev/halo)，配合上不同的模板与插件，可以很好地帮助你构建你心中的理想站点。它可以是你公司的官方网站，可以是你的个人博客，也可以是团队共享的知识库，甚至可以是一个论坛、一个商城。
 
+### 为什么 Halo 启动之后，数据库只有一张表？
+
+从 Halo 2.0 开始，为了方便插件扩展，能够方便的持久化数据，我们设计了一种自定义模型的方案，详情可参考 RFC：[自定义模型设计
+](https://github.com/halo-dev/rfcs/tree/main/extension)
+
 ### 忘记密码怎么办？
 
-1. 站点管理员已经配置好邮件通知，并且用户已完成电子邮箱验证时，可以点击登录页面的 `找回密码` 选项或直接访问 `/console/reset-password` 地址，填写用户名及对应邮箱后，系统将向该邮箱发送密码重置链接，用户可通过该链接重置密码；
+1. 站点管理员已经配置好邮件通知，并且用户已完成电子邮箱验证时，可以点击登录页面的 `找回密码` 链接，填写邮箱后，系统将向该邮箱发送密码重置链接，用户可通过该链接重置密码；
 2. 如果不满足上述条件，或者密码重置邮件不能发送成功，请直接联系具有用户管理权限的管理员进行密码重置操作，管理员可参考文档[修改用户密码](./users#修改用户密码)部分修改指定用户的密码；
 3. 如果系统没有任何一个能够正常登录控制台且具有用户管理权限的管理员账号，则用户需要通过更新数据库记录的方式重置指定用户的密码。
   
-  :::info 参考 SQL 语句
+     :::info 参考 SQL 语句
 
-  通过以下 SQL 语句，可以将 `admin` 用户的密码重置为 `password`，密码重置后请尽快修改为更加安全的密码。
-  
-  **PostgreSQL** 数据库
+     通过以下 SQL 语句，可以将 `admin` 用户的密码重置为 `password`，密码重置后请尽快修改为更加安全的密码。
 
-  ```SQL
-    UPDATE
-        extensions
-    SET
-        data = convert_to(
-            jsonb_set(
-                convert_from(data, 'UTF-8') :: jsonb,
-                '{spec,password}',
-                '"{bcrypt}$2a$10$7tBEL1sNQSr/uWtLZHLmCeA9IGx0I9/Jz//3Uwo/anIm9xdxv.xrO"'
-            ) :: text,
-            'UTF-8'
-        )
-    WHERE
-        name LIKE '/registry/users/admin';
-  ```
+     **PostgreSQL** 数据库
 
-  **MySQL** 数据库
+     ```SQL
+       UPDATE
+           extensions
+       SET
+           data = convert_to(
+               jsonb_set(
+                   convert_from(data, 'UTF-8') :: jsonb,
+                   '{spec,password}',
+                   '"{bcrypt}$2a$10$7tBEL1sNQSr/uWtLZHLmCeA9IGx0I9/Jz//3Uwo/anIm9xdxv.xrO"'
+               ) :: text,
+               'UTF-8'
+           )
+       WHERE
+           name LIKE '/registry/users/admin';
+     ```
 
-  ```SQL
-  UPDATE
-      extensions
-  SET
-      data = JSON_SET(
-          CONVERT(data USING utf8mb4),
-          '$.spec.password',
-          '{bcrypt}$2a$10$7tBEL1sNQSr/uWtLZHLmCeA9IGx0I9/Jz//3Uwo/anIm9xdxv.xrO'
-      )
-  WHERE
-      name LIKE '/registry/users/admin';
-  ```
-  
-  :::
+     **MySQL** 数据库
+
+     ```SQL
+     UPDATE
+         extensions
+     SET
+         data = JSON_SET(
+             CONVERT(data USING utf8mb4),
+             '$.spec.password',
+             '{bcrypt}$2a$10$7tBEL1sNQSr/uWtLZHLmCeA9IGx0I9/Jz//3Uwo/anIm9xdxv.xrO'
+         )
+     WHERE
+         name LIKE '/registry/users/admin';
+     ```
+
+     :::
 
 ### 附件上传提示 `413 Request Entity Too Large` 如何解决？
 
@@ -122,7 +127,7 @@ server {
 
 前台样式不正常或者丢失有很多种问题的可能，最快捷定位问题的方式就是打开浏览器控制台查看具体请求的错误，以下列出了部分导致出现该问题的常见原因：
 
-1. 后台设置的 `博客地址` 与实际访问地址不一致。也可能是开启了 https 之后，无法正常加载 http 资源，将 `博客地址` 改为 https 协议即可。
+1. `外部访问地址` 与实际访问地址不一致。也可能是开启了 https 之后，无法正常加载 http 资源，将 [外部访问地址](../getting-started/install/config.md#halo-独有配置) 改为 https 协议即可。
 2. Nginx 配置了静态资源缓存，但没有设置 `proxy_pass`，参考如下：
 
    ```nginx
