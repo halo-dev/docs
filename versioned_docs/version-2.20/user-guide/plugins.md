@@ -53,7 +53,7 @@ description: 插件管理相关功能说明
 
 ![插件设置](/img/user-guide/plugins/plugin-setting.png)
 
-此处以 `plugin-umami` 插件为例。
+此处以 `Umami` 插件为例。
 
 :::info
 你可以点击插件列表指定插件所在行后方的 `···` 更多操作按钮，选择其中的 `重置` 选项将插件提供的设置项恢复为默认值。

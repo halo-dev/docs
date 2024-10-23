@@ -10,10 +10,9 @@ description: 附件管理相关功能说明
 Halo 默认提供了本地的存储策略类型，你还可以通过安装插件的方式扩展其他的存储策略类型。一个存储策略包含了存储提供者，具体存储位置等使用该类型存储所必要的各种信息。
 
 :::info
-目前 Halo 官方维护了两个存储策略插件，可以根据需要选择安装：
+目前除了 Halo 内置的本地存储，在应用市场中也有三方的存储插件：[https://www.halo.run/store/apps?tag=storage](https://www.halo.run/store/apps?tag=storage)
 
-1. 阿里云 OSS：[https://www.halo.run/store/apps/app-wCJCD](https://www.halo.run/store/apps/app-wCJCD)
-2. Amazon S3 协议（主流云存储厂商均支持）：[https://www.halo.run/store/apps/app-Qxhpp](https://www.halo.run/store/apps/app-Qxhpp)
+此外，如果你期望对接类似于阿里云、腾讯云的对象存储，可以考虑使用 [对象存储（Amazon S3 协议）](https://www.halo.run/store/apps/app-Qxhpp) 插件，此插件兼容市面上所有支持 S3 协议的对象存储厂商。
 :::
 
 你可以点击附件页面右上角的 `存储策略` 按钮对存储策略进行管理。
@@ -24,7 +23,7 @@ Halo 默认提供了本地的存储策略类型，你还可以通过安装插件
 
 ![添加存储策略](/img/user-guide/attachments/attachment-policy-add.png)
 
-添加时首先需要选择一种存储策略类型，系统内置的存储策略为本地存储，图中的 `S3 Object Storage` 由[对象存储（Amazon S3 协议）](https://www.halo.run/store/apps/app-Qxhpp)提供，此文档以本地存储为例。
+添加时首先需要选择一种存储策略类型，系统内置的存储策略为本地存储，图中的 `S3 对象存储` 由[对象存储（Amazon S3 协议）](https://www.halo.run/store/apps/app-Qxhpp)提供，此文档以本地存储为例。
 
 ![添加本地存储策略](/img/user-guide/attachments/attachment-policy-add-local.png)
 
@@ -74,8 +73,8 @@ Halo 目前提供了两种分组删除策略：
 
 ![上传附件](/img/user-guide/attachments/attachment-upload.png)
 
-1. **分组选择**：你可以选择需要上传到的分组，为了方便，选择之后会在浏览器记住这个选项。
-2. **存储策略选择**：你可以选择需要使用的存储策略，为了方便，选择之后会在浏览器记住这个选项。
+1. **存储策略选择**：你可以选择需要使用的存储策略，为了方便，选择之后会在浏览器记住这个选项。
+2. **分组选择**：你可以选择需要上传到的分组，为了方便，选择之后会在浏览器记住这个选项。
 3. **上传区域**：同时支持拖拽文件、点击上传区域选择文件、粘贴文件。
 
 ## 查看附件

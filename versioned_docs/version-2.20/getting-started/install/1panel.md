@@ -28,7 +28,7 @@ import DockerArgs from "./slots/_docker-args.md"
 
 ### 安装基础软件
 
-在安装 Halo 之前，我们需要先在 1Panel 上安装好所需的软件，包括 OpenResty 和 MySQL。在接下来的文档中，我们会默认你已经安装好了这两个软件，并不再赘述。
+在安装 Halo 之前，我们需要先在 1Panel 上安装好所需的软件，包括 OpenResty 和数据库（MySQL、PostgreSQL、MariaDB 都可以）。在接下来的文档中，我们会默认你已经安装好了这两个软件，并不再赘述。
 
 ![OpenResty 和 MySQL](/img/install/1panel/openresty-mysql.png)
 
@@ -45,22 +45,17 @@ import DockerArgs from "./slots/_docker-args.md"
 参数说明：
 
 - **名称**：要创建的 Halo 应用的名称。
+- **版本**：选择最新的版本即可。
 - **数据库服务**：Halo 应用使用的数据库应用，支持下拉选择已安装的数据库应用，1Panel 会自动配置 Halo 使用该数据库。
 - **数据库名**：Halo 应用使用的数据库名称，1Panel 会在选中的数据库中自动创建这个数据库。
 - **数据库用户**：Halo 应用使用的数据库用户名，1Panel 会在选中的数据库中自动创建这个用户，并添加对应的数据库授权。
 - **数据库用户密码**：Halo 应用使用的数据库用户密码，1Panel 会在选中的数据库中自动为上一步创建的用户配置该密码。
-- **超级管理员用户名**：Halo 应用初始化创建的超级管理员用户名。
-- **超级管理员密码**：Halo 应用初始化创建的超级管理员密码。
 - **外部访问地址**：Halo 应用的最终访问地址，如果有为 Halo 规划域名，需要配置为域名格式，例如 `http://halo.example.com`。否则配置为 `http://服务器IP:PORT`，例如 `http://192.168.1.1:8090`。
 - **端口**：Halo 应用的服务端口。
 
 开始安装后页面自动跳转到已安装应用列表，等待刚刚安装的 Halo 应用变为已启动状态。
 
 ![Halo 运行状态](/img/install/1panel/halo-status.png)
-
-此时便可以通过配置的外部访问地址来访问 Halo 了。
-
-![访问 Halo](/img/install/1panel/halo-console.png)
 
 ## 创建网站
 
@@ -73,6 +68,6 @@ import DockerArgs from "./slots/_docker-args.md"
 1. 在已装应用中选择我们刚刚新建的 Halo 应用。
 2. 正确填写主域名，需要注意的是需要提前解析好域名到服务器 IP。
 
-最后，点击确认按钮，等待网站创建完成。
+最后，点击确认按钮，等待网站创建完成即可访问网站进行 [初始化](../setup.md)。
 
 ![网站列表](/img/install/1panel/site.png)
