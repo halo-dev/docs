@@ -52,7 +52,7 @@ public interface ExtensionGetter {
 
 通过使用 `ExtensionGetter`，开发者可以轻松地在插件中访问和管理各种扩展点，提升插件的功能和灵活性。
 
-如果想了解 Halo 提供的扩展点请参考：[扩展点](./extension-points/index.md)。
+如果想了解 Halo 提供的扩展点请参考：[扩展点](../../extension-points/server/index.md)。
 :::
 
 ### 示例

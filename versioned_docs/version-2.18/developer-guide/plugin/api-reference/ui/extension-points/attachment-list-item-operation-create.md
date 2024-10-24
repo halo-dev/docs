@@ -5,7 +5,7 @@ description: 扩展附件数据列表操作菜单 - attachment:list-item:operati
 
 此扩展点用于扩展附件数据列表的操作菜单项。
 
-![附件数据列表操作菜单](/img/developer-guide/plugin/api-reference/ui/extension-points/attachment-list-item-operation-create.png)
+![附件数据列表操作菜单](/img/developer-guide/plugin/extension-points/ui/attachment-list-item-operation-create.png)
 
 ## 定义方式
 

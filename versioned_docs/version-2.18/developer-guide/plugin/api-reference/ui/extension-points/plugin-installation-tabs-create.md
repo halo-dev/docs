@@ -5,7 +5,7 @@ description: 扩展插件安装界面选项卡 - plugin:installation:tabs:create
 
 目前 Halo 原生支持本地上传和远程下载的方式安装插件，此扩展点用于扩展插件安装界面的选项卡，以支持更多的安装方式。
 
-![插件安装界面选项卡](/img/developer-guide/plugin/api-reference/ui/extension-points/plugin-installation-tabs-create.png)
+![插件安装界面选项卡](/img/developer-guide/plugin/extension-points/ui/plugin-installation-tabs-create.png)
 
 ## 定义方式
 
