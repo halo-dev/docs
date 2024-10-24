@@ -5,7 +5,7 @@ description: 扩展用户详情选项卡 - user:detail:tabs:create
 
 此扩展点用于扩展用户详情页面的选项卡。
 
-![用户详情选项卡](/img/developer-guide/plugin/api-reference/ui/extension-points/user-detail-tabs-create.png)
+![用户详情选项卡](/img/developer-guide/plugin/extension-points/ui/user-detail-tabs-create.png)
 
 ## 定义方式
 

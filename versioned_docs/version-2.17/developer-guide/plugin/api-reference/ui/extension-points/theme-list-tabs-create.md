@@ -5,7 +5,7 @@ description: 扩展主题管理界面选项卡 - theme:list:tabs:create
 
 目前在 Halo 的主题管理中原生支持本地上传和远程下载的方式安装主题，此扩展点用于扩展主题管理界面的选项卡，以支持更多的安装方式。
 
-![主题管理界面选项卡](/img/developer-guide/plugin/api-reference/ui/extension-points/theme-list-tabs-create.png)
+![主题管理界面选项卡](/img/developer-guide/plugin/extension-points/ui/theme-list-tabs-create.png)
 
 ## 定义方式
 
