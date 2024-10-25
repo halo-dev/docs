@@ -3,7 +3,7 @@ title: 编写控制器
 description: 了解如何为自定义模型编写控制器
 ---
 
-控制器是 Halo 的关键组件，它们负责对每个自定义模型对象进行操作，协调所需状态和当前状态，参考： [控制器概述](../../basics/framework.md#controller)。
+控制器是 Halo 的关键组件，它们负责对每个自定义模型对象进行操作，协调所需状态和当前状态，参考： [控制器概述](../../../core/framework.md#controller)。
 
 控制器通常在具有一般事件序列的控制循环中运行：
 
@@ -17,7 +17,7 @@ description: 了解如何为自定义模型编写控制器
 当你设置了温度，告诉了温度自动调节器你的期望状态（Desired State）。
 房间的实际温度是当前状态（Current State）。 通过对设备的开关控制，温度自动调节器让其当前状态接近期望状态，未到达期望状态则继续调节，直到达到期望状态。
 
-在 Halo 中控制器的运行部分已经有一个默认实现，你只需要编写控制器的调谐的逻辑也就是 [控制器概述](../../basics/framework.md#controller) 中的所说的 Reconciler 即可。
+在 Halo 中控制器的运行部分已经有一个默认实现，你只需要编写控制器的调谐的逻辑也就是 [控制器概述](../../../core/framework.md#controller) 中的所说的 Reconciler 即可。
 
 ## 编写 Reconciler
 
@@ -339,7 +339,7 @@ public Result reconcile(Request request) {
 ```
 
 1. `ExtensionOperator.isDeleted` 方法是 Halo 提供的工具方法，用于判断对象是否被删除，它会判断 `metadata.deletionTimestamp` 是否存在，如果存在则表示对象被标记删除了。
-关于自定义模型对象的删除可以参考：[自定义模型对象生命周期](../../basics/framework.md#extension-lifecycle)
+关于自定义模型对象的删除可以参考：[自定义模型对象生命周期](../../../core/framework.md#extension-lifecycle)
 2. `ExtensionUtil.removeFinalizers` 方法是 Halo 提供的工具方法，用于移除对象的终结器，它接收两个参数，第一个参数是对象的元数据，第二个参数是要移除的终结器名称集合，它来自 `run.halo.app.extension.ExtensionUtil`。
 3. `cleanUpLogsForTracker` 方法是我们自己实现的，这里的示例是用于清理 `EventTracker` 对象记录的日志，你可以根据自己的业务需求来实现，如清理外部资源等。
 

@@ -13,3 +13,5 @@ description: 插件开发的准备工作
 - 你熟悉 Vue 和 TypeScript。
 - 你应该熟悉使用 Node.js 包管理器。
 - Git 是一个版本控制系统，用于跟踪代码的更改，您需要 Git 来下载示例插件并发布插件。
+
+同时需要先阅读 [Halo 架构概览](../core/framework.md) 以了解 Halo 的核心概念和技术栈。

@@ -99,7 +99,8 @@
       "items": [
         "developer-guide/core/prepare",
         "developer-guide/core/run",
-        "developer-guide/core/build"
+        "developer-guide/core/build",
+        "developer-guide/core/framework"
       ]
     },
     {
@@ -120,7 +121,6 @@
             "type": "generated-index"
           },
           "items": [
-            "developer-guide/plugin/basics/framework",
             "developer-guide/plugin/basics/structure",
             "developer-guide/plugin/basics/manifest",
             "developer-guide/plugin/basics/devtools",

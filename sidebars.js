@@ -116,6 +116,7 @@ module.exports = {
         "developer-guide/core/prepare",
         "developer-guide/core/run",
         "developer-guide/core/build",
+        "developer-guide/core/framework",
         // "developer-guide/core/code-style",
       ],
     },
@@ -137,7 +138,6 @@ module.exports = {
             type: "generated-index",
           },
           items: [
-            "developer-guide/plugin/basics/framework",
             "developer-guide/plugin/basics/structure",
             "developer-guide/plugin/basics/manifest",
             "developer-guide/plugin/basics/devtools",
