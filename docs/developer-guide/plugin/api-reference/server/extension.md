@@ -86,14 +86,14 @@ public void start() {
   - `name`: 用于标识自定义模型的名称。
   - `creationTimestamp`: 用于标识自定义模型的创建时间，无法修改，只在创建时自动生成。
   - `version`: 用于标识自定义模型的数据乐观锁版本，无法修改，由更新时自动填充，如果更新时指定了 `version` 且与当前 `version` 不一致则会更新失败。
-  - `deletionTimestamp`: 用于标识自定义模型的删除时间，表示此自定义模型对象被声明为删除，此时仍然可以通过 API 访问到此对象，参考 [自定义模型对象生命周期](../../basics/framework.md#extension-lifecycle)
-  - `finalizers`: 用于标识终结器，它是一个字符串集合，用于标识自定义模型对象是否可回收，参考 [自定义模型对象生命周期](../../basics/framework.md#extension-lifecycle)
+  - `deletionTimestamp`: 用于标识自定义模型的删除时间，表示此自定义模型对象被声明为删除，此时仍然可以通过 API 访问到此对象，参考 [自定义模型对象生命周期](../../../core/framework.md#extension-lifecycle)
+  - `finalizers`: 用于标识终结器，它是一个字符串集合，用于标识自定义模型对象是否可回收，参考 [自定义模型对象生命周期](../../../core/framework.md#extension-lifecycle)
   - `labels`: 用于标识自定义模型的标签，它是一个字符串键值对集合，用于标识自定义模型对象的标签，可以通过标签来查询自定义模型对象。
   - `annotations`: 用于存放扩展信息，它是一个字符串键值对集合，用于存放自定义模型对象的扩展信息。
 - `spec`: 用于声明自定义模型对象的期望状态，它是声明式的，用户只需要声明期望状态，实际状态由具体的控制器来维护，最终达到用户期望的状态。
 - `status`: 用于描述自定义模型对象资源状态的变化，和一些实际状态。
 
-其中 `apiVersion`、`kind`、`metadata`都包含在了 AbstractExtension 类中，所以我们只需要关注 `spec` 和 `status` 即可，参考：[Halo 架构概览之自定义模型](../../basics/framework.md#extension)
+其中 `apiVersion`、`kind`、`metadata`都包含在了 AbstractExtension 类中，所以我们只需要关注 `spec` 和 `status` 即可，参考：[Halo 架构概览之自定义模型](../../../core/framework.md#extension)
 
 ## 声明自定义模型对象 {#declare-extension-object}
 
@@ -216,7 +216,7 @@ POST /apis/my-plugin.halo.run/v1alpha1/persons
 DELETE /apis/my-plugin.halo.run/v1alpha1/persons/{name}
 ```
 
-对于这组自动生成的 `CRUD` APIs，你可以通过定义[控制器](../../basics/framework.md#controller)来完成对数据修改后的业务逻辑处理来满足大部分的场景需求。
+对于这组自动生成的 `CRUD` APIs，你可以通过定义[控制器](../../../core/framework.md#controller)来完成对数据修改后的业务逻辑处理来满足大部分的场景需求。
 
 `GET /apis/my-plugin.halo.run/v1alpha1/persons` 这个 API 用于查询自定义模型对象，它支持以下参数：
 
