@@ -5,7 +5,7 @@ description: 扩展插件数据列表显示字段 - plugin:list-item:field:creat
 
 此扩展点用于扩展插件数据列表的显示字段。
 
-![插件数据列表显示字段](/img/developer-guide/plugin/api-reference/ui/extension-points/plugin-list-item-field-create.png)
+![插件数据列表显示字段](/img/developer-guide/plugin/extension-points/ui/plugin-list-item-field-create.png)
 
 ## 定义方式
 

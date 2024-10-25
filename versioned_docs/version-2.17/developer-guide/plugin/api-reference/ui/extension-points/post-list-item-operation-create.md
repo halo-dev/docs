@@ -5,7 +5,7 @@ description: 扩展文章数据列表操作菜单 - post:list-item:operation:cre
 
 此扩展点用于扩展文章数据列表的操作菜单项。
 
-![文章数据列表操作菜单](/img/developer-guide/plugin/api-reference/ui/extension-points/post-list-item-operation-create.png)
+![文章数据列表操作菜单](/img/developer-guide/plugin/extension-points/ui/post-list-item-operation-create.png)
 
 ## 定义方式
 

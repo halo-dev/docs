@@ -9,7 +9,7 @@ Console 的评论管理列表的评论来源默认仅支持显示来自文章和
 此扩展点需要后端配合使用，请参考 [评论主体展示](../../server/extension-points/comment-subject.md)。
 :::
 
-![评论来源显示](/img/developer-guide/plugin/api-reference/ui/extension-points/comment-subject-ref-create.png)
+![评论来源显示](/img/developer-guide/plugin/extension-points/ui/comment-subject-ref-create.png)
 
 ## 定义方式
 
