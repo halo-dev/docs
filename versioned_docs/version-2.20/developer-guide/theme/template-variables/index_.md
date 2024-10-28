@@ -8,6 +8,8 @@ import TagVo from "../vo/_TagVo.md"
 import ContributorVo from "../vo/_ContributorVo.md";
 import ListedPostVo from "../vo/_ListedPostVo.md"
 
+网站的首页模板，在这个模板中默认设置了最新文章列表的变量，也可以通过调用 [Finder API](../finder-apis.md) 和 [主题设置](../settings.md) 来展示其他数据。
+
 ## 路由信息
 
 - 模板路径：`/templates/index.html`
