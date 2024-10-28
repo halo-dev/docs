@@ -110,26 +110,31 @@ title: 使用 JAR 文件部署
 
    数据库配置说明：
 
-   | 参数名                     | 描述                                                    |
-   |----------------------------|-------------------------------------------------------|
-   | `spring.r2dbc.url`         | 数据库连接地址，详细可查阅下方的 `配置对应关系`          |
-   | `spring.r2dbc.username`    | 数据库用户名                                            |
-   | `spring.r2dbc.password`    | 数据库密码                                              |
+   | 参数名                     | 描述                                                        |
+   | -------------------------- | ----------------------------------------------------------- |
+   | `spring.r2dbc.url`         | 数据库连接地址，详细可查阅下方的 `配置对应关系`             |
+   | `spring.r2dbc.username`    | 数据库用户名                                                |
+   | `spring.r2dbc.password`    | 数据库密码                                                  |
    | `spring.sql.init.platform` | 数据库平台名称，支持 `postgresql`、`mysql`、`mariadb`、`h2` |
 
    配置对应关系：
 
    | 链接方式    | 链接地址格式                                                                       | `spring.sql.init.platform` |
-   |-------------|------------------------------------------------------------------------------------|----------------------------|
+   | ----------- | ---------------------------------------------------------------------------------- | -------------------------- |
    | PostgreSQL  | `r2dbc:pool:postgresql://{HOST}:{PORT}/{DATABASE}`                                 | postgresql                 |
    | MySQL       | `r2dbc:pool:mysql://{HOST}:{PORT}/{DATABASE}`                                      | mysql                      |
-   | MariaDB     | `r2dbc:pool:mariadb://{HOST}:{PORT}/{DATABASE}`                                    | mariadb                      |
+   | MariaDB     | `r2dbc:pool:mariadb://{HOST}:{PORT}/{DATABASE}`                                    | mariadb                    |
    | H2 Database | `r2dbc:h2:file:///${halo.work-dir}/db/halo-next?MODE=MySQL&DB_CLOSE_ON_EXIT=FALSE` | h2                         |
 
    :::info
    - HOST：数据库服务地址，如 `localhost`
    - PORT：数据库服务端口，如 `3306`
-   - DATABASE：数据库名称，如 `halo`，需要提前创建
+   - DATABASE：数据库名称，如 `halo`，需要提前创建，以 MySQL 为例：
+
+      ```sql
+      create database halo character set utf8mb4 collate utf8mb4_bin;
+      ```
+
    :::
 
    :::warning
