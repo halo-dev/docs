@@ -5,6 +5,8 @@ description: categories.html - /categories
 
 import CategoryTreeVo from "../vo/_CategoryTreeVo.md"
 
+用于列出所有文章分类的页面。
+
 ## 路由信息
 
 - 模板路径：`/templates/categories.html`
