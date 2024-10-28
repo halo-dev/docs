@@ -24,9 +24,7 @@ plugins {
 
 当在项目中引入了 `devtools` 之后，就可以使用一些额外的构建任务来辅助插件的开发，参考 [构建任务详解](#任务)。
 
-一个可能的使用场景：
-
-正在开发 `plugin-starter` 插件，此时想测试插件的功能如看到默认提供的菜单项，你可以通过 `haloServer` 将插件运行起来：
+例如，正在开发 `plugin-starter` 插件时，可以通过 `haloServer` 任务启动 Halo 服务，来测试插件功能：
 
 ```shell
 ./gradlew haloServer
@@ -45,19 +43,17 @@ API 文档：http://localhost:8090/swagger-ui.html
 =======================================================================
 ```
 
-然后改动了某行代码需要使其生效，可以继续保持 `haloServer` 的运行，然后执行：
+修改代码后，无需停止服务，只需执行：
 
 ```shell
-./gradlew reloadPlugin
+./gradlew reload
 ```
 
-来时新的改动应用到现有服务上。
-
-但如果你使用的 `watch` 任务启动插件则不需要执行 `reloadPlugin` 任务，它会监听文件的改动自动重载插件。
+即可应用改动。如果使用 watch 任务启动插件，则不需要执行 `reload`，它会自动监听并重载插件。
 
 ## 配置
 
-在 `build.gradle` 文件中作出配置可以更改 `devtools` 的行为：
+可通过 `build.gradle` 文件中的 `halo {}` 块自定义 Devtools 启动 Halo 服务必要配置，示例如下：
 
 ```groovy
 halo {
@@ -75,8 +71,6 @@ halo {
   debugPort = 5005
 }
 ```
-
-`halo {}` 这个配置对象下面用于配置 Halo 服务器的一些信息，所有配置的默认值如上所示，你可以直接使用默认值而不进行任何配置。
 
 - `version`：表示要使用的 Halo 版本，随着插件 API 的更新你可能需要更高的 Halo 版本来运行插件，可自行更改。
 - `superAdminUsername`： Halo 的超级管理员用户名，当你启动插件时会自动根据此配置和 `superAdminPassword` 为你初始化 Halo 的超级管理员账户。
@@ -167,11 +161,9 @@ halo {
 ./gradlew reload
 ```
 
-此任务用于重新加载当前正在开发的插件，如果你修改了插件的代码，可以通过此任务使更改生效。
+此任务用于重新加载当前正在开发的插件，修改代码后执行此任务以应用更改。
 
-此任务会将插件项目重新打包并重新加载到 Halo 服务中。
-
-它依赖于以下三项配置，根据配置请求 Halo 服务的 API 来重新加载插件：
+该任务基于以下配置调用 Halo API 重新加载插件：
 
 ```groovy
 halo {
