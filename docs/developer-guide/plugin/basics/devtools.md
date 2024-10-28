@@ -103,15 +103,22 @@ halo {
 
 ## 任务
 
-本插件提供了 haloServer 和 watch 两个任务，使用 haloServer 和 watch 这两个任务的前提条件是需要具有 Docker 环境。
+本插件提供了 `haloServer` 和 `watch` 两个任务，使用它们的前提条件是需要在本地配置 Docker 环境。
 
-对于 Windows 和 Mac 用户，可以直接安装 Docker Desktop，对于 Linux 用户，可以参考 [Docker 官方文档](https://docs.docker.com/engine/install/) 安装 Docker。
+### 环境要求
 
-然后启动 Docker 服务，即可使用 haloServer 和 watch 任务。
+- **Windows 和 Mac 用户**：可以直接安装 [Docker Desktop](https://www.docker.com/products/docker-desktop)。
+- **Linux 用户**：请参考 [Docker 官方文档](https://docs.docker.com/engine/install/) 安装 Docker。
 
-这两个任务会将 Halo 的工作目录挂在到插件项目的 `workplace` 目录下，以确保重启任务时不会丢失数据。
+确保 Docker 服务已启动后，即可运行 `haloServer` 和 `watch` 任务。
 
-如果你想要修改 Halo 的配置，可以在 `workplace` 目录下创建一个 `config` 目录并添加一个 `application.yaml` 文件，然后在此文件中添加 Halo 的配置以覆盖 Halo 的 `default` 配置, 如：
+### 工作目录
+
+这两个任务会将 Halo 的工作目录挂载到插件项目的 `workplace` 目录下，以确保在重启任务时数据不会丢失。
+
+### 自定义配置
+
+如果需要修改 Halo 的配置，您可以在 `workplace` 目录下创建一个 `config` 目录，并添加一个 `application.yaml` 文件。在该文件中，您可以覆盖 Halo 的默认配置。例如：
 
 ```yaml
 # workplace/config/application.yaml
@@ -120,23 +127,7 @@ logging:
         run.halo.app: DEBUG
 ```
 
-Halo 使用的缺省配置如下：
-
-```groovy
-halo {
-  version = '2.9.1'
-  superAdminUsername = 'admin'
-  superAdminPassword = 'admin'
-  externalUrl = 'http://localhost:8090'
-  docker {
-    // windows 默认为 npipe:////./pipe/docker_engine
-    url = 'unix:///var/run/docker.sock'
-    apiVersion = '1.42'
-  }
-}
-```
-
-如需修改，你可以在 `build.gradle` 配置。
+更多配置项请参考 [Halo 配置列表](../../../getting-started/install/config.md#配置列表)。
 
 ### haloServer 任务
 
@@ -147,6 +138,26 @@ halo {
 ```
 
 此任务用于启动 Halo 服务并自动将使用此 Gradle 插件的 Halo 插件项目以开发模式加载到 Halo 服务中，当你修改了插件的代码后，可以通过 `reload` 任务使更改生效。
+
+#### haloServer 任务默认配置
+
+`haloServer` 任务具有以下默认配置用于连接和操作 Halo 服务：
+
+```groovy
+halo {
+  version = '2.9.1'
+  superAdminUsername = 'admin'
+  superAdminPassword = 'admin'
+  externalUrl = 'http://localhost:8090'
+  docker {
+    // Windows 用户默认使用 npipe:////./pipe/docker_engine
+    url = 'unix:///var/run/docker.sock'
+    apiVersion = '1.42'
+  }
+}
+```
+
+如需修改，可以在 `build.gradle` 文件中进行配置。
 
 ### reload 任务
 
