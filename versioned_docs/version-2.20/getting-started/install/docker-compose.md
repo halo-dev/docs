@@ -226,6 +226,14 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
               # 端口号 默认8090
               - --server.port=8090
         ```
+
+        :::info
+        使用外部数据库时，需要提前手动创建好数据库，以 MySQL 为例：
+
+        ```sql
+        create database halo character set utf8mb4 collate utf8mb4_bin;
+        ```
+        :::
     </TabItem>
    </Tabs>
 
