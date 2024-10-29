@@ -8,6 +8,8 @@ import TagVo from "../vo/_TagVo.md"
 import ContributorVo from "../vo/_ContributorVo.md";
 import ListedPostVo from "../vo/_ListedPostVo.md"
 
+用于根据标签列出所有文章的页面。
+
 ## 路由信息
 
 - 模板路径：`/templates/tag.html`

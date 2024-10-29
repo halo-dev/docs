@@ -8,10 +8,51 @@ import TagVo from "../vo/_TagVo.md"
 import ContributorVo from "../vo/_ContributorVo.md";
 import ListedPostVo from "../vo/_ListedPostVo.md"
 
+用于根据分类列出所有文章的页面。
+
 ## 路由信息
 
 - 模板路径：`/templates/category.html`
 - 访问路径：`/categories/:slug`
+
+### 自定义模板
+
+除了上面提到的 `category.html`，主题作者还可以添加多种形式的额外渲染模板，提供给用户选择，可以通过这个功能实现将网站上的文章内容进行领域划分，比如网站上同时存在新闻、文档、博客等分区，那么就可以利用这个功能提供多个模板，同时 Halo 还支持为分类设置文章渲染模板，详情可见[新建文章分类](../../../user-guide/posts.md#新建文章分类)。
+
+定义方式为：
+
+```yaml title="theme.yaml"
+customTemplates:
+  category:
+    - name: {name}
+      description: {description}
+      screenshot: {screenshot}
+      file: {file}.html
+```
+
+- `name`：模板名称
+- `description`：模板描述
+- `screenshot`：模板预览图
+- `file`：模板文件名，需要在 `/templates/` 目录下创建
+
+示例：
+
+```yaml title="theme.yaml"
+customTemplates:
+  category:
+    - name: 新闻
+      description: 用于展示新闻分类下的文章
+      screenshot: 
+      file: category_news.html
+    - name: 博客
+      description: 用于展示博客分类下的文章
+      screenshot: 
+      file: category_blog.html
+```
+
+:::info
+需要注意，修改 theme.yaml 需要[重载主题配置](../../../user-guide/themes.md#重载主题配置)。
+:::
 
 ## 变量
 
