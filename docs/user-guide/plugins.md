@@ -85,3 +85,19 @@ description: 插件管理相关功能说明
 目前提供了 `卸载` 及 `卸载并删除配置` 两种卸载方式。
 仅卸载插件时插件的配置信息会进行保留，当重新安装插件后还可以使用之前已保存的配置。
 :::
+
+## 扩展配置
+
+在 Halo 的插件机制中，我们使用扩展点来实现插件与 Halo 核心应用的交互，插件可以通过扩展点来扩展 Halo 的功能。这就意味着插件可能会实现和 Halo 或者其他插件相同的扩展点，这时候就需要对扩展点进行管理。
+
+以搜索引擎为例，Halo 默认提供了 `Lucence` 搜索引擎和对应的扩展点，那么用户在安装了其他搜索引擎插件之后就需要在这里进行选择，否则 Halo 无法确定使用哪个搜索引擎。
+
+![Extension point settings entry](/img/user-guide/plugins/extension-point-settings-entry.png)
+
+进入插件管理，点击右上角的 `扩展配置` 按钮即可进入扩展配置页面。
+
+![Extension point settings](/img/user-guide/plugins/extension-point-settings.png)
+
+这里以搜索引擎为例，安装了 `Meilisearch` 插件之后就可以在这里选择启用这个插件的搜索引擎。
+
+更多关于扩展点的说明可以查阅：[插件开发 / 扩展点和定制化 / 扩展点](../developer-guide/plugin/extension-points/server/index.md)
