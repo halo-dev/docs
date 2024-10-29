@@ -84,6 +84,7 @@ module.exports = {
         "user-guide/posts",
         "user-guide/pages",
         "user-guide/attachments",
+        "user-guide/menus",
         "user-guide/themes",
         "user-guide/plugins",
         "user-guide/app-store",
