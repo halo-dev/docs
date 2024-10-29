@@ -5,6 +5,8 @@ description: tags.html - /tags
 
 import TagVo from '../vo/_TagVo.md'
 
+用于列出所有文章标签的页面，可以用于实现标签墙等功能。
+
 ## 路由信息
 
 - 模板路径：`/templates/tags.html`

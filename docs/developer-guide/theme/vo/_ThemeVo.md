@@ -32,5 +32,5 @@
 
 其中：
 
-1. `customTemplates`：一般不会在模板引擎中使用，使用文档请参考：[模板路由#自定义模板](../template-route-mapping.md#custom-templates)
+1. `customTemplates`：一般不会在模板引擎中使用，使用文档请参考：[模板编写](../template-variables.md))
 2. `config`：主题配置，使用文档请参考：[设置选项](../settings.md)

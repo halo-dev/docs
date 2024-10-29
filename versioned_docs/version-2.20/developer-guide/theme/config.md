@@ -62,9 +62,9 @@ spec:
 | `spec.issues`                   | 主题问题反馈地址，如果你的主题是开源在 GitHub 上，可以直接配置为 GitHub Issues 地址。            | 否       |
 | `spec.settingName`              | 设置表单定义的名称，需要同时创建对应的 `settings.yaml` 文件                                    | 否       |
 | `spec.configMapName`            | 设置持久化配置的 ConfigMap 名称                                                               | 否       |
-| `spec.customTemplates.post`     | 文章的自定义模板配置，详细文档可查阅 [模板路由](./template-route-mapping#custom-templates)     | 否       |
-| `spec.customTemplates.category` | 分类的自定义模板配置，详细文档可查阅 [模板路由](./template-route-mapping#custom-templates)     | 否       |
-| `spec.customTemplates.page`     | 独立页面的自定义模板配置，详细文档可查阅 [模板路由](./template-route-mapping#custom-templates) | 否       |
+| `spec.customTemplates.post`     | 文章的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md)     | 否       |
+| `spec.customTemplates.category` | 分类的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md)     | 否       |
+| `spec.customTemplates.page`     | 独立页面的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md) | 否       |
 | `spec.version`                  | 主题版本                                                                                      | 是       |
 | `spec.requires`                 | 所需 Halo 的运行版本                                                                          | 是       |
 | `spec.license`                  | 协议                                                                                          | 否       |

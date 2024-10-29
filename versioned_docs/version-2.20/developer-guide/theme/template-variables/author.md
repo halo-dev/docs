@@ -9,6 +9,8 @@ import TagVo from "../vo/_TagVo.md"
 import ContributorVo from "../vo/_ContributorVo.md"
 import ListedPostVo from "../vo/_ListedPostVo.md"
 
+根据作者列出所有文章的页面，如果你的主题偏向于社区类型，那么可以添加一个这样的模板，用于提供作者的页面。
+
 ## 路由信息
 
 - 模板路径：`/templates/author.html`
