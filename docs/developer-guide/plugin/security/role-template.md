@@ -131,7 +131,7 @@ rules:
 
 1. 定义了一个用于管理 Person 自定义模型对象的角色模板 `my-plugin-role-manage-persons`，它具有所有权限。
 2. 定义了一个只允许查询 Person 资源的角色模板 `my-plugin-role-view-persons`。
-3. `metadata.name` 的命名规则参考 [metadata name 命名规范](../api-reference/server/extension.md#metadata-name)。
+3. `metadata.name` 的命名规则参考 [metadata name 命名规范](../api-reference/server/extension.md#naming-spec-for-metadata-name)。
 
 下面让我们回顾一下这些配置：
 

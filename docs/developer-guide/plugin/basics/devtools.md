@@ -215,7 +215,7 @@ API client 是一种工具或库，旨在简化前端应用程序与后端服务
 
 - 提高开发效率：通过使用 API 客户端，开发者可以专注于业务逻辑的实现，而不用关心底层的 HTTP 细节。这不仅提高了开发效率，还减少了代码冗余。
 
-#### 如何生成 API client
+#### 如何生成 API client {#how-to-generate-api-client}
 
 本插件提供了一个 `generateApiClient` 任务，用于为插件项目生成 API client，生成规则基于 OpenAPI 规范来自动生成客户端代码。
 

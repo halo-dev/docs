@@ -34,11 +34,11 @@ plugins {
 
 ```shell
 =======================================================================
-> Halo 启动成功！                                                      
-访问地址：http://localhost:8090/console?language=zh-CN                 
-用户名：admin                                                          
-密码：admin                                                            
-API 文档：http://localhost:8090/swagger-ui.html                        
+> Halo 启动成功！
+访问地址：http://localhost:8090/console?language=zh-CN
+用户名：admin
+密码：admin
+API 文档：http://localhost:8090/swagger-ui.html
 插件开发文档：https://docs.halo.run/developer-guide/plugin/introduction
 =======================================================================
 ```
@@ -117,8 +117,8 @@ halo {
 ```yaml
 # workplace/config/application.yaml
 logging:
-    level:
-        run.halo.app: DEBUG
+  level:
+    run.halo.app: DEBUG
 ```
 
 更多配置项请参考 [Halo 配置列表](../../../getting-started/install/config.md#配置列表)。
@@ -215,7 +215,7 @@ API client 是一种工具或库，旨在简化前端应用程序与后端服务
 
 - 提高开发效率：通过使用 API 客户端，开发者可以专注于业务逻辑的实现，而不用关心底层的 HTTP 细节。这不仅提高了开发效率，还减少了代码冗余。
 
-#### 如何生成 API client
+#### 如何生成 API client {#how-to-generate-api-client}
 
 本插件提供了一个 `generateApiClient` 任务，用于为插件项目生成 API client，生成规则基于 OpenAPI 规范来自动生成客户端代码。
 
@@ -421,5 +421,5 @@ halo {
 
 ```shell
 # 如将 Gradle 版本升级至 8.9
-./gradlew wrapper --gradle-version=8.9 
+./gradlew wrapper --gradle-version=8.9
 ```
