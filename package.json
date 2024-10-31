@@ -28,9 +28,9 @@
     ]
   },
   "dependencies": {
-    "@docusaurus/faster": "3.5.2-canary-6127",
     "@docusaurus/core": "3.5.2-canary-6127",
-    "@docusaurus/plugin-client-redirects": "^3.5.2-canary-6127",
+    "@docusaurus/faster": "3.5.2-canary-6127",
+    "@docusaurus/plugin-client-redirects": "3.5.2-canary-6127",
     "@docusaurus/preset-classic": "3.5.2-canary-6127",
     "@docusaurus/theme-classic": "3.5.2-canary-6127",
     "@docusaurus/theme-common": "3.5.2-canary-6127",
@@ -49,11 +49,9 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.5.2-canary-6127",
-    "@swc/core": "^1.5.7",
     "husky": "^7.0.4",
     "markdownlint": "^0.25.1",
-    "markdownlint-cli2": "^0.4.0",
-    "swc-loader": "^0.2.6"
+    "markdownlint-cli2": "^0.4.0"
   },
   "engines": {
     "node": ">=18.0"

@@ -204,6 +204,7 @@ const config = {
       },
     }),
   plugins: [
+    require.resolve("docusaurus-plugin-image-zoom"),
     [
       "@docusaurus/plugin-client-redirects",
       {
