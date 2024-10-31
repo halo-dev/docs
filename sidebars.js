@@ -47,6 +47,7 @@ module.exports = {
                 type: "generated-index",
               },
               items: [
+                "getting-started/install/cloud/alibaba-cloud-market",
                 "getting-started/install/cloud/tencent-cloud-lighthouse",
                 "getting-started/install/cloud/alibaba-cloud-computenest"
               ],
