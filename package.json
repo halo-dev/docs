@@ -28,13 +28,13 @@
     ]
   },
   "dependencies": {
-    "@docusaurus/faster": "0.0.0-6102",
-    "@docusaurus/core": "0.0.0-6102",
-    "@docusaurus/plugin-client-redirects": "^0.0.0-6102",
-    "@docusaurus/preset-classic": "0.0.0-6102",
-    "@docusaurus/theme-classic": "0.0.0-6102",
-    "@docusaurus/theme-common": "0.0.0-6102",
-    "@docusaurus/theme-mermaid": "3.4.0",
+    "@docusaurus/faster": "3.5.2-canary-6127",
+    "@docusaurus/core": "3.5.2-canary-6127",
+    "@docusaurus/plugin-client-redirects": "^3.5.2-canary-6127",
+    "@docusaurus/preset-classic": "3.5.2-canary-6127",
+    "@docusaurus/theme-classic": "3.5.2-canary-6127",
+    "@docusaurus/theme-common": "3.5.2-canary-6127",
+    "@docusaurus/theme-mermaid": "3.5.2-canary-6127",
     "@mdx-js/react": "^3.0.0",
     "@svgr/webpack": "^5.5.0",
     "clsx": "^1.2.1",
@@ -48,7 +48,7 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "0.0.0-6102",
+    "@docusaurus/module-type-aliases": "3.5.2-canary-6127",
     "@swc/core": "^1.5.7",
     "husky": "^7.0.4",
     "markdownlint": "^0.25.1",
