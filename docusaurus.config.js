@@ -15,6 +15,10 @@ const config = {
   },
   organizationName: "halo-dev", // Usually your GitHub org/user name.
   projectName: "halo", // Usually your repo name.
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
 
   presets: [
     [
