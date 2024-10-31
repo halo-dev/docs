@@ -19,10 +19,7 @@ description: 文章管理相关功能说明
 4. **发布**：保存并发布文章内容。
 
 :::info
-Halo 支持通过插件来拓展文章编辑器，目前 Halo 官方维护了另外两款编辑器插件，可以按需安装使用：
-
-1. StackEdit：[https://halo.run/store/apps/app-hDXMG](https://halo.run/store/apps/app-hDXMG)
-2. ByteMD：[https://halo.run/store/apps/app-HTyhC](https://halo.run/store/apps/app-HTyhC)
+Halo 支持通过插件来拓展文章编辑器，目前除了 Halo 内置的编辑器，应用市场中还有其他的编辑器可用：[https://www.halo.run/store/apps?tag=editor](https://www.halo.run/store/apps?tag=editor)
 :::
 
 ## 文章设置
@@ -86,13 +83,17 @@ Halo 支持通过插件来拓展文章编辑器，目前 Halo 官方维护了另
 点击分类管理页面右上角的 `新建` 按钮即可新建一个分类。
 
 ![文章分类编辑界面说明](/img/user-guide/posts/category-create.png)
+![文章分类编辑界面说明 2](/img/user-guide/posts/category-create-2.png)
 
 #### 设置说明
 
 - **名称**：用于在主题端显示的分类名称。
 - **别名**：通常用于生成分类归档页面的访问地址。默认路径规则为 `/categories/{slug}`，其中 `slug` 为分类别名，访问该地址即可浏览该分类下的所有文章。分类页路由前缀可[在设置中修改](./settings#主题路由设置)。
 - **自定义模板**：自定义分类归档页面的渲染模板，由主题提供支持。
+- **自定义文章模板**：自定义当前分类下所有文章的渲染模板，由主题提供支持。
 - **封面图**：分类封面图设置，需要主题支持该功能。
+- **在列表中隐藏**：开启此选项后，此分类和其下子分类，以及其下文章将不会显示在前台的列表中，需要主动访问分类归档页面，此功能仅对第一级目录生效。
+- **阻止文章级联查询**：阻止父级分类在级联文章查询中包含此分类及其子分类。
 - **描述**：关于该文章分类的更多描述信息。
 - **元数据**：供主题、插件使用的额外数据信息。例如部分主题期望使用不同的颜色对分类进行区分，便可以使用该功能为分类增加颜色相关的元数据。
 

@@ -60,7 +60,9 @@ axios.get('https://demo.halo.run/apis/content.halo.run/v1alpha1/posts', {
 ### Basic Auth
 
 :::warning
-通过 Basic Auth 认证将在未来的版本默认关闭，请谨慎使用。
+Basic Auth 认证方式已经在 Halo 2.20 默认关闭，需要手动添加 `halo.security.basic-auth.disabled=false` 启动参数来开启。
+
+配置详情可见：[配置列表](../../getting-started/install/config.md#halo-独有配置)
 :::
 
 Basic Auth 是一种通过用户名和密码进行身份验证的方式，你可以使用 Halo 账户的用户名和密码进行身份验证。

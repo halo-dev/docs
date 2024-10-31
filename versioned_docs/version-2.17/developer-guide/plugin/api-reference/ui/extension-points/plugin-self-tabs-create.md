@@ -5,7 +5,7 @@ description: 扩展当前插件的详情选项卡 - plugin:self:tabs:create
 
 此扩展点用于在 Console 的插件详情页面中添加自定义选项卡，可以用于自定义插件的配置页面。
 
-![插件详情选项卡](/img/developer-guide/plugin/api-reference/ui/extension-points/plugin-self-tabs-create.png)
+![插件详情选项卡](/img/developer-guide/plugin/extension-points/ui/plugin-self-tabs-create.png)
 
 ## 定义方式
 

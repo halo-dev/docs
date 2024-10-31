@@ -31,7 +31,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 1. 创建容器
 
    ```bash
-   docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo:2.20
+   docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS="-Xmx256m -Xms256m" registry.fit2cloud.com/halo/halo:2.20
    ```
 
    :::info
@@ -47,6 +47,10 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
    运行参数详解：
 
    <DockerArgs />
+
+   :::info
+   为了保持部署流程的简洁，此文档仅提供了必要的配置示例，完整的配置选项列表可查阅：[配置说明](./config.md)
+   :::
 
 2. 用浏览器访问 `/console` 即可进入 Halo 管理页面，首次启动会进入初始化页面。
 

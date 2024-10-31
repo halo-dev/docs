@@ -47,7 +47,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
    <Tabs queryString="current">
     <TabItem value="halo-postgresql" label="Halo + PostgreSQL" default>
-         ```yaml {23-29,43} title="~/halo/docker-compose.yaml"
+         ```yaml {26-32,46} title="~/halo/docker-compose.yaml"
          version: "3"
 
          services:
@@ -69,6 +69,9 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
                timeout: 5s
                retries: 5
                start_period: 30s
+             environment:
+               # JVM 参数，默认为 -Xmx256m -Xms256m，可以根据实际情况做调整，置空表示不添加 JVM 参数
+               - JVM_OPTS=-Xmx256m -Xms256m
              command:
                - --spring.r2dbc.url=r2dbc:pool:postgresql://halodb/halo
                - --spring.r2dbc.username=halo
@@ -103,7 +106,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
          :::
     </TabItem>
     <TabItem value="halo-mysql" label="Halo + MySQL">
-         ```yaml {23-29,51} title="~/halo/docker-compose.yaml"
+         ```yaml {26-32,54} title="~/halo/docker-compose.yaml"
          version: "3"
 
          services:
@@ -125,6 +128,9 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
                timeout: 5s
                retries: 5
                start_period: 30s
+             environment:
+               # JVM 参数，默认为 -Xmx256m -Xms256m，可以根据实际情况做调整，置空表示不添加 JVM 参数
+               - JVM_OPTS=-Xmx256m -Xms256m
              command:
                - --spring.r2dbc.url=r2dbc:pool:mysql://halodb:3306/halo
                - --spring.r2dbc.username=root
@@ -170,7 +176,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
         不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
         :::
 
-        ```yaml {19-24} title="~/halo/docker-compose.yaml"
+        ```yaml {22} title="~/halo/docker-compose.yaml"
         version: "3"
 
         services:
@@ -186,14 +192,17 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
               interval: 30s
               timeout: 5s
               retries: 5
-              start_period: 30s          
+              start_period: 30s
+            environment:
+              # JVM 参数，默认为 -Xmx256m -Xms256m，可以根据实际情况做调整，置空表示不添加 JVM 参数
+              - JVM_OPTS=-Xmx256m -Xms256m
             command:
               # 外部访问地址，请根据实际需要修改
               - --halo.external-url=http://localhost:8090/
         ```
     </TabItem>
     <TabItem value="external-db" label="使用外部数据库">
-        ```yaml {7,12-20} title="~/halo/docker-compose.yaml"
+        ```yaml {7,15-22} title="~/halo/docker-compose.yaml"
         version: "3"
 
         services:
@@ -203,6 +212,9 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
             network_mode: "host"
             volumes:
               - ./halo2:/root/.halo2
+            environment:
+              # JVM 参数，默认为 -Xmx256m -Xms256m，可以根据实际情况做调整，置空表示不添加 JVM 参数
+              - JVM_OPTS=-Xmx256m -Xms256m
             command:
               # 修改为自己已有的 MySQL 配置
               - --spring.r2dbc.url=r2dbc:pool:mysql://localhost:3306/halo
@@ -214,12 +226,24 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
               # 端口号 默认8090
               - --server.port=8090
         ```
+
+        :::info
+        使用外部数据库时，需要提前手动创建好数据库，以 MySQL 为例：
+
+        ```sql
+        create database halo character set utf8mb4 collate utf8mb4_bin;
+        ```
+        :::
     </TabItem>
    </Tabs>
 
    运行参数详解：
 
    <DockerArgs />
+
+   :::info
+   为了保持部署流程的简洁，此文档仅提供了必要的配置示例，完整的配置选项列表可查阅：[配置说明](./config.md)
+   :::
 
 3. 启动 Halo 服务
 

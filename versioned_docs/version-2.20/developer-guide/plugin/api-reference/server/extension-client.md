@@ -100,7 +100,7 @@ public PersonService {
 
 我们建议你更多的使用响应式的 `ReactiveExtensionClient` 去替代 `ExtensionClient`。
 
-### 查询
+### 查询 {#query}
 
 `ReactiveExtensionClient` 提供了两个方法用于查询数据，`listBy` 和 `listAll`。
 

@@ -58,7 +58,7 @@ export interface ExtensionOptions {
 
 编辑器顶部功能区域内容的扩展，通常用于增加用户常用操作，例如文本加粗、变更颜色等。
 
-![顶部工具栏扩展](/img/developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-toolbar.png)
+![顶部工具栏扩展](/img/developer-guide/plugin/extension-points/ui/default-editor-extension-toolbar.png)
 
 在 [https://github.com/halo-sigs/richtext-editor/pull/16](https://github.com/halo-sigs/richtext-editor/pull/16) 中，我们实现了对顶部工具栏的扩展，如果需要添加额外的功能，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getToolbarItems` 函数即可，如：
 
@@ -128,7 +128,7 @@ addOptions() {
 
 编辑器工具箱区域的扩展，可用于增加编辑器附属操作，例如插入表格，插入第三方组件等功能。
 
-![工具箱扩展](/img/developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-toolbox.png)
+![工具箱扩展](/img/developer-guide/plugin/extension-points/ui/default-editor-extension-toolbox.png)
 
 在 [https://github.com/halo-sigs/richtext-editor/pull/27](https://github.com/halo-sigs/richtext-editor/pull/27) 中，我们实现了对编辑器工具箱区域的扩展，如果需要添加额外的功能，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getToolboxItems` 函数即可，如：
 
@@ -199,7 +199,7 @@ addOptions() {
 
 Slash Command （斜杠命令）的扩展，可用于在当前行快捷执行功能操作，例如转换当前行为标题、在当前行添加代码块等功能。
 
-![Slash Command 扩展](/img/developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-slash-command.png)
+![Slash Command 扩展](/img/developer-guide/plugin/extension-points/ui/default-editor-extension-slash-command.png)
 
 在 [https://github.com/halo-sigs/richtext-editor/pull/16](https://github.com/halo-sigs/richtext-editor/pull/16) 中，我们实现了对 Slash Command 指令的扩展，如果需要添加额外的功能，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getCommandMenuItems` 函数即可，如：
 
@@ -261,7 +261,7 @@ addOptions() {
 
 编辑器悬浮菜单的扩展。可用于支持目标元素组件的功能扩展及操作简化。例如 `Table` 扩展中的添加下一列、添加上一列等操作。
 
-![悬浮菜单扩展](/img/developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-bubble-menu.png)
+![悬浮菜单扩展](/img/developer-guide/plugin/extension-points/ui/default-editor-extension-bubble-menu.png)
 
 在 [https://github.com/halo-sigs/richtext-editor/pull/38](https://github.com/halo-sigs/richtext-editor/pull/38) 中，我们重构了对编辑器悬浮区域的扩展，如果需要对某个块进行支持，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getBubbleMenu` 函数即可，如：
 
@@ -371,7 +371,7 @@ addOptions() {
 
 拖拽功能的扩展，可用于支持当前块元素的拖拽功能。
 
-![拖拽功能扩展](/img/developer-guide/plugin/api-reference/ui/extension-points/default-editor-extension-drag.png)
+![拖拽功能扩展](/img/developer-guide/plugin/extension-points/ui/default-editor-extension-drag.png)
 
 在 [https://github.com/halo-sigs/richtext-editor/pull/48](https://github.com/halo-sigs/richtext-editor/pull/48) 中，我们实现了对所有元素的拖拽功能，如果需要让当前扩展支持拖拽，只需要在具体的 Tiptap Extension 中的 `addOptions` 中定义 `getDraggable` 函数，并让其返回 true 即可。如：
 

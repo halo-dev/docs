@@ -8,6 +8,8 @@ import TagVo from "../vo/_TagVo.md";
 import ContributorVo from "../vo/_ContributorVo.md";
 import ListedPostVo from "../vo/_ListedPostVo.md";
 
+文章归档页面，用于列出网站的所有文章，如果你编写的主题首页不显示文章列表，那么可以利用这个模板为网站单独提供一个查看文章列表的页面。
+
 ## 路由信息
 
 - 模板路径：`/templates/archives.html`

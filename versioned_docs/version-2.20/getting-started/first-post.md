@@ -4,7 +4,7 @@ description: 安装完成后，如何写下第一篇文章。
 ---
 
 <!-- markdownlint-disable MD034 -->
-<video src="https://assets.halo.run/first-post.mp4" controls style={{width: '100%', borderRadius: '8px'}}/>
+<video src="https://assets.halo.run/first-post-2.20.mp4" controls style={{width: '100%', borderRadius: '8px'}}/>
 
 ## 登录管理端
 

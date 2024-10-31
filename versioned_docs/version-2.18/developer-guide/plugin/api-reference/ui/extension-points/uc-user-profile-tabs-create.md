@@ -5,7 +5,7 @@ description: 扩展个人中心的个人资料选项卡 - uc:user:profile:tabs:c
 
 此扩展点用于扩展个人中心的个人资料选项卡。
 
-![个人资料选项卡](/img/developer-guide/plugin/api-reference/ui/extension-points/uc-user-profile-tabs-create.png)
+![个人资料选项卡](/img/developer-guide/plugin/extension-points/ui/uc-user-profile-tabs-create.png)
 
 ## 定义方式
 
