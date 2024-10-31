@@ -36,7 +36,7 @@ spec:
 
 字段说明：
 
-1. `metadata.name`：唯一标识，命名规范可参考 [metadata name](./plugin/api-reference/server/extension.md#metadata-name)，为了尽可能避免冲突，建议自定义前缀以及追加随机字符串，如：`theme-earth-post-wanfs5`。
+1. `metadata.name`：唯一标识，命名规范可参考 [metadata name](./plugin/api-reference/server/extension.md#naming-spec-for-metadata-name，为了尽可能避免冲突，建议自定义前缀以及追加随机字符串，如：`theme-earth-post-wanfs5`。
 2. `spec.targetRef`：模型的关联，即为哪个模型添加元数据表单，目前支持的模型可查看下方的列表。
 3. `spec.formSchema`：表单的定义，使用 FormKit Schema 来定义。虽然我们使用的 YAML，但与 FormKit Schema 完全一致。
 
