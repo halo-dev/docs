@@ -28,12 +28,13 @@
     ]
   },
   "dependencies": {
-    "@docusaurus/core": "3.4.0",
-    "@docusaurus/plugin-client-redirects": "^3.4.0",
-    "@docusaurus/preset-classic": "3.4.0",
-    "@docusaurus/theme-classic": "3.4.0",
-    "@docusaurus/theme-common": "3.4.0",
-    "@docusaurus/theme-mermaid": "3.4.0",
+    "@docusaurus/core": "3.5.2-canary-6127",
+    "@docusaurus/faster": "3.5.2-canary-6127",
+    "@docusaurus/plugin-client-redirects": "3.5.2-canary-6127",
+    "@docusaurus/preset-classic": "3.5.2-canary-6127",
+    "@docusaurus/theme-classic": "3.5.2-canary-6127",
+    "@docusaurus/theme-common": "3.5.2-canary-6127",
+    "@docusaurus/theme-mermaid": "3.5.2-canary-6127",
     "@mdx-js/react": "^3.0.0",
     "@svgr/webpack": "^5.5.0",
     "clsx": "^1.2.1",
@@ -47,12 +48,10 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.4.0",
-    "@swc/core": "^1.5.7",
+    "@docusaurus/module-type-aliases": "3.5.2-canary-6127",
     "husky": "^7.0.4",
     "markdownlint": "^0.25.1",
-    "markdownlint-cli2": "^0.4.0",
-    "swc-loader": "^0.2.6"
+    "markdownlint-cli2": "^0.4.0"
   },
   "engines": {
     "node": ">=18.0"

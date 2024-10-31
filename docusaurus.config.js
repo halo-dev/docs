@@ -20,6 +20,10 @@ const config = {
   },
   themes: ['@docusaurus/theme-mermaid'],
 
+  future: {
+    experimental_faster: true,
+  },
+
   presets: [
     [
       "classic",
@@ -104,7 +108,7 @@ const config = {
                 ([versionName, versionUrl]) => ({
                   label: versionName,
                   href: versionUrl,
-                })
+                }),
               ),
               {
                 to: "/versions",
@@ -244,23 +248,6 @@ const config = {
       },
     ],
   ],
-  webpack: {
-    jsLoader: (isServer) => ({
-      loader: require.resolve("swc-loader"),
-      options: {
-        jsc: {
-          parser: {
-            syntax: "typescript",
-            tsx: true,
-          },
-          target: "es2017",
-        },
-        module: {
-          type: isServer ? "commonjs" : "es6",
-        },
-      },
-    }),
-  },
   scripts: [
     {
       src: "https://analytics.halo.run/script.js",
