@@ -102,36 +102,15 @@ API 参考：[PostContentService](https://github.com/halo-dev/halo/blob/25086ee3
 
 用于发送通知事件的 Bean。
 
-#### 使用示例
-
-假如有一个 `NEW_COMMENT_ON_POST` 文章有新评论的通知事件，你可以这样发送通知：
-
-```java
-Mono<Void> emitNewCommentOnPostReason(/* 此示例省略参数 */) {
-  return notificationReasonEmitter.emit(NotificationReasonConst.NEW_COMMENT_ON_POST,
-  builder -> {
-    // 填充事件的数据
-    var attributes = CommentOnPostReasonData.builder()
-      .postName(subjectRef.getName())
-      .postOwner(post.getSpec().getOwner())
-      .postTitle(post.getSpec().getTitle())
-      .postUrl(postUrl)
-      .commenter(owner.getDisplayName())
-      .content(comment.getSpec().getContent())
-      .commentName(comment.getMetadata().getName())
-      .build();
-    builder.attributes(ReasonDataConverter.toAttributeMap(attributes))
-      .author(identityFrom(owner))
-      .subject(reasonSubject);
-  })
-}
-```
+使用示例参考 [通知事件触发示例](../../api-reference/server/notification.md#reason-emitter-example)
 
 API 参考：[NotificationReasonEmitter](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/notification/NotificationReasonEmitter.java)
 
 ### NotificationCenter
 
 用于管理通知的订阅和取消订阅。
+
+使用示例参考 [通知订阅示例](../../api-reference/server/notification.md#subscribe-example)
 
 API 参考：[NotificationCenter](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/notification/NotificationCenter.java)
 
