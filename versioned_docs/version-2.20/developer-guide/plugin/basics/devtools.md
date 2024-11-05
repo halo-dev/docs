@@ -16,9 +16,11 @@ Devtools 是使用 Java 开发的一个 [Gradle](https://gradle.org/) 插件，�
 ```groovy
 plugins {
   // ...
-  id "run.halo.plugin.devtools" version "0.3.0"
+  id "run.halo.plugin.devtools" version "0.4.0"
 }
 ```
+
+Release 版本和版本说明可以在 [GitHub Releases](https://github.com/halo-sigs/halo-gradle-plugin/releases) 上查看。
 
 ## 使用说明
 
@@ -34,11 +36,11 @@ plugins {
 
 ```shell
 =======================================================================
-> Halo 启动成功！
-访问地址：http://localhost:8090/console?language=zh-CN
-用户名：admin
-密码：admin
-API 文档：http://localhost:8090/swagger-ui.html
+> Halo 启动成功！                                                      
+访问地址：http://localhost:8090/console?language=zh-CN                 
+用户名：admin                                                          
+密码：admin                                                            
+API 文档：http://localhost:8090/swagger-ui.html                        
 插件开发文档：https://docs.halo.run/developer-guide/plugin/introduction
 =======================================================================
 ```
@@ -192,11 +194,23 @@ haloPlugin {
     consoleSource {
       // 监听 console/src/ 目录下的文件变化
       files files('console/src/')
+      // exclude '**/node_modules/**'
+      // exclude '**/.idea/**'
+      // exclude '**/.git/**'
+      // exclude '**/.gradle/**'
+      // exclude 'src/main/resources/console/**'
+      // exclude 'build/**'
+      // exclude 'gradle/**'
+      // exclude 'dist/**'
+      // exclude 'test/java/**'
+      // exclude 'test/resources/**'
     }
     // ... 可以添加多个
   }
 }
 ```
+
+`exclude` 接收字符串用于排除不需要监听的文件或目录，可以使用 `**` 通配符。注释掉的是每个 `watchDomains` 都会默认排除的规则。
 
 ### 生成 API client
 
@@ -284,6 +298,10 @@ haloPlugin {
 }
 ```
 
+当配置了 `openApi` 规则之后，`haloServer` 或 `watch` 启动可以通过 `http://localhost:8090/swagger-ui.html` 访问 API 文档，
+并通过选择你配置的 `displayName` 分组来**检查你的规则是否正确**。
+这一步检查有助于避免生成 API Client 为空或者生成 `roleTemplates.yaml` 为空的情况。
+
 ##### 执行 `generateApiClient`
 
 在项目目录中执行以下命令即可生成 API 客户端代码到指定目录：
@@ -345,6 +363,8 @@ const { data } = await momentsConsoleApiClient.moment.listTags({
 
 :::warning
 执行 `generateApiClient` 任务时会先删除 `openApi.generator.outputDir` 下的所有文件，因此建议将 API client 的输出目录设置为一个独立的目录，以避免误删其他文件。
+
+执行 `generateApiClient` 前建议注释掉你所配置的 `build` 任务对应的 `dependsOn` 任务，以避免因依赖前端构建任务可能无法生成 API Client 的问题。
 :::
 
 ### generateRoleTemplates 任务
@@ -413,7 +433,7 @@ halo {
 
 ## 迁移
 
-### 从旧版本升级到 0.2.x 版本
+### 从旧版本升级到 0.2.x 及以上版本
 
 如果 `run.halo.plugin.devtools` 从旧版本升级到 `0.2.0` 版本，需要先将 Gradle 版本升级到 `8.3` 以上，你可以通过以下命令升级 Gradle 版本：
 
@@ -421,5 +441,5 @@ halo {
 
 ```shell
 # 如将 Gradle 版本升级至 8.9
-./gradlew wrapper --gradle-version=8.9
+./gradlew wrapper --gradle-version=8.9 
 ```
