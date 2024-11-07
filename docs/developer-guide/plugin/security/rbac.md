@@ -139,7 +139,7 @@ rules:
 apiVersion: v1alpha1
 kind: Role
 metadata:
-  name: template-moment-anonymous-resrouces
+  name: template-moment-anonymous-resources
   labels:
     halo.run/role-template: "true"
     rbac.authorization.halo.run/aggregate-to-anonymous: "true"
@@ -149,7 +149,7 @@ rules:
     verbs: ["get", "list"]
 ```
 
-上述配置将 `template-moment-anonymous-resrouces` 角色聚合到 `anonymous` 角色中，用户无需登录即可访问 `api.moment.halo.run` 下的 `moments` 资源。
+上述配置将 `template-moment-anonymous-resources` 角色聚合到 `anonymous` 角色中，用户无需登录即可访问 `api.moment.halo.run` 下的 `moments` 资源。
 
 `rbac.authorization.halo.run/aggregate-to-editor` 表示将 `role-template-view-categories` 角色聚合到 `editor` 角色中，这样所有拥有 `editor` 角色的用户都会拥有 `role-template-view-categories` 角色的权限。
 
@@ -165,7 +165,7 @@ Halo 提供了隐藏角色模板的功能，隐藏的角色模板不会在用户
 apiVersion: v1alpha1
 kind: Role
 metadata:
-  name: template-moment-anonymous-resrouces
+  name: template-moment-anonymous-resources
   labels:
     # 声明为角色模板
     halo.run/role-template: "true"
