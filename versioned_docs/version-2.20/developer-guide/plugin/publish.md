@@ -7,7 +7,7 @@ description: 了解如何与我们的社区分享你的插件
 
 ## 创建 Release
 
-当你完成了你的插件并进行充分测试后，就可以在 GitHub 上创建新的 Release，其中版本规范可以参考[版本控制](#版本控制)。
+当你完成了你的插件并进行充分测试后，就可以在 GitHub 上创建新的 Release，其中版本规范可以参考[版本控制](#version-control)。
 
 ## 自动构建
 
@@ -145,7 +145,7 @@ Halo 不提供对第三方应用程序的支持。作为插件的开发者，你
 当提交插件到 [awesome-halo](https://github.com/halo-sigs/awesome-halo) 时，
 你需要添加服务支持联系人（Support contact）。这可以是用户可以联系的电子邮件地址，也可以是网站或帮助中心的链接。
 
-## 版本控制
+## 版本控制 {#version-control}
 
 为了保持 Halo 生态系统的健康、可靠和安全，每次你对自己拥有的插件进行重大更新时，我们建议在遵循 [semantic versioning spec](http://semver.org/) 的基础上，
 发布新版本。遵循语义版本控制规范有助于其他依赖你代码的开发人员了解给定版本的更改程度，并在必要时调整自己的代码。
