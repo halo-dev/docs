@@ -291,6 +291,17 @@ module.exports = {
         },
         {
           type: "category",
+          label: "与其他插件交互",
+          link: {
+            type: "doc",
+            id: "developer-guide/plugin/interaction/dependency",
+          },
+          items: [
+            "developer-guide/plugin/interaction/dependency",
+          ]
+        },
+        {
+          type: "category",
           label: "安全和权限管理",
           link: {
             type: "doc",
