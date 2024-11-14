@@ -280,7 +280,8 @@
             "id": "developer-guide/plugin/interaction/dependency"
           },
           "items": [
-            "developer-guide/plugin/interaction/dependency"
+            "developer-guide/plugin/interaction/dependency",
+            "developer-guide/plugin/interaction/shared-events"
           ]
         },
         {
