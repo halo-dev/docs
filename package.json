@@ -28,13 +28,13 @@
     ]
   },
   "dependencies": {
-    "@docusaurus/core": "3.5.2-canary-6127",
-    "@docusaurus/faster": "3.5.2-canary-6127",
-    "@docusaurus/plugin-client-redirects": "3.5.2-canary-6127",
-    "@docusaurus/preset-classic": "3.5.2-canary-6127",
-    "@docusaurus/theme-classic": "3.5.2-canary-6127",
-    "@docusaurus/theme-common": "3.5.2-canary-6127",
-    "@docusaurus/theme-mermaid": "3.5.2-canary-6127",
+    "@docusaurus/core": "3.6.2",
+    "@docusaurus/faster": "3.6.2",
+    "@docusaurus/plugin-client-redirects": "3.6.2",
+    "@docusaurus/preset-classic": "3.6.2",
+    "@docusaurus/theme-classic": "3.6.2",
+    "@docusaurus/theme-common": "3.6.2",
+    "@docusaurus/theme-mermaid": "3.6.2",
     "@mdx-js/react": "^3.0.0",
     "@svgr/webpack": "^5.5.0",
     "clsx": "^1.2.1",
@@ -48,7 +48,7 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.5.2-canary-6127",
+    "@docusaurus/module-type-aliases": "3.6.2",
     "husky": "^7.0.4",
     "markdownlint": "^0.25.1",
     "markdownlint-cli2": "^0.4.0"
