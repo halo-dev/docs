@@ -21,7 +21,6 @@
     "disabled": false                                   // 是否禁用
   },
   "status": {
-    "lastLoginAt": "2022-11-20T13:06:38.512Z",          // 最后登录时间
     "permalink": "string"                               // 作者的文章归档页面链接
   }
 }
