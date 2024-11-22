@@ -55,7 +55,7 @@ services:
       - ./data:/data         # 点号表示当前文件夹，冒号左边的意思是在当前文件夹下创建一个 data 目录，用于存放数据，如果不存在的话，会自动创建
       - ./letsencrypt:/etc/letsencrypt  # 点号表示当前文件夹，冒号左边的意思是在当前文件夹下创建一个 letsencrypt 目录，用于存放证书，如果不存在的话，会自动创建
     networks:
-      - halo_halo_network         # 如果你使用 docker compose 部署 halo，那么 halo 的默认网络就是 halo_halo_network
+      - halo_halo_network    # 如果你使用 docker compose 部署 halo，那么 halo 的默认网络就是 halo_halo_network
 
 networks:
   halo_halo_network:
@@ -193,7 +193,7 @@ docker inspect {YOUR_HALO_CONTAINER_NAME} | grep "Networks" -A30
 }
 ```
 
-可以看到这边的 IP 是 `172.18.0.3`，别名为 halo, halo-halo-1，此时可以不用打开防火墙的 `8090` 端口。
+可以看到这边 halo 在 docker 容器中的 IP 为 `172.18.0.3`，别名为 halo, halo-halo-1，此时可以不用打开防火墙的 `8090` 端口。
 
 当然，如果你的 NPM 和 Halo 不在同一台服务上，你需要在 IP 部分填入 **你的 Halo 所在的服务器的 IP**，并在服务商（部分服务商如腾讯、阿里）的后台打开 `8090` 端口。
 
