@@ -54,6 +54,12 @@ services:
     volumes:
       - ./data:/data         # 点号表示当前文件夹，冒号左边的意思是在当前文件夹下创建一个 data 目录，用于存放数据，如果不存在的话，会自动创建
       - ./letsencrypt:/etc/letsencrypt  # 点号表示当前文件夹，冒号左边的意思是在当前文件夹下创建一个 letsencrypt 目录，用于存放证书，如果不存在的话，会自动创建
+    networks:
+      - halo_halo_network         # 如果你使用 docker compose 部署 halo，那么 halo 的默认网络就是 halo_halo_network
+
+networks:
+  halo_halo_network:
+    external: true           # 声明使用外部网络
 ```
 
 > 注意：安装了 NPM 之后，就不需要再安装 Nginx 了，否则会端口冲突（不建议修改 NPM 的 80、443 端口）。如果你的服务器安装了宝塔面板，也可以和 NPM 一起使用，只要你到软件后台把宝塔安装的 Nginx 关闭或者卸载即可。
@@ -68,7 +74,40 @@ docker-compose up -d     # -d 表示后台运行
 docker compose up -d     # 如果你用的是 docker-compose-plugin 的话，用这条命令
 ```
 
-不出意外，此时你使用 [http://127.0.0.1:81](http://127.0.0.1:81/) 就可以访问 NPM 的网页端了。（注意把 `127.0.0.1` 替换成你实际服务器的 IP）
+此时我们可以查看 NPM 和 halo 是否处于同一网络：
+
+```bash
+docker network inspect halo_halo_network | grep "Containers" -A30
+```
+可以看到 NPM 和 halo 处于同一网络，并且 halo 的容器内 IP 地址为 `172.18.0.3`。如果你选择使用容器内网络，这个 IP 地址并不需要记忆。
+
+```bash
+"Containers": {
+    "0aee4d25d250082ac4771d2258ffc08b0c979dda7be02bb4b5b778b77e29f698": {
+        "Name": "halo-halo-1",
+        "EndpointID": "d7d6d330fbfb8362cdc51ae68ae7f9cdb354419bee16a0046a763b8475cca720",
+        "MacAddress": "02:42:ac:12:00:03",
+        "IPv4Address": "172.18.0.3/16",
+        "IPv6Address": ""
+    },
+    "68fccfe5768f19152a69bb5a392d40db6d11ca9171fb7dd619d29af3a90c901b": {
+        "Name": "nginxproxymanager-app-1",
+        "EndpointID": "48c48d8258b288a5f37247e3f6ce277e010ec3f4a93d02bedbce843fddf5f9b8",
+        "MacAddress": "02:42:ac:12:00:04",
+        "IPv4Address": "172.18.0.4/16",
+        "IPv6Address": ""
+    },
+    "d0b5fcbed69c13cb329b70e5559b086de9207074ad21000fe918e5a014139eaa": {
+        "Name": "halo-halodb-1",
+        "EndpointID": "fc776efd918778d37fcb5ca4d13f2a8e22a48422e84f4984bc5317f699597eb3",
+        "MacAddress": "02:42:ac:12:00:02",
+        "IPv4Address": "172.18.0.2/16",
+        "IPv6Address": ""
+    }
+}
+```
+
+之后如果不出意外，此时你使用 [http://127.0.0.1:81](http://127.0.0.1:81/) 就可以访问 NPM 的网页端了。（注意把 `127.0.0.1` 替换成你实际服务器的 IP）
 
 :::info
 
@@ -117,22 +156,44 @@ docker compose up -d     # 如果你用的是 docker-compose-plugin 的话，用
 
 ![Nginx Proxy Manager 5](/img/nginx-proxy-manager/Nginx-Proxy-Manager-5.png)
 
-因为样例的 NPM 和 Halo 搭建在同一台 VPS 上，所以这边的 IP，图中填的是 `172.17.0.1`，为 Docker 容器内部的 IP 地址，
+此时我们可以填入服务器的 IP，如果你的 NPM 和 halo 在同一服务器上，那么可以填入 docker 容器内 halo 的 ip，或者是容器网络别名（推荐）。
 
 可以通过下面的命令查询：
 
 ```bash
-ip addr show docker0
+docker inspect {YOUR_HALO_CONTAINER_NAME} | grep "Networks" -A30
+# 默认情况下是 docker inspect halo-halo-1 | grep "Networks" -A30
 ```
 
-```bash {3}
-4: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
-    link/ether 02:42:e4:a3:b5:b9 brd ff:ff:ff:ff:ff:ff
-    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
-       valid_lft forever preferred_lft forever
+```bash
+"Networks": {
+  "halo_halo_network": {
+    "IPAMConfig": null,
+    "Links": null,
+    "Aliases": [
+        "halo-halo-1",
+        "halo"
+    ],
+    "MacAddress": "02:42:ac:12:00:03",
+    "DriverOpts": null,
+    "NetworkID": "2b0cb49e1d004ad1814757620bf5f7fd5952ad24b2d22b41a4df3f4403829236",
+    "EndpointID": "d7d6d330fbfb8362cdc51ae68ae7f9cdb354419bee16a0046a763b8475cca720",
+    "Gateway": "172.18.0.1",
+    "IPAddress": "172.18.0.3",
+    "IPPrefixLen": 16,
+    "IPv6Gateway": "",
+    "GlobalIPv6Address": "",
+    "GlobalIPv6PrefixLen": 0,
+    "DNSNames": [
+        "halo-halo-1",
+        "halo",
+        "0aee4d25d250"
+    ]
+  }
+}
 ```
 
-这边的 IP 是 `172.17.0.1`，填入这个 IP，可以不用打开防火墙的 `8090` 端口。
+可以看到这边的 IP 是 `172.18.0.3`，别名为 halo, halo-halo-1，此时可以不用打开防火墙的 `8090` 端口。
 
 当然，如果你的 NPM 和 Halo 不在同一台服务上，你需要在 IP 部分填入 **你的 Halo 所在的服务器的 IP**，并在服务商（部分服务商如腾讯、阿里）的后台打开 `8090` 端口。
 
