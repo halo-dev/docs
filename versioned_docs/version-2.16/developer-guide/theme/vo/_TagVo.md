@@ -18,9 +18,7 @@
   },
   "status": {
     "permalink": "string",                              // 固定链接
-    "visiblePostCount": 0,                              // 已发布文章数
-    "postCount": 0                                      // 文章数
   },
-  "postCount": 0
+  "postCount": 0                                        // 文章数量
 }
 ```

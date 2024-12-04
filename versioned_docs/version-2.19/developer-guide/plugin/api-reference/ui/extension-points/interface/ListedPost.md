@@ -21,9 +21,8 @@ export interface ListedPost {
     };
     status: {
       permalink: string;                          // 分类的永久链接
-      postCount: number;                          // 分类下的文章总数
-      visiblePostCount: number;                   // 分类下可见的文章总数
     };
+    postCount: number;                            // 分类下的文章总数
   }>;
   contributors: Array<{                           // 文章的贡献者集合
     avatar: string;                               // 贡献者头像
@@ -110,9 +109,8 @@ export interface ListedPost {
     };
     status: {
       permalink: string;                          // 标签的永久链接
-      postCount: number;                          // 标签下的文章总数
-      visiblePostCount: number;                   // 标签下可见的文章总数
     };
+    postCount: number;                            // 标签下的文章总数
   }>;
 }
 
