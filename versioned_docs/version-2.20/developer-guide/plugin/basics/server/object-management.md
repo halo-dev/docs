@@ -221,3 +221,40 @@ public void stop() {
 `transformDeferred` 的作用是将 Mono 传入你提供的变换器中，返回一个经过变换的新 Mono。由于 RateLimiterOperator 是基于 Publisher 的装饰器（decorator），它会监视这个 Mono 的订阅和执行情况，从而对整个 Mono 的操作链进行限流。
 
 换句话说，因为 `RateLimiterOperator` 装饰了这个 Mono，所以任何接在 `transformDeferred()` 之后的操作符都会受到限流的影响，直到整个流结束。
+
+### SystemInfoGetter
+
+用于获取站点基本信息的 Bean，它是 `Supplier<Mono<SystemInfo>>` 的子类，仅有一个 `get` 方法。
+
+> 此为 `2.20.11` 版本新增的 Bean 因此需要 Halo 2.20.11 及以上版本才可使用。
+
+可以获取到的数据示例如下：
+
+```json
+{
+  "title" : "guqing's blog",
+  "subtitle" : "副标题",
+  "logo" : "/upload/myavatar.png",
+  "favicon" : "/upload/myavatar.png",
+  "url" : "http://localhost:8090",
+  "version" : {
+    "majorVersion" : 2,
+    "minorVersion" : 20,
+    "normalVersion" : "2.20.10",
+    "preRelease" : true,
+    "publicApiStable" : true,
+    "patchVersion" : 10,
+    "preReleaseVersion" : "SNAPSHOT",
+    "buildMetadata" : "",
+    "stable" : false
+  },
+  "seo" : {
+    "blockSpiders" : false,
+    "keywords" : "keyword1,keyword2",
+    "description" : "站点描述"
+  },
+  "locale" : "zh_CN_#Hans",
+  "timeZone" : "Asia/Shanghai",
+  "activatedThemeName" : "theme-earth"
+}
+```
