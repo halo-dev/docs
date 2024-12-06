@@ -23,11 +23,9 @@
   },
   "status": {
     "permalink": "string",                              // 固定链接
-    "postCount": 0,                                     // 文章数
-    "visiblePostCount": 0                               // 已发布文章数
   },
   "children": "List<#CategoryTreeVo>",                  // 下级分类，CategoryTreeVo 的集合
   "parentName": "string",
-  "postCount": 0
+  "postCount": 0                                        // 文章数量
 }
 ```
