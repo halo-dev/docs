@@ -12,6 +12,10 @@ import CategoryTreeVo from "../vo/_CategoryTreeVo.md"
 categoryFinder.getByName(name)
 ```
 
+:::info 提示
+通常建议配合 [主题设置](../settings.md) 和 [分类选择器](../../form-schema.md#categoryselect) 使用，让用户自行选择所需的分类。
+:::
+
 ### 描述
 
 根据 `metadata.name` 获取文章分类。
@@ -38,6 +42,10 @@ categoryFinder.getByName(name)
 categoryFinder.getByNames(names)
 ```
 
+:::info 提示
+通常建议配合 [主题设置](../settings.md) 和 [分类选择器](../../form-schema.md#categoryselect) 使用，让用户自行选择所需的分类。
+:::
+
 ### 描述
 
 根据一组 `metadata.name` 获取文章分类。
@@ -53,7 +61,7 @@ List\<[#CategoryVo](#categoryvo)\>
 ### 示例
 
 ```html
-<div th:with="categories = ${categoryFinder.getByNames(['category-foo', 'category-bar'])}">
+<div th:with="categories = ${categoryFinder.getByNames({'category-foo', 'category-bar'})}">
   <a th:each="category : ${categories}" th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
 </div>
 ```
