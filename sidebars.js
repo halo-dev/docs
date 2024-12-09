@@ -49,7 +49,13 @@ module.exports = {
               items: [
                 "getting-started/install/cloud/alibaba-cloud-market",
                 "getting-started/install/cloud/tencent-cloud-lighthouse",
-                "getting-started/install/cloud/alibaba-cloud-computenest"
+                "getting-started/install/cloud/alibaba-cloud-computenest",
+                {
+                  type: "link",
+                  label: "Zeabur 一键部署",
+                  href: "https://zeabur.com/docs/zh-CN/marketplace/halo",
+                  description: "在 Zeabur 一键部署 Halo 服务"
+                },
               ],
             },
             {
@@ -285,9 +291,9 @@ module.exports = {
                 "developer-guide/plugin/extension-points/ui/post-list-item-field-create",
                 "developer-guide/plugin/extension-points/ui/user-detail-tabs-create",
                 "developer-guide/plugin/extension-points/ui/uc-user-profile-tabs-create",
-              ]
+              ],
             },
-          ]
+          ],
         },
         {
           type: "category",
@@ -300,7 +306,7 @@ module.exports = {
             "developer-guide/plugin/interaction/dependency",
             "developer-guide/plugin/interaction/shared-events",
             "developer-guide/plugin/interaction/making-plugin-extensible",
-          ]
+          ],
         },
         {
           type: "category",
@@ -313,7 +319,7 @@ module.exports = {
             "developer-guide/plugin/security/rbac",
             "developer-guide/plugin/security/role-template",
             "developer-guide/plugin/security/ui-permission",
-          ]
+          ],
         },
         {
           type: "category",
