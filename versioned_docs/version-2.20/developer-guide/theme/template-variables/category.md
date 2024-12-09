@@ -119,7 +119,7 @@ customTemplates:
 
 ### ListedPostVo
 
-\<ListedPostVo \/\>
+<ListedPostVo />
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)

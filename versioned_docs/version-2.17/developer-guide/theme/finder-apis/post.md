@@ -371,7 +371,7 @@ postFinder.archives(page, size, year, month);
 
 ### ListedPostVo
 
-\<ListedPostVo \/\>
+<ListedPostVo />
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)
