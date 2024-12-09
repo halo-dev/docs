@@ -95,18 +95,3 @@ customTemplates:
 ### PostVo
 
 <PostVo />
-
-- [路由信息](#路由信息)
-  - [自定义模板](#自定义模板)
-- [变量](#变量)
-  - [post](#post)
-    - [变量类型](#变量类型)
-    - [示例](#示例)
-  - [\_templateId](#_templateid)
-    - [变量值](#变量值)
-- [类型定义](#类型定义)
-  - [CategoryVo](#categoryvo)
-  - [TagVo](#tagvo)
-  - [ContributorVo](#contributorvo)
-  - [ContentVo](#contentvo)
-  - [PostVo](#postvo)
