@@ -52,7 +52,7 @@ List\<[#TagVo](#tagvo)\>
 ### 示例
 
 ```html
-<div th:with="tags = ${tagFinder.getByNames(['tag-foo', 'tag-bar'])}">
+<div th:with="tags = ${tagFinder.getByNames({'tag-foo', 'tag-bar'})}">
   <a th:each="tag : ${tags}" th:href="@{${tag.status.permalink}}" th:text="${tag.spec.displayName}"></a>
 </div>
 ```

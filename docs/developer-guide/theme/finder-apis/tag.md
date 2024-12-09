@@ -11,6 +11,10 @@ import TagVo from "../vo/_TagVo.md"
 tagFinder.getByName(name)
 ```
 
+:::info 提示
+通常建议配合 [主题设置](../settings.md) 和 [标签选择器](../../form-schema.md#tagselect) 使用，让用户自行选择所需的标签。
+:::
+
 ### 描述
 
 根据 `metadata.name` 获取标签。
@@ -37,6 +41,10 @@ tagFinder.getByName(name)
 tagFinder.getByNames(names)
 ```
 
+:::info 提示
+通常建议配合 [主题设置](../settings.md) 和 [标签选择器](../../form-schema.md#tagselect) 使用，让用户自行选择所需的标签。
+:::
+
 ### 描述
 
 根据一组 `metadata.name` 获取标签。
@@ -52,7 +60,7 @@ List\<[#TagVo](#tagvo)\>
 ### 示例
 
 ```html
-<div th:with="tags = ${tagFinder.getByNames(['tag-foo', 'tag-bar'])}">
+<div th:with="tags = ${tagFinder.getByNames({'tag-foo', 'tag-bar'})}">
   <a th:each="tag : ${tags}" th:href="@{${tag.status.permalink}}" th:text="${tag.spec.displayName}"></a>
 </div>
 ```
