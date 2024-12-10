@@ -153,6 +153,10 @@ title: 使用 JAR 文件部署
    cd ~/app && java -Dfile.encoding=UTF-8 -jar halo.jar --spring.config.additional-location=optional:file:$HOME/.halo2/
    ```
 
+   :::tip
+   如果指定了其他工作目录，请将 `$HOME/.halo2/` 替换为相应的绝对路径，并确保路径末尾带有 `/`。
+   :::
+
 7. 如果没有观察到异常日志，即可尝试访问 Halo
 
    打开 `http://ip:端口号` 即可跳转到初始化页面。
