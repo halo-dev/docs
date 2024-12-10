@@ -19,7 +19,9 @@ description: 使用 Nginx Proxy Manager 管理 Halo 服务的反向代理
 
 Nginx Proxy Manager 后台还可以一键申请 SSL 证书，并且会自动续期，方便省心。
 
-下面我们就来介绍如何用 Nginx Proxy Manger 来配合 Halo，实现反向代理和 HTTPS 访问。
+下面我们就来介绍如何用 Nginx Proxy Manger 来配合 Halo，实现反向代理和 HTTPS 访问。sss
+
+注意：样例基于 Nginx Proxy Manger 和 halo 在同一服务器的前提。如果你的 Nginx Proxy Manger 部署在其他服务器上，那么需要关注一些网络地址的填写。
 
 ## 安装 Nginx Proxy Manager
 
@@ -55,11 +57,12 @@ services:
       - ./data:/data         # 点号表示当前文件夹，冒号左边的意思是在当前文件夹下创建一个 data 目录，用于存放数据，如果不存在的话，会自动创建
       - ./letsencrypt:/etc/letsencrypt  # 点号表示当前文件夹，冒号左边的意思是在当前文件夹下创建一个 letsencrypt 目录，用于存放证书，如果不存在的话，会自动创建
     networks:
-      - halo_halo_network    # 如果你使用 docker compose 部署 halo，那么 halo 的默认网络就是 halo_halo_network
+      - nginx-proxy-manager  # 使用网络 nginx-proxy-manager
 
 networks:
-  halo_halo_network:
-    external: true           # 声明使用外部网络
+  nginx-proxy-manager:
+    name: nginx-proxy-manager
+    attachable: true         # 允许连接到其他网络
 ```
 
 > 注意：安装了 NPM 之后，就不需要再安装 Nginx 了，否则会端口冲突（不建议修改 NPM 的 80、443 端口）。如果你的服务器安装了宝塔面板，也可以和 NPM 一起使用，只要你到软件后台把宝塔安装的 Nginx 关闭或者卸载即可。
@@ -74,34 +77,104 @@ docker-compose up -d     # -d 表示后台运行
 docker compose up -d     # 如果你用的是 docker-compose-plugin 的话，用这条命令
 ```
 
+如果你的 halo 已经启动，那么有两种办法可以加入 `nginx-proxy-manager` 这个网络中。
+
+1. 使用 `docker network connect {NETWORK} {CONTAINER}` 来使 halo 连接到 `nginx-proxy-manager` 网络中。
+2. 如果使用的 `docker compose`，那么可以先停止容器：`docker compose stop`，随后修改 `docker-compose.yml` 文件中的 `networks`，这里以 `MySQL` 数据库为例：
+
+```yaml {10-12,59-62} showLineNumbers
+version: "3"
+
+services:
+  halo:
+    image: registry.fit2cloud.com/halo/halo:2.20
+    restart: on-failure:3
+    depends_on:
+      halodb:
+        condition: service_healthy
+    networks:
+      halo_network:
+      nginx-proxy-manager:
+    volumes:
+      - ./halo2:/root/.halo2
+    ports:
+      - "8090:8090"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    environment:
+      # JVM 参数，默认为 -Xmx256m -Xms256m，可以根据实际情况做调整，置空表示不添加 JVM 
+参数
+      - JVM_OPTS=-Xmx256m -Xms256m
+    command:
+      - --spring.r2dbc.url=r2dbc:pool:mysql://halodb:3306/halo
+      - --spring.r2dbc.username=root
+      # MySQL 的密码，请保证与下方 MYSQL_ROOT_PASSWORD 的变量值一致。
+      - --spring.r2dbc.password=o#DwN&JSa56
+      - --spring.sql.init.platform=mysql
+      # 外部访问地址，请根据实际需要修改
+      - --halo.external-url=http://localhost:8090/
+
+  halodb:
+    image: mysql:8.1.0
+    restart: on-failure:3
+    networks:
+      halo_network:
+    command:
+      - --default-authentication-plugin=caching_sha2_password
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_general_ci
+      - --explicit_defaults_for_timestamp=true
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./mysqlBackup:/data/mysqlBackup
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+      interval: 3s
+      retries: 5
+      start_period: 30s
+    environment:
+      # 请修改此密码，并对应修改上方 Halo 服务的 SPRING_R2DBC_PASSWORD 变量值
+      - MYSQL_ROOT_PASSWORD=o#DwN&JSa56
+      - MYSQL_DATABASE=halo
+
+networks:
+  halo_network:
+  nginx-proxy-manager:
+    external: true
+```
+
+然后再次运行：
+
+```bash
+docker compose up -d
+```
+
 此时我们可以查看 NPM 和 halo 是否处于同一网络：
 
 ```bash
-docker network inspect halo_halo_network | grep "Containers" -A30
+docker network inspect nginx-proxy-manager | grep "Containers" -A30
 ```
+
 可以看到 NPM 和 halo 处于同一网络，并且 halo 的容器内 IP 地址为 `172.18.0.3`。如果你选择使用容器内网络，这个 IP 地址并不需要记忆。
 
 ```bash
 "Containers": {
-    "0aee4d25d250082ac4771d2258ffc08b0c979dda7be02bb4b5b778b77e29f698": {
+    "681b726024ef353d53e7762718aa1f104b78cb15401856bd30ec5e76b0634d39": {
         "Name": "halo-halo-1",
-        "EndpointID": "d7d6d330fbfb8362cdc51ae68ae7f9cdb354419bee16a0046a763b8475cca720",
-        "MacAddress": "02:42:ac:12:00:03",
-        "IPv4Address": "172.18.0.3/16",
+        "EndpointID": "a76fdfc8c8cee8b12708b0a3f1ba589148acb8496865718dd382788ac27e1fb3",
+        "MacAddress": "02:42:ac:15:00:03",
+        "IPv4Address": "172.21.0.3/16",
         "IPv6Address": ""
     },
-    "68fccfe5768f19152a69bb5a392d40db6d11ca9171fb7dd619d29af3a90c901b": {
-        "Name": "nginxproxymanager-app-1",
-        "EndpointID": "48c48d8258b288a5f37247e3f6ce277e010ec3f4a93d02bedbce843fddf5f9b8",
-        "MacAddress": "02:42:ac:12:00:04",
-        "IPv4Address": "172.18.0.4/16",
-        "IPv6Address": ""
-    },
-    "d0b5fcbed69c13cb329b70e5559b086de9207074ad21000fe918e5a014139eaa": {
-        "Name": "halo-halodb-1",
-        "EndpointID": "fc776efd918778d37fcb5ca4d13f2a8e22a48422e84f4984bc5317f699597eb3",
-        "MacAddress": "02:42:ac:12:00:02",
-        "IPv4Address": "172.18.0.2/16",
+    "a4d0897979e9d8821461ae81a5c107d30541f23128065b221d318aa7ef790f16": {       
+        "Name": "npm-app-1",
+        "EndpointID": "0004fee450b8e27a0b6d6eaedda194856d6f42bd9b670141578564a8f4826b68",
+        "MacAddress": "02:42:ac:15:00:02",
+        "IPv4Address": "172.21.0.2/16",
         "IPv6Address": ""
     }
 }
@@ -156,16 +229,15 @@ docker network inspect halo_halo_network | grep "Containers" -A30
 
 ![Nginx Proxy Manager 5](/img/nginx-proxy-manager/Nginx-Proxy-Manager-5.png)
 
-此时我们可以填入服务器的 IP，如果你的 NPM 和 halo 在同一服务器上，那么可以填入 docker 容器内 halo 的 ip，或者是容器网络别名（推荐）。
+我们可以填入 docker 容器内 halo 的容器网络别名（推荐），或者 IP。如果你的 NPM 部署在其他服务器，那么可以填入 halo 服务器的 IP，
 
-可以通过下面的命令查询：
+可以通过下面的命令查询别名：
 
 ```bash
 docker inspect {YOUR_HALO_CONTAINER_NAME} | grep "Networks" -A30
-# 默认情况下是 docker inspect halo-halo-1 | grep "Networks" -A30
 ```
 
-```bash
+```bash {5-8} showLineNumbers
 "Networks": {
   "halo_halo_network": {
     "IPAMConfig": null,
@@ -193,7 +265,7 @@ docker inspect {YOUR_HALO_CONTAINER_NAME} | grep "Networks" -A30
 }
 ```
 
-可以看到这边 halo 在 docker 容器中的 IP 为 `172.18.0.3`，别名为 halo, halo-halo-1，此时可以不用打开防火墙的 `8090` 端口。
+可以看到这边 halo 在 docker 容器中别名为 halo, halo-halo-1，IP 为 `172.18.0.3`，此时可以不用打开防火墙的 `8090` 端口。
 
 当然，如果你的 NPM 和 Halo 不在同一台服务上，你需要在 IP 部分填入 **你的 Halo 所在的服务器的 IP**，并在服务商（部分服务商如腾讯、阿里）的后台打开 `8090` 端口。
 
