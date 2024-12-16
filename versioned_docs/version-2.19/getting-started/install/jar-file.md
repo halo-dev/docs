@@ -92,10 +92,6 @@ title: 使用 JAR 文件部署
          # 需要配合 r2dbc 的配置进行改动
          platform: h2
    halo:
-     caches:
-       page:
-         # 是否禁用页面缓存
-         disabled: true
      # 工作目录位置
      work-dir: ${user.home}/.halo2
      # 外部访问地址
