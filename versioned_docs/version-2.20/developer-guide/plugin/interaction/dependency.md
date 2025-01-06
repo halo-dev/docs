@@ -152,10 +152,17 @@ plugins {
 }
 
 group = 'com.example'
-version = '1.0.0'
+version = rootProject.version
 
 repositories {
     mavenCentral()                     // 使用 Maven Central 仓库
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    // 包含源码 JAR 包
+    withSourcesJar()
 }
 
 dependencies {
