@@ -41,7 +41,7 @@ import ListedPostVo from "../vo/_ListedPostVo.md"
     >
       <span>上一页</span>
     </a>
-    <span th:text="${posts.page} +' / '+ ${posts.total}"></span>
+    <span th:text="${posts.page} +' / '+ ${posts.totalPages}"></span>
     <a
       th:href="@{${posts.nextUrl}}"
     >
