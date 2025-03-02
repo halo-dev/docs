@@ -11,7 +11,7 @@ export default function SearchBarWrapper(props) {
       // Default Search API Key
       // Use it to search from the frontend
       apiKey:
-        "4b16205faa360eaa1ee5add67c0d265a4ca1e898ffbea199fe23d487a24c9bc8",
+        "883d046131979fa8bc9bbc7d006ccb13a353cb5ce847cca50a49fad4f35b3f77",
       indexUid: "docs",
     });
 
