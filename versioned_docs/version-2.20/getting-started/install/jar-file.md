@@ -196,14 +196,15 @@ title: 使用 JAR 文件部署
    ExecStart=/usr/bin/java -Dfile.encoding=UTF-8 -server -Xms256m -Xmx256m -jar JAR_PATH --spring.config.additional-location=optional:file:/home/halo/.halo2/
    ExecStop=/bin/kill -s QUIT $MAINPID
    Restart=always
-   StandOutput=syslog
+   StandardOutput=syslog
 
-   StandError=inherit
+   StandardError=inherit
 
    [Install]
    WantedBy=multi-user.target
    ```
 
+   - **ExecStart**: java的真实存在地址，就像java包下bin目录中的java，假如自己的java没有安装在这个位置，需要修改
    - **JAR_PATH**：Halo 运行包的绝对路径，例如 `/home/halo/app/halo.jar`，注意：此路径不支持 `~` 符号。
    - **USER**：运行 Halo 的系统用户，如果有按照上方教程创建新的用户来运行 Halo，修改为你创建的用户名称即可。反之请删除 `User=USER`。
 
