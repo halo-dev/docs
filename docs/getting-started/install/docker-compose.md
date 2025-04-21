@@ -282,7 +282,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
 ## 反向代理
 
-你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。 如果你对它们没有任何了解，可以参考我们更为详细的反向代理文档：
+你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。如果你对它们没有任何了解，可以参考我们更为详细的反向代理文档：
 
 1. 使用 [Nginx Proxy Manager](../install/other/nginxproxymanager.md)
 2. 使用 [Traefik](../install/other/traefik.md)

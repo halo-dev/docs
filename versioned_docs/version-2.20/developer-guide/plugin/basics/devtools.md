@@ -75,7 +75,7 @@ halo {
 ```
 
 - `version`：表示要使用的 Halo 版本，随着插件 API 的更新你可能需要更高的 Halo 版本来运行插件，可自行更改。
-- `superAdminUsername`： Halo 的超级管理员用户名，当你启动插件时会自动根据此配置和 `superAdminPassword` 为你初始化 Halo 的超级管理员账户。
+- `superAdminUsername`：Halo 的超级管理员用户名，当你启动插件时会自动根据此配置和 `superAdminPassword` 为你初始化 Halo 的超级管理员账户。
 - `superAdminPassword`：Halo 的超级管理员用户密码。
 - `externalUrl`：Halo 的外部访问地址，一般默认即可，但如果修改了端口号映射可能需要修改。
 - `docker.url`：用于配置连接 Docker 的 url 信息，在 Mac 或 Linux 系统上默认是 `unix:///var/run/docker.sock`，在 windows 上默认是 `npipe:////./pipe/docker_engine`。
@@ -345,7 +345,7 @@ const momentsUcApiClient = {
 export { momentsConsoleApiClient, momentsCoreApiClient, momentsUcApiClient };
 ```
 
-使用定义的实例:
+使用定义的实例：
 
 ```typescript
 import { momentsConsoleApiClient } from "@/api";

@@ -200,7 +200,7 @@ RateLimiter buildSendEmailRateLimiter(String username, String email) {
   var rateLimiter = rateLimiterRegistry.rateLimiter(rateLimiterKey, new RateLimiterConfig.Builder()
     // 频次限制为 1 次
     .limitForPeriod(1)
-    // 限制刷新周期为 60 秒, 即 60 秒内只能执行 1 次
+    // 限制刷新周期为 60 秒，即 60 秒内只能执行 1 次
     .limitRefreshPeriod(Duration.ofSeconds(60))
     .build());
   // 添加 limiter 到自己实现的 Registry 中保存起来以便在插件停止时清理

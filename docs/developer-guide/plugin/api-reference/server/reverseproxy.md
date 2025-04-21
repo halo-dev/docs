@@ -25,7 +25,7 @@ description: 了解如何使用静态资源代理来访问插件中的静态资�
   ```
 
 插件启动后会根据 `/plugins/{plugin-name}/assets/**` 规则生成访问路径，
-因此该 `ReverseProxy` 的访问路径为: `/plugins/my-plugin/assets/res/halo.jpg`。
+因此该 `ReverseProxy` 的访问路径为：`/plugins/my-plugin/assets/res/halo.jpg`。
 
 - `rules` 下可以添加多组规则。
 - `path` 为路径前缀。

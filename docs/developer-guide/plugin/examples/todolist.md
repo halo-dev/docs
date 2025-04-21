@@ -9,7 +9,7 @@ description: 这个例子展示了如何开发 Todo List 插件
 
 ## 配置你的插件
 
-1. 修改 `build.gradle` 中的 `group` 为你自己的，如:
+1. 修改 `build.gradle` 中的 `group` 为你自己的，如：
 
    ```groovy
    group = 'run.halo.tutorial'
@@ -279,7 +279,7 @@ export default definePlugin({
 
 本章节我们将通过使用 `Axios` 来完成与插件后端 APIs 进行数据交互，文档参考 [axios-http](https://axios-http.com/docs)。
 
-首先需要安装 `Axios`， 在 ui 目录下执行命令：
+首先需要安装 `Axios`，在 ui 目录下执行命令：
 
 ```shell
 pnpm install axios

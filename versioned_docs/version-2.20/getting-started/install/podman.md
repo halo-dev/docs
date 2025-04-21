@@ -20,9 +20,9 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 
 为什么选择 Podman 而不是 Docker ?
 
-这个需要视情况而定, 如果您的主机配置不是很高, 您使用 Docker 时, 因为 Docker 自带的守护进程可能会雪上加霜, 它会大量占用您的资源。
+这个需要视情况而定，如果您的主机配置不是很高，您使用 Docker 时，因为 Docker 自带的守护进程可能会雪上加霜，它会大量占用您的资源。
 而 Podman 采用无守护进程架构，而且容器是无根模式，您可以在占用资源极小的情况下运行镜像，并且获得很高的安全性。
-而且 Podman 与 Docker 高度兼容，您不需要做特别配置即可将 Docker 容器运行在Podman 上。
+而且 Podman 与 Docker 高度兼容，您不需要做特别配置即可将 Docker 容器运行在 Podman 上。
 
 [什么是 Podman?](https://www.redhat.com/zh/topics/containers/what-is-podman)
 
@@ -40,15 +40,15 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 - Podman 安装文档：[https://podman.io/docs/installation](https://podman.io/docs/installation)
 
 :::tip
-我们推荐您先阅读 Podman 官方文档对 Podman 有了相关了解后，再考虑通过Linux包管理系统安装 Podman 或者使用文档中指定的方式安装 。
+我们推荐您先阅读 Podman 官方文档对 Podman 有了相关了解后，再考虑通过 Linux 包管理系统安装 Podman 或者使用文档中指定的方式安装。
 :::
 
 ## 使用 Docker 镜像
 
 :::tip
-为什么是 Docker 镜像?
+为什么是 Docker 镜像？
 
-通过[前言](#前言)我们已经了解了 Podman ，其中提到 ***Podman 与 Docker 高度兼容*** ，正是因为 Podman 完全是为了替代 Docker 而诞生，所以原本的 Docker 生态中的镜像我们可以无需更改直接使用。
+通过[前言](#前言)我们已经了解了 Podman，其中提到 ***Podman 与 Docker 高度兼容*** ，正是因为 Podman 完全是为了替代 Docker 而诞生，所以原本的 Docker 生态中的镜像我们可以无需更改直接使用。
 :::
 
 <DockerRegistryList />
@@ -115,7 +115,7 @@ Podman 没有和 Docker 类似的管理进程，在低配置的主机上更友�
 但是使用 Podman 想要开机后自动启动，官方推荐一种和 systemd 服务类似的语法文件，即 Podman Quadlet。
 :::
 
-下面是一个使用 Podstgresql 数据库的示例:
+下面是一个使用 Podstgresql 数据库的示例：
 
 ```bash
 mkdir -p /opt/podman-data/halo
@@ -162,38 +162,38 @@ systemctl start halo
 # 之后重启会自动启动不需要enable服务.
 ```
 
-Podman Quadlet 解析:
+Podman Quadlet 解析：
 
-`[Unit]` 部分:
+`[Unit]` 部分：
 
-- Wants和After字段指定了Halo在什么服务后启动。
+- Wants 和 After 字段指定了 Halo 在什么服务后启动。
 
-`[Container]` 部分:
+`[Container]` 部分：
 
-- `AutoUpdate=registry`指定了自动拉取容器。假设后续Halo镜像支持了`latest`标签，你需要`systemctl enable --now podman-auto-update.timer`以启用容器自动更新。本文示例`ghcr.io/halo-dev/halo:2.20`，将会自动更新适用与`2.20`版本的patch，例如您创建容器时是`2.20.1`，在官方发布`2.20.2`版本时，容器会自动更新到`2.20.2`。
+- `AutoUpdate=registry`指定了自动拉取容器。假设后续 Halo 镜像支持了`latest`标签，你需要`systemctl enable --now podman-auto-update.timer`以启用容器自动更新。本文示例`ghcr.io/halo-dev/halo:2.20`，将会自动更新适用与`2.20`版本的 patch，例如您创建容器时是`2.20.1`，在官方发布`2.20.2`版本时，容器会自动更新到`2.20.2`。
 - `ContainerName=`指定了 systemd 将生成的服务名称。
-- `User=60000 Group=60000 UserNS=keep-id:uid=60000,gid=60000` 限制容器以 id 60000 的用户运行，提高安全性。注意这个id 60000请根据你实际想要运行的用户名来修改，可通过`id user`获得你的用户的id.
+- `User=60000 Group=60000 UserNS=keep-id:uid=60000,gid=60000` 限制容器以 id 60000 的用户运行，提高安全性。注意这个 id 60000 请根据你实际想要运行的用户名来修改，可通过`id user`获得你的用户的 id.
 - `Environment=`字段指定了容器的环境变量，其中你需要注意的是`Environment=HALO_WORK_DIR="/.halo"` `Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"`这两个变量中的`/.halo`路径。
-- `Volume=`字段指定挂载到容器储存Halo配置文件的路径，请仔细观察`/opt/podman-data/halo:/.halo`其中的`/.halo`要与上面需要注意的环境变量路径要一致。
-- `PublishPort=`和docker -p命令一致，即需要映射的端口。
-- `Image=ghcr.io/halo-dev/halo` 即Docker镜像的地址，注意要完整的。比如`ghcr.io`这个路径就不能少，如果你没有配置 Podman 的 registries 文件，此路径就必不可少，建议写全。
-- `Exec=` 即附加到Halo容器的 Command ，具体变量参考上方的 DockerArgs 。多个变量以空格分开。
+- `Volume=`字段指定挂载到容器储存 Halo 配置文件的路径，请仔细观察`/opt/podman-data/halo:/.halo`其中的`/.halo`要与上面需要注意的环境变量路径要一致。
+- `PublishPort=`和 docker -p 命令一致，即需要映射的端口。
+- `Image=ghcr.io/halo-dev/halo` 即 Docker 镜像的地址，注意要完整的。比如`ghcr.io`这个路径就不能少，如果你没有配置 Podman 的 registries 文件，此路径就必不可少，建议写全。
+- `Exec=` 即附加到 Halo 容器的 Command，具体变量参考上方的 DockerArgs。多个变量以空格分开。
 
-`[Service]` 部分:
-即原生systemd语法
+`[Service]` 部分：
+即原生 systemd 语法
 
 - `Restart` 指定遇到错误后总是重启容器
 - `RestartSec` 重启的间隔时间
 - `StartLimitInterval` 重启的次数，超过这个次数将不再重启。
 - `TimeoutStartSec` 启动容器的超时时间，建议不要修改，因为每次开机后 Podman 将自动拉取容器，这时也许耗时会很长，这些时间是算在启动时间中的。如果定义太小的时间，可能将导致 Podman 无法拉取容器镜像。
-- `TimeoutStopSec` 停止容器时的超时时间，`systemctl stop halo` 假设使用这个命令，如果停止时间超过了`TimeoutStopSec`定义的时间，将会被系统Kill.
+- `TimeoutStopSec` 停止容器时的超时时间，`systemctl stop halo` 假设使用这个命令，如果停止时间超过了`TimeoutStopSec`定义的时间，将会被系统 Kill.
 
-`[Install]` 部分:
+`[Install]` 部分：
 
-此部分请查看systemd文档，不建议修改。
+此部分请查看 systemd 文档，不建议修改。
 
 使用默认的 root 用户运行时无需定义 `User=60000 Group=60000 UserNS=keep-id:uid=60000,gid=60000` 与 `Environment=HALO_WORK_DIR="/.halo"` `Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"`，
-示例:
+示例：
 
 ```bash
 mkdir -p /opt/podman-data/halo

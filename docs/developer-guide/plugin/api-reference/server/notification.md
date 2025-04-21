@@ -284,7 +284,7 @@ Halo 提供了 `NotificationReasonEmitter` 接口，开发者可以通过它轻�
 - `reasonType`：事件类型的名称，对应于 `ReasonType` 的 `metadata.name` 字段。
 - `reasonData`：事件数据的构建器，用于构建 `Reason` 实例的属性。
 
-Reason 数据的构建器有以下属性:
+Reason 数据的构建器有以下属性：
 
 ```java
 public class ReasonPayloadBuilder {
