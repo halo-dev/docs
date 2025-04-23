@@ -253,13 +253,13 @@ Halo 默认会为每个自定义模型建立以下几个索引，因此不需要
 - 必须以字母数字字符开头和结尾。
 - 可以包含 `-`、`.`、`_` 和`字母数字`字符。
 
-通用规范:
+通用规范：
 
 - 避免使用容易引起混淆或误解的键名。
 - 尽量保持简洁明了，易于理解。
 - 使用易于记忆和识别的单词或缩写。
 
-一致性和清晰性:
+一致性和清晰性：
 
 - 在整个项目或组织中保持一致的命名约定。
 - labels 应直观地反映其代表的信息或用途。
@@ -356,7 +356,7 @@ RouterFunction<ServerResponse> route = route()
 
 这样开发者可以灵活定义符合业务需求的 APIs，方便地扩展插件的功能。
 
-自定义 APIs 与自动生成的 APIs 一样，都应该遵循以下规范:
+自定义 APIs 与自动生成的 APIs 一样，都应该遵循以下规范：
 
 `/apis/<group>/<version>/<extension>/{extensionname}/<subextension>`
 
@@ -631,7 +631,7 @@ public static BindingResult validate(Object target, String objectName,
 }
 ```
 
-参考文档:
+参考文档：
 
 - [RequestBodyValidationException](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/application/src/main/java/run/halo/app/infra/exception/RequestBodyValidationException.java)
 - [Bean Validation](https://beanvalidation.org/)

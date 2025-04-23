@@ -41,8 +41,8 @@ spec:
 | `spec.requires`              | 插件支持的 Halo 版本范围，遵循 [SemVer Range Expressions](https://github.com/zafarkhaja/jsemver#range-expressions)。参考：[常用 SemVer Range Expressions](#common-range-expressions) |
 | `spec.author`                | 插件作者的信息，包括名称和支持网址。                                                                                                                                                 |
 | `spec.logo`                  | 插件的 logo，支持 URL 链接或相对于项目 `src/main/resources` 目录的文件路径。                                                                                                         |
-| `spec.settingName`（可选）   | 插件配置表单的名称，用于提供用户可视化配置的表单，名称建议为 "插件名-settings"。 参考：[表单定义](../../form-schema.md)。                                                            |
-| `spec.configMapName`（可选） | 插件配置存储的 ConfigMap 名称，通常建议命名为 "插件名-configmap"。 没有配置 `settingName` 则不需要配置此项。                                                                         |
+| `spec.settingName`（可选）   | 插件配置表单的名称，用于提供用户可视化配置的表单，名称建议为 "插件名-settings"。参考：[表单定义](../../form-schema.md)。                                                            |
+| `spec.configMapName`（可选） | 插件配置存储的 ConfigMap 名称，通常建议命名为 "插件名-configmap"。没有配置 `settingName` 则不需要配置此项。                                                                         |
 | `spec.homepage`              | 插件的主页链接，通常指向插件的官方文档或帮助页面。                                                                                                                                   |
 | `spec.repo`                  | 插件源码的仓库地址。                                                                                                                                                                 |
 | `spec.issues`                | 插件的反馈问题地址，可以是 GitHub Issues。                                                                                                                                           |

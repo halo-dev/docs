@@ -20,7 +20,7 @@ Halo 离线安装包使用 Docker + Docker Compose 的方式部署 Halo 及其�
 
 ### 解压安装包
 
-以 root 用户 ssh 登录到目标机器, 并执行如下命令：
+以 root 用户 ssh 登录到目标机器，并执行如下命令：
 
 ```bash
 cd /tmp

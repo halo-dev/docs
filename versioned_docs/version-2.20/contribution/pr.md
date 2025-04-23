@@ -13,7 +13,7 @@ description: 代码贡献指南
 
 > 这个步骤非常适合首次贡献者。
 
-在 [halo-dev](https://github.com/halo-dev) 和 [halo-sigs](https://github.com/halo-sigs) 组织下，有非常多的仓库。每个仓库下都有可能包含一些“首次贡献者”友好的 Issue，主要是为了给贡献者提供一个友好的体验。 该类 Issue
+在 [halo-dev](https://github.com/halo-dev) 和 [halo-sigs](https://github.com/halo-sigs) 组织下，有非常多的仓库。每个仓库下都有可能包含一些“首次贡献者”友好的 Issue，主要是为了给贡献者提供一个友好的体验。该类 Issue
 一般会用 `good-first-issue` 标签标记。标签 `good-first-issue` 表示该 Issue 不需要对 Halo 有深入的理解也能够参与。
 
 请点击：[good-first-issue](https://github.com/issues?q=org%3Ahalo-dev+is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+no%3Aassignee+)

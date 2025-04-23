@@ -61,7 +61,7 @@ Halo 提供了一个用于插件开发的 DevTools，它可以帮助你快速的
 3. 启动成功后，可以看到如下日志输出：
 
    ```shell
-   Halo 初始化成功，访问： http://localhost:8090/console
+   Halo 初始化成功，访问：http://localhost:8090/console
    用户名：admin
    密码：admin
    ```

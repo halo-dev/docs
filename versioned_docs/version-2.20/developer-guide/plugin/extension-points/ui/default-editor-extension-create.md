@@ -197,7 +197,7 @@ addOptions() {
 
 #### 3. Slash Command 扩展
 
-Slash Command （斜杠命令）的扩展，可用于在当前行快捷执行功能操作，例如转换当前行为标题、在当前行添加代码块等功能。
+Slash Command（斜杠命令）的扩展，可用于在当前行快捷执行功能操作，例如转换当前行为标题、在当前行添加代码块等功能。
 
 ![Slash Command 扩展](/img/developer-guide/plugin/extension-points/ui/default-editor-extension-slash-command.png)
 

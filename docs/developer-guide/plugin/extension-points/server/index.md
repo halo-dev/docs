@@ -18,7 +18,7 @@ description: Halo 服务端为插件提供的扩展点接口
 1. 实现扩展点接口，然后标记上 `@Component` 注解。
 2. 对该扩展点的实现类进行 `ExtensionDefinition` 自定义模型对象的声明。
 
-例如： 实现一个通知器的扩展，首先 `implements` ReactiveNotifier 扩展点接口：
+例如：实现一个通知器的扩展，首先 `implements` ReactiveNotifier 扩展点接口：
 
 ```java
 @Component
