@@ -250,11 +250,6 @@ const config = {
   ],
   scripts: [
     {
-      src: "https://analytics.halo.run/script.js",
-      async: true,
-      "data-website-id": "f9995c32-81e9-4e07-91f2-c276a0d63c9f",
-    },
-    {
       src: "https://track.halo.run/api/script.js",
       defer: true,
       "data-site-id": "3",
