@@ -53,11 +53,6 @@ public class HaloEventListener {
 
 - UserConnectionDisconnectedEvent：用户解绑第三方登陆方式时触发的事件
 
-#### 用户
-
-- UserLoginEvent：用户登录成功
-- UserLogoutEvent：用户登出成功
-
 ## 发布自定义共享事件
 
 除了监听已有的共享事件，插件也可以定义和发布自定义的共享事件，使得其他依赖该插件的组件能够监听和响应。
