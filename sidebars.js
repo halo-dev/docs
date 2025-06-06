@@ -297,6 +297,7 @@ module.exports = {
                 "developer-guide/plugin/extension-points/ui/post-list-item-field-create",
                 "developer-guide/plugin/extension-points/ui/user-detail-tabs-create",
                 "developer-guide/plugin/extension-points/ui/uc-user-profile-tabs-create",
+                "developer-guide/plugin/extension-points/ui/dashboard-widgets",
               ],
             },
           ],
