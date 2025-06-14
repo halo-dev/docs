@@ -1,18 +1,18 @@
 ---
-title: 文章数据列表显示字段
-description: 扩展文章数据列表显示字段 - post:list-item:field:create
+title: 页面数据列表显示字段
+description: 扩展页面数据列表显示字段 - single-page:list-item:field:create
 ---
 
-此扩展点用于扩展文章数据列表的显示字段。
+此扩展点用于扩展页面数据列表的显示字段。
 
-![文章数据列表显示字段](/img/developer-guide/plugin/extension-points/ui/post-list-item-field-create.png)
+![页面数据列表显示字段](/img/developer-guide/plugin/extension-points/ui/single-page-list-item-field-create.png)
 
 ## 定义方式
 
 ```ts
 export default definePlugin({
   extensionPoints: {
-    "post:list-item:field:create": (post: Ref<ListedPost>): EntityFieldItem[] | Promise<EntityFieldItem[]> => {
+    "single-page:list-item:field:create": (singlePage: Ref<ListedSinglePage>): EntityFieldItem[] | Promise<EntityFieldItem[]> => {
       return [
         {
           priority: 0,
@@ -41,24 +41,24 @@ export interface EntityFieldItem {
 
 ## 示例
 
-此示例将添加一个显示文章 slug（别名）的字段。
+此示例将添加一个显示页面 slug（别名）的字段。
 
 ```ts
 import { definePlugin } from "@halo-dev/console-shared";
 import { markRaw, type Ref } from "vue";
-import type { ListedPost } from "@halo-dev/api-client";
+import type { ListedSinglePage } from "@halo-dev/api-client";
 import { VEntityField } from "@halo-dev/components";
 
 export default definePlugin({
   extensionPoints: {
-    "post:list-item:field:create": (post: Ref<ListedPost>) => {
+    "single-page:list-item:field:create": (singlePage: Ref<ListedSinglePage>) => {
       return [
         {
           priority: 0,
           position: "end",
           component: markRaw(VEntityField),
           props: {
-            description: post.value.post.spec.slug,
+            description: singlePage.value.page.spec.slug,
           },
           permissions: [],
           hidden: false,
@@ -71,10 +71,10 @@ export default definePlugin({
 
 ## 类型定义
 
-### ListedPost
+### ListedSinglePage
 
 ```mdx-code-block
-import ListedPost from "./interface/ListedPost.md";
+import ListedSinglePage from "./interface/ListedSinglePage.md";
 
-<ListedPost />
+<ListedSinglePage />
 ```
