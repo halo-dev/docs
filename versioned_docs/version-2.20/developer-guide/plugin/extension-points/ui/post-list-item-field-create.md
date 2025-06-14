@@ -1,6 +1,6 @@
 ---
 title: 文章数据列表显示字段
-description: 扩展文章数据列表显示字段 - plugin:list-item:field:create
+description: 扩展文章数据列表显示字段 - post:list-item:field:create
 ---
 
 此扩展点用于扩展文章数据列表的显示字段。
