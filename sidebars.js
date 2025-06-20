@@ -175,6 +175,7 @@ module.exports = {
               items: [
                 "developer-guide/plugin/basics/ui/intro",
                 "developer-guide/plugin/basics/ui/entry",
+                "developer-guide/plugin/basics/ui/build",
               ],
             },
           ],

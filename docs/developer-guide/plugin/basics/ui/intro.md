@@ -7,6 +7,6 @@ Halo 插件体系的 UI 部分可以让开发者在 Console 控制台和 UC 个�
 
 在开始之前，建议先熟悉或安装以下库和工具：
 
-1. [Node.js 18+](https://nodejs.org)
-2. [pnpm 8+](https://pnpm.io)
+1. [Node.js 20+](https://nodejs.org)
+2. [pnpm 10+](https://pnpm.io)
 3. [Vue.js 3](https://vuejs.org)
