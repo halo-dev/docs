@@ -95,11 +95,7 @@
       "link": {
         "type": "generated-index"
       },
-      "items": [
-        "contribution/issue",
-        "contribution/pr",
-        "contribution/sponsor"
-      ]
+      "items": ["contribution/issue", "contribution/pr", "contribution/sponsor"]
     },
     "about"
   ],
@@ -157,7 +153,8 @@
               },
               "items": [
                 "developer-guide/plugin/basics/ui/intro",
-                "developer-guide/plugin/basics/ui/entry"
+                "developer-guide/plugin/basics/ui/entry",
+                "developer-guide/plugin/basics/ui/build"
               ]
             }
           ]
@@ -319,9 +316,7 @@
           "link": {
             "type": "generated-index"
           },
-          "items": [
-            "developer-guide/plugin/examples/todolist"
-          ]
+          "items": ["developer-guide/plugin/examples/todolist"]
         }
       ]
     },
