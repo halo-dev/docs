@@ -9,7 +9,7 @@ description: UI 部分的构建说明
 
 Halo 插件的 UI 部分（Console / UC）的实现方式其实很简单，本质上就是构建一个结构固定的大对象，交给 Halo 去解析，其中包括全局注册的组件、路由定义、扩展点等。在 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 模板中，我们使用 `index.ts` 作为入口文件，并在构建之后将 `main.js` 和 `style.css` 放到插件项目的 `src/main/resources/console` 目录中，后续 Halo 在内部会自动合并所有插件的 `main.js` 和 `style.css` 文件，并生成最终的 `bundle.js` 和 `bundle.css` 文件，然后在 Console 和 UC 中加载这两个资源并解析。
 
-所以本质上，我们只需要使用支持将 `index.ts` 编译为 `main.js` 和 `style.css` 的工具，然后输出到插件项目的 `src/main/resources/console` 目录中即可，在 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 模板中可以看到，我们提供了一个名为 `@halo-dev/ui-plugin-bundler-kit` 的库，这个库包含了 Vite 和 Rsbuild 的预配置，插件项目只需要通过简单的配置即可使用。
+所以本质上，我们只需要使用支持将 `index.ts` 编译为 `main.js` 和 `style.css` 的工具，然后输出到插件项目的 `src/main/resources/console` 目录中即可，在 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 模板中可以看到，我们提供了一个名为 `@halo-dev/ui-plugin-bundler-kit` 的库，这个库包含了 [Vite](https://vite.dev/) 和 [Rsbuild](https://rsbuild.dev/) 的预配置，插件项目只需要通过简单的配置即可使用。
 
 ## @halo-dev/ui-plugin-bundler-kit
 
@@ -79,7 +79,7 @@ export default viteConfig({
 
 ### rsbuildConfig
 
-Rsbuild 是基于 Rspack 开发的更加上层的构建工具，其优势在于兼容 Webpack 生态并且性能优异。我们为什么要选择 Rsbuild 可以查阅 [Vite vs Rsbuild](#vite-vs-rsbuild)。
+Rsbuild 是基于 Rspack 开发的上层构建工具，其优势在于兼容 Webpack 生态并且性能优异。我们为什么要选择 Rsbuild 可以查阅 [Vite vs Rsbuild](#vite-vs-rsbuild)。
 
 #### 使用
 
@@ -169,7 +169,7 @@ export default rsbuildConfig({
 
 在 `viteConfig` 和 `rsbuildConfig` 中，已经配置好了开发环境和生产构建的输出目录，分别是：
 
-- **开发环境**：`build/resources/main/console`，在开发 UI 的过程中，可以使用 `pnpm dev` 以实时查看效果
+- **开发环境**：`build/resources/main/console`，在开发 UI 的过程中，可以使用 `pnpm dev` 来实时查看效果
 - **生产环境**：`ui/build/dist`
 
 > 需要注意的是，生产构建的目录仅仅是临时目录，最终在使用 Gradle 构建插件时会自动构建 UI 并复制到 `src/main/resources/console` 目录中。
@@ -326,9 +326,9 @@ export default definePlugin({
     }
     ```
 
-4. 在 ui 或者 console 目录新建 package.json 文件，内容如下：
+4. 在 ui 或者 console 目录新建 `build.gradle` 文件，内容如下：
 
-    ```text
+    ```gradle
     plugins {
       id 'base'
       id "com.github.node-gradle.node" version "7.1.0"
