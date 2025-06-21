@@ -202,15 +202,13 @@ const config = {
       prism: {
         theme: darkCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["java", "json", "sql"],
+        additionalLanguages: ["java", "json", "sql", "diff"],
       },
       zoom: {
         selector: ".markdown :not(a) > img",
       },
     }),
-  plugins: [
-    require.resolve("docusaurus-plugin-image-zoom"),
-  ],
+  plugins: [require.resolve("docusaurus-plugin-image-zoom")],
   scripts: [
     {
       src: "https://track.halo.run/api/script.js",

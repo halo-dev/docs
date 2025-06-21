@@ -29,28 +29,37 @@ export function definePlugin(plugin: PluginModule): PluginModule {
 ```
 
 ```ts title="PluginModule"
-import type { Component, Ref } from "vue";
-import type { RouteRecordRaw, RouteRecordName } from "vue-router";
-import type { FunctionalPage } from "../states/pages";
-import type { AttachmentSelectProvider } from "../states/attachment-selector";
-import type { EditorProvider, PluginTab } from "..";
-import type { AnyExtension } from "@halo-dev/richtext-editor";
-import type { CommentSubjectRefProvider } from "@/states/comment-subject-ref";
 import type { BackupTab } from "@/states/backup";
-import type { PluginInstallationTab } from "@/states/plugin-installation-tabs";
+import type { CommentSubjectRefProvider } from "@/states/comment-subject-ref";
 import type { EntityFieldItem } from "@/states/entity";
 import type { OperationItem } from "@/states/operation";
+import type { PluginInstallationTab } from "@/states/plugin-installation-tabs";
 import type { ThemeListTab } from "@/states/theme-list-tabs";
+import type { UserProfileTab, UserTab } from "@/states/user-tab";
 import type {
   Attachment,
   Backup,
   ListedPost,
   Plugin,
   Theme,
+  ListedComment,
+  ListedReply,
+  ListedSinglePage,
 } from "@halo-dev/api-client";
+import type { AnyExtension } from "@halo-dev/richtext-editor";
+import type { Component, Ref } from "vue";
+import type { RouteRecordName, RouteRecordRaw } from "vue-router";
+import type {
+  DashboardWidgetDefinition,
+  DashboardWidgetQuickActionItem,
+  EditorProvider,
+  PluginTab,
+} from "..";
+import type { AttachmentSelectProvider } from "../states/attachment-selector";
+import type { FunctionalPage } from "../states/pages";
 
 export interface RouteRecordAppend {
-  parentName: RouteRecordName;
+  parentName: NonNullable<RouteRecordName>;
   route: RouteRecordRaw;
 }
 
@@ -80,36 +89,65 @@ export interface ExtensionPoint {
 
   "post:list-item:operation:create"?: (
     post: Ref<ListedPost>
-  ) => OperationItem<ListedPost>[] | Promise<OperationItem<ListedPost>[]>;
+  ) => OperationItem<ListedPost>[];
+
+  "single-page:list-item:operation:create"?: (
+    singlePage: Ref<ListedSinglePage>
+  ) => OperationItem<ListedSinglePage>[];
+
+  "comment:list-item:operation:create"?: (
+    comment: Ref<ListedComment>
+  ) => OperationItem<ListedComment>[];
+
+  "reply:list-item:operation:create"?: (
+    reply: Ref<ListedReply>
+  ) => OperationItem<ListedReply>[];
 
   "plugin:list-item:operation:create"?: (
     plugin: Ref<Plugin>
-  ) => OperationItem<Plugin>[] | Promise<OperationItem<Plugin>[]>;
+  ) => OperationItem<Plugin>[];
 
   "backup:list-item:operation:create"?: (
     backup: Ref<Backup>
-  ) => OperationItem<Backup>[] | Promise<OperationItem<Backup>[]>;
+  ) => OperationItem<Backup>[];
 
   "attachment:list-item:operation:create"?: (
     attachment: Ref<Attachment>
-  ) => OperationItem<Attachment>[] | Promise<OperationItem<Attachment>[]>;
+  ) => OperationItem<Attachment>[];
 
-  "plugin:list-item:field:create"?: (
-    plugin: Ref<Plugin>
-  ) => EntityFieldItem[] | Promise<EntityFieldItem[]>;
+  "plugin:list-item:field:create"?: (plugin: Ref<Plugin>) => EntityFieldItem[];
 
-  "post:list-item:field:create"?: (
-    post: Ref<ListedPost>
-  ) => EntityFieldItem[] | Promise<EntityFieldItem[]>;
+  "post:list-item:field:create"?: (post: Ref<ListedPost>) => EntityFieldItem[];
+
+  "single-page:list-item:field:create"?: (
+    singlePage: Ref<ListedSinglePage>
+  ) => EntityFieldItem[];
 
   "theme:list:tabs:create"?: () => ThemeListTab[] | Promise<ThemeListTab[]>;
 
   "theme:list-item:operation:create"?: (
     theme: Ref<Theme>
-  ) => OperationItem<Theme>[] | Promise<OperationItem<Theme>[]>;
+  ) => OperationItem<Theme>[];
+
+  "user:detail:tabs:create"?: () => UserTab[] | Promise<UserTab[]>;
+
+  "uc:user:profile:tabs:create"?: () =>
+    | UserProfileTab[]
+    | Promise<UserProfileTab[]>;
+
+  "console:dashboard:widgets:create"?: () =>
+    | DashboardWidgetDefinition[]
+    | Promise<DashboardWidgetDefinition[]>;
+
+  "console:dashboard:widgets:internal:quick-action:item:create"?: () =>
+    | DashboardWidgetQuickActionItem[]
+    | Promise<DashboardWidgetQuickActionItem[]>;
 }
 
 export interface PluginModule {
+  /**
+   * These components will be registered when plugin is activated.
+   */
   components?: Record<string, Component>;
 
   routes?: RouteRecordRaw[] | RouteRecordAppend[];
@@ -118,6 +156,7 @@ export interface PluginModule {
 
   extensionPoints?: ExtensionPoint;
 }
+
 ```
 
 - `components`：组件列表，key 为组件名称，value 为组件对象，在此定义之后，加载插件时会自动注册到 Vue App 全局。
