@@ -3,19 +3,19 @@ title: 构建
 description: UI 部分的构建说明
 ---
 
-在 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 模板中，我们已经配置好了 UI 的构建工具和流程，此文档主要说明一些构建细节以及其他可能的构建选项。
+在 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 工具中，我们已经配置好了 UI 的构建工具和流程，此文档主要说明一些构建细节以及其他可能的构建选项。
 
 ## 原理
 
-Halo 插件的 UI 部分（Console / UC）的实现方式其实很简单，本质上就是构建一个结构固定的大对象，交给 Halo 去解析，其中包括全局注册的组件、路由定义、扩展点等。在 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 模板中，我们使用 `index.ts` 作为入口文件，并在构建之后将 `main.js` 和 `style.css` 放到插件项目的 `src/main/resources/console` 目录中，后续 Halo 在内部会自动合并所有插件的 `main.js` 和 `style.css` 文件，并生成最终的 `bundle.js` 和 `bundle.css` 文件，然后在 Console 和 UC 中加载这两个资源并解析。
+Halo 插件的 UI 部分（Console / UC）的实现方式其实很简单，本质上就是构建一个结构固定的大对象，交给 Halo 去解析，其中包括全局注册的组件、路由定义、扩展点等。在 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 工具创建的项目中，我们使用 `index.ts` 作为入口文件，并在构建之后将 `main.js` 和 `style.css` 放到插件项目的 `src/main/resources/console` 目录中，后续 Halo 在内部会自动合并所有插件的 `main.js` 和 `style.css` 文件，并生成最终的 `bundle.js` 和 `bundle.css` 文件，然后在 Console 和 UC 中加载这两个资源并解析。
 
-所以本质上，我们只需要使用支持将 `index.ts` 编译为 `main.js` 和 `style.css` 的工具，然后输出到插件项目的 `src/main/resources/console` 目录中即可，在 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 模板中可以看到，我们提供了一个名为 `@halo-dev/ui-plugin-bundler-kit` 的库，这个库包含了 [Vite](https://vite.dev/) 和 [Rsbuild](https://rsbuild.dev/) 的预配置，插件项目只需要通过简单的配置即可使用。
+所以本质上，我们只需要使用支持将 `index.ts` 编译为 `main.js` 和 `style.css` 的工具，然后输出到插件项目的 `src/main/resources/console` 目录中即可，在 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 的模板中可以看到，我们提供了一个名为 `@halo-dev/ui-plugin-bundler-kit` 的库，这个库包含了 [Vite](https://vite.dev/) 和 [Rsbuild](https://rsbuild.dev/) 的预配置，插件项目只需要通过简单的配置即可使用。
 
 ## @halo-dev/ui-plugin-bundler-kit
 
 在这个库中，我们提供了三个预配置，分别是：
 
-1. `viteConfig`: Vite 的预配置，[halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 中默认使用的配置
+1. `viteConfig`: Vite 的预配置
 2. `rsbuildConfig`: Rsbuild 的预配置
 3. `HaloUIPluginBundlerKit`：已过时，迁移方式可以参考下面的文档
 
@@ -23,7 +23,33 @@ Halo 插件的 UI 部分（Console / UC）的实现方式其实很简单，本�
 
 #### 使用
 
-如果你想要使用 Vite 构建 UI 部分，那么使用 `viteConfig` 即可，并且已经在 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 中配置，直接使用即可。
+如果你在通过 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建项目时没有选择使用 Vite 作为 UI 的构建工具，那么可以通过以下方式改为使用 Vite。
+
+安装依赖：
+
+```bash
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.21.1 vite -D
+```
+
+创建 vite.config.ts:
+
+```js
+import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit";
+
+export default viteConfig()
+```
+
+更新 package.json:
+
+```json
+{
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch --mode=development",
+    "build": "vite build"
+  }
+}
+```
 
 #### 配置
 
@@ -83,7 +109,7 @@ Rsbuild 是基于 Rspack 开发的上层构建工具，其优势在于兼容 Web
 
 #### 使用
 
-因为在 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 中，默认采用 Vite 构建，所以如果想要使用 Rsbuild 构建，需要手动配置，以下是切换到 Rsbuild 的过程：
+如果你在通过 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建项目时没有选择使用 Rsbuild 作为 UI 的构建工具，那么可以通过以下方式改为使用 Rsbuild。
 
 安装依赖：
 
@@ -91,7 +117,7 @@ Rsbuild 是基于 Rspack 开发的上层构建工具，其优势在于兼容 Web
 pnpm install @halo-dev/ui-plugin-bundler-kit@2.21.1 @rsbuild/core -D
 ```
 
-创建 rsbuild.config.mjs:
+创建 rsbuild.config.ts:
 
 ```js
 import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit";
@@ -255,74 +281,56 @@ export default definePlugin({
 
 3. 更新项目根目录的 `build.gradle` 文件
 
-    ```diff
+    ```gradle
     plugins {
         id 'java'
-    -    id "com.github.node-gradle.node" version "7.0.2"
-    -    id "io.freefair.lombok" version "8.0.1"
-    -    id "run.halo.plugin.devtools" version "0.2.0"
-    +    id "io.freefair.lombok" version "8.13"
-    +    id "run.halo.plugin.devtools" version "0.6.0"
+        id "io.freefair.lombok" version "8.13"
+        id "run.halo.plugin.devtools" version "0.6.0"
     }
-    
+
     group 'run.halo.starter'
-    -sourceCompatibility = JavaVersion.VERSION_17
-    
+
     repositories {
         mavenCentral()
-    -    maven { url 'https://s01.oss.sonatype.org/content/repositories/releases' }
-    -    maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
-    -    maven { url 'https://repo.spring.io/milestone' }
     }
-    
+
     dependencies {
-    -    implementation platform('run.halo.tools.platform:plugin:2.20.0-SNAPSHOT')
-    +    implementation platform('run.halo.tools.platform:plugin:2.21.0')
+        implementation platform('run.halo.tools.platform:plugin:2.21.0')
         compileOnly 'run.halo.app:api'
-    
+
         testImplementation 'run.halo.app:api'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    +    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
-    
+
     test {
         useJUnitPlatform()
     }
-    
-    -tasks.withType(JavaCompile).configureEach {
-    -    options.encoding = "UTF-8"
-    -}
-    -
-    -node {
-    -    nodeProjectDir = file("${project.projectDir}/ui")
-    +java {
-    +    toolchain {
-    +        languageVersion = JavaLanguageVersion.of(21)
-    +    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
     }
-    
-    -tasks.register('buildFrontend', PnpmTask) {
-    -    args = ['build']
-    -    dependsOn('installDepsForUI')
-    +tasks.withType(JavaCompile).configureEach {
-    +    options.encoding = "UTF-8"
-    +    options.release = 21
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = "UTF-8"
+        options.release = 21
     }
-    
-    -tasks.register('installDepsForUI', PnpmTask) {
-    -    args = ['install']
-    +tasks.register('processUiResources', Copy) {
-    +    from project(':ui').tasks.named('buildFrontend')
-    +    into layout.buildDirectory.dir('resources/main/console')
+
+    tasks.register('processUiResources', Copy) {
+        from project(':ui').layout.buildDirectory.dir('dist')
+        into layout.buildDirectory.dir('resources/main/console')
+        dependsOn project(':ui').tasks.named('assemble')
+        shouldRunAfter tasks.named('processResources')
     }
-    
-    -build {
-    -    // build frontend before build
-    -    tasks.named('compileJava').configure {
-    -        dependsOn('buildFrontend')
-    -    }
-    +tasks.named('processResources', ProcessResources) {
-    +    dependsOn tasks.named('processUiResources')
+
+    tasks.named('classes') {
+        dependsOn tasks.named('processUiResources')
+    }
+
+    halo {
+        version = '2.21'
     }
     ```
 
@@ -330,40 +338,41 @@ export default definePlugin({
 
     ```gradle
     plugins {
-      id 'base'
-      id "com.github.node-gradle.node" version "7.1.0"
+        id 'base'
+        id "com.github.node-gradle.node" version "7.1.0"
     }
 
     group 'run.halo.starter.ui'
 
     tasks.register('buildFrontend', PnpmTask) {
-      args = ['build']
-      dependsOn tasks.named('pnpmInstall')
-      inputs.dir(layout.projectDirectory.dir('src'))
-      inputs.files(fileTree(
-        dir: layout.projectDirectory,
-        includes: ['*.cjs', '*.ts', '*.js', '*.json', '*.yaml']))
-      outputs.dir(layout.buildDirectory.dir('dist'))
-      shouldRunAfter(tasks.named('check'))
+        group = 'build'
+        description = 'Builds the UI project using pnpm.'
+        args = ['build']
+        dependsOn tasks.named('pnpmInstall')
+        inputs.dir(layout.projectDirectory.dir('src'))
+        inputs.files(fileTree(
+                dir: layout.projectDirectory,
+                includes: ['*.cjs', '*.ts', '*.js', '*.json', '*.yaml']))
+        outputs.dir(layout.buildDirectory.dir('dist'))
     }
 
-    tasks.register('checkFrontend', PnpmTask) {
-      args = ['test:unit']
-      dependsOn tasks.named('pnpmInstall')
+    tasks.register('pnpmCheck', PnpmTask) {
+        group = 'verification'
+        description = 'Runs unit tests using pnpm.'
+        args = ['test:unit']
+        dependsOn tasks.named('pnpmInstall')
     }
 
     tasks.named('check') {
-      dependsOn tasks.named('checkFrontend')
+        dependsOn tasks.named('pnpmCheck')
     }
 
-    tasks.named('build') {
-      dependsOn tasks.named('buildFrontend')
+    tasks.named('assemble') {
+        dependsOn tasks.named('buildFrontend')
     }
     ```
 
 进行此变更的主要目的是保证 UI 构建的产物不直接输出到源码目录的 resources 目录中，而是通过 Gradle 构建插件时复制到 `src/main/resources/console` 目录中。
-
-完整变更过程可参考：[halo-dev/plugin-starter#52](https://github.com/halo-dev/plugin-starter/pull/52)
 
 如果你不想使用新的 Gradle 构建配置，也可以修改 viteConfig 或 rsbuildConfig 的输出目录，和旧版本保持一致：
 

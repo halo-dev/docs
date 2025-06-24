@@ -11,7 +11,7 @@ description: 了解如何与我们的社区分享你的插件
 
 ## 自动构建
 
-如果你是基于 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 创建的插件项目，那么已经包含了适用于 GitHub Action 的 `ci.yaml` 和 `cd.yaml` 文件，里面包含了构建插件和发布插件资源到 Release 的步骤，可以根据自己的实际需要进行修改，以下是示例：
+如果你是使用 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建的插件项目，那么已经包含了适用于 GitHub Action 的 `ci.yaml` 和 `cd.yaml` 文件，里面包含了构建插件和发布插件资源到 Release 的步骤，可以根据自己的实际需要进行修改，以下是示例：
 
 ```yaml
 name: CI

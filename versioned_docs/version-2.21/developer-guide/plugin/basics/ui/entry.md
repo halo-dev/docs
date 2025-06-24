@@ -5,7 +5,7 @@ description: UI 扩展部分的入口文件
 
 入口文件即 Halo 核心会加载的文件，所有插件有且只有一个入口文件，构建之后会放置在插件项目的 `src/resources/console` 下，名为 `main.js`。
 
-为了方便开发者，我们已经在 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter) 配置好了基础项目结构，包括构建配置，后续文档也会以此为准。
+为了方便开发者，我们已经在 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 配置好了基础项目结构，包括构建配置，后续文档也会以此为准。
 
 ## 定义入口文件
 
