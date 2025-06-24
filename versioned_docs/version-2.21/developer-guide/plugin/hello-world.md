@@ -7,24 +7,37 @@ description: 了解如何构建你的第一个插件并在 Halo 中使用它。
 
 ## 创建插件项目
 
-1. 打开 [halo-dev/plugin-starter](https://github.com/halo-dev/plugin-starter)。
+我们为插件开发者提供了一个插件创建工具，可以帮助你快速创建一个插件项目。
 
-   > 这是一个插件的初始模板，你可以基于它来开发自己的插件。
-
-2. 点击 `Use this template` -> `Create a new repository`。
-3. 如图所示填写仓库名后点击 `Create repository from template`。
-
-   ![create-repository-for-hello-world-plugin](/img/create-repository-for-hello-world-plugin.png)
-
-你现在已经基于 Halo 插件模板创建了自己的存储库。接下来，你需要将它克隆到你的计算机上。
-
-```shell
-# clone your repository
-git clone https://github.com/<your-username>/halo-plugin-hello-world.git
-
-# enter the directory
-cd halo-plugin-hello-world
+```bash
+pnpm create halo-plugin
 ```
+
+```bash
+🚀 Welcome to Halo Plugin Creator!
+
+✔ Plugin name: › hello-world
+✔ Domain (for group and package name): › com.example
+✔ Author name: › Halo
+✔ Choose UI build tool: › Rsbuild
+
+📋 Project Configuration:
+   Name: hello-world
+   Domain: com.example
+   Package: com.example.hello-world
+   Author: Halo
+   UI Tool: rsbuild
+   Output Directory: /path/to/hello-world
+
+✔ Create project? › yes
+```
+
+- **Plugin name**: 插件的名称，用于插件的标识，此字段必须由小写字母、数字和连字符组成
+- **Domain**: 插件的包名
+- **Author name**: 插件的作者
+- **Choose UI build tool**: 插件的 UI 构建工具，目前支持 `Rsbuild` 和 `Vite`
+
+更多关于插件创建工具的信息可查阅：[halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin)
 
 ## 运行插件
 
@@ -36,17 +49,7 @@ Halo 提供了一个用于插件开发的 DevTools，它可以帮助你快速的
 
 使用 DevTools 运行插件的前提是需要你的电脑上已经安装了 Docker 环境，这是我们推荐的用户开发时运行插件的方式，只需要执行以下命令即可。
 
-1. 执行前端部分的依赖安装命令：
-
-   ```shell
-   # macOS / Linux
-   ./gradlew pnpmInstall
-
-   # Windows
-   ./gradlew.bat pnpmInstall
-   ```
-
-2. 运行插件：
+1. 运行插件：
 
    ```shell
    # macOS / Linux
@@ -58,7 +61,7 @@ Halo 提供了一个用于插件开发的 DevTools，它可以帮助你快速的
 
    执行此命令后，会自动创建一个 Halo 的 Docker 容器并加载当前的插件。
 
-3. 启动成功后，可以看到如下日志输出：
+2. 启动成功后，可以看到如下日志输出：
 
    ```shell
    Halo 初始化成功，访问：http://localhost:8090/console
@@ -78,17 +81,7 @@ Halo 提供了一个用于插件开发的 DevTools，它可以帮助你快速的
 
 但由于此方式需要先使用源码运行 Halo 才能启动插件，请确保已经在开发环境运行了 Halo，可以参考 [Halo 开发环境运行](../core/run.md)
 
-1. 安装前端部分的依赖
-
-   ```shell
-   # macOS / Linux
-   ./gradlew pnpmInstall
-
-   # Windows
-   ./gradlew.bat pnpmInstall
-   ```
-
-2. 编译插件
+1. 编译插件
 
    ```shell
    # macOS / Linux
@@ -98,7 +91,7 @@ Halo 提供了一个用于插件开发的 DevTools，它可以帮助你快速的
    ./gradlew.bat build
    ```
 
-3. 修改 Halo 配置文件：
+2. 修改 Halo 配置文件：
 
    ```shell
    # 进入 Halo 项目根目录后，使用 cd 命令进入配置文件目录
@@ -128,7 +121,7 @@ Halo 提供了一个用于插件开发的 DevTools，它可以帮助你快速的
          - C:\path\to\halo-plugin-hello-world
    ```
 
-4. 启动 Halo
+3. 启动 Halo
 
    ```shell
    # macOS / Linux

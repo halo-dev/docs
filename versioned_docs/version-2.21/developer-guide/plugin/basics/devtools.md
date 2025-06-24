@@ -9,7 +9,7 @@ Devtools 还提供了一些其他的构建任务，如插件打包、插件检�
 
 ## 安装
 
-Devtools 是使用 Java 开发的一个 [Gradle](https://gradle.org/) 插件，如果你使用的 [plugin-starter](https://github.com/halo-sigs/plugin-starter) 创建的插件项目，那么你无需任何操作，它已经默认集成了 Devtools 插件。
+Devtools 是使用 Java 开发的一个 [Gradle](https://gradle.org/) 插件，如果你使用的 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建的插件项目，那么你无需任何操作，它已经默认集成了 Devtools 插件。
 
 你可以在项目的 `build.gradle` 中找到它：
 

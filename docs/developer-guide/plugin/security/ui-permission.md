@@ -80,7 +80,7 @@ export default definePlugin({
 });
 ```
 
-参考：[plugin-starter](https://github.com/halo-dev/plugin-starter/blob/5a4a25db252a7986900368a5fbf35e8d27f5257f/ui/src/index.ts#L6-L29)
+参考：[halo-dev/create-halo-plugin#template/ui/src/index.ts](https://github.com/halo-dev/create-halo-plugin/blob/a4ce935a637faff4a7f00fecbdee08f55fd66ffd/template/ui/src/index.ts)
 
 > 该配置示例为在插件前端部分入口文件 `index.ts`
 
