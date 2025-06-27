@@ -45,11 +45,13 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
    需要注意的是，此文档为了更加方便的管理配置，所有与 Halo 相关的配置都使用 Docker 容器启动参数代替，所以无需创建 application.yaml 文件。
    :::
 
+   :::warning
+   以下配置文件中，`version: "3"` 已过时（在 Docker Compose 2.0 及以上版本中会触发警告）。建议移除 `version` 字段，因为最新版本的 Docker Compose 会自动使用最高兼容版本。以下配置文件已更新，移除 `version` 字段以兼容最新 Docker Compose。
+   :::
+
    <Tabs queryString="current">
     <TabItem value="halo-postgresql" label="Halo + PostgreSQL" default>
          ```yaml {26-32,46} title="~/halo/docker-compose.yaml"
-         version: "3"
-
          services:
            halo:
              image: registry.fit2cloud.com/halo/halo:2.21
@@ -107,8 +109,6 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
     </TabItem>
     <TabItem value="halo-mysql" label="Halo + MySQL">
          ```yaml {26-32,54} title="~/halo/docker-compose.yaml"
-         version: "3"
-
          services:
            halo:
              image: registry.fit2cloud.com/halo/halo:2.21
@@ -177,8 +177,6 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
         :::
 
         ```yaml {22} title="~/halo/docker-compose.yaml"
-        version: "3"
-
         services:
           halo:
             image: registry.fit2cloud.com/halo/halo:2.21
@@ -203,8 +201,6 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
     </TabItem>
     <TabItem value="external-db" label="使用外部数据库">
         ```yaml {7,15-22} title="~/halo/docker-compose.yaml"
-        version: "3"
-
         services:
           halo:
             image: registry.fit2cloud.com/halo/halo:2.21
