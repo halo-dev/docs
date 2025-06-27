@@ -46,12 +46,14 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
    :::
 
    :::warning
-   以下配置文件中，`version: "3"` 已过时（在 Docker Compose 2.0 及以上版本中会触发警告）。建议移除 `version` 字段，因为最新版本的 Docker Compose 会自动使用最高兼容版本。以下配置文件已更新，移除 `version` 字段以兼容最新 Docker Compose。
+   以下配置文件中的 `version: "3"` 在 Docker Compose 2.0 及以上版本中已过时，运行 `docker-compose up -d` 时可能会触发警告：`WARN[0000] /path/to/docker-compose.yaml: version is obsolete`。建议移除 `version` 字段，因为最新版本的 Docker Compose 会自动使用最高兼容版本（Traefik 配置除外，其使用 `version: "3.8"` 仍有效）。您可以选择保留 `version: "3"`，但为确保兼容性，推荐更新配置文件。
    :::
 
    <Tabs queryString="current">
     <TabItem value="halo-postgresql" label="Halo + PostgreSQL" default>
          ```yaml {26-32,46} title="~/halo/docker-compose.yaml"
+         version: "3"
+
          services:
            halo:
              image: registry.fit2cloud.com/halo/halo:2.21
@@ -109,6 +111,8 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
     </TabItem>
     <TabItem value="halo-mysql" label="Halo + MySQL">
          ```yaml {26-32,54} title="~/halo/docker-compose.yaml"
+         version: "3"
+
          services:
            halo:
              image: registry.fit2cloud.com/halo/halo:2.21
@@ -177,6 +181,8 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
         :::
 
         ```yaml {22} title="~/halo/docker-compose.yaml"
+        version: "3"
+
         services:
           halo:
             image: registry.fit2cloud.com/halo/halo:2.21
@@ -201,6 +207,8 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
     </TabItem>
     <TabItem value="external-db" label="使用外部数据库">
         ```yaml {7,15-22} title="~/halo/docker-compose.yaml"
+        version: "3"
+
         services:
           halo:
             image: registry.fit2cloud.com/halo/halo:2.21
