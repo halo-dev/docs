@@ -45,6 +45,10 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
    需要注意的是，此文档为了更加方便的管理配置，所有与 Halo 相关的配置都使用 Docker 容器启动参数代替，所以无需创建 application.yaml 文件。
    :::
 
+   :::warning
+   以下配置文件中的 `version: "3"` 在 Docker Compose 2.0 及以上版本中已过时，运行 `docker-compose up -d` 时可能会触发警告：`WARN[0000] /path/to/docker-compose.yaml: version is obsolete`。建议移除 `version` 字段，因为最新版本的 Docker Compose 会自动使用最高兼容版本（Traefik 配置除外，其使用 `version: "3.8"` 仍有效）。您可以选择保留 `version: "3"`，但为确保兼容性，推荐更新配置文件。
+   :::
+
    <Tabs queryString="current">
     <TabItem value="halo-postgresql" label="Halo + PostgreSQL" default>
          ```yaml {26-32,46} title="~/halo/docker-compose.yaml"
