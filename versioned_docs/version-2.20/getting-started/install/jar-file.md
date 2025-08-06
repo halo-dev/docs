@@ -149,6 +149,10 @@ title: 使用 JAR 文件部署
    cd ~/app && java -Dfile.encoding=UTF-8 -jar halo.jar --spring.config.additional-location=optional:file:$HOME/.halo2/
    ```
 
+   :::tip
+   如果指定了其他工作目录，请将 `$HOME/.halo2/` 替换为相应的绝对路径，并确保路径末尾带有 `/`。
+   :::
+
 7. 如果没有观察到异常日志，即可尝试访问 Halo
 
    打开 `http://ip:端口号` 即可跳转到初始化页面。
@@ -208,7 +212,7 @@ title: 使用 JAR 文件部署
    - **USER**：运行 Halo 的系统用户，如果有按照上方教程创建新的用户来运行 Halo，修改为你创建的用户名称即可。反之请删除 `User=USER`。
 
    :::tip
-   请确保 `/usr/bin/java` 是正确无误的。建议将 `ExecStart` 中的命令复制出来运行一下，保证命令有效。
+   请确保 `/usr/bin/java` 是正确无误的。建议将 `ExecStart` 中的命令复制出来运行一下，保证命令有效。如果指定了其他工作目录，请像上面一样改动。
    :::
 
    配置完成之后，保存即可。
