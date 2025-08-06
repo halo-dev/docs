@@ -53,7 +53,7 @@ title: 使用 JAR 文件部署
 3. 下载运行包
 
    ```bash
-   wget https://dl.halo.run/release/halo-2.20.0.jar -O halo.jar
+   wget https://dl.halo.run/release/halo-2.20.12.jar -O halo.jar
    ```
 
    :::info
@@ -92,10 +92,6 @@ title: 使用 JAR 文件部署
          # 需要配合 r2dbc 的配置进行改动
          platform: h2
    halo:
-     caches:
-       page:
-         # 是否禁用页面缓存
-         disabled: true
      # 工作目录位置
      work-dir: ${user.home}/.halo2
      # 外部访问地址
@@ -253,8 +249,14 @@ journalctl -n 20 -u halo
 3. 下载新版本的 Halo 运行包，覆盖原有的运行包
 
    ```bash
-   wget https://dl.halo.run/release/halo-2.20.0.jar -O /home/halo/app/halo.jar
+   wget https://dl.halo.run/release/halo-2.20.12.jar -O /home/halo/app/halo.jar
    ```
+
+   :::info
+   以下是官方维护的下载地址：
+   1. [https://download.halo.run](https://download.halo.run)
+   2. [https://github.com/halo-dev/halo/releases](https://github.com/halo-dev/halo/releases)
+   :::
 
 4. 启动 Halo 服务
 
@@ -264,7 +266,7 @@ journalctl -n 20 -u halo
 
 ## 反向代理
 
-你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。 如果你对它们没有任何了解，可以参考我们更为详细的反向代理文档：
+你可以在下面的反向代理软件中任选一项，我们假设你已经安装好了其中一项，并对其的基本操作有一定了解。如果你对它们没有任何了解，可以参考我们更为详细的反向代理文档：
 
 1. 使用 [Nginx Proxy Manager](../install/other/nginxproxymanager.md)
 

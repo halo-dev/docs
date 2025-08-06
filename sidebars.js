@@ -49,7 +49,19 @@ module.exports = {
               items: [
                 "getting-started/install/cloud/alibaba-cloud-market",
                 "getting-started/install/cloud/tencent-cloud-lighthouse",
-                "getting-started/install/cloud/alibaba-cloud-computenest"
+                "getting-started/install/cloud/alibaba-cloud-computenest",
+                {
+                  type: "link",
+                  label: "Zeabur 一键部署",
+                  href: "https://zeabur.com/docs/zh-CN/marketplace/halo",
+                  description: "在 Zeabur 一键部署 Halo 服务"
+                },
+                {
+                  type: "link",
+                  label: "Rainbond 一键部署",
+                  href: "https://hub.grapps.cn/marketplace/apps/1255",
+                  description: "在 Rainbond 一键部署 Halo 服务"
+                },
               ],
             },
             {
@@ -163,6 +175,7 @@ module.exports = {
               items: [
                 "developer-guide/plugin/basics/ui/intro",
                 "developer-guide/plugin/basics/ui/entry",
+                "developer-guide/plugin/basics/ui/build",
               ],
             },
           ],
@@ -275,6 +288,7 @@ module.exports = {
                 "developer-guide/plugin/extension-points/ui/plugin-installation-tabs-create",
                 "developer-guide/plugin/extension-points/ui/theme-list-tabs-create",
                 "developer-guide/plugin/extension-points/ui/post-list-item-operation-create",
+                "developer-guide/plugin/extension-points/ui/single-page-list-item-operation-create",
                 "developer-guide/plugin/extension-points/ui/comment-list-item-operation-create",
                 "developer-guide/plugin/extension-points/ui/reply-list-item-operation-create",
                 "developer-guide/plugin/extension-points/ui/plugin-list-item-operation-create",
@@ -283,11 +297,13 @@ module.exports = {
                 "developer-guide/plugin/extension-points/ui/theme-list-item-operation-create",
                 "developer-guide/plugin/extension-points/ui/plugin-list-item-field-create",
                 "developer-guide/plugin/extension-points/ui/post-list-item-field-create",
+                "developer-guide/plugin/extension-points/ui/single-page-list-item-field-create",
                 "developer-guide/plugin/extension-points/ui/user-detail-tabs-create",
                 "developer-guide/plugin/extension-points/ui/uc-user-profile-tabs-create",
-              ]
+                "developer-guide/plugin/extension-points/ui/dashboard-widgets",
+              ],
             },
-          ]
+          ],
         },
         {
           type: "category",
@@ -300,7 +316,7 @@ module.exports = {
             "developer-guide/plugin/interaction/dependency",
             "developer-guide/plugin/interaction/shared-events",
             "developer-guide/plugin/interaction/making-plugin-extensible",
-          ]
+          ],
         },
         {
           type: "category",
@@ -313,7 +329,7 @@ module.exports = {
             "developer-guide/plugin/security/rbac",
             "developer-guide/plugin/security/role-template",
             "developer-guide/plugin/security/ui-permission",
-          ]
+          ],
         },
         {
           type: "category",

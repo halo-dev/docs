@@ -52,7 +52,7 @@ List\<[#ContributorVo](#contributorvo)\>
 ### 示例
 
 ```html
-<div th:with="contributors = ${contributorFinder.getContributors(['contributor-foo, 'contributor-bar'])}">
+<div th:with="contributors = ${contributorFinder.getContributors({'contributor-foo, 'contributor-bar'})}">
   <span th:each="contributor : ${contributors}" th:text="${contributor.displayName}"></span>
 </div>
 ```

@@ -37,10 +37,10 @@ public class MyWebSocketEndpoint implements WebSocketEndpoint {
 }
 ```
 
-当插件安装成功后，可以通过路径 `/apis/my-plugin.halowrite.com/v1alpha1/resources` 访问。 示例如下：
+当插件安装成功后，可以通过路径 `/apis/my-plugin.halowrite.com/v1alpha1/resources` 访问。示例如下：
 
 ```bash
 websocat --basic-auth admin:admin ws://127.0.0.1:8090/apis/my-plugin.halowrite.com/v1alpha1/resources
 ```
 
-需要注意的是， 插件中实现的 WebSocket 相关的 API 仍然受当前权限系统约束。
+需要注意的是，插件中实现的 WebSocket 相关的 API 仍然受当前权限系统约束。

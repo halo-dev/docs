@@ -18,12 +18,11 @@ const config = {
   markdown: {
     mermaid: true,
   },
-  themes: ['@docusaurus/theme-mermaid'],
-
+  themes: ["@docusaurus/theme-mermaid"],
   future: {
     experimental_faster: true,
+    v4: true,
   },
-
   presets: [
     [
       "classic",
@@ -36,11 +35,11 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.20",
+          lastVersion: "2.21",
           versions: {
             current: {
-              label: "2.20.0-SNAPSHOT",
-              path: "2.20.0-SNAPSHOT",
+              label: "next",
+              path: "next",
             },
           },
         },
@@ -51,7 +50,13 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
-          ignorePatterns: ["/2.16/**", "/2.17/**", "/2.18/**", "/2.19/**"],
+          ignorePatterns: [
+            "/2.16/**",
+            "/2.17/**",
+            "/2.18/**",
+            "/2.19/**",
+            "/2.20/**",
+          ],
         },
         googleAnalytics: {
           trackingID: "UA-110780416-7",
@@ -108,7 +113,7 @@ const config = {
                 ([versionName, versionUrl]) => ({
                   label: versionName,
                   href: versionUrl,
-                }),
+                })
               ),
               {
                 to: "/versions",
@@ -197,62 +202,18 @@ const config = {
       prism: {
         theme: darkCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ["java", "json", "sql"],
+        additionalLanguages: ["java", "json", "sql", "diff"],
       },
       zoom: {
         selector: ".markdown :not(a) > img",
       },
     }),
-  plugins: [
-    require.resolve("docusaurus-plugin-image-zoom"),
-    [
-      "@docusaurus/plugin-client-redirects",
-      {
-        redirects: [
-          {
-            to: "/getting-started/install/docker",
-            from: ["/zh/install/docker", "/install/docker"],
-          },
-          {
-            to: "/getting-started/prepare",
-            from: ["/zh/install/prepare", "/install/prepare"],
-          },
-          {
-            to: "/developer-guide/core/structure",
-            from: ["/zh/developer-guide/core", "/developer-guide/core"],
-          },
-          {
-            to: "/developer-guide/theme/prepare",
-            from: ["/zh/developer-guide/theme", "/developer-guide/theme"],
-          },
-          {
-            to: "/contribution/issue",
-            from: ["/zh/contribution/issue"],
-          },
-          {
-            to: "/contribution/pr",
-            from: ["/zh/contribution/pr"],
-          },
-        ],
-        createRedirects(existingPath) {
-          if (existingPath.startsWith("/2.20.0-SNAPSHOT/")) {
-            return [
-              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.16.0-SNAPSHOT/"),
-              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.17.0-SNAPSHOT/"),
-              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.18.0-SNAPSHOT/"),
-              existingPath.replace("/2.20.0-SNAPSHOT/", "/2.19.0-SNAPSHOT/"),
-            ];
-          }
-          return undefined;
-        },
-      },
-    ],
-  ],
+  plugins: [require.resolve("docusaurus-plugin-image-zoom")],
   scripts: [
     {
-      src: "https://analytics.halo.run/script.js",
-      async: true,
-      "data-website-id": "f9995c32-81e9-4e07-91f2-c276a0d63c9f",
+      src: "https://track.halo.run/api/script.js",
+      defer: true,
+      "data-site-id": "3",
     },
   ],
 };

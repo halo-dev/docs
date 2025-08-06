@@ -90,8 +90,8 @@ helm install halo halo/halo --set mysql.enabled=true --set postgresql.enabled=fa
 
 :::info 参数说明
 
-- `mysql.enabled=true`： 自动安装 MySQL 数据库；
-- `postgresql.enabled=false`： 不自动安装 PostgreSQL 数据库；
+- `mysql.enabled=true`：自动安装 MySQL 数据库；
+- `postgresql.enabled=false`：不自动安装 PostgreSQL 数据库；
 - 关于 mysql 的更多参数说明，请参考 [Bitnami MySQL Chart](https://github.com/bitnami/charts/tree/main/bitnami/mysql#parameters)，在原有参数格式上增加 `mysql.` 前缀即可。
 :::
 
@@ -113,8 +113,8 @@ helm install halo halo/halo \
 
 :::info 参数说明
 
-- `mysql.enabled=true`： 不自动安装 MySQL 数据库；
-- `postgresql.enabled=false`： 不自动安装 PostgreSQL 数据库；
+- `mysql.enabled=true`：不自动安装 MySQL 数据库；
+- `postgresql.enabled=false`：不自动安装 PostgreSQL 数据库；
 - `externalDatabase.platform=mysql`：外部数据库类型，例如 `postgresql`、`mysql`；
 - `externalDatabase.host=mysql`：外部数据库连接地址；
 - `externalDatabase.port=3306`：外部数据库连接端口；

@@ -41,7 +41,7 @@ rules:
 
 ### 资源型规则 {#resource-rules}
 
-资源型规则用于定义对资源的操作权限，API 符合以下特征:
+资源型规则用于定义对资源的操作权限，API 符合以下特征：
 
 - 以 `/api` 开头，且以 `/api/<version>/<resource>[/<resourceName>/<subresource>]` 规则组成 APIs，最少路径层级为 3 即 `/api/<version>/<resource>`，最多路径层级为 5 即包含 `<resourceName>` 和 `<subresource>`，例如 `/api/v1/posts`。
 - 以 `/apis/<group>/<version>/<resource>[/<resourceName>/<subresource>]` 规则组成的 APIs，最少路径层级为 4 即 `/apis/<group>/<version>/<resource>`，最多路径层级为 6 即包含 `<resourceName>` 和 `<subresource>`，例如 `/apis/my-plugin.halo.run/v1alpha1/persons`。
@@ -157,7 +157,7 @@ rules:
 
 `verbs` 字段用于指定用户或服务在特定资源上能执行的操作类型。这些操作被定义为一组“动词”，每个动词与相应的 HTTP 请求方法相对应。为了更好地理解如何确定合适的 `verbs`，以下是详细的解释和每种动词的具体用途：
 
-动词和对应的 HTTP 方法:
+动词和对应的 HTTP 方法：
 
 - create: 对应 HTTP 的 POST 方法。用于创建一个新的资源实例，如果是创建子资源且不需要资源名称可以使用 `-` 表示缺省，如 `POST /apis/my-plugin.halo.run/v1alpha1/persons/-/subresource`，同时需要注意 `POST /apis/my-plugin.halo.run/v1alpha1/persons/{some-name}` 不是一个符合规范的 create 操作，创建资源不应该包含资源名称。
 - get: 对应 HTTP 的 GET 方法。用于获取单个资源的详细信息，即 API 中包含 resourceName 部分如 `GET /apis/my-plugin.halo.run/v1alpha1/persons/zhangsan`。
@@ -165,7 +165,7 @@ rules:
 - watch: 也是对应 HTTP 的 GET 方法。用于实时监控资源或资源集合的变化，通常是通过 WebSocket 连接来实现的，如 `ws://localhost:8090/apis/my-plugin.halo.run/v1alpha1/persons`。
 - update: 对应 HTTP 的 PUT 方法。用于更新现有资源的全部内容。
 - patch: 对应 HTTP 的 PATCH 方法。用于对现有资源进行部分更新。
-- delete: 对应 HTTP 的 DELETE 方法。用于删除单个资源, 即 API 中包含 resourceName 部分如 `DELETE /apis/my-plugin.halo.run/v1alpha1/persons/zhangsan`。
+- delete: 对应 HTTP 的 DELETE 方法。用于删除单个资源，即 API 中包含 resourceName 部分如 `DELETE /apis/my-plugin.halo.run/v1alpha1/persons/zhangsan`。
 - deletecollection: 同样对应 HTTP 的 DELETE 方法，但用于删除一个资源集合。
 
 可以使用如下表格来简化理解：
@@ -208,4 +208,4 @@ subjects:
   name: guqing
 ```
 
-在 Halo 中，当你给一个用户分配角色后，实际上就是创建了一个 ”RoleBinding” 对象来完成的。
+在 Halo 中，当你给一个用户分配角色后，实际上就是创建了一个”RoleBinding”对象来完成的。

@@ -77,7 +77,7 @@ import ListedPostVo from "../vo/_ListedPostVo.md"
 
 ### ListedPostVo
 
-\<ListedPostVo \/\>
+<ListedPostVo />
 
 - [#CategoryVo](#categoryvo)
 - [#TagVo](#tagvo)

@@ -53,7 +53,7 @@ List\<[#CategoryVo](#categoryvo)\>
 ### 示例
 
 ```html
-<div th:with="categories = ${categoryFinder.getByNames(['category-foo', 'category-bar'])}">
+<div th:with="categories = ${categoryFinder.getByNames({'category-foo', 'category-bar'})}">
   <a th:each="category : ${categories}" th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
 </div>
 ```
