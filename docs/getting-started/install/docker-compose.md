@@ -46,7 +46,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
    :::
 
    <Tabs queryString="current">
-    <TabItem value="halo-postgresql" label="Halo + PostgreSQL" default>
+    <TabItem value="halo-postgresql" label="Halo + PostgreSQL（推荐）" default>
          ```yaml {26-32,46} title="~/halo/docker-compose.yaml"
          version: "3"
 
