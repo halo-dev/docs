@@ -54,13 +54,13 @@ module.exports = {
                   type: "link",
                   label: "Zeabur 一键部署",
                   href: "https://zeabur.com/docs/zh-CN/marketplace/halo",
-                  description: "在 Zeabur 一键部署 Halo 服务"
+                  description: "在 Zeabur 一键部署 Halo 服务",
                 },
                 {
                   type: "link",
                   label: "Rainbond 一键部署",
                   href: "https://hub.grapps.cn/marketplace/apps/1255",
-                  description: "在 Rainbond 一键部署 Halo 服务"
+                  description: "在 Rainbond 一键部署 Halo 服务",
                 },
               ],
             },
@@ -144,7 +144,6 @@ module.exports = {
         "developer-guide/plugin/introduction",
         "developer-guide/plugin/prepare",
         "developer-guide/plugin/hello-world",
-        "developer-guide/plugin/publish",
         {
           type: "category",
           label: "基础",
@@ -415,5 +414,13 @@ module.exports = {
     },
     "developer-guide/form-schema",
     "developer-guide/annotations-form",
+    {
+      type: "category",
+      label: "附录",
+      link: {
+        type: "generated-index",
+      },
+      items: ["developer-guide/appendix/publish-app"],
+    },
   ],
 };

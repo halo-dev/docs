@@ -123,7 +123,6 @@
         "developer-guide/plugin/introduction",
         "developer-guide/plugin/prepare",
         "developer-guide/plugin/hello-world",
-        "developer-guide/plugin/publish",
         {
           "type": "category",
           "label": "基础",
@@ -392,6 +391,14 @@
       ]
     },
     "developer-guide/form-schema",
-    "developer-guide/annotations-form"
+    "developer-guide/annotations-form",
+    {
+      "type": "category",
+      "label": "附录",
+      "link": {
+        "type": "generated-index"
+      },
+      "items": ["developer-guide/appendix/publish-app"]
+    }
   ]
 }
