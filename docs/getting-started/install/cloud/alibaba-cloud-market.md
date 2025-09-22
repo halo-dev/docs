@@ -43,46 +43,18 @@ Halo 目前已上架至阿里云云市场，助力用户打造高效便捷的建
 Halo 初始化文档可查阅：[初始化](../../setup.md)
 :::
 
-## 1Panel 管理
+## 管理 Halo
 
-1. 登录到服务器，执行 `1pctl user-info` 即可看到 1Panel 的登录信息。
+该镜像的 Halo 使用 Docker Compose 方式部署，相关文件位于 `/opt/halo` 目录中。
 
-    ![1Panel 信息](/img/install/alibaba-cloud-market/get-1panel-info.png)
-2. 开放 1Panel 占用的端口，进入安全组配置页面添加默认端口 8090 即可。
+### 查看服务状态
 
-    ![安全组 1Panel](/img/install/alibaba-cloud-market/iptables-1panel.jpeg)
-3. 然后就可以通过上面的信息访问到 1Panel 面板：
 
-    ![1Panel](/img/install/alibaba-cloud-market/1panel.png)
+```bash
+cd /opt/halo
+docker compose ps
+```
 
-## 查看预装应用
+### 升级 Halo
 
-为了保证 Halo 的正常运行，1Panel 中预装了 Halo 所需的环境，可以在 **应用商店** 的 **已安装** 选项卡中查看：
-
-![预装应用](/img/install/alibaba-cloud-market/1panel-installed-apps.png)
-
-关于应用商店，可查阅 [1Panel 文档](https://1panel.cn/docs/user_manual/appstore/appstore/)。
-
-## 升级 Halo
-
-在 **应用商店** 的 **可升级** 选项卡中检查 Halo 是否有更新，如果有新的版本，点击应用卡片的 **升级** 按钮即可。
-
-![升级 Halo](/img/install/alibaba-cloud-market/1panel-upgrade-halo.png)
-
-## 绑定域名
-
-:::info
-该操作要求用户有一个可用的域名，并在 DNS 服务商处添加对应的解析记录。
-:::
-
-在 **网站** 页面中，此镜像默认添加了一个关联 Halo 应用的网站，你可以点击配置按钮然后添加自己的域名。
-
-![网站](/img/install/alibaba-cloud-market/1panel-website.png)
-
-![添加域名](/img/install/alibaba-cloud-market/1panel-add-domain.png)
-
-除此之外，在绑定域名之后，还需要修改一下 Halo 的 **外部访问地址** 参数为实际的网站访问地址（如：[https://demo.halo.run](https://demo.halo.run)），否则 Halo 的部分功能或者插件可能会出现使用问题，只需要按照下图所示修改应用的参数然后点击确认即可。
-
-![修改外部访问地址](/img/install/alibaba-cloud-market/1panel-update-halo-external-url.png)
-
-关于网站管理，可查阅 [1Panel 文档](https://1panel.cn/docs/user_manual/websites/websites/)。
+修改 `/opt/halo/docker-compose.yml` 中 Halo 容器使用的镜像标签为对应版本后，执行 `docker compose up -d` 命令即可进行升级。
