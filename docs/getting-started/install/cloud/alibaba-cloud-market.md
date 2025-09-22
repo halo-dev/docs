@@ -49,7 +49,6 @@ Halo 初始化文档可查阅：[初始化](../../setup.md)
 
 ### 查看服务状态
 
-
 ```bash
 cd /opt/halo
 docker compose ps
