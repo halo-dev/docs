@@ -87,6 +87,7 @@ spring:
 | `halo.attachment.resource-mappings[0].locations`   | 附件资源代理目录，只能放置在[工作目录](../prepare.md#工作目录)的 `attachments` 目录                                                                                                                                                                            | `migrate-from-1.x`                |
 | `halo.attachment.thumbnail.disabled`               | 是否禁用附件缩略图功能，如果不需要此功能，可以选择禁用                                                                                                                                                                                                         | false                             |
 | `halo.attachment.thumbnail.concurrent-threads`     | 生成附件缩略图的并发数                                                                                                                                                                                                                                         | 1                                 |
+| `halo.attachment.thumbnail.quality`                | 附件缩略图的生成质量，数值为 0-1 之间                                                                                                                                                                                                                          | -                                 |
 
 通常用于开发环境的配置：
 
