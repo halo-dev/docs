@@ -14,10 +14,14 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 - 兼容性好：响应式图片是基于 HTML 标准的实现，不需要额外的 JavaScript 或 CSS，因此兼容性非常好。
 
 :::info
-建议详细阅读 [响应式图片](https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) 文档，以了解更多关于响应式图片的知识，以及如何在不同场景下使用。
+建议阅读 [响应式图片](https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) 文档，以了解更多关于响应式图片的知识，以及如何在不同场景下使用。
 :::
 
 ## Finder API
+
+:::info
+从 Halo 2.22 开始，Halo 会自动为页面上的所有图片添加响应式图片的相关属性，无需主题主动适配，如果你的主题需要手动为部分图片自定义属性，可以使用下方的 `Finder API`。
+:::
 
 ### `thumbnail.gen(uri, size)`
 
@@ -45,10 +49,6 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 />
 ```
 
-:::info
-文章内容无需在主题模板中处理，Halo 会自动为文章内容中的图片生成响应式图片的 HTML 代码。
-:::
-
 ## HTTP API
 
 如果你需要在主题模板之外的地方生成缩略图地址，比如异步加载图片的场景下，可以使用 HTTP API。
@@ -59,7 +59,7 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 
 #### 参数
 
-- `uri:string` - 图片地址。
+- `uri:string` - 图片地址，需要 [encode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) 处理。
 - `size:string` - 缩略图尺寸，支持以下值：
   - `s` - 宽度 400px
   - `m` - 宽度 800px
