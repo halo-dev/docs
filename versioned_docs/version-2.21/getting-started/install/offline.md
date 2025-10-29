@@ -31,7 +31,7 @@ tar zxvf halo-offline-installer-v2.17.0-amd64.tar.gz
 :::info
 安装包目录说明
 
-```text
+```bash
 [root@localhost halo-offline-installer-v2.17.0-amd64]# tree
 .
 ├── docker                      # 离线安装 Docker 使用到的文件
@@ -75,7 +75,7 @@ cd halo-offline-installer-v2.17.0-amd64
 :::info
 假设采用默认安装位置 /opt/halo 完成安装，安装目录的文件结构如下：
 
-```text
+```bash
 [root@meter-prototype halo]# tree
 .
 ├── data                            # 数据存储目录

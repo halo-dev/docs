@@ -123,7 +123,7 @@ mkdir -p /etc/containers/systemd
 vim /etc/containers/systemd/halo.container
 ```
 
-```conf
+```ini
 [Unit]
 Description=The halo container
 Wants=network-online.target
@@ -201,7 +201,7 @@ mkdir -p /etc/containers/systemd
 vim /etc/containers/systemd/halo.container
 ```
 
-```conf
+```ini
 # /etc/containers/systemd/halo.container
 [Unit]
 Description=The halo container

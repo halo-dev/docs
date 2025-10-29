@@ -7,7 +7,7 @@ description: 过滤器下拉组件
 
 ## 使用示例
 
-```html
+```vue
 <script lang="ts" setup>
 import { ref } from "vue"
 

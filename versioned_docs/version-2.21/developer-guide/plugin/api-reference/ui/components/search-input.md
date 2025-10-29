@@ -7,7 +7,7 @@ description: 搜索输入框组件
 
 ## 使用方式
 
-```html
+```vue
 <script lang="ts" setup>
 import { ref } from "vue"
 

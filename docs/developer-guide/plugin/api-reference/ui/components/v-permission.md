@@ -7,7 +7,7 @@ description: 权限指令
 
 ## 使用方式
 
-```html
+```vue
 <script lang="ts" setup>
 import { VButton } from "@halo-dev/components"
 </script>

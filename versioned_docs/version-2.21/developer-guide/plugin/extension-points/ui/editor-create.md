@@ -76,7 +76,7 @@ export default definePlugin({
 });
 ```
 
-```html title="./components/markdown-editor.vue"
+```vue title="./components/markdown-editor.vue"
 <script setup lang="ts">
 import { marked } from "marked";
 import { debounce } from "lodash-es";
