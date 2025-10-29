@@ -122,7 +122,7 @@ public class CustomEventPublisher {
 1. 插件 A 将包含了 `CustomSharedEvent` 这个类的依赖 `plugin-a-api` 发布到 Maven 仓库
 2. 插件 B 引入 `plugin-a-api` 作为项目依赖并将其作为 `compileOnly`，必须是 `compileOnly` 依赖
 
-   ```gradle
+   ```groovy
    dependencies {
      compileOnly "run.halo.example:plugin-a-api:1.0.0"
    }

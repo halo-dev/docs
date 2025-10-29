@@ -7,7 +7,7 @@ description: 元数据表单组件
 
 ## 使用示例
 
-```html
+```vue
 <script lang="ts" setup>
 import { ref } from "vue"
 

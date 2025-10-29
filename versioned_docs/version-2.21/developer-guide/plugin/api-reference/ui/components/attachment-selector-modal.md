@@ -11,7 +11,7 @@ description: 附件选择组件
 
 ## 使用示例
 
-```html
+```vue
 <script lang="ts" setup>
 import { ref } from "vue"
 

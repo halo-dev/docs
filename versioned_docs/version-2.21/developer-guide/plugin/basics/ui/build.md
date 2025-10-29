@@ -281,7 +281,7 @@ export default definePlugin({
 
 3. 更新项目根目录的 `build.gradle` 文件
 
-    ```gradle
+    ```groovy
     plugins {
         id 'java'
         id "io.freefair.lombok" version "8.13"
@@ -336,7 +336,7 @@ export default definePlugin({
 
 4. 在 ui 或者 console 目录新建 `build.gradle` 文件，内容如下：
 
-    ```gradle
+    ```groovy
     plugins {
         id 'base'
         id "com.github.node-gradle.node" version "7.1.0"

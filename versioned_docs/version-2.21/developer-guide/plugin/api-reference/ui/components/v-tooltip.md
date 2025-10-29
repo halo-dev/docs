@@ -7,7 +7,7 @@ description: Tooltip 指令
 
 ## 使用方式
 
-```html
+```vue
 <script lang="ts" setup>
 import { IconDeleteBin } from "@halo-dev/components"
 </script>

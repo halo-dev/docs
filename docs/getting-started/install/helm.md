@@ -31,7 +31,7 @@ helm install halo halo/halo
 
 命令执行成功后会返回类似下文中的提示，通过提示中的命令可以获取到 NodePort 方式的 Halo 访问地址及默认的控制台管理员用户名和密码。
 
-```text
+```bash
 NAME: halo
 LAST DEPLOYED: Sun Jun 25 15:49:53 2023
 NAMESPACE: halo

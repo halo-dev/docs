@@ -7,7 +7,7 @@ description: 插件详情弹窗组件
 
 ## 使用方式
 
-```html
+```vue
 <script lang="ts" setup>
 import { ref } from "vue"
 

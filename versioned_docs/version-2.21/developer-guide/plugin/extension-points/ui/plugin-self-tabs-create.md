@@ -65,7 +65,7 @@ export default definePlugin({
 });
 ```
 
-```html title="./views/my-component.vue"
+```vue title="./views/my-component.vue"
 <script lang="ts" setup>
 const plugin = inject<Ref<Plugin | undefined>>("plugin");
 </script>

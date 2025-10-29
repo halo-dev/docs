@@ -145,7 +145,7 @@ my-halo-plugin/
 
 `api/build.gradle` 配置如下：
 
-```gradle
+```groovy
 plugins {
     id 'java-library'
     id 'maven-publish'

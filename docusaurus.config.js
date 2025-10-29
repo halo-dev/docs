@@ -1,6 +1,11 @@
+const { bundledLanguages } = require("shiki");
 const VersionsArchived = require("./versionsArchived.json");
-const { themes } = require("prism-react-renderer");
-const darkCodeTheme = themes.palenight;
+const { default: rehypeShiki } = require("@shikijs/rehype");
+const { transformerMetaHighlight } = require("@shikijs/transformers");
+const { transformerNotationDiff } = require("@shikijs/transformers");
+const { transformerNotationFocus } = require("@shikijs/transformers");
+const { transformerNotationErrorLevel } = require("@shikijs/transformers");
+const { transformerAddMeta } = require("./src/shiki/meta-transformer");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -42,10 +47,29 @@ const config = {
               path: "next",
             },
           },
+          beforeDefaultRehypePlugins: [
+            [
+              rehypeShiki,
+              {
+                theme: "catppuccin-mocha",
+                langs: Object.keys(bundledLanguages),
+                transformers: [
+                  transformerMetaHighlight(),
+                  transformerNotationDiff(),
+                  transformerNotationFocus(),
+                  transformerNotationErrorLevel(),
+                  transformerAddMeta(),
+                ],
+              },
+            ],
+          ],
         },
         blog: false,
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: [
+            require.resolve("./src/css/custom.css"),
+            require.resolve("./src/css/shiki.scss"),
+          ],
         },
         sitemap: {
           changefreq: "weekly",
@@ -199,16 +223,14 @@ const config = {
           },
         ],
       },
-      prism: {
-        theme: darkCodeTheme,
-        darkTheme: darkCodeTheme,
-        additionalLanguages: ["java", "json", "sql", "diff"],
-      },
       zoom: {
         selector: ".markdown :not(a) > img",
       },
     }),
-  plugins: [require.resolve("docusaurus-plugin-image-zoom")],
+  plugins: [
+    require.resolve("docusaurus-plugin-image-zoom"),
+    require.resolve("docusaurus-plugin-sass"),
+  ],
   scripts: [
     {
       src: "https://track.halo.run/api/script.js",

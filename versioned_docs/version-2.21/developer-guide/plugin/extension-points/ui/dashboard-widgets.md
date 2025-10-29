@@ -87,7 +87,7 @@ export interface DashboardWidgetDefinition {
 
 ### 小部件组件开发
 
-```html
+```vue
 <template>
   <WidgetCard v-bind="$attrs" :body-class="['!p-0']">
     <template #title>
@@ -221,7 +221,7 @@ export default definePlugin({
 
 自定义组件：
 
-```html
+```vue
 <template>
   <div class="group relative cursor-pointer rounded-lg bg-blue-50 p-4 transition-all hover:bg-blue-100">
     <div class="flex items-center gap-3">

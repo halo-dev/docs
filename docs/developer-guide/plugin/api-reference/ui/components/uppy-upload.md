@@ -5,7 +5,7 @@ description: 文件上传组件
 
 ## 使用方式
 
-```html
+```vue
 <script lang="ts" setup>
 const policyName = ref('my-test-policy')
 const groupName = ref('my-test-group')

@@ -7,7 +7,7 @@ description: 附件文件类型图标组件
 
 ## 使用示例
 
-```html
+```vue
 <script lang="ts" setup></script>
 
 <template>

@@ -7,7 +7,7 @@ description: 代码编辑器组件
 
 ## 使用方式
 
-```html
+```vue
 <script lang="ts" setup>
 import { ref } from "vue"
 

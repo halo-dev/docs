@@ -17,7 +17,7 @@ pnpm install @halo-dev/components
 
 在 Vue 组件中：
 
-```html
+```vue
 <script lang="ts" setup>
 import { VButton } from "@halo-dev/components";
 </script>

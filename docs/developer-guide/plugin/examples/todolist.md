@@ -168,7 +168,7 @@ export default definePlugin({
 2. ` pnpm install todomvc-app-css `。
 3. 修改 `ui/src/views/HomeView.vue` 最底部的 `style` 标签。
 
-   ```diff
+   ```vue
    - <style>
    + <style scoped>
    -  @import "https://unpkg.com/todomvc-app-css@2.4.1/index.css";
@@ -241,7 +241,7 @@ export interface TodoList {
 
 编辑 `ui/src/views/HomeView.vue` 文件，将所有内容替换为如下写法：
 
-```typescript
+```vue
 <script setup lang="ts">
 import axios from "axios";
 import type { Todo, TodoList } from "../types";
@@ -466,14 +466,16 @@ const handleDelete = (todo: Todo) => {
 
 需要修改 `ui/src/views/HomeView.vue` 示例如下：
 
-```diff
-+ import Logo from "@/assets/logo.svg";
+```vue
+// [!code ++]
+import Logo from "@/assets/logo.svg";
 // ...
 <template>
   <section class="todoapp">
     <header class="header">
       <h1>
-+        <img :src="Logo" alt="logo" style="display: inline; width: 64px" />
+// [!code ++]
+        <img :src="Logo" alt="logo" style="display: inline; width: 64px" />
         todos
       </h1>
 //...

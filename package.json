@@ -36,6 +36,8 @@
     "@docusaurus/theme-common": "3.8.0",
     "@docusaurus/theme-mermaid": "3.8.0",
     "@mdx-js/react": "^3.1.0",
+    "@shikijs/rehype": "^3.14.0",
+    "@shikijs/transformers": "^3.14.0",
     "@svgr/webpack": "^5.5.0",
     "clsx": "^1.2.1",
     "docusaurus-plugin-image-zoom": "^1.0.1",
@@ -45,13 +47,16 @@
     "prism-react-renderer": "^2.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "shiki": "^3.14.0",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "3.8.0",
+    "docusaurus-plugin-sass": "^0.2.6",
     "husky": "^7.0.4",
     "markdownlint": "^0.25.1",
-    "markdownlint-cli2": "^0.4.0"
+    "markdownlint-cli2": "^0.4.0",
+    "sass": "^1.93.2"
   },
   "engines": {
     "node": ">=18.0"
