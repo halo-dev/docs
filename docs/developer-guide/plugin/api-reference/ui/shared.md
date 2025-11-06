@@ -180,6 +180,10 @@ utils.date.timeAgo("2025-10-21") // "1 天前"
 utils.date.timeAgo("2025-11-22") // "1 个月后"
 ```
 
+#### dayjs()
+
+原始的 dayjs 实例，如果上述方法不能满足需求，可以手动调用 dayjs 方法，具体使用文档可查阅：[Day.js](https://day.js.org/zh-CN/)。
+
 ### permission
 
 权限判断工具，用于检查当前用户是否具有指定的权限。
