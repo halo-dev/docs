@@ -10,6 +10,9 @@ description: 扩展附件选择组件的选项卡 - attachment:selector:create
 ## 定义方式
 
 ```ts
+import { definePlugin, type AttachmentSelectProvider } from "@halo-dev/console-shared"
+import { markRaw } from "vue"
+import FooComponent from "./src/FooComponent.vue"
 export default definePlugin({
   extensionPoints: {
     "attachment:selector:create": (): AttachmentSelectProvider[]| Promise<AttachmentSelectProvider[]> => {
@@ -56,14 +59,16 @@ export interface AttachmentSelectProvider {
     }>();
     ```
 
+`AttachmentLike` 是一个复合类型，可以是 Halo 附件模型数据、文件链接字符串、或者简单类型对象，类型定义：
+
 ```ts title="AttachmentLike"
-export type AttachmentLike =
-  | Attachment
-  | string
-  | {
-      url: string;
-      type: string;
-    };
+type AttachmentLike = Attachment | AttachmentSimple | string;
+interface AttachmentSimple {
+  url: string;            // 文件链接
+  mediaType?: string;     // 文件类型，如 image/png、video/*，如不填写，将被作为链接插入到文章
+  alt?: string;           // 代替文本
+  caption?: string;       // 说明文本
+}
 ```
 
 ## 示例
@@ -97,6 +102,9 @@ export default definePlugin({
 
 ```vue title="StickerSelectorProvider.vue"
 <script lang="ts" setup>
+import type { AttachmentLike, AttachmentSimple } from '@halo-dev/console-shared';
+import { ref } from 'vue';
+
 const props = withDefaults(
   defineProps<{
     selected: AttachmentLike[];
@@ -110,19 +118,22 @@ const emit = defineEmits<{
   (event: "update:selected", attachments: AttachmentLike[]): void;
 }>();
 
-const stickers = [
+const stickers: AttachmentSimple[] = [
   {
     url: "https://picsum.photos/200?random=1",
+    mediaType: "image/*"
   },
   {
     url: "https://picsum.photos/200?random=2",
+    mediaType: "image/*"
   },
   {
     url: "https://picsum.photos/200?random=3",
+    mediaType: "image/*"
   },
 ];
 
-const selectedStickers = ref<Set<String>>(new Set());
+const selectedStickers = ref<Set<string>>(new Set());
 
 const handleSelect = async (url: string) => {
   if (selectedStickers.value.has(url)) {
@@ -143,4 +154,5 @@ const handleSelect = async (url: string) => {
 
 ## 实现案例
 
+- [https://github.com/halo-sigs/plugin-image-stream](https://github.com/halo-sigs/plugin-image-stream)
 - [https://github.com/halo-sigs/plugin-unsplash](https://github.com/halo-sigs/plugin-unsplash)
