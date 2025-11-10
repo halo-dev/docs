@@ -10,7 +10,7 @@ description: 扩展附件选择组件的选项卡 - attachment:selector:create
 ## 定义方式
 
 ```ts
-import { definePlugin, type AttachmentSelectProvider } from "@halo-dev/console-shared"
+import { definePlugin, type AttachmentSelectProvider } from "@halo-dev/ui-shared"
 import { markRaw } from "vue"
 import FooComponent from "./src/FooComponent.vue"
 export default definePlugin({
@@ -79,7 +79,7 @@ interface AttachmentSimple {
 import {
   definePlugin,
   type AttachmentSelectProvider,
-} from "@halo-dev/console-shared";
+} from "@halo-dev/ui-shared";
 import { markRaw } from "vue";
 import StickerSelectorProvider from "./components/StickerSelectorProvider.vue";
 
@@ -102,7 +102,7 @@ export default definePlugin({
 
 ```vue title="StickerSelectorProvider.vue"
 <script lang="ts" setup>
-import type { AttachmentLike, AttachmentSimple } from '@halo-dev/console-shared';
+import type { AttachmentLike, AttachmentSimple } from '@halo-dev/ui-shared';
 import { ref } from 'vue';
 
 const props = withDefaults(

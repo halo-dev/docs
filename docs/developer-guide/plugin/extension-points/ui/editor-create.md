@@ -55,7 +55,7 @@ export interface EditorProvider {
 此示例将实现一个简单的 Markdown 编辑器。
 
 ```ts title="index.ts"
-import { definePlugin } from "@halo-dev/console-shared";
+import { definePlugin } from "@halo-dev/ui-shared";
 import { markRaw } from "vue";
 import MarkdownEditor from "./components/markdown-editor.vue";
 

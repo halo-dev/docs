@@ -213,7 +213,7 @@ Vite 和 Rsbuild 都是优秀的构建工具，但它们在不同的使用场景
 **动态导入示例：**
 
 ```typescript
-import { definePlugin } from '@halo-dev/console-shared';
+import { definePlugin } from '@halo-dev/ui-shared';
 import { defineAsyncComponent } from 'vue';
 import { VLoading } from '@halo-dev/components';
 

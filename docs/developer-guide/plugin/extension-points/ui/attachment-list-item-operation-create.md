@@ -45,7 +45,7 @@ import OperationItem from "./interface/OperationItem.md";
 此示例将实现一个下载附件到本地的操作菜单项。
 
 ```ts
-import { definePlugin, type OperationItem } from "@halo-dev/console-shared";
+import { definePlugin, type OperationItem } from "@halo-dev/ui-shared";
 import { Toast, VDropdownItem } from "@halo-dev/components";
 import { markRaw, type Ref } from "vue";
 import type { Attachment } from "@halo-dev/api-client";

@@ -10,7 +10,7 @@ description: UI 扩展部分的入口文件
 ## 定义入口文件
 
 ```ts title="ui/src/index.ts"
-import { definePlugin } from "@halo-dev/console-shared";
+import { definePlugin } from "@halo-dev/ui-shared";
 
 export default definePlugin({
   components: {},

@@ -63,7 +63,7 @@ export interface CommentSubjectRefResult {
 import {
   definePlugin,
   type CommentSubjectRefResult,
-} from "@halo-dev/console-shared";
+} from "@halo-dev/ui-shared";
 import { markRaw } from "vue";
 import type { Moment } from "@/types";
 import { formatDatetime } from "./utils/date";

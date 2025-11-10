@@ -44,7 +44,7 @@ export interface EntityFieldItem {
 此示例将添加一个显示插件 requires（版本要求）的字段。
 
 ```ts
-import { definePlugin } from "@halo-dev/console-shared";
+import { definePlugin } from "@halo-dev/ui-shared";
 import { markRaw, type Ref } from "vue";
 import type { Plugin } from "@halo-dev/api-client";
 import { VEntityField } from "@halo-dev/components";
