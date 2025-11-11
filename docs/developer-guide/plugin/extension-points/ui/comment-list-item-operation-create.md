@@ -47,7 +47,7 @@ import OperationItem from "./interface/OperationItem.md";
 ```ts
 import type { ListedComment } from "@halo-dev/api-client";
 import { VDropdownItem } from "@halo-dev/components";
-import { definePlugin } from "@halo-dev/console-shared";
+import { definePlugin } from "@halo-dev/ui-shared";
 import { markRaw } from "vue";
 
 export default definePlugin({

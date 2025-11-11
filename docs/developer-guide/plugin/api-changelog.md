@@ -5,9 +5,20 @@ description: 记录每一个版本的插件 API 变更记录，方便开发者�
 
 ## 2.22.0
 
-### `@halo-dev/console-shared` 工具库
+### `@halo-dev/console-shared` 改名
 
-在 2.22.0 中，Halo 在 `@halo-dev/console-shared` 包中提供一些常用工具，用于减少部分业务的开发工作量，目前提供：
+从 Halo 2.11 支持个人中心以后，插件的 UI 项目能同时扩展 Console 和 UC，所以为了避免歧义，我们在 Halo 2.22 中将 UI 的 `@halo-dev/console-shared` 依赖更名为 `@halo-dev/ui-shared`，虽然在 Halo 中兼容了旧版依赖，但仍然推荐使用新版依赖，迁移方案：
+
+```bash
+pnpm uninstall @halo-dev/console-shared
+pnpm install @halo-dev/ui-shared
+```
+
+然后在插件项目全局搜索 `@halo-dev/console-shared` 并替换为 `@halo-dev/ui-shared` 即可，同时需要将 `plugin.yaml` 的 `spec.requires` 字段修改为 `>=2.22.0`。
+
+### `@halo-dev/ui-shared` 工具库
+
+在 2.22.0 中，Halo 在 `@halo-dev/ui-shared` 包中提供一些常用工具，用于减少部分业务的开发工作量，目前提供：
 
 1. `stores`
    1. `currentUser`：用于获取当前用户信息
@@ -29,7 +40,7 @@ description: 记录每一个版本的插件 API 变更记录，方便开发者�
 1. 升级依赖
 
    ```bash
-   pnpm install @halo-dev/console-shared@2.22.0
+   pnpm install @halo-dev/ui-shared@2.22.0
    ```
 
 2. 提升 [plugin.yaml#spec.requires](./basics/manifest.md#字段详解) 版本为 `>=2.22.0`。

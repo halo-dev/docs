@@ -44,7 +44,7 @@ export interface PluginTab {
 此示例实现了一个自定义选项卡，用于获取插件的数据并显示名称。
 
 ```ts
-import { definePlugin, PluginTab } from "@halo-dev/console-shared";
+import { definePlugin, PluginTab } from "@halo-dev/ui-shared";
 import MyComponent from "./views/my-component.vue";
 import { markRaw } from "vue";
 export default definePlugin({

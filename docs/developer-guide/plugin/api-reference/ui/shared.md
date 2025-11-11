@@ -1,11 +1,11 @@
 ---
 title: 共享工具库
-description: 介绍 @halo-dev/console-shared 包中的共享工具库
+description: 介绍 @halo-dev/ui-shared 包中的共享工具库
 ---
 
-从 Halo 2.22 开始，Halo 为插件的 UI 部分提供了共享的工具库并放置在了 `@halo-dev/console-shared` 中，利用这些工具，可以减少部分开发工作量。
+从 Halo 2.22 开始，Halo 为插件的 UI 部分提供了共享的工具库并放置在了 `@halo-dev/ui-shared` 中，利用这些工具，可以减少部分开发工作量。
 
-使用这些工具需要将插件项目的 `@halo-dev/console-shared` 依赖升级到 2.22.0。并在发布新版本插件时，将 [plugin.yaml#spec.requires](../../basics/manifest.md#字段详解) 提升到 `>=2.22.0`。
+使用这些工具需要将插件项目的 `@halo-dev/ui-shared`（前 [@halo-dev/console-shared](../../api-changelog.md#halo-devconsole-shared-改名)）依赖升级到 2.22.0。并在发布新版本插件时，将 [plugin.yaml#spec.requires](../../basics/manifest.md#字段详解) 提升到 `>=2.22.0`。
 
 ## stores
 
@@ -21,7 +21,7 @@ pnpm install pinia
 
 ```vue title="ui/src/MyComponent.vue"
 <script lang="ts" setup>
-import { stores } from "@halo-dev/console-shared"
+import { stores } from "@halo-dev/ui-shared"
 import { storeToRefs } from "pinia"
 
 const userStore = stores.currentUser()
@@ -55,7 +55,7 @@ const { currentUser, isAnonymous } = storeToRefs(stores.currentUser())
 
 ```vue title="ui/src/MyComponent.vue"
 <script lang="ts" setup>
-import { stores } from "@halo-dev/console-shared"
+import { stores } from "@halo-dev/ui-shared"
 import { storeToRefs } from "pinia"
 
 const globalInfoStore = stores.globalInfo()
@@ -116,7 +116,7 @@ const { globalInfo } = storeToRefs(stores.globalInfo())
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/console-shared"
+import { utils } from "@halo-dev/ui-shared"
 
 utils.date.format(new Date()) // "2025-11-05 14:30"
 utils.date.format("2025-10-22", "YYYY/MM/DD") // "2025/10/22"
@@ -136,7 +136,7 @@ utils.date.format(null) // ""
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/console-shared"
+import { utils } from "@halo-dev/ui-shared"
 
 utils.date.toISOString(new Date("2025-10-22")) // "2025-10-22T00:00:00.000Z"
 ```
@@ -154,7 +154,7 @@ utils.date.toISOString(new Date("2025-10-22")) // "2025-10-22T00:00:00.000Z"
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/console-shared"
+import { utils } from "@halo-dev/ui-shared"
 
 utils.date.toDatetimeLocal(new Date("2025-10-22 14:30")) // "2025-10-22T14:30"
 ```
@@ -172,7 +172,7 @@ utils.date.toDatetimeLocal(new Date("2025-10-22 14:30")) // "2025-10-22T14:30"
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/console-shared"
+import { utils } from "@halo-dev/ui-shared"
 
 // 假设当前时间是 2025-10-22
 utils.date.timeAgo("2025-10-23") // "1 天后"
@@ -210,7 +210,7 @@ utils.date.timeAgo("2025-11-22") // "1 个月后"
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/console-shared"
+import { utils } from "@halo-dev/ui-shared"
 
 // 检查是否拥有任意一个权限
 utils.permission.has(["core:posts:manage"], true) // true
@@ -237,7 +237,7 @@ utils.permission.has([
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/console-shared"
+import { utils } from "@halo-dev/ui-shared"
 
 const permissions = utils.permission.getUserPermissions()
 console.log(permissions) // ["core:posts:manage", "core:attachments:view"]
@@ -270,7 +270,7 @@ console.log(permissions) // ["core:posts:manage", "core:attachments:view"]
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/console-shared"
+import { utils } from "@halo-dev/ui-shared"
 
 // 本地图片
 utils.attachment.getThumbnailUrl("/uploads/image.jpg", "M")
@@ -294,7 +294,7 @@ utils.attachment.getThumbnailUrl("https://example.com/image.jpg", "S")
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/console-shared"
+import { utils } from "@halo-dev/ui-shared"
 
 // 字符串 URL
 utils.attachment.getUrl("https://example.com/image.jpg")
@@ -332,7 +332,7 @@ interface AttachmentSimple {
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/console-shared"
+import { utils } from "@halo-dev/ui-shared"
 
 // 字符串 URL
 utils.attachment.convertToSimple("https://example.com/image.jpg")
@@ -373,7 +373,7 @@ ID 生成工具，用于生成唯一且可排序的标识符。基于 [uuid](htt
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/console-shared"
+import { utils } from "@halo-dev/ui-shared"
 
 const id = utils.id.uuid()
 console.log(id) // "018f1c2e-4fcb-7d04-9f21-1a2b3c4d5e6f"
@@ -390,7 +390,7 @@ const resourceId = utils.id.uuid()
 
 ```vue title="ui/src/MyComponent.vue"
 <script lang="ts" setup>
-import { events } from "@halo-dev/console-shared"
+import { events } from "@halo-dev/ui-shared"
 
 // 监听事件
 events.on("core:plugin:configMap:updated", (data) => {

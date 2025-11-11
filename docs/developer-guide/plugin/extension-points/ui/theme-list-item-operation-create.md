@@ -45,7 +45,7 @@ import OperationItem from "./interface/OperationItem.md";
 此示例将实现一个跳转到前台预览主题的操作菜单项。
 
 ```ts
-import { definePlugin, type OperationItem } from "@halo-dev/console-shared";
+import { definePlugin, type OperationItem } from "@halo-dev/ui-shared";
 import { VButton } from "@halo-dev/components";
 import { markRaw, type Ref } from "vue";
 import type { Theme } from "@halo-dev/api-client";
