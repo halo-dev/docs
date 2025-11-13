@@ -94,5 +94,9 @@
   "sidebar.developer.category.RESTful API": {
     "message": "RESTful API",
     "description": "The label for category RESTful API in sidebar developer"
+  },
+  "sidebar.developer.category.附录": {
+    "message": "附录",
+    "description": "The label for category 附录 in sidebar developer"
   }
 }
