@@ -75,8 +75,6 @@ const config = {
           changefreq: "weekly",
           priority: 0.5,
           ignorePatterns: [
-            "/2.16/**",
-            "/2.17/**",
             "/2.18/**",
             "/2.19/**",
             "/2.20/**",
