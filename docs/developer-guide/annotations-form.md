@@ -7,7 +7,7 @@ title: 元数据表单定义
 定义元数据编辑表单同样使用 `FormKit Schema`，但和主题或插件的定义方式稍有不同，其中输入组件类型可参考 [表单定义](./form-schema.md)。
 
 :::info 提示
-因为 `metadata.annotations` 是一个键值都为字符串类型的对象，所以表单项的值必须为字符串类型。这就意味着，FormKit 的 `number`、`group`、`repeater` 等类型的输入组件都不能使用。
+因为 `metadata.annotations` 是一个键值都为字符串类型的对象，所以表单项的值必须为字符串类型。这就意味着，FormKit 的 `number`、`group`、`repeater` 等类型的输入组件都不能使用。`checkbox` 类型的输入组件应通过 `on-value` 和 `off-value` 指定字符串值，以替代默认的布尔值。
 :::
 
 ## AnnotationSetting 资源定义方式
