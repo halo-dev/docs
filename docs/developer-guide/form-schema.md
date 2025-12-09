@@ -584,3 +584,46 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
   label: 标签
   value: []
 ```
+
+### iconify
+
+统一的图标选择器，基于 [Iconify](https://iconify.design/)。
+
+示例
+
+```yaml
+- $formkit: iconify
+  name: social_icon
+  label: 社交图标
+  format: svg # svg / dataurl / url / name
+```
+
+#### 参数
+
+- `format`：图标格式
+  - `svg`：svg 字符串
+  - `dataurl`：base64 的图片链接，可以直接用于 img 标签
+  - `url`：Iconify 的 CDN 链接
+  - `name`：Iconify 的图标名称，需要在使用的地方自行加载图标
+
+在主题模板中的使用示例：
+
+```html
+<!-- 当 format 为 name 时，使用 Iconify 封装的 Web Component 加载图标 -->
+<script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+<iconify-icon th:icon="${theme.config.group.social_icon}"></iconify-icon>
+
+<!-- svg -->
+<th:block th:utext="${theme.config.group.social_icon}"></th:block>
+
+<!-- dataurl 或者 url -->
+<img th:src="${theme.config.group.social_icon}" />
+```
+
+开发者可根据具体使用情况自行选择图标格式，通常推荐 `svg` 或者 `dataurl`，因为这样无需任何网络请求，确保图标可以稳定地正常加载。
+
+UI 效果：
+
+<p>
+<img src="/img/formkit/formkit-iconify.png" width="50%" class="medium-zoom-image" />
+</p>

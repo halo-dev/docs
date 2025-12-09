@@ -340,7 +340,7 @@ module.exports = {
           items: ["developer-guide/plugin/examples/todolist"],
         },
         // "developer-guide/plugin/appendices",
-        "developer-guide/plugin/api-changelog"
+        "developer-guide/plugin/api-changelog",
       ],
     },
     {
@@ -401,6 +401,7 @@ module.exports = {
         "developer-guide/theme/global-variables",
         "developer-guide/theme/template-tag",
         "developer-guide/theme/code-snippets",
+        "developer-guide/theme/api-changelog",
       ],
     },
     {
