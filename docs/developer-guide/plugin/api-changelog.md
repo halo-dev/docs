@@ -45,3 +45,7 @@ pnpm install @halo-dev/ui-shared
 
 2. 提升 [plugin.yaml#spec.requires](./basics/manifest.md#字段详解) 版本为 `>=2.22.0`。
 3. 按照[最新文档](./extension-points/ui/attachment-selector-create.md)修改插件代码
+
+### 表单定义 > 新增 Iconify 图标选择器
+
+在 2.22.0 中，我们为 FormKit 表单提供了通用的图标选择器，基于 [Iconify](https://icon-sets.iconify.design/)，详细文档可查阅：[表单定义#Iconify](../../developer-guide/form-schema.md#iconify)
