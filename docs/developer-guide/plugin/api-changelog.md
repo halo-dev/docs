@@ -49,3 +49,101 @@ pnpm install @halo-dev/ui-shared
 ### 表单定义 > 新增 Iconify 图标选择器
 
 在 2.22.0 中，我们为 FormKit 表单提供了通用的图标选择器，基于 [Iconify](https://icon-sets.iconify.design/)，详细文档可查阅：[表单定义#Iconify](../../developer-guide/form-schema.md#iconify)
+
+### 编辑器 > BubbleMenu 扩展点改动
+
+在 Halo 2.22.0 中，我们升级了编辑器的 Tiptap 版本至 3.x，由于 Tiptap 在 3.x 中做了一些破坏性更新且 Halo 也遵循其更新，因此如果插件扩展了编辑器，并使用了 BubbleMenu 扩展点，则需要根据以下方式进行更新升级。
+
+1. 使用 `options` 代替 `tippyOptions`。
+
+```diff
+- tippyOptions: {
+-  fixed: false,
+- },
++ options: {
++  strategy:"absolute",
++ },
+```
+
+2. 使用 `getReferencedVirtualElement` 代替 `getRenderContainer`。
+
+```diff
+- getRenderContainer: (node: HTMLElement) => {
+-   let container = node;
+-   if (container.nodeName === "#text") {
+-     container = node.parentElement as HTMLElement;
+-   }
+-   while (
+-     container &&
+-     container.classList &&
+-    !container.classList.contains("column")
+-   ) {
+-     container = container.parentElement as HTMLElement;
+-   }
+-   return container;
+- },
++ getReferencedVirtualElement() {
++  const editor = this.editor;
++   if (!editor) {
++     return null;
++   }
++  const parentNode = findParentNode(
++     (node) => node.type.name === Column.name
++   )(editor.state.selection);
++   if (parentNode) {
++     const domRect = posToDOMRect(
++       editor.view,
++       parentNode.pos,
++       parentNode.pos + parentNode.node.nodeSize
++     );
++     return {
++       getBoundingClientRect: () => domRect,
++       getClientRects: () => [domRect],
++     };
++   }
++   return null;
++ },
+```
+
+3. 移除 `defaultAnimation`。
+
+```diff
+- defaultAnimation: false,
+```
+
+此外，扩展其他 Node 中 `BubbleMenu` 的旧方式将会失效，例如 [编辑器超链接卡片](https://github.com/halo-sigs/plugin-editor-hyperlink-card/blob/main/ui/src/editor/text-bubble-extension.ts) 扩展了 Text Node 的 `BubbleMenu`。 此版本中引入了 `extendsKey` 字段，用于扩展已有的 `BubbleMenu`。**需要已有的 `BubbleMenu` 设置了 PluginKey**。
+用法如下：
+
+```ts
+Extension.create({
+    name: "expandTextBubbleMenu",
+    addOptions() {
+      return {
+        getBubbleMenu() {
+          return {
+            // 目标 BubbleMenu 的 PluginKey。当前版本会导出 Halo UI Editor 中的所有 PluginKey。
+            extendsKey: TEXT_BUBBLE_MENU_KEY,
+            items: [
+              {
+                priority: 10,
+                // 具有同一个 key 的 items 将会被覆盖
+                key: "textItem1",
+                props: { title: "ExpandText" },
+              },
+            ],
+          };
+        },
+      };
+    },
+  }),
+```
+
+有关 `BubbleMenu` 扩展的详细文档可查阅：[悬浮菜单扩展](./extension-points/ui/default-editor-extension-create.md#4-悬浮菜单扩展)
+
+### 编辑器 > 新增 getDraggableMenuItems 扩展点
+
+在 Halo 2.22.0 中，我们为编辑器增加了拖拽菜单的功能，同时支持插件动态扩展拖拽菜单。与此同时，旧的 `getDraggable` 扩展点被移除，取而代之的是 `getDraggableMenuItems` 扩展点。
+
+可直接移除 `getDraggable` 扩展点，不再使用，也无需考虑兼容性问题。
+
+关于 `getDraggableMenuItems` 扩展点的详细文档可查阅：[拖拽菜单扩展](./extension-points/ui/default-editor-extension-create.md#5-拖拽菜单扩展)
