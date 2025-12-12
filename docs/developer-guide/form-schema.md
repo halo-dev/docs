@@ -211,9 +211,13 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
 
 列表类型的输入组件，支持动态添加、删除数据项。
 
+:::tip
+`list` 组件与 [array](#array) 组件功能类似，但它们的用途不同。`list` 组件适合展示基本类型的数据，而 `array` 组件更适合于展示复杂类型的数据。
+:::
+
 #### 参数
 
-- `item-type`：数据项的数据类型，用于初始化数据。可选参数 `string`, `number`, `boolean`, `object`，默认为 `string`
+- `item-type`：数据项的数据类型，用于初始化数据。可选参数 `string`, `number`, `boolean`，默认为 `string`
 - `min`：数组最小要求数量，默认为 `0`
 - `max`：数组最大容量，默认为 `Infinity`，即无限制
 - `addButton`：是否显示添加按钮
@@ -240,7 +244,7 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
 ```
 
 :::tip
-`list` 组件有且只有一个子节点，并且必须为子节点传递 `index` 属性。若想提供多个字段，则建议使用 `group` 组件包裹，并将 itemType 改为 object。
+`list` 组件有且只有一个子节点，并且必须为子节点传递 `index` 属性。若想提供多个字段组成对象，则建议改为使用 [array](#array) 组件。
 :::
 
 最终保存表单之后得到的值为以下形式：
@@ -331,7 +335,11 @@ UI 效果：
 
 <img src="/img/formkit/formkit-verify-form.png" width="50%" />
 
-### repeater
+### ~~repeater~~(已过时)
+
+:::warning
+`repeater` 组件已不再推荐使用，请使用 [array](#array) 组件代替。
+:::
 
 #### 描述
 
@@ -627,3 +635,83 @@ UI 效果：
 <p>
 <img src="/img/formkit/formkit-iconify.png" width="50%" class="medium-zoom-image" />
 </p>
+
+### array
+
+一组重复的输入组件，展示为列表形式，可以用于定义一组数据。最终得到的数据为一个对象的数组，方便使用者对此数组进行增加、删除、排序等操作。
+
+参数
+
+- `min`：数组最小要求数量，默认为 `0`
+- `max`：数组最大容量，默认为 `Infinity`，即无限制
+- `removeControl`：是否允许移除元素
+- `addButton`：是否显示添加按钮
+- `addLabel`：添加按钮上显示的文本
+- `addAttrs`：添加按钮的额外属性
+- `emptyText`: 当数组为空时显示的文本
+- `itemLabels`: 列表元素上显示的内容，数据类型为 `{ type: "image" | "text"; label: string }[]`
+
+:::tip
+强烈建议为 `array` 设置 `itemLabels` 属性，以便于更直观的展示元素内容，设置的元素内容将按照设置顺序展示在列表元素上。
+
+在 `itemLabels` 中定义 `label` 时，可以使用 `$value` 来指向当前项的值。
+:::
+
+#### 示例
+
+```yaml
+- $formkit: array
+  name: socials
+  label: 社交账号
+  value: []
+  max: 5
+  min: 1
+  itemLabels:
+    - type: image
+      label: $value.logo
+    - type: text
+      label: $value.name
+  children:
+    - $formkit: attachment
+      name: logo
+      label: 图标
+      value: ""
+    - $formkit: text
+      name: name
+      label: 名称
+      value: ""
+    - $formkit: text
+      name: url
+      label: 地址
+      value: ""
+```
+
+:::warning
+由于目前无法通过单个 `itemLabels` 定义涵盖所有子项变动的情况，因此在 `itemLabels` 中使用 `$value` ，无法获取到具有 `if` 属性的组件值。
+
+例如：
+
+```yaml
+- $formkit: array
+  name: socials
+  label: 社交账号
+  value: []
+  itemLabels:
+    - type: text
+      # 这里无法获取到具有 if 属性的组件值，因此也就无法展示在列表元素上。
+      label: $value.name
+  children:
+    - $formkit: select
+      name: enabled
+      label: 是否启用
+      options:
+        - label: 是
+          value: true
+        - label: 否
+          value: false
+    - $formkit: text
+      if: "$value.enabled === true",
+      label: $value.name
+```
+
+:::

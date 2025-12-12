@@ -50,6 +50,10 @@ pnpm install @halo-dev/ui-shared
 
 在 2.22.0 中，我们为 FormKit 表单提供了通用的图标选择器，基于 [Iconify](https://icon-sets.iconify.design/)，详细文档可查阅：[表单定义#Iconify](../../developer-guide/form-schema.md#iconify)
 
+### 表单定义 > 新增 `array` 组件
+
+在 2.22.0 中，我们为 FormKit 表单新增了 `array` 组件，用于定义一组数据，并计划使用 `array` 组件替换原有的 `repeater` 组件。详细文档可查阅：[表单定义#array](../../developer-guide/form-schema.md#array)
+
 ### 编辑器 > BubbleMenu 扩展点改动
 
 在 Halo 2.22.0 中，我们升级了编辑器的 Tiptap 版本至 3.x，由于 Tiptap 在 3.x 中做了一些破坏性更新且 Halo 也遵循其更新，因此如果插件扩展了编辑器，并使用了 BubbleMenu 扩展点，则需要根据以下方式进行更新升级。
