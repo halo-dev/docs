@@ -49,3 +49,7 @@ pnpm install @halo-dev/ui-shared
 ### 表单定义 > 新增 Iconify 图标选择器
 
 在 2.22.0 中，我们为 FormKit 表单提供了通用的图标选择器，基于 [Iconify](https://icon-sets.iconify.design/)，详细文档可查阅：[表单定义#Iconify](../../developer-guide/form-schema.md#iconify)
+
+### 表单定义 > 新增 `array` 组件
+
+在 2.22.0 中，我们为 FormKit 表单新增了 `array` 组件，用于定义一组数据，并计划使用 `array` 组件替换原有的 `repeater` 组件。详细文档可查阅：[表单定义#array](../../developer-guide/form-schema.md#array)
