@@ -649,7 +649,7 @@ UI 效果：
 - `addLabel`：添加按钮上显示的文本
 - `addAttrs`：添加按钮的额外属性
 - `emptyText`: 当数组为空时显示的文本
-- `itemLabels`: 列表元素上显示的内容，数据类型为 `{ type: "image" | "text"; label: string }[]`
+- `itemLabels`: 列表元素上显示的内容，数据类型为 `{ type: "image" | "text" | "iconify"; label: string }[]`
 
 :::tip
 强烈建议为 `array` 设置 `itemLabels` 属性，以便于更直观的展示元素内容，设置的元素内容将按照设置顺序展示在列表元素上。
