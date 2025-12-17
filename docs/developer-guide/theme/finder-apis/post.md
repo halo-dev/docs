@@ -72,6 +72,10 @@ postFinder.cursor(postName);
 
 根据文章的 `metadata.name` 获取相邻的文章（上一篇 / 下一篇）。
 
+:::info 提示
+上一篇文章是指发布时间较当前文章更早的文章，下一篇文章是指发布时间较当前文章更新的文章。
+:::
+
 ### 参数
 
 1. `postName:string` - 文章的唯一标识 `metadata.name`。
@@ -448,9 +452,8 @@ postFinder.archives(page, size, year, month);
 
 ```json title="NavigationPostVo"
 {
-  "previous": "#PostVo",                                   // 上一篇文章
-  "current": "#PostVo",                                    // 当前文章
-  "next": "#PostVo"                                        // 下一篇文章
+  "previous": "#ListedPostVo",                                   // 上一篇文章，发布时间较当前文章更早的文章
+  "next": "#ListedPostVo"                                        // 下一篇文章，发布时间较当前文章更新的文章
 }
 ```
 
