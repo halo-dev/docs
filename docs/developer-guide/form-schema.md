@@ -644,18 +644,30 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
   - `url`：Iconify 的 CDN 链接
   - `name`：Iconify 的图标名称，需要在使用的地方自行加载图标
 
+#### 值类型
+
+Iconify 表单类型的值为对象，包含以下属性：
+
+- `value`: 图标数据，当 `format` 参数不同时，value 的形式也不同，具体如下：
+  - `svg`：value 的值为 svg 字符串，可以直接放置在 HTML 中使用
+  - `dataurl` / `url`：可以使用 `img` 标签加载
+  - `name`：Iconify 对应的图标名称，需要在前端加载 [Iconify](https://iconify.design/docs/iconify-icon/) 的依赖配合使用
+- `name`：Iconify 对应的图标名称，保留这个字段的目的是为了在 Console 中回显图标信息，通常不需要使用此字段
+- `width`：用户在选择图标时设置的图标大小，此字段的目的是为了在 Console 中再次编辑时回显，通常不需要使用此字段
+- `color`：用户在选择图标时设置的图标颜色，此字段的目的是为了在 Console 中再次编辑时回显，通常不需要使用此字段
+
 在主题模板中的使用示例：
 
 ```html
 <!-- 当 format 为 name 时，使用 Iconify 封装的 Web Component 加载图标 -->
 <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
-<iconify-icon th:icon="${theme.config.group.social_icon}"></iconify-icon>
+<iconify-icon th:icon="${theme.config.group.social_icon.value}"></iconify-icon>
 
 <!-- svg -->
-<th:block th:utext="${theme.config.group.social_icon}"></th:block>
+<th:block th:utext="${theme.config.group.social_icon.value}"></th:block>
 
 <!-- dataurl 或者 url -->
-<img th:src="${theme.config.group.social_icon}" />
+<img th:src="${theme.config.group.social_icon.value}" />
 ```
 
 开发者可根据具体使用情况自行选择图标格式，通常推荐 `svg` 或者 `dataurl`，因为这样无需任何网络请求，确保图标可以稳定地正常加载。
