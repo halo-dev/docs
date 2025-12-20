@@ -415,7 +415,7 @@ UI 效果：
 
 附件类型的输入框，支持直接调用附件库弹框选择附件。
 
-#### 参数
+****#### 参数
 
 - `accepts`：文件类型，数据类型为 `string[]`。
 
@@ -608,15 +608,19 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
 
 #### 参数
 
-- `format`：图标格式
+- `format`：图标格式，默认为 `svg`
   - `svg`：svg 字符串
   - `dataurl`：base64 的图片链接，可以直接用于 img 标签
   - `url`：Iconify 的 CDN 链接
   - `name`：Iconify 的图标名称，需要在使用的地方自行加载图标
+- `value-only`：是否仅返回图标数据，默认为 `false`
+- `popper-placement`：图标选择弹窗的打开位置，默认为 `auto`，可以为：`auto`、`auto-end`、`auto-start`、`bottom`、`bottom-end`、`bottom-start`、`left`、`left-end`、`left-start`、`right`、`right-end`、`right-start`、`top`、`top-end`、`top-start`
 
 #### 值类型
 
-Iconify 表单类型的值为对象，包含以下属性：
+当 `value-only` 参数为 `true` 时，此表单项的值为 `string` 类型，比如当 `format` 为 `svg` 时，返回值数据形如 `<svg>...</svg>`
+
+当 `value-only` 参数不填写或为 `false` 时，表单类型的值为对象，包含以下属性：
 
 - `value`: 图标数据，当 `format` 参数不同时，value 的形式也不同，具体如下：
   - `svg`：value 的值为 svg 字符串，可以直接放置在 HTML 中使用
