@@ -151,3 +151,7 @@ Extension.create({
 可直接移除 `getDraggable` 扩展点，不再使用，也无需考虑兼容性问题。
 
 关于 `getDraggableMenuItems` 扩展点的详细文档可查阅：[拖拽菜单扩展](./extension-points/ui/default-editor-extension-create.md#5-拖拽菜单扩展)
+
+### 表单定义 > 重构 `attachment` 表单类型
+
+在 Halo 2.22 中，我们重构了原有的 attachment 表单类型，支持了预览和直接上传文件，并将旧版的表单类型更名为了 [attachmentInput](../form-schema.md#attachmentinput)

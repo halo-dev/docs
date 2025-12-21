@@ -413,6 +413,36 @@ UI 效果：
 
 #### 描述
 
+:::info
+在 Halo 2.22 中，我们重构了原有的 attachment 表单类型，支持了预览和直接上传文件，并将旧版的表单类型更名为了 [attachmentInput](#attachmentinput)。
+:::
+
+附件类型的输入框，支持预览附件、直接上传文件、从附件库选择。
+
+#### 参数
+
+- `accepts`：文件类型，数据类型为 `string[]`
+- `width`：预览区域宽度
+- `aspectRatio`：预览区域长宽比，比如 `1/1`、`16/9`
+- `multiple`：是否支持多选，设置为 `true` 之后，数据结构为字符串数组
+
+#### 示例
+
+```yaml
+- $formkit: attachment
+  name: logo
+  label: Logo
+  accepts:
+    - "image/png"
+    - "video/mp4"
+    - "audio/*"
+  value: ""
+```
+
+### attachmentInput
+
+#### 描述
+
 附件类型的输入框，支持直接调用附件库弹框选择附件。
 
 ****#### 参数
