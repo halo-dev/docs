@@ -157,6 +157,7 @@ module.exports = {
             {
               type: "category",
               label: "服务端",
+              key: "basics-server",
               link: {
                 type: "generated-index",
               },
@@ -168,6 +169,7 @@ module.exports = {
             {
               type: "category",
               label: "UI",
+              key: "basics-ui",
               link: {
                 type: "generated-index",
               },
@@ -189,6 +191,7 @@ module.exports = {
             {
               type: "category",
               label: "服务端",
+              key: "api-reference-server",
               link: {
                 type: "generated-index",
               },
@@ -209,6 +212,7 @@ module.exports = {
             {
               type: "category",
               label: "UI",
+              key: "api-reference-ui",
               link: {
                 type: "generated-index",
               },
@@ -253,6 +257,7 @@ module.exports = {
             {
               type: "category",
               label: "服务端",
+              key: "extension-points-server",
               link: {
                 type: "doc",
                 id: "developer-guide/plugin/extension-points/server/index",
@@ -274,6 +279,7 @@ module.exports = {
             {
               type: "category",
               label: "UI",
+              key: "extension-points-ui",
               link: {
                 type: "doc",
                 id: "developer-guide/plugin/extension-points/ui/index",

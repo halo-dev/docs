@@ -1,7 +1,7 @@
 {
   "version.label": {
-    "message": "next",
-    "description": "The label for version current"
+    "message": "2.22",
+    "description": "The label for version 2.22"
   },
   "sidebar.tutorial.category.入门": {
     "message": "入门",
