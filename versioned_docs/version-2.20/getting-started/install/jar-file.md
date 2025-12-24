@@ -196,9 +196,8 @@ title: 使用 JAR 文件部署
    ExecStart=/usr/bin/java -Dfile.encoding=UTF-8 -server -Xms256m -Xmx256m -jar JAR_PATH --spring.config.additional-location=optional:file:/home/halo/.halo2/
    ExecStop=/bin/kill -s QUIT $MAINPID
    Restart=always
-   StandOutput=syslog
-
-   StandError=inherit
+   StandardOutput=syslog
+   StandardError=inherit
 
    [Install]
    WantedBy=multi-user.target
