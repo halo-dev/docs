@@ -21,6 +21,11 @@
     "enable": true,                       // 是否开启评论
     "systemUserOnly": false,              // 是否只允许登录用户评论
     "requireReviewForNew": false          // 是否需要审核新评论
+  },
+  "routes": {
+    "categoriesUri": "/categories",       // 分类页路由前缀
+    "tagsUri": "/tags",                   // 标签页路由前缀
+    "archivesUri": "/archives"            // 归档页路由前缀
   }
 }
 ```
