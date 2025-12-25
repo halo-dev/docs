@@ -13,152 +13,116 @@ description: 使用 Nginx Proxy Manager 管理 Halo 服务的反向代理
 
 ## 简介
 
-顾名思义，Nginx Proxy Manager 就是一个 Nginx 的代理管理器，它最大的特点是简单方便。
+Nginx Proxy Manager 是一个可视化的 Nginx 反向代理管理器，支持在 Web UI 上管理反向代理的网站，支持申请免费的 SSL 证书并自动续签。
 
-即使是没有 Nginx 基础的小伙伴，也能轻松地用它来完成反向代理的操作，而且因为自带面板，操作极其简单，非常适合配合 docker 搭建的应用使用。
+接下来会介绍如何使用 Nginx Proxy Manager 来反向代理 Halo，以下的 Nginx 安装方式均来自于 [Nginx Proxy Manager 官方文档](https://nginxproxymanager.com/guide/)。在开始之前，建议先阅读一遍官方文档，需要对其有一定的了解。
 
-Nginx Proxy Manager 后台还可以一键申请 SSL 证书，并且会自动续期，方便省心。
+## 说明
 
-下面我们就来介绍如何用 Nginx Proxy Manger 来配合 Halo，实现反向代理和 HTTPS 访问。
+- 此文档需要对 Docker 和 Docker Compose 有一定的熟悉程度，并且已经提前在服务器上安装
+- 在安装 Nginx Proxy Manager 之前，需要确保服务器没有其他占用了 80 和 443 端口的服务
+- 需要对 Vim 有一定的熟悉程度
+- 下文使用 NPM 简称 Nginx Proxy Manager
 
 ## 安装 Nginx Proxy Manager
-
-> 说明：默认你的服务器已经安装了 Docker 和 Docker Compose，如果你没有安装，可以参考：[使用 Docker Compose 部署](../docker-compose) 的环境搭建部分来进行安装。
-
-点击下方链接进入 Nginx Proxy Manager（以下简称 NPM）官网：[https://nginxproxymanager.com/](https://nginxproxymanager.com/)
-
-我们可以直接选择 [快速安装](https://nginxproxymanager.com/guide/#quick-setup)。
 
 首先，我们创建一个文件夹来存放 NPM 的 `docker-compose.yml` 文件：
 
 ```bash
-mkdir -p ~/data/docker_data/nginxproxymanager   # 创建一个 npm 的文件夹
-
-cd ~/data/docker_data/nginxproxymanager    # 进入该文件夹
-
-vi docker-compose.yml
+mkdir npm && cd npm
+vim docker-compose.yml
 ```
 
-在英文状态的输入法下，按下 `i`，左下角出现 `--INSERT--` 后，粘贴填入下面的内容：
+将下面的内容复制到 `docker-compose.yml` 文件：
 
 ```yaml
-version: '3'
 services:
-  app:
+  npm:
     image: 'jc21/nginx-proxy-manager:latest'
+    networks:
+      - npm
     restart: unless-stopped
     ports:
-      - '80:80'              # 不建议修改端口
-      - '81:81'              # 可以把冒号左边的 81 端口修改成你服务器上没有被占用的端口
-      - '443:443'            # 不建议修改端口
+      - '80:80'       # Nginx 的 80 端口
+      - '443:443'     # Nginx 的 443 端口
+      - '81:81'       # Nginx Proxy Manager 的管理端口
     volumes:
-      - ./data:/data         # 点号表示当前文件夹，冒号左边的意思是在当前文件夹下创建一个 data 目录，用于存放数据，如果不存在的话，会自动创建
-      - ./letsencrypt:/etc/letsencrypt  # 点号表示当前文件夹，冒号左边的意思是在当前文件夹下创建一个 letsencrypt 目录，用于存放证书，如果不存在的话，会自动创建
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+
+# 定义网络以便 NPM 与其他容器通信
+networks:
+  npm:
+    name: npm
+    attachable: true
 ```
 
-> 注意：安装了 NPM 之后，就不需要再安装 Nginx 了，否则会端口冲突（不建议修改 NPM 的 80、443 端口）。如果你的服务器安装了宝塔面板，也可以和 NPM 一起使用，只要你到软件后台把宝塔安装的 Nginx 关闭或者卸载即可。
-
-之后，同样在英文输入法下，按一下 `esc`，然后 `:wq` 保存退出。
+:::info
+配置中提到的 80、443、81 端口需要提前在服务器提供商开放端口。
+:::
 
 启动 NPM：
 
 ```bash
-docker-compose up -d     # -d 表示后台运行
-
-docker compose up -d     # 如果你用的是 docker-compose-plugin 的话，用这条命令
+docker compose up -d
 ```
 
-不出意外，此时你使用 [http://127.0.0.1:81](http://127.0.0.1:81/) 就可以访问 NPM 的网页端了。（注意把 `127.0.0.1` 替换成你实际服务器的 IP）
+在服务正常启动的情况下，现在已经可以通过 `http://{服务器公网 IP}:81` 访问 NPM 的网页端了。
 
 :::info
-
-1. 不知道服务器 IP，可以直接在命令行输入：curl ip.sb，会显示当前服务器的 IP。
-2. 遇到访问不了的情况，请再次检查在宝塔面板的防火墙和服务商的后台防火墙是否打开对应了端口。
+如果无法通过端口访问到 NPM，可以检查是否在服务器提供商开放了 `81` 端口。
 :::
 
-默认登录的用户名：`admin@example.com` 密码：`changeme`
+![Nginx Proxy Manager Welcome](/img/nginx-proxy-manager/npm-welcome.png)
 
-第一次登录会提示更改用户名和密码，建议修改一个复杂一点的密码。
+首次进入页面会提示创建管理员账户，需要注意的是：**邮箱一定要是合法邮箱，后续涉及到 SSL 证书签发**。
 
 至此，我们已经完成了 Nginx Proxy Manager 的搭建，之后就可以用它给我们的 Halo 或者其他 Web 应用做反向代理了。
 
 ## 配置 Halo 的反向代理
 
-首先我们登录网页端之后，会弹出修改用户名和密码的对话框，我们根据自己的实际来修改自己的用户名和邮箱。
+1. 配置 Halo 的 Docker 编排，需要将 `npm` 的网络加入到 Halo 的容器，之后就可以使用 Halo 的服务名作为 `hostname` 在 NPM 的内部进行反向代理了。
 
-![Nginx Proxy Manager 1](/img/nginx-proxy-manager/Nginx-Proxy-Manager-1.png)
+    ```yaml {3-5,16-17}
+    # 省略
+    networks:
+      # 加入 npm 网络
+      npm:
+        external: true
+      halo:
 
-保存之后，会让我们修改密码（建议用一个复杂的密码）。
+    services:
+      halo:
+        image: registry.fit2cloud.com/halo/halo:2.22
+        container_name: halo
+        restart: on-failure:3
+        volumes:
+          - ./halo2:/root/.halo2
+        networks:
+          # 加入 npm 网络
+          - npm
+          - halo
+    # 省略
+    ```
 
-![Nginx Proxy Manager 2](/img/nginx-proxy-manager/Nginx-Proxy-Manager-2.png)
+    配置完成之后，需要使用 `docker compose up -d` 命令重建 Halo 容器。
+2. 进入 NPM 仪表盘，点击代理服务进入代理服务配置页面。
 
-接着我们就可以来给 Halo 来添加一个反向代理了。
+    ![Nginx Proxy Manager Dashboard](/img/nginx-proxy-manager/npm-dashboard.png)
+3. 添加代理配置
 
-点击 `Proxy Hosts`，
+    ![Nginx Proxy Manager Add Proxy](/img/nginx-proxy-manager/npm-add-proxy.png)
 
-![Nginx Proxy Manager 3](/img/nginx-proxy-manager/Nginx-Proxy-Manager-3.png)
+    1. **域名**：配置想要代理到 Halo 的域名，需要提前在域名服务商解析到当前服务器
+    2. **协议**：选择 http
+    3. **转发主机名 / IP**：填写 Halo 容器的服务名，比如上方示例中的 `halo`
+    4. **转发端口**：8090
 
-接着点击 `Add Proxy Host`，弹出如下对话框：
+    以上配置为必须修改，界面中的其他配置可以按需选择，但其中的**缓存资源**不建议打开，可能不会完全遵守 Halo 的缓存策略。
 
-![Nginx Proxy Manager 4](/img/nginx-proxy-manager/Nginx-Proxy-Manager-4.png)
+    配置完成之后，就可以尝试访问域名。
+4. 配置 SSL，点击 SSL 选项卡，勾选 **申请新证书** 之后保存即可，同时建议勾选 **强制 SSL**，这样在访问 http 协议的地址时会自动跳转到 https 协议的地址。
 
-看起来都是英文，很复杂，但是其实很简单，我们只要用到其中的几个功能即可，这边稍微解释一下：
+    ![Nginx Proxy Manager SSL](/img/nginx-proxy-manager/npm-ssl.png)
 
-- `Domain Names` ：填我们 Halo 网站的域名，首先记得做好 DNS 解析，把域名绑定到我们的服务器的 IP 上
-- `Scheme` ：默认 `http` 即可，除非你有自签名证书
-- `Forward Hostname/IP` ：填入服务器的 IP，或者 Docker 容器内部的 IP（如果 NPM 和 Halo 搭建在同一台服务器上的话）
-- `Forward Port`：填入 Halo 映射出的端口，这边默认是 `8090`
-- `Cache Assets` ：缓存，可以选择打开
-- `Block Common Exploits`：阻止常见的漏洞，可以选择打开
-- `Websockets Support` ：WS 支持，可以选择打开
-- `Access List`：这个是 NPM 自带的一个限制访问功能，这边我们不管，后续可以自行研究。
-
-以下是一个样列：
-
-![Nginx Proxy Manager 5](/img/nginx-proxy-manager/Nginx-Proxy-Manager-5.png)
-
-因为样例的 NPM 和 Halo 搭建在同一台 VPS 上，所以这边的 IP，图中填的是 `172.17.0.1`，为 Docker 容器内部的 IP 地址，
-
-可以通过下面的命令查询：
-
-```bash
-ip addr show docker0
-```
-
-```bash {3}
-4: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
-    link/ether 02:42:e4:a3:b5:b9 brd ff:ff:ff:ff:ff:ff
-    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
-       valid_lft forever preferred_lft forever
-```
-
-这边的 IP 是 `172.17.0.1`，填入这个 IP，可以不用打开防火墙的 `8090` 端口。
-
-当然，如果你的 NPM 和 Halo 不在同一台服务上，你需要在 IP 部分填入 **你的 Halo 所在的服务器的 IP**，并在服务商（部分服务商如腾讯、阿里）的后台打开 `8090` 端口。
-
-## 一键申请 SSL 证书
-
-接着我们来申请一张 SSL 证书，让我们的网站支持 `https` 访问。
-
-![Nginx Proxy Manager 6](/img/nginx-proxy-manager/Nginx-Proxy-Manager-6.png)
-
-![Nginx Proxy Manager 7](/img/nginx-proxy-manager/Nginx-Proxy-Manager-7.png)
-
-如图所示，记得打开强制 SSL，其他四个的功能请自行研究，这边不多做讨论。
-
-:::info
-
-1. 申请证书需要你提前将域名解析到 NPM 所在的服务器的 IP 上；
-2. 如果你使用的是国内的服务器，默认 `80` 和 `443` 端口是关闭的，你需要备案之后才能使用；
-3. 如果你使用了 CloudFlare 的 DNS 服务，记得把小黄云关闭（即不开启 CDN）。
-:::
-
-不出意外，你将成功申请到 SSL 证书，证书会三个月自动续期。
-
-再次点开配置，查看一下，将强制 SSL 打开。
-
-![Nginx Proxy Manager 8](/img/nginx-proxy-manager/Nginx-Proxy-Manager-8.png)
-
-至此，你已经成功完成了 Halo 的反向代理，快尝试使用域名访问一下看看吧！
-
-> 同样的，举一反三，试试把你的 NPM 也用一个域名来反向代理一下吧。(小提示：你需要再解析一个域名（可以是二级域名）到 NPM 所在的服务器上，反代页面需要填的 IP 可以填 docker 容器内的 IP 也可以填服务器的 IP，端口填 `81` 即可）
+至此，我们已经完成了在 Nginx Proxy Manager 配置 Halo 反向代理并添加 SSL 证书的全过程。
