@@ -74,12 +74,7 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
-          ignorePatterns: [
-            "/2.18/**",
-            "/2.19/**",
-            "/2.20/**",
-            "/2.21/**",
-          ],
+          ignorePatterns: ["/2.18/**", "/2.19/**", "/2.20/**", "/2.21/**"],
         },
         googleAnalytics: {
           trackingID: "UA-110780416-7",
@@ -136,7 +131,7 @@ const config = {
                 ([versionName, versionUrl]) => ({
                   label: versionName,
                   href: versionUrl,
-                })
+                }),
               ),
               {
                 to: "/versions",
@@ -168,7 +163,7 @@ const config = {
       },
       footer: {
         style: "dark",
-        copyright: `Copyright © 2023 凌霞软件. Built with Docusaurus.`,
+        copyright: `Copyright © 2026 凌霞软件. Built with Docusaurus.`,
         links: [
           {
             title: "关于",
