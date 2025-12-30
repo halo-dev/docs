@@ -21,8 +21,6 @@ description: 内置应用市场的使用说明
 
 ![账号绑定](/img/user-guide/app-store/app-store-pat.png)
 
-如果你需要购买 Halo 应用市场中的付费应用，建议先绑定好 Halo 官网的账号，绑定之后即可直接在 Console 中购买和安装付费应用和主题。
-
 绑定方式：
 
 1. 进入应用市场插件的设置页面，切换到 **账号绑定** 选项卡。
@@ -53,18 +51,23 @@ description: 内置应用市场的使用说明
 ### 在线激活
 
 :::info
-在线激活需要先在你的网站中 [绑定 Halo 官网账号](#绑定-halo-官网账号)，以及需要确保网站所在的服务器能够正常访问 [https://www.halo.run](https://www.halo.run)。
+目前在线激活支持两种方式：
+
+1. 通过 [Halo 官网账户](https://www.halo.run/)：如果你是在 Halo 官网购买的付费应用，需要通过这种方式，并提前[绑定 Halo 官网账号](#绑定-halo-官网账号)
+2. 通过 [Halo 专业版/商业版许可证](../getting-started/prepare.md#发行版本)：如果你购买了 [Halo 付费版](../getting-started/prepare.md#发行版本)，可以选择这个选项来激活应用
+
+关于 Halo 专业版/商业版许可证的更多信息可查阅：[许可证激活 / 查看和下载付费应用](../user-guide/activate.md#查看和下载付费应用)
 :::
 
-在安装好需要许可证的付费插件或主题后，列表会显示一个许可证状态的图标，点击即可打开许可证激活的对话框，选择在线许可证并点击激活即可。
+在安装好需要许可证的付费插件或主题后，列表会显示一个许可证状态的图标，点击即可打开许可证激活的对话框，选择 **Halo 官网账户** 或 **Halo 专业版/商业版许可证** 并点击激活即可。
 
-![插件激活状态](/img/user-guide/app-store/app-store-license-status.png)
+![插件激活状态](/img/user-guide/app-store/app-store-license-status-2.22.png)
 
-![插件许可证激活](/img/user-guide/app-store/app-store-plugin-license.png)
+![插件许可证激活](/img/user-guide/app-store/app-store-plugin-license-2.22.png)
 
 除此之外，你也可以在 **许可证管理** 页面查看所有应用的许可证，并管理它们的状态。
 
-![许可证列表](/img/user-guide/app-store/app-store-license-manage.png)
+![许可证列表](/img/user-guide/app-store/app-store-license-manage-2.22.png)
 
 ### 离线激活
 

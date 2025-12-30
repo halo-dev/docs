@@ -16,7 +16,7 @@ Halo 支持通过多种方式进行配置，目前 [Docker Compose 部署文档]
 ```yaml {5-10}
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo:2.22
+    image: registry.fit2cloud.com/halo/halo-pro:2.22
     ...
     command:
       - --spring.r2dbc.url=r2dbc:pool:postgresql://halodb/halo
@@ -116,18 +116,184 @@ Web 服务相关：
 
 数据库相关：
 
-| 配置路径                   | 说明                                                        | 默认值 |
-| -------------------------- | ----------------------------------------------------------- | ------ |
-| `spring.r2dbc.url`         | 数据库连接地址，详细可查阅下方的 `数据库配置`               | --     |
-| `spring.r2dbc.username`    | 数据库用户名                                                | --     |
-| `spring.r2dbc.password`    | 数据库密码                                                  | --     |
-| `spring.sql.init.platform` | 数据库平台名称，支持 `postgresql`、`mysql`、`mariadb`、`h2` | --     |
+| 配置路径                   | 说明                                                                  | 默认值 |
+| -------------------------- | --------------------------------------------------------------------- | ------ |
+| `spring.r2dbc.url`         | 数据库连接地址，详细可查阅下方的 `数据库配置`                         | --     |
+| `spring.r2dbc.username`    | 数据库用户名                                                          | --     |
+| `spring.r2dbc.password`    | 数据库密码                                                            | --     |
+| `spring.sql.init.platform` | 数据库平台名称，支持 `postgresql`、`mysql`、`mariadb`、`oracle`、`h2` | --     |
 
 数据库配置：
 
-| 链接方式    | 链接地址格式                                                                       | `spring.sql.init.platform` |
-| ----------- | ---------------------------------------------------------------------------------- | -------------------------- |
-| PostgreSQL  | `r2dbc:pool:postgresql://{HOST}:{PORT}/{DATABASE}`                                 | postgresql                 |
-| MySQL       | `r2dbc:pool:mysql://{HOST}:{PORT}/{DATABASE}`                                      | mysql                      |
-| MariaDB     | `r2dbc:pool:mariadb://{HOST}:{PORT}/{DATABASE}`                                    | mariadb                    |
-| H2 Database | `r2dbc:h2:file:///${halo.work-dir}/db/halo-next?MODE=MySQL&DB_CLOSE_ON_EXIT=FALSE` | h2                         |
+| 链接方式         | 链接地址格式                                                                       | `spring.sql.init.platform` |
+| ---------------- | ---------------------------------------------------------------------------------- | -------------------------- |
+| PostgreSQL       | `r2dbc:pool:postgresql://{HOST}:{PORT}/{DATABASE}`                                 | postgresql                 |
+| MySQL            | `r2dbc:pool:mysql://{HOST}:{PORT}/{DATABASE}`                                      | mysql                      |
+| MariaDB          | `r2dbc:pool:mariadb://{HOST}:{PORT}/{DATABASE}`                                    | mariadb                    |
+| Oracle（付费版） | `r2dbc:pool:oracle://{HOST}:{PORT}/{DATABASE}`                                     | oracle                     |
+| H2 Database      | `r2dbc:h2:file:///${halo.work-dir}/db/halo-next?MODE=MySQL&DB_CLOSE_ON_EXIT=FALSE` | h2                         |
+
+:::warning 商业版需要注意
+由于商业版的数据结构与 Halo 其他版本不同，所以暂时仅支持 PostgreSQL、MySQL、MariaDB、H2。
+:::
+
+<details>
+  <summary>Oracle 用户需要注意</summary>
+
+由于 Oracle 数据库各个版本的差异，目前很难统一提供自动执行的 SQL 脚本，所以配置 Oracle 数据库连接之前，需要先手动创建数据库以及执行表创建脚本。以下是具体步骤：
+
+1. 在 Oracle 数据库中创建数据库，比如 `halo`。
+2. 添加 Halo 的启动参数 `--spring.sql.init.mode=never`。
+3. 执行创建表的 SQL 脚本，下面提供两种脚本，可以按照 Oracle 数据库的版本自行选择：
+
+   如果你的 Oracle 数据库不支持 `IF NOT EXISTS` 语法：
+
+   ```sql
+    DECLARE 
+        table_count INTEGER;
+    BEGIN
+        SELECT COUNT(*)
+        INTO table_count
+        FROM all_tables
+        WHERE table_name = 'EXTENSIONS';
+    
+        IF table_count = 0 THEN
+            EXECUTE IMMEDIATE '
+                CREATE TABLE extensions
+                (
+                    name    VARCHAR2(255) NOT NULL,
+                    data    BLOB,
+                    version NUMBER,
+                    CONSTRAINT pk_name PRIMARY KEY (name)
+                )';
+        END IF;
+    END;
+    /
+   ```
+
+   如果你的 Oracle 数据库支持 `IF NOT EXISTS` 语法：
+
+   ```sql
+    CREATE TABLE IF NOT EXISTS EXTENSIONS (
+        NAME    VARCHAR2(255) NOT NULL,
+        DATA    BLOB,
+        VERSION NUMBER,
+        CONSTRAINT PK_NAME PRIMARY KEY ( NAME )
+    );
+   ```
+
+</details>
+
+## Redis 集成
+
+:::note
+限 [Halo 付费版](../prepare.md#发行版本) 可用。
+:::
+
+Halo 付费版在 2.16 中新增了集成 Redis 的功能，目前提供将用户登录 Session 存入 Redis 的支持。
+
+### 配置方式
+
+如果使用 Docker 或者 Docker Compose 部署，需要添加以下启动参数：
+
+```properties
+- --spring.data.redis.host=localhost  # Redis 服务地址
+- --spring.data.redis.port=6379       # Redis 服务端口
+- --spring.data.redis.database=0      # Redis 数据库
+- --spring.data.redis.password=       # Redis 密码
+- --halo.session.store-type=redis     # 声明 session 存储方式为 redis,默认不配置则为 in-memory
+- --halo.redis.enabled=true           # 启用 Redis 服务
+```
+
+:::info
+请特别注意 `spring.data.redis.host` 的指向，在 Docker 容器中，可能并不是 localhost，需要确保 Halo 容器中能够正常访问到你的 Redis 服务。
+:::
+
+Docker Compose 配置片段如下：
+
+```yaml {25-32}
+version: "3"
+
+services:
+  halo:
+    image: registry.fit2cloud.com/halo/halo-pro:2.22
+    restart: on-failure:3
+    depends_on:
+      halodb:
+        condition: service_healthy
+    networks:
+      halo_network:
+    volumes:
+      - ./halo2:/root/.halo2
+    ports:
+      - "8090:8090"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s          
+    command:
+      ...
+
+      # Redis 相关配置开始
+      - --spring.data.redis.host=localhost  # Redis 服务地址
+      - --spring.data.redis.port=6379       # Redis 服务端口
+      - --spring.data.redis.database=0      # Redis 数据库
+      - --spring.data.redis.password=       # Redis 密码
+      - --halo.session.store-type=redis     # 声明 session 存储方式为 redis,默认不配置则为 in-memory
+      - --halo.redis.enabled=true
+      # Redis 相关配置结束
+networks:
+  halo_network:
+```
+
+如果你是使用的 Docker Compose 部署 Halo，并且希望将 Redis 服务编排在一起，以下是配置示例：
+
+```yaml {25-32,36-43}
+version: "3"
+
+services:
+  halo:
+    image: registry.fit2cloud.com/halo/halo-pro:2.22
+    restart: on-failure:3
+    depends_on:
+      halodb:
+        condition: service_healthy
+    networks:
+      halo_network:
+    volumes:
+      - ./halo2:/root/.halo2
+    ports:
+      - "8090:8090"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s          
+    command:
+      # ...
+
+      # Redis 相关配置开始
+      - --spring.data.redis.host=redis      # Redis 服务地址
+      - --spring.data.redis.port=6379       # Redis 服务端口
+      - --spring.data.redis.database=0      # Redis 数据库
+      - --spring.data.redis.password=       # Redis 密码
+      - --halo.session.store-type=redis     # 声明 session 存储方式为 redis,默认不配置则为 in-memory
+      - --halo.redis.enabled=true
+      # Redis 相关配置结束
+  
+  # ...
+
+  # 新增的 Redis 编排
+  redis:
+    image: redis:7.2.5
+    networks:
+      halo_network:
+    volumes:
+      - ./redis-data:/data
+    restart: always
+networks:
+  halo_network:
+```

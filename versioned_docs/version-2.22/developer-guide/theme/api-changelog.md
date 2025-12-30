@@ -19,4 +19,4 @@ description: 记录每一个版本的主题 API 变更记录，方便开发者�
 
 ### 文章 Finder API > 修改 `cursor(postName)` 返回结构
 
-我们修改了文章 Finder API 中 `cursor(postName)` 方法的返回体结构，移除了 `current` 字段，并修改了 `previous` 和 `next` 字段类型为 `ListedPostVo`，并明确了上一篇文章是指发布时间较当前文章更早的文章，下一篇文章是指发布时间较当前文章更新的文章。详细文档可查阅：[文章 Finder API#cursor](../../developer-guide/theme/finder-apis/post.md#cursor)。
+我们修改了文章 Finder API 中 `cursor(postName)` 方法的返回体结构，移除了 `current` 字段，并修改了 `previous` 和 `next` 字段类型为 `ListedPostVo`，并明确了上一篇文章是指发布时间较当前文章更早的文章，下一篇文章是指发布时间较当前文章更新的文章。详细文档可查阅：[文章 Finder API#cursor](../../developer-guide/theme/finder-apis/post.md#cursorpostname)。

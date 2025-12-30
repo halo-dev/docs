@@ -93,6 +93,7 @@ module.exports = {
       },
       items: [
         "user-guide/common",
+        "user-guide/activate",
         "user-guide/user-center",
         "user-guide/posts",
         "user-guide/pages",
@@ -113,7 +114,7 @@ module.exports = {
       link: {
         type: "generated-index",
       },
-      items: ["contribution/issue", "contribution/pr", "contribution/sponsor"],
+      items: ["contribution/issue", "contribution/pr"],
     },
     "about",
   ],

@@ -1,5 +1,5 @@
 ---
-title: 与 Nginx Proxy Manager 配合使用
+title: Nginx Proxy Manager 反向代理
 description: 使用 Nginx Proxy Manager 管理 Halo 服务的反向代理
 ---
 
@@ -93,7 +93,7 @@ docker compose up -d
 
     services:
       halo:
-        image: registry.fit2cloud.com/halo/halo:2.22
+        image: registry.fit2cloud.com/halo/halo-pro:2.22
         container_name: halo
         restart: on-failure:3
         volumes:

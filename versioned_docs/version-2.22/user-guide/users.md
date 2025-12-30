@@ -101,7 +101,10 @@ Halo 提供了全新创建和基于已有角色创建两种角色创建方式。
 :::info
 目前 Halo 官方提供的身份认证插件：
 
-- OAuth2 认证：[https://www.halo.run/store/apps/app-ESVDK](https://www.halo.run/store/apps/app-ESVDK)
+- [OAuth2 认证](https://www.halo.run/store/apps/app-ESVDK)
+- [社交 IAM 认证（包含在 Halo 付费版）](https://www.halo.run/store/apps/app-IXZkJ)
+- [LDAP 认证（包含在 Halo 付费版）](https://www.halo.run/store/apps/app-vrSqF)
+
 :::
 
 你可以在用户管理界面的右上角点击 `身份认证` 按钮，进入身份认证管理页面。
@@ -110,6 +113,12 @@ Halo 提供了全新创建和基于已有角色创建两种角色创建方式。
 
 进入身份认证管理页面之后，如果你已经安装了提供身份认证方式的插件，你就可以在列表中看到对应的身份认证方式，你可以对其进行设置并启用。
 
-![身份认证方式](/img/user-guide/users/auth-providers-2.20+.png)
+![身份认证方式](/img/user-guide/users/auth-providers-2.22+.png)
 
-> 这里是安装了 [OAuth2 认证](https://www.halo.run/store/apps/app-ESVDK) 插件，提供了 `GitHub`、`GitLab`、`Gitee` 三种 OAuth2 认证方式。
+### 手机验证码登录
+
+:::note
+限 [Halo 付费版](../getting-started/prepare.md#发行版本) 可用。
+:::
+
+在 [短信通知](../user-guide/settings.md#短信通知) 中配置好短信通知后，就可以在身份认证管理页面中开启手机验证码登录，也可以通过拖拽的方式调整默认登录方式。
