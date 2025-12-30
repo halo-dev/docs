@@ -93,6 +93,7 @@ module.exports = {
       },
       items: [
         "user-guide/common",
+        "user-guide/activate",
         "user-guide/user-center",
         "user-guide/posts",
         "user-guide/pages",
