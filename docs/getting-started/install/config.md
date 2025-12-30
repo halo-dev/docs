@@ -187,7 +187,7 @@ Web 服务相关：
 ## Redis 集成
 
 :::note
-限 [Halo 付费版](../getting-started/prepare.md#发行版本) 可用。
+限 [Halo 付费版](../prepare.md#发行版本) 可用。
 :::
 
 Halo 付费版在 2.16 中新增了集成 Redis 的功能，目前提供将用户登录 Session 存入 Redis 的支持。
