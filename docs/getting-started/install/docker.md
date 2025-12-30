@@ -58,6 +58,8 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
    如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
    :::
 
+3. 激活许可证，可以参考 [许可证激活](../../user-guide/activate.md) 进行激活，社区版无需此步骤。
+
 ## 升级 Halo
 
 1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份（可选，但推荐备份）。
