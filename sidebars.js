@@ -114,7 +114,7 @@ module.exports = {
       link: {
         type: "generated-index",
       },
-      items: ["contribution/issue", "contribution/pr", "contribution/sponsor"],
+      items: ["contribution/issue", "contribution/pr"],
     },
     "about",
   ],
