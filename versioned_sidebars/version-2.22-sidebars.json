@@ -75,6 +75,7 @@
       },
       "items": [
         "user-guide/common",
+        "user-guide/activate",
         "user-guide/user-center",
         "user-guide/posts",
         "user-guide/pages",
@@ -95,11 +96,7 @@
       "link": {
         "type": "generated-index"
       },
-      "items": [
-        "contribution/issue",
-        "contribution/pr",
-        "contribution/sponsor"
-      ]
+      "items": ["contribution/issue", "contribution/pr"]
     },
     "about"
   ],
@@ -326,9 +323,7 @@
           "link": {
             "type": "generated-index"
           },
-          "items": [
-            "developer-guide/plugin/examples/todolist"
-          ]
+          "items": ["developer-guide/plugin/examples/todolist"]
         },
         "developer-guide/plugin/api-changelog"
       ]
@@ -413,9 +408,7 @@
       "link": {
         "type": "generated-index"
       },
-      "items": [
-        "developer-guide/appendix/publish-app"
-      ]
+      "items": ["developer-guide/appendix/publish-app"]
     }
   ]
 }

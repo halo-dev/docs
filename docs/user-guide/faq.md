@@ -24,7 +24,7 @@ description: 使用上的常见问题
 
      **PostgreSQL** 数据库
 
-     ```SQL
+     ```sql
        UPDATE
            extensions
        SET
@@ -42,7 +42,7 @@ description: 使用上的常见问题
 
      **MySQL** 数据库
 
-     ```SQL
+     ```sql
      UPDATE
          extensions
      SET

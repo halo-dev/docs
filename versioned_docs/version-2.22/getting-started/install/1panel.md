@@ -71,3 +71,7 @@ import DockerArgs from "./slots/_docker-args.md"
 最后，点击确认按钮，等待网站创建完成即可访问网站进行 [初始化](../setup.md)。
 
 ![网站列表](/img/install/1panel/site.png)
+
+## 激活许可证
+
+可以参考 [许可证激活](../../user-guide/activate.md) 进行激活，社区版无需此步骤。

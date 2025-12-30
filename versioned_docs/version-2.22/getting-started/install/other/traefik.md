@@ -1,5 +1,5 @@
 ---
-title: 与 Traefik 配合使用
+title: Traefik 反向代理
 description: 使用 Traefik 管理 Halo 服务的反向代理
 ---
 
@@ -96,7 +96,7 @@ networks:
 
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo:2.22
+    image: registry.fit2cloud.com/halo/halo-pro:2.22
     container_name: halo
     restart: on-failure:3
     volumes:
