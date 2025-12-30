@@ -55,7 +55,7 @@ title: 使用 JAR 文件部署
 3. 下载运行包
 
    :::info
-   Halo 主要区分为[社区版和付费版](../../prepare.md#发行版本)，这两个版本使用不同的 JAR 文件，以下是 JAR 文件下载地址：
+   Halo 主要区分为[社区版和付费版](../prepare.md#发行版本)，这两个版本使用不同的 JAR 文件，以下是 JAR 文件下载地址：
    1. [https://download.halo.run](https://download.halo.run)
    2. [GitHub Releases（社区版）](https://github.com/halo-dev/halo/releases)
 
