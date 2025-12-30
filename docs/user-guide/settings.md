@@ -167,3 +167,61 @@ Halo 提供了以下站点基本信息设置：
 > - [Gmail](https://support.google.com/mail/answer/7104828?hl=zh-Hans)
 > - [阿里云企业邮箱](https://help.aliyun.com/document_detail/36687.html)
 > - [腾讯企业邮箱](https://open.work.weixin.qq.com/help2/pc/19870)
+
+### 短信通知
+
+:::note
+限 [Halo 付费版](../getting-started/prepare.md#发行版本) 可用。
+:::
+
+目前短信通知在 Halo 中基本只作为用户登录时发送验证码使用，以下是配置说明：
+
+- 提供商 (腾讯云/阿里云/UCloud)：目前仅支持腾讯云、阿里云、UCloud 短信服务中的国内短信服务，即仅能向中国大陆手机号码发送短信
+- 超时时间：短信在系统中记录的超时时间，超过当前时间后系统会判断已到期
+- 验证码长度：发送验证码到手机商的长度，一般为 6 位
+- 提供商具体配置：不同的提供商需要提供的参数不一致，具体提供商的具体参数说明请参考后续文档
+- 测试短信：提供检测机制测试当前的配置是否有效。点击测试短信会发送短信给当前操作用户，所以当前的用户在个人信息中配置正确的手机号码
+
+#### 腾讯云短信服务配置说明
+
+在 Halo 中进行以下设置之前，需要先在腾讯云开通短信服务，并创建可用的签名、模板及应用等内容。
+
+- [腾讯云短信服务控制台地址](https://console.cloud.tencent.com/smsv2)
+- [腾讯云短信服务文档地址](https://cloud.tencent.com/document/product/382/37745)
+
+1. SecretId：用于调用腾讯云接口的 API 密钥的 SecretId，可以在腾讯云控制台 [API密钥管理页面](https://console.cloud.tencent.com/cam/capi) 创建
+2. SecretKey：用于调用腾讯云接口的 API 密钥的 SecretKey，可以在腾讯云控制台 [API密钥管理页面](https://console.cloud.tencent.com/cam/capi) 创建
+3. 地域：腾讯云接口要求的必传参数，可选的地域列表可以查看 [腾讯云文档](https://cloud.tencent.com/document/api/382/52071#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
+4. 应用 ID：在腾讯云短信服务 [应用管理菜单](https://console.cloud.tencent.com/smsv2/app-manage) 中创建的应用的 `SDK AppID`
+5. 签名内容：在腾讯云短信服务 [签名管理菜单](https://console.cloud.tencent.com/smsv2/csms-sign) 中创建的签名的 `签名内容`
+6. 模板 ID：在腾讯云短信服务 [正文模板管理菜单](https://console.cloud.tencent.com/smsv2/csms-template) 中创建的正文模板的 `ID`
+
+#### 阿里云短信服务配置说明
+
+在 Halo 中进行以下设置之前，需要先在阿里云开通短信服务，并创建可用的签名、模板等内容。
+
+- [阿里云短信服务控制台地址](https://dysms.console.aliyun.com/overview)
+- [阿里云短信服务文档地址](https://help.aliyun.com/zh/sms/)
+
+1. AccessKey ID：用于调用阿里云接口的 API 密钥的 AccessKey ID，可以在阿里云控制台 [AccessKey管理页面](https://ram.console.aliyun.com/manage/ak) 创建
+2. AccessKey Secret：用于调用阿里云接口的 API 密钥的 AccessKey Secret，可以在阿里云控制台 [AccessKey管理页面](https://ram.console.aliyun.com/manage/ak) 创建
+3. 地域：阿里云接口要求的必传参数，可选的地域列表可以查看 [阿里云文档](https://help.aliyun.com/zh/sms/developer-reference/api-dysmsapi-2017-05-25-endpoint?spm=a2c4g.11174283.0.0.13d64994r9G5rN)
+4. 短信签名：在阿里云短信服务 [签名管理菜单](https://dysms.console.aliyun.com/domestic/text/sign) 中创建的签名的 `签名名称`
+5. 短信模板：在阿里云短信服务 [模板管理菜单](https://dysms.console.aliyun.com/domestic/text/template) 中创建的模板的 `模板CODE`
+
+#### UCloud 短信服务配置说明
+
+在 Halo 中进行以下设置之前，需要先在 UCloud 开通短信服务，并创建可用的签名、模板等内容。
+
+- [UCloud 短信服务控制台地址](https://console.ucloud.cn/usms)
+- [UCloud 短信服务文档地址](https://docs.ucloud.cn/usms/README)
+
+> 目前仅支持国内短信且短信模版仅支持一个变量的验证码类型短信模版如：**你的验证码为{1}，该验证码5分钟内有效，如非本人操作，请忽略本短信！**
+
+1. 公钥：用于调用 UCloud 接口的 API 密钥的 公钥，可以在 UCloud 控制台 [API密钥](https://console.ucloud.cn/uaccount/api_manage) 创建
+2. 私钥：用于调用 UCloud 接口的 API 密钥的 私钥，可以在 UCloud 控制台 [API密钥](https://console.ucloud.cn/uaccount/api_manage) 创建
+3. 项目 ID：UCloud 接口要求的必传参数，可选的项目列表可以查看 [项目管理](https://console.ucloud.cn/uaccount/iam/project_manage) 中的`项目ID`
+4. 模版 ID：在 UCloud 短信服务 [短信模板](https://console.ucloud.cn/usms/domestic) 中创建的签名的 `模板ID`
+5. 签名内容：在 UCloud 短信服务 [短信签名](https://console.ucloud.cn/usms/domestic) 中创建的签名的 `签名内容`
+
+配置完成之后，可以在 [身份认证](../user-guide/users.md#身份认证) 中开启手机号登录。
