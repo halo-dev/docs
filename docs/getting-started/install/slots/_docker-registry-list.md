@@ -1,6 +1,6 @@
 Halo 主要区分为[社区版和付费版](../../prepare.md#发行版本)，这两个版本使用不同的 Docker 镜像，以下是 Docker Hub 的官方镜像地址：
 
-- [Halo 付费版镜像](https://hub.docker.com/r/halohub/halo-pro/tags)：包括 [Halo 专业版](https://www.lxware.cn/halo) 和 [Halo 商业版](https://www.lxware.cn/halo)，可以使用所有开源版本的功能，但部分付费功能需要使用许可证激活
+- [Halo 付费版镜像](https://hub.docker.com/r/halohub/halo-pro/tags)：包括 [Halo 专业版](https://www.lxware.cn/halo) 和 [Halo 商业版](https://www.lxware.cn/halo)，包含社区版的所有功能，并提供额外的付费功能，部分付费功能需要使用许可证激活
 - [Halo 社区版镜像](https://hub.docker.com/r/halohub/halo/tags)：使用 Halo 的[开源仓库](https://github.com/halo-dev/halo)构建，不包含任何付费功能，也不支持激活许可证
 
 镜像名称由以下组成：
