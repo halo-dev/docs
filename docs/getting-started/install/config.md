@@ -183,3 +183,117 @@ Web 服务相关：
    ```
 
 </details>
+
+## Redis 集成
+
+:::note
+限 [Halo 付费版](../getting-started/prepare.md#发行版本) 可用。
+:::
+
+Halo 付费版在 2.16 中新增了集成 Redis 的功能，目前提供将用户登录 Session 存入 Redis 的支持。
+
+### 配置方式
+
+如果使用 Docker 或者 Docker Compose 部署，需要添加以下启动参数：
+
+```properties
+- --spring.data.redis.host=localhost  # Redis 服务地址
+- --spring.data.redis.port=6379       # Redis 服务端口
+- --spring.data.redis.database=0      # Redis 数据库
+- --spring.data.redis.password=       # Redis 密码
+- --halo.session.store-type=redis     # 声明 session 存储方式为 redis,默认不配置则为 in-memory
+- --halo.redis.enabled=true           # 启用 Redis 服务
+```
+
+:::info
+请特别注意 `spring.data.redis.host` 的指向，在 Docker 容器中，可能并不是 localhost，需要确保 Halo 容器中能够正常访问到你的 Redis 服务。
+:::
+
+Docker Compose 配置片段如下：
+
+```yaml {25-32}
+version: "3"
+
+services:
+  halo:
+    image: registry.fit2cloud.com/halo/halo-pro:2.22
+    restart: on-failure:3
+    depends_on:
+      halodb:
+        condition: service_healthy
+    networks:
+      halo_network:
+    volumes:
+      - ./halo2:/root/.halo2
+    ports:
+      - "8090:8090"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s          
+    command:
+      ...
+
+      # Redis 相关配置开始
+      - --spring.data.redis.host=localhost  # Redis 服务地址
+      - --spring.data.redis.port=6379       # Redis 服务端口
+      - --spring.data.redis.database=0      # Redis 数据库
+      - --spring.data.redis.password=       # Redis 密码
+      - --halo.session.store-type=redis     # 声明 session 存储方式为 redis,默认不配置则为 in-memory
+      - --halo.redis.enabled=true
+      # Redis 相关配置结束
+networks:
+  halo_network:
+```
+
+如果你是使用的 Docker Compose 部署 Halo，并且希望将 Redis 服务编排在一起，以下是配置示例：
+
+```yaml {25-32,36-43}
+version: "3"
+
+services:
+  halo:
+    image: registry.fit2cloud.com/halo/halo-pro:2.22
+    restart: on-failure:3
+    depends_on:
+      halodb:
+        condition: service_healthy
+    networks:
+      halo_network:
+    volumes:
+      - ./halo2:/root/.halo2
+    ports:
+      - "8090:8090"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 30s          
+    command:
+      # ...
+
+      # Redis 相关配置开始
+      - --spring.data.redis.host=redis      # Redis 服务地址
+      - --spring.data.redis.port=6379       # Redis 服务端口
+      - --spring.data.redis.database=0      # Redis 数据库
+      - --spring.data.redis.password=       # Redis 密码
+      - --halo.session.store-type=redis     # 声明 session 存储方式为 redis,默认不配置则为 in-memory
+      - --halo.redis.enabled=true
+      # Redis 相关配置结束
+  
+  # ...
+
+  # 新增的 Redis 编排
+  redis:
+    image: redis:7.2.5
+    networks:
+      halo_network:
+    volumes:
+      - ./redis-data:/data
+    restart: always
+networks:
+  halo_network:
+```
