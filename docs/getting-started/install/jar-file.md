@@ -54,15 +54,17 @@ title: 使用 JAR 文件部署
 
 3. 下载运行包
 
-   ```bash
-   wget https://dl.halo.run/release/halo-2.22.0.jar -O halo.jar
-   ```
-
    :::info
-   以下是官方维护的下载地址：
+   Halo 主要区分为[社区版和付费版](../../prepare.md#发行版本)，这两个版本使用不同的 JAR 文件，以下是 JAR 文件下载地址：
    1. [https://download.halo.run](https://download.halo.run)
-   2. [https://github.com/halo-dev/halo/releases](https://github.com/halo-dev/halo/releases)
+   2. [GitHub Releases（社区版）](https://github.com/halo-dev/halo/releases)
+
+   后续文档将使用 `halo-pro-<version>.jar` 为例，如果需要使用社区版，将 `halo-pro` 改为 `halo` 即可。
    :::
+
+   ```bash
+   wget https://dl.halo.run/release/halo-pro-2.22.3.jar -O halo.jar
+   ```
 
 4. 创建 [工作目录](../prepare#工作目录)
 
@@ -108,12 +110,12 @@ title: 使用 JAR 文件部署
 
    数据库配置说明：
 
-   | 参数名                     | 描述                                                        |
-   | -------------------------- | ----------------------------------------------------------- |
-   | `spring.r2dbc.url`         | 数据库连接地址，详细可查阅下方的 `配置对应关系`             |
-   | `spring.r2dbc.username`    | 数据库用户名                                                |
-   | `spring.r2dbc.password`    | 数据库密码                                                  |
-   | `spring.sql.init.platform` | 数据库平台名称，支持 `postgresql`、`mysql`、`mariadb`、`h2` |
+   | 参数名                     | 描述                                                                  |
+   | -------------------------- | --------------------------------------------------------------------- |
+   | `spring.r2dbc.url`         | 数据库连接地址，详细可查阅下方的 `配置对应关系`                       |
+   | `spring.r2dbc.username`    | 数据库用户名                                                          |
+   | `spring.r2dbc.password`    | 数据库密码                                                            |
+   | `spring.sql.init.platform` | 数据库平台名称，支持 `postgresql`、`mysql`、`mariadb`、`oracle`、`h2` |
 
    配置对应关系：
 
@@ -122,7 +124,59 @@ title: 使用 JAR 文件部署
    | PostgreSQL（推荐） | `r2dbc:pool:postgresql://{HOST}:{PORT}/{DATABASE}`                                 | postgresql                 |
    | MySQL              | `r2dbc:pool:mysql://{HOST}:{PORT}/{DATABASE}`                                      | mysql                      |
    | MariaDB            | `r2dbc:pool:mariadb://{HOST}:{PORT}/{DATABASE}`                                    | mariadb                    |
+   | Oracle（付费版）   | `r2dbc:pool:oracle://{HOST}:{PORT}/{DATABASE}`                                     | oracle                     |
    | H2 Database        | `r2dbc:h2:file:///${halo.work-dir}/db/halo-next?MODE=MySQL&DB_CLOSE_ON_EXIT=FALSE` | h2                         |
+
+   :::warning 商业版需要注意
+   由于商业版的数据结构与 Halo 其他版本不同，所以暂时仅支持 PostgreSQL、MySQL、MariaDB、H2。
+   :::
+
+    <details>
+      <summary>Oracle 用户需要注意</summary>
+
+    由于 Oracle 数据库各个版本的差异，目前很难统一提供自动执行的 SQL 脚本，所以配置 Oracle 数据库连接之前，需要先手动创建数据库以及执行表创建脚本。以下是具体步骤：
+
+    1. 在 Oracle 数据库中创建数据库，比如 `halo`。
+    2. 添加 Halo 的启动参数 `--spring.sql.init.mode=never`。
+    3. 执行创建表的 SQL 脚本，下面提供两种脚本，可以按照 Oracle 数据库的版本自行选择：
+
+      如果你的 Oracle 数据库不支持 `IF NOT EXISTS` 语法：
+
+      ```sql
+        DECLARE 
+            table_count INTEGER;
+        BEGIN
+            SELECT COUNT(*)
+            INTO table_count
+            FROM all_tables
+            WHERE table_name = 'EXTENSIONS';
+        
+            IF table_count = 0 THEN
+                EXECUTE IMMEDIATE '
+                    CREATE TABLE extensions
+                    (
+                        name    VARCHAR2(255) NOT NULL,
+                        data    BLOB,
+                        version NUMBER,
+                        CONSTRAINT pk_name PRIMARY KEY (name)
+                    )';
+            END IF;
+        END;
+        /
+      ```
+
+      如果你的 Oracle 数据库支持 `IF NOT EXISTS` 语法：
+
+      ```sql
+        CREATE TABLE IF NOT EXISTS EXTENSIONS (
+            NAME    VARCHAR2(255) NOT NULL,
+            DATA    BLOB,
+            VERSION NUMBER,
+            CONSTRAINT PK_NAME PRIMARY KEY ( NAME )
+        );
+      ```
+
+    </details>
 
    :::info
    - HOST：数据库服务地址，如 `localhost`
@@ -250,13 +304,13 @@ journalctl -n 20 -u halo
 3. 下载新版本的 Halo 运行包，覆盖原有的运行包
 
    ```bash
-   wget https://dl.halo.run/release/halo-2.22.0.jar -O /home/halo/app/halo.jar
+   wget https://dl.halo.run/release/halo-pro-2.22.3.jar -O /home/halo/app/halo.jar
    ```
 
    :::info
    以下是官方维护的下载地址：
    1. [https://download.halo.run](https://download.halo.run)
-   2. [https://github.com/halo-dev/halo/releases](https://github.com/halo-dev/halo/releases)
+   2. [GitHub Releases（社区版）](https://github.com/halo-dev/halo/releases)
    :::
 
 4. 启动 Halo 服务

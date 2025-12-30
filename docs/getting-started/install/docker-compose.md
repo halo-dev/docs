@@ -19,13 +19,13 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 - Docker 安装文档：[https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 - Docker Compose 安装文档：[https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
-:::tip
-我们推荐按照 Docker 官方文档安装 Docker 和 Docker Compose，因为部分 Linux 发行版软件仓库中的 Docker 版本可能过旧。
-:::
+## 部署 Halo
 
-## 创建容器组
+### 镜像说明
 
 <DockerRegistryList />
+
+### 创建容器
 
 1. 在系统任意位置创建一个文件夹，此文档以 `~/halo` 为例。
 
@@ -41,10 +41,6 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
    此文档提供几种场景的 Docker Compose 配置文件，请根据你的需要**选择一种**。
 
-   :::info
-   需要注意的是，此文档为了更加方便的管理配置，所有与 Halo 相关的配置都使用 Docker 容器启动参数代替，所以无需创建 application.yaml 文件。
-   :::
-
    <Tabs queryString="current">
     <TabItem value="halo-postgresql" label="Halo + PostgreSQL（推荐）" default>
          ```yaml {26-32,46} title="~/halo/docker-compose.yaml"
@@ -52,7 +48,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
          services:
            halo:
-             image: registry.fit2cloud.com/halo/halo:2.22
+             image: registry.fit2cloud.com/halo/halo-pro:2.22
              restart: on-failure:3
              depends_on:
                halodb:
@@ -111,7 +107,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
          services:
            halo:
-             image: registry.fit2cloud.com/halo/halo:2.22
+             image: registry.fit2cloud.com/halo/halo-pro:2.22
              restart: on-failure:3
              depends_on:
                halodb:
@@ -181,7 +177,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
         services:
           halo:
-            image: registry.fit2cloud.com/halo/halo:2.22
+            image: registry.fit2cloud.com/halo/halo-pro:2.22
             restart: on-failure:3
             volumes:
               - ./halo2:/root/.halo2
@@ -207,7 +203,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
         services:
           halo:
-            image: registry.fit2cloud.com/halo/halo:2.22
+            image: registry.fit2cloud.com/halo/halo-pro:2.22
             restart: on-failure:3
             network_mode: "host"
             volumes:
@@ -248,7 +244,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 3. 启动 Halo 服务
 
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
    实时查看日志：
@@ -263,7 +259,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
    如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
    :::
 
-## 更新容器组
+## 升级 Halo
 
 1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份（可选，但推荐备份）。
 2. 更新 Halo 服务
@@ -273,11 +269,11 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
    ```yaml {3}
    services:
     halo:
-      image: registry.fit2cloud.com/halo/halo:2.22
+      image: registry.fit2cloud.com/halo/halo-pro:2.22
    ```
 
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
 ## 反向代理
@@ -337,7 +333,7 @@ networks:
 
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo:2.22
+    image: registry.fit2cloud.com/halo/halo-pro:2.22
     restart: on-failure:3
     volumes:
       - ./halo2:/root/.halo2

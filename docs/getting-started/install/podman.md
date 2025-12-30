@@ -43,7 +43,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 我们推荐您先阅读 Podman 官方文档对 Podman 有了相关了解后，再考虑通过 Linux 包管理系统安装 Podman 或者使用文档中指定的方式安装。
 :::
 
-## 使用 Docker 镜像
+## 部署 Halo
 
 :::tip
 为什么是 Docker 镜像？
@@ -51,13 +51,17 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 通过[前言](#前言)我们已经了解了 Podman，其中提到 ***Podman 与 Docker 高度兼容*** ，正是因为 Podman 完全是为了替代 Docker 而诞生，所以原本的 Docker 生态中的镜像我们可以无需更改直接使用。
 :::
 
+### 镜像说明
+
 <DockerRegistryList />
+
+### 创建容器
 
 1. 创建容器
 
    ```bash
    mkdir -p ~/.halo2
-   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo:2.22
+   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo-pro:2.22
    ```
 
    :::info
@@ -84,13 +88,13 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
    如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
    :::
 
-## 升级版本
+## 升级 Halo
 
 1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份（可选，但推荐备份）。
 2. 拉取新版本镜像
 
    ```bash
-   podman pull registry.fit2cloud.com/halo/halo:2.22
+   podman pull registry.fit2cloud.com/halo/halo-pro:2.22
    ```
 
 3. 停止运行中的容器
@@ -105,7 +109,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
    修改版本号后，按照最初安装的方式，重新创建容器即可。
 
    ```bash
-   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo:2.22
+   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo-pro:2.22
    ```
 
 ## 使用 [Podman Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)
