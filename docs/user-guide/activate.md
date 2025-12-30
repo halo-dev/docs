@@ -11,7 +11,7 @@ description: 介绍如何激活 Halo 付费版
 
 ## 购买许可证
 
-你可以在[凌霞软件](https://www.lxware.cn/halo)官网购买 Halo 付费版的许可证，目前分为 Halo 专业版和 Halo 商业版，支持按月/按年订阅或者版本买断。
+你可以在[凌霞软件](https://www.lxware.cn/halo?code=mcYhwMkn)官网购买 Halo 付费版的许可证，目前分为 Halo 专业版和 Halo 商业版，支持按月/按年订阅或者版本买断。
 
 在凌霞官网购买产品后，可以在 `个人中心` > `我的许可证` ，统一管理当前账户下的全部已购产品的许可证。
 

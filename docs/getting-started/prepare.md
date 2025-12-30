@@ -7,9 +7,9 @@ description: 在开始前，你需要了解的事项
 
 Halo 的发行版本主要区分为两个大类别，即 **Halo 社区版** 和 **Halo 付费版**。
 
-Halo 付费版包括专业版和商业版，是[凌霞软件](https://www.lxware.cn/)旗下的商业产品，为企业/团体/或进阶个人使用者提供了诸多定制化和特定场景的功能支持。
+Halo 付费版包括专业版和商业版，是[凌霞软件](https://www.lxware.cn?code=mcYhwMkn)旗下的商业产品，为企业/团体/或进阶个人使用者提供了诸多定制化和特定场景的功能支持。
 
-版本区别可查阅 [方案对比](https://www.lxware.cn/halo#scheme-title)
+版本区别可查阅 [方案对比](https://www.lxware.cn/halo?code=mcYhwMkn)
 
 在后续的文档中，使用付费版统称 Halo 专业版 和 Halo 商业版，除非特别说明。
 
