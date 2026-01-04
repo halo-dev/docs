@@ -11,12 +11,19 @@ description: 记录每一个版本的插件 API 变更记录，方便开发者�
 
 因此，建议插件开发者尽快升级 Halo 依赖，`build.gradle` 修改示例如下：
 
-```groovy
+```gradle
 dependencies {
     implementation platform('run.halo.tools.platform:plugin:2.22.5')
 
     ...
 }
+```
+
+`plugin.yaml` 中的 `spec.requires` 字段也需要提升至 `>=2.22.5`，示例如下：
+
+```yaml
+spec:
+  requires: ">=2.22.5"
 ```
 
 尝试构建并解决编译错误即可。
