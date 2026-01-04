@@ -11,7 +11,7 @@ description: 记录每一个版本的插件 API 变更记录，方便开发者�
 
 因此，建议插件开发者尽快升级 Halo 依赖，`build.gradle` 修改示例如下：
 
-```gradle
+```groovy
 dependencies {
     implementation platform('run.halo.tools.platform:plugin:2.22.5')
 
