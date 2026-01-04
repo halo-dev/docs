@@ -3,6 +3,24 @@ title: API 变更日志
 description: 记录每一个版本的插件 API 变更记录，方便开发者适配
 ---
 
+## 2.22.5
+
+### SpringDoc 依赖更新可能导致插件无法启动
+
+在 2.22.5 中，我们更新了 SpringDoc 依赖至 [2.8.15](https://github.com/springdoc/springdoc-openapi/releases/tag/v2.8.15) 版本，该版本[修复](https://github.com/springdoc/springdoc-openapi/pull/3183)了 OpenAPI 文档生成中的一些问题（例如嵌套路由无须定义文档），且为破坏性更新，这可能会导致插件无法正常启动。
+
+因此，建议插件开发者尽快升级 Halo 依赖，`build.gradle` 修改示例如下：
+
+```gradle
+dependencies {
+    implementation platform('run.halo.tools.platform:plugin:2.22.5')
+
+    ...
+}
+```
+
+尝试构建并解决编译错误即可。
+
 ## 2.22.0
 
 ### `@halo-dev/console-shared` 改名
