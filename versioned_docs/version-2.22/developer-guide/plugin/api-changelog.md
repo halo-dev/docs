@@ -19,6 +19,13 @@ dependencies {
 }
 ```
 
+`plugin.yaml` 中的 `spec.requires` 字段也需要提升至 `>=2.22.5`，示例如下：
+
+```yaml
+spec:
+  requires: ">=2.22.5"
+```
+
 尝试构建并解决编译错误即可。
 
 ## 2.22.0
