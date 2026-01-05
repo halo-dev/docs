@@ -105,6 +105,19 @@ module.exports = {
         "user-guide/users",
         "user-guide/settings",
         "user-guide/backup",
+        {
+          type: "category",
+          label: "商城",
+          link: {
+            type: "doc",
+            id: "user-guide/shop/index",
+          },
+          items: [
+            "user-guide/shop/prepare",
+            "user-guide/shop/payments",
+            "user-guide/shop/sales-channels",
+          ],
+        },
         "user-guide/faq",
       ],
     },

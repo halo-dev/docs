@@ -1,0 +1,75 @@
+---
+title: 支付方式
+description: 商城支付方式相关使用文档。
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+在正式运营商城之前，我们需要配置至少一个可用的支付方式，目前商城支持的支付方式包括：
+
+- 支付宝
+- 微信支付
+- 银行转账（手动）
+- 收款码支付（手动）
+
+首先我们需要登录到 Halo 控制台，并进入 **商店 -> 设置 -> 支付方式** 页面，并点击右上角的新建按钮。
+
+<Tabs>
+  <TabItem value="1️⃣ 进入支付方式页面">
+    ![](/img/user-guide/shop/settings-payments.png)
+  </TabItem>
+  <TabItem value="2️⃣ 新建支付方式">
+    ![](/img/user-guide/shop/settings-payments-create.png)
+  </TabItem>
+</Tabs>
+
+:::note
+在配置支付方式之前，建议先创建一个测试产品，方便在配置完成后进行测试。
+:::
+
+## 支付宝
+
+### 创建支付宝应用
+
+支付宝支付方式使用的是支付宝官方提供的接口，买家交易的资金会直接进入商家的支付宝账户，没有三方平台介入。
+
+在创建支付宝支付方式之前，我们需要先在支付宝商家平台和支付宝开放平台注册并申请。
+
+- [支付宝商家平台](https://b.alipay.com/)
+- [支付宝开放平台](https://open.alipay.com/)
+
+注册完成后，进入支付宝 [开放平台 -> 控制台](https://open.alipay.com/develop/manage)，点击 **创建网页/移动应用** 按钮创建一个新的应用：
+
+![](/img/user-guide/shop/settings-payments-alipay-create-app.png)
+
+其中 **应用类型** 选择网页应用，其他参数按照实际情况填写即可。
+
+### 获取支付宝配置信息
+
+创建完应用之后，进入应用详情页面，如下所示：
+
+![](/img/user-guide/shop/settings-payments-alipay-app-detail.png)
+
+- 1️⃣：应用 ID
+- 2️⃣：设置接口加签方式
+    - 加签方式选择 **密钥** 即可
+    - 其他流程按照支付宝的指引进行操作即可
+    - 最后需要下载 **支付宝公钥证书** 到本地，后续在 Halo 中配置会用到
+- 3️⃣：接口内容加密方式，点击 **生成加密方式** 并复制生成的密文即可
+
+### 在 Halo 中配置
+
+打开新建支付方式的界面，支付提供商选择 **支付宝支付**，并填写以下信息：
+
+- 是否启用：勾选
+- 名称：给用户展示的支付方式名称
+- 场景：选择 **PC 网页支付**
+- 网关地址：`https://openapi.alipay.com`
+- 支付宝账号 ID：进入支付宝开放平台的账户中心，复制 **账号 ID** 即可
+- 应用 ID：上一步中获取的应用 ID
+- 商户私钥：上一步中生成的密钥文件
+- 支付宝公钥：上一步中下载的 `alipayCertPublicKey_RSA2.crt` 文件内容
+- 加密密钥：上一步中生成的加密密钥
+
+配置完成之后保存即可。
