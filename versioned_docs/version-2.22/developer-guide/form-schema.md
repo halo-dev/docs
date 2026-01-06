@@ -761,3 +761,33 @@ UI 效果：
 ```
 
 :::
+
+### switch
+
+开关组件，提供两个值之间的选择；当您想使用户切换功能开或关时，这是一个很好的选项
+
+参数
+
+- `onValue`：开关打开时的值，默认为 `true`
+- `offValue`：开关关闭时的值，默认为 `false`
+- `disabled`：是否禁用开关，默认为 `false`
+
+#### 示例
+
+```yaml
+- $formkit: switch
+  name: enabled
+  label: 是否启用
+  value: false
+```
+
+如果需要开关的值为其他值，可以设置 `onValue` 和 `offValue` 参数。
+
+```yaml
+- $formkit: switch
+  name: enabled
+  label: 是否启用
+  value: "active"
+  onValue: "active"
+  offValue: "inactive"
+```
