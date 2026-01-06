@@ -74,6 +74,10 @@ import TabItem from '@theme/TabItem';
 
 配置完成之后，还需要在 [销售渠道](./sales-channels.mdx) 中绑定该支付方式。
 
+支付预览：
+
+![](/img/user-guide/shop/preview-payments-alipay.png)
+
 ### 沙箱环境
 
 访问 [沙箱应用 - 开放平台](https://open.alipay.com/develop/sandbox/app)，按照页面上的信息在 Halo 中配置即可。
@@ -133,6 +137,10 @@ import TabItem from '@theme/TabItem';
 
 配置完成之后，还需要在 [销售渠道](./sales-channels.mdx) 中绑定该支付方式。
 
+支付预览：
+
+![](/img/user-guide/shop/preview-payments-wechat.png)
+
 ### 配置支付授权目录
 
 在微信支付商户平台中，还需要配置支付授权目录：
@@ -140,3 +148,42 @@ import TabItem from '@theme/TabItem';
 1. 登录微信支付商户平台
 2. 进入 **产品中心 -> 开发配置**
 3. 在 **支付授权目录** 中添加您的网站支付页面地址，例如：`https://example.com/`
+
+## 银行转账
+
+银行转账支付方式不经过 Halo 的支付系统，仅仅是在支付的时候显示商家的银行收款信息，让买家转账到商家的银行账户，后续再通过人工审核的方式确认订单。
+
+打开新建支付方式的界面，支付提供商选择 **银行转账**，并填写以下信息：
+
+- 是否启用：勾选
+- 名称：给用户展示的支付方式名称
+- 场景：选择 **PC 网页支付**
+- 收款银行：银行名称
+- 银行支行地址：开户行地址
+- 收款账户名：收款账户名称
+- 收款账号：收款银行账号
+- 付款说明：为用户说明转账时需要注意的事项
+
+配置完成之后，还需要在 [销售渠道](./sales-channels.mdx) 中绑定该支付方式。
+
+支付预览：
+
+![](/img/user-guide/shop/preview-payments-bank-transfer.png)
+
+## 收款码支付
+
+收款码支付方式不经过 Halo 的支付系统，仅仅是在支付的时候显示商家的收款码，让买家扫码支付，后续再通过人工审核的方式确认订单。
+
+打开新建支付方式的界面，支付提供商选择 **收款码支付**，并填写以下信息：
+
+- 是否启用：勾选
+- 名称：给用户展示的支付方式名称
+- 场景：选择 **PC 网页支付**
+- 收款码二维码图片链接
+- 付款说明：为用户说明扫码时需要注意的事项
+
+配置完成之后，还需要在 [销售渠道](./sales-channels.mdx) 中绑定该支付方式。
+
+支付预览：
+
+![](/img/user-guide/shop/preview-payments-qrcode.png)
