@@ -28,6 +28,12 @@ spec:
 
 尝试构建并解决编译错误即可。
 
+## 2.22.2
+
+### 表单定义 > 新增 `switch` 组件
+
+在 2.22.2 中，我们为 FormKit 表单新增了 `switch` 组件，用于定义一个功能的开关，详细文档可查阅：[表单定义#switch](../../developer-guide/form-schema.md#switch)
+
 ## 2.22.0
 
 ### `@halo-dev/console-shared` 改名

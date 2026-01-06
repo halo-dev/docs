@@ -3,6 +3,12 @@ title: API 变更日志
 description: 记录每一个版本的主题 API 变更记录，方便开发者适配
 ---
 
+## 2.22.2
+
+### 表单定义 > 新增 `switch` 表单类型
+
+在 2.22.2 中，我们为 FormKit 表单新增了 `switch` 组件，用于定义一个功能的开关，详细文档可查阅：[表单定义#switch](../../developer-guide/form-schema.md#switch)
+
 ## 2.22.0
 
 ### 表单定义 > 新增 Iconify 图标选择器
