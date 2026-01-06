@@ -87,6 +87,22 @@
         "user-guide/users",
         "user-guide/settings",
         "user-guide/backup",
+        {
+          "type": "category",
+          "label": "商城",
+          "link": {
+            "type": "doc",
+            "id": "user-guide/shop/index"
+          },
+          "items": [
+            "user-guide/shop/prepare",
+            "user-guide/shop/payments",
+            "user-guide/shop/sales-channels",
+            "user-guide/shop/products",
+            "user-guide/shop/orders",
+            "user-guide/shop/theme-dev"
+          ]
+        },
         "user-guide/faq"
       ]
     },

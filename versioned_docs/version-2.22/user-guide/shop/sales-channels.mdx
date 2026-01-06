@@ -1,0 +1,33 @@
+---
+title: 销售渠道
+description: 商城销售渠道相关使用文档。
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+为了区分不同平台（PC 端、小程序等）的支付方式以及后续追踪订单来源，系统提供了销售渠道功能。
+
+:::info
+由于目前商城仅支持 PC 端，暂未支持小程序等平台，所以仅需要创建一个 PC 端销售渠道并绑定所需的支付方式。
+:::
+
+## 创建销售渠道
+
+首先登录到 Halo 控制台，进入 **商店 -> 设置 -> 销售渠道** 页面，点击右上角的新建按钮。
+
+<Tabs>
+  <TabItem value="1️⃣ 进入销售渠道页面">
+    ![](/img/user-guide/shop/settings-sales-channels.png)
+  </TabItem>
+  <TabItem value="2️⃣ 新建销售渠道">
+    ![](/img/user-guide/shop/settings-sales-channels-create.png)
+  </TabItem>
+</Tabs>
+
+- 是否启用：勾选
+- 名称：可任意填写
+- 编码：目前商城仅支持 PC 端，所以编码选择 **PC 端商城（MALL_PC）**
+- 支付方式：选择已创建的支付方式，创建方式可参考：[支付方式](./payments.mdx)
+
+到这里，已经完成了支付方式和销售渠道的配置，现在可以正常使用商城功能了。
