@@ -23,6 +23,10 @@
     "message": "用户指南",
     "description": "The label for category '用户指南' in sidebar 'tutorial'"
   },
+  "sidebar.tutorial.category.商城": {
+    "message": "商城",
+    "description": "The label for category '商城' in sidebar 'tutorial'"
+  },
   "sidebar.tutorial.category.参与贡献": {
     "message": "参与贡献",
     "description": "The label for category '参与贡献' in sidebar 'tutorial'"
