@@ -27,6 +27,16 @@ description: 备份与恢复功能说明
 
 ![Backup complete](/img/user-guide/backup/backup-complete.png)
 
+## 自动备份与同步
+
+为了保障数据的安全，Halo 提供了自动备份和同步的[备份增强插件](https://www.halo.run/store/apps/app-dHakX)，可以定期将数据备份到本地并同步到云端。
+
+:::note
+此插件目前为 [Halo 付费版](../getting-started/prepare.md#发行版本) 专享插件。
+:::
+
+![Auto backup and sync](/img/user-guide/backup/auto-backup.png)
+
 ## 恢复
 
 :::info 在恢复前，需要了解以下几点：
@@ -40,6 +50,7 @@ description: 备份与恢复功能说明
 在 Console 中，点击左侧菜单的 `备份`，进入备份页面，然后点击 `恢复` 选项卡即可进入恢复界面，阅读完注意事项之后点击 `开始恢复` 按钮即可显示备份文件上传界面。
 
 ![Before restore](/img/user-guide/backup/before-restore.png)
+
 ![Restore](/img/user-guide/backup/restore.png)
 
 Halo 支持三种恢复方式：
@@ -61,6 +72,7 @@ Halo 支持三种恢复方式：
 恢复完成，会提示重启 Halo，点击 `确定` 按钮即可重启 Halo。
 
 ![Restore complete](/img/user-guide/backup/restore-complete.png)
+
 ![Waiting restart](/img/user-guide/backup/waiting-restart.png)
 
 最后，建议去服务器检查 Halo 的运行状态，如果没有设置自动重启，需要手动重启。
