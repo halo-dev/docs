@@ -791,3 +791,46 @@ UI 效果：
   onValue: "active"
   offValue: "inactive"
 ```
+
+### toggle
+
+切换组件，用于对一组图片、颜色或文字等选择切换，支持单选与多选。它的功能与 `select` 组件类似，但相较于 `select` 组件，`toggle` 组件可以更直观的展示选项。
+
+参数：
+
+- `renderType`：当前组件的渲染类型，可选参数为 `image`、`color`、`text`，默认为 `text`。
+- `options`：一组同类型的数据源，数据类型为 `{ label?: string; value: string; render?: string }[]`，其中 `label` 为选项的文本，`value` 为选项的值。`render` 为选项的渲染展示内容，与 `renderType` 参数配合使用。
+  - 当 `renderType` 为 `image` 时，`render` 参数为图片的 URL。
+  - 当 `renderType` 为 `color` 时，`render` 参数为颜色的十六进制代码。例如 `#000000`。
+  - 当 `renderType` 为 `text` 时，`render` 参数为文字内容。
+- `multiple`：可选，是否支持多选，默认为 `false`。
+- `size`：可选，渲染内容的尺寸，`number` 类型，单位为 `px`。
+- `gap`：可选，渲染内容之间的间距，`number` 类型，单位为 `px`。
+- `value`: 可选初始值，数据类型为 `string | number | boolean | (string | number | boolean)[]`。
+
+#### 示例
+
+```yaml
+- $formkit: toggle
+  label: 选择图片
+  name: toggle
+  render-type: image
+  size: 100
+  gap: 10
+  help: 选择图片作为背景
+  options:
+    - label: 图文1
+      value: 1
+      render: https://placehold.co/600x400
+    - label: 图文2
+      value: 2
+      render: https://placehold.co/600x400
+    - label: 图文3
+      value: 3
+      render: https://placehold.co/600x400
+
+```
+
+### UI 效果
+
+<img src="/img/formkit/formkit-toggle.png" width="50%" />
