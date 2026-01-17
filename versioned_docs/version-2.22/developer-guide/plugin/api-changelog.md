@@ -3,6 +3,12 @@ title: API 变更日志
 description: 记录每一个版本的插件 API 变更记录，方便开发者适配
 ---
 
+## 2.22.8
+
+### 表单定义 > 新增 `toggle` 组件
+
+在 2.22.8 中，我们为 FormKit 表单新增了 `toggle` 组件，这是一个可以对一组图片、颜色或文字等进行选择切换的组件，详细文档可查阅：[表单定义#toggle](../../developer-guide/form-schema.md#toggle)
+
 ## 2.22.5
 
 ### SpringDoc 依赖更新可能导致插件无法启动
