@@ -831,9 +831,11 @@ UI 效果：
 
 ```
 
-### UI 效果
+#### UI 效果
 
-<img src="/img/formkit/formkit-toggle.png" width="50%" />
+<p>
+<img src="/img/formkit/formkit-toggle.png" width="50%" class="medium-zoom-image" />
+</p>
 
 ### secret
 
