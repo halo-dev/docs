@@ -834,3 +834,32 @@ UI 效果：
 ### UI 效果
 
 <img src="/img/formkit/formkit-toggle.png" width="50%" />
+
+### secret
+
+密钥输入组件，用于选择一个密钥资源。
+
+:::note
+在 Halo 中，我们提供了一种更加安全的数据存储模型，即 Secret，通常我们使用 Secret 来存储敏感数据，比如密码、token、密钥等。
+
+主要注意的是，此表单类型通常与后端配合使用，需要在后端查询密钥资源。
+:::
+
+参数
+
+- `requiredKeys`：所需的密钥字段，用于为用户说明所选的密钥资源中需要包含的字段，此字段为对象数组类型，对象包含以下属性：
+  - `key`：密钥字段名称
+  - `help`：密钥字段名称的描述
+
+#### 示例
+
+```yaml
+- $formkit: secret
+  name: secret
+  label: 密钥
+  requiredKeys:
+    - key: apiKey
+      help: API 密钥
+    - key: secretKey
+      help: 密钥
+```
