@@ -23,6 +23,10 @@
     "message": "Gitee 组织",
     "description": "The label of footer link with label=Gitee 组织 linking to https://gitee.com/halo-dev"
   },
+  "link.item.label.版本发布": {
+    "message": "版本发布",
+    "description": "The label of footer link with label=版本发布 linking to https://releases.halo.run"
+  },
   "link.item.label.Server Status": {
     "message": "Server Status",
     "description": "The label of footer link with label=Server Status linking to https://status.halo.run"

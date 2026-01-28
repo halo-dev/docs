@@ -23,6 +23,10 @@
     "message": "论坛",
     "description": "Navbar item with label 论坛"
   },
+  "item.label.版本": {
+    "message": "版本",
+    "description": "Navbar item with label 版本"
+  },
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"

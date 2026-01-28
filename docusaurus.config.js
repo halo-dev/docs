@@ -131,7 +131,7 @@ const config = {
                 ([versionName, versionUrl]) => ({
                   label: versionName,
                   href: versionUrl,
-                }),
+                })
               ),
               {
                 to: "/versions",
@@ -147,6 +147,11 @@ const config = {
           {
             href: "https://bbs.halo.run",
             label: "论坛",
+            position: "right",
+          },
+          {
+            href: "https://releases.halo.run",
+            label: "版本",
             position: "right",
           },
           {
@@ -183,6 +188,10 @@ const config = {
               {
                 label: "Gitee 组织",
                 href: "https://gitee.com/halo-dev",
+              },
+              {
+                label: "版本发布",
+                href: "https://releases.halo.run",
               },
               {
                 label: "Server Status",
