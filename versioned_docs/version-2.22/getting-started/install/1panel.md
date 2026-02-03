@@ -72,6 +72,24 @@ import DockerArgs from "./slots/_docker-args.md"
 
 ![网站列表](/img/install/1panel/site.png)
 
+## 升级 Halo
+
+:::info 提示
+当 Halo 发布新版本之后，并不会在 1Panel 的应用商店中实时查看到新版本，通常需要等待一段时间才会显示，这取决于 1Panel 的应用商店更新频率。
+:::
+
+:::warning 注意
+目前 1Panel 不支持在升级应用的时候查看应用的更新日志，所以建议在升级前前往 [Halo 版本发布](https://releases.halo.run/) 查看对应版本的更新日志，了解新版本的变化。
+:::
+
+当 Halo 在 1Panel 的应用商店有更新时，可以在 **应用商店** 的 **可升级** 选项卡中看到 Halo 应用的升级按钮。
+
+![升级 Halo](/img/install/1panel/upgrade.png)
+
+点击 **升级** 按钮后，可以在升级界面中选择最新的 Halo 版本，最后点击 **确认** 按钮即可完成升级。
+
+![升级 Halo](/img/install/1panel/upgrade-2.png)
+
 ## 激活许可证
 
 可以参考 [许可证激活](../../user-guide/activate.md) 进行激活，社区版无需此步骤。
