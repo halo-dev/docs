@@ -3,6 +3,12 @@ title: API 变更日志
 description: 记录每一个版本的插件 API 变更记录，方便开发者适配
 ---
 
+## 2.23.0
+
+### 表单定义 > Iconify 表单类型新增 `sizing` 参数
+
+在 2.23.0 中，Iconify 表单类型默认不再显示图标大小选项，如果需要让用户设置图标大小，可以配置 `sizing` 参数，详细文档可查阅：[表单定义#Iconify](../../developer-guide/form-schema.md#iconify)
+
 ## 2.22.8
 
 ### 表单定义 > 新增 `toggle` 组件

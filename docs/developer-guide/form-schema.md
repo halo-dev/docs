@@ -645,6 +645,10 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
   - `name`：Iconify 的图标名称，需要在使用的地方自行加载图标
 - `value-only`：是否仅返回图标数据，默认为 `false`
 - `popper-placement`：图标选择弹窗的打开位置，默认为 `auto`，可以为：`auto`、`auto-end`、`auto-start`、`bottom`、`bottom-end`、`bottom-start`、`left`、`left-end`、`left-start`、`right`、`right-end`、`right-start`、`top`、`top-end`、`top-start`
+- `sizing`：图标尺寸配置对象，包含以下属性：
+  - `enabled`：是否显示图标尺寸配置，默认为 `false`
+  - `default`：默认尺寸，默认为 `24`
+  - `presets`：预设尺寸，字符串数组类型
 
 #### 值类型
 
