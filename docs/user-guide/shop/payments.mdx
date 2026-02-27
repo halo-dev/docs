@@ -185,6 +185,55 @@ import TabItem from '@theme/TabItem';
 
 ## Stripe
 
+### 登录或者注册 Stripe
+
+访问 [Stripe 官网](https://stripe.com)，登录或者注册账号，并且需要完成必要的信息填写，确保可以正常使用 Stripe 的支付功能。
+
+### 获取 API 信息
+
+登录到 [Stripe 控制台](https://dashboard.stripe.com)，进入设置 -> 开发人员 -> 管理 API 密钥，复制 **密钥** 即可，后续在 Halo 中配置时需要使用。
+
+### 创建 WebHook
+
+1. 打开工作台
+
+    ![](/img/user-guide/shop/settings-payments-stripe-1.png)
+
+2. 切换到 WebHook 选项卡，并点击 **添加接收端**
+
+    ![](/img/user-guide/shop/settings-payments-stripe-2.png)
+
+3. 在事件中选择 `checkout.session.completed`
+
+    ![](/img/user-guide/shop/settings-payments-stripe-3.png)
+
+4. 接收端类型选择 **Webhook 端点**
+
+    ![](/img/user-guide/shop/settings-payments-stripe-4.png)
+
+5. 填写端点 URL
+
+    :::note
+    端点 URL 的格式为：
+
+    ```bash
+    https://your-domain.com/apis/api.ecommerce.halo.run/v1alpha1/payment-providers/stripe/callback
+    ```
+    
+    其中 `your-domain.com` 需要替换为你的域名，并且需要确保该域名可以访问。
+    :::
+
+    ![](/img/user-guide/shop/settings-payments-stripe-5.png)
+
+    最后点击 **创建** 按钮即可。
+
+6. 获取签名密钥
+
+    创建完成之后可以在页面的 **签名密钥** 部分复制 **签名密钥**，后续在 Halo 中配置时需要使用。
+
+    ![](/img/user-guide/shop/settings-payments-stripe-6.png)
+
+
 ### 在 Halo 中配置
 
 打开新建支付方式的界面，支付提供商选择 **Stripe**，并填写以下信息：
@@ -192,8 +241,8 @@ import TabItem from '@theme/TabItem';
 - 启用：勾选
 - 名称：给用户展示的支付方式名称
 - 场景：选择 **PC 网页支付**
-- API Key：
-- WebHook Secret：
+- API Key：上一步中获取的 **密钥**
+- WebHook Secret：上一步中获取的 **签名密钥**
 
 配置完成之后，还需要在 [销售渠道](./sales-channels.mdx) 中绑定该支付方式。
 
