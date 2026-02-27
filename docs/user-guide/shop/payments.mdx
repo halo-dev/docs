@@ -10,6 +10,8 @@ import TabItem from '@theme/TabItem';
 
 - 支付宝
 - 微信支付
+- 易支付
+- Stripe
 - 银行转账（手动）
 - 收款码支付（手动）
 
@@ -20,7 +22,7 @@ import TabItem from '@theme/TabItem';
     ![](/img/user-guide/shop/settings-payments.png)
   </TabItem>
   <TabItem value="2️⃣ 新建支付方式">
-    ![](/img/user-guide/shop/settings-payments-create.png)
+    ![](/img/user-guide/shop/settings-payments-create-2.23.png)
   </TabItem>
 </Tabs>
 
@@ -62,7 +64,7 @@ import TabItem from '@theme/TabItem';
 
 打开新建支付方式的界面，支付提供商选择 **支付宝支付**，并填写以下信息：
 
-- 是否启用：勾选
+- 启用：勾选
 - 名称：给用户展示的支付方式名称
 - 场景：选择 **PC 网页支付**
 - 网关地址：`https://openapi.alipay.com`
@@ -126,7 +128,7 @@ import TabItem from '@theme/TabItem';
 
 打开新建支付方式的界面，支付提供商选择 **微信支付**，并填写以下信息：
 
-- 是否启用：勾选
+- 启用：勾选
 - 名称：给用户展示的支付方式名称
 - 场景：选择 **PC 网页支付**
 - 应用 ID：上一步获取的微信 AppID
@@ -141,13 +143,122 @@ import TabItem from '@theme/TabItem';
 
 ![](/img/user-guide/shop/preview-payments-wechat.png)
 
+## 易支付
+
+### 注册易支付
+
+访问 [易支付官网](https://z-pay.cn)，注册并登录账号。
+
+### 开通支付渠道
+
+访问 [易支付 -> 我的支付渠道](https://member.z-pay.cn/member/channel.html)，新增支付宝或者微信渠道，根据平台的要求填写相关信息。
+
+开通成功之后，需要记录 **渠道 ID**，后续在 Halo 中配置时可能需要使用。
+
+![](/img/user-guide/shop/settings-payments-zpayz-channels.png)
+
+### 获取 API 信息
+
+访问 [易支付 -> API 安全](https://member.z-pay.cn/member/myapi.html)，记录 **网关**、**商户 ID（PID）** 和 **商户密钥（KEY）**，后续在 Halo 中配置时需要使用。
+
+![](/img/user-guide/shop/settings-payments-zpayz-api.png)
+
+### 在 Halo 中配置
+
+打开新建支付方式的界面，支付提供商选择 **易支付**，并填写以下信息：
+
+- 启用：勾选
+- 名称：给用户展示的支付方式名称
+- 场景：选择 **PC 网页支付**
+- 自定义图标：由于易支付同时支持微信和支付宝，推荐自定义图标来区分
+- 网关地址：上一步中记录的 **网关**
+- 商户号：上一步中记录的 **商户 ID（PID）**
+- 商户私钥：上一步中记录的 **商户密钥（KEY）**
+- 支付方式：选择 **微信** 或 **支付宝**，需要确保已经在易支付开通对应的渠道
+- 支付渠道 ID：上一步中记录的 **渠道 ID**，支持填写多个，使用英文逗号, 隔开，如果不填则随机调用
+
+配置完成之后，还需要在 [销售渠道](./sales-channels.mdx) 中绑定该支付方式。
+
+支付预览：
+
+![](/img/user-guide/shop/preview-payments-zpayz.png)
+
+## Stripe
+
+### 登录或者注册 Stripe
+
+访问 [Stripe 官网](https://stripe.com)，登录或者注册账号，并且需要完成必要的信息填写，确保可以正常使用 Stripe 的支付功能。
+
+### 获取 API 信息
+
+登录到 [Stripe 控制台](https://dashboard.stripe.com)，进入设置 -> 开发人员 -> 管理 API 密钥，复制 **密钥** 即可，后续在 Halo 中配置时需要使用。
+
+### 创建 WebHook
+
+1. 打开工作台
+
+    ![](/img/user-guide/shop/settings-payments-stripe-1.png)
+
+2. 切换到 WebHook 选项卡，并点击 **添加接收端**
+
+    ![](/img/user-guide/shop/settings-payments-stripe-2.png)
+
+3. 在事件中选择 `checkout.session.completed`
+
+    ![](/img/user-guide/shop/settings-payments-stripe-3.png)
+
+4. 接收端类型选择 **Webhook 端点**
+
+    ![](/img/user-guide/shop/settings-payments-stripe-4.png)
+
+5. 填写端点 URL
+
+    :::note
+    端点 URL 的格式为：
+
+    ```bash
+    https://your-domain.com/apis/api.ecommerce.halo.run/v1alpha1/payment-providers/stripe/callback
+    ```
+    
+    其中 `your-domain.com` 需要替换为你的域名，并且需要确保该域名可以访问。
+    :::
+
+    ![](/img/user-guide/shop/settings-payments-stripe-5.png)
+
+    最后点击 **创建** 按钮即可。
+
+6. 获取签名密钥
+
+    创建完成之后可以在页面的 **签名密钥** 部分复制 **签名密钥**，后续在 Halo 中配置时需要使用。
+
+    ![](/img/user-guide/shop/settings-payments-stripe-6.png)
+
+
+### 在 Halo 中配置
+
+打开新建支付方式的界面，支付提供商选择 **Stripe**，并填写以下信息：
+
+- 启用：勾选
+- 名称：给用户展示的支付方式名称
+- 场景：选择 **PC 网页支付**
+- API Key：上一步中获取的 **密钥**
+- WebHook Secret：上一步中获取的 **签名密钥**
+
+配置完成之后，还需要在 [销售渠道](./sales-channels.mdx) 中绑定该支付方式。
+
+支付预览：
+
+![](/img/user-guide/shop/preview-payments-stripe.png)
+
+![](/img/user-guide/shop/preview-payments-stripe-2.png)
+
 ## 银行转账
 
 银行转账支付方式不经过 Halo 的支付系统，仅仅是在支付的时候显示商家的银行收款信息，让买家转账到商家的银行账户，后续再通过人工审核的方式确认订单。
 
 打开新建支付方式的界面，支付提供商选择 **银行转账**，并填写以下信息：
 
-- 是否启用：勾选
+- 启用：勾选
 - 名称：给用户展示的支付方式名称
 - 场景：选择 **PC 网页支付**
 - 收款银行：银行名称
@@ -168,7 +279,7 @@ import TabItem from '@theme/TabItem';
 
 打开新建支付方式的界面，支付提供商选择 **收款码支付**，并填写以下信息：
 
-- 是否启用：勾选
+- 启用：勾选
 - 名称：给用户展示的支付方式名称
 - 场景：选择 **PC 网页支付**
 - 收款码二维码图片链接
