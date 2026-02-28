@@ -114,6 +114,7 @@ module.exports = {
           },
           items: [
             "user-guide/shop/prepare",
+            "user-guide/shop/console-home",
             "user-guide/shop/payments",
             "user-guide/shop/sales-channels",
             "user-guide/shop/products",
