@@ -119,6 +119,7 @@ module.exports = {
             "user-guide/shop/sales-channels",
             "user-guide/shop/products",
             "user-guide/shop/orders",
+            "user-guide/shop/virtual-delivery",
             "user-guide/shop/theme-dev",
           ],
         },
