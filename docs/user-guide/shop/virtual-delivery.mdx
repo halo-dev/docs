@@ -1,0 +1,260 @@
+---
+title: 虚拟交付
+description: 商城虚拟交付相关使用文档。
+---
+
+在 Halo 2.23 中，我们完善了虚拟产品的发货功能，目前支持文件资源下载、卡密发货。
+
+## 创建产品
+
+完整的创建产品流程可参考 [产品管理](./products.mdx) 文档，需要注意的是，如果产品要支持虚拟交付，需要在产品类型中选择 **虚拟** 产品类型。
+
+![](/img/user-guide/shop/products-create-virtual.png)
+
+## 设置文件资源下载
+
+创建完产品之后，我们需要进入 **产品 -> 虚拟交付** 页面，然后选择刚刚创建的产品。
+
+![](/img/user-guide/shop/virtual-delivery-products.png)
+
+进入设置页面之后，就可以看到 **资源下载** 的设置页面，我们可以点击右上方的 **添加** 按钮来添加文件。
+
+![](/img/user-guide/shop/virtual-delivery-resource-add.png)
+
+- 资源类型：支持附件和静态 URL
+- 资源名称：为客户显示的文件名称
+- 资源描述：可以填写文件的描述信息
+- 附件（当类型为附件时）：可以点击 `+` 按钮选择已上传的附件或者上传新的附件
+- 资源地址（当类型为静态 URL 时）：可以填写文件的 URL 地址
+
+填写完成之后，点击 **保存** 按钮即可。
+
+当文件添加完成之后，我们还需要手动启用自动发货，点击右上角的 **发货配置** 按钮，勾选启用即可。
+
+![](/img/user-guide/shop/virtual-delivery-resource-config.png)
+
+## 设置卡密发货
+
+进入虚拟交付设置页面之后，选择 **卡密资产** 选项卡，就可以看到 **卡密资产** 的设置页面。
+
+![](/img/user-guide/shop/virtual-delivery-cdks.png)
+
+我们可以点击右上方的 **添加** 按钮来添加卡密。
+
+![](/img/user-guide/shop/virtual-delivery-cdk-add.png)
+
+- 卡密：卡密内容，支持批量添加，一行一个
+- 过期时间：卡密过期时间
+- 备注：可以填写卡密的备注信息
+
+填写完成之后点击 **添加** 按钮即可。
+
+当卡密添加完成之后，我们还需要手动启用自动发货，点击右上角的 **发货配置** 按钮，勾选启用即可。
+
+![](/img/user-guide/shop/virtual-delivery-cdk-config.png)
+
+此外，在卡密发货配置界面中，还支持配置 **远程调用配置**，支持通过三方 API 来补货或者动态生成卡密并发货。
+
+定义：
+
+- 预获取：优先从卡密列表中选择并发货，在库存不足时才调用 API 进行补货
+- 动态获取：每次发货时都调用 API 获取卡密并发货
+
+配置说明：
+
+- 类型：支持 **预获取** 和 **动态获取**
+    - 补货配置（当类型为预获取时）
+        - API 地址：补货 API 地址
+        - 认证 Token：补货 API 认证 Token，用于对 API 请求进行认证
+        - 阈值：可用卡密数量低于此值时触发补货
+        - 每次获取的卡密数量：每次调用 API 获取的卡密数量
+    - 服务器配置（当类型为动态获取时）
+        - API 地址：远程生成 API 地址
+        - 认证 Token：API 认证 Token，用于对 API 请求进行认证
+
+需要注意的是，API 需要自行实现并适配 Halo 的接口标准，可以参考下方的 [API 规范](#api-规范)。
+
+## 订单相关
+
+为产品配置好虚拟交付之后，当客户下单并支付时，系统会自动为订单进行发货流程，可以在控制台的订单详情中看到发货状态。
+
+![](/img/user-guide/shop/virtual-delivery-console-order.png)
+
+客户也可以在订单页面看到已发货的虚拟物品。
+
+![](/img/user-guide/shop/virtual-delivery-uc-order-1.png)
+
+![](/img/user-guide/shop/virtual-delivery-uc-order-2.png)
+
+## API 规范
+
+### 卡密远程生成 API 规范
+
+用户下单后，Halo 会向配置的远程地址发起请求，由你的服务实时生成或分配卡密。
+
+#### 请求
+
+```
+POST <你配置的远程生成地址>
+Content-Type: application/json
+Authorization: Bearer <token>  // 配置了 token 时附带
+```
+
+**请求体**
+
+```json
+{
+  "orderItem": {
+    "id": 10001,
+    "orderId": 90001,
+    "productId": 80001,
+    "quantity": 2,
+    "itemTitle": "年度会员兑换码",
+    "productVariantSnapshot": {
+      "id": 123,
+      "name": "默认规格"
+    }
+  },
+  "dryRun": false
+}
+```
+
+| 字段                               | 类型    | 必填 | 说明                      |
+| ---------------------------------- | ------- | ---- | ------------------------- |
+| `orderItem.id`                     | long    | 是   | 订单项 ID(可用作幂等键)   |
+| `orderItem.orderId`                | long    | 是   | 订单 ID                   |
+| `orderItem.productId`              | long    | 是   | 商品 ID                   |
+| `orderItem.quantity`               | int     | 是   | 需要发放的卡密数量        |
+| `orderItem.itemTitle`              | string  | 否   | 订单项标题                |
+| `orderItem.productVariantSnapshot` | object  | 否   | 规格快照                  |
+| `dryRun`                           | boolean | 是   | 当前固定为 `false`        |
+
+#### 响应
+
+返回卡密列表，所有卡密的 `capacity` 之和须不小于 `orderItem.quantity`。
+
+```json
+[
+  {
+    "code": "ABCD-EFGH-IJKL",
+    "secret": "S3cr3t-1",
+    "expireAt": "2026-12-31T23:59:59Z",
+    "capacity": 1
+  }
+]
+```
+
+| 字段       | 类型   | 必填 | 说明                      |
+| ---------- | ------ | ---- | ------------------------- |
+| `code`     | string | 是   | 卡密(同一响应内唯一)      |
+| `secret`   | string | 否   | 附加验证信息              |
+| `expireAt` | string | 否   | 过期时间(UTC，ISO-8601)   |
+| `capacity` | int    | 否   | 可用次数，默认为 `1`      |
+
+:::warning 注意
+响应不可为空列表，否则触发卡密发放失败。建议以 `orderItem.id` 作为幂等键，避免重复请求导致重复发放。
+:::
+
+#### 错误码
+
+建议使用非 `2xx` 状态码表达失败，并返回结构化错误：
+
+```json
+{
+  "code": "CDK_OUT_OF_STOCK",
+  "message": "No enough CDKs available",
+  "requestId": "f38db1c2-2f7a-4dc3-b5a8-2d0012345678"
+}
+```
+
+推荐错误码：
+
+| HTTP 状态码 | 错误码                | 含义                   | 是否可重试 |
+| ----------- | --------------------- | ---------------------- | ---------- |
+| `400`       | `INVALID_REQUEST`     | 请求字段不合法         | 否         |
+| `401`       | `UNAUTHORIZED`        | 鉴权失败               | 否         |
+| `403`       | `FORBIDDEN`           | 调用被拒绝             | 否         |
+| `404`       | `NOT_FOUND`           | 路由不存在             | 否         |
+| `409`       | `IDEMPOTENT_CONFLICT` | 幂等键冲突且参数不一致 | 否         |
+| `422`       | `CDK_OUT_OF_STOCK`    | 库存不足               | 视业务而定 |
+| `429`       | `RATE_LIMITED`        | 触发限流               | 是         |
+| `500`       | `INTERNAL_ERROR`      | 远程服务内部错误       | 是         |
+| `503`       | `SERVICE_UNAVAILABLE` | 服务不可用             | 是         |
+
+### 卡密自动补货 API 规范
+
+当密钥库存低于阈值时，Halo 会自动向配置的补货地址发起补货请求。
+
+#### 请求
+
+```
+POST <你配置的补货地址>
+Content-Type: application/json
+Authorization: Bearer <token>  // 配置了 token 时附带
+```
+
+**请求体**
+
+```json
+{
+  "productVariantId": 123,
+  "quantity": 50
+}
+```
+
+| 字段               | 类型 | 必填 | 说明                  |
+| ------------------ | ---- | ---- | --------------------- |
+| `productVariantId` | long | 是   | 需要补货的商品规格 ID |
+| `quantity`         | int  | 是   | 请求补充的卡密数量    |
+
+#### 响应
+
+返回卡密列表，实际返回数量可与请求数量不一致。
+
+```json
+[
+  {
+    "code": "ABCD-EFGH-IJKL",
+    "secret": "S3cr3t-1",
+    "expireAt": "2026-12-31T23:59:59Z",
+    "capacity": 1
+  }
+]
+```
+
+| 字段       | 类型   | 必填 | 说明                      |
+| ---------- | ------ | ---- | ------------------------- |
+| `code`     | string | 是   | 卡密(同一响应内唯一)      |
+| `secret`   | string | 否   | 附加验证信息              |
+| `expireAt` | string | 否   | 过期时间(UTC，ISO-8601)   |
+| `capacity` | int    | 否   | 可用次数，默认为 `1`      |
+
+:::warning 注意
+响应不可为空列表，否则视为补货失败。补货失败不影响当前订单的卡密发放。
+:::
+
+#### 错误码
+
+建议使用非 `2xx` 状态码表达失败，并返回结构化错误：
+
+```json
+{
+  "code": "CDK_OUT_OF_STOCK",
+  "message": "No enough CDKs available",
+  "requestId": "f38db1c2-2f7a-4dc3-b5a8-2d0012345678"
+}
+```
+
+推荐错误码：
+
+| HTTP 状态码 | 错误码                | 含义                   | 是否可重试 |
+| ----------- | --------------------- | ---------------------- | ---------- |
+| `400`       | `INVALID_REQUEST`     | 请求字段不合法         | 否         |
+| `401`       | `UNAUTHORIZED`        | 鉴权失败               | 否         |
+| `403`       | `FORBIDDEN`           | 调用被拒绝             | 否         |
+| `404`       | `NOT_FOUND`           | 路由不存在             | 否         |
+| `409`       | `IDEMPOTENT_CONFLICT` | 幂等键冲突且参数不一致 | 否         |
+| `422`       | `CDK_OUT_OF_STOCK`    | 库存不足               | 视业务而定 |
+| `429`       | `RATE_LIMITED`        | 触发限流               | 是         |
+| `500`       | `INTERNAL_ERROR`      | 远程服务内部错误       | 是         |
+| `503`       | `SERVICE_UNAVAILABLE` | 服务不可用             | 是         |
