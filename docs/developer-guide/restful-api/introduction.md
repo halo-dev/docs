@@ -99,6 +99,7 @@ axios.get('https://demo.halo.run/apis/content.halo.run/v1alpha1/posts', {
 
 列举一些使用了 Halo RESTful API 的项目，以供参考：
 
+- [halo-dev/cli](https://github.com/halo-dev/cli)：Halo 的命令行工具，用于管理 Halo 的资源。
 - [halo-sigs/attachment-upload-cli](https://github.com/halo-sigs/attachment-upload-cli)：在 Terminal 中上传文件到 Halo 并得到链接，兼容 Typora 编辑器的图片上传。
 - [halo-sigs/vscode-extension-halo](https://github.com/halo-sigs/vscode-extension-halo)：用于将 Markdown 文件发布到 Halo 的 Visual Studio Code 插件。
 - [halo-sigs/obsidian-halo](https://github.com/halo-sigs/obsidian-halo)：Obsidian 插件，用于将 Markdown 文件发布到 Halo。
