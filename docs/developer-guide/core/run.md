@@ -50,27 +50,20 @@ pnpm dev
 最终控制台打印了如下信息即代表运行正常：
 
 ```bash
-VITE v4.2.3  ready in 638 ms
+VITE v8.0.0  ready in 805 ms
 
-# Console 控制台服务
-➜  Local:   http://localhost:3000/console/
-
-# UC 个人中心服务
-➜  Local:   http://localhost:4000/uc/
+➜  Local:   http://localhost:3000/
+➜  Network: http://192.168.1.7:3000/
 ```
 
 :::info 提示
-请不要直接使用 UI 的运行端口（3000 / 4000）访问，会因为跨域问题导致无法正常登录，建议按照后续的步骤以 dev 的配置文件运行 Halo，在 dev 的配置文件中，我们默认代理了 UI 页面的访问地址，所以后续访问 UI 页面使用 `http://localhost:8090/console` 和 `http://localhost:8090/uc` 访问即可，代理的相关配置：
+请不要直接使用 UI 的运行端口 3000 访问，会因为跨域问题导致无法正常登录，建议按照后续的步骤以 dev 的配置文件运行 Halo，在 dev 的配置文件中，我们默认代理了 UI 页面的访问地址，所以后续访问 UI 页面使用 `http://localhost:8090/console` 和 `http://localhost:8090/uc` 访问即可，代理的相关配置：
 
 ```yaml
 halo:
-  console:
+  ui:
     proxy:
       endpoint: http://localhost:3000/
-      enabled: true
-  uc:
-    proxy:
-      endpoint: http://localhost:4000/
       enabled: true
 ```
 
