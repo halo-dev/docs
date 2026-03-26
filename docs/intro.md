@@ -79,7 +79,7 @@ docker run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.2
 - [x] 为中国商家定制：无缝集成微信支付、支付宝等本土生态
 - [x] 品牌官网 + CMS + 线上店铺一站式落地，助力生意高效增长
 
-关于三个版本的详细对比，请参考：https://www.lxware.cn/halo
+关于三个版本的详细对比，请参考[版本对比](https://www.lxware.cn/halo)。
 
 ## 生态
 
