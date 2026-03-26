@@ -14,17 +14,15 @@ slug: /
 </p>
 
 <p align="center"><b>Halo</b> [ˈheɪloʊ]，强大易用的开源建站工具。</p>
-
-<p align="center" style={{display: 'flex', justifyContent: 'center', gap: '4px'}}>
+<p align="center">
 <a href="https://github.com/halo-dev/halo/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/halo-dev/halo.svg?style=flat-square&include_prereleases" /></a>
 <a href="https://hub.docker.com/r/halohub/halo"><img alt="Docker pulls" src="https://img.shields.io/docker/pulls/halohub/halo?style=flat-square" /></a>
 <a href="https://github.com/halo-dev/halo/commits"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/halo-dev/halo.svg?style=flat-square" /></a>
 <a href="https://github.com/halo-dev/halo/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/halo-dev/halo/halo.yaml?branch=main&style=flat-square" /></a>
 <a href="https://codecov.io/gh/halo-dev/halo"><img alt="Codecov percentage" src="https://img.shields.io/codecov/c/github/halo-dev/halo/main?style=flat-square&token=YsRUg9fall"/></a>
-<a href="https://www.producthunt.com/posts/halo-6b401e75-bb58-4dff-9fe9-2ada3323c874?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-halo&#0045;6b401e75&#0045;bb58&#0045;4dff&#0045;9fe9&#0045;2ada3323c874" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=407442&theme=light" alt="Halo - Powerful&#0032;and&#0032;easy&#0045;to&#0045;use&#0032;Open&#0045;Source&#0032;website&#0032;building&#0032;tool | Product Hunt" style={{height: '20px'}} height="20px" /></a>
-</p>
-
-<p align="center" style={{display: 'flex', justifyContent: 'center', gap: '4px'}}>
+<a href="https://gitcode.com/feizhiyun/Halo"><img src="https://gitcode.com/feizhiyun/Halo/star/badge.svg" alt="GitCode Stars"></a>
+<a href="https://www.producthunt.com/posts/halo-6b401e75-bb58-4dff-9fe9-2ada3323c874?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-halo&#0045;6b401e75&#0045;bb58&#0045;4dff&#0045;9fe9&#0045;2ada3323c874" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=407442&theme=light" alt="Halo - Powerful&#0032;and&#0032;easy&#0045;to&#0045;use&#0032;Open&#0045;Source&#0032;website&#0032;building&#0032;tool | Product Hunt" style="height: 20px;" height="20px" /></a>
+<br />
 <a href="https://www.halo.run">官网</a>
 <a href="https://docs.halo.run">文档</a>
 <a href="https://bbs.halo.run">社区</a>
@@ -41,21 +39,44 @@ slug: /
 如果你的设备有 Docker 环境，可以使用以下命令快速启动一个 Halo 的体验环境：
 
 ```bash
-docker run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.23
+docker run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.22
 ```
 
-或者点击下方按钮使用 [Gitpod](https://gitpod.io/) 启动一个体验环境：
+或者点击下方按钮使用 [Gitpod](https://gitpod.io/) 或 [ClawCloud Run](https://template.us-west-1.run.claw.cloud/deploy?templateName=halo) 启动一个体验环境：
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/halo-sigs/gitpod-demo)
+
+[![Run on ClawCloud](https://raw.githubusercontent.com/ClawCloud/Run-Template/refs/heads/main/Run-on-ClawCloud.svg)](https://template.us-west-1.run.claw.cloud/deploy?templateName=halo)
 
 以上仅作为体验使用，详细部署文档请查阅：[https://docs.halo.run/getting-started/install/docker-compose](https://docs.halo.run/getting-started/install/docker-compose)
 
 ## 在线体验
 
-- 环境地址：[https://demo.halocms.site](https://demo.halocms.site)
-- 后台地址：[https://demo.halocms.site/console](https://demo.halocms.site/console)
+- 环境地址：<https://demo.halocms.site>
+- 后台地址：<https://demo.halocms.site/console>
 - 用户名：`demo`
 - 密码：`P@ssw0rd123..`
+
+## 版本对比
+
+**Halo 社区版**：开源免费， 遵循 GPLv3 协议
+- [x] 适合个人开发者、技术爱好者、开源项目
+- [x] 零成本搭建博客、作品集、技术文档站
+- [x] 超过 100 款免费主题和插件
+
+**Halo 专业版**：在社区版基础上，集成 10+ 高价值功能
+- [x] 移动端 APP：随时随地管理内容
+- [x] AI 智能建站：快速生成专业站点
+- [x] 手机号验证登录：提升安全与用户体验
+- [x] 全站私有化部署：保障数据主权
+- [x] 付费主题/插件市场：专享精品主题和 SEO 优化、付费阅读、AI 助手等 10 款付费插件
+
+**Halo 商业版**：在专业版基础上，集成在线商城重磅功能
+- [x] 一体化在线商城：商品管理、订单处理、支付对接全流程
+- [x] 为中国商家定制：无缝集成微信支付、支付宝等本土生态
+- [x] 品牌官网 + CMS + 线上店铺一站式落地，助力生意高效增长
+
+关于三个版本的详细对比，请参考：https://www.lxware.cn/halo
 
 ## 生态
 
@@ -70,6 +91,12 @@ Halo 使用 GPL-v3.0 协议开源，请遵守开源协议。
 ## 贡献
 
 参考 [CONTRIBUTING](https://github.com/halo-dev/halo/blob/main/CONTRIBUTING.md)。
+
+<a href="https://github.com/halo-dev/halo/graphs/contributors"><img src="https://opencollective.com/halo/contributors.svg?width=890&button=false" /></a>
+
+## 状态
+
+![Repobeats analytics](https://repobeats.axiom.co/api/embed/ad008b2151c22e7cf734d2688befaa795d593b95.svg "Repobeats analytics image")
 
 <a href="https://github.com/halo-dev/halo/graphs/contributors"><img src="https://opencollective.com/halo/contributors.svg?width=890&button=false" /></a>
 
