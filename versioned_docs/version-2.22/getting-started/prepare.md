@@ -7,11 +7,11 @@ description: 在开始前，你需要了解的事项
 
 Halo 的发行版本主要区分为两个大类别，即 **Halo 社区版** 和 **Halo 付费版**。
 
-Halo 付费版包括专业版和商业版，是[凌霞软件](https://www.lxware.cn?code=mcYhwMkn)旗下的商业产品，为企业/团体/或进阶个人使用者提供了诸多定制化和特定场景的功能支持。
+Halo 付费版包括专业版和商城版，是[凌霞软件](https://www.lxware.cn?code=mcYhwMkn)旗下的商业产品，为企业/团体/或进阶个人使用者提供了诸多定制化和特定场景的功能支持。
 
 版本区别可查阅 [方案对比](https://www.lxware.cn/halo?code=mcYhwMkn)
 
-在后续的文档中，使用付费版统称 Halo 专业版 和 Halo 商业版，除非特别说明。
+在后续的文档中，使用付费版统称 Halo 专业版 和 Halo 商城版，除非特别说明。
 
 ## 环境要求
 
@@ -76,8 +76,8 @@ Halo 目前支持以下数据库：
 
 其中，H2 不需要单独运行，其他数据库需要单独安装并配置。一般情况下，推荐按照 [使用 Docker Compose 部署](./install/docker-compose.md) 文档将 Halo 和数据库容器编排在一起。
 
-:::warning 商业版需要注意
-由于商业版的数据结构与 Halo 其他版本不同，所以暂时仅支持 PostgreSQL、MySQL、MariaDB、H2。
+:::warning 商城版需要注意
+由于商城版的数据结构与 Halo 其他版本不同，所以暂时仅支持 PostgreSQL、MySQL、MariaDB、H2。
 :::
 
 :::warning
