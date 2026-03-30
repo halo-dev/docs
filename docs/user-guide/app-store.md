@@ -54,12 +54,12 @@ description: 内置应用市场的使用说明
 目前在线激活支持两种方式：
 
 1. 通过 [Halo 官网账户](https://www.halo.run/)：如果你是在 Halo 官网购买的付费应用，需要通过这种方式，并提前[绑定 Halo 官网账号](#绑定-halo-官网账号)
-2. 通过 [Halo 专业版/商业版许可证](../getting-started/prepare.md#发行版本)：如果你购买了 [Halo 付费版](../getting-started/prepare.md#发行版本)，可以选择这个选项来激活应用
+2. 通过 [Halo 专业版/商城版许可证](../getting-started/prepare.md#发行版本)：如果你购买了 [Halo 付费版](../getting-started/prepare.md#发行版本)，可以选择这个选项来激活应用
 
-关于 Halo 专业版/商业版许可证的更多信息可查阅：[许可证激活 / 查看和下载付费应用](../user-guide/activate.md#查看和下载付费应用)
+关于 Halo 专业版/商城版许可证的更多信息可查阅：[许可证激活 / 查看和下载付费应用](../user-guide/activate.md#查看和下载付费应用)
 :::
 
-在安装好需要许可证的付费插件或主题后，列表会显示一个许可证状态的图标，点击即可打开许可证激活的对话框，选择 **Halo 官网账户** 或 **Halo 专业版/商业版许可证** 并点击激活即可。
+在安装好需要许可证的付费插件或主题后，列表会显示一个许可证状态的图标，点击即可打开许可证激活的对话框，选择 **Halo 官网账户** 或 **Halo 专业版/商城版许可证** 并点击激活即可。
 
 ![插件激活状态](/img/user-guide/app-store/app-store-license-status-2.22.png)
 

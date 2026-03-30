@@ -127,8 +127,8 @@ title: 使用 JAR 文件部署
    | Oracle（付费版）   | `r2dbc:pool:oracle://{HOST}:{PORT}/{DATABASE}`                                     | oracle                     |
    | H2 Database        | `r2dbc:h2:file:///${halo.work-dir}/db/halo-next?MODE=MySQL&DB_CLOSE_ON_EXIT=FALSE` | h2                         |
 
-   :::warning 商业版需要注意
-   由于商业版的数据结构与 Halo 其他版本不同，所以暂时仅支持 PostgreSQL、MySQL、MariaDB、H2。
+   :::warning 商城版需要注意
+   由于商城版的数据结构与 Halo 其他版本不同，所以暂时仅支持 PostgreSQL、MySQL、MariaDB、H2。
    :::
 
     <details>
