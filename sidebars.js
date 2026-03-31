@@ -135,6 +135,12 @@ module.exports = {
       items: ["contribution/issue", "contribution/pr"],
     },
     "about",
+    {
+      type: "link",
+      label: "更新日志",
+      href: "https://releases.halo.run/changelog",
+      description: "查看 Halo 的更新日志",
+    }
   ],
 
   developer: [

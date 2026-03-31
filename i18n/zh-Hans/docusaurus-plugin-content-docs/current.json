@@ -39,6 +39,10 @@
     "message": "Rainbond 一键部署",
     "description": "The label for link 'Rainbond 一键部署' in sidebar 'tutorial', linking to 'https://hub.grapps.cn/marketplace/apps/1255'"
   },
+  "sidebar.tutorial.link.更新日志": {
+    "message": "更新日志",
+    "description": "The label for link '更新日志' in sidebar 'tutorial', linking to 'https://releases.halo.run/changelog'"
+  },
   "sidebar.developer.category.系统开发": {
     "message": "系统开发",
     "description": "The label for category '系统开发' in sidebar 'developer'"

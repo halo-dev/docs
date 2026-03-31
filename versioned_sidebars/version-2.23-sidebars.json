@@ -114,12 +114,15 @@
       "link": {
         "type": "generated-index"
       },
-      "items": [
-        "contribution/issue",
-        "contribution/pr"
-      ]
+      "items": ["contribution/issue", "contribution/pr"]
     },
-    "about"
+    "about",
+    {
+      "type": "link",
+      "label": "更新日志",
+      "href": "https://releases.halo.run/changelog",
+      "description": "查看 Halo 的更新日志"
+    }
   ],
   "developer": [
     {
@@ -344,9 +347,7 @@
           "link": {
             "type": "generated-index"
           },
-          "items": [
-            "developer-guide/plugin/examples/todolist"
-          ]
+          "items": ["developer-guide/plugin/examples/todolist"]
         },
         "developer-guide/plugin/api-changelog"
       ]
@@ -431,9 +432,7 @@
       "link": {
         "type": "generated-index"
       },
-      "items": [
-        "developer-guide/appendix/publish-app"
-      ]
+      "items": ["developer-guide/appendix/publish-app"]
     }
   ]
 }
