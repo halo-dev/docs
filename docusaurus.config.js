@@ -150,18 +150,13 @@ const config = {
             position: "right",
           },
           {
-            href: "https://releases.halo.run",
-            label: "版本",
+            href: "https://www.lxware.cn/halo?code=mcYhwMkn",
+            label: "版本对比",
             position: "right",
           },
           {
             href: "https://github.com/halo-dev/halo",
             label: "GitHub",
-            position: "right",
-          },
-          {
-            href: "https://gitee.com/halo-dev/halo",
-            label: "Gitee",
             position: "right",
           },
         ],
