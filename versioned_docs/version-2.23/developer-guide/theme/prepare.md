@@ -67,7 +67,6 @@ spec:
 
 - [halo-sigs/theme-starter](https://github.com/halo-dev/theme-starter) - 最基础的主题模板，包含了主题的基本目录结构。
 - [halo-sigs/theme-vite-starter](https://github.com/halo-dev/theme-vite-starter) - 与 Vite 集成的主题模板，由 Vite 负责资源构建。
-- [halo-sigs/theme-modern-starter](https://github.com/halo-dev/theme-modern-starter) - 集成了现代前端技术栈的 Halo 2.0 的主题开发模板。
 
 :::info 提示
 以上 GitHub 都被设置为了模板仓库（Template repository），点击仓库主页的 `Use this template` 按钮即可通过此模板创建一个新的仓库。
