@@ -25,8 +25,14 @@ const config = {
   },
   themes: ["@docusaurus/theme-mermaid"],
   future: {
-    experimental_faster: true,
+    faster: true,
     v4: true,
+  },
+  markdown: {
+    mdx1Compat: {
+      headingIds: true,
+      comments: true 
+    }
   },
   presets: [
     [
