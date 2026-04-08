@@ -28,38 +28,38 @@
     ]
   },
   "dependencies": {
-    "@docusaurus/core": "3.9.2",
-    "@docusaurus/faster": "3.9.2",
-    "@docusaurus/plugin-client-redirects": "3.9.2",
-    "@docusaurus/preset-classic": "3.9.2",
-    "@docusaurus/theme-classic": "3.9.2",
-    "@docusaurus/theme-common": "3.9.2",
-    "@docusaurus/theme-mermaid": "3.9.2",
+    "@docusaurus/core": "3.10.0",
+    "@docusaurus/faster": "3.10.0",
+    "@docusaurus/plugin-client-redirects": "3.10.0",
+    "@docusaurus/preset-classic": "3.10.0",
+    "@docusaurus/theme-classic": "3.10.0",
+    "@docusaurus/theme-common": "3.10.0",
+    "@docusaurus/theme-mermaid": "3.10.0",
     "@mdx-js/react": "^3.1.1",
-    "@shikijs/rehype": "^3.20.0",
-    "@shikijs/transformers": "^3.20.0",
+    "@shikijs/rehype": "^4.0.2",
+    "@shikijs/transformers": "^4.0.2",
     "@svgr/webpack": "^5.5.0",
     "clsx": "^1.2.1",
-    "docusaurus-plugin-image-zoom": "^1.0.1",
+    "docusaurus-plugin-image-zoom": "^3.0.1",
     "file-loader": "^6.2.0",
     "hast-util-is-element": "1.1.0",
-    "meilisearch-docsearch": "^0.6.1",
+    "meilisearch-docsearch": "^0.8.0",
     "prism-react-renderer": "^2.4.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "shiki": "^3.20.0",
+    "react": "^19.0.4",
+    "react-dom": "^19.0.4",
+    "shiki": "^4.0.2",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.9.2",
+    "@docusaurus/module-type-aliases": "3.10.0",
     "docusaurus-plugin-sass": "^0.2.6",
     "husky": "^7.0.4",
     "markdownlint": "^0.25.1",
     "markdownlint-cli2": "^0.4.0",
-    "sass-embedded": "^1.97.1"
+    "sass-embedded": "^1.99.0"
   },
   "engines": {
     "node": ">=18.0"
   },
-  "packageManager": "pnpm@10.26.2"
+  "packageManager": "pnpm@10.33.0"
 }

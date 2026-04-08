@@ -30,9 +30,5 @@
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
-  },
-  "item.label.Gitee": {
-    "message": "Gitee",
-    "description": "Navbar item with label Gitee"
   }
 }
