@@ -15,7 +15,7 @@ description: 开发环境运行的指南
 2. UI，包括 Console 控制台和 UC 个人中心（托管在 Halo 主项目）
 3. 主题（Halo 主项目内已包含默认主题）
 
-:::info 说明
+:::info[说明]
 从 Halo 2.11 开始，Halo 项目的 `ui` 目录同时包含了 Console（管理控制台）和 UC（个人中心），以下统称为 UI。
 
 当前 Halo 主项目并不会将 UI 的构建资源托管到 Git 版本控制，所以在开发环境是需要同时运行 UI 项目的。当然，在我们的最终发布版本的时候会在 CI 中自动构建 UI 到 Halo 主项目。
@@ -56,7 +56,7 @@ VITE v8.0.0  ready in 805 ms
 ➜  Network: http://192.168.1.7:3000/
 ```
 
-:::info 提示
+:::info[提示]
 请不要直接使用 UI 的运行端口 3000 访问，会因为跨域问题导致无法正常登录，建议按照后续的步骤以 dev 的配置文件运行 Halo，在 dev 的配置文件中，我们默认代理了 UI 页面的访问地址，所以后续访问 UI 页面使用 `http://localhost:8090/console` 和 `http://localhost:8090/uc` 访问即可，代理的相关配置：
 
 ```yaml

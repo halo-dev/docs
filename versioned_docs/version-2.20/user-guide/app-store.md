@@ -7,7 +7,7 @@ description: 内置应用市场的使用说明
 
 如果你使用了旧版本的 Halo，并且当前未安装应用市场插件，可以访问 [https://www.halo.run/store/apps/app-VYJbF](https://www.halo.run/store/apps/app-VYJbF) 手动下载并在 Console 的插件管理中安装。
 
-:::info 提示
+:::info[提示]
 这是目前唯一由 Halo 官方提供的服务，如果你当前的 Halo 网站处于无法访问公网的环境或者不需要此功能，你可以卸载或者停用此插件，不会影响网站的正常使用。
 :::
 

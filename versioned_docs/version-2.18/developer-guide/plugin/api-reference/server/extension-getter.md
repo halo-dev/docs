@@ -47,7 +47,7 @@ public interface ExtensionGetter {
 2. `getEnabledExtensions(Class<T> extensionPoint)`: 根据传入的扩展点类获取所有已启用扩展。如果没有在扩展设置页面配置过则会返回所有可用的扩展。
 3. `getExtensions(Class<T> extensionPointClass)`: 获取所有与扩展点类相关的扩展，无论是否在扩展设置中启用它。
 
-:::tip Note
+:::tip
 使用 `getEnabledExtension` 方法或者 `getEnabledExtensions` 方法取决于扩展点声明的 `type` 是 `SINGLETON` 还是 `MULTI_INSTANCE`。
 
 通过使用 `ExtensionGetter`，开发者可以轻松地在插件中访问和管理各种扩展点，提升插件的功能和灵活性。

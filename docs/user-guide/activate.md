@@ -82,7 +82,7 @@ description: 介绍如何激活 Halo 付费版
 
 ![激活付费应用](/img/user-guide/activate/app-activate.png)
 
-:::info 提示
+:::info[提示]
 如果你在激活前就启动了插件，那么在激活后可能需要重启插件才会生效。
 :::
 

@@ -54,7 +54,7 @@ Halo 提供了以下站点基本信息设置：
     <meta name="keywords" content="{关键词 A, 关键词 B}" />
     ```
 
-    :::warning 注意
+    :::warning[注意]
     目前主流的搜索引擎（如 Google、Bing、百度搜索等）已经不再使用该标签作为关键词的参考，因此该设置项的作用已经不大，未来我们也可能会移除该设置项。
     :::
 
@@ -101,7 +101,7 @@ Halo 提供了以下站点基本信息设置：
   - `/{year}/{month}/{slug}`
   - `/{year}/{month}/{day}/{slug}`
 
-    :::info 变量说明
+    :::info[变量说明]
     - `slug`：文章别名
     - `name`：文章 `metadata.name` 字段值
     - `year`：四位数格式的文章发布年份

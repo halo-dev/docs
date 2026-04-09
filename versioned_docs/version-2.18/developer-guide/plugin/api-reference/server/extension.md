@@ -65,7 +65,7 @@ public void start() {
 }
 ```
 
-:::tip 释义
+:::tip[释义]
 
 - @GVK：此注解标识该类为一个自定义模型，同时必须继承 `AbstractExtension`。
   - kind：表示自定义模型所表示的 REST 资源。

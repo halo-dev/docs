@@ -12,7 +12,7 @@ import CategoryTreeVo from "../vo/_CategoryTreeVo.md"
 categoryFinder.getByName(name)
 ```
 
-:::info 提示
+:::info[提示]
 通常建议配合 [主题设置](../settings.md) 和 [分类选择器](../../form-schema.md#categoryselect) 使用，让用户自行选择所需的分类。
 :::
 
@@ -42,7 +42,7 @@ categoryFinder.getByName(name)
 categoryFinder.getByNames(names)
 ```
 
-:::info 提示
+:::info[提示]
 通常建议配合 [主题设置](../settings.md) 和 [分类选择器](../../form-schema.md#categoryselect) 使用，让用户自行选择所需的分类。
 :::
 

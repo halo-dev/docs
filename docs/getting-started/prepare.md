@@ -76,7 +76,7 @@ Halo 目前支持以下数据库：
 
 其中，H2 不需要单独运行，其他数据库需要单独安装并配置。一般情况下，推荐按照 [使用 Docker Compose 部署](./install/docker-compose.md) 文档将 Halo 和数据库容器编排在一起。
 
-:::warning 商城版需要注意
+:::warning[商城版需要注意]
 由于商城版的数据结构与 Halo 其他版本不同，所以暂时仅支持 PostgreSQL、MySQL、MariaDB、H2。
 :::
 
