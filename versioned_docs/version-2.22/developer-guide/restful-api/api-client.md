@@ -13,7 +13,7 @@ description: 介绍使用 API Client 请求库发起 API 请求的方式
 pnpm install @halo-dev/api-client axios
 ```
 
-:::info 提示
+:::info[提示]
 推荐在项目中引入 TypeScript，可以获得更好的类型提示。
 :::
 
@@ -107,6 +107,6 @@ coreApiClient.content.post.listPost().then(response => {
 })
 ```
 
-:::info 提示
+:::info[提示]
 认证方式的说明请参考：[认证方式](./introduction.md#认证方式)
 :::

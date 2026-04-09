@@ -98,7 +98,7 @@ halo:
       - C:\path\to\halo-plugin-hello-world
 ```
 
-:::tip Note
+:::tip
 
 1. `development` 开发模式下，既可以运行 `fixed-plugin-path` 下的插件，也可以运行通过 `Console` 管理端安装的 JAR 格式的插件。
 2. 如果使用 [DevTools 运行方式](../hello-world.md#run-with-devtools) 来开发插件，则不需要配置 `runtime-mode` 和 `fixed-plugin-path`。

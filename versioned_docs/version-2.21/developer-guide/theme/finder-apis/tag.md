@@ -11,7 +11,7 @@ import TagVo from "../vo/_TagVo.md"
 tagFinder.getByName(name)
 ```
 
-:::info 提示
+:::info[提示]
 通常建议配合 [主题设置](../settings.md) 和 [标签选择器](../../form-schema.md#tagselect) 使用，让用户自行选择所需的标签。
 :::
 
@@ -41,7 +41,7 @@ tagFinder.getByName(name)
 tagFinder.getByNames(names)
 ```
 
-:::info 提示
+:::info[提示]
 通常建议配合 [主题设置](../settings.md) 和 [标签选择器](../../form-schema.md#tagselect) 使用，让用户自行选择所需的标签。
 :::
 

@@ -66,7 +66,7 @@ To access your Halo site from outside the cluster follow the steps below:
   echo Password: $(kubectl get secret --namespace halo halo -o jsonpath="{.data.halo-password}" | base64 -d)
 ```
 
-:::info 参数说明
+:::info[参数说明]
 
 - 使用 Halo Helm Chart 仓库中 [values.yaml](https://github.com/halo-sigs/charts/blob/main/charts/halo/values.yaml) 文件中的默认参数进行安装；
 - 关于 PostgreSQL 数据库的更多参数说明，请参考 [Bitnami PostgreSQL Chart](https://github.com/bitnami/charts/tree/main/bitnami/postgresql#parameters)，在原有参数格式上增加 `postgresql.` 前缀即可。
@@ -88,7 +88,7 @@ To access your Halo site from outside the cluster follow the steps below:
 helm install halo halo/halo --set mysql.enabled=true --set postgresql.enabled=false
 ```
 
-:::info 参数说明
+:::info[参数说明]
 
 - `mysql.enabled=true`：自动安装 MySQL 数据库；
 - `postgresql.enabled=false`：不自动安装 PostgreSQL 数据库；
@@ -111,7 +111,7 @@ helm install halo halo/halo \
     --set externalDatabase.database=halo
 ```
 
-:::info 参数说明
+:::info[参数说明]
 
 - `mysql.enabled=true`：不自动安装 MySQL 数据库；
 - `postgresql.enabled=false`：不自动安装 PostgreSQL 数据库；

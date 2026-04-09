@@ -46,7 +46,7 @@ rules:
 - 以 `/api` 开头，且以 `/api/<version>/<resource>[/<resourceName>/<subresource>]` 规则组成 APIs，最少路径层级为 3 即 `/api/<version>/<resource>`，最多路径层级为 5 即包含 `<resourceName>` 和 `<subresource>`，例如 `/api/v1/posts`。
 - 以 `/apis/<group>/<version>/<resource>[/<resourceName>/<subresource>]` 规则组成的 APIs，最少路径层级为 4 即 `/apis/<group>/<version>/<resource>`，最多路径层级为 6 即包含 `<resourceName>` 和 `<subresource>`，例如 `/apis/my-plugin.halo.run/v1alpha1/persons`。
 
-:::info 注
+:::info[注意]
 `[]`包裹的部分表示可选，`/api` 前缀被 Halo 保留，不允许插件定义以 `/api` 开头的资源型 APIs，所以插件的资源型 APIs 都是以 `/apis` 开头的。
 :::
 

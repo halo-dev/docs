@@ -17,7 +17,7 @@ export default definePlugin({
 });
 ```
 
-:::info 提示
+:::info[提示]
 AnyExtension 类型来自 [Tiptap](https://github.com/ueberdosis/tiptap)，这意味着 Halo 默认编辑器的扩展点返回类型与 Tiptap 的扩展完全一致，Tiptap 的扩展文档可参考：[https://tiptap.dev/docs/editor/api/extensions](https://tiptap.dev/docs/editor/api/extensions)。此外，Halo 也为默认编辑器的扩展提供了一些独有的参数，用于实现工具栏、指令等扩展。
 :::
 

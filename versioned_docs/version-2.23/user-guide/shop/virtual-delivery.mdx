@@ -151,7 +151,7 @@ Authorization: Bearer <token>  // 配置了 token 时附带
 | `expireAt` | string | 否   | 过期时间(UTC，ISO-8601)   |
 | `capacity` | int    | 否   | 可用次数，默认为 `1`      |
 
-:::warning 注意
+:::warning[注意]
 响应不可为空列表，否则触发卡密发放失败。建议以 `orderItem.id` 作为幂等键，避免重复请求导致重复发放。
 :::
 
@@ -229,7 +229,7 @@ Authorization: Bearer <token>  // 配置了 token 时附带
 | `expireAt` | string | 否   | 过期时间(UTC，ISO-8601)   |
 | `capacity` | int    | 否   | 可用次数，默认为 `1`      |
 
-:::warning 注意
+:::warning[注意]
 响应不可为空列表，否则视为补货失败。补货失败不影响当前订单的卡密发放。
 :::
 

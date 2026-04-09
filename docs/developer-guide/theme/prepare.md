@@ -53,11 +53,11 @@ spec:
       url: "https://github.com/halo-sigs/theme-foo/blob/main/LICENSE"
 ```
 
-:::info 提示
+:::info[提示]
 主题的配置文件详细文档请参考 [配置文件](./config.md)。
 :::
 
-:::info 提示
+:::info[提示]
 主题项目的目录结构请参考 [主题目录结构](./structure.md)。
 :::
 
@@ -69,7 +69,7 @@ spec:
 - [halo-sigs/theme-vite-starter](https://github.com/halo-dev/theme-vite-starter) - 与 Vite 集成的主题模板，由 Vite 负责资源构建。
 - [halo-sigs/theme-astro-starter](https://github.com/halo-sigs/theme-astro-starter) - 以 Astro 作为预渲染框架的主题模板。
 
-:::info 提示
+:::info[提示]
 以上 GitHub 都被设置为了模板仓库（Template repository），点击仓库主页的 `Use this template` 按钮即可通过此模板创建一个新的仓库。
 
 创建新的主题仓库并克隆到本地开发环境之后，需要确保主题文件夹名称和 `theme.yaml` 中的 `metadata.name` 字段一致，否则可能导致部分资源无法正常加载。

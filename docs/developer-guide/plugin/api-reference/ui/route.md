@@ -94,7 +94,7 @@ export interface RouteRecordAppend {
     - `PostsRoot`（文章）
     - `NotificationsRoot`（消息）
 
-:::info 提示
+:::info[提示]
 `RouteRecordRaw` 来自 Vue Router，详见 [API 文档 | Vue Router](https://router.vuejs.org/zh/api/#Type-Aliases-RouteRecordRaw)
 :::
 

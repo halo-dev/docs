@@ -74,11 +74,11 @@ import DockerArgs from "./slots/_docker-args.md"
 
 ## 升级 Halo
 
-:::info 提示
+:::info[提示]
 当 Halo 发布新版本之后，并不会在 1Panel 的应用商店中实时查看到新版本，通常需要等待一段时间才会显示，这取决于 1Panel 的应用商店更新频率。
 :::
 
-:::warning 注意
+:::warning[注意]
 目前 1Panel 不支持在升级应用的时候查看应用的更新日志，所以建议在升级前前往 [Halo 版本发布](https://releases.halo.run/) 查看对应版本的更新日志，了解新版本的变化。
 :::
 

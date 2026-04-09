@@ -7,7 +7,7 @@ description: 内置应用市场的使用说明
 
 如果你使用了旧版本的 Halo，并且当前未安装应用市场插件，可以访问 [https://www.halo.run/store/apps/app-VYJbF](https://www.halo.run/store/apps/app-VYJbF) 手动下载并在 Console 的插件管理中安装。
 
-:::info 提示
+:::info[提示]
 这是目前唯一由 Halo 官方提供的服务，如果你当前的 Halo 网站处于无法访问外网的环境或者不需要此功能，你可以卸载或者停用此插件，不会影响网站的正常使用。
 :::
 
@@ -50,7 +50,7 @@ description: 内置应用市场的使用说明
 
 目前部分付费主题和插件需要许可证激活才能够正常使用，在购买付费应用之后就会自动为你的 Halo 官网账号中生成对应的应用许可证，**所以在此之前需要确保已经在你的网站中绑定好了 Halo 官网账号**。
 
-:::info 注意
+:::info[注意]
 当前应用市场的许可证暂不支持离线激活，需要 Halo 所在的服务器能够正常访问 [https://www.halo.run](https://www.halo.run)。
 :::
 
