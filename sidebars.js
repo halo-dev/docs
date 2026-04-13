@@ -35,6 +35,7 @@ module.exports = {
             "getting-started/install/docker-compose",
             "getting-started/install/docker",
             "getting-started/install/1panel",
+            "getting-started/install/bt-panel",
             "getting-started/install/helm",
             "getting-started/install/podman",
             "getting-started/install/jar-file",
