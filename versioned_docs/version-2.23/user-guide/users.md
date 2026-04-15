@@ -1,6 +1,6 @@
 ---
 title: 用户与权限
-description: 用户管理、权限配置相关功能说明
+description: Halo 用户与 RBAC：多用户、角色权限、密码与会话等管理说明。
 ---
 
 ## 概览

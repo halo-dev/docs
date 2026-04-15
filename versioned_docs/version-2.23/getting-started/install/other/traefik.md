@@ -1,6 +1,6 @@
 ---
 title: Traefik 反向代理
-description: 使用 Traefik 管理 Halo 服务的反向代理
+description: Traefik 为 Halo 提供反向代理与 HTTPS 的路由与证书配置说明。
 ---
 
 ## Halo 部署

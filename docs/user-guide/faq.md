@@ -1,6 +1,6 @@
 ---
 title: 常见问题
-description: 使用上的常见问题
+description: Halo 使用常见问题：产品定位、数据库结构、找回密码与故障排查。
 ---
 
 ### Halo 是什么？

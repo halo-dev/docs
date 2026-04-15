@@ -1,6 +1,6 @@
 ---
 title: 使用 1Panel 部署
-description: 使用 1Panel 部署
+description: 通过 1Panel 安装 Halo：应用商店或容器方式部署与访问说明。
 ---
 
 import DockerArgs from "./slots/_docker-args.md"

@@ -1,5 +1,6 @@
 ---
 title: 使用 JAR 文件部署
+description: 使用 JAR 与 Java 运行 Halo：数据库要求、启动参数与生产环境建议。
 ---
 
 :::info

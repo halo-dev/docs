@@ -1,6 +1,6 @@
 ---
 title: 使用 Docker Compose 部署
-description: 使用 Docker Compose 部署
+description: 使用 Docker Compose 部署 Halo：推荐方式、compose 配置与持久化卷说明。
 ---
 
 ```mdx-code-block

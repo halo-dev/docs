@@ -1,6 +1,6 @@
 ---
 title: 腾讯云轻量应用模板
-description: 使用腾讯云轻量应用服务器的应用模板部署 Halo
+description: 腾讯云轻量应用服务器应用模板一键部署 Halo 的步骤说明。
 ---
 
 腾讯云目前已经在轻量应用服务器的应用模板中添加了 Halo 的模板镜像，选择应用模板购买服务器之后就预装了 Halo 和 [1Panel](https://1panel.cn/)。
