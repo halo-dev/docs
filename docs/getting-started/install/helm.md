@@ -1,6 +1,6 @@
 ---
 title: 使用 Helm 部署
-description: 使用 Helm Chart 在 Kubernetes 集群中部署
+description: 使用 Helm Chart 在 Kubernetes 集群中安装与升级 Halo 的说明。
 ---
 
 import DockerArgs from "./slots/_docker-args.md"

@@ -1,6 +1,6 @@
 ---
 title: 第一篇文章
-description: 安装完成后，如何写下第一篇文章。
+description: Halo 安装后写第一篇文章：进入控制台、编辑发布、分类标签与前台访问。
 ---
 
 <!-- markdownlint-disable MD034 -->

@@ -1,6 +1,6 @@
 ---
 title: 使用 Docker 部署
-description: 使用 Docker 部署
+description: 使用 Docker 单容器运行 Halo：镜像、端口映射与数据目录挂载要点。
 ---
 
 import DockerArgs from "./slots/_docker-args.md"

@@ -1,6 +1,6 @@
 ---
 title: 文章
-description: 文章管理相关功能说明
+description: Halo 文章编辑发布：编辑器、分类标签、定时发布与回收站等操作。
 ---
 ## 新建文章
 

@@ -1,6 +1,6 @@
 ---
 title: 使用宝塔面板部署
-description: 使用宝塔面板部署
+description: 通过宝塔面板部署 Halo：环境要求、站点与反向代理配置说明。
 ---
 
 ::::info

@@ -1,6 +1,6 @@
 ---
 title: 附件
-description: 附件管理相关功能说明
+description: Halo 附件与存储策略：本地上传、策略管理及对象存储等扩展方式。
 ---
 
 ## 存储策略

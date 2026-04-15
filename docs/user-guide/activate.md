@@ -1,6 +1,6 @@
 ---
 title: 许可证激活
-description: 介绍如何激活 Halo 付费版
+description: Halo 付费版许可证购买、部署与激活流程，含专业版与商城版说明。
 ---
 
 :::note

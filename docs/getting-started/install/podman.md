@@ -1,6 +1,6 @@
 ---
 title: 使用 Podman 部署
-description: 使用 Podman 部署
+description: 使用 Podman 运行 Halo：与 Docker 类似的容器部署与持久化说明。
 ---
 
 import DockerArgs from "./slots/_docker-args.md"

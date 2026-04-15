@@ -1,6 +1,6 @@
 ---
 title: 备份与恢复
-description: 备份与恢复功能说明
+description: Halo 控制台一键备份与恢复全站数据，含异步任务与商城版注意事项。
 ---
 
 从 Halo 2.8 开始，Halo 内置了备份和恢复的功能，可以在 Console 中一键备份和恢复完整的数据。

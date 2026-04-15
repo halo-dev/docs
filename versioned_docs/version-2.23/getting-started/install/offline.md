@@ -1,6 +1,6 @@
 ---
 title: 使用离线包部署
-description: 使用离线包在离线环境部署
+description: 在无公网或受限网络环境使用离线包部署 Halo 的步骤说明。
 ---
 
 import DockerArgs from "./slots/_docker-args.md"

@@ -1,6 +1,6 @@
 ---
 title: Nginx Proxy Manager 反向代理
-description: 使用 Nginx Proxy Manager 管理 Halo 服务的反向代理
+description: 使用 Nginx Proxy Manager 为 Halo 配置域名转发与 SSL 证书说明。
 ---
 
 ## Halo 部署

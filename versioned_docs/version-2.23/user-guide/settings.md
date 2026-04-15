@@ -1,6 +1,6 @@
 ---
 title: 站点设置
-description: 站点设置相关功能说明
+description: Halo 站点设置：基本信息、文章展示、评论、用户与 SEO 等控制台项。
 ---
 
 ## 基本设置

@@ -1,6 +1,6 @@
 ---
 title: 写在前面
-description: 在开始前，你需要了解的事项
+description: Halo 部署前必读：社区版与付费版、软硬件环境、域名与 HTTPS 等准备事项。
 ---
 
 ## 发行版本
