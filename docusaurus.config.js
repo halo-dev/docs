@@ -46,7 +46,7 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.23",
+          lastVersion: "2.24",
           versions: {
             current: {
               label: "next",
@@ -80,7 +80,7 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
-          ignorePatterns: ["/2.18/**", "/2.19/**", "/2.20/**", "/2.21/**", "/2.22/**"],
+          ignorePatterns: ["/2.18/**", "/2.19/**", "/2.20/**", "/2.21/**", "/2.22/**", "/2.23/**"],
         },
         googleAnalytics: {
           trackingID: "UA-110780416-7",
