@@ -3,6 +3,12 @@ title: API 变更日志
 description: 记录每一个版本的主题 API 变更记录，方便开发者适配
 ---
 
+## 2.24.1
+
+### 文章 Finder API > 新增 `random(maxSize)` 方法
+
+在 2.24.1 中，我们为文章 Finder API 新增了 `random(maxSize)` 方法，用于随机获取文章列表。详细文档可查阅：[文章 Finder API#random](../../developer-guide/theme/finder-apis/post.md#randommaxsize)。
+
 ## 2.23.0
 
 ### 表单定义 > Iconify 表单类型新增 `sizing` 参数
