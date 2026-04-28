@@ -3,8 +3,10 @@
   "title": "string",                      // 站点标题
   "subtitle": "string",                   // 站点副标题
   "url": "string",                        // 站点的外部访问链接
+  "version": "string",                    // 当前 Halo 版本
   "logo": "string",                       // Logo 地址
   "favicon": "string",                    // Favicon 地址
+  "language": "string",                   // 站点语言
   "allowRegistration": false,             // 是否允许注册
   "post": {                               // 文章相关设置
     "postPageSize": 10,                   // 首页默认分页大小
