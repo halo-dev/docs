@@ -32,6 +32,12 @@ Halo 目前为模板引擎在全局提供了一些变量，本文档将列出已
 <img th:src="${site.logo}" alt="Logo" />
 ```
 
+显示当前 Halo 版本：
+
+```html
+<span th:text="${site.version}"></span>
+```
+
 ## theme
 
 ### 描述
