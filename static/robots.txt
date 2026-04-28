@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /next
+Disallow: /2.18
+Disallow: /2.19
+Disallow: /2.20
+Disallow: /2.21
+Disallow: /2.22
+Disallow: /2.23
+
+
+Sitemap: https://docs.halo.run/sitemap.xml
