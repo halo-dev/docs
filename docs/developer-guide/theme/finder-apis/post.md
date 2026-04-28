@@ -131,6 +131,34 @@ List\<[#ListedPostVo](#listedpostvo)\>
 </ul>
 ```
 
+## random(maxSize)
+
+```js
+postFinder.random(maxSize);
+```
+
+### 描述
+
+随机获取文章列表。
+
+### 参数
+
+1. `maxSize:int` - 获取文章的最大数量，取值范围为 1 到 100。
+
+### 返回值
+
+List\<[#ListedPostVo](#listedpostvo)\>
+
+### 示例
+
+```html
+<ul th:with="posts = ${postFinder.random(10)}">
+  <li th:each="post : ${posts}">
+    <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+  </li>
+</ul>
+```
+
 ## `list({...})`
 
 ```js
