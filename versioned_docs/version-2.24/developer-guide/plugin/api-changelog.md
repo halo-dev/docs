@@ -75,6 +75,17 @@ spec:
 
 ## 2.22.0
 
+### 自定义模型索引 API 更新
+
+在 2.22.0 中，我们重构了自定义模型索引和查询 API，插件中直接使用索引 API 的代码建议进行以下调整：
+
+1. 使用 `IndexSpecs.single(name, keyType)` 和 `IndexSpecs.multi(name, keyType)` 声明索引，替代 `IndexAttributeFactory.simpleAttribute()`、`IndexAttributeFactory.multiValueAttribute()` 和直接创建 `new IndexSpec()` 的旧写法。
+2. 索引值类型不再局限于字符串，可以使用 `String`、`Boolean`、`Integer`、`Long`、`Instant` 等实现 `Comparable` 的类型。
+3. 使用 `Queries` 创建 `FieldSelector` 查询条件，替代已过时的 `QueryFactory`。
+4. `ReactiveExtensionClient` 和 `ExtensionClient` 新增了 `listAllNames`、`listTopNames`、`listNamesBy` 和 `countBy` 等查询方法，直接使用 `indexedQueryEngine()` 的方式已过时。
+
+详细文档可查阅：[自定义模型使用索引](./api-reference/server/extension.md#using-indexes) 和 [ExtensionClient 查询](./api-reference/server/extension-client.md#query)。
+
 ### `@halo-dev/console-shared` 改名
 
 从 Halo 2.11 支持个人中心以后，插件的 UI 项目能同时扩展 Console 和 UC，所以为了避免歧义，我们在 Halo 2.22 中将 UI 的 `@halo-dev/console-shared` 依赖更名为 `@halo-dev/ui-shared`，虽然在 Halo 中兼容了旧版依赖，但仍然推荐使用新版依赖，迁移方案：

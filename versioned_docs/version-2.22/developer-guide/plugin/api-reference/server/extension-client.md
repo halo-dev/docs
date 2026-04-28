@@ -102,9 +102,16 @@ public PersonService {
 
 ### 查询 {#query}
 
-`ReactiveExtensionClient` 提供了两个方法用于查询数据，`listBy` 和 `listAll`。
+`ReactiveExtensionClient` 提供了以下方法用于查询数据：
 
-`listBy` 方法用于分页查询数据，`listAll` 方法用于查询所有数据，它们都需要一个 `ListOptions` 参数，用于传递查询条件：
+- `listBy`：分页查询数据。
+- `listNamesBy`：分页查询对象名称。
+- `listAll`：查询所有数据。
+- `listAllNames`：查询所有对象名称。
+- `listTopNames`：查询指定数量的对象名称。
+- `countBy`：统计符合条件的数据数量。
+
+这些方法都需要一个 `ListOptions` 参数，用于传递查询条件：
 
 ```java
 public class ListOptions {
@@ -115,58 +122,61 @@ public class ListOptions {
 
 其中 `LabelSelector` 用于传递标签查询条件，`FieldSelector` 用于传递字段查询条件。
 
-`FieldSelector` 支持比自动生成的 APIs 中更多的查询条件，可以通过 `run.halo.app.extension.index.query.QueryFactory` 来构建。
+`FieldSelector` 支持比自动生成的 APIs 中更多的查询条件，可以通过 `run.halo.app.extension.index.query.Queries` 来构建。
 
 ```java
+import static run.halo.app.extension.index.query.Queries.and;
+import static run.halo.app.extension.index.query.Queries.equal;
+
 ListOptions.builder()
-    .fieldQuery(QueryFactory.and(
-        QueryFactory.equal("name", "test"),
-        QueryFactory.equal("age", 18)
+    .fieldQuery(and(
+        equal("name", "test"),
+        equal("age", 18)
     ))
     .build();
 ```
 
 支持的查询条件如下：
 
-| 方法                         | 说明             | 示例                                                                          |
-| ---------------------------- | ---------------- | ----------------------------------------------------------------------------- |
-| equal                        | 等于             | equal("name", "test"), name 是字段名，test 是字段值                           |
-| equalOtherField              | 等于其他字段     | equalOtherField("name", "otherName"), name 是字段名，otherName 是另一个字段名 |
-| notEqual                     | 不等于           | notEqual("name", "test")                                                      |
-| notEqualOtherField           | 不等于其他字段   | notEqualOtherField("name", "otherName")                                       |
-| greaterThan                  | 大于             | greaterThan("age", 18)                                                        |
-| greaterThanOtherField        | 大于其他字段     | greaterThanOtherField("age", "otherAge")                                      |
-| greaterThanOrEqual           | 大于等于         | greaterThanOrEqual("age", 18)                                                 |
-| greaterThanOrEqualOtherField | 大于等于其他字段 | greaterThanOrEqualOtherField("age", "otherAge")                               |
-| lessThan                     | 小于             | lessThan("age", 18)                                                           |
-| lessThanOtherField           | 小于其他字段     | lessThanOtherField("age", "otherAge")                                         |
-| lessThanOrEqual              | 小于等于         | lessThanOrEqual("age", 18)                                                    |
-| lessThanOrEqualOtherField    | 小于等于其他字段 | lessThanOrEqualOtherField("age", "otherAge")                                  |
-| in                           | 在范围内         | in("age", 18, 19, 20)                                                         |
-| and                          | 且               | and(equal("name", "test"), equal("age", 18))                                  |
-| or                           | 或               | or(equal("name", "test"), equal("age", 18))                                   |
-| between                      | 在范围内         | between("age", 18, 20), 包含 18 和 20                                         |
-| betweenExclusive             | 在范围内         | betweenExclusive("age", 18, 20), 不包含 18 和 20                              |
-| betweenLowerExclusive        | 在范围内         | betweenLowerExclusive("age", 18, 20), 不包含 18，包含 20                      |
-| betweenUpperExclusive        | 在范围内         | betweenUpperExclusive("age", 18, 20), 包含 18，不包含 20                      |
-| startsWith                   | 以指定字符串开头 | startsWith("name", "test")                                                    |
-| endsWith                     | 以指定字符串结尾 | endsWith("name", "test")                                                      |
-| contains                     | 包含指定字符串   | contains("name", "test")                                                      |
-| all                          | 指定字段的所有值 | all("age")                                                                    |
+| 方法 | 说明 | 示例 |
+| --- | --- | --- |
+| `equal` | 等于 | `equal("name", "test")` |
+| `notEqual` | 不等于 | `notEqual("name", "test")` |
+| `greaterThan` | 大于，可通过第三个参数控制是否包含边界 | `greaterThan("age", 18)`、`greaterThan("age", 18, true)` |
+| `lessThan` | 小于，可通过第三个参数控制是否包含边界 | `lessThan("age", 18)`、`lessThan("age", 18, true)` |
+| `between` | 在范围内，可分别控制上下边界是否包含 | `between("age", 18, true, 20, false)` |
+| `in` | 在给定值范围内 | `in("age", 18, 19, 20)` |
+| `isNull` | 值为空 | `isNull("deletedAt")` |
+| `all` | 指定字段的所有值 | `all("age")` |
+| `startsWith` | 以指定字符串开头 | `startsWith("name", "test")` |
+| `endsWith` | 以指定字符串结尾 | `endsWith("name", "test")` |
+| `contains` | 包含指定字符串 | `contains("name", "test")` |
+| `and` | 且 | `and(equal("name", "test"), equal("age", 18))` |
+| `or` | 或 | `or(equal("name", "test"), equal("age", 18))` |
+| `not` | 取反 | `not(equal("name", "test"))` |
+| `labelExists` | 标签存在 | `labelExists("halo.run/hidden")` |
+| `labelEqual` | 标签等于 | `labelEqual("env", "production")` |
+| `labelIn` | 标签值在给定范围内 | `labelIn("env", Set.of("production", "staging"))` |
 
 在 `FieldSelector` 中使用的所有字段都必须添加为索引，否则会抛出异常表示不支持该字段。关于如何使用索引请参考 [自定义模型使用索引](./extension.md#using-indexes)。
+
+:::note
+
+从 2.22.0 开始，`QueryFactory` 已过时，请使用 `Queries` 创建查询条件。取反查询可以通过 `Queries.not(condition)` 或 `condition.not()` 构建。
+
+:::
 
 可以通过 `and` 和 `or` 方法组合和嵌套查询条件：
 
 ```java
-import static run.halo.app.extension.index.query.QueryFactory.and;
-import static run.halo.app.extension.index.query.QueryFactory.equal;
-import static run.halo.app.extension.index.query.QueryFactory.greaterThan;
-import static run.halo.app.extension.index.query.QueryFactory.or;
+import run.halo.app.extension.index.query.Condition;
+import static run.halo.app.extension.index.query.Queries.and;
+import static run.halo.app.extension.index.query.Queries.equal;
+import static run.halo.app.extension.index.query.Queries.or;
 
-Query query = and(
+Condition query = and(
     or(equal("dept", "A"), equal("dept", "B")),
-    or(equal("age", "19"), equal("age", "18"))
+    or(equal("age", 19), equal("age", 18))
 );
 ListOptions.builder()
     .fieldQuery(query)
@@ -178,11 +188,13 @@ ListOptions.builder()
 ListOptions 提供了 `builder` 方法用于构建查询条件，`fieldQuery` 方法用于传递字段查询条件，`labelSelector` 方法用于传递标签查询条件。
 
 ```java
+import static run.halo.app.extension.index.query.Queries.equal;
+
 ListOptions.builder()
     .labelSelector()
     .eq("key-1", "value-1")
     .end()
-    .fieldQuery(QueryFactory.equal("key-2", "value-2"))
+    .fieldQuery(equal("key-2", "value-2"))
     .build();
 ```
 
@@ -191,7 +203,7 @@ ListOptions.builder()
 
 ### 排序
 
-`listBy` 和 `listAll` 方法都支持传递 `Sort` 参数，用于传递排序条件。
+`listBy`、`listNamesBy`、`listAll`、`listAllNames` 和 `listTopNames` 方法都支持传递 `Sort` 参数，用于传递排序条件。
 
 ```java
 import org.springframework.data.domain.Sort;
