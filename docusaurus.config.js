@@ -79,8 +79,9 @@ const config = {
         },
         sitemap: {
           changefreq: "weekly",
-          priority: 0.5,
-          ignorePatterns: ["/2.18/**", "/2.19/**", "/2.20/**", "/2.21/**", "/2.22/**", "/2.23/**"],
+          priority: null,
+          changefreq: null,
+          ignorePatterns: ["/next/**", "/2.18/**", "/2.19/**", "/2.20/**", "/2.21/**", "/2.22/**", "/2.23/**"],
         },
         googleAnalytics: {
           trackingID: "UA-110780416-7",
