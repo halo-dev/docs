@@ -92,6 +92,8 @@ public interface ExtensionMatcher {
 比如我们想要观察文章对象，但是只想观察文章对象中 `visible` 字段为 `PUBLIC` 的文章，可以这样
 
 ```java
+import static run.halo.app.extension.index.query.Queries.equal;
+
 public class PostReconciler implements Reconciler<Reconciler.Request> {
     @Override
     public Result reconcile(Request request) {
@@ -131,7 +133,7 @@ public class PostReconciler implements Reconciler<Reconciler.Request> {
         return builder
             .extension(new Post())
             .syncAllListOptions(ListOptions.builder()
-                .fieldQuery(QueryFactory.equal("spec.owner", "guqing"))
+                .fieldQuery(equal("spec.owner", "guqing"))
                 .build()
             )
             .syncAllOnStart(true)

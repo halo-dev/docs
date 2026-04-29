@@ -168,36 +168,49 @@ Halo 提供了一套索引机制，开发者可以通过注册自定义模型时
 示例：
 
 ```java
-import static run.halo.app.extension.index.IndexAttributeFactory.multiValueAttribute;
-import static run.halo.app.extension.index.IndexAttributeFactory.simpleAttribute;
+import java.time.Instant;
+import java.util.Set;
+import static run.halo.app.extension.index.IndexSpecs.multi;
+import static run.halo.app.extension.index.IndexSpecs.single;
 
 @Override
 public void start() {
   schemeManager.register(Moment.class, indexSpecs -> {
-    indexSpecs.add(new IndexSpec()
-      .setName("spec.tags")
-      // multiValueAttribute 用于得到一个返回多个值的索引函数
-      .setIndexFunc(multiValueAttribute(Moment.class, moment -> {
-          var tags = moment.getSpec().getTags();
-          return tags == null ? Set.of() : tags;
-      }))
-      // simpleAttribute 用于得到一个返回单个值的索引函数，可以返回 null
-      indexSpecs.add(new IndexSpec()
-        .setName("spec.owner")
-        .setIndexFunc(
-          simpleAttribute(Moment.class, moment -> moment.getSpec().getOwner())));
-  );
+    // multi 用于声明一个返回多个值的索引
+    indexSpecs.add(multi("spec.tags", String.class)
+      .indexFunc(moment -> {
+        var tags = moment.getSpec().getTags();
+        return tags == null ? Set.of() : tags;
+      }));
+
+    // single 用于声明一个返回单个值的索引，可以返回 null
+    indexSpecs.add(single("spec.owner", String.class)
+      .indexFunc(moment -> moment.getSpec().getOwner()));
+
+    // 索引值不再局限于字符串，也可以使用 Boolean、Integer、Instant 等可比较类型
+    indexSpecs.add(single("spec.pinned", Boolean.class)
+      .indexFunc(moment -> moment.getSpec().getPinned()));
+    indexSpecs.add(single("spec.priority", Integer.class)
+      .indexFunc(moment -> moment.getSpec().getPriority()));
+    indexSpecs.add(single("spec.publishTime", Instant.class)
+      .indexFunc(moment -> moment.getSpec().getPublishTime()));
+  });
 }
 ```
 
-`IndexSpec` 用于声明索引项，它包含以下属性：
+`IndexSpec` 用于声明索引项，推荐通过 `IndexSpecs.single(name, keyType)` 或 `IndexSpecs.multi(name, keyType)` 构建。它包含以下属性：
 
 - name：索引名称，在同一个自定义模型的索引中必须唯一，一般建议使用字段路径作为索引名称，例如 `spec.slug`。
 - order：对索引值的排序方式，支持 `ASC` 和 `DESC`，默认为 `ASC`。
 - unique：是否唯一索引，如果为 `true` 则索引值必须唯一，如果创建自定义模型对象时检测到此索引字段有重复值则会创建失败。
-- indexFunc：索引函数，用于获取索引值，接收当前自定义模型对象，返回一个索引值，索引值必须是字符串任意类型，如果不是字符串类型则需要自己转为字符串，可以使用 `IndexAttributeFactory` 提供的静态方法来创建 `indexFunc`：
-  - `simpleAttribute()`：用于得到一个返回单个值的索引函数，例如 `moment -> moment.getSpec().getSlug()`。
-  - `multiValueAttribute()`：用于得到一个返回多个值的索引函数，例如 `moment -> moment.getSpec().getTags()`。
+- keyType：索引值类型，必须实现 `Comparable`，例如 `String`、`Boolean`、`Integer`、`Long`、`Instant` 等。
+- indexFunc：索引函数，用于获取索引值，接收当前自定义模型对象。单值索引返回一个 `keyType` 类型的值，可以返回 `null`；多值索引返回 `Set<keyType>`。
+
+:::note
+
+从 2.22.0 开始，`IndexAttributeFactory.simpleAttribute()`、`IndexAttributeFactory.multiValueAttribute()` 和直接创建 `new IndexSpec()` 的写法已过时，请优先使用 `IndexSpecs.single()` 和 `IndexSpecs.multi()`。
+
+:::
 
 当注册自定义模型时声明了索引，Halo 会在插件启动时构建索引，在构建索引期间插件处于未启动状态。
 
@@ -482,6 +495,10 @@ public class PersonQuery {
 但排序、分页、标签查询和字段查询等参数通常是通用的，因此 Halo 提供了 `run.halo.app.extension.router.SortableRequest` 类来封装这些参数，开发者可以直接继承该类来定义额外查询参数：
 
 ```java
+import static run.halo.app.extension.index.query.Queries.contains;
+import static run.halo.app.extension.index.query.Queries.equal;
+import static run.halo.app.extension.index.query.Queries.or;
+
 public class PersonQuery extends SortableRequest {
 
     public PersonQuery(ServerWebExchange exchange) {
@@ -519,9 +536,9 @@ public class PersonQuery extends SortableRequest {
   @Override
   public ListOptions toListOptions() {
     return ListOptions.builder(super.toListOptions())
-      .fieldQuery(QueryFactory.or(
-          QueryFactory.equal("metadata.name", getKeyword()),
-          QueryFactory.contains("spec.name", getKeyword())
+      .fieldQuery(or(
+          equal("metadata.name", getKeyword()),
+          contains("spec.name", getKeyword())
       ))
       .build();
   }
