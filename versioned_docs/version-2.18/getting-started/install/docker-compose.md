@@ -47,9 +47,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
    <Tabs queryString="current">
     <TabItem value="halo-postgresql" label="Halo + PostgreSQL" default>
-         ```yaml {23-29,43} title="~/halo/docker-compose.yaml"
-         version: "3"
-
+         ```yaml {21-27,41} title="~/halo/docker-compose.yaml"
          services:
            halo:
              image: registry.fit2cloud.com/halo/halo:2.18
@@ -103,9 +101,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
          :::
     </TabItem>
     <TabItem value="halo-mysql" label="Halo + MySQL">
-         ```yaml {23-29,51} title="~/halo/docker-compose.yaml"
-         version: "3"
-
+         ```yaml {21-27,49} title="~/halo/docker-compose.yaml"
          services:
            halo:
              image: registry.fit2cloud.com/halo/halo:2.18
@@ -170,9 +166,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
         不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
         :::
 
-        ```yaml {19-24} title="~/halo/docker-compose.yaml"
-        version: "3"
-
+        ```yaml {17-22} title="~/halo/docker-compose.yaml"
         services:
           halo:
             image: registry.fit2cloud.com/halo/halo:2.18
@@ -193,9 +187,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
         ```
     </TabItem>
     <TabItem value="external-db" label="使用外部数据库">
-        ```yaml {7,12-20} title="~/halo/docker-compose.yaml"
-        version: "3"
-
+        ```yaml {5,10-18} title="~/halo/docker-compose.yaml"
         services:
           halo:
             image: registry.fit2cloud.com/halo/halo:2.18
@@ -303,9 +295,7 @@ reverse_proxy 127.0.0.1:8090
 3. 修改外部地址为你的域名
 4. 声明路由规则、开启 TLS
 
-```yaml {4-5,16,20,25-31}
-version: "3.8"
-
+```yaml {2-3,14,18,23-29}
 networks:
   traefik:
     external: true
