@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
 import "meilisearch-docsearch/css";
+import React, { useEffect } from "react";
 
 export default function SearchBarWrapper(props) {
   useEffect(() => {
