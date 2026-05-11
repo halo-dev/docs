@@ -180,7 +180,7 @@ public void start() {
     indexSpecs.add(IndexSpecs.<Moment, String>multi("spec.tags", String.class)
       .indexFunc(moment -> {
         var tags = moment.getSpec().getTags();
-        return tags == null ? new HashSet<>() : new HashSet<>(tags);
+        return tags == null ? Set.of() : tags;
       }));
 
     // single 用于声明一个返回单个值的索引，可以返回 null
