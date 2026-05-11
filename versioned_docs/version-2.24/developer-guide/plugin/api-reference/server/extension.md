@@ -169,30 +169,30 @@ Halo 提供了一套索引机制，开发者可以通过注册自定义模型时
 
 ```java
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
-import static run.halo.app.extension.index.IndexSpecs.multi;
-import static run.halo.app.extension.index.IndexSpecs.single;
+import run.halo.app.extension.index.IndexSpecs;
 
 @Override
 public void start() {
   schemeManager.register(Moment.class, indexSpecs -> {
     // multi 用于声明一个返回多个值的索引
-    indexSpecs.add(multi("spec.tags", String.class)
+    indexSpecs.add(IndexSpecs.<Moment, String>multi("spec.tags", String.class)
       .indexFunc(moment -> {
         var tags = moment.getSpec().getTags();
         return tags == null ? Set.of() : tags;
       }));
 
     // single 用于声明一个返回单个值的索引，可以返回 null
-    indexSpecs.add(single("spec.owner", String.class)
+    indexSpecs.add(IndexSpecs.<Moment, String>single("spec.owner", String.class)
       .indexFunc(moment -> moment.getSpec().getOwner()));
 
     // 索引值不再局限于字符串，也可以使用 Boolean、Integer、Instant 等可比较类型
-    indexSpecs.add(single("spec.pinned", Boolean.class)
+    indexSpecs.add(IndexSpecs.<Moment, Boolean>single("spec.pinned", Boolean.class)
       .indexFunc(moment -> moment.getSpec().getPinned()));
-    indexSpecs.add(single("spec.priority", Integer.class)
+    indexSpecs.add(IndexSpecs.<Moment, Integer>single("spec.priority", Integer.class)
       .indexFunc(moment -> moment.getSpec().getPriority()));
-    indexSpecs.add(single("spec.publishTime", Instant.class)
+    indexSpecs.add(IndexSpecs.<Moment, Instant>single("spec.publishTime", Instant.class)
       .indexFunc(moment -> moment.getSpec().getPublishTime()));
   });
 }
