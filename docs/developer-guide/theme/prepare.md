@@ -75,6 +75,18 @@ spec:
 创建新的主题仓库并克隆到本地开发环境之后，需要确保主题文件夹名称和 `theme.yaml` 中的 `metadata.name` 字段一致，否则可能导致部分资源无法正常加载。
 :::
 
+## AI 辅助开发
+
+Halo 官方为主题开发者提供了 Agent Skills，支持在 Cursor、Claude Code、Codex 等 AI 开发工具中使用，以获得 Halo 主题开发的深度上下文和辅助能力。
+
+- [halo-dev/dev-skills](https://github.com/halo-dev/dev-skills) - 包含 `halo-theme-dev` Skill，涵盖主题目录结构、Thymeleaf 模板、Finder API、静态资源管理、主题设置表单等内容，并提供了最小主题和 Vite 主题的初始模板。
+
+安装方式：
+
+```bash
+npx skills add halo-dev/dev-skills@halo-theme-dev -g
+```
+
 ## 创建第一个页面模板
 
 Halo 使用 [Thymeleaf](https://www.thymeleaf.org/) 作为后端模板引擎，后缀为 `.html`，与单纯编写 HTML 一致。在 Halo 的主题中，主题的模板文件存放于 `templates` 目录下，例如 `~/halo2-dev/themes/theme-foo/templates`。为了此文档方便演示，我们先在 `templates` 创建一个首页的模板文件 `index.html`：

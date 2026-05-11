@@ -15,3 +15,15 @@ description: 插件开发的准备工作
 - Git 是一个版本控制系统，用于跟踪代码的更改，您需要 Git 来下载示例插件并发布插件。
 
 同时需要先阅读 [Halo 架构概览](../core/framework.md) 以了解 Halo 的核心概念和技术栈。
+
+## AI 辅助开发
+
+Halo 官方为插件开发者提供了 Agent Skills，支持在 Cursor、Claude Code、Codex 等 AI 开发工具中使用，以获得 Halo 插件开发的深度上下文和辅助能力。
+
+- [halo-dev/dev-skills](https://github.com/halo-dev/dev-skills) - 包含 `halo-plugin-dev` Skill，涵盖插件目录结构、Java 后端开发、Vue 3 前端开发、RBAC 权限管理、DevTools 工作流、OpenAPI 客户端生成等内容。
+
+安装方式：
+
+```bash
+npx skills add halo-dev/dev-skills@halo-plugin-dev -g
+```
