@@ -93,10 +93,8 @@ spring:
 
 | 配置路径                      | 说明                        | 默认值 |
 | ----------------------------- | --------------------------- | ------ |
-| `halo.console.proxy.endpoint` | 开发环境的 Console 代理地址 | --     |
-| `halo.console.proxy.enabled`  | 是否启用 Console 代理地址   | --     |
-| `halo.uc.proxy.endpoint`      | 开发环境的 UC 代理地址      | --     |
-| `halo.uc.proxy.enabled`       | 是否启用 UC 代理地址        | --     |
+| `halo.ui.proxy.endpoint`      | 开发环境的 UI 代理地址      | --     |
+| `halo.ui.proxy.enabled`       | 是否启用 UI 代理地址        | --     |
 | `halo.plugin.runtime-mode`    | 插件的运行模式              | --     |
 
 ### Web 框架本身的配置
