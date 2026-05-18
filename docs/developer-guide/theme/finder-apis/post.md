@@ -103,6 +103,55 @@ postFinder.cursor(postName);
 </div>
 ```
 
+## cursorByCategory(postName)
+
+```js
+postFinder.cursorByCategory(postName);
+```
+
+### 描述
+
+根据文章的 `metadata.name` 获取同一主分类下相邻的文章（上一篇 / 下一篇）。
+
+主分类为文章 `spec.categories` 中的第一个分类。此方法只匹配同一分类下的文章，不会包含子分类中的文章。如果当前文章没有分类、未发布或者不存在，将返回空的导航结果。
+
+:::info[提示]
+上一篇文章是指发布时间较当前文章更早的文章，下一篇文章是指发布时间较当前文章更新的文章。
+:::
+
+对应的 Public API 为：
+
+```bash
+GET /apis/api.content.halo.run/v1alpha1/posts/{name}/navigation?scope=category
+```
+
+### 参数
+
+1. `postName:string` - 文章的唯一标识 `metadata.name`。
+
+### 返回值
+
+[#NavigationPostVo](#navigationpostvo)
+
+### 示例
+
+```html title="/templates/post.html"
+<div th:with="postCursor = ${postFinder.cursorByCategory(post.metadata.name)}">
+  <a
+    th:if="${postCursor.hasPrevious()}"
+    th:href="@{${postCursor.previous.status.permalink}}"
+  >
+    <span th:text="${postCursor.previous.spec.title}"></span>
+  </a>
+  <a
+    th:if="${postCursor.hasNext()}"
+    th:href="@{${postCursor.next.status.permalink}}"
+  >
+    <span th:text="${postCursor.next.spec.title}"></span>
+  </a>
+</div>
+```
+
 ## listAll()
 
 ```js
