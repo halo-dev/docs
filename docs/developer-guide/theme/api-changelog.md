@@ -3,6 +3,14 @@ title: API 变更日志
 description: 记录每一个版本的主题 API 变更记录，方便开发者适配
 ---
 
+## 2.25.0
+
+### 文章 Finder API > 新增 `cursorByCategory(postName)` 方法
+
+我们为文章 Finder API 新增了 `cursorByCategory(postName)` 方法，用于获取当前文章主分类下的上一篇 / 下一篇文章。主分类为文章 `spec.categories` 中的第一个分类，且只匹配同一分类，不会包含子分类中的文章。
+
+同时，Public API `GET /apis/api.content.halo.run/v1alpha1/posts/{name}/navigation` 新增了可选的 `scope=category` 查询参数，用于获取同一主分类下的文章导航。详细文档可查阅：[文章 Finder API#cursorByCategory](../../developer-guide/theme/finder-apis/post.md#cursorbycategorypostname)。
+
 ## 2.24.1
 
 ### 文章 Finder API > 新增 `random(maxSize)` 方法
