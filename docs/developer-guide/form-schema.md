@@ -858,6 +858,7 @@ UI 效果：
 - `requiredKeys`：所需的密钥字段，用于为用户说明所选的密钥资源中需要包含的字段，此字段为对象数组类型，对象包含以下属性：
   - `key`：密钥字段名称
   - `help`：密钥字段名称的描述
+- `descriptionPreset`：创建密钥时的备注预设。打开创建密钥弹窗时，备注字段会预填为 `<descriptionPreset> - <当前时间>`，用户仍可在保存前编辑。
 
 #### 示例
 
@@ -865,6 +866,7 @@ UI 效果：
 - $formkit: secret
   name: secret
   label: 密钥
+  descriptionPreset: 第三方 API
   requiredKeys:
     - key: apiKey
       help: API 密钥

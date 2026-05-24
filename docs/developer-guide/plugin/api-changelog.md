@@ -3,6 +3,12 @@ title: API 变更日志
 description: 记录每一个版本的插件 API 变更记录，方便开发者适配
 ---
 
+## 2.25.0
+
+### 表单定义 > `secret` 表单类型新增 `descriptionPreset` 参数
+
+在 2.25.0 中，`secret` 表单类型新增了 `descriptionPreset` 参数，用于在创建密钥时预填备注。详细文档可查阅：[表单定义#secret](../../developer-guide/form-schema.md#secret)。
+
 ## 2.23.0
 
 ### Spring Boot 依赖升级可能导致插件无法正常启动
