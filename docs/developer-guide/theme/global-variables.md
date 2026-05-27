@@ -38,6 +38,36 @@ Halo 目前为模板引擎在全局提供了一些变量，本文档将列出已
 <span th:text="${site.version}"></span>
 ```
 
+## #halo.matchVersion(constraint)
+
+### 描述
+
+用于判断当前运行的 Halo 版本是否满足指定的语义化版本范围，适合在主题模板中为依赖新版 Halo 能力的片段添加兼容判断。
+
+版本范围格式遵循 [Semantic Range Expressions](https://github.com/zafarkhaja/jsemver#range-expressions)，例如 `>=2.25.0`、`>2.0.0 & <3.0.0` 等。
+
+:::tip
+开发版本 `0.0.0` 会始终返回 `true`，以便在本地开发环境中调试主题模板。
+:::
+
+### 示例
+
+仅在 Halo 版本满足要求时渲染模板片段：
+
+```html
+<div th:if="${#halo.matchVersion('>=2.25.0')}">
+  <!-- 这里可以使用仅在 Halo 2.25.0 及以上版本可用的能力 -->
+</div>
+```
+
+判断一个版本范围：
+
+```html
+<div th:if="${#halo.matchVersion('>=2.25.0 & <3.0.0')}">
+  <!-- 仅在 Halo 2.x 的指定版本范围内渲染 -->
+</div>
+```
+
 ## theme
 
 ### 描述
