@@ -104,32 +104,7 @@ jobs:
 
 ## 发布到应用市场
 
-Halo 的官方应用市场接受新应用的提交，但由于应用市场仅支持作者自行管理应用以及版本，还不支持自助新建应用并发布，所以发布到应用市场需要按照以下流程：
-
-1. 向 [halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo) 发起一个 PR 提交应用的信息，并勾选 **上架到 Halo 应用市场**。
-2. Halo 官方人员会审核你的应用信息，审核通过后会上架到应用市场。
-3. 如果你需要自行管理应用以及版本，可以在 PR 描述信息中提供 [Halo 官网](https://www.halo.run/)的用户名，我们会在应用发布之后将管理权限授予你。
-
-### 要求
-
-在你决定上架到 Halo 应用市场前，请确保已经完成以下要求：
-
-1. 插件必须正确设置 `plugin.yaml` 中的 logo 字段，不能是插件开发模板中默认的 Halo 图标。
-2. 主题和插件的描述文件中必须正确设置 `homepage`、`issues`、`license` 字段，详细解释：
-   1. `homepage`：应用的主页，可以填写为 GitHub 仓库地址或者 Halo 应用市场的应用详情页地址。
-   2. `issues`：应用的反馈地址，可以填写为 GitHub 仓库的 issues 地址。
-   3. `license`：应用的发行许可证。
-3. 应用必须编写介绍和使用文档。
-4. 应用如果是基于其他程序开发的，需要保证许可证兼容。
-
-### 自动发布
-
-当你有了应用的管理权限之后，你可以修改上述 CI / CD 工作流，以实现在 GitHub 发布 Release 之后自动同步到应用市场，以下是具体步骤：
-
-1. 移除 `skip-appstore-release: true` 配置，或者设置为 `false`。
-2. 在 `with` 中添加 `app-id` 配置，值为应用市场的应用 ID。
-3. 在 Halo 官网的个人中心创建一个新的[个人令牌](https://www.halo.run/uc/profile?tab=pat)，勾选 **应用市场开发者 > 版本管理**。
-4. 在 GitHub 仓库的设置 -> `Secrets and variables` 中新建一个 Secret，名称为 `HALO_PAT`，值为你在 Halo 官网创建的个人令牌。
+Halo 官方应用市场支持开发者自助创建应用并提交首次上架审核。具体流程请查阅[应用市场 / 发布应用](../app-store/publish-app.md)，提交前请对照[应用市场审核指南](../app-store/app-review-guidelines.md)完成自查。
 
 ## 版本控制 {#version-control}
 

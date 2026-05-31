@@ -453,6 +453,17 @@ module.exports = {
         "developer-guide/restful-api/api-client",
       ],
     },
+    {
+      type: "category",
+      label: "应用市场",
+      link: {
+        type: "generated-index",
+      },
+      items: [
+        "developer-guide/app-store/publish-app",
+        "developer-guide/app-store/app-review-guidelines",
+      ],
+    },
     "developer-guide/form-schema",
     "developer-guide/annotations-form",
     {
