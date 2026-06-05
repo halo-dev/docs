@@ -7,7 +7,7 @@ Halo 官方应用市场支持开发者自助创建应用并提交首次上架审
 
 ## 申请成为开发者
 
-上架应用前，你需要使用已完成邮箱验证的 Halo 官网账号申请成为应用市场开发者。申请时需要填写开发者资料，并阅读和同意当前开发者协议。申请通过后，你可以进入开发者中心创建和管理自己的应用。
+上架应用前，你需要使用已完成邮箱验证的 Halo 官网账号，在[开发者入驻页面](https://www.halo.run/uc/developer/join)申请成为应用市场开发者。申请时需要填写开发者资料，并阅读和同意当前开发者协议。申请通过后，你可以在[应用管理页面](https://www.halo.run/uc/developer/apps)创建和管理自己的应用。
 
 如果申请被驳回，可以根据审核意见修改资料后重新提交。待审核的开发者申请可以取消，取消后也可以重新提交。
 
@@ -15,7 +15,7 @@ Halo 官方应用市场支持开发者自助创建应用并提交首次上架审
 
 首次上架应用需要经过应用级审核。建议按以下顺序准备：
 
-1. 在开发者中心创建应用，填写应用类型、名称、简介、Logo、截图、README、许可证、外部链接、开源仓库或支持地址等上架信息。
+1. 在[应用管理页面](https://www.halo.run/uc/developer/apps)创建应用，填写应用类型、名称、简介、Logo、截图、README、许可证、外部链接、开源仓库或支持地址等上架信息。
 2. 创建首个版本，填写版本号、Halo 兼容范围和版本说明。版本号应符合 Semantic Versioning 规范，Halo 兼容范围应是合法的 Semantic Versioning range。
 3. 上传版本制品。插件通常应上传可安装的 JAR 包，主题通常应上传可安装的 ZIP 包。
 4. 对照[应用市场审核指南](./app-review-guidelines.md)完成提交前自查。
@@ -47,11 +47,11 @@ Halo 官方应用市场支持开发者自助创建应用并提交首次上架审
 
 ## 后续版本和自动发布
 
-应用首次审核通过后，开发者可以为自己拥有的应用发布后续版本。后续版本仍应符合[应用市场审核指南](./app-review-guidelines.md)，但当前流程不会为每个后续版本创建独立审核记录。
+应用首次审核通过后，开发者可以在[应用管理页面](https://www.halo.run/uc/developer/apps)为自己拥有的应用发布后续版本。后续版本仍应符合[应用市场审核指南](./app-review-guidelines.md)，但当前流程不会为每个后续版本创建独立审核记录。
 
-如果你希望在 GitHub 发布 Release 后自动同步到应用市场，可以修改 CI / CD 工作流：
+如果你希望在 GitHub 发布 Release 后自动同步后续版本到应用市场，可以修改 CI / CD 工作流：
 
 1. 移除 `skip-appstore-release: true` 配置，或者设置为 `false`。
-2. 在 `with` 中添加 `app-id` 配置，值为应用市场的应用 ID。
+2. 在 `with` 中添加 `app-id` 配置，值为应用市场的应用 ID，可在[应用管理页面](https://www.halo.run/uc/developer/apps)查看。
 3. 在 Halo 官网的个人中心创建一个新的[个人令牌](https://www.halo.run/uc/profile?tab=pat)，勾选 **应用市场开发者 > 版本管理**。
 4. 在 GitHub 仓库的设置 -> `Secrets and variables` 中新建一个 Secret，名称为 `HALO_PAT`，值为你在 Halo 官网创建的个人令牌。
