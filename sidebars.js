@@ -246,6 +246,7 @@ module.exports = {
               items: [
                 "developer-guide/plugin/api-reference/ui/route",
                 "developer-guide/plugin/api-reference/ui/api-request",
+                "developer-guide/plugin/api-reference/ui/formkit",
                 "developer-guide/plugin/api-reference/ui/shared",
                 {
                   type: "category",

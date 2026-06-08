@@ -13,6 +13,7 @@ description: UI 扩展部分的入口文件
 import { definePlugin } from "@halo-dev/ui-shared";
 
 export default definePlugin({
+  formkit: {},
   components: {},
   routes: [],
   ucRoutes: [],
@@ -49,6 +50,7 @@ import type {
 import type { AnyExtension } from "@halo-dev/richtext-editor";
 import type { Component, Ref } from "vue";
 import type { RouteRecordName, RouteRecordRaw } from "vue-router";
+import type { FormKitTypeDefinition } from "@formkit/core";
 import type {
   DashboardWidgetDefinition,
   DashboardWidgetQuickActionItem,
@@ -61,6 +63,10 @@ import type { FunctionalPage } from "../states/pages";
 export interface RouteRecordAppend {
   parentName: NonNullable<RouteRecordName>;
   route: RouteRecordRaw;
+}
+
+export interface PluginFormKit {
+  inputs?: Record<string, FormKitTypeDefinition>;
 }
 
 export interface ExtensionPoint {
@@ -145,6 +151,8 @@ export interface ExtensionPoint {
 }
 
 export interface PluginModule {
+  formkit?: PluginFormKit;
+
   /**
    * These components will be registered when plugin is activated.
    */
@@ -159,6 +167,8 @@ export interface PluginModule {
 
 ```
 
+- `formkit`：FormKit 相关扩展定义。
+  - `inputs`：自定义 FormKit 输入组件定义，key 为在 FormKit Schema 中使用的 `$formkit` 类型名称，value 为 FormKit input definition。详细文档可参考 [FormKit 扩展](../../api-reference/ui/formkit.md)。
 - `components`：组件列表，key 为组件名称，value 为组件对象，在此定义之后，加载插件时会自动注册到 Vue App 全局。
 - `routes`：Console 控制台路由定义，详细文档可参考 [路由定义](../../api-reference/ui/route.md)
 - `ucRoutes`：UC 个人中心路由定义，详细文档可参考 [路由定义](../../api-reference/ui/route.md)

@@ -15,6 +15,8 @@ FormKit 相关文档：
 目前不支持 FormKit Pro 中的输入组件，但 Halo 额外提供了部分输入组件，将在下面文档列出。
 :::
 
+如果需要在插件中创建自定义的 FormKit 表单类型，可以通过插件 UI 入口文件的 `formkit.inputs` 注册，详细文档可参考 [插件 FormKit 扩展](./plugin/api-reference/ui/formkit.md)。
+
 ## Setting 资源定义方式
 
 ```yaml title="settings.yaml"
