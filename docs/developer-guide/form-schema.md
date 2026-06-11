@@ -75,6 +75,13 @@ spec:
 
 自定义的选择器组件，支持静态和动态数据源，支持多选等功能。
 
+选项对象至少需要包含 `label` 与 `value`。除此之外，还可以提供 `icon` 与 `description` 用于增强下拉选项展示：
+
+- `icon`：图标图片地址，会以 `<img>` 渲染。
+- `description`：显示在 `label` 下方的说明文字，同时参与本地静态选项搜索。
+
+选中后的单选展示和多选标签仍然只显示 `label`，提交值保持为选项的 `value`，多选时提交 `value` 数组。
+
 #### 参数 {#select-params}
 
 - `options`：静态数据源。当 `action` 存在时，此参数无效。
@@ -97,6 +104,11 @@ spec:
     Record<string, unknown> & {
       label: string;
       value: string;
+      icon?: string;
+      description?: string;
+      attrs?: {
+        disabled?: boolean;
+      };
     }
   >;
   action?: string;
@@ -134,6 +146,16 @@ spec:
     valueField?: PropertyPath;
 
     /**
+     * 从 items 中解析出选项图标地址的字段名。
+     */
+    iconField?: PropertyPath;
+
+    /**
+     * 从 items 中解析出选项描述的字段名。
+     */
+    descriptionField?: PropertyPath;
+
+    /**
      * 使用 value 查询详细信息时，fieldSelector 的查询参数 key，默认为 `metadata.name`。
      */
     fieldSelectorKey?: PropertyPath;
@@ -162,8 +184,12 @@ spec:
   options:
     - label: China
       value: cn
+      icon: /assets/flags/cn.svg
+      description: Chinese cuisine with rich regional styles
     - label: France
       value: fr
+      icon: /assets/flags/fr.svg
+      description: French cuisine and bakery classics
     - label: Germany
       value: de
     - label: Spain
@@ -194,6 +220,8 @@ spec:
     itemsField: items
     labelField: post.spec.title
     valueField: post.metadata.name
+    iconField: post.spec.cover
+    descriptionField: post.status.excerpt
     fieldSelectorKey: metadata.name
 ```
 
