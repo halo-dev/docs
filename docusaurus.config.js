@@ -31,8 +31,8 @@ const config = {
   markdown: {
     mdx1Compat: {
       headingIds: true,
-      comments: true 
-    }
+      comments: true,
+    },
   },
   presets: [
     [
@@ -81,7 +81,13 @@ const config = {
           changefreq: "weekly",
           priority: null,
           changefreq: null,
-          ignorePatterns: ["/next/**", "/2.18/**", "/2.19/**", "/2.20/**", "/2.21/**", "/2.22/**", "/2.23/**"],
+          ignorePatterns: [
+            "/next/**",
+            "/2.20/**",
+            "/2.21/**",
+            "/2.22/**",
+            "/2.23/**",
+          ],
         },
         googleAnalytics: {
           trackingID: "UA-110780416-7",
@@ -138,7 +144,7 @@ const config = {
                 ([versionName, versionUrl]) => ({
                   label: versionName,
                   href: versionUrl,
-                })
+                }),
               ),
               {
                 to: "/versions",
