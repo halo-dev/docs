@@ -46,7 +46,7 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.24",
+          lastVersion: "2.25",
           versions: {
             current: {
               label: "next",
