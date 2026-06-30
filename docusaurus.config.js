@@ -87,7 +87,7 @@ const config = {
             "/2.21/**",
             "/2.22/**",
             "/2.23/**",
-            "/2.24/**"
+            "/2.24/**",
           ],
         },
         googleAnalytics: {
@@ -242,6 +242,17 @@ const config = {
   plugins: [
     require.resolve("docusaurus-plugin-image-zoom"),
     require.resolve("docusaurus-plugin-sass"),
+    [
+      require.resolve("@docusaurus/plugin-client-redirects"),
+      {
+        redirects: [
+          {
+            from: "/developer-guide/appendix/publish-app",
+            to: "/developer-guide/app-store/publish-app",
+          },
+        ],
+      },
+    ],
   ],
   scripts: [
     {
