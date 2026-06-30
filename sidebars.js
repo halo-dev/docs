@@ -467,13 +467,5 @@ module.exports = {
     },
     "developer-guide/form-schema",
     "developer-guide/annotations-form",
-    {
-      type: "category",
-      label: "附录",
-      link: {
-        type: "generated-index",
-      },
-      items: ["developer-guide/appendix/publish-app"],
-    },
   ],
 };
