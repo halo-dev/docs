@@ -392,6 +392,7 @@ module.exports = {
         "developer-guide/theme/prepare",
         "developer-guide/theme/config",
         "developer-guide/theme/structure",
+        "developer-guide/theme/page-layout",
         "developer-guide/theme/static-resources",
         "developer-guide/theme/settings",
         "developer-guide/theme/annotations",

@@ -3,6 +3,12 @@ title: API 变更日志
 description: 记录每一个版本的主题 API 变更记录，方便开发者适配
 ---
 
+## 2.26.0
+
+### 主题目录结构 > 新增页面布局契约
+
+在 2.26.0 中，主题可以通过 `templates/layout.html` 提供 `html(head, content)` 片段，让插件前台页面复用当前主题的页面外壳。Halo 会在主题安装、更新或重载后检查这个模板，并通过 `Theme.status.pageLayout` 暴露 `SUPPORTED`、`MISSING` 或 `INVALID` 状态；未适配或校验异常时，使用布局契约的插件页面会回退到 Halo 内置布局。详细文档可查阅：[页面布局契约](../../developer-guide/theme/page-layout.md)。
+
 ## 2.25.0
 
 ### 表单定义 > `select` 选项支持图标和描述
