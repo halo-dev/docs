@@ -44,6 +44,29 @@ public class MomentRouter {
 
 使用 `TemplateNameResolver` 来解析模板名称，如果主题提供了对应的模板，那么就使用主题提供的模板，否则使用插件提供的模板，如果直接返回模板名称，那么只会使用主题提供的模板，如果主题没有提供对应的模板，那么会抛出异常。
 
+## 复用当前主题页面布局
+
+从 Halo 2.26.0 开始，如果插件提供的前台页面希望复用当前主题的页头、页脚和整体页面外壳，可以在插件模板中调用 `layout :: html(...)`：
+
+```html title="src/main/resources/templates/moment.html"
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{layout :: html(head = ~{::head}, content = ~{::content})}"
+>
+  <th:block th:fragment="head">
+    <title>瞬间 - [[${site.title}]]</title>
+  </th:block>
+  <th:block th:fragment="content">
+    <section>
+      <!-- 插件页面正文 -->
+    </section>
+  </th:block>
+</html>
+```
+
+`layout` 是 Halo 保留的集成模板名。当当前主题提供符合契约的 `templates/layout.html` 时，插件页面会使用主题布局；否则会使用 Halo 内置的 fallback 布局。完整契约可参考[页面布局契约](../../../theme/page-layout.md)。
+
 ## 模板片段
 
 如果你的默认模板不止一个，你可能需要通过模板片段来抽取一些公共的部分，例如，你的插件提供了一个 `moment.html` 模板，你可能需要抽取一些公共的部分，例如头部、尾部等，你可以这样做：
