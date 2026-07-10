@@ -217,13 +217,14 @@ postFinder.list({
   tagName: 'fake-tag',
   categoryName: 'fake-category',
   ownerName: 'fake-owner',
+  pinned: true,
   sort: {'spec.publishTime,desc', 'metadata.creationTimestamp,asc'}
 });
 ```
 
 ### 描述
 
-统一参数的文章列表查询方法，支持分页、标签、分类、创建者、排序等参数，且均为可选参数。
+统一参数的文章列表查询方法，支持分页、标签、分类、创建者、置顶状态、排序等参数，且均为可选参数。
 
 可以使用此方法来代替 `list(page, size)`、`listByCategory(page, size, categoryName)`、`listByTag(page, size, tag)`、`listByOwner(page, size, owner)` 方法。
 
@@ -234,7 +235,8 @@ postFinder.list({
 3. `tagName:string` - 标签唯一标识 `metadata.name`
 4. `categoryName:string` - 分类唯一标识 `metadata.name`
 5. `ownerName:string` - 创建者用户名 `name`
-6. `sort:string[]` - 排序字段，格式为 `字段名,排序方式`，排序方式可选值为 `asc` 或 `desc`，如 `spec.publishTime,desc`，传递时需要使用 `{}` 形式并用逗号分隔表示数组。
+6. `pinned:boolean` - 置顶状态，`true` 仅返回置顶文章，`false` 仅返回非置顶文章；不传时不按置顶状态筛选
+7. `sort:string[]` - 排序字段，格式为 `字段名,排序方式`，排序方式可选值为 `asc` 或 `desc`，如 `spec.publishTime,desc`，传递时需要使用 `{}` 形式并用逗号分隔表示数组。
 
 ### 返回值
 
@@ -249,6 +251,7 @@ postFinder.list({
   tagName: 'fake-tag',
   categoryName: 'fake-category',
   ownerName: 'fake-owner',
+  pinned: true,
   sort: {'spec.publishTime,desc', 'metadata.creationTimestamp,asc'}
 })}">
   <li th:each="post : ${posts.items}">
