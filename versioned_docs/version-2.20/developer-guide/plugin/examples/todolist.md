@@ -12,7 +12,7 @@ description: 这个例子展示了如何开发 Todo List 插件
 1. 修改 `build.gradle` 中的 `group` 为你自己的，如：
 
    ```groovy
-   group = 'run.halo.tutorial'
+   group = 'com.example.tutorial'
    ```
 
 2. 修改 `settings.gradle` 中的 `rootProject.name`
@@ -56,10 +56,10 @@ description: 这个例子展示了如何开发 Todo List 插件
 
 为了看到效果，首先我们需要让插件能最简单的运行起来。
 
-1. 在 `src/main/java` 下创建包，如 `run.halo.tutorial`，在创建一个类 `TodoListPlugin`，它继承自 `BasePlugin` 类内容如下：
+1. 在 `src/main/java` 下创建包，如 `com.example.tutorial`，在创建一个类 `TodoListPlugin`，它继承自 `BasePlugin` 类内容如下：
 
    ```java
-   package run.halo.tutorial;
+   package com.example.tutorial;
 
    import run.halo.app.plugin.PluginContext;
    import org.springframework.stereotype.Component;
@@ -113,7 +113,7 @@ description: 这个例子展示了如何开发 Todo List 插件
 首先创建一个 `class` 名为 `Todo` 并写入如下内容：
 
 ```java
-package run.halo.tutorial;
+package com.example.tutorial;
 
 import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 

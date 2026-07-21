@@ -18,7 +18,7 @@ description: 这个例子展示了如何开发 Todo List 插件
 首先创建一个 `class` 名为 `Todo` 并写入如下内容：
 
 ```java
-package run.halo.tutorial;
+package com.example.tutorial;
 
 import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 

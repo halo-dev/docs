@@ -288,7 +288,7 @@ export default definePlugin({
         id "run.halo.plugin.devtools" version "0.6.0"
     }
 
-    group 'run.halo.starter'
+    group 'com.example.starter'
 
     repositories {
         mavenCentral()
@@ -342,7 +342,7 @@ export default definePlugin({
         id "com.github.node-gradle.node" version "7.1.0"
     }
 
-    group 'run.halo.starter.ui'
+    group 'com.example.starter.ui'
 
     tasks.register('buildFrontend', PnpmTask) {
         group = 'build'
