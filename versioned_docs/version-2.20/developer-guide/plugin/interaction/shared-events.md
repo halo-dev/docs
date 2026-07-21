@@ -119,7 +119,7 @@ public class CustomEventPublisher {
 
    ```groovy
    dependencies {
-     compileOnly "run.halo.example:plugin-a-api:1.0.0"
+     compileOnly "com.example.app:plugin-a-api:1.0.0"
    }
    ```
 

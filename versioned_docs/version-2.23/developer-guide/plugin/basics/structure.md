@@ -25,8 +25,8 @@ description: 了解插件项目的文件结构
 ├── src
 │   └── main
 │       ├── java
-│       │   └── run
-│       │       └── halo
+│       │   └── com
+│       │       └── example
 │       │           └── starter
 │       │               └── StarterPlugin.java
 │       └── resources
@@ -49,7 +49,7 @@ description: 了解插件项目的文件结构
 
 `src` 目录中存放的是后端代码，这部分遵循标准的 Java 项目结构。以下是各个文件和文件夹的说明：
 
-- `StarterPlugin.java`：插件后端的入口文件，位于 `src/main/java/run/halo/starter` 路径下。你可以根据需要修改包名和类名，但需要确保该类继承 `run.halo.app.plugin.BasePlugin`，以指定其为插件的入口。
+- `StarterPlugin.java`：插件后端的入口文件，位于 `src/main/java/com/example/starter` 路径下。你可以根据需要修改包名和类名，但需要确保该类继承 `run.halo.app.plugin.BasePlugin`，以指定其为插件的入口。
 - `plugin.yaml`：这是插件的描述文件，位于 `src/main/resources` 目录下。该文件是必须的，包含插件的基本信息，如插件名称、版本、作者、描述以及依赖等内容。
 - `resources/console`：该文件夹通常包含前端部分打包后生成的文件，包括 main.js（JavaScript 文件）和 style.css（样式表）。如果插件不包含前端部分，此目录可以忽略。
 
