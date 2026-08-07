@@ -15,6 +15,53 @@ description: 介绍 @halo-dev/ui-shared 包中的共享工具库
 pnpm install pinia
 ```
 
+### uiPlugins
+
+从 Halo 2.26.0 开始，可以通过 `stores.uiPlugins()` 查询当前页面发现的插件和已激活主题的 UI provider 状态。使用此 API 时，需要将 `@halo-dev/ui-shared` 和 `@halo-dev/ui-plugin-bundler-kit` 升级到 2.26.0 或更高版本，并将插件的 `spec.requires` 设置为不低于 Halo 2.26.0。
+
+```ts
+import { stores } from "@halo-dev/ui-shared"
+import { computed } from "vue"
+
+const uiPlugins = stores.uiPlugins()
+
+// 是否在当前 provider 列表中
+uiPlugins.isEnabled("plugin-search")
+
+// 当前页面中是否已经成功注册
+const searchRegistered = computed(() =>
+  uiPlugins.isRegistered("plugin-search")
+)
+
+// 读取 Halo 提供的只读状态
+uiPlugins.get("plugin-search")
+```
+
+主题 provider 使用 `theme:{metadata.name}` 作为名称，例如 `theme:theme-earth`。
+
+#### 属性
+
+- `registrations`：只读的 provider 注册记录列表。
+
+每条记录包含：
+
+```ts
+interface UiPluginRegistration {
+  name: string
+  type: "plugin" | "theme"
+  version: string
+  status: "pending" | "registered" | "failed"
+}
+```
+
+#### 方法
+
+- `get(name)`：返回指定 provider 的只读注册记录，不存在时返回 `undefined`。
+- `isEnabled(name)`：是否在当前页面的 provider 描述中被发现，不代表其 UI 已经注册成功。
+- `isRegistered(name)`：当前页面中是否已经成功完成 UI 注册。
+
+该 store 由 Halo 管理，插件不应尝试修改注册记录，也不应依赖 provider 的加载或注册顺序。需要检测其他插件是否启用时，应使用 `isEnabled` 代替 `window.PluginName` 或 `window.enabledUiPlugins`；不支持通过该 store 获取、调用或导入其他 provider 的 `PluginModule`。
+
 ### currentUser
 
 用于获取当前登录用户的信息，示例：
