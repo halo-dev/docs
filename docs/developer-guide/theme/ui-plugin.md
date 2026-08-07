@@ -3,7 +3,7 @@ title: UI 扩展
 description: 通过主题扩展 Console 和 UC 界面
 ---
 
-除了提供站点前台模板，主题还可以复用插件的 `PluginModule` 契约，为 Console 控制台和 UC 个人中心提供页面、组件和扩展点。只有当前激活主题的 UI provider 会被加载。
+除了提供站点前台模板，主题还可以复用插件的 `PluginModule` 契约，为 Console 控制台和 UC 个人中心提供页面、组件和扩展点。只有当前激活且版本要求与 Halo 兼容的主题 UI provider 会被加载。
 
 从 Halo 2.26.0 开始，主题 UI provider 可以使用 ESM 构建，并支持异步 JavaScript、CSS 和其他静态资源分块。Halo 2.x 仍兼容已有的 IIFE 主题 UI 产物。
 
@@ -22,8 +22,8 @@ theme-root/
     ├── vite.config.ts
     └── dist/               # 构建产物
         ├── ui-plugin.json  # ESM 构建生成
-        ├── main.js
-        ├── style.css       # 可选
+        ├── main.<hash>.js  # 默认 ESM 入口
+        ├── style.<hash>.css # 可选，路径由构建工具决定
         ├── chunks/         # 可选
         └── assets/         # 可选
 ```
@@ -96,6 +96,6 @@ spec:
   requires: ">=2.26.0"
 ```
 
-如果需要暂时保留 IIFE，可以在 Vite 或 Rsbuild 配置的顶层设置 `format: "iife"`。自动格式选择、`targetHaloVersion`、`ui-plugin.json` 和共享依赖的完整规则与插件相同，请参考 [插件 UI 构建](../plugin/basics/ui/build.md#output-format)。
+如果需要暂时保留 IIFE，可以在 Vite 或 Rsbuild 配置的顶层设置 `format: "iife"`。自动格式选择、`targetHaloVersion`、`ui-plugin.json` 和共享依赖的完整规则与插件相同，请参考 [插件 UI 构建](../plugin/basics/ui/build.md#output-format)。这些默认保证不适用于覆盖输出格式、资源路径、externals 或文件名的原生 Vite / Rsbuild 配置；自定义最终产物的兼容性和缓存安全由主题开发者负责。
 
 Halo 会把主题 provider 注册为 `theme:{metadata.name}`。例如主题名称为 `theme-earth` 时，可以通过 `stores.uiPlugins().get("theme:theme-earth")` 查询其状态。主题安装、升级、重载或切换后，需要完整刷新 Console 或 UC 页面以加载新的模块图。

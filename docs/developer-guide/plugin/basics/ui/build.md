@@ -265,20 +265,20 @@ export default viteConfig({
 
 ### ESM 构建产物
 
-成功的 ESM 构建会额外生成保留文件 `ui-plugin.json`，并可能包含异步 JavaScript、CSS 和其他静态资源：
+成功的 ESM 构建会额外生成保留文件 `ui-plugin.json`，并可能包含异步 JavaScript、CSS 和其他静态资源。以下目录仅作示意，实际入口和启动样式路径以 `ui-plugin.json` 为准：
 
 ```text
 build/dist/
 ├── ui-plugin.json
-├── main.js
-├── style.css        # 可选的启动样式
-├── chunks/          # 可选的异步 JavaScript 分块
-└── assets/          # 可选的异步 CSS、图片和字体等资源
+├── main.<hash>.js          # 默认 ESM 入口
+├── style.<hash>.css        # 可选，路径由构建工具决定
+├── chunks/                 # 可选的异步 JavaScript / CSS 分块
+└── assets/                 # 可选的图片、字体等资源
 ```
 
-`ui-plugin.json` 由 bundler kit 生成，请勿手动创建、复制或覆盖。打包插件时需要保留完整输出目录，不能只复制 `main.js` 和 `style.css`。没有该文件的产物会继续按旧版 IIFE 格式加载，即使 `spec.requires` 已经包含 Halo 2.26.0。
+`ui-plugin.json` 由 bundler kit 生成，请勿手动创建、复制或覆盖。打包插件时需要保留完整输出目录，不能只复制清单中记录的入口和启动样式。没有该文件的产物会继续按旧版 IIFE 格式加载，即使 `spec.requires` 已经包含 Halo 2.26.0。
 
-ESM 模式下，bundler kit 会管理入口文件名、模块输出、共享依赖和异步资源的内容哈希。覆盖 Vite/Rsbuild 的相关配置会导致构建失败；如果旧项目依赖这些自定义配置，可以先选择 `format: "iife"`。
+默认的 ESM preset 会配置模块输出、共享依赖、相对资源路径，并为入口、启动样式和异步资源使用内容哈希文件名。原生 Vite / Rsbuild 配置会在这些默认值之后合并，bundler kit 不会检查、拒绝或重写冲突的覆盖项。如果自定义配置修改了输出格式、入口、资源路径、externals 或文件名，开发者需要自行保证清单一致性、Import Map 兼容性、共享依赖身份、资源迁移和缓存安全。旧项目暂时无法满足这些要求时，可以显式选择 `format: "iife"`。
 
 ## 共享运行时依赖{#shared-runtime-dependencies}
 
@@ -295,7 +295,7 @@ ESM 插件可以从 Halo 运行时导入以下包根路径：
 - `@halo-dev/api-client`
 - `@halo-dev/richtext-editor`
 
-bundler kit 会校验插件项目实际解析到的包、使用的根导出以及目标 Halo 快照。共享包缺失、使用别名或 fork、从共享包进行深层导入，或者使用目标 Halo 不存在的静态导出时，ESM 构建会失败；仅版本不同通常会产生兼容性警告。未列出的依赖默认打入插件自己的产物，不应添加为外部依赖。
+bundler kit 会发现对共享包根路径的导入，并在能够读取包元数据时，对比插件安装的版本与目标 Halo 快照中的版本。插件版本更新或主版本不同时会产生尽力而为的兼容性提示，但版本差异不会导致构建失败。bundler kit 不检查静态导出、别名、fork 或构建工具最终解析到的包；从共享包进行深层导入仍会失败，因为 Halo 的 Import Map 只公开上述包根路径。默认 preset 会将未列出的依赖打入插件产物；如果通过自定义配置修改 externals 或依赖解析，开发者需要自行保证浏览器能够解析最终产物。
 
 `axios` 是 Halo 提供的标准共享模块，请勿修改它的全局 defaults 或 interceptors；需要隔离配置时使用 `axios.create()`。`@halo-dev/api-client` 导出的 `axiosInstance` 是另一个带 Halo 认证和错误处理的实例，详细说明请参考 [API 请求](../../api-reference/ui/api-request.md)。
 
