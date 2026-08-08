@@ -3,7 +3,7 @@ title: 入口文件
 description: UI 扩展部分的入口文件
 ---
 
-入口文件即 Halo 核心会加载的文件，所有插件有且只有一个入口文件，构建之后会放置在插件项目的 `src/resources/console` 下，名为 `main.js`。
+入口文件用于定义 Halo 核心需要加载的 `PluginModule`，每个插件有且只有一个源码入口。使用 `@halo-dev/ui-plugin-bundler-kit` 构建时，IIFE 和 ESM 都会生成一个主入口；ESM 还可以包含异步 JavaScript、CSS 和其他静态资源分块。构建和打包方式请参考 [构建](./build.md)。
 
 为了方便开发者，我们已经在 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 配置好了基础项目结构，包括构建配置，后续文档也会以此为准。
 

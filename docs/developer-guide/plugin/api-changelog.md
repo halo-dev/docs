@@ -3,6 +3,20 @@ title: API 变更日志
 description: 记录每一个版本的插件 API 变更记录，方便开发者适配
 ---
 
+## 2.26.0
+
+### UI 扩展支持 ESM 和异步分块
+
+从 Halo 2.26.0 开始，插件和已激活主题的 Console / UC UI 扩展可以使用 ESM 构建和加载，并支持异步 JavaScript、CSS 和其他静态资源分块。Halo 2.x 会继续兼容已有的 IIFE 产物，无需为兼容新版本而重新构建旧插件。
+
+将 `@halo-dev/ui-plugin-bundler-kit` 升级到 2.26.0 后，`viteConfig` 和 `rsbuildConfig` 默认根据 `plugin.yaml` 的 `spec.requires` 自动选择格式。简单的 `requires: ">=2.26.0"` 会选择 ESM；暂时无法迁移的项目可以显式设置 `format: "iife"`。默认 ESM preset 会为入口、启动样式和异步资源使用内容哈希文件名，`ui-plugin.json` 会记录实际启动资源路径；清单、入口、样式、分块和静态资源必须作为一个完整目录打包。详细文档请参考 [UI 构建](./basics/ui/build.md#output-format)。
+
+ESM 插件可以从 Halo 共享运行时导入 Vue、Vue Router、Pinia、Axios、FormKit 和公开的 Halo UI 包，其他依赖默认保留在插件自己的构建产物中。共享包的完整列表、兼容性诊断和自定义配置边界请参考 [共享运行时依赖](./basics/ui/build.md#shared-runtime-dependencies)。
+
+### 查询 UI provider 的注册状态
+
+`@halo-dev/ui-shared@2.26.0` 新增 `stores.uiPlugins()`，用于查询插件或已激活主题的 UI provider 是否被发现、是否已经成功注册以及当前状态。它替代了 `window.PluginName` 和 `window.enabledUiPlugins` 等依赖 IIFE 全局变量的检测方式。详细文档请参考 [共享工具库 > uiPlugins](./api-reference/ui/shared.md#uiplugins)。
+
 ## 2.25.0
 
 ### 表单定义 > `select` 选项支持图标和描述

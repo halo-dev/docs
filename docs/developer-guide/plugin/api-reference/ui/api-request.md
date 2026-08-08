@@ -63,7 +63,9 @@ axiosInstance.get("/apis/foo.halo.run/v1alpha1/bar").then(response => {
 })
 ```
 
-此外，在最新的 `@halo-dev/ui-plugin-bundler-kit@2.17.0` 中，已经排除了 `@halo-dev/api-client`、`axios` 依赖，所以最终产物中的相关依赖会自动使用 Halo 本身提供的依赖，无需关心最终产物大小。
+`@halo-dev/ui-plugin-bundler-kit` 会让插件复用 Halo 提供的 `@halo-dev/api-client` 和 `axios`。旧版 IIFE 通过兼容全局对象提供这些依赖，Halo 2.26.0 开始支持的 ESM 则通过共享运行时模块提供，插件代码都应继续使用标准的包导入。
+
+直接从 `axios` 导入的是共享的标准 Axios 模块，不包含 Halo 的认证配置。请勿修改它的全局 defaults 或 interceptors；需要独立配置时使用 `axios.create()`。`@halo-dev/api-client` 导出的 `axiosInstance` 是另一个带有 Halo 认证和统一错误处理的实例，也不应修改它的 defaults 或 interceptors。
 
 :::info[提醒]
 如果插件中使用了 `@halo-dev/api-client@2.17.0` 和 `@halo-dev/ui-plugin-bundler-kit@2.17.0`，需要提升 `plugin.yaml` 中的 `spec.requires` 版本为 `>=2.17.0`。

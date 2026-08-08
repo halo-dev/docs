@@ -24,7 +24,12 @@ my-theme
 │   └── archives.html
 ├── screenshot.png
 ├── theme.yaml
-└── settings.yaml
+├── settings.yaml
+└── ui-plugin/                # 可选的 Console / UC UI 扩展
+    ├── package.json
+    ├── src/
+    │   └── index.ts
+    └── dist/                 # Halo 只读取此构建目录
 ```
 
 详细说明：
@@ -35,3 +40,4 @@ my-theme
 4. `/screenshot.png` - 可选的主题预览图文件，支持 `screenshot.png`、`screenshot.jpeg`、`screenshot.jpg` 和 `screenshot.webp`。Halo 会按此顺序识别第一个可读文件，用于 Console 主题预览，并通过 `Theme.status.screenshot` 暴露访问地址。
 5. `/theme.yaml` - 主题配置文件，配置主题的基本信息，如主题名称、版本、作者等。详细文档请查阅 [配置文件](./config)。
 6. `/settings.yaml` - 主题设置定义文件，配置主题的设置项表单。详细文档请查阅 [设置选项](./settings)。
+7. `/ui-plugin/` - 可选的 Console / UC UI 扩展项目。Halo 只读取其中的 `dist` 构建目录，详细文档请查阅 [UI 扩展](./ui-plugin.md)。

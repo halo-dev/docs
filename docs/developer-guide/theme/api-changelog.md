@@ -5,6 +5,10 @@ description: 记录每一个版本的主题 API 变更记录，方便开发者�
 
 ## 2.26.0
 
+### 主题支持提供 ESM UI 扩展
+
+主题可以继续复用插件的 `PluginModule` 契约扩展 Console 和 UC。从 Halo 2.26.0 开始，主题 UI provider 支持 ESM、异步 JavaScript 和 CSS 分块，并与插件使用相同的共享运行时依赖和失败隔离机制；已有 IIFE 主题 UI 产物继续兼容。详细文档请参考 [UI 扩展](../../developer-guide/theme/ui-plugin.md)。
+
 ### 主题目录结构 > 新增页面布局契约
 
 在 2.26.0 中，主题可以通过 `templates/layout.html` 提供 `html(head, content)` 片段，让插件前台页面复用当前主题的页面外壳。Halo 会在主题安装、更新或重载后检查这个模板，并通过 `Theme.status.pageLayout` 暴露 `SUPPORTED`、`MISSING` 或 `INVALID` 状态；未适配或校验异常时，使用布局契约的插件页面会回退到 Halo 内置布局。详细文档可查阅：[页面布局契约](../../developer-guide/theme/page-layout.md)。

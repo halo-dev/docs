@@ -198,6 +198,7 @@ haloPlugin {
       // exclude '**/.idea/**'
       // exclude '**/.git/**'
       // exclude '**/.gradle/**'
+      // exclude 'src/main/resources/ui/**'
       // exclude 'src/main/resources/console/**'
       // exclude 'build/**'
       // exclude 'gradle/**'

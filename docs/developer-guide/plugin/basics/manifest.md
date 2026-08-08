@@ -54,6 +54,8 @@ spec:
 如果你在 plugin.yaml 中配置了 `settingName` 但确没有对应的 `Setting` 自定义模型资源文件，会导致插件无法启动，原因是 `Setting` 模型 `metadata.name` 为你配置的 `settingName` 的资源无法找到。
 :::
 
+从 `@halo-dev/ui-plugin-bundler-kit@2.26.0` 开始，`spec.requires` 也用于自动选择 UI 构建格式。支持的推导写法和回退行为请参考 [UI 构建 > 输出格式与 Halo 目标](./ui/build.md#output-format)。
+
 ## 插件运行模式
 
 Halo 插件可以在两种模式下运行：`deployment`（默认）模式和 `development` 开发模式。
