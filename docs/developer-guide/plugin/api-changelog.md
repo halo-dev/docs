@@ -5,6 +5,10 @@ description: 记录每一个版本的插件 API 变更记录，方便开发者�
 
 ## 2.26.0
 
+### UI 构建工具新增独立入口
+
+`@halo-dev/ui-plugin-bundler-kit@2.26.0` 新增 Vite 和 Rsbuild 专用入口。Vite 项目应从 `@halo-dev/ui-plugin-bundler-kit/vite` 导入 `viteConfig`，Rsbuild 项目应从 `@halo-dev/ui-plugin-bundler-kit/rsbuild` 导入 `rsbuildConfig`。包根入口中的同名导出仍可在 2.26.0 中使用，但已标记为过时，并计划在 2.27.0 中移除。迁移示例请参考 [UI 构建](./basics/ui/build.md)。
+
 ### UI 扩展支持 ESM 和异步分块
 
 从 Halo 2.26.0 开始，插件和已激活主题的 Console / UC UI 扩展可以使用 ESM 构建和加载，并支持异步 JavaScript、CSS 和其他静态资源分块。Halo 2.x 会继续兼容已有的 IIFE 产物，无需为兼容新版本而重新构建旧插件。

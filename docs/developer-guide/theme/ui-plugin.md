@@ -52,13 +52,13 @@ export default definePlugin({
 安装依赖：
 
 ```bash
-pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite -D
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
 ```
 
 创建构建配置：
 
 ```ts title="ui-plugin/vite.config.ts"
-import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit"
+import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite"
 
 export default viteConfig({
   provider: "theme",
@@ -71,13 +71,13 @@ export default viteConfig({
 安装依赖：
 
 ```bash
-pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 @rsbuild/core -D
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 @rsbuild/core @rsbuild/plugin-vue -D
 ```
 
 创建构建配置：
 
 ```ts title="ui-plugin/rsbuild.config.ts"
-import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit"
+import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild"
 
 export default rsbuildConfig({
   provider: "theme",
