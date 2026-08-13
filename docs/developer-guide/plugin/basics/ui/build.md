@@ -110,7 +110,7 @@ export default viteConfig({
 
 ### rsbuildConfig
 
-Rsbuild 是基于 Rspack 开发的上层构建工具，其优势在于兼容 Webpack 生态并且性能优异。我们为什么要选择 Rsbuild 可以查阅 [Vite vs Rsbuild](#vite-vs-rsbuild)。
+Rsbuild 是基于 Rspack 开发的上层构建工具，其优势在于兼容 Webpack 生态并且性能优异。
 
 #### 使用
 
@@ -319,61 +319,6 @@ ESM 入口仍需默认导出已有的 `PluginModule`，不应通过顶层副作�
 - **生产环境**：`ui/build/dist`
 
 > 生产目录是临时构建产物。使用 Gradle 构建插件时，应将完整目录复制到 `build/resources/main/ui`，并随插件 JAR 一起打包。`console` 目录仍作为旧项目的兼容回退。
-
-## Vite vs Rsbuild{#vite-vs-rsbuild}
-
-Vite 和 Rsbuild 都是优秀的构建工具，但它们在不同的使用场景下有各自的优势：
-
-### 何时使用 Rsbuild
-
-- ✅ **代码分割支持** - ESM 模式支持通过动态 `import()` 拆分和按需加载代码
-- ✅ **更好的性能** - 对于复杂应用，通常有更快的构建时间和更小的包体积
-- ✅ **动态导入** - 非常适合有重度前端组件的插件
-
-**动态导入示例：**
-
-```typescript
-import { definePlugin } from '@halo-dev/ui-shared';
-import { defineAsyncComponent } from 'vue';
-import { VLoading } from '@halo-dev/components';
-
-export default definePlugin({
-  routes: [
-    {
-      parentName: 'Root',
-      route: {
-        path: 'demo',
-        name: 'DemoPage',
-        // 懒加载重型组件
-        component: defineAsyncComponent({
-          loader: () => import('./views/DemoPage.vue'),
-          loadingComponent: VLoading,
-        }),
-      },
-    },
-  ],
-  extensionPoints: {},
-});
-```
-
-### 何时使用 Vite
-
-- ✅ **Vue 生态友好** - 与 Vue 生态系统工具和插件有更好的集成
-- ✅ **丰富的插件生态** - 有大量可用的 Vite 插件
-- ✅ **简单配置** - 对于直接的使用场景更容易配置
-
-### 总结
-
-| 特性       | Vite   | Rsbuild  |
-| ---------- | ------ | -------- |
-| 代码分割   | ✅ ESM  | ✅ ESM    |
-| Vue 生态   | ✅ 优秀 | ✅ 良好   |
-| 构建性能   | ✅ 良好 | ✅ 优秀   |
-| 开发体验   | ✅ 优秀 | ✅ 优秀   |
-| 插件生态   | ✅ 丰富 | ✅ 增长中 |
-| 配置复杂度 | ✅ 简单 | ⚖️ 中等   |
-
-**建议**：对于有大型前端代码库的复杂插件使用 **Rsbuild**，对于简单插件或需要广泛 Vue 生态系统集成时使用 **Vite**。
 
 ## 迁移{#migration}
 
