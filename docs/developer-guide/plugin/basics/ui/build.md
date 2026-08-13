@@ -22,6 +22,8 @@ Halo 插件的 UI 部分（Console / UC）以 `index.ts` 为源码入口，默�
 2. `rsbuildConfig`: Rsbuild 的预配置
 3. `HaloUIPluginBundlerKit`：已过时，迁移方式可以参考下面的文档
 
+从 2.26.0 开始，`viteConfig` 和 `rsbuildConfig` 分别通过构建工具专用入口导出。包根入口中的同名导出仅用于兼容已有项目，已标记为过时，并计划在 2.27.0 中移除。
+
 ### viteConfig
 
 #### 使用
@@ -31,13 +33,13 @@ Halo 插件的 UI 部分（Console / UC）以 `index.ts` 为源码入口，默�
 安装依赖：
 
 ```bash
-pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite -D
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
 ```
 
 创建 vite.config.ts:
 
 ```js
-import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit";
+import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
 export default viteConfig()
 ```
@@ -57,7 +59,7 @@ export default viteConfig()
 #### 配置
 
 ```js
-import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit";
+import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
 export default viteConfig({
   vite: {
@@ -75,7 +77,7 @@ export default viteConfig({
 1. 添加路径别名
 
     ```js
-    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit";
+    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
     import path from "path";
 
     export default viteConfig({
@@ -93,7 +95,7 @@ export default viteConfig({
 2. 添加额外的 Vite 插件
 
     ```js
-    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit";
+    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
     import { defineConfig } from "vite";
     import UnoCSS from "unocss/vite";
 
@@ -117,13 +119,13 @@ Rsbuild 是基于 Rspack 开发的上层构建工具，其优势在于兼容 Web
 安装依赖：
 
 ```bash
-pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 @rsbuild/core -D
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 @rsbuild/core @rsbuild/plugin-vue -D
 ```
 
 创建 rsbuild.config.ts:
 
 ```js
-import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit";
+import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
 export default rsbuildConfig()
 ```
@@ -143,7 +145,7 @@ export default rsbuildConfig()
 #### 配置
 
 ```js
-import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit";
+import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
 export default rsbuildConfig({
   rsbuild: {
@@ -161,7 +163,7 @@ export default rsbuildConfig({
 1. 添加路径别名
 
     ```js
-    import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit";
+    import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
     export default rsbuildConfig({
       rsbuild: {
@@ -178,7 +180,7 @@ export default rsbuildConfig({
 2. 添加额外的 Rsbuild 插件
 
     ```js
-    import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit";
+    import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
     import { pluginSass } from "@rsbuild/plugin-sass";
 
     export default rsbuildConfig({
@@ -307,7 +309,7 @@ ESM 入口仍需默认导出已有的 `PluginModule`，不应通过顶层副作�
 
 ## HaloUIPluginBundlerKit（已过时）
 
-旧版本 [plugin-starter](https://github.com/halo-dev/plugin-starter) 使用的方式，目前已经不再推荐，也不支持 ESM 或主题 UI provider。
+旧版本 [plugin-starter](https://github.com/halo-dev/plugin-starter) 使用的方式，目前已经不再推荐，也不支持 ESM 或主题 UI provider。`HaloUIPluginBundlerKit` 计划在 2.27.0 中移除，请改用构建工具专用入口中的 `viteConfig` 或 `rsbuildConfig`。
 
 ## 构建输出
 
@@ -380,13 +382,13 @@ export default definePlugin({
 1. 更新 `@halo-dev/ui-plugin-bundler-kit` 至 `2.26.0` 或更高版本
 
     ```bash
-    pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 -D
+    pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
     ```
 
 2. 更新 `vite.config.ts` 文件
 
     ```typescript
-    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit";
+    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
     export default viteConfig({
       vite: {
@@ -497,7 +499,7 @@ export default definePlugin({
 viteConfig:
 
 ```js
-import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit";
+import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
 const OUT_DIR_PROD = "../src/main/resources/ui";
 const OUT_DIR_DEV = "../build/resources/main/ui";
@@ -519,7 +521,7 @@ export default viteConfig({
 rsbuildConfig:
 
 ```js
-import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit";
+import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
 const OUT_DIR_PROD = "../src/main/resources/ui";
 const OUT_DIR_DEV = "../build/resources/main/ui";
