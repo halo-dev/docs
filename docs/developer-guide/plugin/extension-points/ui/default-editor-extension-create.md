@@ -99,6 +99,8 @@ export interface ToolbarItem {
     disabled?: boolean;
     icon?: Component;
     title?: string;
+    shortcutId?: string;
+    shortcutIds?: string[];
     action?: () => void;
   };
   children?: ToolbarItem[];
@@ -231,6 +233,7 @@ export interface CommandMenuItem {
   icon: Component;
   title: string;
   keywords: string[];
+  shortcutId?: string;
   command: ({ editor, range }: { editor: Editor; range: Range }) => void;
 }
 ```
@@ -321,6 +324,7 @@ export interface BubbleItem {
     icon?: Component;                                              // 图标
     iconStyle?: string;                                            // 图标自定义样式
     title?: string;                                                // 标题
+    shortcutId?: string;                                           // 关联的快捷键唯一标识
     action?: ({ editor }: { editor: Editor }) => Component | void; // 点击子项后的操作，如果返回 Component，则会将其包含在下拉框中。
   };
 }
@@ -517,6 +521,342 @@ export interface DragButtonType extends DragButtonItemProps {
   };
 }
 ```
+
+#### 6. 快捷键扩展
+
+从 Halo 2.26.0 开始，默认编辑器在 Tiptap 的 `addKeyboardShortcuts` 基础上提供了快捷键描述注册表。第三方扩展仍然只需实现一个 `addKeyboardShortcuts`，即可同时执行快捷键命令、在“键盘快捷键”侧边栏中展示操作说明，并在工具栏、Slash Command 或悬浮菜单中展示对应的快捷键提示。
+
+##### 6.1 注册快捷键并关联工具栏
+
+使用 `defineHaloKeyboardShortcuts` 定义快捷键，再将相同的 `id` 传给工具栏组件的 `shortcutId`：
+
+```ts
+import {
+  defineHaloKeyboardShortcuts,
+  Extension,
+  ToolbarItem,
+  type Editor,
+  type ExtensionOptions,
+} from "@halo-dev/richtext-editor";
+import { markRaw } from "vue";
+import MyIcon from "./MyIcon.vue";
+
+const shortcutId = "plugin.example.insertGreeting";
+
+function insertGreeting(editor: Editor) {
+  return editor.chain().focus().insertContent("Hello Halo").run();
+}
+
+export const ExtensionExample = Extension.create<ExtensionOptions>({
+  name: "exampleShortcut",
+
+  addKeyboardShortcuts() {
+    return defineHaloKeyboardShortcuts(this, [
+      {
+        id: shortcutId,
+        keys: ["Mod-Alt-g"],
+        label: "插入问候语",
+        category: "general",
+        priority: 100,
+        command: () => insertGreeting(this.editor),
+      },
+    ]);
+  },
+
+  addOptions() {
+    return {
+      ...this.parent?.(),
+      getToolbarItems({ editor }: { editor: Editor }) {
+        return {
+          priority: 100,
+          component: markRaw(ToolbarItem),
+          props: {
+            editor,
+            isActive: false,
+            icon: markRaw(MyIcon),
+            title: "插入问候语",
+            shortcutId,
+            action: () => insertGreeting(editor),
+          },
+        };
+      },
+    };
+  },
+});
+```
+
+`ToolbarItem`、`ToolbarSubItem`、`BubbleItem` 和 Slash Command 菜单项都支持 `shortcutId`。`ToolbarItem` 还支持 `shortcutIds`，适用于一个按钮对应多个操作的情况。提示信息会展示每条定义中 `keys` 的第一组按键，快捷键侧边栏则会展示全部可选按键，并根据当前操作系统将 `Mod`、`Alt` 等按键格式化为对应的展示形式。
+
+默认编辑器已经通过 `ExtensionsKit` 内置 `ExtensionKeyboardShortcuts`，插件通过 `default:editor:extension:create` 扩展点注册时无需重复添加。自行创建编辑器实例时，应使用 `ExtensionsKit`，或显式加入 `ExtensionKeyboardShortcuts`。
+
+##### 6.2 快捷键描述字段
+
+`defineHaloKeyboardShortcuts` 接收的每一项都是一个 `HaloKeyboardShortcutDefinition`：
+
+| 字段 | 必填 | 说明 |
+| --- | --- | --- |
+| `id` | 是 | 编辑器内稳定且唯一的标识符，用于关联提示信息。插件应使用包含插件标识的命名空间，例如 `plugin.example.insertGreeting`。 |
+| `keys` | 是 | Tiptap 格式的按键组合。第一项是提示信息展示的主快捷键，全部按键都会展示在快捷键侧边栏中。 |
+| `label` | 是 | 用户可见的操作名称，可以是字符串或返回字符串的函数。 |
+| `category` | 是 | 快捷键侧边栏分组：`general`、`formatting`、`structure` 或 `navigation`。 |
+| `command` | 视情况 | 新增快捷键时必须提供。扩展已有 Tiptap 快捷键时可以省略，此时复用父扩展中相同按键的命令。 |
+| `description` | 否 | 操作的补充说明，可以是字符串或返回字符串的函数。 |
+| `priority` | 否 | 在快捷键侧边栏同一分组中的排序值，数值越小越靠前，默认为 `100`。 |
+| `discoverable` | 否 | 是否出现在快捷键侧边栏中，默认为 `true`。即使设为 `false`，显式绑定了 `shortcutId` 的提示信息仍可展示。 |
+| `visible` | 否 | 根据当前编辑器状态决定是否出现在快捷键侧边栏中。 |
+
+按键名称遵循 [Tiptap 快捷键格式](https://tiptap.dev/docs/editor/core-concepts/keyboard-shortcuts)。建议使用 `Mod` 表示 macOS 的 `Command` 和 Windows/Linux 的 `Control`，例如 `Mod-b`。命令处理成功时应返回 `true`，这样 ProseMirror 会阻止浏览器继续执行同一按键的默认行为；未处理时应返回 `false`。
+
+如果扩展继承的 Tiptap 扩展已经实现了相同按键，可以只补充 Halo 的描述信息，不需要重新实现命令：
+
+```ts
+addKeyboardShortcuts() {
+  return defineHaloKeyboardShortcuts(this, [
+    {
+      id: "plugin.example.toggleFeature",
+      keys: ["Mod-b"],
+      label: "切换示例功能",
+      category: "formatting",
+    },
+  ]);
+},
+```
+
+只有父扩展确实定义了 `keys` 中对应的按键时才能省略 `command`。开发环境会对缺少实际命令的定义输出警告，并且不会注册这条描述。
+
+##### 6.3 自定义组件中的快捷键提示
+
+完全自定义工具栏组件时，可以通过 `useHaloKeyboardShortcut` 响应式读取注册表，再使用 `KeyboardShortcutTooltip` 保持与内置工具栏一致的视觉和无障碍信息：
+
+```vue
+<script setup lang="ts">
+import {
+  KeyboardShortcutTooltip,
+  useHaloKeyboardShortcut,
+  type Editor,
+} from "@halo-dev/richtext-editor";
+
+const props = defineProps<{
+  editor: Editor;
+  shortcutId: string;
+  title: string;
+}>();
+
+const shortcut = useHaloKeyboardShortcut(props.editor, () => props.shortcutId);
+</script>
+
+<template>
+  <KeyboardShortcutTooltip
+    v-slot="tooltipProps"
+    :title="title"
+    :shortcut="shortcut?.keys[0]"
+  >
+    <button :aria-label="tooltipProps.ariaLabel" type="button">
+      {{ title }}
+    </button>
+  </KeyboardShortcutTooltip>
+</template>
+```
+
+一个组件需要读取多条快捷键时，可以使用 `useHaloKeyboardShortcuts(editor, () => shortcutIds)`。这两个 composable 必须在 Vue 组件的 `setup` 阶段调用，以便组件卸载时自动取消注册表订阅。
+
+##### 6.4 命名与冲突规则
+
+- `id` 应包含插件标识，避免覆盖其他扩展注册的描述；快捷键注册表不会自动为重复 ID 添加命名空间。
+- 只注册产品中真实可执行的快捷键，不要为了填满快捷键侧边栏而自行创建按键组合。
+- 添加按键前应检查 Halo 默认快捷键、Tiptap 默认快捷键以及浏览器常用快捷键。确实需要覆盖浏览器默认行为时，命令必须在成功处理后返回 `true`。
+- `label` 和 `description` 应面向用户描述操作，不要使用内部命令名或扩展名。
+
+#### 7. 编辑器扩展运行期元数据
+
+从 Halo 2.26.0 开始，`@halo-dev/richtext-editor` 允许 Tiptap 的 Node、Mark 和 Extension 声明运行期组件元数据，用于描述最终 Editor 实例中的 schema、组件用法、结构关系、属性和示例。AI Agent 是目前的主要消费者，但这些元数据不会改变或约束组件的实际行为。
+
+##### 7.1 声明新组件
+
+下面的数学公式节点说明了适用场景、属性和生成所需的外部能力：
+
+```ts
+import { Node } from "@halo-dev/richtext-editor";
+
+export const MathBlock = Node.create({
+  name: "mathBlock",
+  group: "block",
+  atom: true,
+
+  addAttributes() {
+    return {
+      formula: {
+        default: "",
+      },
+    };
+  },
+
+  parseHTML() {
+    return [{ tag: 'div[data-type="math-block"]' }];
+  },
+
+  renderHTML({ HTMLAttributes }) {
+    return ["div", { ...HTMLAttributes, "data-type": "math-block" }];
+  },
+
+  addHaloEditorMetadata() {
+    return {
+      ai: {
+        description: "A display mathematical formula.",
+        exposure: "available",
+        useWhen: ["Presenting a standalone mathematical expression."],
+        attributeGuidance: {
+          formula: {
+            description: "Formula source written in LaTeX.",
+            format: "LaTeX",
+            examples: ["E = mc^2"],
+          },
+        },
+        generation: {
+          mode: "requires-capability",
+          requiredCapabilities: ["math-to-html"],
+        },
+        examples: [
+          '<div data-type="math-block" formula="E = mc^2"></div>',
+        ],
+      },
+    };
+  },
+});
+```
+
+`generation.mode` 支持 `direct-html`、`requires-capability` 和 `read-only`。Capability 名称是开放字符串，Halo 只将其写入 Manifest，不负责查找或执行对应工具。
+
+##### 7.2 扩展现有组件
+
+元数据会沿 Tiptap 的 `.extend()` 继承链自动合并。插件只需返回自己的局部补丁，不需要调用 `this.parent`，也不需要手动合并 Halo 已有说明：
+
+```ts
+import { ExtensionCodeBlock } from "@halo-dev/richtext-editor";
+
+export const HighlightedCodeBlock = ExtensionCodeBlock.extend({
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      highlightTheme: {
+        default: null,
+      },
+    };
+  },
+
+  addHaloEditorMetadata() {
+    return {
+      ai: {
+        attributeGuidance: {
+          highlightTheme: {
+            description: "Syntax-highlighting theme.",
+            allowedValues: ["github-light", "github-dark"],
+            omitWhen: ["The editor default theme should be used."],
+          },
+        },
+      },
+    };
+  },
+});
+```
+
+最终 Manifest 会同时包含原代码块的说明和 `highlightTheme` 属性。
+
+##### 7.3 为全局属性贡献说明
+
+普通 Extension 不会成为 Manifest 组件，但可以通过 `contributions` 向明确命名的 Node 或 Mark 贡献元数据。这适合与 `addGlobalAttributes()` 一起使用：
+
+```ts
+import { Extension } from "@halo-dev/richtext-editor";
+
+export const Tone = Extension.create({
+  name: "tone",
+
+  addGlobalAttributes() {
+    return [
+      {
+        types: ["paragraph", "heading"],
+        attributes: {
+          tone: {
+            default: null,
+          },
+        },
+      },
+    ];
+  },
+
+  addHaloEditorMetadata() {
+    return {
+      contributions: [
+        {
+          targets: [
+            { kind: "node", name: "paragraph" },
+            { kind: "node", name: "heading" },
+          ],
+          metadata: {
+            ai: {
+              attributeGuidance: {
+                tone: {
+                  description: "Writing tone for this block.",
+                  allowedValues: ["neutral", "friendly", "formal"],
+                },
+              },
+            },
+          },
+        },
+      ],
+    };
+  },
+});
+```
+
+贡献只应用于最终 schema 中存在的目标。多个贡献冲突时，根据组件定义中的 `priority` 决定，较高者优先；`priority` 相同时，后注册者优先。
+
+##### 7.4 声明组件结构
+
+组件只声明自己的父级和数量关系，不跨组件声明子节点：
+
+```ts
+addHaloEditorMetadata() {
+  return {
+    ai: {
+      description: "An optional caption belonging to a figure.",
+    },
+    structure: {
+      allowedParents: ["figure"],
+      minPerParent: 0,
+      maxPerParent: 1,
+    },
+  };
+}
+```
+
+上例表示当前组件只能位于 `figure` 下，在每个 `figure` 中可以省略且最多出现一次。
+
+##### 7.5 读取运行期 Manifest
+
+在 Editor 创建完成后，可以同步生成最终快照：
+
+```ts
+import {
+  createHaloEditorManifest,
+  type HaloEditorManifest,
+  type VueEditor,
+} from "@halo-dev/richtext-editor";
+
+function editorManifest(editor: VueEditor): HaloEditorManifest {
+  return createHaloEditorManifest(editor);
+}
+```
+
+Manifest 是当前 Editor 实例的运行期快照，包含全部 Node 和 Mark、规范化元数据、`version: 1` 以及稳定的 `signature`。消费者可以用它了解当前编辑器实际注册的组件，并自行决定是否根据其中的建议进行额外校验。
+
+元数据声明遵循以下兼容与安全规则：
+
+- `ai: false` 表示不建议 AI 主动使用该组件，但组件的 schema 信息仍会出现在 Manifest 中。
+- 声明抛错、字段无效、属性或父节点不存在时，生成器会保留其他有效数据。开发环境会输出警告，生产环境不会因元数据阻止编辑器运行。
+- 未知字段会被丢弃。请勿将 system prompt、可执行回调或敏感信息放入元数据。
+- 每段文本最多 1,000 个字符；说明数组和 `aliases` 最多 10 项；`allowedValues` 和属性示例最多 32 项；组件 HTML 示例最多 3 个且每个不超过 4 KiB；单组件 AI 元数据最多 16 KiB；单个 Manifest 的 AI 元数据最多 128 KiB。
 
 ## 实现案例
 
