@@ -46,7 +46,7 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.25",
+          lastVersion: "2.26",
           versions: {
             current: {
               label: "next",
@@ -88,6 +88,7 @@ const config = {
             "/2.22/**",
             "/2.23/**",
             "/2.24/**",
+            "/2.25/**",
           ],
         },
         googleAnalytics: {
