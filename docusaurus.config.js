@@ -83,8 +83,6 @@ const config = {
           changefreq: null,
           ignorePatterns: [
             "/next/**",
-            "/2.20/**",
-            "/2.21/**",
             "/2.22/**",
             "/2.23/**",
             "/2.24/**",
