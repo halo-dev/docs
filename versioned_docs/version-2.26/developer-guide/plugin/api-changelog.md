@@ -21,6 +21,14 @@ ESM 插件可以从 Halo 共享运行时导入 Vue、Vue Router、Pinia、Axios�
 
 `@halo-dev/ui-shared@2.26.0` 新增 `stores.uiPlugins()`，用于查询插件或已激活主题的 UI provider 是否被发现、是否已经成功注册以及当前状态。它替代了 `window.PluginName` 和 `window.enabledUiPlugins` 等依赖 IIFE 全局变量的检测方式。详细文档请参考 [共享工具库 > uiPlugins](./api-reference/ui/shared.md#uiplugins)。
 
+### 编辑器扩展支持注册快捷键描述
+
+`@halo-dev/richtext-editor@2.26.0` 新增 `defineHaloKeyboardShortcuts()`，插件可以在 Tiptap 的 `addKeyboardShortcuts` 中同时注册快捷键命令和用户可见的描述，并通过 `shortcutId` 将同一条描述关联到工具栏、Slash Command 或悬浮菜单。详细文档请参考 [默认编辑器 > 快捷键扩展](./extension-points/ui/default-editor-extension-create.md#6-快捷键扩展)。
+
+### 编辑器扩展支持声明运行期元数据
+
+`@halo-dev/richtext-editor@2.26.0` 新增 `addHaloEditorMetadata()` 和 `createHaloEditorManifest()`。插件可以为 Tiptap Node、Mark 和 Extension 声明组件用法、属性、结构关系及 HTML 示例，并从最终 Editor 实例生成稳定的运行期 Manifest。详细文档请参考 [默认编辑器 > 编辑器扩展运行期元数据](./extension-points/ui/default-editor-extension-create.md#7-编辑器扩展运行期元数据)。
+
 ## 2.25.0
 
 ### 表单定义 > `select` 选项支持图标和描述
