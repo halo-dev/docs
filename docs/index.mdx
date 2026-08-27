@@ -4,21 +4,49 @@ title: Halo 文档
 description: Halo 安装、使用与开发文档入口。
 ---
 
-import { IconSearch, SvgWrapper } from '@rspress/core/theme';
+import {
+  Article,
+  BracketsCurly,
+  Code,
+  DesktopTower,
+  DotsThree,
+  Gear,
+  ListChecks,
+  PaintBrushBroad,
+  Palette,
+  Paperclip,
+  PuzzlePiece,
+  Question,
+  Storefront,
+  Terminal,
+} from '@phosphor-icons/react';
+import { Icon1Panel, IconDocker } from '../theme/PlatformIcons';
 
 <main className="docs-home">
-  <header className="docs-home__header">
-    <h1>Halo 文档</h1>
-    <p>查找安装、使用和开发 Halo 所需的文档。</p>
-    <button
-      className="docs-search"
-      type="button"
-      onClick={() => document.querySelector('.rp-search-button')?.click()}
-    >
-      <SvgWrapper icon={IconSearch} width={18} height={18} />
-      <span>搜索文档</span>
-      <kbd>⌘ K</kbd>
-    </button>
+  <header className="docs-hero">
+    <div className="docs-hero__intro">
+      <h1>Halo 文档</h1>
+      <p>
+        Halo 是一款强大易用的开源建站工具，可以通过丰富的主题和插件搭建任何类型的网站。这里汇集了安装、使用和开发
+        Halo 所需的全部文档。
+      </p>
+      <a className="docs-hero__cta" href="/guide/install/">
+        快速开始<span aria-hidden="true">→</span>
+      </a>
+      <nav className="docs-hero__platforms" aria-label="常见安装方式">
+        <a href="/guide/install/docker"><IconDocker /><span>Docker</span></a>
+        <a href="/guide/install/1panel"><Icon1Panel /><span>1Panel</span></a>
+        <a href="/guide/install/bt-panel"><DesktopTower size={16} /><span>宝塔面板</span></a>
+        <a href="/guide/install/"><DotsThree size={16} weight="bold" /><span>更多方式</span></a>
+      </nav>
+    </div>
+    <img
+      className="docs-hero__shot"
+      src="/img/home/preview.png"
+      alt="Halo 管理后台仪表盘界面"
+      width="2048"
+      height="1114"
+    />
   </header>
 
   <section className="docs-section" aria-labelledby="get-started">
@@ -28,23 +56,23 @@ import { IconSearch, SvgWrapper } from '@rspress/core/theme';
     </div>
 
     <div className="quick-start">
-      <a className="quick-start__main" href="/guide/install/">
-        <span>安装部署</span>
-        <strong>安装 Halo</strong>
-        <p>根据你的运行环境，选择 Docker、1Panel、宝塔面板或其他部署方式。</p>
-        <b>选择安装方式 <span aria-hidden="true">→</span></b>
-      </a>
-
-      <a className="quick-start__item" href="/guide/setup">
+      <a className="quick-start__main" href="/guide/setup">
+        <span>安装之后</span>
         <strong>初始化站点</strong>
-        <p>完成首次访问和基础设置。</p>
-        <span aria-hidden="true">→</span>
+        <p>完成首次访问、创建管理员账号和基础设置，让站点正式跑起来。</p>
+        <b>开始初始化 <span aria-hidden="true">→</span></b>
       </a>
 
       <a className="quick-start__item" href="/guide/first-post">
         <strong>发布第一篇文章</strong>
         <p>熟悉内容编辑和发布流程。</p>
         <span aria-hidden="true">→</span>
+      </a>
+
+      <a className="quick-start__item" href="https://www.halo.run/store/apps" target="_blank" rel="noreferrer">
+        <strong>探索应用市场</strong>
+        <p>发现主题和插件，扩展站点能力。</p>
+        <span aria-hidden="true">↗</span>
       </a>
     </div>
   </section>
@@ -61,14 +89,14 @@ import { IconSearch, SvgWrapper } from '@rspress/core/theme';
           <p>管理内容、外观、用户和站点设置。</p>
         </header>
         <nav aria-label="Halo 使用文档">
-          <a href="/guide/use/posts"><span>文章与内容</span><span aria-hidden="true">→</span></a>
-          <a href="/guide/use/themes"><span>主题</span><span aria-hidden="true">→</span></a>
-          <a href="/guide/use/plugins"><span>插件</span><span aria-hidden="true">→</span></a>
-          <a href="/guide/use/attachments"><span>附件</span><span aria-hidden="true">→</span></a>
-          <a href="/guide/use/settings"><span>系统设置</span><span aria-hidden="true">→</span></a>
-          <a href="/guide/use/faq"><span>常见问题</span><span aria-hidden="true">→</span></a>
+          <a href="/guide/use/posts"><span className="topic-link__icon"><Article size={18} weight="duotone" /></span><span>文章与内容</span></a>
+          <a href="/guide/use/themes"><span className="topic-link__icon"><Palette size={18} weight="duotone" /></span><span>主题</span></a>
+          <a href="/guide/use/plugins"><span className="topic-link__icon"><PuzzlePiece size={18} weight="duotone" /></span><span>插件</span></a>
+          <a href="/guide/use/attachments"><span className="topic-link__icon"><Paperclip size={18} weight="duotone" /></span><span>附件</span></a>
+          <a href="/guide/use/settings"><span className="topic-link__icon"><Gear size={18} weight="duotone" /></span><span>系统设置</span></a>
+          <a href="/guide/use/faq"><span className="topic-link__icon"><Question size={18} weight="duotone" /></span><span>常见问题</span></a>
         </nav>
-        <a className="topic-group__all" href="/guide/use/">查看全部功能文档</a>
+        <a className="topic-group__all" href="/guide/use/">查看全部功能文档<span aria-hidden="true">→</span></a>
       </article>
 
       <article className="topic-group">
@@ -77,14 +105,14 @@ import { IconSearch, SvgWrapper } from '@rspress/core/theme';
           <p>为 Halo 构建应用或完成系统集成。</p>
         </header>
         <nav aria-label="Halo 开发文档">
-          <a href="/developer-guide/plugin/"><span>插件开发</span><span aria-hidden="true">→</span></a>
-          <a href="/developer-guide/theme/"><span>主题开发</span><span aria-hidden="true">→</span></a>
-          <a href="/developer-guide/restful-api/"><span>RESTful API</span><span aria-hidden="true">→</span></a>
-          <a href="/developer-guide/core/"><span>系统开发</span><span aria-hidden="true">→</span></a>
-          <a href="/developer-guide/app-store/"><span>应用市场</span><span aria-hidden="true">→</span></a>
-          <a href="/developer-guide/form-schema"><span>表单定义</span><span aria-hidden="true">→</span></a>
+          <a href="/developer-guide/plugin/"><span className="topic-link__icon"><Code size={18} weight="duotone" /></span><span>插件开发</span></a>
+          <a href="/developer-guide/theme/"><span className="topic-link__icon"><PaintBrushBroad size={18} weight="duotone" /></span><span>主题开发</span></a>
+          <a href="/developer-guide/restful-api/"><span className="topic-link__icon"><BracketsCurly size={18} weight="duotone" /></span><span>RESTful API</span></a>
+          <a href="/developer-guide/core/"><span className="topic-link__icon"><Terminal size={18} weight="duotone" /></span><span>系统开发</span></a>
+          <a href="/developer-guide/app-store/"><span className="topic-link__icon"><Storefront size={18} weight="duotone" /></span><span>应用市场</span></a>
+          <a href="/developer-guide/form-schema"><span className="topic-link__icon"><ListChecks size={18} weight="duotone" /></span><span>表单定义</span></a>
         </nav>
-        <a className="topic-group__all" href="/developer-guide/">查看开发者指南</a>
+        <a className="topic-group__all" href="/developer-guide/">查看开发者指南<span aria-hidden="true">→</span></a>
       </article>
     </div>
   </section>
@@ -96,6 +124,7 @@ import { IconSearch, SvgWrapper } from '@rspress/core/theme';
     </div>
     <nav aria-label="帮助资源">
       <a href="/guide/use/faq">常见问题</a>
+      <a href="https://github.com/orgs/halo-dev/discussions" target="_blank" rel="noreferrer">GitHub ↗</a>
       <a href="https://bbs.halo.run" target="_blank" rel="noreferrer">社区论坛 ↗</a>
     </nav>
   </aside>
