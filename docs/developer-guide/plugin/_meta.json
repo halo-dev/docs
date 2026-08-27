@@ -1,6 +1,7 @@
 [
   "introduction",
   "prepare",
+  "ai",
   "hello-world",
   {
     "type": "dir",
