@@ -1,22 +1,3 @@
-// See https://github.com/web-infra-dev/rspress/pull/3629/changes
-.rp-nav {
-  &__left {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-}
-
-.rp-nav-menu {
-  &--left {
-    margin-left: 32px;
-
-    @media (max-width: 1279px) {
-      margin-left: 24px;
-    }
-  }
-}
-
 .rp-code-button-group {
   &__icon{
     color: #8b8b8b !important;
