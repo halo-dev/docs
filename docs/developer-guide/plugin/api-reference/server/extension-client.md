@@ -160,7 +160,7 @@ ListOptions.builder()
 
 在 `FieldSelector` 中使用的所有字段都必须添加为索引，否则会抛出异常表示不支持该字段。关于如何使用索引请参考 [自定义模型使用索引](./extension.md#using-indexes)。
 
-:::note
+:::note 使用 Queries 构建查询
 
 从 2.22.0 开始，`QueryFactory` 已过时，请使用 `Queries` 创建查询条件。取反查询可以通过 `Queries.not(condition)` 或 `condition.not()` 构建。
 

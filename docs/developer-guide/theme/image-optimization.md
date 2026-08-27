@@ -13,13 +13,13 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 - 提升加载性能：通过为图片提供多个尺寸的缩略图，浏览器可以选择最适合当前视窗的图片进行加载，从而减少不必要的带宽使用，提升页面加载速度，改善用户体验。
 - 兼容性好：响应式图片是基于 HTML 标准的实现，不需要额外的 JavaScript 或 CSS，因此兼容性非常好。
 
-:::info
+:::info 了解响应式图片
 建议阅读 [响应式图片](https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) 文档，以了解更多关于响应式图片的知识，以及如何在不同场景下使用。
 :::
 
 ## Finder API
 
-:::info
+:::info Halo 2.22 自动添加响应式属性
 从 Halo 2.22 开始，Halo 会自动为页面上的所有图片添加响应式图片的相关属性，无需主题主动适配，如果你的主题需要手动为部分图片自定义属性，可以使用下方的 `Finder API`。
 :::
 

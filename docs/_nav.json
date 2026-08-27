@@ -1,0 +1,39 @@
+[
+  {
+    "text": "使用指南",
+    "link": "/guide/",
+    "activeMatch": "/guide/",
+    "position": "left"
+  },
+  {
+    "text": "开发者指南",
+    "link": "/developer-guide/",
+    "activeMatch": "/developer-guide/",
+    "position": "left"
+  },
+  {
+    "text": "版本",
+    "items": [
+      {
+        "text": "历史版本",
+        "link": "https://github.com/halo-dev/docs/branches"
+      },
+      {
+        "text": "已归档版本",
+        "link": "https://v2.archive-docs.halo.run/"
+      }
+    ]
+  },
+  {
+    "text": "官网",
+    "link": "https://www.halo.run/"
+  },
+  {
+    "text": "论坛",
+    "link": "https://bbs.halo.run"
+  },
+  {
+    "text": "版本对比",
+    "link": "https://www.lxware.cn/halo?code=mcYhwMkn"
+  }
+]

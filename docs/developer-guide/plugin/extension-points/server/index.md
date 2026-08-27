@@ -1,6 +1,7 @@
 ---
-title: 扩展点
+title: 服务端扩展点
 description: Halo 服务端为插件提供的扩展点接口
+overview: true
 ---
 
 术语：
@@ -48,7 +49,7 @@ spec:
   description: "Support sending notifications to users via email"
 ```
 
-:::tip
+:::tip 声明扩展点资源
 单实例或多实例的扩展点需要声明对应的 `ExtensionPointDefinition` 自定义模型对象被称之为扩展点定义，用于描述该扩展点的信息，例如：扩展点的名称、描述、扩展点的类型等。
 
 单实例或多实例扩展点的实现也必须声明一个对应的 `ExtensionDefinition` 自定义模型对象被称之为扩展定义，用于描述该扩展的信息，例如：扩展的名称、描述、对应扩展点的对象名称等。
@@ -57,9 +58,3 @@ spec:
 关于如何在插件中声明自定义模型对象请参考：[自定义模型](../../api-reference/server/extension.md#declare-extension-object)
 
 以下是目前已支持的扩展点列表：
-
-```mdx-code-block
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
-```

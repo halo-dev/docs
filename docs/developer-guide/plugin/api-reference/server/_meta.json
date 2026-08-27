@@ -1,0 +1,13 @@
+[
+  "extension",
+  "reconciler",
+  "extension-client",
+  "setting-fetcher",
+  "reverseproxy",
+  "notification",
+  "finder-for-theme",
+  "template-for-theme",
+  "websocket",
+  "login-handler-enhancer",
+  "extension-getter"
+]

@@ -7,9 +7,9 @@ description: 主题开发所需的准备工作和基本的项目搭建
 
 ## 搭建开发环境
 
-Halo 在本地开发环境的运行可参考[开发环境运行](../core/run.md)，或者使用 [Docker](../../getting-started/install/docker.md) 运行。
+Halo 在本地开发环境的运行可参考[开发环境运行](../core/run.md)，或者使用 [Docker](../../guide/install/docker.mdx) 运行。
 
-:::tip
+:::tip 启用主题实时更新
 为了保证在开发时，主题代码可以实时生效，需要注意以下事项：
 
 - 使用 Halo 源码运行时，需要在配置文件中包含如下配置：
@@ -53,11 +53,11 @@ spec:
       url: "https://github.com/halo-sigs/theme-foo/blob/main/LICENSE"
 ```
 
-:::info[提示]
+:::info 查看主题配置文档
 主题的配置文件详细文档请参考 [配置文件](./config.md)。
 :::
 
-:::info[提示]
+:::info 查看主题目录结构
 主题项目的目录结构请参考 [主题目录结构](./structure.md)。
 :::
 
@@ -69,7 +69,7 @@ spec:
 - [halo-sigs/theme-vite-starter](https://github.com/halo-dev/theme-vite-starter) - 与 Vite 集成的主题模板，由 Vite 负责资源构建。
 - [halo-sigs/theme-astro-starter](https://github.com/halo-sigs/theme-astro-starter) - 以 Astro 作为预渲染框架的主题模板。
 
-:::info[提示]
+:::info 从模板仓库创建主题
 以上 GitHub 都被设置为了模板仓库（Template repository），点击仓库主页的 `Use this template` 按钮即可通过此模板创建一个新的仓库。
 
 创建新的主题仓库并克隆到本地开发环境之后，需要确保主题文件夹名称和 `theme.yaml` 中的 `metadata.name` 字段一致，否则可能导致部分资源无法正常加载。

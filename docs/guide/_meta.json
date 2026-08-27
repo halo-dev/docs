@@ -1,0 +1,42 @@
+[
+  "index",
+  {
+    "type": "section-header",
+    "label": "入门"
+  },
+  "prepare",
+  {
+    "type": "dir-section-header",
+    "name": "install",
+    "label": "安装",
+    "collapsed": true
+  },
+  {
+    "type": "section-header",
+    "label": "开始使用"
+  },
+  "setup",
+  "first-post",
+  {
+    "type": "dir-section-header",
+    "name": "use",
+    "label": "功能文档",
+    "collapsed": true
+  },
+  {
+    "type": "dir-section-header",
+    "name": "contribution",
+    "label": "参与贡献",
+    "collapsed": true
+  },
+  {
+    "type": "section-header",
+    "label": "其他"
+  },
+  "migrate-from-1.x",
+  {
+    "type": "custom-link",
+    "label": "更新日志",
+    "link": "https://releases.halo.run/"
+  }
+]

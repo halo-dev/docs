@@ -130,7 +130,7 @@ public class CustomEventPublisher {
 
 3. 配置插件 B 的 `plugin.yaml` 中的 `pluginDependencies` 依赖插件 A，参考 [插件依赖声明](dependency.md#依赖声明方式)
 
-:::info
+:::info 将依赖插件 API 声明为 compileOnly
 关于为什么必须将插件 A 的 `plugin-a-api` 声明为 `compileOnly`?
 
 插件类加载的顺序是：

@@ -1,0 +1,23 @@
+[
+  "index",
+  "common",
+  "activate",
+  "user-center",
+  "posts",
+  "pages",
+  "attachments",
+  "menus",
+  "themes",
+  "plugins",
+  "app-store",
+  "users",
+  "settings",
+  "backup",
+  {
+    "type": "dir",
+    "name": "shop",
+    "label": "商城",
+    "collapsed": true
+  },
+  "faq"
+]

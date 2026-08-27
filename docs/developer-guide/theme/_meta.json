@@ -1,0 +1,27 @@
+[
+  "prepare",
+  "config",
+  "structure",
+  "ui-plugin",
+  "page-layout",
+  "static-resources",
+  "settings",
+  "annotations",
+  {
+    "type": "dir",
+    "name": "template-variables",
+    "label": "模板编写",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "finder-apis",
+    "label": "Finder API",
+    "collapsed": true
+  },
+  "image-optimization",
+  "global-variables",
+  "template-tag",
+  "code-snippets",
+  "api-changelog"
+]

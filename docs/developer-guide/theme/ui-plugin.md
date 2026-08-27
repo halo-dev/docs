@@ -11,7 +11,7 @@ description: 通过主题扩展 Console 和 UC 界面
 
 将 UI 项目放在主题根目录的 `ui-plugin` 目录中：
 
-```text
+```tree
 theme-root/
 ├── templates/
 ├── theme.yaml

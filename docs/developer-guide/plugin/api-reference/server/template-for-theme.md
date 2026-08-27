@@ -12,7 +12,7 @@ description: 了解如何为主题扩充模板。
 
 首先，你需要在插件的 `resources` 目录下创建一个 `templates` 目录，然后在 `templates` 目录下提供你的模板，例如：
 
-```text
+```tree
 ├── templates
 │   ├── moment.html
 ```
