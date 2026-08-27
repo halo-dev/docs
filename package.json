@@ -18,14 +18,18 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.8",
+    "@iconify-json/mingcute": "^1.2.8",
     "@rsbuild/plugin-sass": "^2.0.1",
     "@rspress/plugin-sitemap": "^2.0.19",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
     "@types/node": "^22.20.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "unplugin-icons": "^23.0.1"
   },
   "devEngines": {
     "packageManager": {

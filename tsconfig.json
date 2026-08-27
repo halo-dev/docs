@@ -19,7 +19,9 @@
     /* type checking */
     "strict": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+
+    "types": ["unplugin-icons/types/react"]
   },
   "include": ["docs", "theme", "rspress.config.ts"],
   "mdx": {

@@ -6,6 +6,7 @@ import { pluginSitemap } from '@rspress/plugin-sitemap';
 import fileTree from 'rspress-plugin-file-tree';
 import ga from 'rspress-plugin-google-analytics';
 import mermaid from 'rspress-plugin-mermaid';
+import Icons from 'unplugin-icons/rspack';
 
 const SITE_URL = 'https://docs.halo.run';
 
@@ -57,6 +58,11 @@ export default defineConfig({
           },
         },
       ],
+    },
+    tools: {
+      rspack: {
+        plugins: [Icons({ compiler: 'jsx', jsx: 'react' })],
+      },
     },
   },
   themeConfig: {
