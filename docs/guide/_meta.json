@@ -1,12 +1,16 @@
 [
-  "index",
+  {
+    "type": "file",
+    "name": "index",
+    "label": "概览"
+  },
   {
     "type": "section-header",
     "label": "入门"
   },
   "prepare",
   {
-    "type": "dir-section-header",
+    "type": "dir",
     "name": "install",
     "label": "安装",
     "collapsed": true
@@ -18,7 +22,7 @@
   "setup",
   "first-post",
   {
-    "type": "dir-section-header",
+    "type": "dir",
     "name": "use",
     "label": "功能文档",
     "collapsed": true

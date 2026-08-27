@@ -1,4 +1,4 @@
 ---
-title: 概览
+title: 安装 Halo
 overview: true
 ---
