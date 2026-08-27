@@ -1,6 +1,6 @@
 ---
 title: 错误页面
-description: 关于错误页面的模板变量
+description: 配置 Halo 主题的 404、4xx、500、5xx 与默认错误模板，了解状态码对应的模板匹配顺序及 error 变量字段和渲染方式
 ---
 
 ## 路由信息

@@ -1,6 +1,6 @@
 ---
 title: 静态资源
-description: 本文档介绍主题的静态资源的引用方法。
+description: 在 Halo 主题中通过 Thymeleaf 资源链接和 theme.assets() API 引用 templates/assets 下的样式、脚本与图片
 ---
 
 通过 [目录结构](./structure.md) 的讲解我们可以知道，目前主题的静态资源统一托管在 `/templates/assets/` 目录下，下面讲解一下如何在模板中使用，大致会分为两种引入方式。

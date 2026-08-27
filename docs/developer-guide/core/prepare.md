@@ -1,6 +1,6 @@
 ---
 title: 准备工作
-description: 开发环境的准备工作
+description: 准备 Halo 核心开发环境，列出 OpenJDK、Node.js、pnpm、IntelliJ IDEA、Git 等工具要求，并说明工作目录及数据、主题、插件、附件和日志结构。
 ---
 
 ## 环境要求

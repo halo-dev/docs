@@ -1,6 +1,6 @@
 ---
 title: 代码贡献
-description: 代码贡献指南
+description: 参与 Halo 代码贡献的完整流程，涵盖查找并认领 Good First Issue、Fork 与同步仓库、创建分支、提交代码、发起及更新 Pull Request。
 ---
 
 欢迎关注并有想法参与 Halo 的开发，以下是关于如何参与到 Halo 项目的指南，仅供参考。

@@ -1,6 +1,6 @@
 ---
 title: 系统结构
-description: Halo 项目的构成
+description: 介绍 Halo 服务、管理界面、评论插件和主题项目的系统构成，并说明 Spring Boot 配置目录的覆盖优先级与开发环境自定义配置方式。
 ---
 
 [Halo](https://github.com/halo-dev/halo) 博客系统分为以下四个部分：

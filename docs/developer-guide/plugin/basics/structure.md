@@ -1,6 +1,6 @@
 ---
 title: 插件项目结构
-description: 了解插件项目的文件结构
+description: 认识 Halo 插件项目的 Java 后端、Vue 前端、plugin.yaml 描述文件与 Gradle 构建结构，明确源码、静态资源和 UI 构建产物的存放位置
 ---
 
 当你创建一个新的插件项目时，典型的目录结构如下所示：

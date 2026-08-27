@@ -1,6 +1,6 @@
 ---
 title: 生命周期
-description: 了解插件从启动到卸载的过程
+description: 理解 Halo 插件安装后的启动、停止和删除生命周期，在 BasePlugin 对应方法中初始化资源、清理自定义模型并处理卸载任务
 ---
 
 根据[插件项目文件结构](../../basics/structure.md)所展示的 `StarterPlugin.java` 中，具有如下方法：

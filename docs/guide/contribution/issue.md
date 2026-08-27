@@ -1,6 +1,6 @@
 ---
 title: 问题反馈
-description: 问题反馈渠道及指南
+description: 通过 GitHub Issue、Discussion 或 Halo 官方社区反馈使用问题、缺陷和功能需求，包含提交前搜索、选择类型及填写模板等建议。
 ---
 
 :::info 提交问题前请阅读

@@ -1,6 +1,6 @@
 ---
 title: 组件
-description: 在 Halo UI 中可使用的组件。
+description: 在 Halo 插件 UI 中安装并使用基础组件库，以及直接调用 Console 和 UC 全局注册的业务组件与指令来扩展管理界面功能
 overview: true
 ---
 

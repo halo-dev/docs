@@ -1,6 +1,6 @@
 ---
 title: 获取扩展
-description: 了解如何在插件中使用 `ExtensionGetter` 获取扩展
+description: 使用 ExtensionGetter 按扩展点类型获取单实例、多实例或全部扩展，并理解系统配置、Halo 默认实现与已启用插件实现之间的选择规则
 ---
 
 `ExtensionGetter` 用于获取和管理 Halo 或其他插件提供的扩展。它提供了多种方法来根据扩展点获取扩展，确保插件能够灵活地集成和使用各种扩展功能。

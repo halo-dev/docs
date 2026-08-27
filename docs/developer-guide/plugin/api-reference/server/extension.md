@@ -1,6 +1,6 @@
 ---
 title: 自定义模型
-description: 了解什么是自定义模型及如何创建
+description: 定义并注册遵循 OpenAPI v3 的 Halo 自定义模型，配置字段校验与索引，并使用自动生成或自定义的 API 完成资源查询和业务扩展
 ---
 
 ## 概述

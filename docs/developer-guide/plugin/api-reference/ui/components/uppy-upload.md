@@ -1,6 +1,6 @@
 ---
 title: UppyUpload
-description: 文件上传组件
+description: 使用 UppyUpload 向指定 API 端点上传文件，配置请求方法、元数据、文件限制和弹窗尺寸，并处理上传成功与错误事件
 ---
 
 ## 使用方式

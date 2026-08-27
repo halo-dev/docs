@@ -1,6 +1,6 @@
 ---
 title: 与自定义模型交互
-description: 了解如何通过代码的方式操作数据
+description: 使用 ExtensionClient 和 ReactiveExtensionClient 增删改查自定义模型，并通过 ListOptions、Queries、Sort 和 PageRequest 构建查询、排序与分页条件
 ---
 
 Halo 提供了两个类用于与自定义模型对象交互 `ExtensionClient` 和 `ReactiveExtensionClient`。

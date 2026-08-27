@@ -1,6 +1,6 @@
 ---
 title: 开发环境运行
-description: 开发环境运行的指南
+description: 在本地完整运行 Halo 开发环境，涵盖克隆仓库、安装并启动 Console 与 UC 前端、配置 IntelliJ IDEA Profile，以及使用 Gradle 启动后端。
 ---
 
 :::info 运行前准备

@@ -1,6 +1,6 @@
 ---
 title: Halo 架构概览
-description: Halo 架构概览
+description: 概览 Halo 基于 Spring Boot、WebFlux、Reactor 和 R2DBC 的响应式架构，以及 Extension、Controller、资源生命周期、配置模型与 RBAC 等核心概念。
 ---
 
 Halo 是一个基于 Spring Boot 的 Java Web 应用，Web 层不再使用 Servlet 技术，而是充分向异步和非阻塞的反应式编程靠拢，使用 Netty 作为 Web 服务器，使用 [Reactor](https://projectreactor.io/) 作为异步编程框架，使用 R2DBC 作为数据库访问框架，使用 WebFlux 作为 Web 层框架。

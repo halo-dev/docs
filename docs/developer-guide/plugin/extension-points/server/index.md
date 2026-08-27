@@ -1,6 +1,6 @@
 ---
 title: 服务端扩展点
-description: Halo 服务端为插件提供的扩展点接口
+description: 理解 Halo 服务端扩展点与扩展的关系，通过实现接口、注册 Spring Bean 并声明 ExtensionDefinition 资源接入可组合的后端能力
 overview: true
 ---
 

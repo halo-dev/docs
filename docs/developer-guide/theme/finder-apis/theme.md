@@ -1,6 +1,6 @@
 ---
 title: 主题
-description: 主题 - ThemeFinder
+description: 使用 ThemeFinder 获取当前启用的 Halo 主题或按唯一标识查询主题，并读取主题版本、作者、设置、自定义模板等 ThemeVo 信息
 ---
 
 ## activation()

@@ -1,6 +1,6 @@
 ---
 title: 设置选项
-description: 介绍主题如何定义以及使用设置选项。
+description: 通过 settings.yaml 和 FormKit 表单定义 Halo 主题设置项，关联 Setting 与 ConfigMap，并在 Thymeleaf 模板中读取配置和重载更新
 ---
 
 此文档将讲解如何在主题中定义和使用设置项，如 [表单定义](../form-schema) 中所说，目前 Halo 的 Console 端的所有表单都使用了 [FormKit](https://github.com/formkit/formkit) 的方案。

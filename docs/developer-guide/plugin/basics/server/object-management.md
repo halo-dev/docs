@@ -1,6 +1,6 @@
 ---
 title: 插件中的对象管理
-description: 了解如何在创建中创建对象和管理对象依赖
+description: 使用 Spring Bean 与依赖注入管理 Halo 插件对象，并调用自定义模型、用户、通知、内容、认证、限流和系统信息等共享服务
 ---
 
 在插件中你可以使用 [Spring Framework](https://spring.io/projects/spring-framework/) 提供的常用 Bean 注解来标注一个类，然后就能使用依赖注入功能注入其他类的对象。这省去了使用工厂创建类和维护的过程，你可以像开发一个常规的 Spring 项目一样来开发插件，目前支持以下 Spring Framework 的特性：

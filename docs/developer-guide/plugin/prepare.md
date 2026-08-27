@@ -1,6 +1,6 @@
 ---
 title: 准备工作
-description: 插件开发的准备工作
+description: 准备 Halo 插件开发所需的 Java、Spring Boot、Vue、TypeScript、Node.js、包管理器与 Git 环境，并安装官方 Agent Skill 辅助开发
 ---
 
 在 Halo 中，插件是使用 Java 和 JavaScript / TypeScript 编写的，UI 使用 [Vuejs](https://vuejs.org) 编写。

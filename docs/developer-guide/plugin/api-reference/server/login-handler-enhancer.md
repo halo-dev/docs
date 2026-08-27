@@ -1,6 +1,6 @@
 ---
 title: 登录增强
-description: 了解如何在登录时如何允许 Halo 做登录逻辑的增强切入。
+description: 在插件的认证流程中调用 LoginHandlerEnhancer，将登录成功与失败事件交给 Halo 统一处理记住我、设备管理和登录日志等安全逻辑
 ---
 
 ## 背景

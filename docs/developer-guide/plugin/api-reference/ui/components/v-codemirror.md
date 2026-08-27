@@ -1,6 +1,6 @@
 ---
 title: VCodemirror
-description: 代码编辑器组件
+description: 使用 VCodemirror 在 Halo 插件界面嵌入代码编辑器，通过 v-model 管理内容，并配置编辑语言、高度、扩展和变更事件
 ---
 
 此组件封装了 Codemirror 代码编辑器，适用于一些需要编辑代码的场景。
