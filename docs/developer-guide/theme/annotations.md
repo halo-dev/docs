@@ -1,5 +1,6 @@
 ---
 title: 模型元数据
+description: 介绍 Halo 主题模板的 annotations 表达式对象，演示获取模型元数据、设置默认值及判断 annotations 字段是否存在。
 ---
 
 在 [元数据表单定义](../annotations-form.md) 我们介绍了如何为模型添加元数据表单，此文档将介绍如何在主题模板中使用元数据。

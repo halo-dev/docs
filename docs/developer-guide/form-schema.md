@@ -1,5 +1,6 @@
 ---
 title: 表单定义
+description: 介绍 Halo Setting 资源中的 FormKit Schema 表单规范，以及 select 等扩展输入组件的参数、静态与远程数据源和 YAML 配置示例。
 ---
 
 在 Halo 2.0，在 Console 端的所有表单我们都使用了 [FormKit](https://github.com/formkit/formkit) 的方案。FormKit 不仅支持使用 Vue 组件的形式来构建表单，同时支持使用 Schema 的形式来构建。因此，我们的 [Setting](https://github.com/halo-dev/halo/blob/87ccd61ae5cd35a38324c30502d4e9c0ced41c6a/src/main/java/run/halo/app/core/extension/Setting.java#L20) 资源中的表单定义，都是使用 FormKit Schema 来定义的，最常用的场景即主题和插件的设置表单定义。当然，如果要在 Halo 2.0 的插件中使用，也可以参考 FormKit 的文档使用 Vue 组件的形式使用，但不需要在插件中引入 FormKit。
