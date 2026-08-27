@@ -33,6 +33,9 @@ export default defineConfig({
       theme: 'github-dark',
       transformers: [transformerCompatibleMetaHighlight()],
     },
+    image: {
+      checkDeadImages: true,
+    },
   },
   outDir: 'build',
   plugins: [
