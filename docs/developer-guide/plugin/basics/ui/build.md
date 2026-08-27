@@ -269,7 +269,7 @@ export default viteConfig({
 
 成功的 ESM 构建会额外生成保留文件 `ui-plugin.json`，并可能包含异步 JavaScript、CSS 和其他静态资源。以下目录仅作示意，实际入口和启动样式路径以 `ui-plugin.json` 为准：
 
-```text
+```tree
 build/dist/
 ├── ui-plugin.json
 ├── main.<hash>.js          # 默认 ESM 入口

@@ -13,7 +13,7 @@ Halo 2.20 重构了登录、注册等页面，现在支持通过主题自定义�
 
 要实现自定义登录、注册等模板，只需要在主题的 `templates` 目录中新建与 Halo 源码中 `application/src/main/resources/templates` 同名的模板文件即可，下面是 Halo 源码中的目录结构：
 
-```bash
+```tree
 ├── challenges
 │   └── two-factor
 │       ├── totp.html                           两步验证页面

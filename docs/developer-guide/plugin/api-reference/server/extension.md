@@ -206,7 +206,7 @@ public void start() {
 - keyType：索引值类型，必须实现 `Comparable`，例如 `String`、`Boolean`、`Integer`、`Long`、`Instant` 等。
 - indexFunc：索引函数，用于获取索引值，接收当前自定义模型对象。单值索引返回一个 `keyType` 类型的值，可以返回 `null`；多值索引返回 `Set<keyType>`。
 
-:::note
+:::note 使用新版索引 API
 
 从 2.22.0 开始，`IndexAttributeFactory.simpleAttribute()`、`IndexAttributeFactory.multiValueAttribute()` 和直接创建 `new IndexSpec()` 的写法已过时，请优先使用 `IndexSpecs.single()` 和 `IndexSpecs.multi()`。
 
@@ -223,7 +223,7 @@ Halo 默认会为每个自定义模型建立以下几个索引，因此不需要
 
 创建了索引的字段可以在查询时使用 `fieldSelector` 参数来查询，参考 [自定义模型 API](#extension-apis)。
 
-:::tip
+:::tip 为查询字段创建索引
 
 - 索引是一种存储数据结构，可提供对数据集中字段的高效查找。
 - 索引将自定义模型中的字段映射到数据库行，以便在查询特定字段时不需要完整的扫描。

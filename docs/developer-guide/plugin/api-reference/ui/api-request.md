@@ -67,6 +67,6 @@ axiosInstance.get("/apis/foo.halo.run/v1alpha1/bar").then(response => {
 
 直接从 `axios` 导入的是共享的标准 Axios 模块，不包含 Halo 的认证配置。请勿修改它的全局 defaults 或 interceptors；需要独立配置时使用 `axios.create()`。`@halo-dev/api-client` 导出的 `axiosInstance` 是另一个带有 Halo 认证和统一错误处理的实例，也不应修改它的 defaults 或 interceptors。
 
-:::info[提醒]
+:::info 同步提高 Halo 版本要求
 如果插件中使用了 `@halo-dev/api-client@2.17.0` 和 `@halo-dev/ui-plugin-bundler-kit@2.17.0`，需要提升 `plugin.yaml` 中的 `spec.requires` 版本为 `>=2.17.0`。
 :::

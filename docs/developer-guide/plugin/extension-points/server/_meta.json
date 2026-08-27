@@ -1,0 +1,18 @@
+[
+  "additional-webfilter",
+  "authentication-webfilter",
+  "attachment",
+  "comment-subject",
+  "comment-widget",
+  "element-tag-post-processor",
+  "excerpt-generator",
+  "halo-documents-provider",
+  "notifier",
+  "search-engine",
+  "template-head-processor",
+  "template-footer-processor",
+  "post-content",
+  "singlepage-content",
+  "user-creating-handler",
+  "username-password-authentication-manager"
+]

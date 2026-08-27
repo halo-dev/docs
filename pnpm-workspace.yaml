@@ -1,5 +1,3 @@
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - '@swc/core'
-  - core-js
-  - core-js-pure
+minimumReleaseAgeExclude:
+  - '@rspress/core@2.0.20'
+  - '@rspress/shared@2.0.20'

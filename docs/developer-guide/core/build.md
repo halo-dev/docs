@@ -3,7 +3,7 @@ title: 构建
 description: 构建为可执行 JAR 和 Docker 镜像的文档
 ---
 
-:::info
+:::info 构建前准备
 在此之前，我们推荐你先阅读[《准备工作》](./prepare)，检查本地环境是否满足要求。
 :::
 
@@ -61,7 +61,7 @@ cd path/to/halo
 
 构建完成之后，在 Halo 项目下产生的 `application/build/libs/halo-${version}.jar` 即为构建完成的文件。
 
-最终部署文档可参考：[使用 JAR 文件部署](../../getting-started/install/jar-file.md)。
+最终部署文档可参考：[使用 JAR 文件部署](../../guide/install/jar-file.md)。
 
 ## 构建 Docker 镜像
 
@@ -81,4 +81,4 @@ docker build -t halo-dev/halo:${tag_name} .
 docker images | grep halo
 ```
 
-最终部署文档可参考：[使用 Docker Compose 部署](../../getting-started/install/docker-compose.md)。
+最终部署文档可参考：[使用 Docker Compose 部署](../../guide/install/docker-compose.mdx)。

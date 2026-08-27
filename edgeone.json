@@ -1,0 +1,163 @@
+{
+  "installCommand": "pnpm install",
+  "buildCommand": "rspress build",
+  "outputDirectory": "./build",
+  "nodeVersion": "24.18.0",
+  "redirects": [
+    {
+      "source": "/next/getting-started/install/*",
+      "destination": "/guide/install/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/next/getting-started/*",
+      "destination": "/guide/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/next/user-guide/*",
+      "destination": "/guide/use/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/next/contribution/*",
+      "destination": "/guide/contribution/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/next",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/next/*",
+      "destination": "/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/getting-started/install/*",
+      "destination": "/guide/install/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/getting-started/*",
+      "destination": "/guide/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/user-guide/*",
+      "destination": "/guide/use/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/contribution/*",
+      "destination": "/guide/contribution/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/developer-guide/appendix/publish-app",
+      "destination": "/developer-guide/app-store/publish-app",
+      "statusCode": 301
+    },
+    {
+      "source": "/about",
+      "destination": "/guide/contribution/pr",
+      "statusCode": 301
+    },
+    {
+      "source": "/versions",
+      "destination": "https://v2.archive-docs.halo.run/versions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/入门",
+      "destination": "/guide/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/安装指南",
+      "destination": "/guide/install/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/云平台",
+      "destination": "/guide/install/cloud/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/其他指南",
+      "destination": "/guide/install/other/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/用户指南",
+      "destination": "/guide/use/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/参与贡献",
+      "destination": "/guide/contribution/issue",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/系统开发",
+      "destination": "/developer-guide/core/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/插件开发",
+      "destination": "/developer-guide/plugin/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/基础",
+      "destination": "/developer-guide/plugin/basics/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/服务端",
+      "destination": "/developer-guide/plugin/basics/server/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/ui",
+      "destination": "/developer-guide/plugin/basics/ui/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/api-参考",
+      "destination": "/developer-guide/plugin/api-reference/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/服务端-1",
+      "destination": "/developer-guide/plugin/api-reference/server/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/ui-1",
+      "destination": "/developer-guide/plugin/api-reference/ui/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/案例和最佳实践",
+      "destination": "/developer-guide/plugin/examples/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/restful-api",
+      "destination": "/developer-guide/restful-api/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/主题开发",
+      "destination": "/developer-guide/theme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/应用市场",
+      "destination": "/developer-guide/app-store/",
+      "statusCode": 301
+    }
+  ]
+}

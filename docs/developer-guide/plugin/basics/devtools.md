@@ -93,7 +93,7 @@ halo {
 - `debugPort`：调试模式下的调试端口号，默认是自动分配端口号，你可以修改此配置来固定调试端口号。
 - `suspend`：是否在启动时挂起，如果开启则会在启动时挂起直到有调试器连接到 Halo 服务。
 
-:::warning
+:::warning Halo 2.20 版本兼容性
 由于 Halo 2.20.0 版本更改了初始化和登录流程，如果 `halo.version` 指定 `2.20.x` 版本需要将 `run.halo.plugin.devtools` 版本升级到 `0.2.0` 及以上。
 :::
 
@@ -123,7 +123,7 @@ logging:
     run.halo.app: DEBUG
 ```
 
-更多配置项请参考 [Halo 配置列表](../../../getting-started/install/config.md#配置列表)。
+更多配置项请参考 [Halo 配置列表](../../../guide/install/config.md#配置列表)。
 
 ### haloServer 任务
 
@@ -357,12 +357,12 @@ const { data } = await momentsConsoleApiClient.moment.listTags({
 });
 ```
 
-:::tip
+:::tip API 客户端生成流程
 它会先执行 `generateOpenApiDocs` 任务根据配置访问 `/v3/api-docs/extensionApis` 获取 OpenAPI 文档，
 并将 OpenAPI 的 Schema 文件保存到 `openApi.outputDir` 目录下，然后再由 `generateApiClient` 任务根据 Schema 文件生成 API 客户端代码到 `openApi.generator.outputDir` 目录下。
 :::
 
-:::warning
+:::warning 避免误删生成目录
 执行 `generateApiClient` 任务时会先删除 `openApi.generator.outputDir` 下的所有文件，因此建议将 API client 的输出目录设置为一个独立的目录，以避免误删其他文件。
 
 执行 `generateApiClient` 前建议注释掉你所配置的 `build` 任务对应的 `dependsOn` 任务，以避免因依赖前端构建任务可能无法生成 API Client 的问题。

@@ -1,0 +1,42 @@
+[
+  "introduction",
+  "prepare",
+  "hello-world",
+  {
+    "type": "dir",
+    "name": "basics",
+    "label": "基础",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "api-reference",
+    "label": "API 参考",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "extension-points",
+    "label": "扩展点和定制化",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "interaction",
+    "label": "与其他插件交互",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "security",
+    "label": "安全和权限管理",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "examples",
+    "label": "案例和最佳实践",
+    "collapsed": true
+  },
+  "api-changelog"
+]
