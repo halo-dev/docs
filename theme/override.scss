@@ -7,3 +7,9 @@
 .rp-nav-menu {
   --rp-nav-menu-item-gap: 28px;
 }
+
+.rp-code-button-group {
+  &__icon{
+    color: #8b8b8b;
+  }
+}
