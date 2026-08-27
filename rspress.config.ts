@@ -1,3 +1,4 @@
+import { promises as fs } from 'node:fs';
 import * as path from 'node:path';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { defineConfig } from '@rspress/core';
@@ -64,7 +65,18 @@ export default defineConfig({
     },
     tools: {
       rspack: {
-        plugins: [Icons({ compiler: 'jsx', jsx: 'react' })],
+        plugins: [
+          Icons({
+            compiler: 'jsx',
+            jsx: 'react',
+            customCollections: {
+              custom: {
+                'bt-panel': () =>
+                  fs.readFile('./theme/images/bt-panel-logo.svg', 'utf-8'),
+              },
+            },
+          }),
+        ],
       },
     },
   },
