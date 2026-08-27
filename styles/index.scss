@@ -17,6 +17,12 @@
   }
 }
 
+.rp-code-button-group {
+  &__icon{
+    color: #8b8b8b !important;
+  }
+}
+
 .docs-home {
   --home-brand-soft: color-mix(in srgb, var(--rp-c-brand) 9%, var(--rp-c-bg));
   --home-brand-border: color-mix(in srgb, var(--rp-c-brand) 28%, var(--rp-c-divider));
