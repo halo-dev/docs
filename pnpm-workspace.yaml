@@ -1,3 +1,4 @@
 minimumReleaseAgeExclude:
-  - '@rspress/core@2.0.20'
-  - '@rspress/shared@2.0.20'
+  - '@rspress/core@2.0.20 || 2.0.21'
+  - '@rspress/shared@2.0.20 || 2.0.21'
+  - '@rspress/plugin-sitemap@2.0.21'
