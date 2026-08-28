@@ -238,7 +238,7 @@ pnpm install @halo-dev/ui-shared
 - defaultAnimation: false,
 ```
 
-此外，扩展其他 Node 中 `BubbleMenu` 的旧方式将会失效，例如 [编辑器超链接卡片](https://github.com/halo-sigs/plugin-editor-hyperlink-card/blob/main/ui/src/editor/text-bubble-extension.ts) 扩展了 Text Node 的 `BubbleMenu`。 此版本中引入了 `extendsKey` 字段，用于扩展已有的 `BubbleMenu`。**需要已有的 `BubbleMenu` 设置了 PluginKey**。
+此外，扩展其他 Node 中 `BubbleMenu` 的旧方式将会失效，例如 [编辑器超链接卡片](https://github.com/halo-sigs/plugin-editor-hyperlink-card/blob/dbec29e91fb22863b6baee03db8ae5509eded8e0/ui/src/editor/text-bubble-extension.ts) 扩展了 Text Node 的 `BubbleMenu`。 此版本中引入了 `extendsKey` 字段，用于扩展已有的 `BubbleMenu`。**需要已有的 `BubbleMenu` 设置了 PluginKey**。
 用法如下：
 
 ```ts

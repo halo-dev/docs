@@ -185,7 +185,7 @@ rules:
 
 在 Halo 中，任何访问者都会被赋予一个特殊的角色，这个角色是 `anonymous`，表示未登录的匿名访客。`anonymous` 角色是一个特殊的角色，它不需要绑定到用户，用户无需登录即可获得 `anonymous` 角色的权限。
 
-`anonymous` 角色的定义参考 [anonymous 角色](https://github.com/halo-dev/halo/blob/main/application/src/main/resources/extensions/role-template-anonymous.yaml)。
+`anonymous` 角色的定义参考 [anonymous 角色](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/resources/extensions/role-template-anonymous.yaml)。
 
 ### authenticated 角色
 
@@ -193,7 +193,7 @@ rules:
 
 如果开发插件时但凡登录用户都需要具备的权限集合，可以通过将角色聚合到 `authenticated` 角色来实现。这样便不需要为每个用户单独配置权限，只需要将角色聚合到 `authenticated` 角色即可。
 
-`authenticated` 角色的定义参考 [authenticated 角色](https://github.com/halo-dev/halo/blob/main/application/src/main/resources/extensions/role-template-authenticated.yaml)。
+`authenticated` 角色的定义参考 [authenticated 角色](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/resources/extensions/role-template-authenticated.yaml)。
 
 ## Halo 中的内置角色
 

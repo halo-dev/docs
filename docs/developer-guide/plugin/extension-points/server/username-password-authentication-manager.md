@@ -6,10 +6,11 @@ description: 实现 UsernamePasswordAuthenticationManager 单实例扩展点，�
 用户名密码认证管理器扩展点用于替换 Halo 默认的用户名密码认证管理器实现，例如：使用第三方的身份验证服务，一个例子是 LDAP。
 
 ```java
-public interface UsernamePasswordAuthenticationManager extends ExtensionPoint {
-  Mono<Authentication> authenticate(Authentication authentication);
-}
+public interface UsernamePasswordAuthenticationManager
+    extends ReactiveAuthenticationManager, ExtensionPoint {}
 ```
+
+实现类通过继承的 `authenticate` 方法完成认证：返回认证结果表示认证成功；返回 `Mono.empty()` 或抛出非 `AuthenticationException` 异常时，Halo 会回退到内置用户名密码认证；抛出 `AuthenticationException` 时则直接按认证失败处理。
 
 `UsernamePasswordAuthenticationManager` 对应的 `ExtensionPointDefinition` 如下：
 
@@ -27,4 +28,4 @@ spec:
 
 即声明 `ExtensionDefinition` 自定义模型对象时对应的 `extensionPointName` 为 `username-password-authentication-manager`。
 
-可以参考的实现示例 [TOTP 认证](https://github.com/halo-dev/halo/blob/86e688a15d05c084021b6ba5e75d56a8813c3813/application/src/main/java/run/halo/app/security/authentication/twofactor/totp/TotpAuthenticationFilter.java#L84)
+源码参考：[扩展点接口](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/security/authentication/login/UsernamePasswordAuthenticationManager.java)、[认证管理器委托与回退逻辑](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/security/authentication/login/UsernamePasswordDelegatingAuthenticationManager.java)。

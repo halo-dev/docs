@@ -19,39 +19,39 @@ AdditionalWebFilter 能做什么？
 
 ## 使用示例
 
-以下是一个使用 `AdditionalWebFilter` 来拦截 `/login` 请求实现用户名密码登录的示例：
+以下示例将旧的 RSS 地址永久重定向到新地址：
 
 ```java
 @Component
-public class UsernamePasswordAuthenticator implements AdditionalWebFilter {
-    final ServerWebExchangeMatcher requiresMatcher = ServerWebExchangeMatchers.pathMatchers(HttpMethod.POST, "/login");
+public class OldRssRouteRedirectionFilter implements AdditionalWebFilter {
+    private final DefaultServerRedirectStrategy redirectStrategy =
+        new DefaultServerRedirectStrategy();
+    private final ServerWebExchangeMatcher requestMatcher =
+        ServerWebExchangeMatchers.pathMatchers(HttpMethod.GET, "/moments/rss.xml");
 
     @Override
     @NonNull
-    public Mono<Void> filter(@NonNull ServerWebExchange exchange, @NonNull WebFilterChain chain) {
-         return this.requiresAuthenticationMatcher.matches(exchange)
-         .filter((matchResult) -> {
-            return matchResult.isMatch();
-        }).flatMap((matchResult) -> {
-            return this.authenticationConverter.convert(exchange);
-        }).switchIfEmpty(chain.filter(exchange)
-          .then(Mono.empty()))
-          .flatMap((token) -> {
-            return this.authenticate(exchange, chain, token);
-        }).onErrorResume(AuthenticationException.class, (ex) -> {
-            return this.authenticationFailureHandler.onAuthenticationFailure(new WebFilterExchange(exchange, chain), ex);
-        });
-    }
-
-    @Override
-    public int getOrder() {
-        return SecurityWebFiltersOrder.FORM_LOGIN.getOrder();
+    public Mono<Void> filter(
+        @NonNull ServerWebExchange exchange,
+        @NonNull WebFilterChain chain
+    ) {
+        return requestMatcher.matches(exchange)
+            .flatMap(matchResult -> {
+                if (matchResult.isMatch()) {
+                    redirectStrategy.setHttpStatus(HttpStatus.PERMANENT_REDIRECT);
+                    return redirectStrategy.sendRedirect(
+                        exchange,
+                        URI.create("/feed/moments/rss.xml")
+                    );
+                }
+                return chain.filter(exchange);
+            });
     }
 }
 ```
 
-1. `filter` 方法中的 `chain.filter(exchange)` 表示继续执行后续的过滤器，如果不调用这个方法，请求将不会继续执行后续的过滤器或目标处理程序。
-2. `getOrder` 方法用于指定过滤器的执行顺序，比如 `SecurityWebFiltersOrder.FORM_LOGIN.getOrder()` 表示在 Spring Security 的表单登录过滤器之前执行，参考：[SecurityWebFiltersOrder](https://github.com/spring-projects/spring-security/blob/main/config/src/main/java/org/springframework/security/config/web/server/SecurityWebFiltersOrder.java)。
+1. `chain.filter(exchange)` 表示继续执行后续过滤器；不调用时，请求不会继续交给后续过滤器或目标处理程序。
+2. `getOrder` 只决定多个已启用 `AdditionalWebFilter` 之间的执行顺序，默认值为 `Ordered.LOWEST_PRECEDENCE`。数值越小越先执行。
 
 `AdditionalWebFilter` 对应的 `ExtensionPointDefinition` 如下：
 
@@ -73,4 +73,5 @@ spec:
 以下是一些可以参考的项目示例：
 
 - [OAuth2 第三方登录插件](https://github.com/halo-sigs/plugin-oauth2)
-- [Halo 用户名密码登录](https://github.com/halo-dev/halo/blob/main/application/src/main/java/run/halo/app/security/authentication/login/UsernamePasswordAuthenticator.java)
+- [瞬间插件旧 RSS 地址重定向](https://github.com/halo-sigs/plugin-moments/blob/d376174fd1cd9f9a1cb03d4685ad60630f7bb3c2/src/main/java/run/halo/moments/rss/OldRssRouteRedirectionFilter.java)
+- [Halo 对附加过滤器的排序和调用](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/infra/webfilter/AdditionalWebFilterChainProxy.java)

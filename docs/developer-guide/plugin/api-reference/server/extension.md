@@ -650,7 +650,7 @@ public static BindingResult validate(Object target, String objectName,
 
 参考文档：
 
-- [RequestBodyValidationException](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/application/src/main/java/run/halo/app/infra/exception/RequestBodyValidationException.java)
+- [RequestBodyValidationException](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/infra/exception/RequestBodyValidationException.java)
 - [Bean Validation](https://beanvalidation.org/)
 - [Spring Validation](https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html)
 
@@ -701,7 +701,7 @@ public class PersonEndpoint implements CustomEndpoint {
 
 由于 SpringDoc 缺少对 `SpringdocRouteBuilder` 的文档介绍，开发者可参考示例来使用。
 
-- [PostEndpoint](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/application/src/main/java/run/halo/app/core/endpoint/console/PostEndpoint.java)
-- [AttachmentEndpoint](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/application/src/main/java/run/halo/app/core/attachment/endpoint/AttachmentEndpoint.java#L48)
-- [UserConnectionEndpoint](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/application/src/main/java/run/halo/app/core/endpoint/uc/UserConnectionEndpoint.java#L55)
-- [构建查询参数](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/application/src/main/java/run/halo/app/content/PostQuery.java#L97)
+- [PostEndpoint](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/core/endpoint/console/PostEndpoint.java)
+- [AttachmentEndpoint](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/core/attachment/endpoint/AttachmentEndpoint.java)
+- [UserConnectionEndpoint](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/core/endpoint/uc/UserConnectionEndpoint.java)
+- [构建查询参数](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/content/PostQuery.java)

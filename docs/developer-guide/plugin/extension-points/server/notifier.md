@@ -57,4 +57,4 @@ spec:
 
 即声明 `ExtensionDefinition` 自定义模型对象时对应的 `extensionPointName` 为 `reactive-notifier`。
 
-使用案例可以参考：[Halo 邮件通知器](https://github.com/halo-dev/halo/blob/main/application/src/main/java/run/halo/app/notification/EmailNotifier.java)
+使用案例可以参考：[Halo 邮件通知器](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/notification/EmailNotifier.java)

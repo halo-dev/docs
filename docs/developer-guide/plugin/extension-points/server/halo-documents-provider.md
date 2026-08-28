@@ -35,5 +35,5 @@ spec:
 
 使用案例可以参考：
 
-- [文章搜索文档提供者](https://github.com/halo-dev/halo/blob/main/application/src/main/java/run/halo/app/search/post/PostHaloDocumentsProvider.java)
+- [文章搜索文档提供者](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/search/post/PostHaloDocumentsProvider.java)
 - [Meilisearch 搜索插件](https://github.com/halo-sigs/plugin-meilisearch)

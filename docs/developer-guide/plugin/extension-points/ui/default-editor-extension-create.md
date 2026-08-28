@@ -23,7 +23,7 @@ AnyExtension 类型来自 [Tiptap](https://github.com/ueberdosis/tiptap)，这�
 
 ### Halo 独有扩展
 
-阅读此文当前请确保已经熟悉了 Tiptap 的扩展文档，这里将介绍如何对编辑器的功能进行扩展，包括但不限于扩展工具栏、悬浮工具栏、Slash Command、拖拽功能等。
+阅读本文前请确保已经熟悉 Tiptap 的扩展文档。这里将介绍如何扩展编辑器的工具栏、悬浮菜单、Slash Command、拖拽菜单等功能。
 
 目前支持的所有扩展类型如下所示：
 
@@ -34,20 +34,20 @@ export interface ExtensionOptions {
     editor,
   }: {
     editor: Editor;
-  }) => ToolbarItem | ToolbarItem[];
+  }) => ToolbarItemType | ToolbarItemType[];
 
   // Slash Command 扩展
-  getCommandMenuItems?: () => CommandMenuItem | CommandMenuItem[];
+  getCommandMenuItems?: () => CommandMenuItemType | CommandMenuItemType[];
 
   // 悬浮菜单扩展
-  getBubbleMenu?: ({ editor }: { editor: Editor }) => NodeBubbleMenu;
+  getBubbleMenu?: ({ editor }: { editor: Editor }) => NodeBubbleMenuType;
 
   // 工具箱扩展
   getToolboxItems?: ({
     editor,
   }: {
     editor: Editor;
-  }) => ToolboxItem | ToolboxItem[];
+  }) => ToolboxItemType | ToolboxItemType[];
 
   // 拖拽菜单扩展
   getDraggableMenuItems?: ({
@@ -57,6 +57,8 @@ export interface ExtensionOptions {
   }) => DragButtonType | DragButtonType[];
 }
 ```
+
+完整定义参考当前版本的 [`ExtensionOptions`](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/ui/packages/editor/src/types/index.ts)。
 
 #### 1. 顶部工具栏扩展
 
@@ -87,27 +89,30 @@ getToolbarItems?: ({
   editor,
 }: {
   editor: Editor;
-}) => ToolbarItem | ToolbarItem[];
+}) => ToolbarItemType | ToolbarItemType[];
 
 // 工具栏
-export interface ToolbarItem {
+export interface ToolbarItemType {
   priority: number;
   component: Component;
-  props: {
-    editor: Editor;
-    isActive: boolean;
-    disabled?: boolean;
-    icon?: Component;
-    title?: string;
-    shortcutId?: string;
-    shortcutIds?: string[];
-    action?: () => void;
-  };
-  children?: ToolbarItem[];
+  props: Omit<ToolbarItemComponentProps, "children"> & Record<string, unknown>;
+  children?: ToolbarItemType[];
+}
+
+export interface ToolbarItemComponentProps {
+  editor: Editor;
+  isActive: boolean;
+  disabled?: boolean;
+  icon?: Component;
+  title?: string;
+  shortcutId?: string;
+  shortcutIds?: string[];
+  action?: () => void;
+  children?: ToolbarItemType[];
 }
 ```
 
-如下为 [`Bold`](https://github.com/halo-dev/halo/blob/main/console/packages/editor/src/extensions/bold/index.ts) 扩展中对于 `getToolbarItems` 的扩展示例：
+如下为 [`Bold`](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/ui/packages/editor/src/extensions/bold/index.ts) 扩展中对于 `getToolbarItems` 的扩展示例：
 
 ```ts
 addOptions() {
@@ -119,10 +124,13 @@ addOptions() {
         component: markRaw(ToolbarItem),
         props: {
           editor,
-          isActive: editor.isActive("bold"),
-          icon: markRaw(MdiFormatBold),
+          isActive: editor.isActive(TiptapBold.name),
+          icon: markRaw(MingcuteBoldLine),
           title: i18n.global.t("editor.common.bold"),
-          action: () => editor.chain().focus().toggleBold().run(),
+          shortcutId: "editor.format.bold",
+          action: () => {
+            editor.chain().focus().toggleBold().run();
+          },
         },
       };
     },
@@ -159,22 +167,24 @@ getToolboxItems?: ({
   editor,
 }: {
   editor: Editor;
-}) => ToolboxItem | ToolboxItem[];
+}) => ToolboxItemType | ToolboxItemType[];
 
-export interface ToolboxItem {
+export interface ToolboxItemType {
   priority: number;
   component: Component;
-  props: {
-    editor: Editor;
-    icon?: Component;
-    title?: string;
-    description?: string;
-    action?: () => void;
-  };
+  props: ToolboxItemComponentProps & Record<string, unknown>;
+}
+
+export interface ToolboxItemComponentProps {
+  editor: Editor;
+  icon?: Component;
+  title?: string;
+  description?: string;
+  action?: () => void;
 }
 ```
 
-如下为 [`Table`](https://github.com/halo-dev/halo/blob/main/console/packages/editor/src/extensions/table/index.ts) 扩展中对于 `getToolboxItems` 工具箱的扩展示例：
+如下为 [`Table`](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/ui/packages/editor/src/extensions/table/index.ts) 扩展中对于 `getToolboxItems` 工具箱的扩展示例：
 
 ```ts
 addOptions() {
@@ -182,18 +192,13 @@ addOptions() {
     ...this.parent?.(),
     getToolboxItems({ editor }: { editor: Editor }) {
       return {
-        priority: 15,
-        component: markRaw(ToolboxItem),
+        priority: 40,
+        component: markRaw(TableInsertToolboxItem),
         props: {
           editor,
           icon: markRaw(MdiTablePlus),
           title: i18n.global.t("editor.menus.table.add"),
-          action: () =>
-            editor
-              .chain()
-              .focus()
-              .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
-              .run(),
+          description: i18n.global.t("editor.menus.table.insert_description"),
         },
       };
     },
@@ -226,9 +231,9 @@ Slash Command（斜杠命令）的扩展，可用于在当前行快捷执行功�
 
 ```ts
 // Slash Command 扩展
-getCommandMenuItems?: () => CommandMenuItem | CommandMenuItem[];
+getCommandMenuItems?: () => CommandMenuItemType | CommandMenuItemType[];
 
-export interface CommandMenuItem {
+export interface CommandMenuItemType {
   priority: number;
   icon: Component;
   title: string;
@@ -238,7 +243,7 @@ export interface CommandMenuItem {
 }
 ```
 
-如下为 [`Table`](https://github.com/halo-dev/halo/blob/main/console/packages/editor/src/extensions/table/index.ts) 扩展中对于 `getCommandMenuItems` 的扩展示例：
+如下为 [`Table`](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/ui/packages/editor/src/extensions/table/index.ts) 扩展中对于 `getCommandMenuItems` 的扩展示例：
 
 ```ts
 addOptions() {
@@ -256,6 +261,7 @@ addOptions() {
             .focus()
             .deleteRange(range)
             .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+            .fitTableToWidth()
             .run();
         },
       };
@@ -278,7 +284,7 @@ addOptions() {
     return {
       ...this.parent?.(),
       getBubbleMenu({ editor }: { editor: Editor }) {
-        return []
+        return {}
       },
     };
   },
@@ -288,49 +294,12 @@ addOptions() {
 其中 `getBubbleMenu` 即为对悬浮菜单的扩展。其返回类型为：
 
 ```ts
-// 悬浮菜单扩展
-getBubbleMenu?: ({ editor }: { editor: Editor }) => NodeBubbleMenu;
-
-interface BubbleMenuProps {
-  pluginKey?: string;                                             // 悬浮菜单插件 Key，建议命名方式 xxxBubbleMenu
-  editor?: Editor;
-  shouldShow: (props: {                                           // 悬浮菜单显示的条件
-    editor: Editor;
-    node?: HTMLElement;
-    view?: EditorView;
-    state?: EditorState;
-    oldState?: EditorState;
-    from?: number;
-    to?: number;
-  }) => boolean;
-  tippyOptions?: Record\<string, unknown\>;                          // 可自由定制悬浮菜单所用的 tippy 组件的选项
-  getRenderContainer?: (node: HTMLElement) => HTMLElement;         // 悬浮菜单所基准的 DOM
-  defaultAnimation?: boolean;                                      // 是否启用默认动画。默认为 true
-}
-
-// 悬浮菜单
-export interface NodeBubbleMenu extends BubbleMenuProps {
-  component?: Component;                                           // 不使用默认的样式，与 items 二选一
-  items?: BubbleItem[];                                            // 悬浮菜单子项，使用默认的形式进行，与 items 二选一
-}
-
-// 悬浮菜单子项
-export interface BubbleItem {
-  priority: number;                                                // 优先级，数字越小优先级越大，越靠前
-  component?: Component;                                           // 完全自定义子项样式
-  props: {
-    isActive: ({ editor }: { editor: Editor }) => boolean;         // 当前功能是否已经处于活动状态
-    visible?: ({ editor }: { editor: Editor }) => boolean;         // 是否显示当前子项
-    icon?: Component;                                              // 图标
-    iconStyle?: string;                                            // 图标自定义样式
-    title?: string;                                                // 标题
-    shortcutId?: string;                                           // 关联的快捷键唯一标识
-    action?: ({ editor }: { editor: Editor }) => Component | void; // 点击子项后的操作，如果返回 Component，则会将其包含在下拉框中。
-  };
-}
+getBubbleMenu?: ({ editor }: { editor: Editor }) => NodeBubbleMenuType;
 ```
 
-如下为 [`Table`](https://github.com/halo-dev/halo/blob/main/console/packages/editor/src/extensions/table/index.ts) 扩展中对于 `getBubbleMenu` 悬浮菜单的部分扩展示例：
+`NodeBubbleMenuType` 使用 Floating UI 定位，通过 `options` 配置位置，通过 `getReferencedVirtualElement` 指定锚点；旧版的 `tippyOptions` 和 `getRenderContainer` 已不再支持。完整字段参考 [`BubbleMenuProps`](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/ui/packages/editor/src/types/index.ts)。
+
+如下为 [`Table`](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/ui/packages/editor/src/extensions/table/index.ts) 扩展中对于 `getBubbleMenu` 的实现：
 
 ```ts
 addOptions() {
@@ -338,37 +307,26 @@ addOptions() {
     ...this.parent?.(),
     getBubbleMenu({ editor }) {
       return {
-        pluginKey: "tableBubbleMenu",
+        pluginKey: TABLE_BUBBLE_MENU_KEY,
+        component: markRaw(TableBubbleMenu),
         shouldShow: ({ state }: { state: EditorState }): boolean => {
-          return isActive(state, Table.name);
+          return isActive(state, "table");
         },
-        getRenderContainer(node) {
-          let container = node;
-          if (container.nodeName === "#text") {
-            container = node.parentElement as HTMLElement;
-          }
-          while (
-            container &&
-            container.classList &&
-            !container.classList.contains("tableWrapper")
-          ) {
-            container = container.parentElement as HTMLElement;
-          }
-          return container;
-        },
-        tippyOptions: {
-          offset: [26, 0],
-        },
-        items: [
-          {
-            priority: 10,
-            props: {
-              icon: markRaw(MdiTableColumnPlusBefore),
-              title: i18n.global.t("editor.menus.table.add_column_before"),
-              action: () => editor.chain().focus().addColumnBefore().run(),
-            },
+        options: {
+          placement: "top-start",
+          offset: 8,
+          flip: {
+            padding: 8,
+            fallbackPlacements: ["bottom-start"],
           },
-        ]
+          shift: {
+            padding: 8,
+            crossAxis: true,
+          },
+        },
+        getReferencedVirtualElement() {
+          return getTableBubbleMenuVirtualElement(editor);
+        },
       }
     }
   }
@@ -448,79 +406,17 @@ addOptions() {
 
 默认情况下，将会追加 `items`，若想覆盖，则需要设置子菜单的 `key` 属性，将会覆盖原有的子菜单项。
 
-下面为 `getDraggableMenuItems` 的返回类型：
+`getDraggableMenuItems` 的返回类型如下：
 
 ```ts
-
-// 拖拽菜单扩展
 getDraggableMenuItems?: ({
-    editor,
-  }: {
-    editor: Editor;
-  }) => DragButtonType | DragButtonType[];
-
-// 拖拽菜单项目属性
-export interface DragButtonItemProps {
-  extendsKey?: string;                                    // 扩展目标菜单项的唯一标识，如果提供了该属性，则视为扩展目标菜单项。
-  key?: string;                                           // 唯一标识，如果同级菜单项设置了同样的 key，则会被合并为一个菜单项。
-  priority?: number;                                      // 优先级，数字越小优先级越大，越靠前
-  title?: string | (() => string);                        // 标题
-  icon?: Component;                                       // 图标
-  action?: ({                                             // 点击菜单后的操作，如果返回 Component，则会将其包含在子菜单中。
-                                                          // 可以通过调用 close 方法可以在操作完成后关闭拖拽菜单，或者当返回为 true 或 undefined 时，会自动关闭拖拽菜单，如果返回 false，则不会关闭拖拽菜单。
-                                                          // 多个扩展实现时，则按照顺序执行，并在返回非 undefined 值时停止执行。
-    editor,
-    node,
-    pos,
-    close,
-  }: {
-    editor: Editor;
-    node: PMNode | null;
-    pos: number;
-    close: () => void;
-  }) => Component | boolean | void | Promise<Component | boolean | void>;
-  iconStyle?: string;                                       // 图标自定义样式
-  class?: string;                                           // 自定义样式
-  visible?: ({                                              // 是否显示当前菜单项，默认为 true，多个扩展实现时，以 AND 逻辑判断，即所有扩展返回 true 时，当前菜单项才会显示。
-    editor,
-    node,
-    pos,
-  }: {
-    editor: Editor;
-    node: PMNode | null;
-    pos: number;
-  }) => boolean;
-  isActive?: ({                                             // 当前菜单项是否处于活动状态，默认为 false，多个扩展实现时，以 OR 逻辑判断，即只要有一个扩展返回 true，则当前菜单项处于活动状态。
-    editor,
-    node,
-    pos,
-  }: {
-    editor: Editor;
-    node: PMNode | null;
-    pos: number;
-  }) => boolean;
-  disabled?: ({                                                // 是否禁用当前菜单项，默认为 false，多个扩展实现时，以 OR 逻辑判断，即只要有一个扩展返回 true，则当前菜单项会被禁用。
-    editor,
-    node,
-    pos,
-  }: {
-    editor: Editor;
-    node: PMNode | null;
-    pos: number;
-  }) => boolean;
-  keyboard?: string;                                            // 快捷键，遵循 https://tiptap.dev/docs/editor/core-concepts/keyboard-shortcuts
-  component?: Component;                                        // 自定义组件，如果提供了该属性，则不会显示默认的菜单项，而是会显示自定义组件，并且将所有 props 传递给自定义组件。
-  [key: string]: any;                                           // 其他自定义属性，将会传递给自定义组件。
-}
-
-// 一级菜单项
-export interface DragButtonType extends DragButtonItemProps {
-  children?: {                                                    // 子菜单项，如果提供了该属性，则视为扩展目标菜单项的二级菜单。
-    component?: Component;                                        // 自定义组件，如果提供了该属性，则不会显示默认的子菜单项，而是会显示自定义组件，并且将所有 props 传递给自定义组件。
-    items?: DragButtonItemProps[];                                // 子菜单项列表，如果提供了该属性，则视为扩展目标菜单项的二级菜单。
-  };
-}
+  editor,
+}: {
+  editor: Editor;
+}) => DragButtonType | DragButtonType[];
 ```
+
+菜单项可以通过 `key` 合并同级项，通过 `extendsKey` 扩展已有项；`title` 函数会收到当前的 `editor`、`node` 和 `pos`。完整字段参考 [`DragButtonItemProps`](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/ui/packages/editor/src/types/index.ts)。
 
 #### 6. 快捷键扩展
 

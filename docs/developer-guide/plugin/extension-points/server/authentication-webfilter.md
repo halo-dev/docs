@@ -15,6 +15,20 @@ description: 提供 Security WebFilter 扩展点，插件可实现自定义认�
 - Security 前置过滤器
 - Security 后置过滤器
 
+实现接口并注册为 Spring Bean 后，还需要声明 `ExtensionDefinition`。接口、所在位置与 `extensionPointName` 的对应关系如下：
+
+| 位置 | 接口 | `extensionPointName` |
+| --- | --- | --- |
+| Security 最前 | `BeforeSecurityWebFilter` | `before-security-webfilter` |
+| HTTP Basic | `HttpBasicSecurityWebFilter` | `http-basic-security-webfilter` |
+| 表单登录 | `FormLoginSecurityWebFilter` | `form-login-security-webfilter` |
+| 普通认证 | `AuthenticationSecurityWebFilter` | `authentication-security-webfilter` |
+| 匿名认证 | `AnonymousAuthenticationSecurityWebFilter` | `anonymous-authentication-security-webfilter` |
+| OAuth2 授权码 | `OAuth2AuthorizationCodeSecurityWebFilter` | `oauth2-authorization-code-security-webfilter` |
+| Security 最后 | `AfterSecurityWebFilter` | `after-security-webfilter` |
+
+同一位置存在多个实现时，可通过实现 `Ordered` 或添加 `@Order` 控制先后顺序。源码参考：[SecurityWebFiltersConfigurer](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/security/SecurityWebFiltersConfigurer.java)。
+
 我们在实现扩展点的时候需要注意：如果当前请求不满足认证条件，请一定要调用 `chain.filter(exchange)`，给其他 filter 留下机会。
 
 ## 表单登录（FormLogin）

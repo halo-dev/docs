@@ -79,5 +79,5 @@ spec:
 
 可以参考其他使用该扩展点的项目示例：
 
-- [Halo 自定义页面评论主体](https://github.com/halo-dev/halo/blob/main/application/src/main/java/run/halo/app/content/comment/SinglePageCommentSubject.java)
+- [Halo 自定义页面评论主体](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/content/comment/SinglePageCommentSubject.java)
 - [瞬间的评论主体](https://github.com/halo-sigs/plugin-moments/blob/096b1b3e4a2ca44b6f858ba1181b62eeff64a139/src/main/java/run/halo/moments/MomentCommentSubject.java#L25)

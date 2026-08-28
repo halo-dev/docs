@@ -58,13 +58,13 @@ Halo 提供了一些共享的 Bean，任何插件都可以直接依赖注入这�
 
 `SchemeManager` 是一个用于管理自定义模型定义的注册和销毁的 Bean。
 
-API 参考：[SchemeManager](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/extension/SchemeManager.java)
+API 参考：[SchemeManager](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/extension/SchemeManager.java)
 
 ### UserService
 
 用于操作 Halo 用户的 Bean，包括获取用户信息、更新密码、创建用户等函数。
 
-API 参考 [UserService](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/core/user/service/UserService.java)
+API 参考 [UserService](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/core/user/service/UserService.java)
 
 ### ReactiveUserDetailsService
 
@@ -74,13 +74,13 @@ API 参考 [UserService](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6
 
 用于操作 Halo 角色的 Bean，包括查询角色绑定、角色及依赖等函数。
 
-API 参考 [RoleService](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/core/user/service/RoleService.java)
+API 参考 [RoleService](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/core/user/service/RoleService.java)
 
 ### AttachmentService
 
 用于操作 Halo 附件的 Bean，包括上传、删除附件以及获取附件访问链接等函数。
 
-API 参考 [AttachmentService](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/core/extension/service/AttachmentService.java)。
+API 参考 [AttachmentService](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/core/extension/service/AttachmentService.java)。
 
 ### PostContentService
 
@@ -95,8 +95,8 @@ API 参考 [AttachmentService](https://github.com/halo-dev/halo/blob/25086ee3e63
 - getSpecifiedContent：获取指定 snapshotName 对应的文章内容。
 - listSnapshots：获取指定文章的所有版本的 Snapshot 对象的名称列表。
 
-API 参考：[PostContentService](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/content/PostContentService.java)
-文章自定义模型定义参考 [Post](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/core/extension/content/Post.java)
+API 参考：[PostContentService](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/content/PostContentService.java)
+文章自定义模型定义参考 [Post](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/core/extension/content/Post.java)
 
 ### NotificationReasonEmitter
 
@@ -104,7 +104,7 @@ API 参考：[PostContentService](https://github.com/halo-dev/halo/blob/25086ee3
 
 使用示例参考 [通知事件触发示例](../../api-reference/server/notification.md#reason-emitter-example)
 
-API 参考：[NotificationReasonEmitter](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/notification/NotificationReasonEmitter.java)
+API 参考：[NotificationReasonEmitter](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/notification/NotificationReasonEmitter.java)
 
 ### NotificationCenter
 
@@ -112,7 +112,7 @@ API 参考：[NotificationReasonEmitter](https://github.com/halo-dev/halo/blob/2
 
 使用示例参考 [通知订阅示例](../../api-reference/server/notification.md#subscribe-example)
 
-API 参考：[NotificationCenter](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/notification/NotificationCenter.java)
+API 参考：[NotificationCenter](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/notification/NotificationCenter.java)
 
 ### ExternalLinkProcessor
 
@@ -120,7 +120,7 @@ API 参考：[NotificationCenter](https://github.com/halo-dev/halo/blob/25086ee3
 
 如配置了外部访问地址为 `https://example.com`，那么将 `/post/1` 转换为 `https://example.com/post/1`。
 
-API 参考：[ExternalLinkProcessor](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/infra/ExternalLinkProcessor.java);
+API 参考：[ExternalLinkProcessor](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/infra/ExternalLinkProcessor.java)。
 
 ### LoginHandlerEnhancer
 
@@ -128,7 +128,7 @@ Halo 提供了登录增强机制，插件可以在登录成功或失败时调用
 
 参考 [登录增强器](../../api-reference/server/login-handler-enhancer.md) 了解更多。
 
-使用示例参考 [用户名密码登陆成功和失败的增强切入示例](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/application/src/main/java/run/halo/app/security/authentication/login/UsernamePasswordHandler.java#L106)
+使用示例参考用户名密码登录的[成功处理](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/security/authentication/LoginSuccessHandler.java)和[失败处理](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/security/authentication/LoginFailureHandler.java)。
 
 ### BackupRootGetter
 
@@ -146,7 +146,7 @@ Halo 提供了登录增强机制，插件可以在登录成功或失败时调用
 
 有了它，插件中便可以定义自己的扩展点，然后由其他插件实现以达到插件扩展插件的目的。
 
-API 参考 [ExtensionGetter](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/plugin/extensionpoint/ExtensionGetter.java)
+API 参考 [ExtensionGetter](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/plugin/extensionpoint/ExtensionGetter.java)
 
 ### ServerSecurityContextRepository
 
@@ -165,13 +165,13 @@ Halo 根据用户名密码登录时，会先使用 CryptoService 的 `readPublic
 
 也可以复用它的公钥来作为一些加密算法的密钥。
 
-API 参考 [CryptoService](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/security/authentication/CryptoService.java)
+API 参考 [CryptoService](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/security/authentication/CryptoService.java)
 
 ### ExternalUrlSupplier
 
 `ExternalUrlSupplier` 是一个用于获取用户配置的 Halo 外部访问地址的 Bean。
 
-API 参考：[ExternalUrlSupplier](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/api/src/main/java/run/halo/app/infra/ExternalUrlSupplier.java)
+API 参考：[ExternalUrlSupplier](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/infra/ExternalUrlSupplier.java)
 
 ### RateLimiterRegistry
 

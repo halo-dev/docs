@@ -129,7 +129,7 @@ spec:
 | `title`      | `string` | 是       | 主题对象的标题，通常是人类可读的名称                    |
 | `url`        | `string` | 否       | 主题对象的访问链接或详情页面的 URL                      |
 
-参考 [Reason 自定义模型](https://github.com/halo-dev/halo/blob/0d1a0992231fd5e66a65b4e9d426d3f373b1903f/api/src/main/java/run/halo/app/core/extension/notification/Reason.java)
+参考 [Reason 自定义模型](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/core/extension/notification/Reason.java)
 
 #### spec.attributes 字段
 
@@ -216,7 +216,7 @@ spec:
       <p>[(${props.comment})]</p>
 ```
 
-参考 [Halo 默认通知模板 YAML](https://github.com/halo-dev/halo/blob/0d1a0992231fd5e66a65b4e9d426d3f373b1903f/application/src/main/resources/extensions/notification-templates.yaml)
+参考 [Halo 默认通知模板 YAML](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/resources/extensions/notification-templates.yaml)
 
 #### 通知模板设计小技巧与最佳实践
 
@@ -368,7 +368,7 @@ public static <T> Map<String, Object> toAttributeMap(T data) {
 }
 ```
 
-参考 [Halo 评论事件触发](https://github.com/halo-dev/halo/blob/0d1a0992231fd5e66a65b4e9d426d3f373b1903f/application/src/main/java/run/halo/app/content/comment/CommentNotificationReasonPublisher.java#L89)
+参考 [Halo 评论事件触发](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/content/comment/CommentNotificationReasonPublisher.java)
 
 ## 订阅通知
 
@@ -430,7 +430,7 @@ Halo 提供 `NotificationCenter` Bean 来帮助开发者创建订阅对象和取
 | `reasonType` | `string` | 是       | 感兴趣的事件类型的名称，对应于 `ReasonType` 的 `metadata.name` 字段  |
 | `expression` | `string` | 是       | 订阅事件的过滤表达式，用于过滤感兴趣的事件避免用户接收到不相关的通知 |
 
-参考 [Subscription 自定义模型](https://github.com/halo-dev/halo/blob/0d1a0992231fd5e66a65b4e9d426d3f373b1903f/api/src/main/java/run/halo/app/core/extension/notification/Subscription.java)
+参考 [Subscription 自定义模型](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/core/extension/notification/Subscription.java)
 
 ### 示例 {#subscribe-example}
 
@@ -466,7 +466,7 @@ Mono<Void> subscribeNewCommentOnPostNotification(String username) {
 3. 使用表达式过滤事件：通过表达式 `props.repliedOwner == '%s'`，订阅者只会接收到`被评论者/回复者`是他们自己的评论通知。
 4. 执行订阅操作：调用 `notificationCenter.subscribe(subscriber, interestReason)` 方法完成订阅操作。
 
-参考 [Halo 评论订阅](https://github.com/halo-dev/halo/blob/0d1a0992231fd5e66a65b4e9d426d3f373b1903f/application/src/main/java/run/halo/app/core/reconciler/CommentReconciler.java#L70)
+参考 [Halo 评论订阅](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/core/reconciler/CommentReconciler.java)
 
 ## 通知器
 

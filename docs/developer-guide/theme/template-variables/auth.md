@@ -7,7 +7,7 @@ Halo 2.20 重构了登录、注册等页面，现在支持通过主题自定义�
 
 考虑到登录、注册页面的复杂性，我们通常建议仅自定义页面样式，或者根据系统中提供的代码片段自行组合，如果要完全自行实现这些页面，请务必进行完整的流程测试，这**可能因为代码逻辑错误导致无法登录**。
 
-这篇文档只会讲解自定义登录、注册等页面的原理，以及一些自定义的场景，**建议在进行代码编写的时候结合系统自带的模板源码**，源码位置：[application/src/main/resources/templates](https://github.com/halo-dev/halo/tree/25086ee3e63f0c8b6ed380140a068c44404ef2b2/application/src/main/resources/templates)
+这篇文档只会讲解自定义登录、注册等页面的原理，以及一些自定义的场景，**建议在进行代码编写的时候结合系统自带的模板源码**，源码位置：[application/src/main/resources/templates](https://github.com/halo-dev/halo/tree/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/resources/templates)
 
 ## 原理讲解
 
@@ -127,4 +127,4 @@ Halo 系统自带的布局模板为 `gateway_fragments/layout.html`，所以我�
 </html>
 ```
 
-这样就会只渲染页面结构，但是不包含任何样式，开发者可以自行通过浏览器审查元素，找到对应的 CSS 选择器，然后自行编写样式文件。Halo 系统自带的样式文件为 [application/src/main/resources/static/styles/main.css](https://github.com/halo-dev/halo/blob/25086ee3e63f0c8b6ed380140a068c44404ef2b2/application/src/main/resources/static/styles/main.css)。
+这样就会只渲染页面结构，但是不包含任何样式，开发者可以自行通过浏览器审查元素，找到对应的 CSS 选择器，然后自行编写样式文件。Halo 系统自带的样式文件为 [application/src/main/resources/static/styles/main.css](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/resources/static/styles/main.css)。

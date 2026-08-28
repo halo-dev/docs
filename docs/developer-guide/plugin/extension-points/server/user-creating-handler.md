@@ -59,4 +59,4 @@ spec:
   description: "提供在用户创建之后执行自定义逻辑的扩展方式"
 ```
 
-使用案例可以参考 Halo 核心代码中相关实现。
+调用流程参考 [UserServiceImpl](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/core/user/service/impl/UserServiceImpl.java)，创建前处理器的核心实现参考 [UserReconciler](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/core/reconciler/UserReconciler.java)。

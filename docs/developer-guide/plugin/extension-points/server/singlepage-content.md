@@ -8,7 +8,7 @@ description: 提供扩展主题端自定义页面内容处理的方法，干预�
 ```java
 public interface ReactiveSinglePageContentHandler extends ExtensionPoint {
    
-    Mono<SinglePageContentContext> handle(@NonNull SinglePageContentContext singlePageContent);
+    Mono<SinglePageContentContext> handle(SinglePageContentContext singlePageContent);
 
     @Data
     @Builder
@@ -20,6 +20,8 @@ public interface ReactiveSinglePageContentHandler extends ExtensionPoint {
     }
 }
 ```
+
+所有已启用的处理器会依次执行，前一个处理器返回的上下文会传给下一个处理器，因此必须返回处理后的 `SinglePageContentContext`，不要返回 `Mono.empty()`。
 
 `ReactiveSinglePageContentHandler` 对应的 `ExtensionPointDefinition` 如下：
 
@@ -36,3 +38,5 @@ spec:
 ```
 
 即声明 `ExtensionDefinition` 自定义模型对象时对应的 `extensionPointName` 为 `reactive-singlepage-content-handler`。
+
+调用流程参考：[SinglePageConversionServiceImpl](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/theme/finders/impl/SinglePageConversionServiceImpl.java)。

@@ -38,26 +38,45 @@ public interface LoginHandlerEnhancer {
 }
 ```
 
-例如在用户密码登录的处理器中，可以这样调用登录增强器：
+如果插件自定义了认证过滤器或登录端点，可以先调用登录增强器，再委托给自己的成功或失败处理器：
 
 ```java
-public class UsernamePasswordHandler implements ServerAuthenticationSuccessHandler,
+@RequiredArgsConstructor
+public class PluginAuthenticationHandler implements ServerAuthenticationSuccessHandler,
     ServerAuthenticationFailureHandler {
+
+    private final LoginHandlerEnhancer loginHandlerEnhancer;
+    private final ServerAuthenticationSuccessHandler delegateSuccessHandler;
+    private final ServerAuthenticationFailureHandler delegateFailureHandler;
+
     @Override
-    public Mono<Void> onAuthenticationFailure(WebFilterExchange webFilterExchange,
-        AuthenticationException exception) {
+    public Mono<Void> onAuthenticationFailure(
+        WebFilterExchange webFilterExchange,
+        AuthenticationException exception
+    ) {
         var exchange = webFilterExchange.getExchange();
         return loginHandlerEnhancer.onLoginFailure(exchange, exception)
-            .then(handleFailure(exchange, exception));
+            .then(delegateFailureHandler.onAuthenticationFailure(
+                webFilterExchange,
+                exception
+            ));
     }
 
     @Override
-    public Mono<Void> onAuthenticationSuccess(WebFilterExchange webFilterExchange,
-        Authentication authentication) {
-      return loginHandlerEnhancer.onLoginSuccess(webFilterExchange.getExchange(), authentication)
-          .then(handleSuccess(webFilterExchange.getExchange(), authentication);
+    public Mono<Void> onAuthenticationSuccess(
+        WebFilterExchange webFilterExchange,
+        Authentication authentication
+    ) {
+        var exchange = webFilterExchange.getExchange();
+        return loginHandlerEnhancer.onLoginSuccess(exchange, authentication)
+            .then(delegateSuccessHandler.onAuthenticationSuccess(
+                webFilterExchange,
+                authentication
+            ));
     }
 }
 ```
 
-设备管理、记住我等机制都依赖于登录增强器。插件开发者可以通过在合适的时机调用登录增强器来实现这些功能，确保插件与 Halo 的安全特性无缝集成。
+设备管理、记住我等机制都依赖登录增强器。每次认证结果只应调用一次：仅实现 `UsernamePasswordAuthenticationManager` 时，Halo 内置的成功和失败处理器已经负责调用，无需在认证管理器中重复调用；自行处理完整登录流程时才需要显式调用。
+
+源码参考：[登录成功处理器](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/security/authentication/LoginSuccessHandler.java)、[登录失败处理器](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/security/authentication/LoginFailureHandler.java)。

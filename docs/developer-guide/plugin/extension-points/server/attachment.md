@@ -25,12 +25,22 @@ public interface AttachmentHandler extends ExtensionPoint {
         ConfigMap configMap) {
         return Mono.empty();
     }
+
+    default Mono<Map<ThumbnailSize, URI>> getThumbnailLinks(
+        Attachment attachment,
+        Policy policy,
+        ConfigMap configMap
+    ) {
+        return Mono.empty();
+    }
+}
 ```
 
 - `upload` 方法用于上传附件，返回值为 `Mono<Attachment>`，其中 `Attachment` 为上传成功后的附件对象。
 - `delete` 方法用于删除附件，返回值为 `Mono<Attachment>`，其中 `Attachment` 为删除后的附件对象。
 - `getSharedURL` 方法用于获取附件的共享链接，返回值为 `Mono<URI>`，其中 `URI` 为附件的共享链接。
 - `getPermalink` 方法用于获取附件的永久链接，返回值为 `Mono<URI>`，其中 `URI` 为附件的永久链接。
+- `getThumbnailLinks` 方法用于按 `ThumbnailSize` 返回附件的缩略图链接。新实现应使用此方法提供缩略图，不要再实现已废弃的 `thumbnail-provider`（`ThumbnailProvider`）扩展点。
 
 `AttachmentHandler` 对应的 `ExtensionPointDefinition` 如下：
 
@@ -47,6 +57,8 @@ spec:
 ```
 
 即声明 `ExtensionDefinition` 自定义模型对象时对应的 `extensionPointName` 为 `attachment-handler`。
+
+源码参考：[AttachmentHandler](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/core/extension/attachment/endpoint/AttachmentHandler.java)。
 
 可以参考以下项目示例：
 

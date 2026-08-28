@@ -68,5 +68,5 @@ spec:
 
 使用案例可以参考：
 
-- [Halo 内置 Lucene 搜索引擎](https://github.com/halo-dev/halo/blob/main/application/src/main/java/run/halo/app/search/lucene/LuceneSearchEngine.java)
+- [Halo 内置 Lucene 搜索引擎](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/search/lucene/LuceneSearchEngine.java)
 - [Meilisearch 搜索插件](https://github.com/halo-sigs/plugin-meilisearch)

@@ -54,19 +54,30 @@ public class CustomHeadProcessor implements TemplateHeadProcessor {
     @Override
     public Mono<Void> process(ITemplateContext context, IModel model,
         IElementModelStructureHandler structureHandler) {
+        var factory = context.getModelFactory();
         // 添加自定义 CSS 文件
-        model.add(context.createStandaloneElementTag("link",
-                "rel", "stylesheet",
-                "href", "/custom/styles.css"));
+        model.add(factory.createStandaloneElementTag(
+            "link",
+            Map.of("rel", "stylesheet", "href", "/custom/styles.css"),
+            AttributeValueQuotes.DOUBLE,
+            false,
+            true
+        ));
         
         // 添加自定义 Meta 标签
-        model.add(context.createStandaloneElementTag("meta",
-                "name", "author",
-                "content", "Your Name"));
+        model.add(factory.createStandaloneElementTag(
+            "meta",
+            Map.of("name", "author", "content", "Your Name"),
+            AttributeValueQuotes.DOUBLE,
+            false,
+            true
+        ));
         return Mono.empty();
     }
 }
 ```
+
+多个处理器会按 Spring `@Order` 顺序执行。源码参考：[TemplateHeadProcessor](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/api/src/main/java/run/halo/app/theme/dialect/TemplateHeadProcessor.java)。
 
 声明 ExtensionDefinition 自定义模型对象时对应的 extensionPointName 为 template-head-processor。
 

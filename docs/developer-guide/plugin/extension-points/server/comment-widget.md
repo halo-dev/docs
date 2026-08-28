@@ -38,4 +38,4 @@ spec:
 
 参考：[Thymeleaf IElementTagProcessor 文档](https://www.thymeleaf.org/doc/tutorials/3.1/extendingthymeleaf.html#element-tag-processors-ielementtagprocessor)。
 
-参考：[Halo 默认评论组件的实现](https://github.com/halo-dev/plugin-comment-widget/blob/main/src/main/java/run/halo/comment/widget/DefaultCommentWidget.java)。
+参考：[Halo 默认评论组件的实现](https://github.com/halo-dev/plugin-comment-widget/blob/15332051898bea13f9bd36a6a85a8f1b997efcf8/src/main/java/run/halo/comment/widget/DefaultCommentWidget.java)。

@@ -35,4 +35,4 @@ spec:
 
 即声明 `ExtensionDefinition` 自定义模型对象时对应的 `extensionPointName` 为 `element-tag-post-processor`。
 
-使用案例可以参考：[缩略图图片标签处理器](https://github.com/halo-dev/halo/blob/main/application/src/main/java/run/halo/app/core/attachment/thumbnail/ThumbnailImgTagPostProcessor.java)
+使用案例可以参考：[缩略图图片标签处理器](https://github.com/halo-dev/halo/blob/58fbb339d49511e221ec760478490e1c880f7d2a/application/src/main/java/run/halo/app/core/attachment/thumbnail/ThumbnailImgTagPostProcessor.java)
