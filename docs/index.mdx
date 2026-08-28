@@ -21,6 +21,7 @@ import PhPuzzlePieceDuotone from '~icons/ph/puzzle-piece-duotone';
 import PhQuestionDuotone from '~icons/ph/question-duotone';
 import PhStorefrontDuotone from '~icons/ph/storefront-duotone';
 import PhTerminalDuotone from '~icons/ph/terminal-duotone';
+import { Link } from '@rspress/core/runtime';
 
 <main className="docs-home">
   <header className="docs-hero">
@@ -30,14 +31,14 @@ import PhTerminalDuotone from '~icons/ph/terminal-duotone';
         Halo 是一款强大易用的开源建站工具，可以通过丰富的主题和插件搭建任何类型的网站。这里汇集了安装、使用和开发
         Halo 所需的全部文档。
       </p>
-      <a className="docs-hero__cta" href="/guide/install/">
+      <Link className="docs-hero__cta" to={{pathname: '/guide/install/'}}>
         快速开始 <span aria-hidden="true">→</span>
-      </a>
+      </Link>
       <nav className="docs-hero__platforms" aria-label="常见安装方式">
-        <a href="/guide/install/docker-compose"><SimpleIconsDocker width={16} height={16} aria-hidden="true" /><span>Docker</span></a>
-        <a href="/guide/install/1panel"><SimpleIcons1Panel width={16} height={16} aria-hidden="true" /><span>1Panel</span></a>
-        <a href="/guide/install/bt-panel"><BtPanelIcon width={16} height={16} aria-hidden="true" /><span>宝塔面板</span></a>
-        <a href="/guide/install/"><PhDotsThreeBold width={16} height={16} aria-hidden="true" /><span>更多方式</span></a>
+        <Link to={{pathname: '/guide/install/docker-compose'}}><SimpleIconsDocker width={16} height={16} aria-hidden="true" /><span>Docker</span></Link>
+        <Link to={{pathname: '/guide/install/1panel'}}><SimpleIcons1Panel width={16} height={16} aria-hidden="true" /><span>1Panel</span></Link>
+        <Link to={{pathname: '/guide/install/bt-panel'}}><BtPanelIcon width={16} height={16} aria-hidden="true" /><span>宝塔面板</span></Link>
+        <Link to={{pathname: '/guide/install/'}}><PhDotsThreeBold width={16} height={16} aria-hidden="true" /><span>更多方式</span></Link>
       </nav>
     </div>
     <img
@@ -53,22 +54,22 @@ import PhTerminalDuotone from '~icons/ph/terminal-duotone';
   <section className="docs-section" aria-labelledby="get-started">
     <div className="docs-section__heading">
       <h2 id="get-started">快速开始</h2>
-      <a href="/guide/">查看使用指南</a>
+      <Link to={{pathname: '/guide/'}}>查看使用指南</Link>
     </div>
 
     <div className="quick-start">
-      <a className="quick-start__main" href="/guide/setup">
+      <Link className="quick-start__main" to={{pathname: '/guide/setup'}}>
         <span>安装之后</span>
         <strong>初始化站点</strong>
         <p>完成首次访问、创建管理员账号和基础设置，让站点正式跑起来。</p>
         <b>开始初始化 <span aria-hidden="true">→</span></b>
-      </a>
+      </Link>
 
-      <a className="quick-start__item" href="/guide/first-post">
+      <Link className="quick-start__item" to={{pathname: '/guide/first-post'}}>
         <strong>发布第一篇文章</strong>
         <p>熟悉内容编辑和发布流程。</p>
         <span aria-hidden="true">→</span>
-      </a>
+      </Link>
 
       <a className="quick-start__item" href="https://www.halo.run/store/apps" target="_blank" rel="noreferrer">
         <strong>探索应用市场</strong>
@@ -90,14 +91,14 @@ import PhTerminalDuotone from '~icons/ph/terminal-duotone';
           <p>管理内容、外观、用户和站点设置。</p>
         </header>
         <nav aria-label="Halo 使用文档">
-          <a href="/guide/use/posts"><span className="topic-link__icon" aria-hidden="true"><PhArticleDuotone width={18} height={18} /></span><span>文章与内容</span></a>
-          <a href="/guide/use/themes"><span className="topic-link__icon" aria-hidden="true"><PhPaletteDuotone width={18} height={18} /></span><span>主题</span></a>
-          <a href="/guide/use/plugins"><span className="topic-link__icon" aria-hidden="true"><PhPuzzlePieceDuotone width={18} height={18} /></span><span>插件</span></a>
-          <a href="/guide/use/attachments"><span className="topic-link__icon" aria-hidden="true"><PhPaperclipDuotone width={18} height={18} /></span><span>附件</span></a>
-          <a href="/guide/use/settings"><span className="topic-link__icon" aria-hidden="true"><PhGearDuotone width={18} height={18} /></span><span>系统设置</span></a>
-          <a href="/guide/use/faq"><span className="topic-link__icon" aria-hidden="true"><PhQuestionDuotone width={18} height={18} /></span><span>常见问题</span></a>
+          <Link to={{pathname: '/guide/use/posts'}}><span className="topic-link__icon" aria-hidden="true"><PhArticleDuotone width={18} height={18} /></span><span>文章与内容</span></Link>
+          <Link to={{pathname: '/guide/use/themes'}}><span className="topic-link__icon" aria-hidden="true"><PhPaletteDuotone width={18} height={18} /></span><span>主题</span></Link>
+          <Link to={{pathname: '/guide/use/plugins'}}><span className="topic-link__icon" aria-hidden="true"><PhPuzzlePieceDuotone width={18} height={18} /></span><span>插件</span></Link>
+          <Link to={{pathname: '/guide/use/attachments'}}><span className="topic-link__icon" aria-hidden="true"><PhPaperclipDuotone width={18} height={18} /></span><span>附件</span></Link>
+          <Link to={{pathname: '/guide/use/settings'}}><span className="topic-link__icon" aria-hidden="true"><PhGearDuotone width={18} height={18} /></span><span>系统设置</span></Link>
+          <Link to={{pathname: '/guide/use/faq'}}><span className="topic-link__icon" aria-hidden="true"><PhQuestionDuotone width={18} height={18} /></span><span>常见问题</span></Link>
         </nav>
-        <a className="topic-group__all" href="/guide/use/">查看全部功能文档<span aria-hidden="true">→</span></a>
+        <Link className="topic-group__all" to={{pathname: '/guide/use/'}}>查看全部功能文档<span aria-hidden="true">→</span></Link>
       </article>
 
       <article className="topic-group">
@@ -106,14 +107,14 @@ import PhTerminalDuotone from '~icons/ph/terminal-duotone';
           <p>为 Halo 构建应用或完成系统集成。</p>
         </header>
         <nav aria-label="Halo 开发文档">
-          <a href="/developer-guide/plugin/"><span className="topic-link__icon" aria-hidden="true"><PhCodeDuotone width={18} height={18} /></span><span>插件开发</span></a>
-          <a href="/developer-guide/theme/"><span className="topic-link__icon" aria-hidden="true"><PhPaintBrushBroadDuotone width={18} height={18} /></span><span>主题开发</span></a>
-          <a href="/developer-guide/restful-api/"><span className="topic-link__icon" aria-hidden="true"><PhBracketsCurlyDuotone width={18} height={18} /></span><span>RESTful API</span></a>
-          <a href="/developer-guide/core/"><span className="topic-link__icon" aria-hidden="true"><PhTerminalDuotone width={18} height={18} /></span><span>系统开发</span></a>
-          <a href="/developer-guide/app-store/"><span className="topic-link__icon" aria-hidden="true"><PhStorefrontDuotone width={18} height={18} /></span><span>应用市场</span></a>
-          <a href="/developer-guide/form-schema"><span className="topic-link__icon" aria-hidden="true"><PhListChecksDuotone width={18} height={18} /></span><span>表单定义</span></a>
+          <Link to={{pathname: '/developer-guide/plugin/'}}><span className="topic-link__icon" aria-hidden="true"><PhCodeDuotone width={18} height={18} /></span><span>插件开发</span></Link>
+          <Link to={{pathname: '/developer-guide/theme/'}}><span className="topic-link__icon" aria-hidden="true"><PhPaintBrushBroadDuotone width={18} height={18} /></span><span>主题开发</span></Link>
+          <Link to={{pathname: '/developer-guide/restful-api/'}}><span className="topic-link__icon" aria-hidden="true"><PhBracketsCurlyDuotone width={18} height={18} /></span><span>RESTful API</span></Link>
+          <Link to={{pathname: '/developer-guide/core/'}}><span className="topic-link__icon" aria-hidden="true"><PhTerminalDuotone width={18} height={18} /></span><span>系统开发</span></Link>
+          <Link to={{pathname: '/developer-guide/app-store/'}}><span className="topic-link__icon" aria-hidden="true"><PhStorefrontDuotone width={18} height={18} /></span><span>应用市场</span></Link>
+          <Link to={{pathname: '/developer-guide/form-schema'}}><span className="topic-link__icon" aria-hidden="true"><PhListChecksDuotone width={18} height={18} /></span><span>表单定义</span></Link>
         </nav>
-        <a className="topic-group__all" href="/developer-guide/">查看开发者指南<span aria-hidden="true">→</span></a>
+        <Link className="topic-group__all" to={{pathname: '/developer-guide/'}}>查看开发者指南<span aria-hidden="true">→</span></Link>
       </article>
     </div>
   </section>
@@ -124,7 +125,7 @@ import PhTerminalDuotone from '~icons/ph/terminal-duotone';
       <span>查看常见问题，或到社区论坛提问。</span>
     </div>
     <nav aria-label="帮助资源">
-      <a href="/guide/use/faq">常见问题</a>
+      <Link to={{pathname: '/guide/use/faq'}}>常见问题</Link>
       <a href="https://github.com/orgs/halo-dev/discussions" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
       <a href="https://bbs.halo.run" target="_blank" rel="noreferrer">社区论坛 <span aria-hidden="true">↗</span></a>
     </nav>
