@@ -37,6 +37,124 @@
   }
 }
 
+.rp-search-panel {
+  &__mask {
+    box-sizing: border-box;
+    padding: 64px 16px 24px;
+    background: rgb(15 23 42 / 72%);
+    backdrop-filter: blur(8px);
+  }
+
+  &__modal {
+    width: min(640px, 100%);
+    max-height: calc(100dvh - 88px);
+    margin: 0 auto;
+    padding: 12px;
+    overflow: hidden;
+    border: 1px solid var(--rp-c-divider-light);
+    border-radius: 16px;
+    background: var(--rp-c-bg-soft);
+    box-shadow: 0 24px 64px rgb(15 23 42 / 30%);
+    animation: rp-search-panel-in 0.18s ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  &__input-form {
+    height: 52px;
+    padding: 0 14px;
+    border: 2px solid var(--rp-c-brand);
+    border-radius: 12px;
+    background: var(--rp-c-bg);
+    box-shadow: 0 1px 2px rgb(15 23 42 / 6%);
+  }
+
+  &__input {
+    padding: 0 12px;
+    color: var(--rp-c-text-1);
+    font-size: 16px;
+  }
+
+  &__close {
+    color: var(--rp-c-text-2);
+  }
+
+  &__results {
+    max-height: calc(100dvh - 176px);
+    margin-top: 12px;
+    padding: 0 2px;
+  }
+}
+
+@keyframes rp-search-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rp-suggest-item {
+  margin: 6px 0;
+
+  & .rp-suggest-item__link {
+    border: 1px solid var(--rp-c-divider-light);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgb(15 23 42 / 6%);
+  }
+
+  &--current .rp-suggest-item__link {
+    border-color: var(--rp-c-brand);
+    background: color-mix(in srgb, var(--rp-c-brand) 68%, #0f172a);
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--rp-c-brand) 24%, transparent);
+  }
+
+  &__container {
+    min-height: 64px;
+    padding: 4px 14px;
+  }
+
+  &__content {
+    padding: 8px 12px;
+  }
+
+  &__mark {
+    color: color-mix(in srgb, var(--rp-c-brand) 68%, #0f172a);
+  }
+
+  &__title {
+    color: var(--rp-c-text-2);
+  }
+}
+
+@media (max-width: 640px) {
+  .rp-search-panel {
+    &__mask {
+      padding: 12px;
+    }
+
+    &__modal {
+      max-height: calc(100dvh - 24px);
+      padding: 10px;
+      border-radius: 14px;
+    }
+
+    &__cancel {
+      display: none;
+    }
+
+    &__results {
+      max-height: calc(100dvh - 112px);
+    }
+  }
+}
+
 .rp-dark{
   .rp-overview-search {
     input {
@@ -46,5 +164,13 @@
         background-color: #2e2e2e;
       }
     }
+  }
+
+  .rp-search-panel__modal {
+    box-shadow: 0 24px 64px rgb(0 0 0 / 55%);
+  }
+
+  .rp-suggest-item__mark {
+    color: var(--rp-c-brand-light);
   }
 }
