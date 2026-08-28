@@ -65,4 +65,4 @@ npx skills add halo-dev/dev-skills@halo-plugin-dev
 
 安装完成后，通常在开发 Halo 插件时，Agent 会根据当前项目和任务自动识别并调用 `halo-plugin-dev` Skill，无需在提示词中显式指定。如果 Agent 未自动调用，可以在提示词中明确要求使用该 Skill。
 
-AI 生成的代码仍需经过代码审查，并按照插件项目已有的测试、构建及安装/启停流程验证后再用于生产环境。
+AI 生成的代码仍需经过代码审查，并按照[插件测试](./testing.md)和[插件发布验收清单](./release-checklist.md)完成自动化检查、构建及安装/启停验证后再用于生产环境。

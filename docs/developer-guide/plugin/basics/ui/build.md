@@ -318,7 +318,7 @@ ESM 入口仍需默认导出已有的 `PluginModule`，不应通过顶层副作�
 - **开发环境**：目标 Halo 为 2.25.0 或更高版本时输出到 `build/resources/main/ui`；旧目标继续输出到 `build/resources/main/console`。在开发 UI 的过程中，可以使用 `pnpm dev` 实时构建
 - **生产环境**：`ui/build/dist`
 
-> 生产目录是临时构建产物。使用 Gradle 构建插件时，应将完整目录复制到 `build/resources/main/ui`，并随插件 JAR 一起打包。`console` 目录仍作为旧项目的兼容回退。
+> 生产目录是临时构建产物。使用 Gradle 构建插件时，应将完整目录复制到 `build/resources/main/ui`，并随插件 JAR 一起打包。`console` 目录仍作为旧项目的兼容回退。发布前应按[插件发布验收清单](../../release-checklist.md#检查-jar-内容)检查最终 JAR。
 
 ## 迁移{#migration}
 
