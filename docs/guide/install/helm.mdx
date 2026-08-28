@@ -31,7 +31,7 @@ helm install halo halo/halo
 
 命令执行成功后会返回类似下文中的提示，通过提示中的命令可以获取到 NodePort 方式的 Halo 访问地址及默认的控制台管理员用户名和密码。
 
-```bash
+```text
 NAME: halo
 LAST DEPLOYED: Sun Jun 25 15:49:53 2023
 NAMESPACE: halo
@@ -112,7 +112,7 @@ helm install halo halo/halo \
 ```
 
 :::info 外部数据库参数
-- `mysql.enabled=true`：不自动安装 MySQL 数据库；
+- `mysql.enabled=false`：不自动安装 MySQL 数据库；
 - `postgresql.enabled=false`：不自动安装 PostgreSQL 数据库；
 - `externalDatabase.platform=mysql`：外部数据库类型，例如 `postgresql`、`mysql`；
 - `externalDatabase.host=mysql`：外部数据库连接地址；

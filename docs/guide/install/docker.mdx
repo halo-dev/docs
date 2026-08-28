@@ -93,7 +93,7 @@ docker rm halo
 修改版本号后，按照最初安装的方式，重新创建容器即可。
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo-pro:2.26
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS="-Xmx256m -Xms256m" registry.fit2cloud.com/halo/halo-pro:2.26
 ```
 
 </Steps>

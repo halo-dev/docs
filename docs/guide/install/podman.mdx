@@ -61,7 +61,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 
    ```bash
    mkdir -p ~/.halo2
-   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo-pro:2.26
+   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2:Z registry.fit2cloud.com/halo/halo-pro:2.26
    ```
 
    :::info 默认使用 H2 数据库
@@ -111,7 +111,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
    修改版本号后，按照最初安装的方式，重新创建容器即可。
 
    ```bash
-   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo-pro:2.26
+   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2:Z registry.fit2cloud.com/halo/halo-pro:2.26
    ```
 
 ## 使用 [Podman Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)
@@ -145,15 +145,14 @@ Environment=JVM_OPTS="-Xmx512m -Xms256m"
 Environment=HALO_WORK_DIR="/.halo"
 Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"
 Environment=TZ=Asia/Shanghai
-Volume=/opt/podman-data/halo:/.halo
+Volume=/opt/podman-data/halo:/.halo:Z
 PublishPort=127.0.0.1:8090:8090
 Image=ghcr.io/halo-dev/halo:2.26
-Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password
+Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://host.containers.internal:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password
 
 [Service]
 Restart=always
 RestartSec=30s
-StartLimitInterval=30
 TimeoutStartSec=900
 TimeoutStopSec=70
 
@@ -180,17 +179,16 @@ Podman Quadlet 解析：
 - `ContainerName=`指定了 systemd 将生成的服务名称。
 - `User=60000 Group=60000 UserNS=keep-id:uid=60000,gid=60000` 限制容器以 id 60000 的用户运行，提高安全性。注意这个 id 60000 请根据你实际想要运行的用户名来修改，可通过`id user`获得你的用户的 id.
 - `Environment=`字段指定了容器的环境变量，其中你需要注意的是`Environment=HALO_WORK_DIR="/.halo"` `Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"`这两个变量中的`/.halo`路径。
-- `Volume=`字段指定挂载到容器储存 Halo 配置文件的路径，请仔细观察`/opt/podman-data/halo:/.halo`其中的`/.halo`要与上面需要注意的环境变量路径要一致。
+- `Volume=`字段指定挂载到容器储存 Halo 配置文件的路径，请仔细观察`/opt/podman-data/halo:/.halo:Z`其中的`/.halo`要与上面需要注意的环境变量路径要一致，`:Z` 用于为挂载目录设置 SELinux 标签。
 - `PublishPort=`和 docker -p 命令一致，即需要映射的端口。
 - `Image=ghcr.io/halo-dev/halo` 即 Docker 镜像的地址，注意要完整的。比如`ghcr.io`这个路径就不能少，如果你没有配置 Podman 的 registries 文件，此路径就必不可少，建议写全。
-- `Exec=` 即附加到 Halo 容器的 Command，具体变量参考上方的 DockerArgs。多个变量以空格分开。
+- `Exec=` 即附加到 Halo 容器的 Command，具体变量参考上方的 DockerArgs。多个变量以空格分开。示例中的 `host.containers.internal` 指向宿主机，如果数据库位于其他主机，请替换为实际地址。
 
 `[Service]` 部分：
 即原生 systemd 语法
 
 - `Restart` 指定遇到错误后总是重启容器
 - `RestartSec` 重启的间隔时间
-- `StartLimitInterval` 重启的次数，超过这个次数将不再重启。
 - `TimeoutStartSec` 启动容器的超时时间，建议不要修改，因为每次开机后 Podman 将自动拉取容器，这时也许耗时会很长，这些时间是算在启动时间中的。如果定义太小的时间，可能将导致 Podman 无法拉取容器镜像。
 - `TimeoutStopSec` 停止容器时的超时时间，`systemctl stop halo` 假设使用这个命令，如果停止时间超过了`TimeoutStopSec`定义的时间，将会被系统 Kill.
 
@@ -217,15 +215,14 @@ After=network-online.target
 [Container]
 AutoUpdate=registry
 ContainerName=halo
-Volume=/opt/podman-data/halo:/root/.halo
+Volume=/opt/podman-data/halo:/root/.halo2:Z
 PublishPort=127.0.0.1:8090:8090
 Image=ghcr.io/halo-dev/halo:2.26
-Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password
+Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://host.containers.internal:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password
 
 [Service]
 Restart=always
 RestartSec=30s
-StartLimitInterval=30
 TimeoutStartSec=900
 TimeoutStopSec=70
 

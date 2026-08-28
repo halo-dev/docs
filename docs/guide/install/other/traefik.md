@@ -31,9 +31,15 @@ ACME 证书 (`/acme.json`) 一定要 [持久化](https://doc.traefik.io/traefik/
 Encrypt 的 [速率限制](https://letsencrypt.org/zh-cn/docs/rate-limits/)，导致签名的域名一段时间内无法签发新的证书。
 :::
 
-```yaml {19,31,35,41} showLineNumbers
-version: "3.8"
+创建工作目录、Compose 文件和 ACME 证书存储文件：
 
+```bash
+mkdir -p ~/traefik && cd ~/traefik
+touch acme.json && chmod 600 acme.json
+vim docker-compose.yaml
+```
+
+```yaml {17,28-30,34,40} showLineNumbers
 networks:
   traefik:
     name: traefik
@@ -63,6 +69,7 @@ services:
       --providers.docker.exposedByDefault=false
       --certificatesResolvers.myresolver.acme.httpChallenge.entryPoint=web
       --certificatesresolvers.myresolver.acme.email=your-mail@mail.com
+      --certificatesresolvers.myresolver.acme.storage=/acme.json
     labels:
       traefik.enable: "true"
       traefik.docker.network: traefik
@@ -73,6 +80,12 @@ services:
       traefik.http.routers.dashboard.middlewares: auth
       # 账号密码 admin/P@88w0rd 生成 echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g
       traefik.http.middlewares.auth.basicauth.users: "admin:$$apr1$$q8q0qpzT$$lvzMP7VYd9EUcG/wkIsAN."
+```
+
+保存配置后启动 Traefik：
+
+```bash
+docker compose up -d
 ```
 
 ## 配置 Halo 的反向代理
@@ -86,9 +99,7 @@ services:
    2. 开启 TLS
    3. 指定了服务端口为 8090
 
-```yaml {4-5,16,20,25-31} showLineNumbers
-version: "3.8"
-
+```yaml {2-3,13-15,18,20-25} showLineNumbers
 networks:
   traefik:
     external: true
