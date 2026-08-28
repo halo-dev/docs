@@ -64,7 +64,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
    podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 registry.fit2cloud.com/halo/halo-pro:2.26
    ```
 
-   :::info
+   :::info 默认使用 H2 数据库
    注意：此命令默认使用自带的 H2 Database 数据库。如需使用 PostgreSQL，请参考：[使用 Docker Compose 部署](./docker-compose.mdx)
    :::
 
@@ -78,13 +78,13 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 
    <DockerArgs />
 
-   :::info
+   :::info 查看完整配置
    为了保持部署流程的简洁，此文档仅提供了必要的配置示例，完整的配置选项列表可查阅：[配置说明](./config.md)
    :::
 
 2. 用浏览器访问 `/console` 即可进入 Halo 管理页面，首次启动会进入初始化页面。
 
-   :::tip
+   :::tip 初始化前配置访问地址
    如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
    :::
 

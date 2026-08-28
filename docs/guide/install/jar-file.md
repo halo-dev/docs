@@ -25,7 +25,7 @@ description: 使用 JAR 与 Java 运行 Halo：数据库要求、启动参数与
 
 1. 创建新的系统用户
 
-   :::info
+   :::info 不建议使用 root 用户运行
    我们不推荐直接使用系统 root 用户来运行 Halo。如果你需要直接使用 root 用户，请跳过这一步。
    :::
 
@@ -55,7 +55,7 @@ description: 使用 JAR 与 Java 运行 Halo：数据库要求、启动参数与
 
 3. 下载运行包
 
-   :::info
+   :::info 选择对应版本的 JAR 文件
    Halo 主要区分为[社区版和付费版](../prepare.md#发行版本)，这两个版本使用不同的 JAR 文件，以下是 JAR 文件下载地址：
    1. [https://download.halo.run](https://download.halo.run)
    2. [GitHub Releases（社区版）](https://github.com/halo-dev/halo/releases)
@@ -127,7 +127,7 @@ description: 使用 JAR 与 Java 运行 Halo：数据库要求、启动参数与
    | MariaDB            | `r2dbc:pool:mariadb://{HOST}:{PORT}/{DATABASE}`                                    | mariadb                    |
    | H2 Database        | `r2dbc:h2:file:///${halo.work-dir}/db/halo-next?MODE=MySQL&DB_CLOSE_ON_EXIT=FALSE` | h2                         |
 
-   :::info
+   :::info 数据库连接参数
    - HOST：数据库服务地址，如 `localhost`
    - PORT：数据库服务端口，如 `3306`
    - DATABASE：数据库名称，如 `halo`，需要提前创建，以 MySQL 为例：
@@ -138,11 +138,11 @@ description: 使用 JAR 与 Java 运行 Halo：数据库要求、启动参数与
 
    :::
 
-   :::warning
+   :::warning 不建议在生产环境使用 H2
    不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../guide/use/backup.md)。
    :::
 
-   :::info
+   :::info 查看完整配置
    为了保持部署流程的简洁，此文档仅提供了必要的配置示例，完整的配置选项列表可查阅：[配置说明](./config.md)
    :::
 
@@ -154,7 +154,7 @@ description: 使用 JAR 与 Java 运行 Halo：数据库要求、启动参数与
    cd ~/app && java -Dfile.encoding=UTF-8 -jar halo.jar --spring.config.additional-location=optional:file:$HOME/.halo2/
    ```
 
-   :::tip
+   :::tip 自定义工作目录
    如果指定了其他工作目录，请将 `$HOME/.halo2/` 替换为相应的绝对路径，并确保路径末尾带有 `/`。
    :::
 
@@ -162,11 +162,11 @@ description: 使用 JAR 与 Java 运行 Halo：数据库要求、启动参数与
 
    打开 `http://ip:端口号` 即可跳转到初始化页面。
 
-   :::info
+   :::info 测试运行不会持续
    如测试启动正常，请继续看[作为服务运行](#作为服务运行)部分，第 8 步仅仅作为测试。当你关闭 ssh 连接之后，服务会停止。你可使用 <kbd>CTRL</kbd>+<kbd>C</kbd> 停止运行测试进程。
    :::
 
-   :::tip
+   :::tip 初始化前配置访问地址
    如果需要配置域名访问，建议先配置好反向代理以及域名解析再进行初始化。如果通过 `http://ip:端口号` 的形式无法访问，请到服务器厂商后台将运行的端口号添加到安全组，如果服务器使用了 Linux 面板，请检查此 Linux 面板是否有还有安全组配置，需要同样将端口号添加到安全组。
    :::
 
@@ -217,7 +217,7 @@ description: 使用 JAR 与 Java 运行 Halo：数据库要求、启动参数与
    - **JAR_PATH**：Halo 运行包的绝对路径，例如 `/home/halo/app/halo.jar`，注意：此路径不支持 `~` 符号。
    - **USER**：运行 Halo 的系统用户，如果有按照上方教程创建新的用户来运行 Halo，修改为你创建的用户名称即可。反之请删除 `User=USER`。
 
-   :::tip
+   :::tip 确认 Java 路径与启动命令
    请确保 `/usr/bin/java` 是正确无误的。建议将 `ExecStart` 中的命令复制出来运行一下，保证命令有效。如果指定了其他工作目录，请像上面一样改动。
    :::
 
@@ -262,7 +262,7 @@ journalctl -n 20 -u halo
    wget https://dl.halo.run/release/halo-pro-2.26.0.jar -O /home/halo/app/halo.jar
    ```
 
-   :::info
+   :::info Halo 运行包下载地址
    以下是官方维护的下载地址：
    1. [https://download.halo.run](https://download.halo.run)
    2. [GitHub Releases（社区版）](https://github.com/halo-dev/halo/releases)
