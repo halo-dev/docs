@@ -5,7 +5,7 @@ description: 在 Halo 插件中提供主题可覆盖的 Thymeleaf 模板与路�
 
 当你在插件中创建了自己的自定义模型后，你可能需要在主题端提供一个模板来展示这些数据，这一般有两种方式：
 
-1. 插件规定模板名称，由主题选择性适配，如瞬间插件提供了 `/moments` 的路由渲染 `moment.html` 模板，主题可以选择性的提供 `moment.html` 模板来展示瞬间数据。
+1. 插件规定模板名称，由主题选择性适配，如瞬间插件提供了 `/moments` 的路由渲染 `moments.html` 模板，主题可以选择性地提供 `moments.html` 模板来展示瞬间数据。
 2. 插件提供默认模板，当主题没有提供对应的模板时，使用默认模板，主题提供了对应的模板时，使用主题提供的模板。
 
 ## 创建一个模板
@@ -14,13 +14,14 @@ description: 在 Halo 插件中提供主题可覆盖的 Thymeleaf 模板与路�
 
 ```tree
 ├── templates
-│   ├── moment.html
+│   ├── moments.html
 ```
 
 然后提供一个路由用于渲染这个模板，例如：
 
 ```java
 import run.halo.app.theme.TemplateNameResolver;
+import run.halo.app.theme.router.ModelConst;
 
 @RequiredArgsConstructor
 @Configuration(proxyBeanMethods = false)
@@ -36,6 +37,7 @@ public class MomentRouter {
         // 或许你需要准备你需要提供给模板的默认数据，非必须
         var model = new HashMap<String, Object>();
         model.put("moments", List.of());
+        model.put(ModelConst.TEMPLATE_ID, "plugin:plugin-moment:moments");
         return templateNameResolver.resolveTemplateNameOrDefault(request.exchange(), "moments")
             .flatMap(templateName -> ServerResponse.ok().render(templateName, model));
     }
@@ -44,11 +46,13 @@ public class MomentRouter {
 
 使用 `TemplateNameResolver` 来解析模板名称，如果主题提供了对应的模板，那么就使用主题提供的模板，否则使用插件提供的模板，如果直接返回模板名称，那么只会使用主题提供的模板，如果主题没有提供对应的模板，那么会抛出异常。
 
+`ModelConst.TEMPLATE_ID` 对应模板变量 `_templateId`。建议使用 `plugin:<plugin.yaml metadata.name>:<page>` 形式的稳定值，便于 Head 处理器、SEO 插件和其他渲染扩展识别插件页面。模板名称、模型字段和 `_templateId` 都属于主题集成契约，不应在兼容版本中随意修改。
+
 ## 复用当前主题页面布局
 
 从 Halo 2.26.0 开始，如果插件提供的前台页面希望复用当前主题的页头、页脚和整体页面外壳，可以在插件模板中调用 `layout :: html(...)`：
 
-```html title="src/main/resources/templates/moment.html"
+```html title="src/main/resources/templates/moments.html"
 <!DOCTYPE html>
 <html
   xmlns:th="https://www.thymeleaf.org"
@@ -69,11 +73,11 @@ public class MomentRouter {
 
 ## 模板片段
 
-如果你的默认模板不止一个，你可能需要通过模板片段来抽取一些公共的部分，例如，你的插件提供了一个 `moment.html` 模板，你可能需要抽取一些公共的部分，例如头部、尾部等，你可以这样做：
+如果你的默认模板不止一个，你可能需要通过模板片段来抽取一些公共的部分，例如，你的插件提供了一个 `moments.html` 模板，你可能需要抽取一些公共的部分，例如头部、尾部等，你可以这样做：
 
 ```text
 ├── templates
-│   ├── moment.html
+│   ├── moments.html
 │   ├── fragments
 │   │   ├── layout.html
 ```

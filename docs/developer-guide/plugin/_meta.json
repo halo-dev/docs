@@ -27,6 +27,7 @@
     "label": "与其他插件交互",
     "collapsed": true
   },
+  "theme-integration",
   {
     "type": "dir",
     "name": "security",

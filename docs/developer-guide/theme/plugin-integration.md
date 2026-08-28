@@ -5,6 +5,8 @@ description: 在 Halo 主题中检查可用插件、保护插件专属调用，�
 
 主题与插件集成时，应把插件能力视为可选增强：插件未安装、未启用或版本不兼容时，主题的导航和主要内容仍应可用。
 
+本页说明主题侧的适配方式；插件开发者如何选择 Finder、模板、公开 API 和渲染扩展点，请参考插件侧的[与主题集成](../plugin/theme-integration.md)。
+
 ## 检查插件是否可用
 
 `pluginFinder.available` 只有在插件已安装并处于启用状态时才返回 `true`。参数应使用插件 `plugin.yaml` 中的 `metadata.name`，而不是显示名称。
