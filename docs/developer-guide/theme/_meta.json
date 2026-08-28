@@ -3,10 +3,13 @@
   "ai",
   "config",
   "structure",
+  "vite",
+  "packaging",
   "ui-plugin",
   "page-layout",
   "static-resources",
   "settings",
+  "i18n",
   "annotations",
   {
     "type": "dir",
@@ -22,6 +25,7 @@
   },
   "image-optimization",
   "global-variables",
+  "plugin-integration",
   "template-tag",
   "code-snippets",
   "api-changelog"

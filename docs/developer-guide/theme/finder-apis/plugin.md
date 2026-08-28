@@ -24,7 +24,7 @@ pluginFinder.available(pluginName)
 ### 示例
 
 ```html
-<!-- https://github.com/halo-sigs/plugin-search-widget -->
+<!-- https://github.com/halo-dev/plugin-search-widget -->
 <li th:if="${pluginFinder.available('PluginSearchWidget')}">
   <a href="javascript:SearchWidget.open()" title="搜索">
     搜索
@@ -54,8 +54,8 @@ pluginFinder.available('fake-plugin', '>=2.3.0')
 ### 示例
 
 ```html
-<!-- https://github.com/halo-sigs/plugin-search-widget -->
-<li th:if="${pluginFinder.available('PluginSearchWidget', '>=2.3.0')}">
+<!-- https://github.com/halo-dev/plugin-search-widget -->
+<li th:if="${pluginFinder.available('PluginSearchWidget', '>=1.0.0')}">
   <a href="javascript:SearchWidget.open()" title="搜索">
     搜索
   </a>

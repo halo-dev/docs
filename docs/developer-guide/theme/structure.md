@@ -24,6 +24,9 @@ my-theme
 │   ├── archives.html
 │   └── author.html
 ├── screenshot.png
+├── i18n/                        # 可选的国际化消息
+│   ├── default.properties
+│   └── zh_CN.properties
 ├── theme.yaml
 ├── settings.yaml
 └── ui-plugin/                # 可选的 Console / UC UI 扩展
@@ -39,6 +42,9 @@ my-theme
 2. `/templates/assets/` - 主题静态资源目录，存放主题的静态资源文件，目前静态资源文件只能放在这个目录，引用方式请查阅 [静态资源](./static-resources)。
 3. `/templates/layout.html` - 可选的页面布局契约模板，从 Halo 2.26.0 开始可用于让插件前台页面复用当前主题的页面外壳。详细文档请查阅 [页面布局契约](./page-layout.md)。
 4. `/screenshot.png` - 可选的主题预览图文件，支持 `screenshot.png`、`screenshot.jpeg`、`screenshot.jpg` 和 `screenshot.webp`。Halo 会按此顺序识别第一个可读文件，用于 Console 主题预览，并通过 `Theme.status.screenshot` 暴露访问地址。
-5. `/theme.yaml` - 主题配置文件，配置主题的基本信息，如主题名称、版本、作者等。详细文档请查阅 [配置文件](./config)。
-6. `/settings.yaml` - 主题设置定义文件，配置主题的设置项表单。详细文档请查阅 [设置选项](./settings)。
-7. `/ui-plugin/` - 可选的 Console / UC UI 扩展项目。Halo 只读取其中的 `dist` 构建目录，详细文档请查阅 [UI 扩展](./ui-plugin.md)。
+5. `/i18n/` - 可选的主题国际化消息目录，详细文档请查阅[国际化](./i18n.md)。
+6. `/theme.yaml` - 主题配置文件，配置主题的基本信息，如主题名称、版本、作者等。详细文档请查阅 [配置文件](./config)。
+7. `/settings.yaml` - 主题设置定义文件，配置主题的设置项表单。详细文档请查阅 [设置选项](./settings)。
+8. `/ui-plugin/` - 可选的 Console / UC UI 扩展项目。Halo 只读取其中的 `dist` 构建目录，详细文档请查阅 [UI 扩展](./ui-plugin.md)。
+
+使用 Vite 等构建工具的主题通常还包含 `src` 和 `public`，并由构建命令生成 `templates`。这类项目应修改源码而不是生成目录，详细约定请参考[使用 Vite 开发主题](./vite.md)。
