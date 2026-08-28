@@ -11,6 +11,10 @@
 .rp-code-button-group {
   &__icon{
     color: #8b8b8b;
+
+    &:hover {
+      color: #9f9c9c;
+    }
   }
 }
 
