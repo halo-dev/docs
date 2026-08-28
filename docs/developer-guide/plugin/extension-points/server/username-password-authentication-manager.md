@@ -1,6 +1,6 @@
 ---
 title: 用户名密码认证管理器
-description: 提供扩展用户名密码的身份验证的方法
+description: 实现 UsernamePasswordAuthenticationManager 单实例扩展点，用 LDAP 等第三方身份验证服务替换 Halo 默认的用户名密码认证逻辑
 ---
 
 用户名密码认证管理器扩展点用于替换 Halo 默认的用户名密码认证管理器实现，例如：使用第三方的身份验证服务，一个例子是 LDAP。

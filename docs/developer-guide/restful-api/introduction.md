@@ -27,7 +27,7 @@ Halo 提供了 RESTful 风格的 API，Halo 的前端（主要为 Console 和 UC
 
 个人令牌是一种用于访问 Halo API 的安全凭证，你可以使用个人令牌代替您的 Halo 账户密码进行身份验证。
 
-在个人中心的**个人令牌**页面中，可以根据当前用户已有的权限创建个人令牌，创建方式可参考：[个人中心 / 个人令牌](../../user-guide/user-center.md#个人令牌)
+在个人中心的**个人令牌**页面中，可以根据当前用户已有的权限创建个人令牌，创建方式可参考：[个人中心 / 个人令牌](../../guide/use/user-center.md#个人令牌)
 
 创建成功后，将会得到一个 `pat_` 开头的字符串，接下来在所需请求的请求头中添加 `Authorization` 字段，值为 `Bearer <pat>` 即可。
 
@@ -59,10 +59,10 @@ axios.get('https://demo.halo.run/apis/content.halo.run/v1alpha1/posts', {
 
 ### Basic Auth
 
-:::warning
+:::warning Basic Auth 默认关闭
 Basic Auth 认证方式已经在 Halo 2.20 默认关闭，需要手动添加 `halo.security.basic-auth.disabled=false` 启动参数来开启。
 
-配置详情可见：[配置列表](../../getting-started/install/config.md#halo-独有配置)
+配置详情可见：[配置列表](../../guide/install/config.md#halo-独有配置)
 :::
 
 Basic Auth 是一种通过用户名和密码进行身份验证的方式，你可以使用 Halo 账户的用户名和密码进行身份验证。

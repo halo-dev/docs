@@ -1,0 +1,41 @@
+---
+title: 文章标签集合
+description: 编写 Halo 主题的 tags.html 标签集合模板，使用 tags 变量读取全部文章标签并渲染标签墙，同时了解页面路由和模板标识
+---
+
+import TagVo from '../vo/_TagVo.md'
+
+用于列出所有文章标签的页面，可以用于实现标签墙等功能。
+
+## 路由信息
+
+- 模板路径：`/templates/tags.html`
+- 访问路径：`/tags`
+
+## 变量
+
+### tags
+
+#### 变量类型
+
+List\<[#TagVo](#tagvo)\>
+
+#### 示例
+
+```html title="/templates/tags.html"
+<ul>
+  <li th:each="tag : ${tags}" th:text="${tag.spec.displayName}" th:href="${tag.status.permalink}" />
+</ul>
+```
+
+### _templateId
+
+#### 变量值
+
+`tags`
+
+## 类型定义
+
+### TagVo
+
+<TagVo />

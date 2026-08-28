@@ -1,6 +1,6 @@
 ---
 title: 构建
-description: UI 部分的构建说明
+description: 使用 ui-plugin-bundler-kit 的 Vite 或 Rsbuild 预配置构建 Halo 插件 UI，选择 ESM 或 IIFE 输出并正确打包共享依赖、清单和异步资源
 ---
 
 在 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 工具中，我们已经配置好了 UI 的构建工具和流程，此文档主要说明一些构建细节以及其他可能的构建选项。
@@ -269,7 +269,7 @@ export default viteConfig({
 
 成功的 ESM 构建会额外生成保留文件 `ui-plugin.json`，并可能包含异步 JavaScript、CSS 和其他静态资源。以下目录仅作示意，实际入口和启动样式路径以 `ui-plugin.json` 为准：
 
-```text
+```tree
 build/dist/
 ├── ui-plugin.json
 ├── main.<hash>.js          # 默认 ESM 入口

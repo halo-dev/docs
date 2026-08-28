@@ -1,6 +1,6 @@
 ---
 title: 编写控制器
-description: 了解如何为自定义模型编写控制器
+description: 实现 Reconciler 和 ControllerBuilder，为自定义模型构建幂等调谐循环，配置事件匹配、启动同步、重试策略、状态回写与 Finalizers 清理逻辑
 ---
 
 控制器是 Halo 的关键组件，它们负责对每个自定义模型对象进行操作，协调所需状态和当前状态，参考： [控制器概述](../../../core/framework.md#controller)。

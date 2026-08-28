@@ -1,6 +1,6 @@
 ---
 title: PluginDetailModal
-description: 插件详情弹窗组件
+description: 使用 PluginDetailModal 在当前操作流程中打开指定插件的详情与设置弹窗，通过 plugin.yaml 中的插件名称定位内容并处理关闭事件
 ---
 
 此组件可以在 UI 部分的任意组件中打开插件的详情和设置弹窗，可以用于实现在不打断正常操作流程的情况下让用户查看和修改插件的详细信息。

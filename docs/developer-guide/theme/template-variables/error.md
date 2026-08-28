@@ -1,6 +1,6 @@
 ---
 title: 错误页面
-description: 关于错误页面的模板变量
+description: 配置 Halo 主题的 404、4xx、500、5xx 与默认错误模板，了解状态码对应的模板匹配顺序及 error 变量字段和渲染方式
 ---
 
 ## 路由信息
@@ -8,7 +8,7 @@ description: 关于错误页面的模板变量
 - 模板路径：`/templates/error/{404,4xx,500,5xx,error}.html`
 - 访问路径：无固定访问路径，由异常决定
 
-:::info[提示]
+:::info 错误模板匹配顺序
 错误页面的可使用模板由状态码决定，例如 404 状态码对应的模板为 `/templates/error/404.html` 或者 `/templates/error/4xx.html`。也可以使用 `/templates/error/error.html` 作为默认模板。
 
 识别顺序如下：

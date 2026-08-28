@@ -1,6 +1,6 @@
 ---
 title: 发送和订阅通知
-description: 了解如何在插件中发送和订阅通知。
+description: 使用 ReasonType、Reason 和 NotificationTemplate 定义通知事件与模板，通过 NotificationReasonEmitter 触发事件并用 NotificationCenter 管理订阅
 ---
 
 Halo 的通知功能提供了事件驱动的消息提醒机制，让用户能够及时获取系统内的关键事件。

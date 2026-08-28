@@ -94,7 +94,7 @@ Halo 插件系统支持在 `plugin.yaml` 文件中通过 `pluginDependencies` �
 
 在 Gradle 项目中，推荐使用标准的项目结构，以便于插件代码的管理和依赖的声明。以下是一个典型的 Halo 插件项目结构示例：
 
-```plaintext
+```tree
 my-halo-plugin/
 ├── build.gradle                    # 项目的构建配置
 ├── settings.gradle                 # Gradle 设置文件
@@ -117,7 +117,7 @@ my-halo-plugin/
 
 以下是一个优化后的项目结构示例，包含 `api` 和 `plugin` 模块：
 
-```plaintext
+```tree
 my-halo-plugin/
 ├── build.gradle                    # 根项目构建配置文件
 ├── settings.gradle                 # 设置文件，声明子模块

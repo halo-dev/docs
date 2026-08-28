@@ -1,0 +1,43 @@
+:root {
+  --rp-content-max-width: 900px;
+  --rp-content-padding-y: 24px;
+  --rp-content-padding-x: 40px;
+}
+
+.rp-nav-menu {
+  --rp-nav-menu-item-gap: 28px;
+}
+
+.rp-code-button-group {
+  &__icon{
+    color: #8b8b8b;
+
+    &:hover {
+      color: #9f9c9c;
+    }
+  }
+}
+
+.rp-overview-search {
+  input {
+    background-color: #f5f5f5;
+    border: none;
+    transition: background-color 0.2s ease-in-out;
+
+    &:active, &:focus {
+      background-color: #eaeaea;
+    }
+  }
+}
+
+.rp-dark{
+  .rp-overview-search {
+    input {
+      background-color: #1e1e1e;
+
+      &:active, &:focus {
+        background-color: #2e2e2e;
+      }
+    }
+  }
+}

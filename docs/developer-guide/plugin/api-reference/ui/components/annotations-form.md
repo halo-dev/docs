@@ -1,6 +1,6 @@
 ---
 title: AnnotationsForm
-description: 元数据表单组件
+description: 使用 AnnotationsForm 根据自定义模型的 group 和 kind 自动渲染元数据表单，提交并校验自定义注解与规范表单数据后合并结果
 ---
 
 此组件用于提供统一的 [Annotations 表单](../../../../annotations-form.md)，可以根据 `group` 和 `kind` 属性自动渲染对应的表单项。

@@ -1,0 +1,14 @@
+[
+  {
+    "type": "dir",
+    "name": "server",
+    "label": "服务端",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "ui",
+    "label": "UI",
+    "collapsed": true
+  }
+]

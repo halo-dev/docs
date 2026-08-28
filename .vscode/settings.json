@@ -1,8 +1,13 @@
 {
-  "[markdown]": {
-    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
-  },
-  "i18n-ally.localesPaths": [
-    "i18n"
-  ]
+  "json.schemas": [
+    {
+      "fileMatch": ["**/_meta.json"],
+      "url": "./node_modules/@rspress/core/meta-json-schema.json"
+    },
+    {
+      "fileMatch": ["**/_nav.json"],
+      "url": "./node_modules/@rspress/core/nav-json-schema.json"
+    }
+  ],
+  "editor.defaultFormatter": "biomejs.biome"
 }

@@ -1,6 +1,6 @@
 ---
 title: 系统结构
-description: Halo 项目的构成
+description: 介绍 Halo 服务、管理界面、评论插件和主题项目的系统构成，并说明 Spring Boot 配置目录的覆盖优先级与开发环境自定义配置方式。
 ---
 
 [Halo](https://github.com/halo-dev/halo) 博客系统分为以下四个部分：
@@ -31,6 +31,6 @@ description: Halo 项目的构成
 
 在开发的时候，希望大家能够在 `~/halo-dev/application.yml` 中进行添加自定义配置。当然后面也会讲到如何用`运行参数` 和 `VM options` 进行控制配置，届时可根据具体情况进行选择。
 
-:::warning
+:::warning 不要修改源码配置文件
 开发的时候，我们不建议直接更改`项目源码`中的所包含的`配置文件`，包括 `application.yml`、`application-dev.yml`、`application-test.yml` 和 `application-user.yml`。
 :::

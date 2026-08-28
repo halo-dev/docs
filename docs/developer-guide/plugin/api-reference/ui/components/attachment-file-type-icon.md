@@ -1,6 +1,6 @@
 ---
 title: AttachmentFileTypeIcon
-description: 附件文件类型图标组件
+description: 使用 AttachmentFileTypeIcon 根据附件文件名显示对应的类型图标，可通过 displayExt 控制扩展名展示并设置图标宽度和高度
 ---
 
 此组件用于根据文件名显示文件类型图标。

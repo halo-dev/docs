@@ -1,6 +1,6 @@
 ---
 title: 配置文件
-description: 关于主题配置文件的文档。
+description: 配置 Halo 主题的 theme.yaml，说明主题标识、作者、版本、兼容要求、设置项、自定义模板与许可证等字段，并介绍重载和旧版迁移方法
 ---
 
 目前 Halo 2.0 的主题必须在根目录包含 `theme.yaml`，用于配置主题的基本信息，如主题名称、版本、作者等。
@@ -90,6 +90,6 @@ npx @halo-dev/convert-theme-config-to-next theme
 
 执行完成之后即可看到主题目录下生成了 `theme.2.0.yaml` 文件，重命名为 `theme.yaml` 即可。
 
-:::tip
+:::tip 修改转换后的资源名称
 转换完成之后需要修改 `metadata.name`、`spec.settingName` 和 `spec.configMapName`。
 :::

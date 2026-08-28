@@ -1,11 +1,11 @@
 ---
 title: 插件项目结构
-description: 了解插件项目的文件结构
+description: 认识 Halo 插件项目的 Java 后端、Vue 前端、plugin.yaml 描述文件与 Gradle 构建结构，明确源码、静态资源和 UI 构建产物的存放位置
 ---
 
 当你创建一个新的插件项目时，典型的目录结构如下所示：
 
-```text
+```tree
 ├── ui
 │   ├── src
 │   │   ├── assets
@@ -50,7 +50,7 @@ description: 了解插件项目的文件结构
 - `plugin.yaml`：这是插件的描述文件，位于 `src/main/resources` 目录下。该文件是必须的，包含插件的基本信息，如插件名称、版本、作者、描述以及依赖等内容。
 - `resources/ui`：插件 JAR 中的推荐 UI 资源目录。Gradle 会将 `ui/build/dist` 的完整构建产物复制到 `build/resources/main/ui` 后打包，其中可能包含 `ui-plugin.json`、入口、样式、异步分块和其他静态资源。如果插件不包含 UI 部分，此目录可以忽略。
 
-:::warning[注意]
+:::warning 优先使用 resources/ui
 从 2.11 开始，Halo 支持了 UC 个人中心，且个人中心和 Console 的插件机制共享，因此推荐使用 `resources/ui`。Halo 2.x 仍兼容旧项目使用的 `resources/console`，并优先读取 `ui`。
 :::
 

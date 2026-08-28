@@ -1,6 +1,6 @@
 ---
 title: FilterDropdown
-description: 过滤器下拉组件
+description: 使用 FilterDropdown 构建通用下拉筛选器，通过包含标签和值的选项列表渲染菜单，并使用 v-model 读取和更新当前筛选值
 ---
 
 此组件为通用的下拉筛选组件，可以接收一个对象数组作为选项，并使用 `v-model` 绑定选择的值。

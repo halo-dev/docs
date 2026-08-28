@@ -1,6 +1,6 @@
 ---
 title: 插件
-description: 插件 - PluginFinder
+description: 使用 PluginFinder 检查指定 Halo 插件是否已安装并启用，或进一步按 Semantic Version 版本范围判断插件是否可用
 ---
 
 ## available(pluginName)

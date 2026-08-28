@@ -1,0 +1,23 @@
+[
+  "docker-compose",
+  "docker",
+  "1panel",
+  "bt-panel",
+  "helm",
+  "podman",
+  "jar-file",
+  "offline",
+  "config",
+  {
+    "type": "dir",
+    "name": "cloud",
+    "label": "云平台",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "other",
+    "label": "其他指南",
+    "collapsed": true
+  }
+]

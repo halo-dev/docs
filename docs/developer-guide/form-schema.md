@@ -1,5 +1,6 @@
 ---
 title: 表单定义
+description: 介绍 Halo Setting 资源中的 FormKit Schema 表单规范，以及 select 等扩展输入组件的参数、静态与远程数据源和 YAML 配置示例。
 ---
 
 在 Halo 2.0，在 Console 端的所有表单我们都使用了 [FormKit](https://github.com/formkit/formkit) 的方案。FormKit 不仅支持使用 Vue 组件的形式来构建表单，同时支持使用 Schema 的形式来构建。因此，我们的 [Setting](https://github.com/halo-dev/halo/blob/87ccd61ae5cd35a38324c30502d4e9c0ced41c6a/src/main/java/run/halo/app/core/extension/Setting.java#L20) 资源中的表单定义，都是使用 FormKit Schema 来定义的，最常用的场景即主题和插件的设置表单定义。当然，如果要在 Halo 2.0 的插件中使用，也可以参考 FormKit 的文档使用 Vue 组件的形式使用，但不需要在插件中引入 FormKit。
@@ -11,7 +12,7 @@ FormKit 相关文档：
 - Form Schema: [https://formkit.com/essentials/schema](https://formkit.com/essentials/schema)
 - FormKit Inputs: [https://formkit.com/inputs](https://formkit.com/inputs)
 
-:::tip
+:::tip 组件支持范围
 目前不支持 FormKit Pro 中的输入组件，但 Halo 额外提供了部分输入组件，将在下面文档列出。
 :::
 
@@ -54,7 +55,7 @@ spec:
           value: ""
 ```
 
-:::tip
+:::tip YAML 与 JSON 格式转换
 需要注意的是，FormKit Schema 本身应该是 JSON 格式的，但目前我们定义一个表单所使用的是 YAML，可能在参考 FormKit 写法时需要手动转换一下。
 :::
 
@@ -225,7 +226,7 @@ spec:
     fieldSelectorKey: metadata.name
 ```
 
-:::tip
+:::tip 分页数据的默认选项
 当远程数据具有分页时，可能会出现默认选项不在第一页的情况，此时 Select 组件将会发送另一个查询请求，以获取默认选项的数据。此接口会携带如下参数：
 
 ```ts
@@ -241,7 +242,7 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
 
 列表类型的输入组件，支持动态添加、删除数据项。
 
-:::tip
+:::tip list 与 array 的区别
 `list` 组件与 [array](#array) 组件功能类似，但它们的用途不同。`list` 组件适合展示基本类型的数据，而 `array` 组件更适合于展示复杂类型的数据。
 :::
 
@@ -273,7 +274,7 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
       validation: required
 ```
 
-:::tip
+:::tip list 子节点限制
 `list` 组件有且只有一个子节点，并且必须为子节点传递 `index` 属性。若想提供多个字段组成对象，则建议改为使用 [array](#array) 组件。
 :::
 
@@ -317,7 +318,7 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
       validation: required
 ```
 
-:::tip
+:::tip verificationForm 不改变数据结构
 尽管 `verificationForm` 本身是一个输入组件，但与其他输入组件不同的是，它仅仅用于包装待验证的数据，所以并不会破坏原始数据的格式。例如上述示例中的值在保存后为：
 
 ```json
@@ -367,7 +368,7 @@ UI 效果：
 
 ### ~~repeater~~(已过时)
 
-:::warning
+:::warning 请使用 array 组件
 `repeater` 组件已不再推荐使用，请使用 [array](#array) 组件代替。
 :::
 
@@ -418,7 +419,7 @@ UI 效果：
       value: ""
 ```
 
-:::tip
+:::tip 设置 repeater 默认值
 使用 `repeater` 类型时，一定要设置默认值，如果不需要默认有任何元素，可以设置为 `[]`。
 :::
 
@@ -443,7 +444,7 @@ UI 效果：
 
 #### 描述
 
-:::info
+:::info Halo 2.22 的 attachment 类型变更
 在 Halo 2.22 中，我们重构了原有的 attachment 表单类型，支持了预览和直接上传文件，并将旧版的表单类型更名为了 [attachmentInput](#attachmentinput)。
 :::
 
@@ -531,7 +532,7 @@ UI 效果：
   value: []
 ```
 
-:::info
+:::info menuSelect 兼容 select 参数
 menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
 :::
 
@@ -733,7 +734,7 @@ UI 效果：
 - `emptyText`: 当数组为空时显示的文本
 - `itemLabels`: 列表元素上显示的内容，数据类型为 `{ type: "image" | "text" | "iconify"; label: string }[]`
 
-:::tip
+:::tip 建议设置 itemLabels
 强烈建议为 `array` 设置 `itemLabels` 属性，以便于更直观的展示元素内容，设置的元素内容将按照设置顺序展示在列表元素上。
 
 在 `itemLabels` 中定义 `label` 时，可以使用 `$value` 来指向当前项的值。
@@ -768,7 +769,7 @@ UI 效果：
       value: ""
 ```
 
-:::warning
+:::warning itemLabels 的条件限制
 由于目前无法通过单个 `itemLabels` 定义涵盖所有子项变动的情况，因此在 `itemLabels` 中使用 `$value` ，无法获取到具有 `if` 属性的组件值。
 
 例如：
@@ -877,7 +878,7 @@ UI 效果：
 
 密钥输入组件，用于选择一个密钥资源。
 
-:::note
+:::note 使用 Secret 存储敏感数据
 在 Halo 中，我们提供了一种更加安全的数据存储模型，即 Secret，通常我们使用 Secret 来存储敏感数据，比如密码、token、密钥等。
 
 主要注意的是，此表单类型通常与后端配合使用，需要在后端查询密钥资源。

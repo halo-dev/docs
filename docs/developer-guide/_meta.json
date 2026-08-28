@@ -1,0 +1,39 @@
+[
+  {
+    "type": "file",
+    "name": "index",
+    "label": "概览"
+  },
+  {
+    "type": "dir",
+    "name": "core",
+    "label": "系统开发",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "plugin",
+    "label": "插件开发",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "theme",
+    "label": "主题开发",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "restful-api",
+    "label": "RESTful API",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "app-store",
+    "label": "应用市场",
+    "collapsed": true
+  },
+  "form-schema",
+  "annotations-form"
+]

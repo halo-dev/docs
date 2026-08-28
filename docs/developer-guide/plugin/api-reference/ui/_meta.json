@@ -1,0 +1,12 @@
+[
+  "route",
+  "api-request",
+  "formkit",
+  "shared",
+  {
+    "type": "dir",
+    "name": "components",
+    "label": "组件",
+    "collapsed": true
+  }
+]

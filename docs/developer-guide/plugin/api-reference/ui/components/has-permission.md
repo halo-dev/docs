@@ -1,6 +1,6 @@
 ---
 title: HasPermission
-description: 权限判断组件
+description: 使用 HasPermission 组件声明界面元素所需的权限列表，仅向具备相应 UI 权限的当前用户渲染按钮、菜单或其他插槽内容
 ---
 
 此组件用于根据权限控制元素的显示与隐藏。

@@ -1,6 +1,6 @@
 ---
 title: 在插件中提供主题模板
-description: 了解如何为主题扩充模板。
+description: 在 Halo 插件中提供主题可覆盖的 Thymeleaf 模板与路由，复用当前主题页面布局，并通过插件模板路径组织和引用公共模板片段
 ---
 
 当你在插件中创建了自己的自定义模型后，你可能需要在主题端提供一个模板来展示这些数据，这一般有两种方式：
@@ -12,7 +12,7 @@ description: 了解如何为主题扩充模板。
 
 首先，你需要在插件的 `resources` 目录下创建一个 `templates` 目录，然后在 `templates` 目录下提供你的模板，例如：
 
-```text
+```tree
 ├── templates
 │   ├── moment.html
 ```

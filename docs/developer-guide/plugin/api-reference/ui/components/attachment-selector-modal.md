@@ -1,11 +1,11 @@
 ---
 title: AttachmentSelectorModal
-description: 附件选择组件
+description: 在 Halo Console 中使用 AttachmentSelectorModal 打开附件选择器，限制可接受的文件类型与选择数量，并处理可见状态、关闭和选择事件
 ---
 
 此组件用于调出附件选择器，以供用户选择附件。
 
-:::info[注意]
+:::info 仅支持 Console
 此组件当前仅在 Console 中可用。
 :::
 

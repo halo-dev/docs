@@ -1,11 +1,11 @@
 ---
 title: 设置选项
-description: 介绍主题如何定义以及使用设置选项。
+description: 通过 settings.yaml 和 FormKit 表单定义 Halo 主题设置项，关联 Setting 与 ConfigMap，并在 Thymeleaf 模板中读取配置和重载更新
 ---
 
 此文档将讲解如何在主题中定义和使用设置项，如 [表单定义](../form-schema) 中所说，目前 Halo 的 Console 端的所有表单都使用了 [FormKit](https://github.com/formkit/formkit) 的方案。
 
-:::tip
+:::tip 先了解 FormKit 表单定义
 有关 FormKit 定义表单的更多信息，请参考 [表单定义](../form-schema)，此文档仅针对主题中的设置项进行讲解。
 :::
 
@@ -39,7 +39,7 @@ spec:
       url: "https://github.com/halo-sigs/theme-foo/blob/main/LICENSE"
 ```
 
-:::tip
+:::tip 保持配置名称一致
 `settingName` 和 `configMapName` 必须同时配置，且可以自定义名称，但是 `settingName` 必须和 Setting 的 `metadata.name` 一致。
 :::
 
@@ -82,7 +82,7 @@ spec:
               value: "double"
 ```
 
-:::tip
+:::tip 保持 Setting 名称一致
 Setting 资源的 `metadata.name` 必须和 `theme.yaml` 中的 `spec.settingName` 一致。
 :::
 
@@ -134,6 +134,6 @@ npx @halo-dev/convert-theme-config-to-next settings
 
 执行完成之后即可看到主题目录下生成了 `settings.2.0.yaml` 文件，重命名为 `settings.yaml` 即可。
 
-:::tip
+:::tip 修改转换后的资源名称
 转换完成之后需要修改 `metadata.name` 字段。
 :::

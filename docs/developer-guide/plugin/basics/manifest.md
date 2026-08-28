@@ -50,7 +50,7 @@ spec:
 | `spec.description`           | 插件的简短描述，用于说明插件的用途。                                                                                                                                            |
 | `spec.license`               | 插件的许可协议，包含协议名称和链接。参考：[Software License](https://en.wikipedia.org/wiki/Software_license)。                                                                  |
 
-:::tip
+:::tip settingName 需要对应资源
 如果你在 plugin.yaml 中配置了 `settingName` 但确没有对应的 `Setting` 自定义模型资源文件，会导致插件无法启动，原因是 `Setting` 模型 `metadata.name` 为你配置的 `settingName` 的资源无法找到。
 :::
 
@@ -100,7 +100,7 @@ halo:
       - C:\path\to\halo-plugin-hello-world
 ```
 
-:::tip
+:::tip development 模式的插件加载方式
 
 1. `development` 开发模式下，既可以运行 `fixed-plugin-path` 下的插件，也可以运行通过 `Console` 管理端安装的 JAR 格式的插件。
 2. 如果使用 [DevTools 运行方式](../hello-world.md#run-with-devtools) 来开发插件，则不需要配置 `runtime-mode` 和 `fixed-plugin-path`。

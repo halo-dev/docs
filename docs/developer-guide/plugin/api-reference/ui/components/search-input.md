@@ -1,6 +1,6 @@
 ---
 title: SearchInput
-description: 搜索输入框组件
+description: 使用 SearchInput 为 Halo 插件页面提供关键词搜索输入框，通过 v-model 绑定查询文本，并在用户按下回车后再触发搜索以减少无效请求
 ---
 
 此组件适用于关键词搜索场景，输入数据的过程中不会触发搜索，只有在输入完成后，点击回车才会触发搜索。

@@ -1,6 +1,6 @@
 ---
 title: 代码风格
-description: 代码风格的相关配置说明
+description: 配置 Halo 项目的 Java 代码风格检查，涵盖安装 CheckStyle-IDEA 插件、导入 checkstyle.xml，并在 IntelliJ IDEA 中启用项目规则。
 ---
 
 Halo 添加了 checkstyle 插件，来保证每位提交者代码的风格保持一致，减少无效代码的修改。本篇文章主要讲解如何在 IDEA 中添加 CheckStyle 插件，并引入项目所提供的 checkstyle.xml 配置。

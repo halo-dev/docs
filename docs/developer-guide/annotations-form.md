@@ -1,12 +1,13 @@
 ---
 title: 元数据表单定义
+description: 介绍 Halo AnnotationSetting 资源与 FormKit Schema 的定义方式，为文章、页面、分类、标签、菜单项和用户配置可编辑的字符串元数据字段。
 ---
 
 在 Halo 2.0，所有的模型都包含了 `metadata.annotations` 字段，用于存储元数据信息。元数据信息可以用于存储一些自定义的信息，可以等同于扩展字段。此文档主要介绍如何在 Halo 中为具体的模型定义元数据编辑表单，至于如何在插件或者主题模板中使用，请看插件或者主题的文档。
 
 定义元数据编辑表单同样使用 `FormKit Schema`，但和主题或插件的定义方式稍有不同，其中输入组件类型可参考 [表单定义](./form-schema.md)。
 
-:::info[提示]
+:::info annotations 表单值必须为字符串
 因为 `metadata.annotations` 是一个键值都为字符串类型的对象，所以表单项的值必须为字符串类型。这就意味着，FormKit 的 `number`、`group`、`repeater` 等类型的输入组件都不能使用。`checkbox` 类型的输入组件应通过 `on-value` 和 `off-value` 指定字符串值，以替代默认的布尔值。
 :::
 

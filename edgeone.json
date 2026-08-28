@@ -1,0 +1,163 @@
+{
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "./build",
+  "nodeVersion": "24.18.0",
+  "redirects": [
+    {
+      "source": "/next/getting-started/install/*",
+      "destination": "/guide/install/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/next/getting-started/*",
+      "destination": "/guide/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/next/user-guide/*",
+      "destination": "/guide/use/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/next/contribution/*",
+      "destination": "/guide/contribution/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/next",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/next/*",
+      "destination": "/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/getting-started/install/*",
+      "destination": "/guide/install/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/getting-started/*",
+      "destination": "/guide/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/user-guide/*",
+      "destination": "/guide/use/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/contribution/*",
+      "destination": "/guide/contribution/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/developer-guide/appendix/publish-app",
+      "destination": "/developer-guide/app-store/publish-app",
+      "statusCode": 301
+    },
+    {
+      "source": "/about",
+      "destination": "/guide/contribution/pr",
+      "statusCode": 301
+    },
+    {
+      "source": "/versions",
+      "destination": "https://v2.archive-docs.halo.run/versions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E5%85%A5%E9%97%A8",
+      "destination": "/guide/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97",
+      "destination": "/guide/install/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E4%BA%91%E5%B9%B3%E5%8F%B0",
+      "destination": "/guide/install/cloud/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E5%85%B6%E4%BB%96%E6%8C%87%E5%8D%97",
+      "destination": "/guide/install/other/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97",
+      "destination": "/guide/use/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE",
+      "destination": "/guide/contribution/issue",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91",
+      "destination": "/developer-guide/core/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91",
+      "destination": "/developer-guide/plugin/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E5%9F%BA%E7%A1%80",
+      "destination": "/developer-guide/plugin/basics/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E6%9C%8D%E5%8A%A1%E7%AB%AF",
+      "destination": "/developer-guide/plugin/basics/server/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/ui",
+      "destination": "/developer-guide/plugin/basics/ui/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/api-%E5%8F%82%E8%80%83",
+      "destination": "/developer-guide/plugin/api-reference/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E6%9C%8D%E5%8A%A1%E7%AB%AF-1",
+      "destination": "/developer-guide/plugin/api-reference/server/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/ui-1",
+      "destination": "/developer-guide/plugin/api-reference/ui/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E6%A1%88%E4%BE%8B%E5%92%8C%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5",
+      "destination": "/developer-guide/plugin/examples/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/restful-api",
+      "destination": "/developer-guide/restful-api/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E4%B8%BB%E9%A2%98%E5%BC%80%E5%8F%91",
+      "destination": "/developer-guide/theme/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/%E5%BA%94%E7%94%A8%E5%B8%82%E5%9C%BA",
+      "destination": "/developer-guide/app-store/",
+      "statusCode": 301
+    }
+  ]
+}

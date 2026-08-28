@@ -1,11 +1,11 @@
 ---
 title: 目录结构
-description: 主题的目录结构介绍
+description: 了解 Halo 主题项目的标准目录结构，以及模板、静态资源、主题配置、设置表单、预览图和 Console、用户中心 UI 扩展各自的存放位置
 ---
 
 Halo 2.0 的主题基本目录结构如下：
 
-```bash title="~/halo2-dev/themes/my-theme"
+```tree title="~/halo2-dev/themes/my-theme"
 my-theme
 ├── templates/
 │   ├── assets/
