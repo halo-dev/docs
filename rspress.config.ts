@@ -89,7 +89,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'github',
-        mode: 'github-stars',
+        mode: 'link',
         content: 'https://github.com/halo-dev/halo',
       },
     ],
