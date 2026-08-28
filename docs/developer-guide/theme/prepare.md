@@ -65,9 +65,9 @@ spec:
 
 目前 Halo 为了让开发者能够尽快搭建主题项目，提供了一些初始模板，开发者可以根据实际需要选择使用。
 
-- [halo-sigs/theme-starter](https://github.com/halo-dev/theme-starter) - 最基础的主题模板，包含了主题的基本目录结构。
-- [halo-sigs/theme-vite-starter](https://github.com/halo-dev/theme-vite-starter) - 与 Vite 集成的主题模板，由 Vite 负责资源构建。
-- [halo-sigs/theme-astro-starter](https://github.com/halo-sigs/theme-astro-starter) - 以 Astro 作为预渲染框架的主题模板。
+- [halo-dev/theme-vite-starter](https://github.com/halo-dev/theme-vite-starter) - 面向大多数新主题的推荐模板，在 `src` 中开发并由 Vite 生成 Halo 使用的 `templates` 目录。
+- [halo-dev/theme-starter](https://github.com/halo-dev/theme-starter) - 不使用前端构建工具的基础 Thymeleaf 主题模板。
+- [halo-sigs/theme-astro-starter](https://github.com/halo-sigs/theme-astro-starter) - 使用 Astro 预渲染，适合需要 Vue、React Island 或复杂前端交互的主题。
 
 :::info 从模板仓库创建主题
 以上 GitHub 都被设置为了模板仓库（Template repository），点击仓库主页的 `Use this template` 按钮即可通过此模板创建一个新的仓库。

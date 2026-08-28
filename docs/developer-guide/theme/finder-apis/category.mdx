@@ -164,6 +164,64 @@ List\<[#CategoryTreeVo](#categorytreevo)\>
 </ul>
 ```
 
+## listAsTree(name)
+
+```js
+categoryFinder.listAsTree(name)
+```
+
+### 描述
+
+根据分类的 `metadata.name` 获取以该分类为根节点的多层级结构。分类不存在时返回空列表。
+
+### 参数
+
+1. `name:string` - 根分类的唯一标识 `metadata.name`。
+
+### 返回值
+
+List\<[#CategoryTreeVo](#categorytreevo)\>
+
+### 示例
+
+```html
+<ul th:with="categories = ${categoryFinder.listAsTree('category-foo')}">
+  <li th:each="category : ${categories}">
+    <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
+  </li>
+</ul>
+```
+
+## getParentByName(name)
+
+```js
+categoryFinder.getParentByName(name)
+```
+
+### 描述
+
+根据分类的 `metadata.name` 获取其直接父分类。当前分类没有有效父分类时返回空值。
+
+### 参数
+
+1. `name:string` - 当前分类的唯一标识 `metadata.name`。
+
+### 返回值
+
+[#CategoryVo](#categoryvo)
+
+### 示例
+
+```html
+<div th:with="parent = ${categoryFinder.getParentByName('category-child')}">
+  <a
+    th:if="${parent != null}"
+    th:href="@{${parent.status.permalink}}"
+    th:text="${parent.spec.displayName}"
+  ></a>
+</div>
+```
+
 ## getBreadcrumbs(name)
 
 ```js

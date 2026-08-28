@@ -49,25 +49,29 @@ spec:
 
 ## 字段详解
 
-| 字段                            | 描述                                                                                          | 是否必填 |
-|---------------------------------|---------------------------------------------------------------------------------------------|---------|
-| `metadata.name`                 | 主题的唯一标识，**需要注意：此字段的值需要和主题文件夹名称一致，否则可能导致部分资源无法正常加载。**                                                                                | 是       |
-| `spec.displayName`              | 显示名称                                                                                      | 是       |
-| `spec.author.name`              | 作者名称                                                                                      | 否       |
-| `spec.author.website`           | 作者网站                                                                                      | 否       |
-| `spec.description`              | 主题描述                                                                                      | 否       |
-| `spec.logo`                     | 主题 Logo                                                                                     | 否       |
-| `spec.homepage`                 | 主题网站                                                                                      | 否       |
-| `spec.repo`                     | 主题代码托管地址                                                                              | 否       |
-| `spec.issues`                   | 主题问题反馈地址，如果你的主题是开源在 GitHub 上，可以直接配置为 GitHub Issues 地址。            | 否       |
-| `spec.settingName`              | 设置表单定义的名称，需要同时创建对应的 `settings.yaml` 文件                                    | 否       |
-| `spec.configMapName`            | 设置持久化配置的 ConfigMap 名称                                                               | 否       |
-| `spec.customTemplates.post`     | 文章的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md)     | 否       |
-| `spec.customTemplates.category` | 分类的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md)     | 否       |
-| `spec.customTemplates.page`     | 独立页面的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md) | 否       |
-| `spec.version`                  | 主题版本                                                                                      | 是       |
-| `spec.requires`                 | 所需 Halo 的运行版本                                                                          | 是       |
-| `spec.license`                  | 协议                                                                                          | 否       |
+| 字段                            | 描述                                                                                                               | Halo Schema 是否必填 |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------ | -------------------- |
+| `metadata.name`                 | 主题的唯一标识，**需要注意：此字段的值需要和主题文件夹名称一致，否则可能导致部分资源无法正常加载。**               | 是                   |
+| `spec.displayName`              | 显示名称                                                                                                           | 是                   |
+| `spec.author.name`              | 作者名称                                                                                                           | 是                   |
+| `spec.author.website`           | 作者网站                                                                                                           | 否                   |
+| `spec.description`              | 主题描述                                                                                                           | 否                   |
+| `spec.logo`                     | 主题 Logo                                                                                                          | 否                   |
+| `spec.homepage`                 | 主题网站                                                                                                           | 否                   |
+| `spec.repo`                     | 主题代码托管地址                                                                                                   | 否                   |
+| `spec.issues`                   | 主题问题反馈地址，如果你的主题开源在 GitHub 上，可以直接配置为 GitHub Issues 地址。                                | 否                   |
+| `spec.settingName`              | 设置表单定义的名称，需要同时创建对应的 `settings.yaml` 文件                                                        | 否                   |
+| `spec.configMapName`            | 设置持久化配置的 ConfigMap 名称                                                                                    | 否                   |
+| `spec.customTemplates.post`     | 文章的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md)                                           | 否                   |
+| `spec.customTemplates.category` | 分类的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md)                                           | 否                   |
+| `spec.customTemplates.page`     | 独立页面的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md)                                       | 否                   |
+| `spec.version`                  | 主题版本；省略时 Core 使用 `*`，但发布主题时应填写明确的 SemVer 版本号                                             | 否                   |
+| `spec.requires`                 | 所需 Halo 的运行版本；省略时 Core 使用 `*`，但发布主题时应声明已验证的兼容范围                                     | 否                   |
+| `spec.license`                  | 协议                                                                                                               | 否                   |
+
+:::info Schema 与发布要求
+上表描述的是 Halo Core Schema 的校验规则。发布到应用市场或其他分发渠道时，可能还需要填写版本、兼容范围等元数据，请以对应渠道的审核规则为准。
+:::
 
 ## 更新配置
 

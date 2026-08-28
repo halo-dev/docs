@@ -18,7 +18,7 @@ Halo 插件系统支持在 `plugin.yaml` 文件中通过 `pluginDependencies` �
 
 ### 依赖声明方式
 
-依赖关系通过 `pluginDependencies` 字段声明，采用 YAML 列表格式。每个依赖项包含插件名称和可选的版本号。
+依赖关系通过 `pluginDependencies` 字段声明，采用 YAML 映射格式：键为插件名称，值为版本号或版本范围。
 
 > 以下示例中将省略 `plugin.yaml` 文件中的其他字段，仅展示 `pluginDependencies` 字段。
 >
@@ -51,7 +51,7 @@ Halo 插件系统支持在 `plugin.yaml` 文件中通过 `pluginDependencies` �
         pluginB?: 1.0
     ```
 
-- **多个依赖声明**：一个插件可能依赖多个插件，所有依赖可以在同一列表中列出，使用逗号分隔。例如，`pluginA` 依赖于 `pluginB` 的 1.0.0 到 2.0.0 版本区间，以及 `pluginC` 的 0.0.1 到 0.1.0 版本区间：
+- **多个依赖声明**：一个插件可能依赖多个插件，所有依赖可以在同一映射中逐行声明。例如，`pluginA` 依赖于 `pluginB` 的 1.0.0 到 2.0.0 版本区间，以及 `pluginC` 的 0.0.1 到 0.1.0 版本区间：
 
     ```yaml
     spec:

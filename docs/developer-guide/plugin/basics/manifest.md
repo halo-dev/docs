@@ -38,7 +38,9 @@ spec:
 | `apiVersion` 和 `kind`       | 固定写法，定义插件的 API 版本和类型，不可更改。                                                                                                                                 |
 | `metadata.name`              | 插件的唯一标识名，长度不超过 253 个字符，仅包含小写字母、数字或 `-`，以字母或数字开头和结尾。                                                                                   |
 | `spec.enabled`               | 表示插件是否在安装时自动启用。为了安全性，生产环境需要用户手动启用。                                                                                                            |
+| `spec.version`               | 插件版本，必须为完整的 SemVer 版本号。使用官方 Gradle 插件构建时，最终产物中的值会自动取自 Gradle 项目版本。                                                                    |
 | `spec.requires`              | 插件支持的 Halo 版本范围，遵循 [SemVer Range Expressions](https://github.com/zafarkhaja/jsemver#range-expressions)。参考：[常用 SemVer Range Expressions](#common-range-expressions) |
+| `spec.pluginDependencies`    | 插件依赖及其版本范围，支持必需依赖和可选依赖。参考：[依赖其他插件](../interaction/dependency.md)。                                                                              |
 | `spec.author`                | 插件作者的信息，包括名称和支持网址。                                                                                                                                            |
 | `spec.logo`                  | 插件的 logo，支持 URL 链接或相对于项目 `src/main/resources` 目录的文件路径。                                                                                                    |
 | `spec.settingName`（可选）   | 插件配置表单的名称，用于提供用户可视化配置的表单，名称建议为 "插件名-settings"。参考：[表单定义](../../form-schema.md)。                                                       |
@@ -49,6 +51,10 @@ spec:
 | `spec.displayName`           | 插件的显示名称，它通常是以少数几个字来概括插件的用途。                                                                                                                          |
 | `spec.description`           | 插件的简短描述，用于说明插件的用途。                                                                                                                                            |
 | `spec.license`               | 插件的许可协议，包含协议名称和链接。参考：[Software License](https://en.wikipedia.org/wiki/Software_license)。                                                                  |
+
+:::info spec.version 由构建过程写入
+Halo 的 Plugin Schema 要求最终安装包中的 `spec.version` 为完整的 SemVer 版本号。使用官方 Halo Gradle 插件时，源文件可以省略此字段；构建过程会读取 Gradle 项目版本，并将其写入构建产物中的 `plugin.yaml`。请不要手动修改构建目录里的副本。
+:::
 
 :::tip settingName 需要对应资源
 如果你在 plugin.yaml 中配置了 `settingName` 但确没有对应的 `Setting` 自定义模型资源文件，会导致插件无法启动，原因是 `Setting` 模型 `metadata.name` 为你配置的 `settingName` 的资源无法找到。
@@ -85,11 +91,12 @@ halo:
 
 ```yaml
 # macOS / Linux
-plugin:
-  runtime-mode: development
-  fixed-plugin-path:
-    # 配置为插件绝对路径
-    - /path/to/halo-plugin-hello-world
+halo:
+  plugin:
+    runtime-mode: development
+    fixed-plugin-path:
+      # 配置为插件绝对路径
+      - /path/to/halo-plugin-hello-world
 
 # Windows
 halo:
@@ -110,8 +117,8 @@ halo:
 
 - 常规符号：`>`、`>=`、`<`、`<=`、`=`、`!=`
 - 通配符范围 ( `*` | `X`| `x`)：`1.*` 解释为 `>=1.0.0 && <2.0.0`
-- 波形符范围 ( `~` )：`~2.5`解释为 `>=1.5.0 && <1.6.0`
-- 连字符范围 ( `-` )：`0.0-2.0`解释为 `>=1.0.0 && <=2.0.0`
+- 波形符范围 ( `~` )：`~1.5` 解释为 `>=1.5.0 && <1.6.0`
+- 连字符范围 ( `-` )：`1.0-2.0` 解释为 `>=1.0.0 && <=2.0.0`
 - 插入符范围 ( `^` )：`^0.2.3`解释为 `>=0.2.3 && <0.3.0`
 - 部分版本范围：`1` 解释为 `1.x` 或 `>=1.0.0 && <2.0.0`
 - 否定运算符：`!(1.x)` 解释为 `<1.0.0 && >=2.0.0`

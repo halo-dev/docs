@@ -4,6 +4,8 @@
   "plugin-self-tabs-create",
   "default-editor-extension-create",
   "comment-subject-ref-create",
+  "comment-editor-replace",
+  "comment-list-item-content-replace",
   "backup-tabs-create",
   "plugin-installation-tabs-create",
   "theme-list-tabs-create",

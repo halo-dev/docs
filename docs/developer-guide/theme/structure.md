@@ -21,7 +21,8 @@ my-theme
 │   ├── tags.html
 │   ├── category.html
 │   ├── categories.html
-│   └── archives.html
+│   ├── archives.html
+│   └── author.html
 ├── screenshot.png
 ├── theme.yaml
 ├── settings.yaml

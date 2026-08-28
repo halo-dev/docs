@@ -7,15 +7,35 @@ description: 向 AI 提供 Halo 主题开发文档，或安装官方 Agent Skill
 
 ## 提供文档上下文
 
-如果 AI 工具支持读取网页，可以在提示词中提供以下地址：
+如果 AI 工具支持读取网页，应根据所需上下文范围选择地址：
 
-```text title='适合需要查阅多个文档时使用'
+```text title='文档索引：先查找与任务相关的页面'
 https://docs.halo.run/llms.txt
 ```
 
-```text title='适合专注于主题开发时使用'
-https://docs.halo.run/developer-guide/theme/index.md
+```text title='完整文档：仅在需要全站上下文时使用'
+https://docs.halo.run/llms-full.txt
 ```
+
+`llms.txt` 只包含页面标题、描述和链接，不包含每一页的正文。根据索引找到所需页面后，可以把页面地址的后缀改为 `.md`，向 AI 提供该页面的 Markdown 内容，例如：
+
+```text
+https://docs.halo.run/developer-guide/theme/template-route-mapping.md
+```
+
+`/developer-guide/theme/index.md` 是主题文档的入口页，不是全部主题开发文档的聚合内容。
+
+## 核对版本与源码
+
+Halo 的模板变量和 Finder API 会随版本演进。使用 AI 生成或修改代码前，应依次确认：
+
+1. 主题 `spec.requires` 所对应的目标 Halo 版本。
+2. [主题 API 变更](./api-changelog.md)以及与任务直接相关的模板变量或 Finder API 页面。
+3. 文档没有覆盖的签名和行为，以目标版本的 Halo 源码为准。
+
+:::warning 先确认主题的源码目录
+不要让 AI 手动修改构建目录、锁文件或由构建工具生成的模板。对于 Vite、Astro 等工程化主题，应先确认 `src` 与 `templates` 的生成关系，修改源码后再运行项目已有的构建命令。
+:::
 
 ## Agent Skill
 
@@ -46,4 +66,4 @@ npx skills add halo-dev/dev-skills@halo-theme-dev
 
 安装完成后，通常在开发 Halo 主题时，Agent 会根据当前项目和任务自动识别并调用 `halo-theme-dev` Skill，无需在提示词中显式指定。如果 Agent 未自动调用，可以在提示词中明确要求使用该 Skill。
 
-AI 生成的代码仍需经过代码审查和功能验证后再用于生产环境。
+AI 生成的代码仍需经过代码审查，并通过主题构建、安装、启用及相关页面检查后再用于生产环境。

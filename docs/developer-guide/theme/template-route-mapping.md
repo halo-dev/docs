@@ -43,6 +43,10 @@ description: 本文档介绍路由与模板的映射关系，以及自定义模�
 
 分类归档页面的模板，访问地址默认为 `/categories/:slug`。
 
+### author.html
+
+作者归档页面的模板，访问地址默认为 `/authors/:name`，分页地址为 `/authors/:name/page/:page`。页面变量请参考[作者归档](./template-variables/author.mdx)。
+
 ## 自定义模板 {#custom-templates}
 
 一般情况下，上文提到的模板已经能够满足大部分的需求，但如果需要针对某个特定的页面进行自定义，可以通过自定义模板来实现。目前系统支持为 **文章**、**独立页面**和**分类归档** 设置自定义模板：
