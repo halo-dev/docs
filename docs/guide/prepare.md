@@ -13,6 +13,15 @@ Halo 付费版包括专业版和商城版，是[凌霞软件](https://www.lxware
 
 在后续的文档中，使用付费版统称 Halo 专业版 和 Halo 商城版，除非特别说明。
 
+## 在线体验
+
+- 环境地址：<https://demo.halocms.site>
+- 后台地址：<https://demo.halocms.site/console>
+- 用户名：`demo`
+- 密码：`P@ssw0rd123..`
+
+或者也可以参考 [《如何在本地快速体验 Halo》](https://www.halo.run/archives/halo-local-quickstart) 在本地搭建体验环境。
+
 ## 环境要求
 
 这里将讲述运行 Halo 所要求的一些软硬件的配置，我们建议你在运行或者部署之前先浏览一遍此页面。
