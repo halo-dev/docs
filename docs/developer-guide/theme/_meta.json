@@ -1,16 +1,13 @@
 [
   "prepare",
   "ai",
-  "config",
   "structure",
+  "config",
   "vite",
-  "packaging",
-  "ui-plugin",
-  "page-layout",
   "static-resources",
   "settings",
   "i18n",
-  "annotations",
+  "global-variables",
   {
     "type": "dir",
     "name": "template-variables",
@@ -23,10 +20,15 @@
     "label": "Finder API",
     "collapsed": true
   },
-  "image-optimization",
-  "global-variables",
-  "plugin-integration",
   "template-tag",
+  "annotations",
+  "plugin-integration",
+  "page-layout",
+  "ui-plugin",
   "code-snippets",
+  "image-optimization",
+  "seo",
+  "packaging",
+  "release-checklist",
   "api-changelog"
 ]

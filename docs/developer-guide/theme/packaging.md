@@ -74,4 +74,6 @@ unzip -l dist/theme-foo-1.2.0.zip
 4. 如果提供主题 UI 扩展，ZIP 中包含完整的 `ui-plugin/dist`。
 5. 在目标 Halo 版本上通过上传 ZIP、安装、启用和主要页面访问检查。
 
+完整的页面、升级和兼容性验证请参考[主题发布验收清单](./release-checklist.md)。
+
 通过 GitHub Actions 发布并同步到应用市场的配置，请参考[发布应用](../app-store/publish-app.md#使用-github-actions-自动构建和发布)。
