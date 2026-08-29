@@ -3,7 +3,7 @@ title: DevTools
 description: 了解 Halo 的 DevTools 插件开发工具的使用
 ---
 
-DevTools 插件开发工具提供了一些 Task 用于辅助 Halo 插件的运行与调试，使用此工具的前提是需要具有 [Docker](https://docs.docker.com/get-docker/) 环境。
+DevTools 插件开发工具提供了一些 Task，用于辅助 Halo 插件的运行、调试和代码生成。`haloServer`、`watch` 以及默认的 OpenAPI 文档生成流程需要本地具有 [Docker](https://docs.docker.com/get-docker/) 环境；从 DevTools 0.8.0 开始，OpenAPI 文档生成也可以直接复用已有的 Halo 服务，此时不需要 Docker。
 
 DevTools 还提供了一些其他的构建任务，如插件打包、插件检查等。
 
@@ -68,24 +68,30 @@ halo {
   version = '2.26'
   superAdminUsername = 'admin'
   superAdminPassword = 'admin'
-  externalUrl = 'http://localhost:8090'
-  docker {
-    // windows 默认为 npipe:////./pipe/docker_engine
-    url = 'unix:///var/run/docker.sock'
-    apiVersion = '1.42'
-  }
   port = 8090
+  // 默认根据 port 推导为 http://localhost:8090
+  // externalUrl = 'http://localhost:8090'
+  // 默认根据项目名称、根目录和 Gradle project path 自动生成
+  // containerName = 'halo-for-plugin-development'
   debug = true
-  debugPort = 5005
+  // 默认自动分配可用端口
+  // debugPort = 5005
+
+  // 通常不需要配置。未配置时使用 Docker 的默认配置和环境变量
+  // docker {
+  //   url = 'unix:///var/run/docker.sock'
+  //   apiVersion = '1.42'
+  // }
 }
 ```
 
 - `version`：表示要使用的 Halo 版本，随着插件 API 的更新你可能需要更高的 Halo 版本来运行插件，可自行更改。
 - `superAdminUsername`：Halo 的超级管理员用户名，当你启动插件时会自动根据此配置和 `superAdminPassword` 为你初始化 Halo 的超级管理员账户。
 - `superAdminPassword`：Halo 的超级管理员用户密码。
-- `externalUrl`：Halo 的外部访问地址，一般默认即可，但如果修改了端口号映射可能需要修改。
-- `docker.url`：用于配置连接 Docker 的 url 信息，在 Mac 或 Linux 系统上默认是 `unix:///var/run/docker.sock`，在 windows 上默认是 `npipe:////./pipe/docker_engine`。
-- `docker.apiVersion`：Docker 的 API 版本，使用 `docker version` 命令可以查看到，如果你的 Docker 版本过低可能需要更改此配置，示例：
+- `externalUrl`：Halo 的外部访问地址。未配置时会根据 `port` 推导为 `http://localhost:${port}`。
+- `containerName`：开发用 Halo 容器的名称。未配置时会根据项目名称、根目录和 Gradle project path 自动生成，通常不需要手动设置。
+- `docker.url`：用于配置连接 Docker 的 URL。未配置时使用 Docker Client 的默认配置和 `DOCKER_HOST`、`DOCKER_TLS_VERIFY`、`DOCKER_CERT_PATH` 等环境变量。
+- `docker.apiVersion`：Docker 的 API 版本。大多数情况下无需配置；如需固定版本，可以使用 `docker version` 命令查看，例如：
 
   ```shell
   ➤ docker version
@@ -105,7 +111,7 @@ halo {
 
 ## 任务
 
-本插件提供了 `haloServer` 和 `watch` 两个任务，使用它们的前提条件是需要在本地配置 Docker 环境。
+本插件提供运行、热重载、OpenAPI 文档生成、API Client 生成和角色模板生成等任务。其中，`haloServer` 和 `watch` 需要在本地配置 Docker 环境。
 
 ### 环境要求
 
@@ -143,23 +149,15 @@ logging:
 
 #### haloServer 任务默认配置
 
-`haloServer` 任务具有以下默认配置用于连接和操作 Halo 服务：
+使用 `create-halo-plugin` 创建的项目会显式配置目标 Halo 版本，例如：
 
 ```groovy
 halo {
   version = '2.26'
-  superAdminUsername = 'admin'
-  superAdminPassword = 'admin'
-  externalUrl = 'http://localhost:8090'
-  docker {
-    // Windows 用户默认使用 npipe:////./pipe/docker_engine
-    url = 'unix:///var/run/docker.sock'
-    apiVersion = '1.42'
-  }
 }
 ```
 
-如需修改，可以在 `build.gradle` 文件中进行配置。
+这不是 DevTools 自身的默认 Halo 版本。DevTools 0.8.0 源码中的默认值为 `2.9.1`，但实际项目应当显式指定与插件 API 依赖和目标 Halo 环境一致的版本。其他配置项及默认行为参见[配置](#配置)。
 
 ### reloadPlugin 任务
 
@@ -182,7 +180,7 @@ halo {
 }
 ```
 
-#### watch 任务
+### watch 任务
 
 使用方式：
 
@@ -191,7 +189,7 @@ halo {
 ```
 
 此任务用于监视 Halo 插件项目的变化并自动重新加载到 Halo 服务中。
-默认只监听 `src/main/java` 和 `src/main/resources` 目录下的文件变化，如果需要监听其他目录，可以在项目的 `build.gradle` 中添加如下配置：
+默认监听整个 `src/main/` 目录，并排除 Console 构建产物等无需触发重载的内容。如果需要监听其他目录，可以在项目的 `build.gradle` 中添加如下配置：
 
 ```groovy
 haloPlugin {
@@ -221,20 +219,7 @@ haloPlugin {
 
 ### 生成 API client
 
-#### 什么是 API client
-
-API client 是一种工具或库，旨在简化前端应用程序与后端服务器之间的通信，尤其是在使用 RESTful API 或 GraphQL API 的情况下。
-它提供了一种简洁且类型安全的方式来调用服务器端的 API，并处理请求和响应。
-
-在 TypeScript 环境中，使用 API client 有以下几个优点：
-
-- 自动化 HTTP 请求：API 客户端封装了 HTTP 请求的细节，如构建 URL、设置请求头、处理查询参数等。开发者只需调用客户端提供的函数即可发送请求。
-
-- 类型安全：通过结合 OpenAPI 等规范生成的 TypeScript 类型定义，API 客户端可以确保请求和响应的数据类型在编译时就能得到验证。这可以帮助减少运行时的错误，并提高代码的可读性和可维护性。
-
-- 统一的错误处理：API 客户端可以提供统一的错误处理机制，比如自动重试、错误日志记录等，这样开发者无需在每个 API 调用中重复编写相同的错误处理逻辑。
-
-- 提高开发效率：通过使用 API 客户端，开发者可以专注于业务逻辑的实现，而不用关心底层的 HTTP 细节。这不仅提高了开发效率，还减少了代码冗余。
+API Client 根据 OpenAPI 文档生成请求方法和 TypeScript 类型，用于减少手写请求代码并在编译期检查请求参数和响应类型。自动重试、错误日志等策略不由生成器提供，需要通过 Axios 实例自行配置。
 
 #### 如何生成 API client {#how-to-generate-api-client}
 
@@ -269,6 +254,10 @@ return SpringdocRouteBuilder.route()
 haloPlugin {
   openApi {
     // outputDir = file("$rootDir/api-docs/openapi/v3_0") // 指定 OpenAPI 文档的输出目录默认输出到 build 目录下，不建议修改，除非需要提交到代码仓库
+    // DevTools 0.8.0 起支持复用已有 Halo 服务。启用后不启动临时容器，默认读取 halo.externalUrl
+    // useExistingServer = true
+    // 仅在需要读取其他 Halo 服务时覆盖
+    // apiDocsUrl = 'http://localhost:8090'
     groupingRules {
       // 定义 API 分组规则，用于为插件项目中的 APIs 分组然后只对此分组生成 API 客户端代码
       // 定义了一个名为 extensionApis 的分组，task 会通过 /v3/api-docs/extensionApis 访问到 api docs 然后生成 API 客户端代码
@@ -366,12 +355,14 @@ const { data } = await momentsConsoleApiClient.moment.listTags({
 :::tip API 客户端生成流程
 它会先执行 `generateOpenApiDocs` 任务根据配置访问 `/v3/api-docs/extensionApis` 获取 OpenAPI 文档，
 并将 OpenAPI 的 Schema 文件保存到 `openApi.outputDir` 目录下，然后再由 `generateApiClient` 任务根据 Schema 文件生成 API 客户端代码到 `openApi.generator.outputDir` 目录下。
+
+如果 OpenAPI 文档依赖其他已安装插件，请先启动并准备好对应的 Halo 服务，然后设置 `openApi.useExistingServer = true`。此模式默认从 `halo.externalUrl` 读取文档并跳过临时容器；只有读取其他 Halo 服务时才需要设置 `openApi.apiDocsUrl`。连接需要自定义请求头或信任库时，还可以配置 `requestHeaders`、`trustStore` 和 `trustStorePassword`。
 :::
 
 :::warning 避免误删生成目录
-执行 `generateApiClient` 任务时会先删除 `openApi.generator.outputDir` 下的所有文件，因此建议将 API client 的输出目录设置为一个独立的目录，以避免误删其他文件。
+`generateOpenApiDocs` 会先删除 `openApi.outputDir`，`generateApiClient` 会先删除 `openApi.generator.outputDir`。这两个配置都必须指向专用目录，不能与源码目录或其他文件共用，以免误删文件。
 
-执行 `generateApiClient` 前建议注释掉你所配置的 `build` 任务对应的 `dependsOn` 任务，以避免因依赖前端构建任务可能无法生成 API Client 的问题。
+`generateOpenApiDocs` 依赖项目的 `build` 任务。如果前端构建又依赖尚未生成的 API Client，需要调整任务依赖关系，避免形成循环依赖。
 :::
 
 ### generateRoleTemplates 任务
@@ -380,7 +371,7 @@ const { data } = await momentsConsoleApiClient.moment.listTags({
 
 `generateRoleTemplates` Task 的出现正是为了简化这一过程，该任务能够根据 [配置 Generate Api Client](#配置-generateapiclient) 中的配置获取到 OpenAPI docs 的 JSON 文件，并自动生成 Halo 的 Role YAML 文件，让开发者可以专注于自己的业务逻辑，而不是纠结于复杂的角色 `rules` 配置。
 
-在生成的 `roleTemplate.yaml` 文件中，rules 部分是基于 OpenAPI docs 中 API 资源和请求方式自动生成的，覆盖了可能的操作。
+在生成的 `roleTemplates.yaml` 文件中，rules 部分是基于 OpenAPI docs 中 API 资源和请求方式自动生成的，覆盖了可能的操作。
 然而，在实际的生产环境中，Role 通常会根据具体的需求被划分为不同的权限级别，例如：
 
 - 查看权限的角色模板：通常只包含对资源的读取权限，如 get、list、watch 等。
@@ -405,7 +396,7 @@ haloPlugin {
 }
 ```
 
-在项目目录中执行以下命令即可生成 `roleTemplates.yaml` 文件到 `worplace` 目录：
+在项目目录中执行以下命令即可生成 `roleTemplates.yaml` 文件到 `workplace` 目录：
 
 ```shell
 ./gradlew generateRoleTemplates
