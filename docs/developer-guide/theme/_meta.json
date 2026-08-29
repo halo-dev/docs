@@ -7,11 +7,12 @@
   "static-resources",
   "settings",
   "i18n",
+  "template-route-mapping",
   "global-variables",
   {
     "type": "dir",
     "name": "template-variables",
-    "label": "模板编写",
+    "label": "页面模板与变量",
     "collapsed": true
   },
   {
@@ -22,10 +23,11 @@
   },
   "template-tag",
   "annotations",
+  "code-snippets",
   "plugin-integration",
   "page-layout",
   "ui-plugin",
-  "code-snippets",
+  "testing",
   "image-optimization",
   "seo",
   "packaging",

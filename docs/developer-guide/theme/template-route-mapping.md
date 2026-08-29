@@ -5,11 +5,18 @@ description: 本文档介绍路由与模板的映射关系，以及自定义模�
 
 此文档讲解系统内部提供的路由与模板映射。
 
+下方列出默认访问路径。用户可以在 Console 的系统设置中修改文章、分类和标签等路由规则，主题不应硬编码这些地址，应优先使用模板变量中的 `status.permalink` 和分页 URL。
+
 ## 主要模板
 
 ### index.html
 
-站点的首页模板，访问地址为 `/`。
+站点的首页模板，访问地址包括：
+
+- `/`
+- `/index`
+- `/page/:page`
+- `/index/page/:page`
 
 ### post.html
 
@@ -24,8 +31,11 @@ description: 本文档介绍路由与模板的映射关系，以及自定义模�
 文章归档页面的模板，访问地址包括：
 
 - `/archives`
+- `/archives/page/:page`
 - `/archives/:year`
+- `/archives/:year/page/:page`
 - `/archives/:year/:month`
+- `/archives/:year/:month/page/:page`
 
 ### tags.html
 
@@ -33,7 +43,7 @@ description: 本文档介绍路由与模板的映射关系，以及自定义模�
 
 ### tag.html
 
-标签归档页面的模板，访问地址默认为 `/tags/:slug`。
+标签归档页面的模板，访问地址默认为 `/tags/:slug`，分页地址为 `/tags/:slug/page/:page`。
 
 ### categories.html
 
@@ -41,7 +51,7 @@ description: 本文档介绍路由与模板的映射关系，以及自定义模�
 
 ### category.html
 
-分类归档页面的模板，访问地址默认为 `/categories/:slug`。
+分类归档页面的模板，访问地址默认为 `/categories/:slug`，分页地址为 `/categories/:slug/page/:page`。
 
 ### author.html
 

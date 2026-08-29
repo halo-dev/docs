@@ -11,7 +11,7 @@ Halo 2.20 重构了登录、注册等页面，现在支持通过主题自定义�
 
 ## 原理讲解
 
-要实现自定义登录、注册等模板，只需要在主题的 `templates` 目录中新建与 Halo 源码中 `application/src/main/resources/templates` 同名的模板文件即可，下面是 Halo 源码中的目录结构：
+要实现自定义登录、注册等模板，只需要在主题的 `templates` 目录中新建与 Halo 源码中 `application/src/main/resources/templates` 同名的模板文件即可。下面列出认证流程相关的 HTML 模板；国际化资源等其他文件请以源码目录为准：
 
 ```tree
 ├── challenges
@@ -19,10 +19,12 @@ Halo 2.20 重构了登录、注册等页面，现在支持通过主题自定义�
 │       ├── totp.html                           两步验证页面
 ├── gateway_fragments
 │   ├── common.html                             通用的模板片段
+│   ├── complete_profile.html                   完善个人资料的模板片段
 │   ├── input.html                              和输入框有关的模板片段
 │   ├── layout.html                             通用的布局模板
 │   ├── login.html                              登录相关的模板片段
 │   ├── logout.html                             退出登录相关的模板片段
+│   ├── oauth2_select.html                      OAuth2 登录方式选择的模板片段
 │   ├── password_reset_email_reset.html         重置密码相关的模板片段
 │   ├── password_reset_email_send.html          发送重置密码邮件相关的模板片段
 │   ├── signup.html                             注册相关的模板片段
@@ -31,8 +33,11 @@ Halo 2.20 重构了登录、注册等页面，现在支持通过主题自定义�
 │   └── email
 │       ├── reset.html                          密码重置页面
 │       ├── send.html                           发送重置密码邮件页面
+├── complete_profile.html                       完善个人资料页面
 ├── login.html                                  登录页面
+├── login_email-code.html                       邮箱验证码登录页面
 ├── login_local.html                            本地登录方式的表单模板
+├── login_oauth2_select.html                    OAuth2 登录方式选择页面
 ├── logout.html                                 退出登录页面
 ├── setup.html                                  系统初始化页面
 ├── signup.html                                 注册页面

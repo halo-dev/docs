@@ -19,14 +19,16 @@ pnpm create halo-plugin
 ✔ Plugin name: › hello-world
 ✔ Domain (for group and package name): › com.example
 ✔ Author name: › Halo
-✔ Choose UI build tool: › Rsbuild
+✔ Include UI project? › yes
+✔ Choose UI build tool: › Vite
 
 📋 Project Configuration:
    Name: hello-world
    Domain: com.example
-   Package: com.example.hello-world
+   Package: com.example.helloworld
    Author: Halo
-   UI Tool: rsbuild
+   Include UI: Yes
+   UI Tool: vite
    Output Directory: /path/to/hello-world
 
 ✔ Create project? › yes
@@ -35,7 +37,8 @@ pnpm create halo-plugin
 - **Plugin name**: 插件的名称，用于插件的标识，此字段必须由小写字母、数字和连字符组成
 - **Domain**: 插件的包名
 - **Author name**: 插件的作者
-- **Choose UI build tool**: 插件的 UI 构建工具，目前支持 `Rsbuild` 和 `Vite`
+- **Include UI project**: 是否创建 Console 和 UC 的 UI 子项目；纯服务端插件可以选择不创建
+- **Choose UI build tool**: 插件的 UI 构建工具，目前支持 `Vite`（推荐）和 `Rsbuild`
 
 更多关于插件创建工具的信息可查阅：[halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin)
 

@@ -9,11 +9,15 @@ description: 使用 Spring Bean 与依赖注入管理 Halo 插件对象，并调
 2. [Web on Reactive](https://docs.spring.io/spring-framework/reference/web-reactive.html)
 3. [Testing](https://docs.spring.io/spring-framework/reference/testing.html)
 
-通过模板插件创建的项目中你会看到 `StarterPlugin` 标注了 `@Component` 注解：
+通过脚手架创建的项目中，插件入口类会标注 `@Component`：
 
 ```java
 @Component
-public class StarterPlugin extends BasePlugin {
+public class HelloWorldPlugin extends BasePlugin {
+
+  public HelloWorldPlugin(PluginContext pluginContext) {
+    super(pluginContext);
+  }
 }
 ```
 
@@ -40,6 +44,19 @@ public class Demo {
 }
 ```
 
+## PluginContext
+
+Halo 会向插件入口的构造函数提供 `PluginContext`，可以安全保留并在插件生命周期内使用：
+
+| 属性 | 含义 |
+| --- | --- |
+| `name` | 插件的 `metadata.name`，可用于日志和本地数据目录命名空间 |
+| `configMapName` | `plugin.yaml` 声明的配置 ConfigMap 名称；未配置时可能为空 |
+| `version` | 当前加载的插件版本 |
+| `runtimeMode` | 当前为开发模式还是部署模式 |
+
+不要使用显示名称、Java 包名或硬编码常量代替插件 `name` 来标识运行中的插件。
+
 ## 依赖注入 Halo 共享的 Bean
 
 Halo 提供了一些共享的 Bean，任何插件都可以直接依赖注入这些 Bean。
@@ -53,6 +70,10 @@ Halo 提供了一些共享的 Bean，任何插件都可以直接依赖注入这�
 ### ExtensionClient
 
 `ExtensionClient` 作用和方法与 ReactiveExtensionClient 一样，但它是阻塞的，只能用在非 NIO 线程中，如后台任务。
+
+### ReactiveSettingFetcher 和 SettingFetcher
+
+用于读取 `plugin.yaml` 中 `settingName` 和 `configMapName` 对应的插件配置，并在配置更新后自动读取新值。响应式调用链使用 `ReactiveSettingFetcher`；具体方法参考[获取插件配置](../../api-reference/server/setting-fetcher.md)。
 
 ### SchemeManager
 
@@ -136,7 +157,7 @@ Halo 提供了登录增强机制，插件可以在登录成功或失败时调用
 
 ### PluginsRootGetter
 
-用于获取 Halo 插件的根目录。它是 `Supplier<Path>` 的子类。
+用于获取 Halo 共享的插件根目录。它是 `Supplier<Path>` 的子类，其中还会存放插件 JAR；插件写入数据时必须创建以 `PluginContext.name` 命名的子目录，不能直接向根目录写业务文件或修改其他插件的数据。存储方式参考[数据存储](./data-storage.md)。
 
 ### ExtensionGetter
 

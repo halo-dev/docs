@@ -3,7 +3,7 @@ title: 插件项目结构
 description: 认识 Halo 插件项目的 Java 后端、Vue 前端、plugin.yaml 描述文件与 Gradle 构建结构，明确源码、静态资源和 UI 构建产物的存放位置
 ---
 
-当你创建一个新的插件项目时，典型的目录结构如下所示：
+使用 `pnpm create halo-plugin` 创建包含 UI 的插件时，核心目录结构如下所示。示例省略了编辑器、代码检查和 CI 等辅助文件：
 
 ```tree
 ├── ui
@@ -13,24 +13,26 @@ description: 认识 Halo 插件项目的 Java 后端、Vue 前端、plugin.yaml 
 │   │   ├── views
 │   │   │   └── HomeView.vue
 │   │   └── index.ts
+│   ├── build.gradle
 │   ├── env.d.ts
 │   ├── package.json
-│   ├── pnpm-lock.yaml
 │   ├── tsconfig.app.json
-│   ├── tsconfig.config.json
 │   ├── tsconfig.json
+│   ├── tsconfig.node.json
 │   ├── tsconfig.vitest.json
-│   └── vite.config.ts
+│   ├── vite.config.ts 或 rsbuild.config.ts
+│   └── vitest.config.ts
 ├── gradle
 ├── src
-│   └── main
-│       ├── java
-│       │   └── com
-│       │       └── example
-│       │           └── starter
-│       │               └── StarterPlugin.java
-│       └── resources
-│           └── plugin.yaml
+│   ├── main
+│   │   ├── java
+│   │   │   └── com/example/helloworld/HelloWorldPlugin.java
+│   │   └── resources
+│   │       ├── logo.png
+│   │       └── plugin.yaml
+│   └── test
+│       └── java
+│           └── com/example/helloworld/HelloWorldPluginTest.java
 ├── LICENSE
 ├── README.md
 ├── build.gradle
@@ -46,7 +48,7 @@ description: 认识 Halo 插件项目的 Java 后端、Vue 前端、plugin.yaml 
 
 `src` 目录中存放的是后端代码，这部分遵循标准的 Java 项目结构。以下是各个文件和文件夹的说明：
 
-- `StarterPlugin.java`：插件后端的入口文件，位于 `src/main/java/com/example/starter` 路径下。你可以根据需要修改包名和类名，但需要确保该类继承 `run.halo.app.plugin.BasePlugin`，以指定其为插件的入口。
+- `HelloWorldPlugin.java`：以 `hello-world` 为项目名时生成的插件后端入口。脚手架会根据项目名生成类名和包路径，该类需要继承 `run.halo.app.plugin.BasePlugin`。
 - `plugin.yaml`：这是插件的描述文件，位于 `src/main/resources` 目录下。该文件是必须的，包含插件的基本信息，如插件名称、版本、作者、描述以及依赖等内容。
 - `resources/ui`：插件 JAR 中的推荐 UI 资源目录。Gradle 会将 `ui/build/dist` 的完整构建产物复制到 `build/resources/main/ui` 后打包，其中可能包含 `ui-plugin.json`、入口、样式、异步分块和其他静态资源。如果插件不包含 UI 部分，此目录可以忽略。
 

@@ -20,7 +20,7 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 ## Finder API
 
 :::info Halo 2.22 自动添加响应式属性
-从 Halo 2.22 开始，Halo 会自动为页面上的所有图片添加响应式图片的相关属性，无需主题主动适配，如果你的主题需要手动为部分图片自定义属性，可以使用下方的 `Finder API`。
+从 Halo 2.22 开始，Halo 会尝试为具有有效 `src` 且能够生成缩略图的图片添加 `srcset`，并在图片没有 `sizes` 时补充默认值。已经包含 `srcset` 的图片会保留主题提供的属性；如果主题需要自定义响应式图片，可以使用下方的 `Finder API`。
 :::
 
 ### `thumbnail.gen(uri, size)`
@@ -71,10 +71,10 @@ description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片�
 ```html
 <img
   src="/upload/post-cover.png"
-  srcset="|/apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=s 400w,
-           /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=m 800w,
-           /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=l 1200w,
-           /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=/upload/post-cover.png&size=xl 1600w|"
+  srcset="/apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=s 400w,
+          /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=m 800w,
+          /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=l 1200w,
+          /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=xl 1600w"
   sizes="(max-width: 1600px) 100vw, 1600px"
 />
 ```

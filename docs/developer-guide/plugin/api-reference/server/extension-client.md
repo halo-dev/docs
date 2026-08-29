@@ -5,16 +5,16 @@ description: 使用 ExtensionClient 和 ReactiveExtensionClient 增删改查自�
 
 Halo 提供了两个类用于与自定义模型对象交互 `ExtensionClient` 和 `ReactiveExtensionClient`。
 
-它们提供了对自定义模型对象的增删改查操作，`ExtensionClient` 是阻塞式的用于后台任务如控制器中操作数据，而 `ReactiveExtensionClient` 返回值都是 Mono 或 Flux 是反应式非阻塞的，它们由 [reactor](https://projectreactor.io/) 提供。
+它们提供了对自定义模型对象的增删改查操作。`ExtensionClient` 是阻塞式的，只能用于非响应式环境，例如已经切换到工作线程的后台任务；WebFlux 控制器、WebFilter 等响应式调用链应使用 `ReactiveExtensionClient`。后者返回 Reactor 提供的 `Mono` 或 `Flux`。
 
 ```java
 public interface ReactiveExtensionClient {
 
-    // 已经过时，建议使用 listBy 或 listAll 代替
     <E extends Extension> Flux<E> list(Class<E> type, Predicate<E> predicate,
         Comparator<E> comparator);
 
     // 已经过时，建议使用 listBy 或 listAll 代替
+    @Deprecated
     <E extends Extension> Mono<ListResult<E>> list(Class<E> type, Predicate<E> predicate,
         Comparator<E> comparator, int page, int size);
 

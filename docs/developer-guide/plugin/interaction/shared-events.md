@@ -21,21 +21,19 @@ Halo 在检测到事件触发时会调用被标注的监听方法。
 ```java
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import run.halo.app.event.SomeSharedEvent;
+import run.halo.app.event.post.PostPublishedEvent;
 
 @Component
 public class HaloEventListener {
 
     @EventListener
-    public void handleSomeSharedEvent(SomeSharedEvent event) {
-        // 处理事件的逻辑
-        System.out.println("Received shared event: " + event.getMessage());
+    public void onPostPublished(PostPublishedEvent event) {
+        System.out.println("Published post: " + event.getName());
     }
 }
 ```
 
-在上面的示例中，handleSomeSharedEvent 方法被注册为 SomeSharedEvent 的监听器。
-当 SomeSharedEvent 事件触发时，Halo 将自动调用此方法并传入事件实例，开发者可以在该方法中编写业务逻辑来响应事件。
+在上面的示例中，文章发布后，Halo 会调用 `onPostPublished` 并通过 `event.getName()` 提供文章的 `metadata.name`。
 
 当然也可以通过实现 `org.springframework.context.ApplicationListener` 接口来监听，这与 [Spring 事件监听](https://docs.spring.io/spring-framework/reference/core/beans/context-introduction.html#context-functionality-events) 的方式一致。
 
@@ -49,14 +47,20 @@ public class HaloEventListener {
 - PostDeletedEvent：文章被删除
 - PostVisibleChangedEvent：文章的可见性（spec.visible）被修改
 
-#### 第三方登陆
+#### 第三方登录
 
-- UserConnectionDisconnectedEvent：用户解绑第三方登陆方式时触发的事件
+- UserConnectionDisconnectedEvent：用户解绑第三方登录方式时触发的事件
 
 #### 用户
 
 - UserLoginEvent：用户登录成功
 - UserLogoutEvent：用户登出成功
+
+#### 搜索索引
+
+- HaloDocumentAddRequestEvent：请求向搜索索引添加或更新文档
+- HaloDocumentDeleteRequestEvent：请求从搜索索引删除指定文档；未提供文档 ID（`null`）时表示删除全部文档
+- HaloDocumentRebuildRequestEvent：请求重建搜索索引
 
 ## 发布自定义共享事件
 
@@ -146,7 +150,7 @@ public class CustomEventPublisher {
 - 事件命名与分类：使用清晰且具有描述性的事件名称，避免让使用者产生困惑如 MomentCreatedEvent 不应该在 Moment 创建之前触发因为事件名称表示是创建后的事件。
 - 避免冲突与重复订阅：确保事件逻辑集中处理，防止监听器重复触发导致性能问题。
 - 性能与资源管理：避免频繁触发事件或长时间占用资源的事件处理逻辑，以确保系统稳定性。
-- 异步监听：监听事件时应该尽可能的使用 `@Async` 注解让 Listener 的处理逻辑是异步的，避免阻塞其他监听器处理
+- 异步监听：耗时且不依赖同步顺序或调用线程上下文的监听器，可以使用 `@Async` 避免阻塞事件发布者；依赖事务、顺序或 Reactor Context 时不要直接切换为异步监听
 
   ```java
   import org.springframework.scheduling.annotation.Async;

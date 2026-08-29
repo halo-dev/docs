@@ -3,7 +3,7 @@ title: 生命周期
 description: 理解 Halo 插件的启动、停止和删除生命周期，区分运行时资源、预置资源与持久化业务数据的清理边界
 ---
 
-根据[插件项目文件结构](../../basics/structure.md)所展示的 `StarterPlugin.java` 中，具有如下方法：
+插件入口类继承的 `BasePlugin` 提供以下生命周期方法。脚手架默认重写 `start()` 和 `stop()`；只有需要处理卸载行为时才重写 `delete()`：
 
 ```java
 @Override
@@ -44,6 +44,8 @@ public void delete() {
 
 只有在插件的卸载约定明确要求删除数据时，才应在 `delete()` 中执行持久化数据清理，并提前考虑数据备份和不可恢复风险。
 :::
+
+存储方式参考[数据存储](./data-storage.md)。
 
 ## 插件启动
 
