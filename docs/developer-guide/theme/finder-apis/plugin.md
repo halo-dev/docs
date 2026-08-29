@@ -1,6 +1,6 @@
 ---
 title: 插件
-description: 使用 PluginFinder 检查指定 Halo 插件是否已安装并启用，或进一步按 Semantic Version 版本范围判断插件是否可用
+description: 使用 PluginFinder 检查指定 Halo 插件是否已启动，或进一步按 Semantic Version 版本范围判断插件是否可用
 ---
 
 ## available(pluginName)
@@ -11,7 +11,7 @@ pluginFinder.available(pluginName)
 
 ### 描述
 
-判断一个插件是否可用，会同时判断插件是否安装和启用。
+判断插件是否处于 `STARTED` 状态。插件未安装、未启用、尚未启动或启动失败时均返回 `false`。
 
 ### 参数
 
@@ -40,7 +40,7 @@ pluginFinder.available('fake-plugin', '>=2.3.0')
 
 ### 描述
 
-判断一个插件是否可用，会同时判断插件是否安装和启用且插件的版本符合 `requiresVersion` 要求，
+判断插件是否处于 `STARTED` 状态，且插件版本符合 `requiresVersion` 要求。
 
 ### 参数
 

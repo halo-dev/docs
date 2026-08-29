@@ -1,5 +1,6 @@
 [
   "extension",
+  "custom-endpoints",
   "reconciler",
   "extension-client",
   "setting-fetcher",

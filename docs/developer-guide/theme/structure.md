@@ -29,6 +29,7 @@ my-theme
 │   └── zh_CN.properties
 ├── theme.yaml
 ├── settings.yaml
+├── annotation-setting.yaml      # 可选的主题附带资源
 └── ui-plugin/                # 可选的 Console / UC UI 扩展
     ├── package.json
     ├── src/
@@ -45,6 +46,7 @@ my-theme
 5. `/i18n/` - 可选的主题国际化消息目录，详细文档请查阅[国际化](./i18n.md)。
 6. `/theme.yaml` - 主题配置文件，配置主题的基本信息，如主题名称、版本、作者等。详细文档请查阅 [配置文件](./config)。
 7. `/settings.yaml` - 主题设置定义文件，配置主题的设置项表单。详细文档请查阅 [设置选项](./settings)。
-8. `/ui-plugin/` - 可选的 Console / UC UI 扩展项目。Halo 只读取其中的 `dist` 构建目录，详细文档请查阅 [UI 扩展](./ui-plugin.md)。
+8. 主题根目录中的其他 `.yaml` 或 `.yml` 文件 - 可选的主题附带资源，只会加载 Halo 允许的资源类型，详细文档请查阅[主题附带资源](./extension-resources.md)。
+9. `/ui-plugin/` - 可选的 Console / UC UI 扩展项目。Halo 只读取其中的 `dist` 构建目录，详细文档请查阅 [UI 扩展](./ui-plugin.md)。
 
 使用 Vite 等构建工具的主题通常还包含 `src` 和 `public`，并由构建命令生成 `templates`。这类项目应修改源码而不是生成目录，详细约定请参考[使用 Vite 开发主题](./vite.md)。

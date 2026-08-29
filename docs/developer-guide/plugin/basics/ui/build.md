@@ -3,7 +3,14 @@ title: 构建
 description: 使用 ui-plugin-bundler-kit 的 Vite 或 Rsbuild 预配置构建 Halo 插件 UI，选择 ESM 或 IIFE 输出并正确打包共享依赖、清单和异步资源
 ---
 
-在 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 工具中，我们已经配置好了 UI 的构建工具和流程，此文档主要说明一些构建细节以及其他可能的构建选项。
+通过 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建的项目已经包含可用构建配置。没有特殊需求时沿用脚手架配置，不要重新实现 Halo 的输出协议。
+
+| 任务 | 阅读位置 |
+| --- | --- |
+| 在 Vite 或 Rsbuild 间选择 | [ui-plugin-bundler-kit](#bundler-kit) |
+| 确认 ESM、IIFE 与最低 Halo 版本 | [输出格式与 Halo 目标](#output-format) |
+| 使用 Halo 提供的 Vue、Axios 和 UI 包 | [共享运行时依赖](#shared-runtime-dependencies) |
+| 从旧版 plugin-starter 迁移 | [HaloUIPluginBundlerKit（已过时）](#legacy-bundler-kit) |
 
 ## 原理
 
@@ -14,9 +21,9 @@ Halo 插件的 UI 部分（Console / UC）以 `index.ts` 为源码入口，默�
 
 在 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建的项目中，`@halo-dev/ui-plugin-bundler-kit` 提供了 [Vite](https://vite.dev/) 和 [Rsbuild](https://rsbuild.dev/) 的预配置。它会根据插件清单选择输出格式、生成 Halo 所需的元数据，并将共享依赖和资源路径配置为与 Halo 运行时兼容的形式，因此不建议自行实现这部分构建协议。
 
-## @halo-dev/ui-plugin-bundler-kit
+## @halo-dev/ui-plugin-bundler-kit {#bundler-kit}
 
-在这个库中，我们提供了三个预配置，分别是：
+这个库提供两个当前预配置和一个兼容旧项目的入口：
 
 1. `viteConfig`: Vite 的预配置
 2. `rsbuildConfig`: Rsbuild 的预配置
@@ -307,7 +314,7 @@ ESM 入口仍需默认导出已有的 `PluginModule`，不应通过顶层副作�
 
 单个 provider 的入口、样式或注册失败时，Halo 会跳过该 provider，并继续启动核心 UI 和其他 provider。入口求值产生的定时器、事件监听器等任意副作用无法保证回滚，因此插件安装、升级、启用、禁用或重新加载后，完整刷新 Console 或 UC 页面是受支持的模块替换和恢复边界。
 
-## HaloUIPluginBundlerKit（已过时）
+## HaloUIPluginBundlerKit（已过时） {#legacy-bundler-kit}
 
 旧版本 [plugin-starter](https://github.com/halo-dev/plugin-starter) 使用的方式，目前已经不再推荐，也不支持 ESM 或主题 UI provider。`HaloUIPluginBundlerKit` 计划在 2.27.0 中移除，请改用构建工具专用入口中的 `viteConfig` 或 `rsbuildConfig`。
 

@@ -1,4 +1,8 @@
 [
+  {
+    "type": "section-header",
+    "label": "开始开发"
+  },
   "introduction",
   "prepare",
   "ai",
@@ -8,6 +12,10 @@
     "name": "examples",
     "label": "案例和最佳实践",
     "collapsed": true
+  },
+  {
+    "type": "section-header",
+    "label": "开发指南"
   },
   {
     "type": "dir",
@@ -39,6 +47,10 @@
     "name": "security",
     "label": "安全和权限管理",
     "collapsed": true
+  },
+  {
+    "type": "section-header",
+    "label": "质量与发布"
   },
   "testing",
   "faq",

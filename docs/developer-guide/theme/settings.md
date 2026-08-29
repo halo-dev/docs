@@ -11,7 +11,7 @@ description: 通过 settings.yaml 和 FormKit 表单定义 Halo 主题设置项�
 
 ## 定义表单
 
-在主题中要使用设置项非常简单，只需要在主题根目录提供 `settings.yaml`，然后在 `theme.yaml` 中配置 `spec.settingName` 和 `spec.configMapName` 即可，在安装或者初始化主题的时候会自动识别并在 Console 端的主题设置中生成表单。
+在主题中使用设置项时，需要在主题根目录提供包含 Setting 的 YAML 文件，并在 `theme.yaml` 中配置 `spec.settingName` 和 `spec.configMapName`。安装或重载主题时，Halo 会识别对应 Setting，并在 Console 的主题设置中生成表单。
 
 ### 示例
 
@@ -40,9 +40,9 @@ spec:
 ```
 
 :::tip 保持配置名称一致
-`settingName` 和 `configMapName` 可以自定义名称，但是 `settingName` 必须和 Setting 的 `metadata.name` 一致。
+`settingName` 必须和 Setting 的 `metadata.name` 一致。`configMapName` 应使用主题专属的稳定名称，并在后续版本中保持不变。
 
-两者需要配合使用：`settingName` 指向设置表单定义，`configMapName` 指向设置数据的存储位置。缺少任意一个，主题设置功能都无法完整使用，例如未配置 `configMapName` 时将无法保存设置。
+`settingName` 指向设置表单定义，`configMapName` 指向设置数据的存储位置。Halo 在缺少 `configMapName` 时会自动生成名称并回写当前 Theme，但重新安装主题时会生成新的名称，之前 ConfigMap 中的设置值不会自动与新 Theme 关联。因此，发布主题时应显式配置 `configMapName`，不要依赖自动生成。
 :::
 
 ```yaml title="theme-foo/settings.yaml" {4}

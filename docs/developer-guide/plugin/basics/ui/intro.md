@@ -14,8 +14,4 @@ Halo 有两个可扩展的前端入口，两者的定位和可用扩展点不同
 
 选择依据是功能的受众：管理性功能放 Console，与当前登录用户相关的自助功能放 UC。在入口文件中，`routes` 注册 Console 路由，`ucRoutes` 注册 UC 路由（详见[入口文件](./entry.md)）；扩展点同理，名称中通常可以区分归属（如 `user:detail:tabs:create` 属于 Console，`uc:user:profile:tabs:create` 属于 UC）。
 
-在开始之前，建议先熟悉或安装以下库和工具：
-
-1. [Node.js 20+](https://nodejs.org)
-2. [pnpm 10+](https://pnpm.io)
-3. [Vue.js 3](https://vuejs.org)
+开始前应熟悉 Vue 3，并按照[准备工作](../../prepare.md)安装 Node.js 和 pnpm。具体版本以当前插件 `ui/package.json` 的 `engines` 和 `packageManager` 为准，不要在多个页面分别维护版本号。

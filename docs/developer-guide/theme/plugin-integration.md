@@ -9,7 +9,7 @@ description: 在 Halo 主题中检查可用插件、保护插件专属调用，�
 
 ## 检查插件是否可用
 
-`pluginFinder.available` 只有在插件已安装并处于启用状态时才返回 `true`。参数应使用插件 `plugin.yaml` 中的 `metadata.name`，而不是显示名称。
+`pluginFinder.available` 只有在插件处于 `STARTED` 状态时才返回 `true`。已启用但尚未启动或启动失败的插件仍会返回 `false`。参数应使用插件 `plugin.yaml` 中的 `metadata.name`，而不是显示名称。
 
 ```html
 <button
