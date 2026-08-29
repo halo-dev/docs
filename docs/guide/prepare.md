@@ -123,9 +123,9 @@ Halo 目前支持以下数据库：
 
 1. `db`：存放 H2 Database 的物理文件，如果你使用其他数据库，那么不会存在这个目录。
 2. `themes`：里面包含用户所安装的主题。
-2. `plugins`：里面包含用户所安装的插件。
-5. `attachments`：附件目录。
-4. `logs`：运行日志目录。
+3. `plugins`：里面包含用户所安装的插件。
+4. `attachments`：附件目录。
+5. `logs`：运行日志目录。
 6. `application.yaml`：配置文件（可选），具体配置方式可查阅 [配置说明](./install/config.md)。
 7. `backups`：备份文件目录。
 8. `static`：虚拟的根文件目录，需要手动创建。

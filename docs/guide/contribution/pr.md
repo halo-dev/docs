@@ -7,7 +7,7 @@ description: 参与 Halo 代码贡献的完整流程，涵盖查找并认领 Goo
 
 ## 发现 Issue
 
-所有的代码尽可能都有依据（Issue），不是凭空产生。
+对于新功能或较大的行为变更，请先创建 Issue 以确认范围和设计；对于目标明确的 Bug 修复，可以直接提交 Pull Request。
 
 ### 寻找一个 Good First Issue
 
@@ -33,8 +33,8 @@ Issue。这样可避免两位贡献者在同一个问题上花时间。
 2. Clone 仓库到本地
 
    ```bash
-   git clone https://github.com/{YOUR_USERNAME}/halo --recursive
-   # 或者 git clone git@github.com:{YOUR_USERNAME}/halo.git --recursive
+   git clone https://github.com/{YOUR_USERNAME}/halo
+   # 或者 git clone git@github.com:{YOUR_USERNAME}/halo.git
    ```
 
 3. 添加主仓库
@@ -52,15 +52,14 @@ Issue。这样可避免两位贡献者在同一个问题上花时间。
    我们需要从主仓库的主分支创建一个新的开发分支。
 
    ```bash
-   git checkout upstream/main
-   git checkout -b {BRANCH_NAME}
+   git switch --create {BRANCH_NAME} upstream/main
    ```
 
 5. 提交代码
 
    ```bash
-   git add .
-   git commit -s -m "Fix a bug king"
+   git add {CHANGED_FILES}
+   git commit -s -m "Fix the issue description"
    git push origin {BRANCH_NAME}
    ```
 
@@ -69,7 +68,7 @@ Issue。这样可避免两位贡献者在同一个问题上花时间。
    在提交 Pull Request 之前，尽量保证当前分支和主分支的代码尽可能同步，这时需要我们手动操作。示例：
 
    ```bash
-   git fetch upstream/main
+   git fetch upstream
    git merge upstream/main
    git push origin {BRANCH_NAME}
    ```
@@ -88,17 +87,16 @@ Issue。这样可避免两位贡献者在同一个问题上花时间。
 - 提交 Pull Request 请充分自测。
 - 每个 Pull Request 尽量只解决一个 Issue，特殊情况除外。
 - 应尽可能多的添加单元测试，其他测试（集成测试和 E2E 测试）可看情况添加。
-- 不论需要解决的 Issue 发生在哪个版本，提交 Pull Request 的时候，请将主仓库的主分支设置为 `main`。例如：即使某个 Bug 于 Halo 2.0.x 被发现，但是提交 Pull Request 仍只针对
-  `main` 分支，等待 Pull Request 合并之后，我们会通过 `/cherrypick release-2.0` 或者 `/cherry-pick release-2.1` 指令将此 Pull Request
-  的修改应用到 `release-2.0` 和 `release-2.1` 分支上。
+- Pull Request 默认提交到主仓库的 `main` 分支，由维护者决定是否需要应用到维护分支。
+- 按照 Pull Request 模板填写变更原因、关联 Issue、Release Note（没有用户可见变更时填写 `NONE`）和 `/kind` 标签。
 
 ### 更新 commits
 
 Code Review 阶段可能需要 Pull Request 作者重新修改代码，请直接在当前分支 commit 并 push 即可，无需关闭并重新提交 Pull Request。示例：
 
 ```bash
-git add .
-git commit -s -m "Refactor some code according code review"
+git add {CHANGED_FILES}
+git commit -s -m "Address review feedback"
 git push origin bug/king
 ```
 
@@ -108,3 +106,36 @@ git push origin bug/king
 
 请参考 [https://docs.halo.run/developer-guide/core/code-style](https://docs.halo.run/developer-guide/core/code-style)
 ，请确保所有代码格式化之后再提交。
+
+提交前请根据修改范围执行相应检查。
+
+后端和通用检查：
+
+```bash
+./gradlew spotlessApply
+./gradlew spotlessCheck
+./gradlew clean check
+```
+
+前端检查（在仓库根目录运行）：
+
+```bash
+pnpm -C ui install
+pnpm -C ui build:packages
+pnpm -C ui lint
+pnpm -C ui typecheck
+pnpm -C ui test:unit
+```
+
+### 功能和 API 变更
+
+功能变更或 API 变更（新增端点、破坏性变更、行为调整）需要在实现前按照 [OpenSpec](https://github.com/Fission-AI/OpenSpec) 流程创建提案并确认设计。
+
+### AI 辅助贡献
+
+Halo 允许使用 AI Agent 辅助代码生成、重构和设计探索，但贡献者仍需对提交的每一行代码负责：
+
+- 审查并理解所有 AI 生成内容；
+- 验证正确性、安全性、性能和可维护性；
+- 删除低质量、重复或与需求无关的代码；
+- AI 对最终修改有实质贡献时，在 Pull Request 描述中说明。
