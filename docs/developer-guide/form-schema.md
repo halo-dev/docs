@@ -76,7 +76,7 @@ spec:
 
 自定义的选择器组件，支持静态和动态数据源，支持多选等功能。
 
-选项对象至少需要包含 `label` 与 `value`。除此之外，还可以提供 `icon` 与 `description` 用于增强下拉选项展示：
+选项对象至少需要包含 `label` 与 `value`。除此之外，还可以提供 `icon` 与 `description` 用于增强下拉选项展示（引入版本：2.25.0，远程动态数据源可通过 `requestOption.iconField` 与 `requestOption.descriptionField` 映射响应字段）：
 
 - `icon`：图标图片地址，会以 `<img>` 渲染。
 - `description`：显示在 `label` 下方的说明文字，同时参与本地静态选项搜索。
@@ -660,6 +660,8 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
 
 统一的图标选择器，基于 [Iconify](https://iconify.design/)。
 
+**引入版本**: 2.22.0
+
 示例
 
 ```yaml
@@ -678,7 +680,7 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
   - `name`：Iconify 的图标名称，需要在使用的地方自行加载图标
 - `value-only`：是否仅返回图标数据，默认为 `false`
 - `popper-placement`：图标选择弹窗的打开位置，默认为 `auto`，可以为：`auto`、`auto-end`、`auto-start`、`bottom`、`bottom-end`、`bottom-start`、`left`、`left-end`、`left-start`、`right`、`right-end`、`right-start`、`top`、`top-end`、`top-start`
-- `sizing`：图标尺寸配置对象，包含以下属性：
+- `sizing`：图标尺寸配置对象（引入版本：2.23.0），包含以下属性：
   - `enabled`：是否显示图标尺寸配置，默认为 `false`
   - `default`：默认尺寸，默认为 `24`
   - `presets`：预设尺寸，字符串数组类型
@@ -722,6 +724,8 @@ UI 效果：
 ### array
 
 一组重复的输入组件，展示为列表形式，可以用于定义一组数据。最终得到的数据为一个对象的数组，方便使用者对此数组进行增加、删除、排序等操作。
+
+**引入版本**: 2.22.0（计划用于替换已过时的 `repeater` 组件）
 
 参数
 
@@ -803,6 +807,8 @@ UI 效果：
 
 开关组件，提供两个值之间的选择；当您想使用户切换功能开或关时，这是一个很好的选项
 
+**引入版本**: 2.22.1
+
 参数
 
 - `onValue`：开关打开时的值，默认为 `true`
@@ -832,6 +838,8 @@ UI 效果：
 ### toggle
 
 切换组件，用于对一组图片、颜色或文字等选择切换，支持单选与多选。它的功能与 `select` 组件类似，但相较于 `select` 组件，`toggle` 组件可以更直观的展示选项。
+
+**引入版本**: 2.22.8
 
 参数：
 
@@ -889,7 +897,7 @@ UI 效果：
 - `requiredKeys`：所需的密钥字段，用于为用户说明所选的密钥资源中需要包含的字段，此字段为对象数组类型，对象包含以下属性：
   - `key`：密钥字段名称
   - `help`：密钥字段名称的描述
-- `descriptionPreset`：创建密钥时的备注预设。打开创建密钥弹窗时，备注字段会预填为 `<descriptionPreset> - <当前时间>`，用户仍可在保存前编辑。
+- `descriptionPreset`：创建密钥时的备注预设（引入版本：2.25.0）。打开创建密钥弹窗时，备注字段会预填为 `<descriptionPreset> - <当前时间>`，用户仍可在保存前编辑。
 
 #### 示例
 

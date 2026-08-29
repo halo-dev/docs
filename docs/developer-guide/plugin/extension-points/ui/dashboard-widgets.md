@@ -14,6 +14,8 @@ description: 扩展仪表盘小部件 - console:dashboard:widgets:create
 
 此扩展点用于创建自定义的仪表盘小部件。
 
+**引入版本**：2.21.0
+
 ### 定义方式
 
 ```ts
@@ -71,7 +73,9 @@ export interface DashboardWidgetDefinition {
   id: string;                                    // 小部件唯一标识符
   component: Raw<Component>;                     // 小部件 Vue 组件
   group: string;                                 // 小部件分组，用于在小部件库中分类显示
-  configFormKitSchema?: Record<string, unknown>[]; // 配置表单 FormKit 定义
+  configFormKitSchema?: Record<string, unknown>[]  // 配置表单 FormKit 定义，支持数组、
+    | (() => Record<string, unknown>[])            // 返回数组的函数
+    | (() => Promise<Record<string, unknown>[]>)   // 或返回 Promise 的异步函数
   defaultConfig?: Record<string, unknown>;       // 默认配置
   defaultSize: {                                 // 默认尺寸
     w: number;                                   // 宽度（网格单位），根据不同屏幕尺寸，网格单位不同，可参考：{ lg: 12, md: 12, sm: 6, xs: 4 }
@@ -169,6 +173,8 @@ const emit = defineEmits<{
 ## console:dashboard:widgets:internal:quick-action:item:create
 
 此扩展点用于为快速操作小部件添加自定义操作项。
+
+**引入版本**：2.21.0
 
 ### 定义方式
 
@@ -269,9 +275,41 @@ interface DashboardWidgetQuickActionStandardItem
   action: () => void;            // 点击操作（必需）
 }
 
+interface DashboardWidgetQuickActionRouteItem
+  extends DashboardWidgetQuickActionBaseItem {
+  component?: never;             // 不使用自定义组件
+  action?: never;                // 不使用点击操作
+  icon: Raw<Component>;          // 图标（必需）
+  title: string;                 // 标题（必需）
+  route: RouteLocationRaw;       // 点击后跳转的路由（必需）
+}
+
 export type DashboardWidgetQuickActionItem =
   | DashboardWidgetQuickActionComponentItem
-  | DashboardWidgetQuickActionStandardItem;
+  | DashboardWidgetQuickActionStandardItem
+  | DashboardWidgetQuickActionRouteItem;
+```
+
+如果操作项的目的只是跳转到某个页面，可以使用路由变体而无需编写 `action`：
+
+**路由变体引入版本**：2.22.0
+
+```ts
+export default definePlugin({
+  extensionPoints: {
+    "console:dashboard:widgets:internal:quick-action:item:create": () => {
+      return [
+        {
+          id: "my-plugin-page",
+          icon: markRaw(IconPlug),
+          title: "插件管理页面",
+          route: { name: "MyPluginPage" },
+          permissions: ["plugin:my-plugin:view"],
+        },
+      ];
+    },
+  },
+});
 ```
 
 ## 权限控制

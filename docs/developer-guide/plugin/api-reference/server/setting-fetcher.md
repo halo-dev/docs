@@ -18,16 +18,20 @@ public interface ReactiveSettingFetcher {
     <T> Mono<T> fetch(String group, Class<T> clazz);
 
     @NonNull
-    Mono<JsonNode> get(String group);
+    Mono<JsonNode> getSettingValue(String group);
 
     @NonNull
-    Mono<Map<String, JsonNode>> getValues();
+    Mono<Map<String, JsonNode>> getSettingValues();
 }
 ```
 
 - `fetch` 方法用于获取指定分组的配置数据，并将其转换为指定的 Java 类型。
-- `get` 方法用于获取指定分组的配置数据，返回 `JsonNode` 类型。
-- `getValues` 方法用于获取所有配置数据，返回 `Map<String, JsonNode>` 类型，其中键为分组名称，值为配置对象。
+- `getSettingValue` 方法用于获取指定分组的配置数据，返回 `JsonNode` 类型。
+- `getSettingValues` 方法用于获取所有配置数据，返回 `Map<String, JsonNode>` 类型，其中键为分组名称，值为配置对象。
+
+:::warning 已废弃的方法
+`get(group)` 和 `getValues()` 自 Halo 2.23.0 起被标记为 `@Deprecated(forRemoval = true)`，将在后续版本移除，请迁移到 `getSettingValue(group)` 和 `getSettingValues()`。注意新方法的返回类型为 Jackson 3 的 `tools.jackson.databind.JsonNode`，而废弃方法返回 Jackson 2 的 `com.fasterxml.jackson.databind.JsonNode`，迁移时需要同步调整 import。
+:::
 
 `ReactiveSettingFetcher` 和 `SettingFetcher` 底层都对配置数据进行了缓存，以提高性能，并且在配置变更时会自动刷新缓存，所以直接调用这些方法即可获取最新的配置数据。
 

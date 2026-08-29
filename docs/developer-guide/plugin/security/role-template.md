@@ -43,20 +43,25 @@ rules:
 
 资源型规则用于定义对资源的操作权限，API 符合以下特征：
 
-- 以 `/api` 开头，且以 `/api/<version>/<resource>[/<resourceName>/<subresource>]` 规则组成 APIs，最少路径层级为 3 即 `/api/<version>/<resource>`，最多路径层级为 5 即包含 `<resourceName>` 和 `<subresource>`，例如 `/api/v1/posts`。
-- 以 `/apis/<group>/<version>/<resource>[/<resourceName>/<subresource>]` 规则组成的 APIs，最少路径层级为 4 即 `/apis/<group>/<version>/<resource>`，最多路径层级为 6 即包含 `<resourceName>` 和 `<subresource>`，例如 `/apis/my-plugin.halo.run/v1alpha1/persons`。
+- 以 `/api` 开头，且以 `/api/<version>/<resource>[/<resourceName>[/<subresource>[/<subName>]]]` 规则组成 APIs，最少路径层级为 3 即 `/api/<version>/<resource>`，最多路径层级为 6 即依次包含 `<resourceName>`、`<subresource>` 和 `<subName>`，例如 `/api/v1/posts`。
+- 以 `/apis/<group>/<version>/<resource>[/<resourceName>[/<subresource>[/<subName>]]]` 规则组成的 APIs，最少路径层级为 4 即 `/apis/<group>/<version>/<resource>`，最多路径层级为 7，例如 `/apis/my-plugin.halo.run/v1alpha1/persons`。
 
 :::info API 路径限制
 `[]`包裹的部分表示可选，`/api` 前缀被 Halo 保留，不允许插件定义以 `/api` 开头的资源型 APIs，所以插件的资源型 APIs 都是以 `/apis` 开头的。
 :::
 
 通常可以通过 `apiGroups`、`resources`、`resourceNames`、`verbs` 来组合定义。
+
+:::warning 注意
+`resources` 只填写 API 路径中的 resource 段（如 `persons`），**不包含插件名或 group 前缀**；子资源写作 `<resource>/<subresource>`（如 `persons/status`）。
+:::
+
 例如对于资源型 API `GET /apis/my-plugin.halo.run/v1alpha1/persons`，可以定义如下规则：
 
 ```yaml
 rules:
   - apiGroups: [ "my-plugin.halo.run" ]
-    resources: [ "my-plugin/persons" ]
+    resources: [ "persons" ]
     verbs: [ "list" ]
 ```
 
@@ -65,7 +70,7 @@ rules:
 ```yaml
 rules:
   - apiGroups: [ "my-plugin.halo.run" ]
-    resources: [ "my-plugin/persons" ]
+    resources: [ "persons" ]
     resourceNames: [ "zhangsan" ]
     verbs: [ "get" ]
 ```
@@ -105,7 +110,7 @@ metadata:
       ["plugin:my-plugin:person:view"]
 rules:
   - apiGroups: ["my-plugin.halo.run"]
-    resources: ["my-plugin/persons"]
+    resources: ["persons"]
     verbs: ["*"]
 ---
 apiVersion: v1alpha1
@@ -123,7 +128,7 @@ metadata:
       ["plugin:my-plugin:person:manage"]
 rules:
   - apiGroups: [ "my-plugin.halo.run" ]
-    resources: [ "my-plugin/persons" ]
+    resources: [ "persons" ]
     verbs: [ "get", "list" ]
 ```
 

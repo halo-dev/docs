@@ -55,11 +55,11 @@ description: 记录每一个版本的主题 API 变更记录，方便开发者�
 
 在 2.22.8 中，我们为 FormKit 表单新增了 `toggle` 组件，这是一个可以对一组图片、颜色或文字等进行选择切换的组件，详细文档可查阅：[表单定义#toggle](../../developer-guide/form-schema.md#toggle)
 
-## 2.22.2
+## 2.22.1
 
 ### 表单定义 > 新增 `switch` 表单类型
 
-在 2.22.2 中，我们为 FormKit 表单新增了 `switch` 组件，用于定义一个功能的开关，详细文档可查阅：[表单定义#switch](../../developer-guide/form-schema.md#switch)
+在 2.22.1 中，我们为 FormKit 表单新增了 `switch` 组件，用于定义一个功能的开关，详细文档可查阅：[表单定义#switch](../../developer-guide/form-schema.md#switch)
 
 ## 2.22.0
 

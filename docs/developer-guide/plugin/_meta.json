@@ -5,6 +5,12 @@
   "hello-world",
   {
     "type": "dir",
+    "name": "examples",
+    "label": "案例和最佳实践",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
     "name": "basics",
     "label": "基础",
     "collapsed": true
@@ -34,13 +40,8 @@
     "label": "安全和权限管理",
     "collapsed": true
   },
-  {
-    "type": "dir",
-    "name": "examples",
-    "label": "案例和最佳实践",
-    "collapsed": true
-  },
   "testing",
+  "faq",
   "release-checklist",
   "api-changelog"
 ]

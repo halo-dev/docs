@@ -1,28 +1,28 @@
 ---
-title: Devtools
-description: 了解 Halo 的 Devtools 插件开发工具的使用
+title: DevTools
+description: 了解 Halo 的 DevTools 插件开发工具的使用
 ---
 
-Devtools 插件开发工具提供了一些 Task 用于辅助 Halo 插件的运行与调试，使用此工具的前提是需要具有 [Docker](https://docs.docker.com/get-docker/) 环境。
+DevTools 插件开发工具提供了一些 Task 用于辅助 Halo 插件的运行与调试，使用此工具的前提是需要具有 [Docker](https://docs.docker.com/get-docker/) 环境。
 
-Devtools 还提供了一些其他的构建任务，如插件打包、插件检查等。
+DevTools 还提供了一些其他的构建任务，如插件打包、插件检查等。
 
 DevTools 适合开发期运行和联调；自动化检查、兼容性验证及最终 JAR 安装测试参考[测试插件](../testing.md)。
 
 ## 安装
 
-Devtools 是使用 Java 开发的一个 [Gradle](https://gradle.org/) 插件，如果你使用的 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建的插件项目，那么你无需任何操作，它已经默认集成了 Devtools 插件。
+DevTools 是使用 Java 开发的一个 [Gradle](https://gradle.org/) 插件，如果你使用的 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建的插件项目，那么你无需任何操作，它已经默认集成了 DevTools 插件。
 
 你可以在项目的 `build.gradle` 中找到它：
 
 ```groovy
 plugins {
   // ...
-  id "run.halo.plugin.devtools" version "0.4.0"
+  id "run.halo.plugin.devtools" version "0.8.0"
 }
 ```
 
-Release 版本和版本说明可以在 [GitHub Releases](https://github.com/halo-sigs/halo-gradle-plugin/releases) 上查看。
+Release 版本和版本说明可以在 [GitHub Releases](https://github.com/halo-sigs/halo-gradle-plugin/releases) 上查看；插件开发依赖的 platform BOM（`run.halo.tools.platform:plugin`）最新版本可以在 [Maven Central](https://central.sonatype.com/artifact/run.halo.tools.platform/plugin) 上查看，建议与目标 Halo 版本保持一致。
 
 ## 使用说明
 
@@ -50,18 +50,22 @@ API 文档：http://localhost:8090/swagger-ui.html
 修改代码后，无需停止服务，只需执行：
 
 ```shell
-./gradlew reload
+./gradlew reloadPlugin
 ```
 
-即可应用改动。如果使用 watch 任务启动插件，则不需要执行 `reload`，它会自动监听并重载插件。
+即可应用改动。如果使用 watch 任务启动插件，则不需要执行 `reloadPlugin`，它会自动监听并重载插件。
+
+:::tip 关于任务名
+`reloadPlugin` 是规范任务名；得益于 Gradle 的任务名缩写特性，`./gradlew reload` 在没有歧义时也可以工作，但建议使用完整任务名。
+:::
 
 ## 配置
 
-可通过 `build.gradle` 文件中的 `halo {}` 块自定义 Devtools 启动 Halo 服务必要配置，示例如下：
+可通过 `build.gradle` 文件中的 `halo {}` 块自定义 DevTools 启动 Halo 服务必要配置，示例如下：
 
 ```groovy
 halo {
-  version = '2.20'
+  version = '2.26'
   superAdminUsername = 'admin'
   superAdminPassword = 'admin'
   externalUrl = 'http://localhost:8090'
@@ -135,7 +139,7 @@ logging:
 ./gradlew haloServer
 ```
 
-此任务用于启动 Halo 服务并自动将使用此 Gradle 插件的 Halo 插件项目以开发模式加载到 Halo 服务中，当你修改了插件的代码后，可以通过 `reload` 任务使更改生效。
+此任务用于启动 Halo 服务并自动将使用此 Gradle 插件的 Halo 插件项目以开发模式加载到 Halo 服务中，当你修改了插件的代码后，可以通过 `reloadPlugin` 任务使更改生效。
 
 #### haloServer 任务默认配置
 
@@ -143,7 +147,7 @@ logging:
 
 ```groovy
 halo {
-  version = '2.9.1'
+  version = '2.26'
   superAdminUsername = 'admin'
   superAdminPassword = 'admin'
   externalUrl = 'http://localhost:8090'
@@ -157,12 +161,12 @@ halo {
 
 如需修改，可以在 `build.gradle` 文件中进行配置。
 
-### reload 任务
+### reloadPlugin 任务
 
 使用方式：
 
 ```shell
-./gradlew reload
+./gradlew reloadPlugin
 ```
 
 此任务用于重新加载当前正在开发的插件，修改代码后执行此任务以应用更改。

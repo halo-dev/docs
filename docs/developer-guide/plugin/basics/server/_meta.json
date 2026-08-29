@@ -1,1 +1,8 @@
-["lifecycle", "object-management", "reactive-development", "data-storage"]
+[
+  "lifecycle",
+  "object-management",
+  "reactive-development",
+  "data-storage",
+  "scheduled-tasks",
+  "logging"
+]

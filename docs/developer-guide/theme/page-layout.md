@@ -47,6 +47,29 @@ description: 了解如何通过主题提供页面布局，让插件前台页面�
 
 如果你的主题已经使用 `templates/layout.html` 作为内部公共模板，只要它声明了 `html(head, content)` 片段，就可以同时作为页面布局契约使用。如果这只是主题内部私有模板，建议改用 `templates/modules/layout.html` 等其他路径，避免被识别为插件页面集成布局。
 
+## 在主题页面中复用布局
+
+主题自身的页面模板同样可以通过 `layout :: html(...)` 复用这个公共布局，不需要页头扩展时传 `head = null`：
+
+```html title="templates/index.html"
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{layout :: html(head = null, content = ~{::content})}"
+>
+  <th:block th:fragment="content">
+    <!-- 文章列表 -->
+    <ul>
+      <li th:each="post : ${posts.items}">
+        <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+      </li>
+    </ul>
+  </th:block>
+</html>
+```
+
+放在 `templates/modules/layout.html` 等其他路径的私有布局，通过 `modules/layout :: ...` 引用。
+
 ## 插件页面调用布局
 
 插件模板可以通过 `layout :: html(...)` 调用当前主题的页面布局：

@@ -63,8 +63,20 @@ public interface ReactiveExtensionClient {
      * @param <E> is Extension type.
      */
     <E extends Extension> Mono<E> delete(E extension);
+
+    /**
+     * Watches the changes of all extensions.
+     */
+    void watch(Watcher watcher);
 }
 ```
+
+- `fetch(GroupVersionKind, name)`：以 `Unstructured` 形式按 GVK 和名称获取自定义模型，适用于不确定具体 Java 类型的场景。
+- `watch`：注册一个 `Watcher` 监听所有自定义模型的变更事件。两个 API 均自 Halo 2.4.0 起可用。
+
+:::warning 已废弃的方法
+`getJsonExtension(GroupVersionKind, name)` 自 Halo 2.23.0 起被标记为 `@Deprecated(forRemoval = true)`，请迁移到 `fetch(GroupVersionKind, name)`。
+:::
 
 ### 示例
 
@@ -99,6 +111,63 @@ public PersonService {
 注意：非阻塞线程中不能调用阻塞式方法。
 
 我们建议你更多的使用响应式的 `ReactiveExtensionClient` 去替代 `ExtensionClient`。
+
+### 监听模型变更 {#watch}
+
+如果只需要在自定义模型发生变更时执行一些逻辑（而不是持续调谐到期望状态），可以通过 `watch` 方法注册一个 `Watcher`：
+
+```java
+import jakarta.annotation.PreDestroy;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+@Component
+public class PersonWatcher implements Watcher {
+
+    private final AtomicBoolean disposed = new AtomicBoolean();
+    private Runnable disposeHook = () -> {};
+
+    public PersonWatcher(ReactiveExtensionClient client) {
+        client.watch(this);
+    }
+
+    @Override
+    public void onAdd(Extension extension) {
+        if (extension instanceof Person person) {
+            // do something
+        }
+    }
+
+    @Override
+    public void onUpdate(Extension oldExtension, Extension newExtension) {
+        // do something
+    }
+
+    @Override
+    public void onDelete(Extension extension) {
+        // do something
+    }
+
+    @Override
+    public void registerDisposeHook(Runnable dispose) {
+        this.disposeHook = dispose;
+    }
+
+    @PreDestroy
+    @Override
+    public void dispose() {
+        if (disposed.compareAndSet(false, true)) {
+            disposeHook.run();
+        }
+    }
+
+    @Override
+    public boolean isDisposed() {
+        return disposed.get();
+    }
+}
+```
+
+`Watcher` 的 `onAdd`、`onUpdate`、`onDelete` 分别对应模型的创建、更新和删除事件。需要注意的是 `watch` 会接收**所有**自定义模型的变更，需要在回调中自行过滤类型，并在插件上下文关闭时调用 `dispose()` 取消注册；如果需要声明式地将资源持续调谐到期望状态，应优先使用 [Reconciler](./reconciler.md)。
 
 ### 查询 {#query}
 

@@ -17,6 +17,13 @@ Use pnpm 11.24.0, as declared in `package.json`.
 
 Do not hand-edit `pnpm-lock.yaml` or other generated artifacts.
 
+## Documentation Conventions
+
+- Sidebar order and labels come from `_meta.json` files next to the pages: a plain array lists file names in order, and `{ "type": "dir", "name": ..., "label": ... }` entries nest directories. Every directory with pages should have one; files not listed fall back to filename ordering, which is not controlled.
+- Directories and files prefixed with `_` (for example `docs/developer-guide/theme/vo/_PostVo.md` or `docs/developer-guide/plugin/extension-points/ui/interface/_OperationItem.md`) are include partials: they have no frontmatter, produce no page of their own, and are inlined into the pages that reference them. Never delete one just because it looks orphaned, and never link to one directly — check which page includes it and edit in place.
+- When a directory's `index.md` is reserved for the auto-generated overview (`overview: true`), the content page for that directory's first topic uses a semantic name instead (for example `template-variables/home.mdx`).
+- When documenting an API, note the version that introduced it (see the `api-changelog.md` pages for what shipped when) so readers and AI agents can judge version applicability from a single page.
+
 ## Coding Style & Naming Conventions
 
 Biome is the source of truth for TypeScript, JavaScript, JSON, and CSS formatting. Use spaces for indentation and single quotes in JavaScript/TypeScript. Keep configuration in TypeScript and prefer existing Rspress options over custom components. Name documentation files in lowercase kebab-case, such as `migrate-from-1.x.md`. Use MDX only when a page needs components; otherwise prefer Markdown. Keep headings task-oriented and code samples minimal and runnable.

@@ -139,3 +139,9 @@ Halo 提供了一个用于插件开发的 DevTools，它可以帮助你快速的
    在插件列表将能看到插件已经被正确启动，并且在左侧菜单添加了一个 `示例分组`，其下有一个名 `示例页面` 的菜单。
 
    ![hello-world-in-plugin-list](/img/plugin-hello-world.png)
+
+## 下一步
+
+- 了解插件项目的完整组成：[目录结构](./basics/structure.md)
+- 跟随完整案例开发一个具有前后端的插件：[Todo List 插件](./examples/todolist.md)
+- 查阅可用的扩展能力：[扩展点和定制化](./extension-points/index.md)

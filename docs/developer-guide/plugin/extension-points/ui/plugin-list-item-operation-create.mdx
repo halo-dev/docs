@@ -14,7 +14,7 @@ export default definePlugin({
   extensionPoints: {
     "plugin:list-item:operation:create": (
       plugin: Ref<Plugin>
-    ): OperationItem<Plugin>[] | Promise<OperationItem<Plugin>[]> => {
+    ): OperationItem<Plugin>[] => {
       return [
         {
           priority: 10,

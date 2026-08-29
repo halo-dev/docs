@@ -113,6 +113,8 @@ postFinder.cursorByCategory(postName);
 
 根据文章的 `metadata.name` 获取同一主分类下相邻的文章（上一篇 / 下一篇）。
 
+**引入版本**: 2.25.0
+
 主分类为文章 `spec.categories` 中的第一个分类。此方法只匹配同一分类下的文章，不会包含子分类中的文章。如果当前文章没有分类、未发布或者不存在，将返回空的导航结果。
 
 :::info 上一篇与下一篇的定义
@@ -190,6 +192,8 @@ postFinder.random(maxSize);
 
 随机获取文章列表。
 
+**引入版本**: 2.24.1
+
 ### 参数
 
 1. `maxSize:int` - 获取文章的最大数量，取值范围为 1 到 100。
@@ -216,7 +220,7 @@ postFinder.list({
   size: 10,
   tagName: 'fake-tag',
   categoryName: 'fake-category',
-  ownerName: 'fake-owner',
+  owner: 'fake-owner',
   pinned: true,
   sort: {'spec.publishTime,desc', 'metadata.creationTimestamp,asc'}
 });
@@ -228,14 +232,22 @@ postFinder.list({
 
 可以使用此方法来代替 `list(page, size)`、`listByCategory(page, size, categoryName)`、`listByTag(page, size, tag)`、`listByOwner(page, size, owner)` 方法。
 
+:::info 排序与分类筛选的默认行为
+
+- 默认排序为 `spec.pinned,desc → spec.priority,desc → spec.publishTime,desc → metadata.name,asc`。传递自定义 `sort` 时，自定义排序会拼接到默认排序之前，默认排序仍然生效。
+- 使用 `categoryName` 筛选时，会同时包含该分类的**所有子分类**下的文章。这与 [cursorByCategory(postName)](#cursorbycategorypostname) 只匹配同一分类、不包含子分类的行为相反。
+- 未传递任何筛选参数时，不会返回「不在列表中显示」（`status.hideFromList`）的文章。
+
+:::
+
 ### 参数
 
 1. `page:int` - 分页页码，从 1 开始
 2. `size:int` - 分页条数
 3. `tagName:string` - 标签唯一标识 `metadata.name`
-4. `categoryName:string` - 分类唯一标识 `metadata.name`
-5. `ownerName:string` - 创建者用户名 `name`
-6. `pinned:boolean` - 置顶状态，`true` 仅返回置顶文章，`false` 仅返回非置顶文章；不传时不按置顶状态筛选
+4. `categoryName:string` - 分类唯一标识 `metadata.name`，包含子分类下的文章
+5. `owner:string` - 创建者用户名 `name`
+6. `pinned:boolean` - 置顶状态，`true` 仅返回置顶文章，`false` 仅返回非置顶文章；不传时不按置顶状态筛选（引入版本：2.26.0）
 7. `sort:string[]` - 排序字段，格式为 `字段名,排序方式`，排序方式可选值为 `asc` 或 `desc`，如 `spec.publishTime,desc`，传递时需要使用 `{}` 形式并用逗号分隔表示数组。
 
 ### 返回值
@@ -250,7 +262,7 @@ postFinder.list({
   size: 10,
   tagName: 'fake-tag',
   categoryName: 'fake-category',
-  ownerName: 'fake-owner',
+  owner: 'fake-owner',
   pinned: true,
   sort: {'spec.publishTime,desc', 'metadata.creationTimestamp,asc'}
 })}">
@@ -339,7 +351,7 @@ postFinder.listByTag(page, size, tag);
 
 1. `page:int` - 分页页码，从 1 开始
 2. `size:int` - 分页条数
-3. `tag:string` - 文章分类唯一标识 `metadata.name`
+3. `tag:string` - 文章标签唯一标识 `metadata.name`
 
 ### 返回值
 

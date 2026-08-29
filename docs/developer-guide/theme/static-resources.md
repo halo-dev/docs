@@ -53,3 +53,18 @@ function loadScript(url) {
 :::info 在 JavaScript 中使用 Thymeleaf
 关于在 JavaScript 中使用 Thymeleaf 语法可以参考 Thymeleaf 官方文档：[JavaScript inlining](https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#javascript-inlining)
 :::
+
+## #theme.route(path)
+
+与 `#theme.assets()` 类似，`#theme.route()` 用于在非 HTML 标签的场景下得到站点内某个路由的正确地址，路径会基于当前站点的外部访问地址或上下文路径构建：
+
+**引入版本**：2.4.0
+
+```html {3}
+<script th:inline="javascript">
+
+var archivesUrl = '[[${#theme.route("/archives")}]]';
+
+// archivesUrl 为 '/archives'
+</script>
+```

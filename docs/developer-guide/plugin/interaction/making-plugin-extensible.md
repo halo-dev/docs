@@ -57,7 +57,7 @@ spec:
 - className：指定扩展点接口的完整类路径，用于通过类加载器加载实现类。
 - displayName：扩展点的显示名称，用于描述其功能。
 - description：简要描述扩展点的功能。
-- type：标明扩展点的类型，可选择 `SINGLE_INSTANCE`（单实例）或 `MULTI_INSTANCE`（多实例），单实例就是只能有一个启用的扩展如评论组件扩展，多示例则是可以同时启用多个如过滤器。
+- type：标明扩展点的类型，可选择 `SINGLETON`（单实例）或 `MULTI_INSTANCE`（多实例），单实例就是只能有一个启用的扩展如评论组件扩展，多实例则是可以同时启用多个如过滤器。
 - icon: 扩展点的图标，非必填，用于在用户界面中展示，它应该是一个可访问的链接，参考 [ReverseProxy](../api-reference/server/reverseproxy.md)。
 
 至此，扩展点已在 Halo 中定义并注册，可供其他插件进行实现。

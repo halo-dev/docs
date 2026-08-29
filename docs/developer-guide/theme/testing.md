@@ -18,7 +18,7 @@ description: 在主题开发过程中定位 Thymeleaf、路由、静态资源和
 
 | 现象 | 优先检查 |
 | --- | --- |
-| 模板解析或表达式错误 | Halo 日志中的模板路径和异常；当前页面的[模板变量](./template-variables/index_.md)是否存在；可选值是否需要判空 |
+| 模板解析或表达式错误 | Halo 日志中的模板路径和异常；当前页面的[模板变量](./template-variables/home.md)是否存在；可选值是否需要判空 |
 | 页面返回 404 | 实际 permalink、Console 中的路由设置以及[模板路由](./template-route-mapping.md)，不要在模板中拼接可配置路径 |
 | CSS、脚本或图片返回 404 | 文件是否位于 `templates/assets`；是否使用 `@{}` 或 `#theme.assets()`；Vite 输出是否来自最新源码 |
 | 修改后页面没有变化 | Thymeleaf 缓存是否关闭；监听构建是否仍在运行；Halo 当前启用的主题是否为正在修改的目录 |

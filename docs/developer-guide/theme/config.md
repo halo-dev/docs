@@ -69,6 +69,10 @@ spec:
 | `spec.requires`                 | 所需 Halo 的运行版本；省略时 Core 使用 `*`，但发布主题时应声明已验证的兼容范围                                     | 否                   |
 | `spec.license`                  | 协议                                                                                                               | 否                   |
 
+:::warning 注意字段名称
+Halo 2.x 只识别 `spec.requires`（复数形式）。部分早期主题仍在使用旧字段 `spec.require`，该字段会被 Core 静默忽略，导致版本约束不生效，请务必改名。
+:::
+
 :::info Schema 与发布要求
 上表描述的是 Halo Core Schema 的校验规则。发布到应用市场或其他分发渠道时，可能还需要填写版本、兼容范围等元数据，请以对应渠道的审核规则为准。
 :::

@@ -41,11 +41,11 @@ commentFinder.list(ref,page,size)
 
 ### 描述
 
-根据评论的 `metadata.name` 和分页参数获取回复列表。
+根据评论主体的引用（Ref）和分页参数获取评论列表，例如获取某篇文章下的评论。
 
 ### 参数
 
-1. `ref:#Ref` - 评论的唯一标识 `metadata.name`。
+1. `ref:#Ref` - 评论主体的引用，即被评论对象（如文章、自定义页面）的 `group` / `version` / `kind` / `name`，而非评论自身的 `metadata.name`。其中 `version` 是该模型的 API 版本（如 `v1alpha1`）。
 2. `page:int` - 分页页码，从 1 开始
 3. `size:int` - 分页条数
 

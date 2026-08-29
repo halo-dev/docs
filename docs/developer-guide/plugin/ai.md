@@ -25,6 +25,10 @@ https://docs.halo.run/developer-guide/plugin/basics/manifest.md
 
 `/developer-guide/plugin/index.md` 是插件文档的入口页，不是全部插件开发文档的聚合内容。
 
+:::tip 以线上页面为准
+如果让 AI 直接阅读文档仓库源码，需要注意仓库中 `_` 前缀的 Markdown 文件（如 `vo/_ThemeVo.md`、`interface/_OperationItem.md`）是被其他页面引用的片段，单独阅读会缺少上下文。应以上述线上 `.md` 页面为准，它们已包含拼接后的完整内容。
+:::
+
 ## 核对版本与源码
 
 Halo 插件 API 会随版本演进。使用 AI 生成或修改代码前，应依次确认：

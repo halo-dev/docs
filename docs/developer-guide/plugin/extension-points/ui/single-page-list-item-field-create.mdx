@@ -12,7 +12,7 @@ description: 扩展页面数据列表显示字段 - single-page:list-item:field:
 ```ts
 export default definePlugin({
   extensionPoints: {
-    "single-page:list-item:field:create": (singlePage: Ref<ListedSinglePage>): EntityFieldItem[] | Promise<EntityFieldItem[]> => {
+    "single-page:list-item:field:create": (singlePage: Ref<ListedSinglePage>): EntityFieldItem[] => {
       return [
         {
           priority: 0,

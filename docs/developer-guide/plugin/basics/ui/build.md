@@ -350,7 +350,7 @@ ESM 入口仍需默认导出已有的 `PluginModule`，不应通过顶层副作�
     plugins {
         id 'java'
         id "io.freefair.lombok" version "8.13"
-        id "run.halo.plugin.devtools" version "0.6.0"
+        id "run.halo.plugin.devtools" version "0.8.0"
     }
 
     group 'com.example.starter'

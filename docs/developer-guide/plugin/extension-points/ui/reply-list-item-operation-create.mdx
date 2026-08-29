@@ -14,7 +14,7 @@ export default definePlugin({
   extensionPoints: {
     "reply:list-item:operation:create": (
       reply: Ref<ListedReply>
-    ): OperationItem<ListedReply>[] | Promise<OperationItem<ListedReply>[]> => {
+    ): OperationItem<ListedReply>[] => {
       return [
         {
           priority: 10,
@@ -56,7 +56,6 @@ export default definePlugin({
           priority: 21,
           component: markRaw(VDropdownItem),
           label: "测试回复菜单",
-          visible: true,
           permissions: [],
           action: async (reply: ListedReply) => {
             console.log(reply)

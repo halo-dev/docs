@@ -14,6 +14,14 @@ Console 的评论管理列表的评论来源默认仅支持显示来自文章和
 ## 定义方式
 
 ```ts
+import type { Extension } from "@halo-dev/api-client";
+import {
+  definePlugin,
+  type CommentSubjectRefProvider,
+  type CommentSubjectRefResult,
+} from "@halo-dev/ui-shared";
+import type { Example } from "@/types";
+
 export default definePlugin({
   extensionPoints: {
     "comment:subject-ref:create": (): CommentSubjectRefProvider[] => {
@@ -22,10 +30,12 @@ export default definePlugin({
           kind: "Example",
           group: "example.halo.run",
           resolve: (subject: Extension): CommentSubjectRefResult => {
+            // subject 的类型为 Extension，需要根据实际的 kind 断言为对应的模型类型
+            const example = subject as Example;
             return {
               label: "foo",
-              title: subject.title,
-              externalUrl: `/example/${subject.metadata.name}`,
+              title: example.spec.title,
+              externalUrl: `/example/${example.metadata.name}`,
               route: {
                 name: "Example",
               },

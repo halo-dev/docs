@@ -14,7 +14,7 @@ export default definePlugin({
   extensionPoints: {
     "attachment:list-item:operation:create": (
       attachment: Ref<Attachment>
-    ): OperationItem<Attachment>[] | Promise<OperationItem<Attachment>[]> => {
+    ): OperationItem<Attachment>[] => {
       return [
         {
           priority: 10,
@@ -52,7 +52,7 @@ export default definePlugin({
   extensionPoints: {
     "attachment:list-item:operation:create": (
       attachment: Ref<Attachment>
-    ): OperationItem<Attachment>[] | Promise<OperationItem<Attachment>[]> => {
+    ): OperationItem<Attachment>[] => {
       return [
         {
           priority: 10,

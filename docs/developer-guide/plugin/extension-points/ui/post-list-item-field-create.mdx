@@ -12,7 +12,7 @@ description: 扩展文章数据列表显示字段 - post:list-item:field:create
 ```ts
 export default definePlugin({
   extensionPoints: {
-    "post:list-item:field:create": (post: Ref<ListedPost>): EntityFieldItem[] | Promise<EntityFieldItem[]> => {
+    "post:list-item:field:create": (post: Ref<ListedPost>): EntityFieldItem[] => {
       return [
         {
           priority: 0,

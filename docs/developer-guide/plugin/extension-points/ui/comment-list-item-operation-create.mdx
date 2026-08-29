@@ -14,7 +14,7 @@ export default definePlugin({
   extensionPoints: {
     "comment:list-item:operation:create": (
       comment: Ref<ListedComment>
-    ): OperationItem<ListedComment>[] | Promise<OperationItem<ListedComment>[]> => {
+    ): OperationItem<ListedComment>[] => {
       return [
         {
           priority: 10,
@@ -56,7 +56,6 @@ export default definePlugin({
           priority: 21,
           component: markRaw(VDropdownItem),
           label: "测试评论菜单",
-          visible: true,
           permissions: [],
           action: async (comment: ListedComment) => {
             console.log(comment)

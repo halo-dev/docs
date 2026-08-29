@@ -25,6 +25,10 @@ https://docs.halo.run/developer-guide/theme/template-route-mapping.md
 
 `/developer-guide/theme/index.md` 是主题文档的入口页，不是全部主题开发文档的聚合内容。
 
+:::warning 以线上 .md 页面为准，勿读仓库中的 include 片段
+如果 AI 工具克隆了文档仓库直接读取源文件，需要注意：主题文档中 `vo/` 目录下以 `_` 前缀命名的文件（如 `_PostVo.md`）是被其他页面内联引用的片段，没有 frontmatter，单独读取会得到不完整的上下文。应优先使用 docs.halo.run 的 `.md` 页面，其中的类型定义已经拼接完整。
+:::
+
 ## 核对版本与源码
 
 Halo 的模板变量和 Finder API 会随版本演进。使用 AI 生成或修改代码前，应依次确认：

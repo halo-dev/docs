@@ -36,6 +36,7 @@ Halo 会在模板渲染期间向 `<head>` 注入以下信息：
 
 | 页面或设置 | Halo 注入的内容 |
 | --- | --- |
+| 所有页面 | 站点设置中的 favicon（`<link rel="icon">`）和默认注入的 Halo 版本 `generator` meta |
 | 首页 | Console SEO 设置中的 `keywords` 和 `description` |
 | 文章、单页面 | 最终摘要作为 `description` |
 | 分类、标签归档 | 分类或标签的描述作为 `description` |
@@ -44,6 +45,8 @@ Halo 会在模板渲染期间向 `<head>` 注入以下信息：
 因此，不要在主题中再次使用 `site.seo.description` 或 `site.seo.keywords` 生成同名 `<meta>`。插件和 Console 的代码注入也可以修改 `<head>`，排查问题时应检查最终响应，而不是只看主题源码。
 
 Halo 仍会按设置输出 `keywords`，但主流搜索引擎通常不再使用该字段，主题无需额外处理。
+
+运维人员可以通过 `halo.theme.generator-meta-disabled=true` 关闭 `generator` meta，主题不应依赖该标签判断 Halo 版本。
 
 ## 通过主题设置控制扩展标签
 

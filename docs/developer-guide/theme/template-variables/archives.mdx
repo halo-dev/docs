@@ -18,6 +18,10 @@ import ListedPostVo from "../vo/_ListedPostVo.md";
   - `/archives/:year`
   - `/archives/:year/:month`
 
+:::info 路径变量格式
+`year` 必须为 4 位数字（如 `2026`），`month` 必须为 2 位数字（如 `08`），不符合格式的路径不会被归档路由匹配。
+:::
+
 ## 变量
 
 ### archives
@@ -50,6 +54,12 @@ import ListedPostVo from "../vo/_ListedPostVo.md";
   </a>
 </div>
 ```
+
+### _templateId
+
+#### 变量值
+
+`archives`（自 Halo 2.4.0 起可用）
 
 ## 类型定义
 

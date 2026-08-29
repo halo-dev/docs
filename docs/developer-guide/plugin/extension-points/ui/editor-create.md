@@ -37,7 +37,7 @@ export interface EditorProvider {
 }
 ```
 
-其中，`component` 可以是组件对象或组件名称，且此组件有以下实现要求：
+其中，`component` 为 Vue 组件对象（`Component` 类型），且此组件有以下实现要求：
 
 1. 组件包含以下 props：
    1. `title:string`：用于接收标题。

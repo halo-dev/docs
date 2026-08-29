@@ -68,7 +68,7 @@ Halo 插件通常使用 JUnit 5，测试代码位于 `src/test/java`。只验证
 修改插件后，可以重新加载或持续监听：
 
 ```bash
-./gradlew reload
+./gradlew reloadPlugin
 # 或者持续监听
 ./gradlew watch
 ```

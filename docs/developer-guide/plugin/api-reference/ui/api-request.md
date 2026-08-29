@@ -1,5 +1,5 @@
 ---
-title: API 请求 
+title: API 请求
 description: 介绍如何在插件的 UI 中请求 API 接口
 ---
 

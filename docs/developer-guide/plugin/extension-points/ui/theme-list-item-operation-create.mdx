@@ -14,7 +14,7 @@ export default definePlugin({
   extensionPoints: {
     "theme:list-item:operation:create": (
       theme: Ref<Theme>
-    ): OperationItem<Theme>[] | Promise<OperationItem<Theme>[]> => {
+    ): OperationItem<Theme>[] => {
       return [
         {
           priority: 10,
@@ -52,7 +52,7 @@ export default definePlugin({
   extensionPoints: {
     "theme:list-item:operation:create": (
       theme: Ref<Theme>
-    ): OperationItem<Theme>[] | Promise<OperationItem<Theme>[]> => {
+    ): OperationItem<Theme>[] => {
       return [
         {
           priority: 10,

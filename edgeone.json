@@ -60,6 +60,36 @@
       "statusCode": 301
     },
     {
+      "source": "/developer-guide/theme/template-variables/index_",
+      "destination": "/developer-guide/theme/template-variables/home",
+      "statusCode": 301
+    },
+    {
+      "source": "/developer-guide/theme/template-variables/index_.md",
+      "destination": "/developer-guide/theme/template-variables/home.md",
+      "statusCode": 301
+    },
+    {
+      "source": "/developer-guide/theme/template-variables/index_.html",
+      "destination": "/developer-guide/theme/template-variables/home.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/developer-guide/theme/code-snippets",
+      "destination": "/developer-guide/theme/page-layout",
+      "statusCode": 301
+    },
+    {
+      "source": "/developer-guide/theme/code-snippets.md",
+      "destination": "/developer-guide/theme/page-layout.md",
+      "statusCode": 301
+    },
+    {
+      "source": "/developer-guide/theme/code-snippets.html",
+      "destination": "/developer-guide/theme/page-layout.html",
+      "statusCode": 301
+    },
+    {
       "source": "/about",
       "destination": "/guide/contribution/pr",
       "statusCode": 301

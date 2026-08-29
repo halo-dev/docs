@@ -1,0 +1,66 @@
+---
+title: 主题
+description: 使用 ThemeFinder 获取当前启用的 Halo 主题或按唯一标识查询主题，并读取主题版本、作者、设置、自定义模板等 ThemeVo 信息
+---
+
+import ThemeVo from "../vo/_ThemeVo.md"
+
+## activation()
+
+```js
+themeFinder.activation()
+```
+
+### 描述
+
+获取当前激活的主题。
+
+### 参数
+
+无
+
+### 返回值
+
+[#ThemeVo](#themevo)
+
+### 示例
+
+```html
+<div th:with="theme = ${themeFinder.activation()}">
+  <h1 th:text="${theme.spec.displayName}"></h1>
+  <p th:text="${theme.spec.version}"></p>
+</div>
+```
+
+## getByName(themeName)
+
+```js
+themeFinder.getByName(themeName)
+```
+
+### 描述
+
+根据主题的唯一标识 `metadata.name` 获取主题。
+
+### 参数
+
+- `themeName:string` - 主题名称
+
+### 返回值
+
+[#ThemeVo](#themevo)
+
+### 示例
+
+```html
+<div th:with="theme = ${themeFinder.getByName('theme-foo')}">
+  <h1 th:text="${theme.spec.displayName}"></h1>
+  <p th:text="${theme.spec.version}"></p>
+</div>
+```
+
+## 类型定义
+
+### ThemeVo
+
+<ThemeVo />

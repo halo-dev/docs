@@ -58,7 +58,37 @@ git status --short
 - 检查桌面和窄屏布局、键盘操作、可见焦点、图片替代文本、颜色对比度和水平滚动。
 - 检查浏览器 Console 和 Network，确认没有未处理异常、混合内容、重复请求或意外外部资源。
 - 按[主题 SEO](./seo.md#验证最终结果)检查最终 `<head>`，尤其是标题、描述、`noindex`、canonical 和社交分享信息。
+- 可访问性：页面有唯一的 `h1` 和合理的标题层级， landmarks（`header`/`nav`/`main`/`footer`）完整，表单控件有关联标签，仅依赖键盘可以完成主要操作。可借助浏览器开发者工具的 Lighthouse 或 axe 面板复查。
 - 关闭模板缓存进行开发验证后，再用接近生产的缓存配置完成一次冒烟测试。
+
+## 配置持续发布（可选）
+
+如果主题托管在 GitHub，可以使用 [halo-sigs/reusable-workflows](https://github.com/halo-sigs/reusable-workflows) 提供的 `theme-cd.yaml` 可复用工作流，在发布 GitHub Release 时自动执行 `pnpm build`、上传 ZIP 到 Release，并可选地同步到 Halo 应用市场：
+
+```yaml title=".github/workflows/cd.yaml"
+name: CD
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  cd:
+    uses: halo-sigs/reusable-workflows/.github/workflows/theme-cd.yaml@v4
+    permissions:
+      contents: write
+    with:
+      app-id: app-KgWqR # 替换为应用市场的应用 ID
+    secrets:
+      halo-pat: ${{ secrets.HALO_PAT }} # 应用市场的个人访问令牌
+```
+
+使用前确认：
+
+- `pnpm build` 的产物输出在 `dist/` 目录，且 ZIP 内容符合[构建与打包](./packaging.md)的约定；工作流会把 `dist/` 下的全部文件上传到 Release。
+- 版本号以 Git 标签和 `theme.yaml` 的 `spec.version` 为准，发布前确认两者一致。
+- 不需要同步应用市场时，设置 `skip-appstore-release: true` 并省略 `app-id` 与 `halo-pat`。
 
 ## 记录发布证据
 

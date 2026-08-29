@@ -37,6 +37,8 @@ description: 本文档介绍路由与模板的映射关系，以及自定义模�
 - `/archives/:year/:month`
 - `/archives/:year/:month/page/:page`
 
+其中 `year` 必须为 4 位数字，`month` 必须为 2 位数字，不符合格式的路径不会被匹配。
+
 ### tags.html
 
 标签集合页面的模板，访问地址默认为 `/tags`。

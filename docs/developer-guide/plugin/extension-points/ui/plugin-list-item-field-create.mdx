@@ -12,7 +12,7 @@ description: 扩展插件数据列表显示字段 - plugin:list-item:field:creat
 ```ts
 export default definePlugin({
   extensionPoints: {
-    "plugin:list-item:field:create": (plugin: Ref<Plugin>): EntityFieldItem[] | Promise<EntityFieldItem[]> => {
+    "plugin:list-item:field:create": (plugin: Ref<Plugin>): EntityFieldItem[] => {
       return [
         {
           priority: 0,

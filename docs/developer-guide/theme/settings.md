@@ -40,7 +40,9 @@ spec:
 ```
 
 :::tip 保持配置名称一致
-`settingName` 和 `configMapName` 必须同时配置，且可以自定义名称，但是 `settingName` 必须和 Setting 的 `metadata.name` 一致。
+`settingName` 和 `configMapName` 可以自定义名称，但是 `settingName` 必须和 Setting 的 `metadata.name` 一致。
+
+两者需要配合使用：`settingName` 指向设置表单定义，`configMapName` 指向设置数据的存储位置。缺少任意一个，主题设置功能都无法完整使用，例如未配置 `configMapName` 时将无法保存设置。
 :::
 
 ```yaml title="theme-foo/settings.yaml" {4}
