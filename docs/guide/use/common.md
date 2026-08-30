@@ -10,13 +10,17 @@ Halo 作为一款好用又强大的开源建站工具，配合上不同的模板
 
 Halo 的统一登录入口为 `/login`。
 
-![Login](/img/user-guide/common/login.png)
+![Login](/img/user-guide/common/login-2.26.png)
+
+Halo 支持使用用户名和密码登录。从 Halo 2.26 开始，也可以使用已验证的邮箱和密码登录；配置邮件通知并启用邮箱验证码认证后，还可以使用邮箱验证码登录。管理员也可以在用户管理的身份认证页面启用并排序其他认证方式。
 
 ## 注册
 
 Halo 的注册地址为 `/signup`，需要注意的是，Halo 默认不会开启注册功能，需要在设置页面的 [用户设置](./settings.md#用户设置) 中手动开启。
 
 ![Signup](/img/user-guide/common/signup.png)
+
+通过 OAuth2 等第三方认证方式首次登录时，可以根据页面提示绑定已有账号；站点开放注册时，也可以注册新账号并按要求补充资料、同意相关协议。
 
 ## 控制台
 
@@ -70,4 +74,5 @@ Console 控制台是一个 Halo 站点的后台管理系统，只有具有权限
 
 - 应用市场：[https://www.halo.run/store/apps](https://www.halo.run/store/apps)
 - Awesome Halo：[https://github.com/halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo)
+
 :::

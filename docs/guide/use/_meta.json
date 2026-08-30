@@ -1,9 +1,11 @@
 [
   "common",
+  "dashboard",
   "activate",
   "user-center",
   "posts",
   "pages",
+  "comments",
   "attachments",
   "menus",
   "themes",

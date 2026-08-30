@@ -19,9 +19,9 @@ description: Halo 个人中心（/uc）：资料、认证方式与会话及与 C
 
 ## 个人资料
 
-这个页面会显示和用户相关的一些信息。
+这个页面会显示和用户相关的信息，并支持修改头像、显示名称、简介等个人资料。用户还可以验证电子邮箱，以及修改登录密码；通过免密认证注册且尚未设置密码的用户，可以在这里设置密码。
 
-![User profile](/img/uc/uc-profile.png)
+![User profile](/img/uc/uc-profile-edit-2.26.png)
 
 ## 通知配置
 
@@ -33,20 +33,29 @@ description: Halo 个人中心（/uc）：资料、认证方式与会话及与 C
 
 个人令牌是一种用于访问 Halo API 的凭证，可以通过个人令牌访问 Halo 的 RESTful API，而无需通过用户名和密码授权，使用方式可查阅：[RESTful API 介绍](../../developer-guide/restful-api/introduction.md)
 
-![Personal access token](/img/uc/uc-pat.png)
+![Personal access token](/img/uc/pat-list-2.26.png)
 
 创建新的个人令牌：
 
-![Create personal access token](/img/uc/uc-pat-creation.png)
+![Create personal access token](/img/uc/pat-create-2.26.png)
 
 - **名称**：个人令牌的名称。
 - **过期时间**：个人令牌的过期时间，不选择则表示永不过期。
 - **描述**：个人令牌的描述信息，用于描述个人令牌的用途。
-- **权限**：个人令牌的权限，可以选择多个权限。
+- **角色与权限模板**：决定个人令牌可以访问的 API 范围，可以选择多个角色或权限模板。
 
 创建好的个人令牌：
 
-![Personal access token string](/img/uc/uc-pat-token.png)
+![Personal access token string](/img/uc/pat-token-2.26.png)
+
+令牌值只会在创建完成时完整显示，请立即复制并妥善保管。对于已有令牌，可以查看最后使用时间，并执行撤销、恢复或删除操作；删除后无法恢复。
+
+
+## 认证方式
+
+认证方式页面会列出当前账号可以使用的第三方认证方式。对于支持账号绑定的认证方式，可以在这里绑定或解除绑定。
+
+![个人中心认证方式](/img/uc/authentication-methods-2.26.png)
 
 ## 两步验证
 

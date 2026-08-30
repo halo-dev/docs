@@ -71,20 +71,23 @@ Halo 目前提供了两种分组删除策略：
 
 点击附件列表右上方的 `上传` 按钮即可上传新的附件到 Halo。
 
-![上传附件](/img/user-guide/attachments/attachment-upload.png)
+![上传附件](/img/user-guide/attachments/attachment-upload-2.26.png)
 
 1. **存储策略选择**：你可以选择需要使用的存储策略，为了方便，选择之后会在浏览器记住这个选项。
 2. **分组选择**：你可以选择需要上传到的分组，为了方便，选择之后会在浏览器记住这个选项。
 3. **上传区域**：同时支持拖拽文件、点击上传区域选择文件、粘贴文件。
 
+切换到远程下载选项卡后，也可以输入一个或多个文件 URL，由 Halo 下载并保存到所选存储策略和分组中。
+
 ## 查看附件
 
 点击附件列表中的某一个附件即可查看该附件的详细信息。
 
-![附件详情](/img/user-guide/attachments/attachment-detail.png)
+![附件详情](/img/user-guide/attachments/attachment-detail-2.26.png)
 
 1. **预览区域**：目前支持图片、视频、音频的预览。
-2. **链接**：目前可以显示并复制链接、HTML 格式代码、Markdown 格式代码。
+2. **名称**：可以修改附件在 Console 中显示的名称，不会改变附件的存储位置。
+3. **链接**：目前可以显示并复制链接、HTML 格式代码、Markdown 格式代码。
 
 ## 删除附件
 

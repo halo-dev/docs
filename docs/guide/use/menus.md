@@ -5,7 +5,7 @@ description: Halo 网站导航菜单：多菜单组、主菜单、菜单项与�
 
 菜单功能用于管理网站上的导航菜单，目前 Halo 支持配置多个菜单组。
 
-![Menus](/img/user-guide/menus/menus.png)
+![Menus](/img/user-guide/menus/menus-2.26.png)
 
 说明：
 
@@ -18,13 +18,14 @@ description: Halo 网站导航菜单：多菜单组、主菜单、菜单项与�
 
 ![Create menu](/img/user-guide/menus/create-menu.png)
 
-![Menu operation](/img/user-guide/menus/menu-operation.png)
+![Menu operation](/img/user-guide/menus/menu-operation-2.26.png)
 
 点击菜单条目的操作按钮可以展开操作选项，包括：
 
 1. **设置为主菜单**：设置当前菜单为主菜单，主菜单会在网站导航栏中显示（具体需要以主题的实现为准）。
-2. **编辑**：编辑当前菜单的名称。
-3. **删除**：删除当前菜单，会同时删除菜单下的所有菜单项。
+2. **克隆**：复制当前菜单及其菜单项，用于快速创建结构相近的新菜单。此功能从 Halo 2.24 开始提供。
+3. **编辑**：编辑当前菜单的名称。
+4. **删除**：删除当前菜单，会同时删除菜单下的所有菜单项。
 
 ## 创建菜单项
 
@@ -49,7 +50,7 @@ description: Halo 网站导航菜单：多菜单组、主菜单、菜单项与�
 
 上图是类型选择 **分类** 时的表单，可以选择分类。
 
-![Menu item operation](/img/user-guide/menus/menu-item-operation.png)
+![Menu item operation](/img/user-guide/menus/menu-item-operation-2.26.png)
 
 点击菜单项条目的操作按钮可以展开操作选项，包括：
 
