@@ -1,6 +1,6 @@
 ---
 title: 编辑器集成
-description: 通过实现扩展点为文章提供新的编辑器 - editor:create
+description: '使用 editor:create 为 Halo 文章编辑页注册独立编辑器，实现标题、原始内容和渲染内容的双向更新，并复用内置图片上传能力'
 ---
 
 此扩展点可以为文章提供新的独立编辑器。

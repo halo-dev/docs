@@ -1,6 +1,6 @@
 ---
 title: 评论来源显示
-description: 扩展评论来源显示 - comment:subject-ref:create
+description: '使用 comment:subject-ref:create 为插件自定义业务模型解析评论来源，在 Halo Console 评论列表中显示来源类型、标题及站内或外部跳转链接'
 ---
 
 Console 的评论管理列表的评论来源默认仅支持显示来自文章和页面的评论，如果其他插件中的业务模块也使用了评论，那么就可以通过该拓展点来扩展评论来源的显示。

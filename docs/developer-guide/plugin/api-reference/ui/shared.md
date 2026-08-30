@@ -1,6 +1,6 @@
 ---
 title: 共享工具库
-description: 介绍 @halo-dev/ui-shared 包中的共享工具库
+description: 使用 Halo 2.22.0 起提供的 @halo-dev/ui-shared 共享工具库，获取用户、站点和 UI Provider 状态，并调用日期、权限及附件等通用工具
 ---
 
 从 Halo 2.22 开始，Halo 为插件的 UI 部分提供了共享的工具库并放置在了 `@halo-dev/ui-shared` 中，利用这些工具，可以减少部分开发工作量。

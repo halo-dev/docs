@@ -1,6 +1,6 @@
 ---
 title: 主题端自定义页面内容处理
-description: 提供扩展主题端自定义页面内容处理的方法，干预自定义页面内容的渲染。
+description: 实现 ReactiveSinglePageContentHandler 依次处理主题端独立页面内容，并将更新后的 SinglePageContentContext 传给后续处理器
 ---
 
 主题端自定义页面内容处理扩展点，作用同 [主题端文章内容处理](./post-content.md) 扩展点，只是作用于自定义页面。

@@ -1,6 +1,6 @@
 ---
 title: 静态资源代理
-description: 了解如何使用静态资源代理来访问插件中的静态资源
+description: 通过 ReverseProxy 自定义模型将插件 src/main/resources 下的静态文件代理到 /plugins/{plugin-name}/assets 路径
 ---
 
 插件中的静态资源如图片等如果想被外部访问到，需要放到 `src/main/resources` 目录下，并通过创建 `ReverseProxy` 自定义模型对象来进行静态资源代理访问。

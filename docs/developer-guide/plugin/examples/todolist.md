@@ -1,6 +1,6 @@
 ---
 title: Todo List
-description: 这个例子展示了如何开发 Todo List 插件
+description: 从 Todo 自定义模型注册、自动生成 CRUD API 到 Vue 管理界面和 OpenAPI API Client，完成一个可持久化的 Halo 插件案例
 ---
 
 本示例用于展示如何从插件模板创建一个插件并写一个 Todo List：

@@ -1,6 +1,6 @@
 ---
 title: FormKit 扩展
-description: 介绍如何通过插件注册自定义 FormKit 输入组件
+description: 在 Halo 2.25.0 及以上版本中通过插件 UI 入口注册自定义 FormKit 输入组件，并在 FormKit Schema 中使用，了解懒加载与类型名称冲突限制
 ---
 
 从 Halo 2.25.0 开始，插件可以通过 UI 入口文件的 `formkit.inputs` 注册自定义 FormKit 输入组件。注册后，插件提供的 FormKit Schema 可以通过 `$formkit` 使用对应类型。

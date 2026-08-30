@@ -1,6 +1,6 @@
 ---
 title: Web 过滤器
-description: 为 Web 请求提供过滤器扩展点，可用于对请求进行拦截、修改等操作。
+description: 实现 AdditionalWebFilter 在 Halo 处理 Web 请求前后执行认证、授权、重定向或请求修改，并通过 getOrder 控制扩展执行顺序
 ---
 
 在现代的 Web 应用开发中，过滤器（Filter）是一个非常重要的概念。你可以使用 `run.halo.app.security.AdditionalWebFilter` 在服务器处理请求之前或之后执行特定的任务。

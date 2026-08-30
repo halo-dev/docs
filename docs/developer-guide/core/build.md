@@ -1,6 +1,6 @@
 ---
 title: 构建
-description: 构建为可执行 JAR 和 Docker 镜像的文档
+description: 克隆 Halo 源码并使用 Gradle 构建可执行 Fat JAR，再基于构建产物创建带指定版本标签的 Docker 镜像，包含版本设置、制品路径与部署文档入口
 ---
 
 :::info 构建前准备

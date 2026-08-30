@@ -1,6 +1,6 @@
 ---
 title: DevTools
-description: 了解 Halo 的 DevTools 插件开发工具的使用
+description: 使用 Halo DevTools 的 haloServer、watch、reloadPlugin、API Client 与角色模板生成任务运行、热重载和调试插件
 ---
 
 DevTools 插件开发工具提供了一些 Task，用于辅助 Halo 插件的运行、调试和代码生成。`haloServer`、`watch` 以及默认的 OpenAPI 文档生成流程需要本地具有 [Docker](https://docs.docker.com/get-docker/) 环境；从 DevTools 0.8.0 开始，OpenAPI 文档生成也可以直接复用已有的 Halo 服务，此时不需要 Docker。

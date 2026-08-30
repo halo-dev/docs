@@ -1,6 +1,6 @@
 ---
 title: 用户详情选项卡
-description: 扩展用户详情选项卡 - user:detail:tabs:create
+description: '使用 user:detail:tabs:create 为 Halo Console 用户详情页添加自定义选项卡，配置 Vue 面板和排序，并通过 user 属性读取所查看的用户信息'
 ---
 
 此扩展点用于扩展用户详情页面的选项卡。

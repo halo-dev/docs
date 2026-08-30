@@ -1,6 +1,6 @@
 ---
 title: 事件共享
-description: 介绍 Halo 与插件以及插件与插件之间的事件共享机制。
+description: 通过 Spring ApplicationEvent、SharedEvent 和 EventListener 在 Halo 与插件之间发布和订阅共享事件，并正确处理插件类加载依赖
 ---
 
 在 Halo 插件开发中，事件机制是实现插件间通信和功能解耦的重要工具。

@@ -1,6 +1,6 @@
 ---
 title: 自定义标签
-description: 本文档介绍 Halo 为模板引擎提供的专有标签。
+description: '在 Halo Thymeleaf 模板中使用 halo:comment 提供文章或独立页面评论扩展点，并通过 halo:footer 注入系统设置中的页脚代码。'
 ---
 
 Halo 为满足部分代码注入和模板扩展点的需求，提供了一些专有标签，本文档将列出已支持的标签以及介绍这些标签的使用方法。

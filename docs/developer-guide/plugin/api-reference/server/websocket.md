@@ -1,6 +1,6 @@
 ---
 title:  实现 WebSocket
-description: 了解在插件中如何实现 WebSocket。
+description: 从 Halo 2.15.0 起在插件中实现 WebSocketEndpoint，注册受权限控制的 WebSocket API，并随插件生命周期自动加载和卸载。
 ---
 
 从 Halo 2.15.0 版本开始，核心提供了 WebSocketEndpoint 接口，其主要目的是为了方便插件实现 WebSocket 功能。

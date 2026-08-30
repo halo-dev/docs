@@ -1,6 +1,6 @@
 ---
 title: UI 扩展
-description: 通过主题扩展 Console 和 UC 界面
+description: 从 Halo 2.26.0 起复用 PluginModule 契约为主题添加 Console 和 UC 界面扩展，使用 Vite 或 Rsbuild 构建 ESM/IIFE 产物并正确打包共享依赖与静态资源
 ---
 
 除了提供站点前台模板，主题还可以复用插件的 `PluginModule` 契约，为 Console 控制台和 UC 个人中心提供页面、组件和扩展点。只有当前激活且版本要求与 Halo 兼容的主题 UI provider 会被加载。

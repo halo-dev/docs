@@ -1,6 +1,6 @@
 ---
 title: 插件注册和配置
-description: 了解插件定义文件 plugin.yaml 如何配置
+description: 配置 Halo 插件的 plugin.yaml 清单字段、版本要求、插件依赖和设置资源，并选择 deployment 或 development 运行模式。
 ---
 
 在 Halo 插件开发中，`plugin.yaml` 是用于定义插件基本信息和配置的核心文件。

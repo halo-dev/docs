@@ -1,6 +1,6 @@
 ---
 title: 附件存储
-description: 为附件存储方式提供的扩展点，可用于自定义附件存储方式。
+description: 实现 AttachmentHandler 扩展 Halo 附件的上传、删除、共享链接、永久链接和缩略图能力，并注册 attachment-handler 扩展定义
 ---
 附件存储策略扩展点支持扩展附件的上传和存储方式，如将附件存储到第三方云存储服务中。
 

@@ -1,6 +1,6 @@
 ---
 title: API 变更日志
-description: 记录每一个版本的主题 API 变更记录，方便开发者适配
+description: 按 Halo 版本记录主题开发 API 的新增与变更，涵盖 UI 扩展、页面布局契约、Finder API、FormKit 表单组件和模板表达式，便于判断兼容范围并完成适配
 ---
 
 ## 2.26.0

@@ -1,6 +1,6 @@
 ---
 title: Finder API
-description: 本文档介绍 Finder API 的使用方法。
+description: 汇总 Halo 主题可用的 Finder API，帮助在任意 Thymeleaf 模板位置查询文章、分类、标签、菜单、评论、主题与站点统计等数据。
 overview: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: 入门
-description: 了解如何构建你的第一个插件并在 Halo 中使用它。
+description: 使用 create-halo-plugin 创建首个 Halo 插件项目，通过 DevTools 或本地 Halo 加载、运行和调试插件，并了解后续开发入口
 ---
 
 此文档将帮助你了解如何构建你的第一个插件并在 Halo 中安装和启用。

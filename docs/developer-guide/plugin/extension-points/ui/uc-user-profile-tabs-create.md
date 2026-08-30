@@ -1,6 +1,6 @@
 ---
 title: 个人资料选项卡
-description: 扩展个人中心的个人资料选项卡 - uc:user:profile:tabs:create
+description: '使用 uc:user:profile:tabs:create 为 Halo UC 个人资料页添加自定义选项卡，配置 Vue 面板和排序，并通过 user 属性读取当前登录用户信息'
 ---
 
 此扩展点用于扩展个人中心的个人资料选项卡。

@@ -1,6 +1,6 @@
 ---
 title: 页面布局契约
-description: 了解如何通过主题提供页面布局，让插件前台页面复用当前主题的页面外壳。
+description: 从 Halo 2.26.0 起在 templates/layout.html 声明 html(head, content) 布局片段，让插件前台页面复用主题页头、页脚和样式，并理解兼容状态与回退规则
 ---
 
 从 Halo 2.26.0 开始，主题可以通过 `templates/layout.html` 提供一个标准页面布局契约。插件提供的前台页面调用这个契约后，可以复用当前主题的页头、页脚、样式和响应式布局；如果当前主题没有适配，Halo 会使用内置的 fallback 布局保证页面可以继续渲染。

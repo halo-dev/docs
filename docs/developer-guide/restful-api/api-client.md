@@ -1,6 +1,6 @@
 ---
 title: API Client 请求库
-description: 介绍使用 API Client 请求库发起 API 请求的方式
+description: 从 Halo 2.17.0 起使用 @halo-dev/api-client 调用 Core、Console、UC 与 Public API，掌握内置客户端、Axios 实例和外部程序认证配置
 ---
 
 在 2.17.0 版本中，Halo 提供了新的 `@halo-dev/api-client` JS 库，用于简化在 Halo 内部、插件的 UI 中、外部应用程序中请求 Halo 接口的逻辑。

@@ -1,6 +1,6 @@
 ---
 title: 元素标签后置处理器
-description: 提供对 Thymeleaf 元素标签进行后置处理的扩展点。
+description: 实现 ElementTagPostProcessor 对 Thymeleaf 元素标签执行响应式后置处理，并通过模型工厂返回修改后的不可变标签
 ---
 
 元素标签后置处理器扩展点用于在 Thymeleaf 模板渲染过程中对元素标签进行后置处理，例如：为图片标签添加缩略图属性、修改链接标签等。

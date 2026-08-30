@@ -1,6 +1,6 @@
 ---
 title: 主题端文章内容处理
-description: 提供扩展主题端文章内容处理的方法，干预文章内容的渲染。
+description: 实现 ReactivePostContentHandler 依次处理主题端文章的 HTML 与原始内容，并将更新后的 PostContentContext 传给后续处理器
 ---
 
 主题端文章内容处理扩展点用于干预文章内容的渲染，例如：在文章内容中添加广告、添加版权信息等。

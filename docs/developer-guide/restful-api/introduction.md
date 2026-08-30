@@ -1,6 +1,6 @@
 ---
 title: 介绍
-description: 介绍 Halo 的 RESTful API 使用方式
+description: 查阅 Halo Core、Console、UC、Public 与 Aggregated RESTful API，使用个人令牌或 Basic Auth 完成认证，并通过 cURL 或 Axios 发起请求
 ---
 
 Halo 提供了 RESTful 风格的 API，Halo 的前端（主要为 Console 和 UC）与后端的交互都是通过 API 完成的。

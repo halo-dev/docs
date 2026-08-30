@@ -1,6 +1,6 @@
 ---
 title: API 权限控制
-description: 了解如何对插件中的 API 定义角色模板以接入权限控制
+description: 为 Halo 插件的资源型和非资源型 API 定义 Role 角色模板，配置 apiGroups、resources、verbs、依赖关系与 UI 权限
 ---
 
 插件中的 APIs 无论是自定义模型自动生成的 APIs 或者是通过 `@Controller` 自定义的 APIs 都只有超级管理员能够访问，如果想将这些 APIs 授权给其他用户访问，

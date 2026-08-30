@@ -1,6 +1,6 @@
 ---
 title: 基于角色的权限控制
-description: 了解 Halo 的基于角色的权限控制机制。
+description: 使用 Halo 的 Role、RoleBinding 和角色模板构建 RBAC 权限体系，并通过依赖、聚合与隐藏标签控制权限继承和内置角色扩展
 ---
 
 基于角色的权限控制（Role-Based Access Control，RBAC）是一种广泛应用的访问控制机制，旨在通过定义用户的角色来简化和增强权限管理。

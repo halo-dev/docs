@@ -1,6 +1,6 @@
 ---
 title: 附件选择选项卡
-description: 扩展附件选择组件的选项卡 - attachment:selector:create
+description: '使用 attachment:selector:create 为 Halo 附件选择器添加自定义选项卡，通过 AttachmentLike 和 selected 双向绑定接入贴纸库或第三方素材源'
 ---
 
 此扩展点用于扩展附件选择组件的选项卡，目前 Halo 仅包含内置的附件库，你可以通过此扩展点添加自定义的选项卡。

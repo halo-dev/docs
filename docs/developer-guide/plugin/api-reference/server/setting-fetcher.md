@@ -1,6 +1,6 @@
 ---
 title: 获取插件配置
-description: 了解如何获取插件定义的设置表单对应的配置数据，以及如何在插件中使用配置数据。
+description: 使用 SettingFetcher 或 ReactiveSettingFetcher 读取并缓存插件 Setting 配置，并监听 PluginConfigUpdatedEvent 响应配置变更
 ---
 
 插件的 `plugin.yaml` 中允许配置 `settingName` 和 `configMapName` 字段，用于定义插件的个性化设置。

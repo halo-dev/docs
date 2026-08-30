@@ -1,6 +1,6 @@
 ---
 title: 插件如何被扩展
-description: 了解如何在 Halo 中定义扩展点接口、声明扩展点，并在插件中实现这些扩展点。
+description: 为 Halo 插件定义继承 ExtensionPoint 的扩展接口，声明 ExtensionPointDefinition，并使用 ExtensionGetter 查找和调用已启用实现
 ---
 在 Halo 插件开发中，扩展点（Extension Point）是一种灵活的机制，允许插件在定义的接口上进行功能扩展，使其他插件可以基于该接口实现自定义逻辑。
 

@@ -1,6 +1,6 @@
 ---
 title: 路由定义
-description: 通过插件为 Console 控制台和 UC 个人中心添加新路由
+description: 在 Halo 插件中使用 routes 和 ucRoutes 为 Console 控制台及 UC 个人中心注册 Vue Router 路由，并配置父路由、菜单、权限和移动端显示
 ---
 
 Halo 为插件提供了为 Console 控制台和 UC 个人中心添加新路由的入口，可以用于为插件单独提供一个页面。

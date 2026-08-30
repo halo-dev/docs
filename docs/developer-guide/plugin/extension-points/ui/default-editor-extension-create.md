@@ -1,6 +1,6 @@
 ---
 title: 默认编辑器
-description: 扩展默认编辑器 - default:editor:extension:create
+description: '使用 default:editor:extension:create 注册 Tiptap 扩展，为 Halo 默认编辑器添加工具栏、工具箱、Slash Command、悬浮菜单和拖拽菜单功能'
 ---
 
 此扩展点用于扩展默认编辑器的功能。

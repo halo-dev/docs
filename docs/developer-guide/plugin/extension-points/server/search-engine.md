@@ -1,6 +1,6 @@
 ---
 title: 搜索引擎
-description: 为 Halo 提供内容搜索引擎的扩展点，可用于替换默认的搜索实现。
+description: 实现单实例 SearchEngine 扩展 Halo 搜索文档的增删、清空和查询能力，并按发布状态、类型、作者、分类或标签过滤结果
 ---
 
 搜索引擎扩展点用于扩展 Halo 的内容搜索能力，例如：使用 Elasticsearch、Meilisearch 等替代内置的 Lucene 搜索引擎。

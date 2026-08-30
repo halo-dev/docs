@@ -1,6 +1,6 @@
 ---
 title: 日志
-description: Halo 插件的日志使用规范与生产环境排查方式
+description: 在 Halo 插件中使用 SLF4J 输出参数化日志，选择合适的日志级别，并通过 application.yaml、Docker 或面板调整和查看生产日志
 ---
 
 ## 使用 SLF4J

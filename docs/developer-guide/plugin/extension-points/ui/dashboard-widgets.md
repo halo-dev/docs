@@ -1,6 +1,6 @@
 ---
 title: 仪表盘扩展点
-description: 扩展仪表盘小部件 - console:dashboard:widgets:create
+description: 从 Halo 2.21.0 起使用仪表盘 UI 扩展点注册自定义小部件和快捷操作，配置组件、表单、默认尺寸、权限及编辑和预览状态
 ---
 
 仪表盘扩展点允许插件为 Halo 的控制台仪表盘添加自定义小部件和快速操作项。通过这些扩展点，插件可以：

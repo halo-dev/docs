@@ -1,6 +1,6 @@
 ---
 title: 图片优化
-description: 本文档介绍如何使用 Halo 的缩略图特性来优化图片。
+description: 从 Halo 2.19 起在主题中使用 thumbnail.gen Finder API 和缩略图 HTTP API 生成多尺寸图片，并结合 srcset 与 sizes 实现响应式加载和带宽优化。
 ---
 
 从 Halo 2.19 开始，Halo 支持了附件图片缩略图生成功能。通过缩略图功能，可以在不改变原图的情况下，生成预设尺寸的缩略图，以减少图片的大小，提高页面加载速度。

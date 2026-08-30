@@ -1,6 +1,6 @@
 ---
 title: 用户创建处理器
-description: 提供在用户创建前后执行自定义逻辑的扩展点。
+description: 实现 UserPreCreatingHandler 和 UserPostCreatingHandler，在 Halo 用户创建前修改属性或校验数据，并在创建成功后执行后续逻辑
 ---
 
 用户创建处理器扩展点用于在用户创建前后执行自定义逻辑，例如：初始化用户配置、发送欢迎通知、同步到第三方系统等。

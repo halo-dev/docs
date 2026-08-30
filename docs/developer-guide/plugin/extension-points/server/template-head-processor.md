@@ -1,6 +1,6 @@
 ---
 title: 主题端 HTML Head 标签处理
-description: 提供扩展主题端 HTML 页面中的 Head 标签内容处理的方法，干预 HTML 页面的 Head 标签内容。
+description: 实现多实例 TemplateHeadProcessor 修改主题页面的 head 元素，按 Spring Order 顺序注入元数据、脚本、样式或链接标签
 ---
 
 主题端 HTML Head 标签处理扩展点的作用是干预 HTML 页面中的 Head 标签内容，可以添加自定义的 CSS、JS 及 meta 标签等，以满足特定的定制化需求。

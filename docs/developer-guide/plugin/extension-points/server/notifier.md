@@ -1,6 +1,6 @@
 ---
 title: 通知器
-description: 为以何种方式向用户发送通知提供的扩展点。
+description: 实现 ReactiveNotifier 扩展点并声明 NotifierDescriptor，为 Halo 添加邮件、短信或 WebHook 通知方式，配置发送者与接收者参数。
 ---
 
 通知器扩展点是用于扩展为 Halo 通知系统提供更多通知方式的扩展点，例如：邮件、短信、WebHook 等。

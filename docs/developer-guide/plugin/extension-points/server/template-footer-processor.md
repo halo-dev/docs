@@ -1,6 +1,6 @@
 ---
 title: 主题端 Halo Footer 标签处理
-description: 提供扩展主题端 HTML 页面中的 <halo:footer/> 标签内容处理的方法。
+description: '实现多实例 TemplateFooterProcessor 处理主题的 halo:footer 标签，在页脚模型中注入统计脚本、插件资源或其他 HTML 内容'
 ---
 
 Halo 为主题端模板提供了自定义标签 `<halo:footer/>` 的处理扩展点，以便可以添加额外的页脚内容如版权信息、备案号等。
