@@ -39,6 +39,7 @@ unzip -p 'build/libs/plugin-name-1.2.3.jar' META-INF/MANIFEST.MF
 - Manifest 包含正确的 `Plugin-Main-Class` 和 `Implementation-Version`。
 - 后端类、`extensions`、设置、模板、静态资源和其他运行时资源完整。
 - 包含 UI 的插件应打包完整的 `ui` 目录；使用 ESM 输出时，`ui/ui-plugin.json` 记录的入口、样式和异步资源均存在。旧项目可能使用 `console` 目录，具体规则参考 [UI 构建](./basics/ui/build.md#output-format)。
+- API 契约变化后已经运行 `generateApiClient`，UI 使用生成的模型和请求方法，没有另行手写同一资源的类型和路径。
 - JAR 不包含凭据、私钥、`.env`、本地工作目录、测试数据或其他不应分发的文件。
 
 不要解压后修改 JAR 或构建目录来修正版本和资源。发现问题时应修改源文件或构建配置，然后重新构建完整制品。
@@ -56,6 +57,13 @@ unzip -p 'build/libs/plugin-name-1.2.3.jar' META-INF/MANIFEST.MF
 7. 在声明范围内的最低 Halo 版本和计划支持的当前版本上重复关键路径。
 
 如果插件依赖其他插件、外部服务或主题模板，还需要覆盖依赖缺失、停用、版本不满足、认证失败和正常可用的状态。
+
+涉及表单、密钥或第三方服务时还应确认：
+
+- 普通插件设置由 Setting YAML 渲染，页面和弹窗表单复用 FormKit 与 Halo 组件。
+- 密码、Token、API Key 和私钥保存在 `Secret` 中，普通资源和 API 不返回明文。
+- 用户可配置的出站地址符合[敏感数据与出站请求](./security/outbound-http.md)中的 SSRF、重定向、超时和凭据发送限制。
+- 公开 API 和安全开关在配置缺失、读取失败和依赖异常时保持关闭。
 
 ## 核对 CI/CD
 

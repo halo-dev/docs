@@ -39,6 +39,17 @@ Halo 插件 API 会随版本演进。使用 AI 生成或修改代码前，应依
 
 向 AI 描述重要契约时，应同时给出引入版本或最低 `spec.requires`、权限、输入与返回值、阻塞或响应式要求、失败语义、生命周期行为及固定提交的源码链接。不要只复制类型名称或方法签名。
 
+## 生成前检查清单
+
+让 AI 编写插件前，至少要求它遵守以下规则：
+
+1. 新插件从官方 `pnpm create halo-plugin` 脚手架开始，现有插件保留自身包管理器、Gradle 和 UI 构建方式。
+2. 自定义模型和使用 `SpringdocRouteBuilder` 描述的接口通过 `generateApiClient` 生成 TypeScript 类型与请求方法；不手写可生成的资源类型、参数和 API 路径，具体参考 [API 请求](./api-reference/ui/api-request.md)。
+3. 普通插件设置使用 Setting YAML；页面和弹窗表单使用 Halo 已注册的 FormKit，列表与交互复用 `@halo-dev/components`，具体参考[表单与页面组件](./basics/ui/forms.md)。
+4. 密码、Token、API Key 和私钥使用 Halo `Secret`，不存入 ConfigMap 或自定义模型；用户可配置的出站地址必须防范 SSRF 和凭据泄漏，具体参考[敏感数据与出站请求](./security/outbound-http.md)。
+5. UI 路由、操作权限、RoleTemplate 和后端鉴权保持一致；公开 API 和安全开关在配置缺失或读取失败时采用 fail closed。
+6. WebFlux 请求链路使用响应式 API，不调用阻塞客户端；修改 API 契约后运行生成任务，不手动修改生成结果。
+
 :::warning 不要手动修改生成文件
 不要让 AI 手动修改 OpenAPI 生成的 `api-client`、`api-docs`、构建目录或锁文件。应修改源文件，再运行项目已有的生成器、构建命令或包管理器更新这些文件。
 :::

@@ -1,72 +1,99 @@
 ---
 title: API 请求
-description: 介绍如何在插件的 UI 中请求 API 接口
+description: 在 Halo 插件 UI 中优先使用 OpenAPI 生成的插件客户端和 @halo-dev/api-client，仅在无法生成的一次性接口中直接使用 axiosInstance
 ---
 
-在 2.17.0 版本中，Halo 提供了新的 `@halo-dev/api-client` 包，用于简化在 Halo 内部、插件的 UI 中、外部应用程序中请求 Halo 接口的逻辑。此文档将介绍如何在插件的 UI 中使用 `@halo-dev/api-client` 包。
+Halo 插件 UI 通常需要调用插件自己的接口和 Halo Core 接口。先根据接口归属选择客户端，不要为 Halo 请求自行创建 Axios 实例或手写可生成的资源类型和路径。
 
-## 安装
+## 选择客户端
+
+| 接口 | 推荐方式 |
+| --- | --- |
+| 插件自定义模型的 CRUD API | 使用 `generateApiClient` 生成的模型和 API 类 |
+| 插件通过 `SpringdocRouteBuilder` 描述的自定义端点 | 使用 `generateApiClient` 生成的 API 类 |
+| Halo Core、Console、用户中心或公开 API | 使用 `@halo-dev/api-client` 已提供的客户端 |
+| 暂时没有 OpenAPI 描述的一次性插件接口 | 最后才直接使用 `axiosInstance` |
+| 与 Halo 无关的独立外部服务 | 根据该服务要求创建独立客户端，不复用或修改 Halo 的 `axiosInstance` |
+
+## 使用插件生成的 API Client
+
+插件的 Java 模型是 API 类型的来源。自定义模型会生成 CRUD API；自定义端点需要使用 `SpringdocRouteBuilder` 定义稳定的 `operationId`、参数和响应，才能进入 OpenAPI 文档。
+
+在 `build.gradle` 中配置 `haloPlugin.openApi` 后运行：
 
 ```shell
-pnpm install @halo-dev/api-client axios
+./gradlew generateApiClient
 ```
 
-## 模块介绍
+完整的分组、生成目录和任务说明参考[开发工具 > 生成 API client](../../basics/devtools.md#how-to-generate-api-client)。生成目录必须专用于 API Client，不要手动编辑其中的类型或请求代码。
 
-在 `@halo-dev/api-client` 包中导出了以下模块：
+为生成的类复用 Halo 已配置认证和统一错误处理的 `axiosInstance`：
+
+```ts title="ui/src/api/index.ts"
+import { axiosInstance } from "@halo-dev/api-client"
+import { TodoV1alpha1Api } from "./generated"
+
+const todoCoreApiClient = {
+  todo: new TodoV1alpha1Api(undefined, "", axiosInstance),
+}
+
+export { todoCoreApiClient }
+```
+
+调用方法时使用生成的请求参数和响应类型：
+
+```ts
+import { todoCoreApiClient } from "@/api"
+
+const { data } = await todoCoreApiClient.todo.listTodo({ page: 1, size: 20 })
+```
+
+当接口或模型变化时，修改 Java 源码或 OpenAPI 描述并重新运行生成任务。不要在 UI 中复制 `Metadata`、资源模型、列表结果或接口参数来绕过生成器。
+
+## 使用 Halo API Client
+
+从 Halo 2.17.0 开始，`@halo-dev/api-client` 提供以下客户端：
 
 ```ts
 import {
-  coreApiClient,
+  axiosInstance,
   consoleApiClient,
-  ucApiClient,
+  coreApiClient,
   publicApiClient,
-  createCoreApiClient,
-  createConsoleApiClient,
-  createUcApiClient,
-  createPublicApiClient,
-  axiosInstance
+  ucApiClient,
 } from "@halo-dev/api-client"
 ```
 
-- **coreApiClient**: 为 Halo 所有自定义模型的 CRUD 接口封装的 API Client。
-- **consoleApiClient**: 为 Halo 针对 Console 提供的接口封装的 API Client。
-- **ucApiClient**: 为 Halo 针对 UC 提供的接口封装的 API Client。
-- **publicApiClient**: 为 Halo 所有公开访问的接口封装的 API Client。
-- **createCoreApiClient**: 用于创建自定义模型的 CRUD 接口封装的 API Client，需要传入 axios 实例。
-- **createConsoleApiClient**: 用于创建 Console 接口封装的 API Client，需要传入 axios 实例。
-- **createUcApiClient**: 用于创建 UC 接口封装的 API Client，需要传入 axios 实例。
-- **createPublicApiClient**: 用于创建公开访问接口封装的 API Client，需要传入 axios 实例。
-- **axiosInstance**: 内部默认创建的 axios 实例。
+- `coreApiClient`：Halo 自定义模型 CRUD API。
+- `consoleApiClient`：Halo Console API。
+- `ucApiClient`：Halo 用户中心 API。
+- `publicApiClient`：Halo 公开 API。
+- `axiosInstance`：带有 Halo 认证和统一错误处理的 Axios 实例。
 
-## 使用
-
-在 Halo 的插件项目中，如果是调用 Halo 内部的接口，那么直接使用上面介绍的模块即可，无需任何配置，在 Halo 内部已经处理好了异常逻辑，包括登录失效、无权限等。
-
-其中，`coreApiClient`、`consoleApiClient`、`ucApiClient`、`publicApiClient` 模块是对 Halo 内部所有 API 请求的封装，无需传入任何请求地址，比如：
+调用 Halo 已提供的接口无需配置基础地址：
 
 ```ts
 import { coreApiClient } from "@halo-dev/api-client"
 
-coreApiClient.content.post.listPost().then(response => {
-  // handle response
-})
+const { data } = await coreApiClient.content.post.listPost({ page: 1, size: 20 })
 ```
 
-如果需要调用插件提供的接口，可以直接使用 `axiosInstance` 实例，比如：
+## 直接使用 axiosInstance
+
+只有接口暂时无法进入 OpenAPI 且调用点很少时，才直接使用路径：
 
 ```ts
 import { axiosInstance } from "@halo-dev/api-client"
 
-axiosInstance.get("/apis/foo.halo.run/v1alpha1/bar").then(response => {
-  // handle response
-})
+const { data } = await axiosInstance.get("/apis/foo.halo.run/v1alpha1/bar")
 ```
 
-`@halo-dev/ui-plugin-bundler-kit` 会让插件复用 Halo 提供的 `@halo-dev/api-client` 和 `axios`。旧版 IIFE 通过兼容全局对象提供这些依赖，Halo 2.26.0 开始支持的 ESM 则通过共享运行时模块提供，插件代码都应继续使用标准的包导入。
+当该接口需要复用、拥有稳定模型或包含多个参数时，应补充 OpenAPI 描述并改用生成客户端。
 
-直接从 `axios` 导入的是共享的标准 Axios 模块，不包含 Halo 的认证配置。请勿修改它的全局 defaults 或 interceptors；需要独立配置时使用 `axios.create()`。`@halo-dev/api-client` 导出的 `axiosInstance` 是另一个带有 Halo 认证和统一错误处理的实例，也不应修改它的 defaults 或 interceptors。
+不要为 `/api` 或 `/apis` 下的 Halo 请求调用 `axios.create()`。从 `axios` 直接创建的实例不包含 Halo 登录状态、权限失败和统一错误处理配置；也不要修改 `axiosInstance` 的全局 defaults 或 interceptors。
+
+`@halo-dev/ui-plugin-bundler-kit` 会让插件复用 Halo 提供的 `@halo-dev/api-client` 和 Axios。旧版 IIFE 通过兼容全局对象提供依赖，Halo 2.26.0 开始支持的 ESM 通过共享运行时模块提供，插件代码都应继续使用标准包导入。
 
 :::info 同步提高 Halo 版本要求
-如果插件中使用了 `@halo-dev/api-client@2.17.0` 和 `@halo-dev/ui-plugin-bundler-kit@2.17.0`，需要提升 `plugin.yaml` 中的 `spec.requires` 版本为 `>=2.17.0`。
+如果插件使用 `@halo-dev/api-client@2.17.0` 或更高版本，需要让 `plugin.yaml` 的 `spec.requires` 覆盖对应 Halo 版本。新项目应以脚手架生成的依赖和版本要求为准。
 :::
