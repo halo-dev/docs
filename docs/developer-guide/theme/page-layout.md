@@ -17,7 +17,7 @@ description: 了解如何通过主题提供页面布局，让插件前台页面�
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title th:text="${site.title}"></title>
+    <title th:if="${head == null}" th:text="${site.title}"></title>
     <link rel="stylesheet" th:href="@{/assets/dist/style.css}" />
     <th:block th:if="${head != null}">
       <th:block th:replace="${head}" />
@@ -40,7 +40,7 @@ description: 了解如何通过主题提供页面布局，让插件前台页面�
 
 其中：
 
-- `head`：调用方提供的头部片段，通常用于插入页面标题、meta 信息或当前页面需要的资源。
+- `head`：调用方提供的头部片段，通常用于插入页面标题、meta 信息或当前页面需要的资源。传入该片段时，调用方应提供最终的 `<title>`；示例布局只在 `head` 为空时输出站点标题，避免同一页面出现两个标题。
 - `content`：调用方提供的正文片段，应被插入到主题页面主体中。
 
 主题可以自行决定外层容器、页头、页脚、暗黑模式、响应式布局等实现细节。建议保留 `<halo:footer />`，以便 Halo 和插件继续向页面底部注入必要内容。

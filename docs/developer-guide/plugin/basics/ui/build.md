@@ -8,6 +8,7 @@ description: 使用 ui-plugin-bundler-kit 的 Vite 或 Rsbuild 预配置构建 H
 | 任务 | 阅读位置 |
 | --- | --- |
 | 在 Vite 或 Rsbuild 间选择 | [ui-plugin-bundler-kit](#bundler-kit) |
+| 配置图标组件 | [使用图标组件](#使用图标组件) |
 | 确认 ESM、IIFE 与最低 Halo 版本 | [输出格式与 Halo 目标](#output-format) |
 | 使用 Halo 提供的 Vue、Axios 和 UI 包 | [共享运行时依赖](#shared-runtime-dependencies) |
 | 从旧版 plugin-starter 迁移 | [HaloUIPluginBundlerKit（已过时）](#legacy-bundler-kit) |
@@ -231,6 +232,52 @@ export default rsbuildConfig({
   },
   rsbuild: {},
 });
+```
+
+### 使用图标组件
+
+官方脚手架使用 `unplugin-icons`，现有项目应继续把它挂载到 `viteConfig` 或 `rsbuildConfig` 的扩展配置中，不要改用原始的 `defineConfig` 绕过 Halo preset。
+
+Vite：
+
+```ts
+import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
+import Icons from "unplugin-icons/vite";
+
+export default viteConfig({
+  vite: {
+    plugins: [Icons({ compiler: "vue3" })],
+  },
+});
+```
+
+Rsbuild：
+
+```ts
+import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
+import Icons from "unplugin-icons/rspack";
+
+export default rsbuildConfig({
+  rsbuild: {
+    tools: {
+      rspack: {
+        plugins: [Icons({ compiler: "vue3" })],
+      },
+    },
+  },
+});
+```
+
+未安装时添加 `unplugin-icons` 开发依赖，并在 `env.d.ts` 中声明 Vue 类型：
+
+```ts
+/// <reference types="unplugin-icons/types/vue" />
+```
+
+之后可以通过虚拟模块导入图标组件：
+
+```ts
+import RiBookReadLine from "~icons/ri/book-read-line";
 ```
 
 ## 输出格式与 Halo 目标{#output-format}

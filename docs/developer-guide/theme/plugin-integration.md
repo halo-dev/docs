@@ -62,6 +62,28 @@ description: 在 Halo 主题中检查可用插件、保护插件专属调用，�
 
 从 Halo 2.26.0 开始，主题可以提供 `templates/layout.html` 的 `html(head, content)` 片段，让插件前台页面复用主题外壳。该能力是可选的，不应影响主题自身页面；具体契约和回退行为请参考[页面布局契约](./page-layout.md)。
 
+## 适配插件组件配色
+
+Halo 官方的搜索组件和评论组件支持一组公共配色标记。主题应将其中一种标记设置在 `<html>` 或 `<body>` 上，让组件继承与主题一致的明暗模式：
+
+| 主题模式 | class | `data-color-scheme` |
+| --- | --- | --- |
+| 跟随系统 | `color-scheme-auto` | `auto` |
+| 深色 | `color-scheme-dark` 或 `dark` | `dark` |
+| 浅色 | `color-scheme-light` 或 `light` | `light` |
+
+例如：
+
+```html
+<html class="color-scheme-auto">
+```
+
+```html
+<html data-color-scheme="dark">
+```
+
+`auto` 模式会通过 `prefers-color-scheme` 跟随系统。主题切换模式时，应同步更新这个公共标记，并分别验证搜索、评论等插件组件；不要只修改主题自己的 CSS 变量。
+
 ## 覆盖插件前台模板
 
 一些插件会提供前台页面（例如瞬间、链接、相册页面），插件在渲染这些页面时，Halo 会先检查当前主题的 `templates/` 目录下是否存在同名的模板文件，存在则使用主题的模板，不存在才回退到插件内置的模板。
