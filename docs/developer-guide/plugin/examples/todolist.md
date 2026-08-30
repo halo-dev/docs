@@ -376,7 +376,7 @@ onMounted(handleFetchTodos);
 + @click="handleClearCompleted"
 ```
 
-此示例只有一个轻量的 Todo 文本输入，因此保留 TodoMVC 的原生控件。包含多个字段、校验或提交状态的插件页面和弹窗应使用[表单与页面组件](../basics/ui/forms.md)中介绍的 FormKit。
+此示例只有一个轻量的 Todo 文本输入，因此保留 TodoMVC 的原生控件。包含多个字段、校验或提交状态的插件页面和弹窗应使用[插件设置与表单组件](../basics/ui/forms.md)中介绍的 FormKit。
 
 至此，UI 使用生成的类型和 API 方法完成了 Todo 数据交互；接口路径、参数和响应类型会随服务端 OpenAPI 契约一起更新。
 ### 用户界面使用静态资源

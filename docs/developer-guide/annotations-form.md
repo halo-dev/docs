@@ -3,9 +3,9 @@ title: 元数据表单定义
 description: 介绍 Halo AnnotationSetting 资源与 FormKit Schema 的定义方式，为文章、页面、分类、标签、菜单项和用户配置可编辑的字符串元数据字段。
 ---
 
-在 Halo 2.0，所有的模型都包含了 `metadata.annotations` 字段，用于存储元数据信息。元数据信息可以用于存储一些自定义的信息，可以等同于扩展字段。此文档主要介绍如何在 Halo 中为具体的模型定义元数据编辑表单，至于如何在插件或者主题模板中使用，请看插件或者主题的文档。
+从 Halo 2.0 开始，所有模型都包含 `metadata.annotations` 字段，用于存储类似扩展字段的自定义元数据。本文主要介绍如何为具体模型定义元数据编辑表单；如何在插件或主题模板中读取元数据，请参考对应的插件或主题文档。
 
-定义元数据编辑表单同样使用 `FormKit Schema`，但和主题或插件的定义方式稍有不同，其中输入组件类型可参考 [表单定义](./form-schema.md)。
+元数据编辑表单同样使用 FormKit Schema，但资源结构和值类型限制与主题、插件 Setting 不同。输入组件契约参考 [表单定义与组件速查](./form-schema.md)。
 
 :::info annotations 表单值必须为字符串
 因为 `metadata.annotations` 是一个键值都为字符串类型的对象，所以表单项的值必须为字符串类型。这就意味着，FormKit 的 `number`、`group`、`repeater` 等类型的输入组件都不能使用。`checkbox` 类型的输入组件应通过 `on-value` 和 `off-value` 指定字符串值，以替代默认的布尔值。
@@ -39,7 +39,7 @@ spec:
 
 1. `metadata.name`：唯一标识，命名规范可参考 [metadata name](./plugin/api-reference/server/extension.md#naming-spec-for-metadata-name)，为了尽可能避免冲突，建议自定义前缀以及追加随机字符串，如：`theme-earth-post-wanfs5`。
 2. `spec.targetRef`：模型的关联，即为哪个模型添加元数据表单，目前支持的模型可查看下方的列表。
-3. `spec.formSchema`：表单的定义，使用 FormKit Schema 来定义。虽然我们使用的 YAML，但与 FormKit Schema 完全一致。
+3. `spec.formSchema`：FormKit Schema 节点列表。YAML 只是资源文件的表示形式，节点仍需满足可 JSON 序列化的 Schema 约束。
 
 targetRef 支持列表：
 

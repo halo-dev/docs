@@ -34,7 +34,7 @@ spec:
 ```
 
 - `notifierExtName` 为通知器扩展的自定义模型对象名称
-- `senderSettingRef` 用于声明通知器的发送者配置，例如：邮件通知器的发送者配置为：SMTP 服务器地址、端口、用户名、密码等，如果没有可以不配置，参考：[表单定义](../../../form-schema.md)
+- `senderSettingRef` 用于声明通知器的发送者配置，例如 SMTP 服务器地址、端口和用户名等，如果没有可以不配置，参考：[表单定义与组件速查](../../../form-schema.md)。密码等敏感信息应通过 Secret 引用，不应直接保存在 Setting 中。
   - `name` 为发送者配置的名称，它是一个 `Setting` 自定义模型对象的名称。
   - `group` 用于引用到一个具体的配置 Schema 组，它是一个 `Setting` 自定义模型对象中描述的 `formSchema` 的 `group`，由于 `Setting` 可以声明多个配置分组但通知器的发送者配置只能有在一个组，因此需要指定一个组。
 - `receiverSettingRef` 用于声明通知器的接收者配置，例如：邮件通知器的接收者配置为：接收者邮箱地址，如果没有可以不配置，`name` 和 `group` 配置同 `senderSettingRef`。

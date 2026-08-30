@@ -1,11 +1,19 @@
 ---
-title: 表单定义
-description: 介绍 Halo Setting 资源中的 FormKit Schema 表单规范，以及 select 等扩展输入组件的参数、静态与远程数据源和 YAML 配置示例。
+title: 表单定义与组件速查
+description: 面向 Halo 主题、插件和元数据表单的 FormKit Schema 通用速查，介绍 Setting 结构、默认值、数据边界以及扩展输入组件。
 ---
 
-在 Halo 2.0，在 Console 端的所有表单我们都使用了 [FormKit](https://github.com/formkit/formkit) 的方案。FormKit 不仅支持使用 Vue 组件的形式来构建表单，同时支持使用 Schema 的形式来构建。因此，我们的 [Setting](https://github.com/halo-dev/halo/blob/87ccd61ae5cd35a38324c30502d4e9c0ced41c6a/src/main/java/run/halo/app/core/extension/Setting.java#L20) 资源中的表单定义，都是使用 FormKit Schema 来定义的，最常用的场景即主题和插件的设置表单定义。当然，如果要在 Halo 2.0 的插件中使用，也可以参考 FormKit 的文档使用 Vue 组件的形式使用，但不需要在插件中引入 FormKit。
+从 Halo 2.0 开始，Console 端的表单使用 [FormKit](https://github.com/formkit/formkit) 构建。FormKit 既支持 Vue 组件，也支持可序列化的 Schema。Halo 的主题设置、插件设置和元数据表单都可以复用 FormKit Schema 和本文列出的扩展输入组件。
 
-此文档将不会介绍 FormKit 的具体使用教程，因为我们已经很好的集成了 FormKit，并且使用方式基本无异。此文章将介绍 Halo 2.0 中表单定义的一些规范，以及额外的一些输入组件。
+本文是通用速查，只说明 [Setting](https://github.com/halo-dev/halo/blob/main/api/src/main/java/run/halo/app/core/extension/Setting.java) 结构、Schema 约束和输入组件契约。如何关联资源、读取配置以及处理场景特有的限制，请先进入对应指南。
+
+## 选择正确的使用场景
+
+| 场景 | 指南 | 本页提供的内容 |
+| --- | --- | --- |
+| 主题设置 | [设置选项](./theme/settings.md) | Schema 字段和可用输入组件 |
+| 插件设置或自定义表单 | [插件设置与表单组件](./plugin/basics/ui/forms.md) | Setting Schema、宿主输入组件和数据边界 |
+| 模型元数据表单 | [元数据表单定义](./annotations-form.md) | 可返回字符串的输入组件；具体值类型限制以元数据表单指南为准 |
 
 FormKit 相关文档：
 
@@ -13,10 +21,25 @@ FormKit 相关文档：
 - FormKit Inputs: [https://formkit.com/inputs](https://formkit.com/inputs)
 
 :::tip 组件支持范围
-目前不支持 FormKit Pro 中的输入组件，但 Halo 额外提供了部分输入组件，将在下面文档列出。
+Halo 使用 FormKit 开源版本提供的默认输入组件，不支持 FormKit Pro 输入组件。Halo 额外提供的组件将在下文列出。
 :::
 
-如果需要在插件中创建自定义的 FormKit 表单类型，可以通过插件 UI 入口文件的 `formkit.inputs` 注册，详细文档可参考 [插件 FormKit 扩展](./plugin/api-reference/ui/formkit.md)。
+## 常用 FormKit 原生输入
+
+Halo 已经注册 FormKit 开源版本的原生输入。以下是 Setting Schema 中常用的类型，具体参数和验证规则以 FormKit 官方文档为准。
+
+| 类型 | 用途 |
+| --- | --- |
+| `text`、`textarea` | 单行或多行文本 |
+| `email`、`url` | 邮箱或 URL，并可配合对应验证规则 |
+| `number`、`range` | 数值或范围 |
+| `checkbox`、`radio` | 多选、布尔开关或单选项 |
+| `date`、`time` | 日期或时间 |
+| `password` | 遮蔽输入内容，但不会加密保存值 |
+
+Halo 已覆盖原生 `select`，请使用本文的 [`select`](#select) 参数。附件应优先使用 [`attachment`](#attachment)，不要使用 FormKit 原生文件上传自行实现附件管理。
+
+插件需要注册自定义输入类型时，通过 UI 入口文件的 `formkit.inputs` 注册，详细文档请参考 [插件 FormKit 扩展](./plugin/api-reference/ui/formkit.md)。
 
 ## Setting 资源定义方式
 
@@ -24,47 +47,88 @@ FormKit 相关文档：
 apiVersion: v1alpha1
 kind: Setting
 metadata:
-  name: foo-setting
+  name: example-setting
 spec:
   forms:
-    - group: group_1
-      label: 分组 1
-      formSchema:
-        - $formkit: radio
-          name: color_scheme
-          label: 默认配色
-          value: system
-          options:
-            - label: 跟随系统
-              value: system
-            - label: 深色
-              value: dark
-            - label: 浅色
-              value: light
-
-    - group: group_2
-      label: 分组 2
+    - group: general
+      label: 基础设置
       formSchema:
         - $formkit: text
-          name: username
-          label: 用户名
-          value: ""
-        - $formkit: password
-          name: password
-          label: 密码
-          value: ""
+          name: display_name
+          label: 显示名称
+          value: 示例
+        - $formkit: radio
+          name: display_mode
+          label: 展示模式
+          value: list
+          options:
+            - label: 列表
+              value: list
+            - label: 网格
+              value: grid
+
+    - group: features
+      label: 功能设置
+      formSchema:
+        - $formkit: switch
+          name: enabled
+          label: 启用功能
+          value: true
 ```
 
-:::tip YAML 与 JSON 格式转换
-需要注意的是，FormKit Schema 本身应该是 JSON 格式的，但目前我们定义一个表单所使用的是 YAML，可能在参考 FormKit 写法时需要手动转换一下。
+:::warning 不要在 Setting 中直接保存敏感信息
+Setting 的值最终保存在 ConfigMap 中。`password` 输入类型只会隐藏界面上的输入内容，并不会加密保存的数据。密码、Token、API Key 等敏感信息应保存在 Halo 的 Secret 资源中，并通过 [`secret`](#secret) 组件选择对应资源。
+:::
+
+:::tip 遵循具体场景的设置边界
+主题设置不应重复定义 Logo、favicon、全局代码注入和系统级 SEO，具体边界请参考[主题设置选项](./theme/settings.md#区分系统设置与主题设置)。插件设置也应只包含插件自身的业务配置，不要为 Halo 已有的系统设置增加第二个配置入口。
+:::
+
+:::tip YAML 与 FormKit Schema
+FormKit Schema 是可 JSON 序列化的数据结构，Setting 使用 YAML 只是资源文件的表示形式，不需要手动进行 JSON 与 YAML 转换。可以将 FormKit 文档中的对象结构改写为等价的 YAML，但不能直接在 YAML 中定义 JavaScript 函数。只有渲染端通过 Schema `data` 提供的函数才能在表达式中调用。
 :::
 
 字段说明：
 
 1. `metadata.name`：设置资源的名称，建议以 `-setting` 结尾。
-2. `spec.forms`：表单定义，可以定义多个表单，每个表单都有一个 `group` 字段，用于区分不同的表单。
-3. `spec.forms[].label`：表单的标题。
-4. `spec.forms[].formSchema`：表单的定义，使用 FormKit Schema 来定义。虽然我们使用的 YAML，但与 FormKit Schema 完全一致。
+2. `spec.forms`：必填的表单定义列表，至少包含一个表单分组。
+3. `spec.forms[].group`：必填的分组名称，同时也是 ConfigMap 中保存该组数据的键。发布后应保持稳定，并且不能与同一 Setting 中的其他分组重复。
+4. `spec.forms[].label`：可选的表单标题。
+5. `spec.forms[].formSchema`：必填的 FormKit Schema 节点列表。
+
+每个需要持久化的输入项都应设置唯一的 `name`。保存后，该 `name` 将作为表单数据对象中的字段名。
+
+:::tip 默认值的提取规则
+Halo 只会从 `formSchema` 的直接子节点中提取同时具有 `name` 和 `value` 的节点，用于初始化对应 ConfigMap。嵌套在 `children` 中的节点不会被递归提取；`list`、`array` 等容器需要在容器节点上设置完整的默认 `value`。
+:::
+
+## Halo 扩展组件速查
+
+| 组件 | 用途 | 保存值 |
+| --- | --- | --- |
+| [`select`](#select) | 静态或远程选择 | `string` 或 `string[]` |
+| [`list`](#list) | 基本类型或对象列表 | 数组 |
+| [`verificationForm`](#verificationform) | 提交前远程验证一组字段 | 不改变子字段的数据结构 |
+| [`attachment`](#attachment) / [`attachmentInput`](#attachmentinput) | 上传或选择附件 | `string` 或 `string[]` |
+| [`attachmentGroupSelect`](#attachmentgroupselect) / [`attachmentPolicySelect`](#attachmentpolicyselect) | 选择附件分组或存储策略 | `string` |
+| [`code`](#code) | 编辑代码或结构化文本 | `string` |
+| [`color`](#color) | 选择颜色 | `string` |
+| [`menuSelect`](#menuselect) / [`menuItemSelect`](#menuitemselect) / [`menuCheckbox`](#menucheckbox) / [`menuRadio`](#menuradio) | 选择菜单或菜单项 | 资源名称或资源名称数组 |
+| [`postSelect`](#postselect) / [`singlePageSelect`](#singlepageselect) | 选择文章或独立页面 | 资源名称 |
+| [`categorySelect`](#categoryselect) / [`tagSelect`](#tagselect) / [`categoryCheckbox`](#categorycheckbox) / [`tagCheckbox`](#tagcheckbox) | 选择分类或标签 | `string` 或 `string[]` |
+| [`roleSelect`](#roleselect) / [`userSelect`](#userselect) | 选择角色或用户 | 资源名称 |
+| [`iconify`](#iconify) | 选择 Iconify 图标 | `string` 或对象 |
+| [`array`](#array) | 编辑对象数组 | 对象数组 |
+| [`switch`](#switch) / [`toggle`](#toggle) | 在预设值之间切换 | 单值或数组 |
+| [`secret`](#secret) | 选择 Secret 资源 | Secret 资源名称 |
+
+:::warning 组件可用不代表数据可直接使用
+- `verificationForm` 需要可访问的服务端验证接口，通常由插件或其他服务端扩展提供。
+- `secret` 只保存 Secret 资源名称，Secret 内容必须由服务端读取，主题模板不能通过设置值直接获得凭据。
+- `multiple: true` 会让部分选择器返回数组，不适用于只允许字符串值的 AnnotationSetting。
+- 组件涉及的附件、用户、角色、分类、标签等资源仍受当前用户权限限制。
+
+:::
 
 ## 组件类型
 
@@ -89,13 +153,13 @@ spec:
 - `action`：远程动态数据源的接口地址。
 - `requestOption`：动态数据源的请求参数，可以通过此参数来指定如何获取数据，适配不同的接口。当 `action` 存在时，此参数有效。
 - `remoteOptimize`：是否开启远程数据源优化，默认为 `true`。开启后，将会对远程数据源进行优化，减少请求次数。仅在动态数据源下有效。
-- `allowCreate`：是否允许创建新选项，默认为 `false`。仅在静态数据源下有效，需要同时开启 `searchable`。
+- `allowCreate`：是否允许把搜索关键词作为新选项值，默认为 `false`，需要同时开启 `searchable`。此选项不会在远程服务中创建对应资源。
 - `clearable`：是否允许清空选项，默认为 `false`。
 - `multiple`：是否多选，默认为 `false`。
 - `maxCount`：多选时最大可选数量，默认为 `Infinity`。仅在多选时有效。
-- `sortable`：是否支持拖动排序，默认为 `false`。仅在多选时有效。
+- `sortable`：是否支持拖动排序，默认为 `true`。仅在多选时有效。
 - `searchable`: 是否支持搜索，默认为 `false`。
-- `autoSelect`：当初始值不存在时，是否自动选择第一个选项，默认为 `true`。仅在单选时有效。
+- `autoSelect`：当初始值不存在且未设置 `placeholder` 时，是否自动选择第一个选项，默认为 `true`。仅在单选时有效。
 
 #### 参数类型定义
 
@@ -168,8 +232,11 @@ spec:
   maxCount?: number;
   sortable?: boolean;
   searchable?: boolean;
+  autoSelect?: boolean;
 }
 ```
+
+`PropertyPath` 表示响应对象中的属性路径，例如 `post.spec.title`。
 
 #### 静态数据示例
 
@@ -196,7 +263,7 @@ spec:
     - label: Spain
       value: es
     - label: Italy
-      value: ie
+      value: it
     - label: Greece
       value: gr
 ```
@@ -207,10 +274,12 @@ spec:
 
 请求的接口将会自动拼接 `page`、`size` 与 `keyword` 参数，其中 `keyword` 为搜索关键词。
 
+`action` 使用 Halo Console 提供的 Axios 实例和当前登录会话发起请求，因此应指向当前用户有权访问的同源 Halo API。如果需要访问第三方服务，应由插件后端代理请求并向 Console 暴露受权限保护的接口。
+
 ```yaml
 - $formkit: select
   name: postName
-  label: Choose an post
+  label: Choose a post
   clearable: true
   action: /apis/api.console.halo.run/v1alpha1/posts
   requestOption:
@@ -248,7 +317,7 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
 
 #### 参数
 
-- `item-type`：数据项的数据类型，用于初始化数据。可选参数 `string`, `number`, `boolean`，默认为 `string`
+- `itemType`：数据项的数据类型，用于初始化数据。可选参数 `string`、`number`、`boolean`、`object`，默认为 `string`
 - `min`：数组最小要求数量，默认为 `0`
 - `max`：数组最大容量，默认为 `Infinity`，即无限制
 - `addButton`：是否显示添加按钮
@@ -299,22 +368,23 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
 
 - `action`：对目标数据进行验证的接口地址
 - `label`：验证按钮文本
-- `submitAttrs`：验证按钮的额外属性
+- `buttonAttrs`：验证按钮的属性，例如通过 `disabled` 禁用按钮
 
 #### 示例
 
 ```yaml
 - $formkit: verificationForm
-  action: /apis/console.api.halo.run/v1alpha1/verify/verify-password
-  label: 账户校验
+  action: /apis/console.api.my-plugin.halo.run/v1alpha1/configurations/verify
+  label: 验证配置
   children:
     - $formkit: text
-      label: "用户名"
-      name: username
-      validation: required
-    - $formkit: password
-      label: "密码"
-      name: password
+      label: 仓库地址
+      name: repository_url
+      validation: required|url
+    - $formkit: text
+      label: 分支
+      name: branch
+      value: main
       validation: required
 ```
 
@@ -323,8 +393,8 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
 
 ```json
 {
-  "username": "admin",
-  "password": "admin"
+  "repository_url": "https://github.com/halo-dev/halo",
+  "branch": "main"
 }
 ```
 
@@ -333,8 +403,8 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
 ```json
 {
   "verificationForm": {
-    "username": "admin",
-    "password": "admin"
+    "repository_url": "https://github.com/halo-dev/halo",
+    "branch": "main"
   }
 }
 ```
@@ -345,20 +415,20 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
 
 ```json
 {
-  "username": "admin",
-  "password": "admin"
+  "repository_url": "https://github.com/halo-dev/halo",
+  "branch": "main"
 }
 ```
 
 当验证接口返回成功响应时，则验证通过，否则验证失败。
 
-若用户在验证失败时想显示错误信息，可以在验证接口返回错误信息，该错误信息的结构定义需遵循 [RFC 7807 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc7807.html) 。例如：
+若用户在验证失败时想显示错误信息，可以在验证接口返回错误信息，该错误信息的结构定义需遵循 [RFC 7807 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc7807.html)。例如：
 
 ```json
 {
-  "title": "无效凭据",
-  "status": 401,
-  "detail": "用户名或密码错误。"
+  "title": "配置验证失败",
+  "status": 400,
+  "detail": "无法访问指定的仓库或分支。"
 }
 ```
 
@@ -408,12 +478,12 @@ UI 效果：
           value: false
     - $formkit: text
       # 在 Repeater 中进行条件判断的方式，当 enabled 为 true 时才显示
-      if: "$value.enabled === true",
+      if: "$value.enabled === true"
       name: name
       label: 名称
       value: ""
     - $formkit: text
-      if: "$value.enabled === true",
+      if: "$value.enabled === true"
       name: url
       label: 地址
       value: ""
@@ -452,23 +522,27 @@ UI 效果：
 
 #### 参数
 
-- `accepts`：文件类型，数据类型为 `string[]`
-- `width`：预览区域宽度
-- `aspectRatio`：预览区域长宽比，比如 `1/1`、`16/9`
-- `multiple`：是否支持多选，设置为 `true` 之后，数据结构为字符串数组
+- `accepts`：允许选择的文件类型，数据类型为 `string[]`，默认为 `["*"]`
+- `width`：预览区域宽度，默认为 `5rem`
+- `aspectRatio`：预览区域长宽比，默认为 `1/1`，也可以设置为 `16/9` 等比例
+- `multiple`：是否支持多选，默认为 `false`。设置为 `true` 后，值为字符串数组
 
 #### 示例
 
 ```yaml
 - $formkit: attachment
-  name: logo
-  label: Logo
+  name: hero_image
+  label: 首页横幅
+  width: 10rem
+  aspectRatio: 16/9
   accepts:
     - "image/png"
-    - "video/mp4"
-    - "audio/*"
+    - "image/jpeg"
+    - "image/webp"
   value: ""
 ```
+
+附件上传和附件库入口会根据当前用户权限显示；用户也可以输入可访问的附件链接。
 
 ### attachmentInput
 
@@ -479,19 +553,42 @@ UI 效果：
 #### 参数
 
 - `accepts`：文件类型，数据类型为 `string[]`
-- `min`：最小文件数量
-- `max`：最大文件数量
 
 #### 示例
 
 ```yaml
-- $formkit: attachment
-  name: logo
-  label: Logo
+- $formkit: attachmentInput
+  name: project_cover
+  label: 项目封面
   accepts:
     - "image/png"
-    - "video/mp4"
-    - "audio/*"
+    - "image/jpeg"
+  value: ""
+```
+
+### attachmentGroupSelect
+
+附件分组选择器，用于选择系统中未被隐藏的附件分组，保存值为分组资源的 `metadata.name`。
+
+**引入版本**：2.4.0
+
+```yaml
+- $formkit: attachmentGroupSelect
+  name: attachment_group
+  label: 附件分组
+  value: ""
+```
+
+### attachmentPolicySelect
+
+附件存储策略选择器，用于选择系统中的附件存储策略，保存值为策略资源的 `metadata.name`。
+
+**引入版本**：2.4.0
+
+```yaml
+- $formkit: attachmentPolicySelect
+  name: attachment_policy
+  label: 存储策略
   value: ""
 ```
 
@@ -503,17 +600,37 @@ UI 效果：
 
 #### 参数
 
-- `language`：代码语言，目前支持 `yaml` `html` `javascript` `css` `json`。
+- `language`：代码语言，目前支持 `yaml`、`html`、`javascript`、`css`、`json`、`markdown`。其中 `markdown` 从 Halo 2.22.0 开始支持。
 - `height`：代码编辑器的高度。
 
 #### 示例
 
 ```yaml
 - $formkit: code
-  name: footer_code
-  label: 页脚代码注入
-  value: ""
+  name: mapping_rules
+  label: 字段映射规则
+  value: |-
+    title: spec.title
+    cover: spec.cover
   language: yaml
+```
+
+### color
+
+颜色选择器，支持通过拾色器或文本输入颜色，保存值为指定格式的字符串。
+
+**引入版本**：2.22.0
+
+#### 参数
+
+- `format`：颜色格式，可选值为 `hex`、`hex8`、`rgb`、`hsl`，默认为 `hex`
+
+```yaml
+- $formkit: color
+  name: accent_color
+  label: 强调色
+  format: hex
+  value: "#2563eb"
 ```
 
 ### menuSelect
@@ -535,6 +652,26 @@ UI 效果：
 :::info menuSelect 兼容 select 参数
 menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
 :::
+
+### menuItemSelect
+
+菜单项选择器，用于从指定的菜单项资源中选择一项，保存值为菜单项资源的 `metadata.name`。
+
+**引入版本**：2.4.0
+
+#### 参数
+
+- `menuItems`：必填的菜单项资源名称数组，用于限定可选范围
+
+```yaml
+- $formkit: menuItemSelect
+  name: featured_menu_item
+  label: 推荐菜单项
+  menuItems:
+    - menu-item-a
+    - menu-item-b
+  value: ""
+```
 
 ### menuCheckbox
 
@@ -570,7 +707,7 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
 
 #### 描述
 
-文章选择器，用于选择系统内的文章。其中选择的值为文章资源 `metadata.name`。
+文章选择器，用于选择系统内已发布且未删除的文章。其中选择的值为文章资源 `metadata.name`。
 
 #### 示例
 
@@ -585,7 +722,7 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
 
 #### 描述
 
-单页选择器，用于选择系统内的独立页面。其中选择的值为独立页面资源 `metadata.name`。
+单页选择器，用于选择系统内已发布且未删除的独立页面。其中选择的值为独立页面资源 `metadata.name`。
 
 #### 示例
 
@@ -600,7 +737,13 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
 
 #### 描述
 
-文章分类选择器，用于选择系统内的文章分类。其中选择的值为文章分类资源 `metadata.name`。
+文章分类选择器，用于选择系统内的文章分类。其中选择的值为文章分类资源 `metadata.name`；开启多选后，值为资源名称数组。
+
+#### 参数
+
+- `multiple`：是否支持多选，默认为 `false`
+- `excludedNames`：需要排除的分类资源名称数组（引入版本：2.26.0）
+- `allowCreate`：是否允许创建新分类，默认为 `true`（引入版本：2.26.0）
 
 #### 示例
 
@@ -608,8 +751,11 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
 - $formkit: categorySelect
   name: category
   label: 分类
+  allowCreate: false
   value: ""
 ```
+
+创建分类需要当前用户具有文章管理权限。如果设置表单只应选择现有分类，请显式设置 `allowCreate: false`。
 
 ### categoryCheckbox
 
@@ -630,16 +776,23 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
 
 #### 描述
 
-文章标签选择器，用于选择系统内的文章标签。其中选择的值为文章标签资源 `metadata.name`。
+文章标签选择器，用于选择系统内的文章标签。其中选择的值为文章标签资源 `metadata.name`；开启多选后，值为资源名称数组。
+
+#### 参数
+
+- `multiple`：是否支持多选，默认为 `false`
 
 #### 示例
 
 ```yaml
 - $formkit: tagSelect
-  name: tag
+  name: tags
   label: 标签
-  value: ""
+  multiple: true
+  value: []
 ```
+
+当用户输入不存在的标签且具有文章管理权限时，选择器可以创建新标签。使用方不应假定该组件只会读取已有资源。
 
 ### tagCheckbox
 
@@ -654,6 +807,32 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
   name: tags
   label: 标签
   value: []
+```
+
+### roleSelect
+
+角色选择器，用于选择系统中的非模板角色，保存值为角色资源的 `metadata.name`。
+
+**引入版本**：2.4.0
+
+```yaml
+- $formkit: roleSelect
+  name: default_role
+  label: 默认角色
+  value: ""
+```
+
+### userSelect
+
+用户选择器，支持远程搜索，并排除匿名用户和已删除用户，保存值为用户资源的 `metadata.name`。
+
+**引入版本**：2.4.0
+
+```yaml
+- $formkit: userSelect
+  name: owner
+  label: 负责人
+  value: ""
 ```
 
 ### iconify
@@ -675,14 +854,14 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
 
 - `format`：图标格式，默认为 `svg`
   - `svg`：svg 字符串
-  - `dataurl`：base64 的图片链接，可以直接用于 img 标签
+  - `dataurl`：经过 URI 编码的 SVG Data URL，可以直接用于 `img` 标签
   - `url`：Iconify 的 CDN 链接
   - `name`：Iconify 的图标名称，需要在使用的地方自行加载图标
 - `value-only`：是否仅返回图标数据，默认为 `false`
 - `popper-placement`：图标选择弹窗的打开位置，默认为 `auto`，可以为：`auto`、`auto-end`、`auto-start`、`bottom`、`bottom-end`、`bottom-start`、`left`、`left-end`、`left-start`、`right`、`right-end`、`right-start`、`top`、`top-end`、`top-start`
 - `sizing`：图标尺寸配置对象（引入版本：2.23.0），包含以下属性：
   - `enabled`：是否显示图标尺寸配置，默认为 `false`
-  - `default`：默认尺寸，默认为 `24`
+  - `default`：默认尺寸，字符串类型，默认为 `"24"`
   - `presets`：预设尺寸，字符串数组类型
 
 #### 值类型
@@ -736,12 +915,12 @@ UI 效果：
 - `addLabel`：添加按钮上显示的文本
 - `addAttrs`：添加按钮的额外属性
 - `emptyText`: 当数组为空时显示的文本
-- `itemLabels`: 列表元素上显示的内容，数据类型为 `{ type: "image" | "text" | "iconify"; label: string }[]`
+- `itemLabels`: 列表元素上显示的内容，数据类型为 `{ type: "image" | "text" | "iconify" | "color"; label: string }[]`
 
 :::tip 建议设置 itemLabels
 强烈建议为 `array` 设置 `itemLabels` 属性，以便于更直观的展示元素内容，设置的元素内容将按照设置顺序展示在列表元素上。
 
-在 `itemLabels` 中定义 `label` 时，可以使用 `$value` 来指向当前项的值。
+在 `itemLabels` 中定义 `label` 时，可以使用 `$value` 指向当前项的值，也可以使用 `$value.name`、`$value.profile.name` 等路径读取嵌套字段。
 :::
 
 #### 示例
@@ -755,12 +934,12 @@ UI 效果：
   min: 1
   itemLabels:
     - type: image
-      label: $value.logo
+      label: $value.icon
     - type: text
       label: $value.name
   children:
     - $formkit: attachment
-      name: logo
+      name: icon
       label: 图标
       value: ""
     - $formkit: text
@@ -772,36 +951,6 @@ UI 效果：
       label: 地址
       value: ""
 ```
-
-:::warning itemLabels 的条件限制
-由于目前无法通过单个 `itemLabels` 定义涵盖所有子项变动的情况，因此在 `itemLabels` 中使用 `$value` ，无法获取到具有 `if` 属性的组件值。
-
-例如：
-
-```yaml
-- $formkit: array
-  name: socials
-  label: 社交账号
-  value: []
-  itemLabels:
-    - type: text
-      # 这里无法获取到具有 if 属性的组件值，因此也就无法展示在列表元素上。
-      label: $value.name
-  children:
-    - $formkit: select
-      name: enabled
-      label: 是否启用
-      options:
-        - label: 是
-          value: true
-        - label: 否
-          value: false
-    - $formkit: text
-      if: "$value.enabled === true",
-      label: $value.name
-```
-
-:::
 
 ### switch
 
@@ -886,18 +1035,24 @@ UI 效果：
 
 密钥输入组件，用于选择一个密钥资源。
 
+**引入版本**：2.17.0
+
 :::note 使用 Secret 存储敏感数据
 在 Halo 中，我们提供了一种更加安全的数据存储模型，即 Secret，通常我们使用 Secret 来存储敏感数据，比如密码、token、密钥等。
 
-主要注意的是，此表单类型通常与后端配合使用，需要在后端查询密钥资源。
+需要注意的是，此表单类型保存的是 Secret 资源名称，需要服务端根据该名称查询 Secret 资源。主题模板不能通过该设置值直接获取 Secret 内容。
 :::
 
 参数
 
-- `requiredKeys`：所需的密钥字段，用于为用户说明所选的密钥资源中需要包含的字段，此字段为对象数组类型，对象包含以下属性：
+- `requiredKeys`：所需的密钥字段，用于说明所选 Secret 应包含的字段（引入版本：2.22.10）。此字段为对象数组类型，对象包含以下属性：
   - `key`：密钥字段名称
-  - `help`：密钥字段名称的描述
+  - `help`：可选的密钥字段说明
 - `descriptionPreset`：创建密钥时的备注预设（引入版本：2.25.0）。打开创建密钥弹窗时，备注字段会预填为 `<descriptionPreset> - <当前时间>`，用户仍可在保存前编辑。
+
+:::warning requiredKeys 不是后端校验
+`requiredKeys` 只用于 Console 中的创建提示和缺失提醒，不会阻止服务端读取到字段缺失或值为空的 Secret。使用 Secret 的服务端代码必须自行校验所需字段，并返回清晰的错误信息。
+:::
 
 #### 示例
 

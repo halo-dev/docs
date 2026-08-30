@@ -6,6 +6,8 @@ description: 了解如何获取插件定义的设置表单对应的配置数据�
 插件的 `plugin.yaml` 中允许配置 `settingName` 和 `configMapName` 字段，用于定义插件的个性化设置。
 本文介绍如何获取插件定义的设置表单对应的配置数据，以及如何在插件中使用配置数据。
 
+如何关联 `plugin.yaml` 与 Setting、选择 FormKit 输入组件，请先参考[插件设置与表单组件](../../basics/ui/forms.md)和[表单定义与组件速查](../../../form-schema.md)。
+
 ## 概述
 
 Halo 提供了两个 Bean 用于获取插件配置数据：`SettingFetcher` 和 `ReactiveSettingFetcher`，分别用于同步和异步获取配置数据。
@@ -52,28 +54,27 @@ public class PluginConfigUpdatedEvent extends ApplicationEvent {
 
 ### 定义设置表单
 
-假设插件定义了一个名为 `setting-seo` 的设置表单，其中包含了 `blockSpiders`、`keywords` 和 `description` 三个字段：
+假设项目同步插件定义了一个名为 `project-sync-settings` 的设置表单，其中包含自动同步开关和同步间隔：
 
-```yaml
+```yaml title="src/main/resources/extensions/settings.yaml"
 apiVersion: v1alpha1
 kind: Setting
 metadata:
-  name: setting-seo
+  name: project-sync-settings
 spec:
   forms:
-    - group: seo  
-      label: SEO 设置  
-      formSchema:  
-        - $formkit: checkbox  
-          name: blockSpiders  
-          label: "屏蔽搜索引擎"  
-          value: false  
-        - $formkit: textarea  
-          name: keywords  
-          label: "站点关键词"  
-        - $formkit: textarea  
-          name: description  
-          label: "站点描述"
+    - group: sync
+      label: 同步设置
+      formSchema:
+        - $formkit: switch
+          name: enabled
+          label: 启用自动同步
+          value: false
+        - $formkit: number
+          name: interval
+          label: 同步间隔（分钟）
+          value: 30
+          validation: required|min:5
 ```
 
 ### 配置 plugin.yaml
@@ -84,12 +85,12 @@ spec:
 apiVersion: plugin.halo.run/v1alpha1
 kind: Plugin
 metadata:
-  name: fake-plugin
+  name: project-sync
 spec:
-  displayName: "Fake Plugin"
+  displayName: 项目同步
   # ...
-  configMapName: setting-seo-configmap
-  settingName: setting-seo
+  configMapName: project-sync-config
+  settingName: project-sync-settings
 ```
 
 ### 定义值类
@@ -97,8 +98,8 @@ spec:
 为了方便使用，定义一个值类存储配置数据：
 
 ```java
-public record SeoSetting(boolean blockSpiders, String keywords, String description) {
-  public static final String GROUP = "seo";
+public record SyncSetting(boolean enabled, int interval) {
+    public static final String GROUP = "sync";
 }
 ```
 
@@ -109,14 +110,14 @@ public record SeoSetting(boolean blockSpiders, String keywords, String descripti
 ```java
 @Service
 @RequiredArgsConstructor
-public class SeoService {
+public class SyncService {
     private final ReactiveSettingFetcher settingFetcher;
 
-    public Mono<Void> checkSeo() {
-        return settingFetcher.fetch(SeoSetting.GROUP, SeoSetting.class)
-                .doOnNext(seoSetting -> {
-                    if (seoSetting.blockSpiders()) {
-                        // do something
+    public Mono<Void> syncProjects() {
+        return settingFetcher.fetch(SyncSetting.GROUP, SyncSetting.class)
+                .doOnNext(syncSetting -> {
+                    if (syncSetting.enabled()) {
+                        // 使用 syncSetting.interval() 安排下一次同步
                     }
                 })
                 .then();
@@ -130,11 +131,11 @@ public class SeoService {
 
 ```java
 @Component
-public class SeoConfigListener {
+public class SyncConfigListener {
     @EventListener
     public void onConfigUpdated(PluginConfigUpdatedEvent event) {
-        if (event.getNewConfig().containsKey(SeoSetting.GROUP)) {
-            // do something
+        if (event.getNewConfig().containsKey(SyncSetting.GROUP)) {
+            // 重新安排同步任务
         }
     }
 }

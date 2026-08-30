@@ -60,7 +60,7 @@ spec:
 | `spec.homepage`                 | 主题网站                                                                                                           | 否                   |
 | `spec.repo`                     | 主题代码托管地址                                                                                                   | 否                   |
 | `spec.issues`                   | 主题问题反馈地址，如果你的主题开源在 GitHub 上，可以直接配置为 GitHub Issues 地址。                                | 否                   |
-| `spec.settingName`              | 设置表单定义的名称，需要同时创建对应的 `settings.yaml` 文件                                                        | 否                   |
+| `spec.settingName`              | 设置表单定义的名称，需要同时创建对应的 `settings.yaml` 文件，参考[设置选项](./settings.md)                          | 否                   |
 | `spec.configMapName`            | 设置持久化配置的 ConfigMap 名称                                                                                    | 否                   |
 | `spec.customTemplates.post`     | 文章的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md)                                           | 否                   |
 | `spec.customTemplates.category` | 分类的自定义模板配置，详细文档可查阅 [模板编写](./template-variables.md)                                           | 否                   |

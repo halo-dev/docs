@@ -1,9 +1,11 @@
 ---
-title: 表单与页面组件
-description: 在 Halo 插件的 Console 和用户中心 UI 中选择 Setting 表单、FormKit、SearchInput、VEntity 等宿主能力，避免重复实现设置页和表单样式
+title: 插件设置与表单组件
+description: 使用 Setting YAML 定义 Halo 插件设置，并在 Console 和用户中心 UI 中复用 FormKit、SearchInput、VEntity 等宿主能力
 ---
 
 Halo 已经在 Console 和用户中心注册了 FormKit，并通过 `@halo-dev/components` 提供页面、列表、弹窗和反馈组件。插件应复用宿主能力，使交互、校验、权限和视觉样式与 Halo 保持一致。
+
+Setting Schema 的字段、默认值、敏感数据边界以及 Halo 扩展输入组件统一参考[表单定义与组件速查](../../../form-schema.md)。本页只说明如何在插件中关联设置，以及何时使用 Setting 或自定义 Vue 表单。
 
 ## 先选择正确的表单入口
 
@@ -14,7 +16,49 @@ Halo 已经在 Console 和用户中心注册了 FormKit，并通过 `@halo-dev/c
 | 搜索、筛选、列表和分页 | 使用 `SearchInput`、`FilterDropdown`、`VEntity`、`VPagination` 等宿主组件 |
 | 单个列表选择、文件控件等轻量交互 | 邻近 Halo 页面采用原生控件时可以保持一致 |
 
-插件已经通过 `plugin.yaml` 的 `spec.settingName` 和 `spec.configMapName` 关联 Setting 时，Halo 会在插件详情页自动渲染设置表单。普通配置不需要再注册一个设置路由，也不需要自行读取和更新 ConfigMap。只有 Setting Schema 无法表达的独立业务流程，才应创建自定义设置页面。
+插件通过 `plugin.yaml` 的 `spec.settingName` 和 `spec.configMapName` 关联 Setting 后，Halo 会在插件详情页自动渲染设置表单。插件 UI 不需要再注册普通设置路由，也不需要自行读取或更新 ConfigMap。只有 Setting Schema 无法表达的独立业务流程，才应创建自定义设置页面。
+
+## 定义插件设置
+
+在 `src/main/resources/plugin.yaml` 中声明 Setting 名称和用于保存配置的 ConfigMap 名称：
+
+```yaml title="src/main/resources/plugin.yaml"
+apiVersion: plugin.halo.run/v1alpha1
+kind: Plugin
+metadata:
+  name: project-sync
+spec:
+  displayName: 项目同步
+  settingName: project-sync-settings
+  configMapName: project-sync-config
+```
+
+然后在 `src/main/resources/extensions/settings.yaml` 中提供对应的 Setting 资源：
+
+```yaml title="src/main/resources/extensions/settings.yaml"
+apiVersion: v1alpha1
+kind: Setting
+metadata:
+  name: project-sync-settings
+spec:
+  forms:
+    - group: sync
+      label: 同步设置
+      formSchema:
+        - $formkit: switch
+          name: enabled
+          label: 启用自动同步
+          value: false
+        - $formkit: number
+          name: interval
+          label: 同步间隔（分钟）
+          value: 30
+          validation: required|min:5
+```
+
+`spec.settingName` 必须与 Setting 的 `metadata.name` 一致。`spec.configMapName` 应使用插件专属的稳定名称，并在后续版本中保持不变。插件安装或启动后，Halo 会加载 Setting，在插件详情页渲染表单，并将每个 `group` 的值保存到对应 ConfigMap。
+
+服务端应通过 [`ReactiveSettingFetcher`](../../api-reference/server/setting-fetcher.md) 读取配置，不要直接操作配置 ConfigMap。密码、Token、API Key 等敏感信息必须使用 [`secret`](../../../form-schema.md#secret) 组件和 Halo Secret，不能直接保存在 Setting 中。
 
 ## 在 Vue 页面中使用 FormKit
 
@@ -44,7 +88,7 @@ async function handleSubmit(data: ProjectFormData) {
 
 表单数据只在确实与 API 模型不同的情况下定义单独类型。插件 API 的资源模型、列表结果和请求参数应使用[生成的 API Client](../devtools.md#how-to-generate-api-client)，不要再手写一份同名类型。
 
-Halo 还提供附件、文章、单页面、分类、标签、菜单、图标和 Secret 等 FormKit 输入组件。可用类型及引入版本参考[表单定义](../../../form-schema.md)。需要注册插件自定义输入时，再参考 [FormKit 扩展](../../api-reference/ui/formkit.md)。
+Halo 还提供附件、文章、单页面、分类、标签、菜单、图标和 Secret 等 FormKit 输入组件。可用类型及引入版本参考[表单定义与组件速查](../../../form-schema.md)。需要注册插件自定义输入时，再参考 [FormKit 扩展](../../api-reference/ui/formkit.md)。
 
 ## 复用页面和列表组件
 

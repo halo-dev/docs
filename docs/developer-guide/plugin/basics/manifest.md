@@ -42,7 +42,7 @@ spec:
 | `spec.pluginDependencies`    | 插件依赖及其版本范围，支持必需依赖和可选依赖。参考：[依赖其他插件](../interaction/dependency.md)。                                                                              |
 | `spec.author`                | 插件作者的信息，包括名称和支持网址。                                                                                                                                            |
 | `spec.logo`                  | 插件的 logo，支持 URL 链接或相对于项目 `src/main/resources` 目录的文件路径。                                                                                                    |
-| `spec.settingName`（可选）   | 插件配置表单的名称，用于提供用户可视化配置的表单，名称建议为 "插件名-settings"。参考：[表单定义](../../form-schema.md)和[获取插件配置](../api-reference/server/setting-fetcher.md)。                    |
+| `spec.settingName`（可选）   | 插件配置表单的名称，用于提供用户可视化配置的表单，名称建议为 "插件名-settings"。参考：[插件设置与表单组件](./ui/forms.md)、[表单定义与组件速查](../../form-schema.md)和[获取插件配置](../api-reference/server/setting-fetcher.md)。 |
 | `spec.configMapName`（可选） | 插件配置存储的 ConfigMap 名称，通常建议命名为 "插件名-configmap"。没有配置 `settingName` 则不需要配置此项。                                                                    |
 | `spec.homepage`              | 插件的主页链接，通常指向插件的官方文档或帮助页面。                                                                                                                              |
 | `spec.repo`                  | 插件源码的仓库地址。                                                                                                                                                            |
@@ -56,7 +56,7 @@ Halo 的 Plugin Schema 要求最终安装包中的 `spec.version` 为完整的 S
 :::
 
 :::tip settingName 需要对应资源
-如果你在 plugin.yaml 中配置了 `settingName` 但确没有对应的 `Setting` 自定义模型资源文件，会导致插件无法启动，原因是 `Setting` 模型 `metadata.name` 为你配置的 `settingName` 的资源无法找到。
+如果在 `plugin.yaml` 中配置了 `settingName`，但没有提供对应的 Setting 资源文件，插件将因为找不到 `metadata.name` 与 `settingName` 一致的 Setting 而无法启动。
 :::
 
 从 `@halo-dev/ui-plugin-bundler-kit@2.26.0` 开始，`spec.requires` 也用于自动选择 UI 构建格式。支持的推导写法和回退行为请参考 [UI 构建 > 输出格式与 Halo 目标](./ui/build.md#output-format)。
