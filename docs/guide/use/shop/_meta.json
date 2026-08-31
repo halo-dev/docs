@@ -1,11 +1,15 @@
 [
   "prepare",
   "console-home",
+  "settings",
   "payments",
   "sales-channels",
   "products",
+  "marketing",
   "orders",
+  "customer-center",
   "virtual-delivery",
-  "theme-dev",
-  "mp"
+  "webhooks",
+  "mp",
+  "theme-dev"
 ]
