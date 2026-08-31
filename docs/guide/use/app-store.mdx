@@ -3,6 +3,8 @@ title: 应用市场
 description: 在 Console 内置应用市场安装 Halo 主题与插件，含账号绑定与更新说明。
 ---
 
+import { Steps } from '@rspress/core/theme';
+
 为了方便使用者安装应用市场的主题和插件，我们提供了一个内置到 Console 的应用市场插件，可以更加方便在 Console 直接安装主题和插件。并且此插件从 Halo 2.10 开始已经预设到 Halo 中，无需手动安装。
 
 如果你使用了旧版本的 Halo，并且当前未安装应用市场插件，可以访问 [https://www.halo.run/store/apps/app-VYJbF](https://www.halo.run/store/apps/app-VYJbF) 手动下载并在 Console 的插件管理中安装。
@@ -73,28 +75,45 @@ description: 在 Console 内置应用市场安装 Halo 主题与插件，含账�
 
 如果你的 Halo 网站无法访问公网，你可以选择离线激活的方式。
 
-1. 同样点击许可证状态的图标，打开许可证激活的对话框。
+<Steps>
 
-    ![插件激活状态](/img/user-guide/app-store/app-store-license-status.png)
+### 打开许可证激活对话框
 
-2. 激活方式选择许可证。
+同样点击许可证状态的图标，打开许可证激活的对话框。
 
-    ![离线激活选项](/img/user-guide/app-store/app-store-license-offline-option.png)
+![插件激活状态](/img/user-guide/app-store/app-store-license-status.png)
 
-3. 点击 **复制离线许可证凭证** 按钮，然后点击 **去生成** 按钮，然后会跳转到 Halo 官网去生成离线激活码。
-4. 找到对应的许可证，选择 **生成离线许可证**。
+### 选择激活方式
 
-    ![生成离线激活码](/img/user-guide/app-store/app-store-license-generate-license-1.png)
+激活方式选择许可证。
 
-5. 在 **生成离线许可证** 的对话框中，粘贴刚刚复制的离线许可证凭证，然后点击 **生成并复制** 按钮，然后会打开 **查看离线许可证** 对话框，你可以选择下载文件或者复制许可证。
+![离线激活选项](/img/user-guide/app-store/app-store-license-offline-option.png)
 
-    ![生成离线激活码](/img/user-guide/app-store/app-store-license-generate-license-2.png)
+### 复制离线许可证凭证
 
-    ![生成离线激活码](/img/user-guide/app-store/app-store-license-generate-license-3.png)
+点击 **复制离线许可证凭证** 按钮，然后点击 **去生成** 按钮，然后会跳转到 Halo 官网去生成离线激活码。
 
-6. 回到 Halo 网站，粘贴刚刚复制的离线许可证，然后点击 **激活** 按钮即可。
+### 生成离线许可证
 
-    ![离线激活](/img/user-guide/app-store/app-store-license-offline.png)
+找到对应的许可证，选择 **生成离线许可证**。
+
+![生成离线激活码](/img/user-guide/app-store/app-store-license-generate-license-1.png)
+
+### 复制离线许可证
+
+在 **生成离线许可证** 的对话框中，粘贴刚刚复制的离线许可证凭证，然后点击 **生成并复制** 按钮，然后会打开 **查看离线许可证** 对话框，你可以选择下载文件或者复制许可证。
+
+![生成离线激活码](/img/user-guide/app-store/app-store-license-generate-license-2.png)
+
+![生成离线激活码](/img/user-guide/app-store/app-store-license-generate-license-3.png)
+
+### 激活离线许可证
+
+回到 Halo 网站，粘贴刚刚复制的离线许可证，然后点击 **激活** 按钮即可。
+
+![离线激活](/img/user-guide/app-store/app-store-license-offline.png)
+
+</Steps>
 
 其他注意事项：
 

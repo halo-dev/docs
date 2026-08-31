@@ -26,7 +26,7 @@ description: Halo 插件安装、启用与卸载，及应用市场等获取渠�
 ![安装插件](/img/user-guide/app-store/app-store-plugins.png)
 
 :::info 查看内置应用市场指南
-更多关于内置应用市场的使用说明可查阅：[应用市场](./app-store.md)
+更多关于内置应用市场的使用说明可查阅：[应用市场](./app-store.mdx)
 :::
 
 ### 本地上传安装
