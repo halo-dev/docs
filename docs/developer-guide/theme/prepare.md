@@ -7,7 +7,7 @@ description: 搭建 Halo 主题本地开发环境，从模板创建包含 theme.
 
 ## 搭建开发环境
 
-Halo 在本地开发环境的运行可参考[开发环境运行](../core/run.md)，或者使用 [Docker](../../guide/install/docker.mdx) 运行。
+Halo 在本地开发环境的运行可参考[开发环境运行](../core/run.mdx)，或者使用 [Docker](../../guide/install/docker.mdx) 运行。
 
 :::tip 启用主题实时更新
 为了保证在开发时，主题代码可以实时生效，需要注意以下事项：
