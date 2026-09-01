@@ -51,35 +51,40 @@ public class Todo extends AbstractExtension {
 
 然后在 `TodoListPlugin` 的 `start` 生命周期方法中注册此自定义模型到 Halo 中。
 
-```diff
-// ...
-+ import run.halo.app.extension.SchemeManager;
+```java
+// [!code ++]
+import run.halo.app.extension.SchemeManager;
 
 @Component
 public class TodoListPlugin extends BasePlugin {
-+   private final SchemeManager schemeManager;
+// [!code ++]
+   private final SchemeManager schemeManager;
 
--    public TodoListPlugin(PluginContext pluginContext) {
-+    public TodoListPlugin(PluginContext pluginContext, SchemeManager schemeManager) {
+// [!code --]
+    public TodoListPlugin(PluginContext pluginContext) {
+// [!code ++]
+    public TodoListPlugin(PluginContext pluginContext, SchemeManager schemeManager) {
         super(pluginContext);
-+       this.schemeManager = schemeManager;
+// [!code ++]
+        this.schemeManager = schemeManager;
     }
 
     @Override
     public void start() {
-+       // 插件启动时注册自定义模型
-+       schemeManager.register(Todo.class);
+// [!code ++:2]
+        // 插件启动时注册自定义模型
+        schemeManager.register(Todo.class);
         System.out.println("Hello world 插件启动了!");
     }
 
      @Override
     public void stop() {
-+      // 插件停用时取消注册自定义模型
-+      Scheme todoScheme = schemeManager.get(Todo.class);
-+      schemeManager.unregister(todoScheme);
-      System.out.println("Hello world 被停止!");
+// [!code ++:3]
+        // 插件停用时取消注册自定义模型
+        Scheme todoScheme = schemeManager.get(Todo.class);
+        schemeManager.unregister(todoScheme);
+        System.out.println("Hello world 被停止!");
     }
-    // ....
 }
 ```
 
@@ -127,27 +132,37 @@ public class TodoListPlugin extends BasePlugin {
 
 打开 `ui/src/index.ts` 文件，修改如下：
 
-```diff
+```ts
 export default definePlugin({
   components: {},
   routes: [
     {
       parentName: "Root",
       route: {
--       path: "/example",
-+       path: "/todos", // TodoList 的路由 path
--       name: "Example",
-+       name: "TodoList",// 菜单标识名
+// [!code --]
+        path: "/example",
+// [!code ++]
+        path: "/todos", // TodoList 的路由 path
+// [!code --]
+        name: "Example",
+// [!code ++]
+        name: "TodoList",// 菜单标识名
         component: HomeView,
         meta: {
--         title: "示例页面",
-+         title: "Todo List",//菜单页的浏览器 tab 标题
+// [!code --]
+          title: "示例页面",
+// [!code ++]
+          title: "Todo List",//菜单页的浏览器 tab 标题
           searchable: true,
           menu: {
--           name: "示例页面",
-+           name: "Todo List",// TODO 菜单显示名称
--           group: "示例分组",
-=           group: "工具",// 所在组名
+// [!code --]
+            name: "示例页面",
+// [!code ++]
+            name: "Todo List",// TODO 菜单显示名称
+// [!code --]
+            group: "示例分组",
+// [!code ++]
+            group: "工具",// 所在组名
             icon: markRaw(IconPlug),
             priority: 0,
           },
@@ -169,11 +184,14 @@ export default definePlugin({
 3. 修改 `ui/src/views/HomeView.vue` 最底部的 `style` 标签。
 
    ```vue
-   - <style>
-   + <style scoped>
-   -  @import "https://unpkg.com/todomvc-app-css@2.4.1/index.css";
-   +  @import "todomvc-app-css/index.css";
-     </style>
+   // [!code --]
+   <style>
+   // [!code ++]
+   <style scoped>
+   // [!code ++:2]
+   @import "https://unpkg.com/todomvc-app-css@2.4.1/index.css";
+   @import "todomvc-app-css/index.css";
+   </style>
    ```
 
 4. 重新 Build 后刷新页面，便能看到目标图所示效果。

@@ -4,6 +4,7 @@ import { pluginSass } from '@rsbuild/plugin-sass';
 import { defineConfig } from '@rspress/core';
 import { transformerCompatibleMetaHighlight } from '@rspress/core/shiki-transformers';
 import { pluginSitemap } from '@rspress/plugin-sitemap';
+import { transformerNotationDiff } from '@shikijs/transformers';
 import fileTree from 'rspress-plugin-file-tree';
 import ga from 'rspress-plugin-google-analytics';
 import mermaid from 'rspress-plugin-mermaid';
@@ -32,7 +33,10 @@ export default defineConfig({
     },
     shiki: {
       theme: 'github-dark',
-      transformers: [transformerCompatibleMetaHighlight()],
+      transformers: [
+        transformerCompatibleMetaHighlight(),
+        transformerNotationDiff(),
+      ],
     },
     image: {
       checkDeadImages: true,
