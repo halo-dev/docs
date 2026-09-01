@@ -1,6 +1,6 @@
 ---
 title: 发布应用
-description: 将 Halo 插件或主题发布到应用市场，涵盖上架资料、语义化版本、GitHub Release、开发者入驻、首次审核、后续版本维护以及 GitHub Actions 自动同步
+description: 将 Halo 插件或主题发布到应用市场，涵盖上架资料、应用市场元数据、语义化版本、GitHub Release、开发者入驻、审核、版本维护以及 GitHub Actions 自动同步
 ---
 
 本页按发布前准备、首次上架、审核处理和发布后维护的顺序，说明如何将主题或插件发布到 Halo 应用市场。下文以应用统称主题和插件。
@@ -77,6 +77,32 @@ Halo 兼容范围也应填写合法的 Semantic Versioning range，例如 `>=2.2
 在[应用管理页面](https://www.halo.run/uc/developer/apps)创建应用时，需要填写应用类型、名称、简介、Logo、截图、README、许可证、外部链接、开源仓库或支持地址等信息。
 
 上架信息应准确反映应用的实际功能、限制和使用成本。涉及隐私、第三方服务、外部授权或商业限制时，应在 README 或相关字段中明确说明。
+
+### 声明应用市场元数据
+
+创建应用后，可以在应用的 `plugin.yaml` 或 `theme.yaml` 中使用注解声明应用市场 ID 和相关应用：
+
+```yaml
+metadata:
+  annotations:
+    "store.halo.run/app-id": "app-current"
+    "store.halo.run/required-apps": '["app-required"]'
+    "store.halo.run/recommended-apps": '["app-recommended"]'
+```
+
+- `store.halo.run/app-id` 是当前应用在应用市场中的 ID，可在[应用管理页面](https://www.halo.run/uc/developer/apps)查看。请只声明当前应用自己的 ID。从应用市场安装时，应用市场插件会自动建立或校验该绑定；在描述文件中声明它，还可以让手动安装的 JAR 或 ZIP 制品保留应用市场身份。
+- `store.halo.run/required-apps` 声明缺少后可能导致部分功能无法正常使用的应用。
+- `store.halo.run/recommended-apps` 声明可与当前应用配合使用的推荐应用。
+
+`required-apps` 和 `recommended-apps` 的值必须是 JSON 字符串数组，其中每个元素都是 `app-...` 格式的应用市场 ID，不是插件或主题的 `metadata.name`。
+
+应用市场插件会在安装成功后提示尚未安装的必需和推荐应用。升级成功后，只有在存在缺少的必需应用时才会显示提示。这些声明不会自动安装其他应用，也不会阻断当前应用的安装或升级。
+
+:::warning 不能替代插件依赖
+`store.halo.run/required-apps` 是应用市场的安装提示，不声明版本范围，也不参与插件加载。如果一个插件在运行时依赖另一个插件，仍应使用 [`spec.pluginDependencies`](../plugin/interaction/dependency.md)声明。
+:::
+
+相关应用提示从应用市场插件 `1.18.0` 开始支持，该版本要求 Halo `>=2.25.0`。
 
 ### 创建首个版本
 
