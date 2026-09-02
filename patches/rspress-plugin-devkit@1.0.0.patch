@@ -1,0 +1,132 @@
+diff --git a/dist/DirectivesTransformer/index.js b/dist/DirectivesTransformer/index.js
+index da40a69af21dbbdfdb2c642eb49c52deef0e33b1..6b1a7e5f7b017ffd88149cdaf43486cc981a94cf 100644
+--- a/dist/DirectivesTransformer/index.js
++++ b/dist/DirectivesTransformer/index.js
+@@ -1,9 +1,9 @@
+ import _remarkParseDirective from 'remark-mdc';
+ import { toString } from 'mdast-util-to-string';
+-import { unistVisit } from '../Exports/Unist';
+-import { createTuple } from '../Utils/createTuple';
+-import { ensureArray } from '../Utils/ensureArray';
+-import { MdxAttrNodeFactory } from '../NodeFactory/MdxAttrNodeFactory';
++import { unistVisit } from '../Exports/Unist.js';
++import { createTuple } from '../Utils/createTuple.js';
++import { ensureArray } from '../Utils/ensureArray.js';
++import { MdxAttrNodeFactory } from '../NodeFactory/MdxAttrNodeFactory.js';
+ /**
+  * Directives can be transformed to:
+  *
+diff --git a/dist/NodeFactory/ESTreeNodeFactory.js b/dist/NodeFactory/ESTreeNodeFactory.js
+index 9e939d8a7478098201a6e5532b92c683bf377971..8a2aad81cf817249e20f719e9b5c2249f2ffc061 100644
+--- a/dist/NodeFactory/ESTreeNodeFactory.js
++++ b/dist/NodeFactory/ESTreeNodeFactory.js
+@@ -1,4 +1,4 @@
+-import { isObject } from '../Utils/is';
++import { isObject } from '../Utils/is.js';
+ export class ESTreeNodeFactory {
+     static createNamedImportSpecifierNode(name) {
+         return {
+diff --git a/dist/NodeFactory/MdxAttrNodeFactory.js b/dist/NodeFactory/MdxAttrNodeFactory.js
+index 10f31a4c27610a48508da7a6ca07cd6610760f3e..a3d545f224fa1adfe4a9c0ddb3bfb5e71ce8408c 100644
+--- a/dist/NodeFactory/MdxAttrNodeFactory.js
++++ b/dist/NodeFactory/MdxAttrNodeFactory.js
+@@ -1,5 +1,5 @@
+-import { ESTreeNodeFactory } from './ESTreeNodeFactory';
+-import { isObject } from '../Utils/is';
++import { ESTreeNodeFactory } from './ESTreeNodeFactory.js';
++import { isObject } from '../Utils/is.js';
+ export class MdxAttrNodeFactory {
+     static createMdxJsxAttributeNodes(attributes) {
+         var _a, _b;
+diff --git a/dist/NodeFactory/MdxJsxElementFactory.js b/dist/NodeFactory/MdxJsxElementFactory.js
+index 9ac64158bde8133a8732a9e9c9bb5c16f624f847..45339090a999042f4287830514dff96987f11d79 100644
+--- a/dist/NodeFactory/MdxJsxElementFactory.js
++++ b/dist/NodeFactory/MdxJsxElementFactory.js
+@@ -1,6 +1,6 @@
+-import { ensureArray } from '../Utils/ensureArray';
+-import { ESTreeNodeFactory } from './ESTreeNodeFactory';
+-import { MdxAttrNodeFactory } from './MdxAttrNodeFactory';
++import { ensureArray } from '../Utils/ensureArray.js';
++import { ESTreeNodeFactory } from './ESTreeNodeFactory.js';
++import { MdxAttrNodeFactory } from './MdxAttrNodeFactory.js';
+ export class MdxJsxElementFactory {
+     static createMdxJsxImportStatementNode(spcifiers, source) {
+         return {
+diff --git a/dist/RemarkPluginFactory/CodeBlock2GlobalComponent.js b/dist/RemarkPluginFactory/CodeBlock2GlobalComponent.js
+index e0b5b81d45de3f27343f0e4cb3f128c9729bc081..997360412c107970db23f3e0075ecb1c6638214f 100644
+--- a/dist/RemarkPluginFactory/CodeBlock2GlobalComponent.js
++++ b/dist/RemarkPluginFactory/CodeBlock2GlobalComponent.js
+@@ -1,7 +1,7 @@
+-import { RemarkPluginFactoryBase, } from './FactoryBase';
+-import { unistVisit } from '../Exports/Unist';
+-import { MdxJsxElementFactory } from '../NodeFactory/MdxJsxElementFactory';
+-import { getComponentName } from '../Utils/registerComponent';
++import { RemarkPluginFactoryBase, } from './FactoryBase.js';
++import { unistVisit } from '../Exports/Unist.js';
++import { MdxJsxElementFactory } from '../NodeFactory/MdxJsxElementFactory.js';
++import { getComponentName } from '../Utils/registerComponent.js';
+ export class RemarkCodeBlockToGlobalComponentPluginFactory extends RemarkPluginFactoryBase {
+     constructor(options) {
+         super(options);
+diff --git a/dist/RemarkPluginFactory/FactoryBase.js b/dist/RemarkPluginFactory/FactoryBase.js
+index 9666ab8fd15fdfd88f2d11e57a2f94e482b3abb2..4b0ce45f10cb5f2da4559b9a28da7605a8fb154b 100644
+--- a/dist/RemarkPluginFactory/FactoryBase.js
++++ b/dist/RemarkPluginFactory/FactoryBase.js
+@@ -1,4 +1,4 @@
+-import { uniqArray } from '../Utils/uniqArray';
++import { uniqArray } from '../Utils/uniqArray.js';
+ export class RemarkPluginFactoryBase {
+     constructor(baseOptions) {
+         this.baseOptions = baseOptions;
+diff --git a/dist/RemarkPluginFactory/InsertComponent.js b/dist/RemarkPluginFactory/InsertComponent.js
+index b208e82cebe1a5432bf05078b750660decdcbc98..6f702da15824ca23885cb8b00fff9e9fa699d224 100644
+--- a/dist/RemarkPluginFactory/InsertComponent.js
++++ b/dist/RemarkPluginFactory/InsertComponent.js
+@@ -1,6 +1,6 @@
+-import { MdxJsxElementFactory } from '../NodeFactory/MdxJsxElementFactory';
+-import { RemarkPluginFactoryBase, } from './FactoryBase';
+-import { getComponentName } from '../Utils/registerComponent';
++import { MdxJsxElementFactory } from '../NodeFactory/MdxJsxElementFactory.js';
++import { RemarkPluginFactoryBase, } from './FactoryBase.js';
++import { getComponentName } from '../Utils/registerComponent.js';
+ export class RemarkInsertComponentPluginFactory extends RemarkPluginFactoryBase {
+     constructor(options) {
+         super(options);
+diff --git a/dist/index.js b/dist/index.js
+index 31f38669846fa2e8ce2781039e70f9e711be3880..e20fb48b5b8a7b211346e5782bad17e3ce46b77f 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -1,17 +1,17 @@
+-export { RemarkCodeBlockToGlobalComponentPluginFactory } from './RemarkPluginFactory/CodeBlock2GlobalComponent';
+-export { RemarkInsertComponentPluginFactory } from './RemarkPluginFactory/InsertComponent';
+-export { PresetConfigMutator } from './ConfigMutator/index';
+-export * from './Exports/Unist';
+-export { remarkTransformDirective, remarkParseDirective, } from './DirectivesTransformer';
+-export { MDASTNodeFactory } from './NodeFactory/MdAstNodeFactory';
+-export { ESTreeNodeFactory } from './NodeFactory/ESTreeNodeFactory';
+-export { MdxAttrNodeFactory } from './NodeFactory/MdxAttrNodeFactory';
+-export { MdxJsxElementFactory } from './NodeFactory/MdxJsxElementFactory';
++export { RemarkCodeBlockToGlobalComponentPluginFactory } from './RemarkPluginFactory/CodeBlock2GlobalComponent.js';
++export { RemarkInsertComponentPluginFactory } from './RemarkPluginFactory/InsertComponent.js';
++export { PresetConfigMutator } from './ConfigMutator/index.js';
++export * from './Exports/Unist.js';
++export { remarkTransformDirective, remarkParseDirective, } from './DirectivesTransformer/index.js';
++export { MDASTNodeFactory } from './NodeFactory/MdAstNodeFactory.js';
++export { ESTreeNodeFactory } from './NodeFactory/ESTreeNodeFactory.js';
++export { MdxAttrNodeFactory } from './NodeFactory/MdxAttrNodeFactory.js';
++export { MdxJsxElementFactory } from './NodeFactory/MdxJsxElementFactory.js';
+ export { TSSourceParser } from './SourceParser/TS.mjs';
+-export { createTuple } from './Utils/createTuple';
+-export { ensureArray } from './Utils/ensureArray';
+-export { uniqArray } from './Utils/uniqArray';
+-export { resolveSourcePath } from './Utils//resolveSourcePath';
+-export * from './Utils/registerComponent';
+-export * from './Utils/is';
+-export * from './Shared/SharedPluginOptions';
++export { createTuple } from './Utils/createTuple.js';
++export { ensureArray } from './Utils/ensureArray.js';
++export { uniqArray } from './Utils/uniqArray.js';
++export { resolveSourcePath } from './Utils/resolveSourcePath.js';
++export * from './Utils/registerComponent.js';
++export * from './Utils/is.js';
++export * from './Shared/SharedPluginOptions.js';

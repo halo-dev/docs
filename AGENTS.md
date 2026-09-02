@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This repository contains the Halo documentation site built with Rspress. Author documentation in `docs/`: user guides live under `docs/guide/`, developer material under `docs/developer-guide/`, and stable static assets under `docs/public/`. Use `_nav.json` and `_meta.json` files to control navigation labels and ordering. Site configuration belongs in `rspress.config.ts`; shared styling belongs in `styles/index.css`. The `build/` directory is generated output and must not be edited.
+This repository contains the Halo documentation site built with Rspress through Rstack CLI. Author documentation in `docs/`: user guides live under `docs/guide/`, developer material under `docs/developer-guide/`, and stable static assets under `docs/public/`. Use `_nav.json` and `_meta.json` files to control navigation labels and ordering. Site configuration belongs in `rstack.config.ts`; shared styling belongs in `styles/index.css`. The `build/` directory is generated output and must not be edited.
 
 ## Build, Test, and Development Commands
 
@@ -12,8 +12,8 @@ Use pnpm 11.24.0, as declared in `package.json`.
 - `pnpm dev` starts the local Rspress development server.
 - `pnpm build` creates the production site in `build/` and checks static rendering and dead links.
 - `pnpm preview` serves the latest production build locally.
-- `pnpm check` runs Biome checks and applies safe fixes.
-- `pnpm format` formats supported files with Biome.
+- `pnpm check` runs Rslint and Rsfmt and applies safe fixes.
+- `pnpm format` formats supported files with Rsfmt.
 
 Do not hand-edit `pnpm-lock.yaml` or other generated artifacts.
 
@@ -26,7 +26,7 @@ Do not hand-edit `pnpm-lock.yaml` or other generated artifacts.
 
 ## Coding Style & Naming Conventions
 
-Biome is the source of truth for TypeScript, JavaScript, JSON, and CSS formatting. Use spaces for indentation and single quotes in JavaScript/TypeScript. Keep configuration in TypeScript and prefer existing Rspress options over custom components. Name documentation files in lowercase kebab-case, such as `migrate-from-1.x.md`. Use MDX only when a page needs components; otherwise prefer Markdown. Keep headings task-oriented and code samples minimal and runnable.
+Rslint and Rsfmt are the source of truth for TypeScript, JavaScript, JSON, and CSS checks and formatting. Use spaces for indentation and single quotes in JavaScript/TypeScript. Keep configuration in TypeScript and prefer existing Rspress options over custom components. Name documentation files in lowercase kebab-case, such as `migrate-from-1.x.md`. Use MDX only when a page needs components; otherwise prefer Markdown. Keep headings task-oriented and code samples minimal and runnable.
 
 ## Testing Guidelines
 

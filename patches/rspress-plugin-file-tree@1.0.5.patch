@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index 021d837912dbcf39c486c74704e6442ddf7e2b4a..abdf694eafbd460e32ca5649cc73149d86940fc3 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -146,7 +146,7 @@ function getExtension(name) {
+     const match = name.match(/\.([^.]+)$/);
+     return match ? match[1] : '';
+ }
+-const PACKAGE_ROOT = node_path.resolve(__dirname, '../');
++const PACKAGE_ROOT = node_path.resolve(import.meta.dirname, '../');
+ function rspressPluginFileTree(options = {}) {
+     const { initialExpandDepth = 0 } = options;
+     const remarkFileTree = new RemarkCodeBlockToGlobalComponentPluginFactory({

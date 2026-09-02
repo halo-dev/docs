@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index 2fb34de75eaba20af646b0aa4175c0b6f860320f..62e7192d0f3534a64ab45ef901892503f0a79af8 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -13,7 +13,7 @@ export default function rspressPluginGoogleAnalytics(options) {
+             return config;
+         },
+         globalUIComponents: [
+-            path.resolve(__dirname, '../components/SendGTagEvent.tsx'),
++            path.resolve(import.meta.dirname, '../components/SendGTagEvent.tsx'),
+         ],
+         builderConfig: {
+             html: {

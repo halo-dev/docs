@@ -1,0 +1,13 @@
+diff --git a/dist/index.js b/dist/index.js
+index c4c9ed572e684c734fecf31eedb83f4643879051..2e2c1fcb0d86de7726847e0b63fa8746b9020509 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -6,7 +6,7 @@ export default function rspressPluginMermaid(options = {}) {
+         components: [
+             {
+                 lang: 'mermaid',
+-                componentPath: path.join(__dirname, '../components', 'MermaidRender.tsx'),
++                componentPath: path.join(import.meta.dirname, '../components', 'MermaidRender.tsx'),
+                 childrenProvider() {
+                     return [];
+                 },

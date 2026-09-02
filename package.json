@@ -2,12 +2,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "rspress build",
-    "check": "biome check --write",
-    "check:ci": "biome ci",
-    "dev": "rspress dev",
-    "format": "biome format --write",
-    "preview": "rspress preview"
+    "build": "rs doc build",
+    "check": "rs lint --fix && rs fmt",
+    "check:ci": "rs lint && rs fmt --check",
+    "dev": "rs doc",
+    "format": "rs fmt",
+    "preview": "rs doc preview"
   },
   "dependencies": {
     "@rspress/core": "^2.0.21",
@@ -17,7 +17,6 @@
     "rspress-plugin-mermaid": "^1.0.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.8",
     "@iconify-json/mingcute": "^1.2.8",
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.93",
@@ -30,6 +29,7 @@
     "@types/react-dom": "^19.2.5",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "rstack": "^0.7.1",
     "typescript": "^6.0.3",
     "unplugin-icons": "^23.0.1"
   },
