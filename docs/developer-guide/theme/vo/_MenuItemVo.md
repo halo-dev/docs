@@ -3,12 +3,12 @@
   "metadata": {
     "name": "string", // 唯一标识
     "labels": {
-      "additionalProp1": "string"
+      "additionalProp1": "string",
     },
     "annotations": {
-      "additionalProp1": "string"
+      "additionalProp1": "string",
     },
-    "creationTimestamp": "2022-11-20T14:44:58.984Z" // 创建时间
+    "creationTimestamp": "2022-11-20T14:44:58.984Z", // 创建时间
   },
   "spec": {
     "displayName": "string", // 显示名称，但是不要直接使用这个字段进行显示，最终字段为 status.displayName
@@ -16,7 +16,7 @@
     "priority": 0, // 排序字段
     "children": [
       // 下级菜单项，菜单项的 metadata.name 集合
-      "string"
+      "string",
     ],
     "target": "#Target", // 菜单页面打开方式，枚举类型
     "targetRef": {
@@ -24,15 +24,15 @@
       "group": "string",
       "version": "string",
       "kind": "string",
-      "name": "string"
-    }
+      "name": "string",
+    },
   },
   "status": {
     "displayName": "string", // 显示名称
-    "href": "string" // 链接
+    "href": "string", // 链接
   },
   "children": "List<#MenuItemVo>", // 下级菜单项，MenuItemVo 的集合
-  "parentName": "string"
+  "parentName": "string",
 }
 ```
 

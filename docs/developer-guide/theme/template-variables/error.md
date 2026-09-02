@@ -31,7 +31,7 @@ description: 配置 Halo 主题的 404、4xx、500、5xx 与默认错误模板�
   "instance": "string", // 异常实例
   "status": "number", // 异常状态码
   "title": "string", // 异常标题
-  "type": "string" // 异常类型
+  "type": "string", // 异常类型
 }
 ```
 

@@ -8,12 +8,12 @@
   "metadata": {
     "name": "string", // 唯一标识
     "labels": {
-      "additionalProp1": "string"
+      "additionalProp1": "string",
     },
     "annotations": {
-      "additionalProp1": "string"
+      "additionalProp1": "string",
     },
-    "creationTimestamp": "2022-11-20T13:06:38.512Z" // 创建时间
-  }
+    "creationTimestamp": "2022-11-20T13:06:38.512Z", // 创建时间
+  },
 }
 ```

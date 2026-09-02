@@ -3,12 +3,12 @@
   "metadata": {
     "name": "string", // 唯一标识
     "labels": {
-      "additionalProp1": "string"
+      "additionalProp1": "string",
     },
     "annotations": {
-      "additionalProp1": "string"
+      "additionalProp1": "string",
     },
-    "creationTimestamp": "2022-11-20T14:31:00.876Z" // 创建时间
+    "creationTimestamp": "2022-11-20T14:31:00.876Z", // 创建时间
   },
   "spec": {
     "title": "string", // 标题
@@ -28,13 +28,13 @@
     "priority": 0,
     "excerpt": {
       "autoGenerate": true, // 是否自动生成摘要
-      "raw": "string" // 摘要内容
+      "raw": "string", // 摘要内容
     },
     "htmlMetas": [
       {
-        "additionalProp1": "string"
-      }
-    ]
+        "additionalProp1": "string",
+      },
+    ],
   },
   "status": {
     "permalink": "string", // 固定链接
@@ -44,15 +44,15 @@
     "commentsCount": 0, // 评论数
     "contributors": [
       // 贡献者名称，Contributor 的 metadata.name 的集合
-      "string"
-    ]
+      "string",
+    ],
   },
   "stats": {
     "visit": 0, // 访问数量
     "upvote": 0, // 点赞数量
-    "comment": 0 // 评论数量
+    "comment": 0, // 评论数量
   },
   "contributors": "List<#ContributorVo>", // 贡献者的集合
-  "owner": "#ContributorVo" // 创建者
+  "owner": "#ContributorVo", // 创建者
 }
 ```

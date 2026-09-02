@@ -70,15 +70,15 @@ coreApiClient.content.post.listPost().then((response) => {
 在外部程序中使用时，需要自行创建 axios 实例，并使用 `createCoreApiClient`、`createConsoleApiClient`、`createUcApiClient`、`createPublicApiClient` 创建 API Client，这样可以方便处理异常逻辑和认证逻辑。
 
 ```ts
-import axios from "axios"
+import axios from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:8090",
   headers: {
     // 使用个人令牌进行认证
-    Authorization: 'Bearer pat_1234567890abcdef',
-  }
-})
+    Authorization: "Bearer pat_1234567890abcdef",
+  },
+});
 
 // 添加请求拦截器
 axiosInstance.interceptors.request.use(
@@ -87,7 +87,7 @@ axiosInstance.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 // 添加响应拦截器
@@ -97,14 +97,14 @@ axiosInstance.interceptors.response.use(
   },
   async (error: AxiosError) => {
     // handle error
-  }
+  },
 );
 
-const coreApiClient = createCoreApiClient(axiosInstance)
+const coreApiClient = createCoreApiClient(axiosInstance);
 
-coreApiClient.content.post.listPost().then(response => {
+coreApiClient.content.post.listPost().then((response) => {
   // handle response
-})
+});
 ```
 
 :::info 查看认证方式

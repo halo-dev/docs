@@ -14,24 +14,24 @@
     "archivePageSize": 10, // 归档页默认分页大小
     "categoryPageSize": 10, // 分类归档页默认分页大小
     "tagPageSize": 10, // 标签归档页默认分页大小
-    "authorPageSize": 10 // 作者归档页默认分页大小
+    "authorPageSize": 10, // 作者归档页默认分页大小
   },
   "seo": {
     // SEO 相关设置
     "blockSpiders": false, // 禁止搜索引擎抓取
     "keywords": "string", // 站点全局关键词，一般不需要主动使用，Halo 会自动插入到 head 标签中
-    "description": "string" // 站点全局描述，一般不需要主动使用，Halo 会自动插入到 head 标签中
+    "description": "string", // 站点全局描述，一般不需要主动使用，Halo 会自动插入到 head 标签中
   },
   "comment": {
     // 评论相关设置
     "enable": true, // 是否开启评论
     "systemUserOnly": false, // 是否只允许登录用户评论
-    "requireReviewForNew": false // 是否需要审核新评论
+    "requireReviewForNew": false, // 是否需要审核新评论
   },
   "routes": {
     "categoriesUri": "/categories", // 分类页路由前缀
     "tagsUri": "/tags", // 标签页路由前缀
-    "archivesUri": "/archives" // 归档页路由前缀
-  }
+    "archivesUri": "/archives", // 归档页路由前缀
+  },
 }
 ```

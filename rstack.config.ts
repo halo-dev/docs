@@ -120,3 +120,8 @@ define.fmt({
   singleQuote: false,
   ignorePatterns: [".agents"],
 });
+
+define.staged({
+  "*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}": ["rs lint --fix", "rs fmt"],
+  "*.{json,jsonc,md,mdx,css,scss,less,html,yml,yaml}": "rs fmt",
+});

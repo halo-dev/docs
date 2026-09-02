@@ -7,6 +7,7 @@
     "check:ci": "rs lint && rs fmt --check",
     "dev": "rs doc",
     "format": "rs fmt",
+    "prepare": "rs hooks",
     "preview": "rs doc preview"
   },
   "dependencies": {

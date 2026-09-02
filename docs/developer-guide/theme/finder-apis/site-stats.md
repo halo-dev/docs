@@ -40,6 +40,6 @@ siteStatsFinder.getStats();
   "upvote": 0, // 点赞数量
   "comment": 0, // 评论数量
   "post": 0, // 文章数量
-  "category": 0 // 分类数量
+  "category": 0, // 分类数量
 }
 ```

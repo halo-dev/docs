@@ -139,12 +139,12 @@ Halo 付费版在 2.16 中新增了集成 Redis 的功能，目前提供将用�
 如果使用 Docker 或者 Docker Compose 部署，需要添加以下启动参数：
 
 ```yaml
-- --spring.data.redis.host=localhost  # Redis 服务地址
-- --spring.data.redis.port=6379       # Redis 服务端口
-- --spring.data.redis.database=0      # Redis 数据库
-- --spring.data.redis.password=       # Redis 密码
-- --halo.session.store-type=redis     # 声明 session 存储方式为 redis,默认不配置则为 in-memory
-- --halo.redis.enabled=true           # 启用 Redis 服务
+- --spring.data.redis.host=localhost # Redis 服务地址
+- --spring.data.redis.port=6379 # Redis 服务端口
+- --spring.data.redis.database=0 # Redis 数据库
+- --spring.data.redis.password= # Redis 密码
+- --halo.session.store-type=redis # 声明 session 存储方式为 redis,默认不配置则为 in-memory
+- --halo.redis.enabled=true # 启用 Redis 服务
 ```
 
 :::info 确认 Redis 主机地址
