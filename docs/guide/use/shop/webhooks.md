@@ -36,13 +36,13 @@ Webhook 会把订单、支付和发货事件以 HTTP `POST` 请求发送到外�
 
 常用请求头：
 
-| 请求头 | 说明 |
-| --- | --- |
-| `X-Halo-Event` | 事件类型 |
-| `X-Halo-Signature-256` | `sha256=<十六进制 HMAC>` |
-| `X-Halo-Delivery-Timestamp` | 本次投递时间 |
-| `X-Halo-Webhook-Id` | 投递 ID；重试和手动重投时保持不变 |
-| `X-Halo-Delivery-Attempt` | 当前投递次数 |
+| 请求头                      | 说明                              |
+| --------------------------- | --------------------------------- |
+| `X-Halo-Event`              | 事件类型                          |
+| `X-Halo-Signature-256`      | `sha256=<十六进制 HMAC>`          |
+| `X-Halo-Delivery-Timestamp` | 本次投递时间                      |
+| `X-Halo-Webhook-Id`         | 投递 ID；重试和手动重投时保持不变 |
+| `X-Halo-Delivery-Attempt`   | 当前投递次数                      |
 
 当前可能出现的业务事件包括：
 

@@ -64,7 +64,8 @@ spec:
   className: run.halo.app.security.AdditionalWebFilter
   displayName: AdditionalWebFilter
   type: MULTI_INSTANCE
-  description: "Contract for interception-style, chained processing of Web requests that may be used to 
+  description:
+    "Contract for interception-style, chained processing of Web requests that may be used to
     implement cross-cutting, application-agnostic requirements such as security, timeouts, and others."
 ```
 

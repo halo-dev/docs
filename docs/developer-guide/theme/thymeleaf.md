@@ -36,13 +36,13 @@ Thymeleaf 3.1 不再提供旧版的以下 Web API 表达式对象：
 
 Thymeleaf 主要使用以下五类标准表达式：
 
-| 语法 | 用途 | 示例 |
-| --- | --- | --- |
-| `${...}` | 读取变量、属性或调用方法 | `${post.spec.title}` |
-| `*{...}` | 读取 `th:object` 选中的对象 | `*{spec.title}` |
-| `#{...}` | 读取国际化消息 | `#{pagination.next}` |
-| `@{...}` | 生成链接或主题资源地址 | `@{/assets/dist/style.css}` |
-| `~{...}` | 引用模板或片段 | `~{modules/header :: header}` |
+| 语法     | 用途                        | 示例                          |
+| -------- | --------------------------- | ----------------------------- |
+| `${...}` | 读取变量、属性或调用方法    | `${post.spec.title}`          |
+| `*{...}` | 读取 `th:object` 选中的对象 | `*{spec.title}`               |
+| `#{...}` | 读取国际化消息              | `#{pagination.next}`          |
+| `@{...}` | 生成链接或主题资源地址      | `@{/assets/dist/style.css}`   |
+| `~{...}` | 引用模板或片段              | `~{modules/header :: header}` |
 
 例如，`th:object` 可以减少同一对象的重复前缀：
 
@@ -81,22 +81,33 @@ Thymeleaf 主要使用以下五类标准表达式：
 使用 `|...|` 字面量替换组合文本，比 `+` 拼接更容易阅读，也能减少引号错误：
 
 ```html
-<title th:text="|${post.spec.title} - ${site.title}|">文章标题 - 站点标题</title>
+<title th:text="|${post.spec.title} - ${site.title}|">
+  文章标题 - 站点标题
+</title>
 ```
 
 使用安全导航 `?.` 访问可能为空的属性，使用 Elvis 操作符 `?:` 提供默认值：
 
 ```html
 <a th:target="${menuItem.spec.target?.value}"></a>
-<img th:src="${theme.config.brand?.dark_logo ?: site.logo}" th:alt="${site.title}" />
+<img
+  th:src="${theme.config.brand?.dark_logo ?: site.logo}"
+  th:alt="${site.title}"
+/>
 ```
 
 检查集合或字符串是否为空时，优先使用对应工具对象：
 
 ```html
-<p th:if="${not #strings.isEmpty(post.status.excerpt)}" th:text="${post.status.excerpt}"></p>
+<p
+  th:if="${not #strings.isEmpty(post.status.excerpt)}"
+  th:text="${post.status.excerpt}"
+></p>
 <ul th:if="${not #lists.isEmpty(post.categories)}">
-  <li th:each="category : ${post.categories}" th:text="${category.spec.displayName}"></li>
+  <li
+    th:each="category : ${post.categories}"
+    th:text="${category.spec.displayName}"
+  ></li>
 </ul>
 ```
 
@@ -130,7 +141,9 @@ Thymeleaf 主要使用以下五类标准表达式：
 给已有 `class` 增加条件样式时使用 `th:classappend`，避免通过 `th:class` 重写所有静态类名：
 
 ```html
-<article class="post-card" th:classappend="${post.pinned} ? 'pinned'">置顶文章</article>
+<article class="post-card" th:classappend="${post.pinned} ? 'pinned'">
+  置顶文章
+</article>
 ```
 
 ## 定义局部变量
@@ -238,18 +251,18 @@ Halo 内容时间通常使用 `java.time` 类型，应使用 `#temporals` 格式
 
 ## 常见错误
 
-| 错误做法 | 问题 | 推荐做法 |
-| --- | --- | --- |
-| `${#request.getRequestURI()}` | Thymeleaf 3.1 不再提供 `#request` | 使用 Halo 页面变量、`status.permalink` 和路由变量 |
-| `${#ctx.exchange...}` | 依赖 Halo 未承诺的底层 Web 上下文 | 只使用 Halo 文档公开的主题变量和 API |
-| `${post.spec.title} + ' - ' + ${site.title}` | 重复表达式边界且容易写错引号 | `|${post.spec.title} - ${site.title}|` |
-| `th:href="${post.status.permalink}"` | 绕过 Thymeleaf URL 表达式处理 | `th:href="@{${post.status.permalink}}"` |
-| `th:utext` 输出普通文本 | 绕过 HTML 转义，可能产生 XSS | 普通文本使用 `th:text` |
-| `#strings.escapeJson(...)` | Thymeleaf 没有该方法 | 使用 `th:inline="javascript"` 序列化 |
-| 在带引号的 JS 字符串中使用 `[(${...})]` | 未转义内容可能破坏 JavaScript | 使用 `/*[[${...}]]*/` 自然模板写法 |
-| 为可空链只加一次 `?.` | 后续属性仍可能访问空值 | 对照变量类型逐层判空或拆分表达式 |
-| 使用 `th:class` 添加一个状态类 | 容易覆盖已有类名 | 使用 `th:classappend` |
-| 重复输出 SEO meta 或代码注入 | 与 Halo 或插件产生重复标签和脚本 | 参考[主题 SEO](./seo.md)和[设置选项](./settings.md) |
+| 错误做法                                     | 问题                              | 推荐做法                                            |
+| -------------------------------------------- | --------------------------------- | --------------------------------------------------- |
+| `${#request.getRequestURI()}`                | Thymeleaf 3.1 不再提供 `#request` | 使用 Halo 页面变量、`status.permalink` 和路由变量   |
+| `${#ctx.exchange...}`                        | 依赖 Halo 未承诺的底层 Web 上下文 | 只使用 Halo 文档公开的主题变量和 API                |
+| `${post.spec.title} + ' - ' + ${site.title}` | 重复表达式边界且容易写错引号      | `\|${post.spec.title} - ${site.title}\|`            |
+| `th:href="${post.status.permalink}"`         | 绕过 Thymeleaf URL 表达式处理     | `th:href="@{${post.status.permalink}}"`             |
+| `th:utext` 输出普通文本                      | 绕过 HTML 转义，可能产生 XSS      | 普通文本使用 `th:text`                              |
+| `#strings.escapeJson(...)`                   | Thymeleaf 没有该方法              | 使用 `th:inline="javascript"` 序列化                |
+| 在带引号的 JS 字符串中使用 `[(${...})]`      | 未转义内容可能破坏 JavaScript     | 使用 `/*[[${...}]]*/` 自然模板写法                  |
+| 为可空链只加一次 `?.`                        | 后续属性仍可能访问空值            | 对照变量类型逐层判空或拆分表达式                    |
+| 使用 `th:class` 添加一个状态类               | 容易覆盖已有类名                  | 使用 `th:classappend`                               |
+| 重复输出 SEO meta 或代码注入                 | 与 Halo 或插件产生重复标签和脚本  | 参考[主题 SEO](./seo.md)和[设置选项](./settings.md) |
 
 ## 排查模板错误
 

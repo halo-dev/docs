@@ -31,8 +31,8 @@ import {
   createConsoleApiClient,
   createUcApiClient,
   createPublicApiClient,
-  axiosInstance
-} from "@halo-dev/api-client"
+  axiosInstance,
+} from "@halo-dev/api-client";
 ```
 
 - **coreApiClient**: 为 Halo 所有[自定义模型](https://github.com/halo-dev/rfcs/tree/main/extension)的 CRUD 接口封装的 API Client。
@@ -58,11 +58,11 @@ import {
 示例
 
 ```ts
-import { coreApiClient } from "@halo-dev/api-client"
+import { coreApiClient } from "@halo-dev/api-client";
 
-coreApiClient.content.post.listPost().then(response => {
+coreApiClient.content.post.listPost().then((response) => {
   // handle response
-})
+});
 ```
 
 ### 在外部程序中使用

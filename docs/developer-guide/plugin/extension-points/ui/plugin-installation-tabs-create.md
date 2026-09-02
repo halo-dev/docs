@@ -1,6 +1,6 @@
 ---
 title: 插件安装界面选项卡
-description: '使用 plugin:installation:tabs:create 为 Halo Console 插件安装界面添加自定义选项卡，配置 Vue 面板、属性、权限和排序以接入新的安装来源'
+description: "使用 plugin:installation:tabs:create 为 Halo Console 插件安装界面添加自定义选项卡，配置 Vue 面板、属性、权限和排序以接入新的安装来源"
 ---
 
 目前 Halo 原生支持本地上传和远程下载的方式安装插件，此扩展点用于扩展插件安装界面的选项卡，以支持更多的安装方式。
@@ -12,7 +12,8 @@ description: '使用 plugin:installation:tabs:create 为 Halo Console 插件安�
 ```ts
 export default definePlugin({
   extensionPoints: {
-    "plugin:installation:tabs:create": (): PluginInstallationTab[] | Promise<PluginInstallationTab[]> => {
+    "plugin:installation:tabs:create": ():
+      PluginInstallationTab[] | Promise<PluginInstallationTab[]> => {
       return [
         {
           id: "foo",
@@ -21,7 +22,7 @@ export default definePlugin({
           props: {},
           permissions: [],
           priority: 0,
-        }
+        },
       ];
     },
   },

@@ -1,6 +1,6 @@
 ---
 title: 个人资料选项卡
-description: '使用 uc:user:profile:tabs:create 为 Halo UC 个人资料页添加自定义选项卡，配置 Vue 面板和排序，并通过 user 属性读取当前登录用户信息'
+description: "使用 uc:user:profile:tabs:create 为 Halo UC 个人资料页添加自定义选项卡，配置 Vue 面板和排序，并通过 user 属性读取当前登录用户信息"
 ---
 
 此扩展点用于扩展个人中心的个人资料选项卡。
@@ -12,7 +12,8 @@ description: '使用 uc:user:profile:tabs:create 为 Halo UC 个人资料页添�
 ```ts
 export default definePlugin({
   extensionPoints: {
-    "uc:user:profile:tabs:create": (): UserProfileTab[] | Promise<UserProfileTab[]> => {
+    "uc:user:profile:tabs:create": ():
+      UserProfileTab[] | Promise<UserProfileTab[]> => {
       return [
         {
           id: "foo",
@@ -28,10 +29,10 @@ export default definePlugin({
 
 ```ts title="UserProfileTab"
 export interface UserProfileTab {
-  id: string;                 // 选项卡 ID
-  label: string;              // 选项卡标题
-  component: Raw<Component>;  // 选项卡面板组件
-  priority: number;           // 排序优先级
+  id: string; // 选项卡 ID
+  label: string; // 选项卡标题
+  component: Raw<Component>; // 选项卡面板组件
+  priority: number; // 排序优先级
 }
 ```
 

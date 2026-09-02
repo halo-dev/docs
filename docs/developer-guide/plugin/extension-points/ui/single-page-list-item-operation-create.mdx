@@ -1,6 +1,6 @@
 ---
 title: 页面数据列表操作菜单
-description: '使用 single-page:list-item:operation:create 向 Halo Console 页面列表添加自定义操作菜单，读取当前 ListedSinglePage 并配置权限、显隐条件与处理动作'
+description: "使用 single-page:list-item:operation:create 向 Halo Console 页面列表添加自定义操作菜单，读取当前 ListedSinglePage 并配置权限、显隐条件与处理动作"
 ---
 
 此扩展点用于扩展页面数据列表的操作菜单项。
@@ -13,7 +13,7 @@ description: '使用 single-page:list-item:operation:create 向 Halo Console 页
 export default definePlugin({
   extensionPoints: {
     "single-page:list-item:operation:create": (
-      singlePage: Ref<ListedSinglePage>
+      singlePage: Ref<ListedSinglePage>,
     ): OperationItem<ListedSinglePage>[] => {
       return [
         {
@@ -60,7 +60,7 @@ export default definePlugin({
           permissions: [],
           action: async (singlePage: ListedSinglePage) => {
             const { data } = await axios.get(
-              `/apis/api.console.halo.run/v1alpha1/single-pages/${singlePage.page.metadata.name}/head-content`
+              `/apis/api.console.halo.run/v1alpha1/single-pages/${singlePage.page.metadata.name}/head-content`,
             );
             const blob = new Blob([data.raw], {
               type: "text/plain;charset=utf-8",

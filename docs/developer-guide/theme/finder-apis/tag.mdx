@@ -3,12 +3,12 @@ title: 文章标签
 description: 使用 TagFinder 按唯一标识批量查询文章标签、分页获取标签列表或读取全部标签，并在 Thymeleaf 模板中渲染标签链接
 ---
 
-import TagVo from "../vo/_TagVo.md"
+import TagVo from "../vo/_TagVo.md";
 
 ## getByName(name)
 
 ```js
-tagFinder.getByName(name)
+tagFinder.getByName(name);
 ```
 
 :::info 配合标签选择器使用
@@ -38,7 +38,7 @@ tagFinder.getByName(name)
 ## getByNames(names)
 
 ```js
-tagFinder.getByNames(names)
+tagFinder.getByNames(names);
 ```
 
 :::info 配合标签选择器使用
@@ -61,14 +61,18 @@ List\<[#TagVo](#tagvo)\>
 
 ```html
 <div th:with="tags = ${tagFinder.getByNames({'tag-foo', 'tag-bar'})}">
-  <a th:each="tag : ${tags}" th:href="@{${tag.status.permalink}}" th:text="${tag.spec.displayName}"></a>
+  <a
+    th:each="tag : ${tags}"
+    th:href="@{${tag.status.permalink}}"
+    th:text="${tag.spec.displayName}"
+  ></a>
 </div>
 ```
 
 ## list(page,size)
 
 ```js
-tagFinder.list(page,size)
+tagFinder.list(page, size);
 ```
 
 ### 描述
@@ -89,7 +93,10 @@ tagFinder.list(page,size)
 ```html
 <ul th:with="tags = ${tagFinder.list(1,10)}">
   <li th:each="tag : ${tags.items}">
-    <a th:href="@{${tag.status.permalink}}" th:text="${tag.spec.displayName}"></a>
+    <a
+      th:href="@{${tag.status.permalink}}"
+      th:text="${tag.spec.displayName}"
+    ></a>
   </li>
 </ul>
 ```
@@ -97,7 +104,7 @@ tagFinder.list(page,size)
 ## listAll()
 
 ```js
-tagFinder.listAll()
+tagFinder.listAll();
 ```
 
 ### 描述
@@ -117,7 +124,10 @@ List\<[#TagVo](#tagvo)\>
 ```html
 <ul th:with="tags = ${tagFinder.listAll()}">
   <li th:each="tag : ${tags}">
-    <a th:href="@{${tag.status.permalink}}" th:text="${tag.spec.displayName}"></a>
+    <a
+      th:href="@{${tag.status.permalink}}"
+      th:text="${tag.spec.displayName}"
+    ></a>
   </li>
 </ul>
 ```
@@ -132,15 +142,15 @@ List\<[#TagVo](#tagvo)\>
 
 ```json title="ListResult<TagVo>"
 {
-  "page": 0,                                   // 当前页码
-  "size": 0,                                   // 每页条数
-  "total": 0,                                  // 总条数
-  "items": "List<#TagVo>",                     // 标签列表数据
-  "first": true,                               // 是否为第一页
-  "last": true,                                // 是否为最后一页
-  "hasNext": true,                             // 是否有下一页
-  "hasPrevious": true,                         // 是否有上一页
-  "totalPages": 0                              // 总页数
+  "page": 0, // 当前页码
+  "size": 0, // 每页条数
+  "total": 0, // 总条数
+  "items": "List<#TagVo>", // 标签列表数据
+  "first": true, // 是否为第一页
+  "last": true, // 是否为最后一页
+  "hasNext": true, // 是否有下一页
+  "hasPrevious": true, // 是否有上一页
+  "totalPages": 0 // 总页数
 }
 ```
 

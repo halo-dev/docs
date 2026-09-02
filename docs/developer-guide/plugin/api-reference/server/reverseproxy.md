@@ -10,19 +10,19 @@ description: 通过 ReverseProxy 自定义模型将插件 src/main/resources 下
 1. 首先需要在 `src/main/resources/extensions` 下创建一个 `yaml`，文件名可以任意。
 2. 声明 `ReverseProxy` 对象如下：
 
-  ```yaml
-  apiVersion: plugin.halo.run/v1alpha1
-  kind: ReverseProxy
-  metadata:
-    # 为了避免与其他插件冲突，推荐带上插件名称前缀
-    name: my-plugin-fake-reverse-proxy
-  rules:
-    - path: /res/**
-      file:
-        directory: static
-        # 如果想代理 static 下所有静态资源则省略 filename 配置
-        filename: halo.jpg
-  ```
+```yaml
+apiVersion: plugin.halo.run/v1alpha1
+kind: ReverseProxy
+metadata:
+  # 为了避免与其他插件冲突，推荐带上插件名称前缀
+  name: my-plugin-fake-reverse-proxy
+rules:
+  - path: /res/**
+    file:
+      directory: static
+      # 如果想代理 static 下所有静态资源则省略 filename 配置
+      filename: halo.jpg
+```
 
 插件启动后会根据 `/plugins/{plugin-name}/assets/**` 规则生成访问路径，
 因此该 `ReverseProxy` 的访问路径为：`/plugins/my-plugin/assets/res/halo.jpg`。

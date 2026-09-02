@@ -1,6 +1,6 @@
 ---
 title: 插件数据列表显示字段
-description: '使用 plugin:list-item:field:create 在 Halo Console 插件列表中添加自定义显示字段，根据当前 Plugin 配置位置、组件、权限和显隐条件'
+description: "使用 plugin:list-item:field:create 在 Halo Console 插件列表中添加自定义显示字段，根据当前 Plugin 配置位置、组件、权限和显隐条件"
 ---
 
 此扩展点用于扩展插件数据列表的显示字段。
@@ -12,7 +12,9 @@ description: '使用 plugin:list-item:field:create 在 Halo Console 插件列表
 ```ts
 export default definePlugin({
   extensionPoints: {
-    "plugin:list-item:field:create": (plugin: Ref<Plugin>): EntityFieldItem[] => {
+    "plugin:list-item:field:create": (
+      plugin: Ref<Plugin>,
+    ): EntityFieldItem[] => {
       return [
         {
           priority: 0,
@@ -21,7 +23,7 @@ export default definePlugin({
           props: {},
           permissions: [],
           hidden: false,
-        }
+        },
       ];
     },
   },

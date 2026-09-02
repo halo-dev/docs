@@ -16,6 +16,7 @@ description: 配置 Halo 主题的 404、4xx、500、5xx 与默认错误模板�
 1. `/templates/error/404.html`
 2. `/templates/error/4xx.html`
 3. `/templates/error/error.html`
+
 :::
 
 ## 变量
@@ -26,11 +27,11 @@ description: 配置 Halo 主题的 404、4xx、500、5xx 与默认错误模板�
 
 ```json
 {
-  "detail": "string",                     // 异常详细信息
-  "instance": "string",                   // 异常实例
-  "status": "number",                     // 异常状态码
-  "title": "string",                      // 异常标题
-  "type": "string"                        // 异常类型
+  "detail": "string", // 异常详细信息
+  "instance": "string", // 异常实例
+  "status": "number", // 异常状态码
+  "title": "string", // 异常标题
+  "type": "string" // 异常类型
 }
 ```
 
@@ -39,7 +40,12 @@ description: 配置 Halo 主题的 404、4xx、500、5xx 与默认错误模板�
 ```html title="/templates/error/error.html"
 <div>
   <h2 th:text="${error.status}"></h2>
-  <p th:text="${#strings.defaultString(error.title, 'Internal server error')}"></p>
-  <p th:if="${not #strings.isEmpty(error.detail)}" th:text="${error.detail}"></p>
+  <p
+    th:text="${#strings.defaultString(error.title, 'Internal server error')}"
+  ></p>
+  <p
+    th:if="${not #strings.isEmpty(error.detail)}"
+    th:text="${error.detail}"
+  ></p>
 </div>
 ```

@@ -20,6 +20,6 @@ description: 准备 Halo 核心开发环境，列出 OpenJDK、Node.js、pnpm、
 
 1. `db`：存放 H2 Database 的物理文件，如果你使用其他数据库，那么不会存在这个目录。
 2. `themes`：里面包含用户所安装的主题。
-2. `plugins`：里面包含用户所安装的插件。
-5. `attachments`：附件目录。
-4. `logs`：运行日志目录。
+3. `plugins`：里面包含用户所安装的插件。
+4. `attachments`：附件目录。
+5. `logs`：运行日志目录。

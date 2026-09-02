@@ -7,13 +7,13 @@ description: 使用 @halo-dev/vite-plugin-halo-theme 在 src 中开发 Halo 主�
 
 ## 区分源码和构建产物
 
-| 路径 | 用途 | 是否直接编辑 |
-| --- | --- | --- |
-| `src/*.html` | 页面模板源码 | 是 |
-| `src/partials/` | 构建期复用的模板片段 | 是 |
-| `src/css/`、`src/js/` | 由 Vite 处理的前端资源 | 是 |
-| `public/` | 不经转换、原样复制的文件 | 是 |
-| `templates/` | Halo 读取的构建产物 | 否 |
+| 路径                  | 用途                     | 是否直接编辑 |
+| --------------------- | ------------------------ | ------------ |
+| `src/*.html`          | 页面模板源码             | 是           |
+| `src/partials/`       | 构建期复用的模板片段     | 是           |
+| `src/css/`、`src/js/` | 由 Vite 处理的前端资源   | 是           |
+| `public/`             | 不经转换、原样复制的文件 | 是           |
+| `templates/`          | Halo 读取的构建产物      | 否           |
 
 :::warning 不要修改生成的模板
 使用这套工程结构时，应修改 `src` 后重新构建，不要手动修改 `templates`。构建会清空并重新生成该目录。
@@ -32,8 +32,8 @@ pnpm add -D @halo-dev/vite-plugin-halo-theme
 在 Vite 配置中启用插件：
 
 ```ts title="vite.config.ts"
-import { haloThemePlugin } from '@halo-dev/vite-plugin-halo-theme';
-import { defineConfig } from 'vite';
+import { haloThemePlugin } from "@halo-dev/vite-plugin-halo-theme";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [haloThemePlugin()],

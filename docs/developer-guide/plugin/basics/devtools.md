@@ -38,11 +38,11 @@ Release 版本和版本说明可以在 [GitHub Releases](https://github.com/halo
 
 ```shell
 =======================================================================
-> Halo 启动成功！                                                      
-访问地址：http://localhost:8090/console?language=zh-CN                 
-用户名：admin                                                          
-密码：admin                                                            
-API 文档：http://localhost:8090/swagger-ui.html                        
+> Halo 启动成功！
+访问地址：http://localhost:8090/console?language=zh-CN
+用户名：admin
+密码：admin
+API 文档：http://localhost:8090/swagger-ui.html
 插件开发文档：https://docs.halo.run/developer-guide/plugin/introduction
 =======================================================================
 ```
@@ -329,7 +329,7 @@ const momentsConsoleApiClient = {
   moment: new ConsoleApiMomentHaloRunV1alpha1MomentApi(
     undefined,
     "",
-    axiosInstance
+    axiosInstance,
   ),
 };
 
@@ -439,5 +439,5 @@ halo {
 
 ```shell
 # 如将 Gradle 版本升级至 8.9
-./gradlew wrapper --gradle-version=8.9 
+./gradlew wrapper --gradle-version=8.9
 ```

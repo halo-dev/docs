@@ -9,12 +9,12 @@ Setting Schema 的字段、默认值、敏感数据边界以及 Halo 扩展输�
 
 ## 先选择正确的表单入口
 
-| 场景 | 推荐方式 |
-| --- | --- |
-| 插件详情中的普通设置 | 在 Setting YAML 中定义 FormKit Schema，由 Halo 自动渲染 |
-| 创建、编辑资源的页面或弹窗 | 在 Vue SFC 中使用 `<FormKit type="form">` 和 FormKit 输入组件 |
-| 搜索、筛选、列表和分页 | 使用 `SearchInput`、`FilterDropdown`、`VEntity`、`VPagination` 等宿主组件 |
-| 单个列表选择、文件控件等轻量交互 | 邻近 Halo 页面采用原生控件时可以保持一致 |
+| 场景                             | 推荐方式                                                                  |
+| -------------------------------- | ------------------------------------------------------------------------- |
+| 插件详情中的普通设置             | 在 Setting YAML 中定义 FormKit Schema，由 Halo 自动渲染                   |
+| 创建、编辑资源的页面或弹窗       | 在 Vue SFC 中使用 `<FormKit type="form">` 和 FormKit 输入组件             |
+| 搜索、筛选、列表和分页           | 使用 `SearchInput`、`FilterDropdown`、`VEntity`、`VPagination` 等宿主组件 |
+| 单个列表选择、文件控件等轻量交互 | 邻近 Halo 页面采用原生控件时可以保持一致                                  |
 
 插件通过 `plugin.yaml` 的 `spec.settingName` 和 `spec.configMapName` 关联 Setting 后，Halo 会在插件详情页自动渲染设置表单。插件 UI 不需要再注册普通设置路由，也不需要自行读取或更新 ConfigMap。只有 Setting Schema 无法表达的独立业务流程，才应创建自定义设置页面。
 

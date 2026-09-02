@@ -74,7 +74,6 @@ spec:
       label: "版本"
 
 ---
-
 apiVersion: v1alpha1
 kind: AnnotationSetting
 metadata:

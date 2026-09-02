@@ -7,16 +7,16 @@ description: 按场景选择 Finder、可覆盖模板、页面布局、公开 AP
 
 ## 选择集成方式
 
-| 目标 | 推荐机制 | 说明 |
-| --- | --- | --- |
-| 在 Thymeleaf 模板中读取插件数据 | [Finder](./api-reference/server/finder-for-theme.md) | 用于服务端模板渲染，不是浏览器 API |
-| 提供插件前台页面并允许主题覆盖 | [TemplateNameResolver](./api-reference/server/template-for-theme.md) | 插件提供默认模板，主题覆盖为可选增强 |
-| 让插件页面复用主题页头、页脚和布局 | [页面布局契约](../theme/page-layout.md) | Halo 2.26.0 起可用；主题不支持时使用 Halo fallback 布局 |
-| 让浏览器脚本请求插件数据 | [公开自定义 API](./api-reference/server/extension.md#custom-api-group-spec) | 使用 `api.<group>`，并显式配置匿名访问所需的最小权限 |
-| 向页面加载插件 CSS、JavaScript 或 meta 标签 | [TemplateHeadProcessor](./extension-points/server/template-head-processor.md) 或 [TemplateFooterProcessor](./extension-points/server/template-footer-processor.md) | Footer 处理器依赖主题保留 `<halo:footer />` |
-| 修改文章或单页面的最终内容 | [文章内容处理](./extension-points/server/post-content.md)或[单页面内容处理](./extension-points/server/singlepage-content.md) | 适合代码高亮、图表和内容增强，不适合替代主题布局 |
-| 公开插件内的静态文件 | [ReverseProxy](./api-reference/server/reverseproxy.md) | 资源路径位于 `/plugins/<plugin-name>/assets/` 下 |
-| 让插件自定义模型支持评论 | [CommentSubject](./extension-points/server/comment-subject.md) | 同时提供评论权限、前台标签和管理端主体展示 |
+| 目标                                        | 推荐机制                                                                                                                                                           | 说明                                                    |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
+| 在 Thymeleaf 模板中读取插件数据             | [Finder](./api-reference/server/finder-for-theme.md)                                                                                                               | 用于服务端模板渲染，不是浏览器 API                      |
+| 提供插件前台页面并允许主题覆盖              | [TemplateNameResolver](./api-reference/server/template-for-theme.md)                                                                                               | 插件提供默认模板，主题覆盖为可选增强                    |
+| 让插件页面复用主题页头、页脚和布局          | [页面布局契约](../theme/page-layout.md)                                                                                                                            | Halo 2.26.0 起可用；主题不支持时使用 Halo fallback 布局 |
+| 让浏览器脚本请求插件数据                    | [公开自定义 API](./api-reference/server/extension.md#custom-api-group-spec)                                                                                        | 使用 `api.<group>`，并显式配置匿名访问所需的最小权限    |
+| 向页面加载插件 CSS、JavaScript 或 meta 标签 | [TemplateHeadProcessor](./extension-points/server/template-head-processor.md) 或 [TemplateFooterProcessor](./extension-points/server/template-footer-processor.md) | Footer 处理器依赖主题保留 `<halo:footer />`             |
+| 修改文章或单页面的最终内容                  | [文章内容处理](./extension-points/server/post-content.md)或[单页面内容处理](./extension-points/server/singlepage-content.md)                                       | 适合代码高亮、图表和内容增强，不适合替代主题布局        |
+| 公开插件内的静态文件                        | [ReverseProxy](./api-reference/server/reverseproxy.md)                                                                                                             | 资源路径位于 `/plugins/<plugin-name>/assets/` 下        |
+| 让插件自定义模型支持评论                    | [CommentSubject](./extension-points/server/comment-subject.md)                                                                                                     | 同时提供评论权限、前台标签和管理端主体展示              |
 
 一个功能可能组合多种机制。例如，插件页面可以由默认模板和 Finder 完成服务端渲染，再通过公开 API 提交交互数据，但每种入口应共享同一套权限和数据语义。
 

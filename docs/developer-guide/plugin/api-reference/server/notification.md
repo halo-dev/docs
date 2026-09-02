@@ -146,11 +146,11 @@ spec:
   reasonType: comment
   author: "访客"
   subject:
-    apiVersion: 'content.halo.run/v1alpha1'
+    apiVersion: "content.halo.run/v1alpha1"
     kind: Post
-    name: 'post-456'
-    title: 'Halo 系统介绍'
-    url: 'https://example.com/archives/456'
+    name: "post-456"
+    title: "Halo 系统介绍"
+    url: "https://example.com/archives/456"
   attributes:
     postName: "Halo 系统介绍"
     commenter: "访客"
@@ -242,9 +242,9 @@ spec:
 Halo 使用 Thymeleaf 模板引擎来渲染通知模板，开发者可以在模板中使用 Thymeleaf 的语法来处理模板中的逻辑和数据。
 
 - 对于纯文本如标题和 `rawBody`，使用 Thymeleaf 的 [Textual syntax](https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#textual-syntax) 语法来引用变量和表达式。
-其取值格式为：`[(${expression})]`，例如 `[(${title})]`。
+  其取值格式为：`[(${expression})]`，例如 `[(${title})]`。
 - 对于 HTML 内容如 `htmlBody`，使用 Thymeleaf 的 [Standard syntax](https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#standard-syntax) 语法。
-其取值格式为：`${expression}`，例如 `${title}`。
+  其取值格式为：`${expression}`，例如 `${title}`。
 
 #### 模板渲染与发送
 

@@ -112,7 +112,7 @@ metadata:
 rules:
   - apiGroups: [""]
     resources: ["menus"]
-    verbs: [ "create", "update", "delete" ]
+    verbs: ["create", "update", "delete"]
 ---
 apiVersion: v1alpha1
 kind: Role

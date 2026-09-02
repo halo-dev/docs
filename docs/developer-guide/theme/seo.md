@@ -14,16 +14,24 @@ description: 了解 Halo 自动注入的 SEO 元数据，并为主题页面设�
 <title th:text="${site.title}">站点标题</title>
 
 <!-- post.html -->
-<title th:text="|${post.spec.title} - ${site.title}|">文章标题 - 站点标题</title>
+<title th:text="|${post.spec.title} - ${site.title}|">
+  文章标题 - 站点标题
+</title>
 
 <!-- page.html -->
-<title th:text="|${singlePage.spec.title} - ${site.title}|">页面标题 - 站点标题</title>
+<title th:text="|${singlePage.spec.title} - ${site.title}|">
+  页面标题 - 站点标题
+</title>
 
 <!-- category.html -->
-<title th:text="|${category.spec.displayName} - ${site.title}|">分类名称 - 站点标题</title>
+<title th:text="|${category.spec.displayName} - ${site.title}|">
+  分类名称 - 站点标题
+</title>
 
 <!-- tag.html -->
-<title th:text="|${tag.spec.displayName} - ${site.title}|">标签名称 - 站点标题</title>
+<title th:text="|${tag.spec.displayName} - ${site.title}|">
+  标签名称 - 站点标题
+</title>
 ```
 
 作者归档页可以使用 `author.spec.displayName`。文章归档、分类列表和标签列表等固定页面应使用主题的国际化消息生成标题，不要把一种语言直接写入公共布局。
@@ -34,13 +42,13 @@ description: 了解 Halo 自动注入的 SEO 元数据，并为主题页面设�
 
 Halo 会在模板渲染期间向 `<head>` 注入以下信息：
 
-| 页面或设置 | Halo 注入的内容 |
-| --- | --- |
-| 所有页面 | 站点设置中的 favicon（`<link rel="icon">`）和默认注入的 Halo 版本 `generator` meta |
-| 首页 | Console SEO 设置中的 `keywords` 和 `description` |
-| 文章、单页面 | 最终摘要作为 `description` |
-| 分类、标签归档 | 分类或标签的描述作为 `description` |
-| Console 中开启“屏蔽搜索引擎” | `robots` 值为 `noindex` |
+| 页面或设置                   | Halo 注入的内容                                                                    |
+| ---------------------------- | ---------------------------------------------------------------------------------- |
+| 所有页面                     | 站点设置中的 favicon（`<link rel="icon">`）和默认注入的 Halo 版本 `generator` meta |
+| 首页                         | Console SEO 设置中的 `keywords` 和 `description`                                   |
+| 文章、单页面                 | 最终摘要作为 `description`                                                         |
+| 分类、标签归档               | 分类或标签的描述作为 `description`                                                 |
+| Console 中开启“屏蔽搜索引擎” | `robots` 值为 `noindex`                                                            |
 
 因此，不要在主题中再次使用 `site.seo.description` 或 `site.seo.keywords` 生成同名 `<meta>`。插件和 Console 的代码注入也可以修改 `<head>`，排查问题时应检查最终响应，而不是只看主题源码。
 

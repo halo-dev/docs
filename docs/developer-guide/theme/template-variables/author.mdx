@@ -3,11 +3,11 @@ title: 作者归档
 description: 编写 Halo 主题的 author.html 作者归档模板，使用 author 与 posts 变量展示作者信息和分页文章列表，并了解默认路由与模板标识。
 ---
 
-import UserVo from "../vo/_UserVo.md"
-import CategoryVo from "../vo/_CategoryVo.md"
-import TagVo from "../vo/_TagVo.md"
-import ContributorVo from "../vo/_ContributorVo.md"
-import ListedPostVo from "../vo/_ListedPostVo.md"
+import UserVo from "../vo/_UserVo.md";
+import CategoryVo from "../vo/_CategoryVo.md";
+import TagVo from "../vo/_TagVo.md";
+import ContributorVo from "../vo/_ContributorVo.md";
+import ListedPostVo from "../vo/_ListedPostVo.md";
 
 根据作者列出所有文章的页面，如果你的主题偏向于社区类型，那么可以添加一个这样的模板，用于提供作者的页面。
 
@@ -37,29 +37,22 @@ import ListedPostVo from "../vo/_ListedPostVo.md"
   <h1 th:text="${author.spec.displayName}"></h1>
   <ul>
     <li th:each="post : ${posts.items}">
-      <a
-        th:text="${post.spec.title}"
-        th:href="${post.status.permalink}"
-      ></a>
+      <a th:text="${post.spec.title}" th:href="${post.status.permalink}"></a>
     </li>
   </ul>
   <div th:if="${posts.hasPrevious() || posts.hasNext()}">
-    <a
-      th:href="@{${posts.prevUrl}}"
-    >
+    <a th:href="@{${posts.prevUrl}}">
       <span>上一页</span>
     </a>
     <span th:text="${posts.page} +' / '+ ${posts.total}"></span>
-    <a
-      th:href="@{${posts.nextUrl}}"
-    >
+    <a th:href="@{${posts.nextUrl}}">
       <span>下一页</span>
     </a>
   </div>
 </div>
 ```
 
-### _templateId
+### \_templateId
 
 #### 变量值
 
@@ -95,17 +88,17 @@ import ListedPostVo from "../vo/_ListedPostVo.md"
 
 ```json title="UrlContextListResult<ListedPostVo>"
 {
-  "page": 0,                                   // 当前页码
-  "size": 0,                                   // 每页条数
-  "total": 0,                                  // 总条数
-  "items": "List<#ListedPostVo>",              // 文章列表数据
-  "first": true,                               // 是否为第一页
-  "last": true,                                // 是否为最后一页
-  "hasNext": true,                             // 是否有下一页
-  "hasPrevious": true,                         // 是否有上一页
-  "totalPages": 0,                             // 总页数
-  "nextUrl": "string",                         // 下一页链接
-  "prevUrl": "string"                          // 上一页链接
+  "page": 0, // 当前页码
+  "size": 0, // 每页条数
+  "total": 0, // 总条数
+  "items": "List<#ListedPostVo>", // 文章列表数据
+  "first": true, // 是否为第一页
+  "last": true, // 是否为最后一页
+  "hasNext": true, // 是否有下一页
+  "hasPrevious": true, // 是否有上一页
+  "totalPages": 0, // 总页数
+  "nextUrl": "string", // 下一页链接
+  "prevUrl": "string" // 上一页链接
 }
 ```
 

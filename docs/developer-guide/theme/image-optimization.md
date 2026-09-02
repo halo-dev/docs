@@ -71,10 +71,12 @@ description: 从 Halo 2.19 起在主题中使用 thumbnail.gen Finder API 和缩
 ```html
 <img
   src="/upload/post-cover.png"
-  srcset="/apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=s 400w,
-          /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=m 800w,
-          /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=l 1200w,
-          /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=xl 1600w"
+  srcset="
+    /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=s   400w,
+    /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=m   800w,
+    /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=l  1200w,
+    /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri?uri=%2Fupload%2Fpost-cover.png&amp;size=xl 1600w
+  "
   sizes="(max-width: 1600px) 100vw, 1600px"
 />
 ```

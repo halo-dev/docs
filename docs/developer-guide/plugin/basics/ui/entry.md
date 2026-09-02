@@ -17,7 +17,7 @@ export default definePlugin({
   components: {},
   routes: [],
   ucRoutes: [],
-  extensionPoints: {}
+  extensionPoints: {},
 });
 ```
 

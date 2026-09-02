@@ -16,7 +16,7 @@
 }
 
 .rp-code-button-group {
-  &__icon{
+  &__icon {
     color: #8b8b8b;
 
     &:hover {
@@ -31,7 +31,8 @@
     border: none;
     transition: background-color 0.2s ease-in-out;
 
-    &:active, &:focus {
+    &:active,
+    &:focus {
       background-color: #eaeaea;
     }
   }
@@ -112,7 +113,8 @@
   &--current .rp-suggest-item__link {
     border-color: var(--rp-c-brand);
     background: color-mix(in srgb, var(--rp-c-brand) 68%, #0f172a);
-    box-shadow: 0 6px 18px color-mix(in srgb, var(--rp-c-brand) 24%, transparent);
+    box-shadow: 0 6px 18px
+      color-mix(in srgb, var(--rp-c-brand) 24%, transparent);
   }
 
   &__container {
@@ -155,12 +157,13 @@
   }
 }
 
-.rp-dark{
+.rp-dark {
   .rp-overview-search {
     input {
       background-color: #1e1e1e;
 
-      &:active, &:focus {
+      &:active,
+      &:focus {
         background-color: #2e2e2e;
       }
     }

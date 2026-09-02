@@ -1,6 +1,6 @@
 ---
 title: 主题数据列表操作菜单
-description: '使用 theme:list-item:operation:create 向 Halo Console 主题列表添加自定义操作菜单，读取当前 Theme 并配置权限、显隐条件和处理动作'
+description: "使用 theme:list-item:operation:create 向 Halo Console 主题列表添加自定义操作菜单，读取当前 Theme 并配置权限、显隐条件和处理动作"
 ---
 
 此扩展点用于扩展主题数据列表的操作菜单项。
@@ -13,7 +13,7 @@ description: '使用 theme:list-item:operation:create 向 Halo Console 主题列
 export default definePlugin({
   extensionPoints: {
     "theme:list-item:operation:create": (
-      theme: Ref<Theme>
+      theme: Ref<Theme>,
     ): OperationItem<Theme>[] => {
       return [
         {
@@ -51,7 +51,7 @@ import type { Theme } from "@halo-dev/api-client";
 export default definePlugin({
   extensionPoints: {
     "theme:list-item:operation:create": (
-      theme: Ref<Theme>
+      theme: Ref<Theme>,
     ): OperationItem<Theme>[] => {
       return [
         {

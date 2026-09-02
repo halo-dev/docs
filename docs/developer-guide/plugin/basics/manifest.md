@@ -32,24 +32,24 @@ spec:
 
 ## 字段详解
 
-| 字段                         | 说明                                                                                                                                                                            |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `apiVersion` 和 `kind`       | 固定写法，定义插件的 API 版本和类型，不可更改。                                                                                                                                 |
-| `metadata.name`              | 插件的唯一标识名，长度不超过 253 个字符，仅包含小写字母、数字或 `-`，以字母或数字开头和结尾。                                                                                   |
-| `spec.enabled`               | Halo 运行时记录的期望启用状态。普通上传安装会将其设为 `false`，不能通过源清单让插件在安装后自动启用，通常无需在源文件中声明。                                                    |
-| `spec.version`               | 插件版本，必须为完整的 SemVer 版本号。使用官方 Gradle 插件构建时，最终产物中的值会自动取自 Gradle 项目版本。                                                                    |
-| `spec.requires`              | 插件支持的 Halo 版本范围，遵循 [SemVer Range Expressions](https://github.com/zafarkhaja/jsemver#range-expressions)。参考：[常用 SemVer Range Expressions](#common-range-expressions) |
-| `spec.pluginDependencies`    | 插件依赖及其版本范围，支持必需依赖和可选依赖。参考：[依赖其他插件](../interaction/dependency.md)。                                                                              |
-| `spec.author`                | 插件作者的信息，包括名称和支持网址。                                                                                                                                            |
-| `spec.logo`                  | 插件的 logo，支持 URL 链接或相对于项目 `src/main/resources` 目录的文件路径。                                                                                                    |
+| 字段                         | 说明                                                                                                                                                                                                                                |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `apiVersion` 和 `kind`       | 固定写法，定义插件的 API 版本和类型，不可更改。                                                                                                                                                                                     |
+| `metadata.name`              | 插件的唯一标识名，长度不超过 253 个字符，仅包含小写字母、数字或 `-`，以字母或数字开头和结尾。                                                                                                                                       |
+| `spec.enabled`               | Halo 运行时记录的期望启用状态。普通上传安装会将其设为 `false`，不能通过源清单让插件在安装后自动启用，通常无需在源文件中声明。                                                                                                       |
+| `spec.version`               | 插件版本，必须为完整的 SemVer 版本号。使用官方 Gradle 插件构建时，最终产物中的值会自动取自 Gradle 项目版本。                                                                                                                        |
+| `spec.requires`              | 插件支持的 Halo 版本范围，遵循 [SemVer Range Expressions](https://github.com/zafarkhaja/jsemver#range-expressions)。参考：[常用 SemVer Range Expressions](#common-range-expressions)                                                |
+| `spec.pluginDependencies`    | 插件依赖及其版本范围，支持必需依赖和可选依赖。参考：[依赖其他插件](../interaction/dependency.md)。                                                                                                                                  |
+| `spec.author`                | 插件作者的信息，包括名称和支持网址。                                                                                                                                                                                                |
+| `spec.logo`                  | 插件的 logo，支持 URL 链接或相对于项目 `src/main/resources` 目录的文件路径。                                                                                                                                                        |
 | `spec.settingName`（可选）   | 插件配置表单的名称，用于提供用户可视化配置的表单，名称建议为 "插件名-settings"。参考：[插件设置与表单组件](./ui/forms.md)、[表单定义与组件速查](../../form-schema.md)和[获取插件配置](../api-reference/server/setting-fetcher.md)。 |
-| `spec.configMapName`（可选） | 插件配置存储的 ConfigMap 名称，通常建议命名为 "插件名-configmap"。没有配置 `settingName` 则不需要配置此项。                                                                    |
-| `spec.homepage`              | 插件的主页链接，通常指向插件的官方文档或帮助页面。                                                                                                                              |
-| `spec.repo`                  | 插件源码的仓库地址。                                                                                                                                                            |
-| `spec.issues`                | 插件的反馈问题地址，可以是 GitHub Issues。                                                                                                                                      |
-| `spec.displayName`           | 插件的显示名称，它通常是以少数几个字来概括插件的用途。                                                                                                                          |
-| `spec.description`           | 插件的简短描述，用于说明插件的用途。                                                                                                                                            |
-| `spec.license`               | 插件的许可协议，包含协议名称和链接。参考：[Software License](https://en.wikipedia.org/wiki/Software_license)。                                                                  |
+| `spec.configMapName`（可选） | 插件配置存储的 ConfigMap 名称，通常建议命名为 "插件名-configmap"。没有配置 `settingName` 则不需要配置此项。                                                                                                                         |
+| `spec.homepage`              | 插件的主页链接，通常指向插件的官方文档或帮助页面。                                                                                                                                                                                  |
+| `spec.repo`                  | 插件源码的仓库地址。                                                                                                                                                                                                                |
+| `spec.issues`                | 插件的反馈问题地址，可以是 GitHub Issues。                                                                                                                                                                                          |
+| `spec.displayName`           | 插件的显示名称，它通常是以少数几个字来概括插件的用途。                                                                                                                                                                              |
+| `spec.description`           | 插件的简短描述，用于说明插件的用途。                                                                                                                                                                                                |
+| `spec.license`               | 插件的许可协议，包含协议名称和链接。参考：[Software License](https://en.wikipedia.org/wiki/Software_license)。                                                                                                                      |
 
 :::info spec.version 由构建过程写入
 Halo 的 Plugin Schema 要求最终安装包中的 `spec.version` 为完整的 SemVer 版本号。使用官方 Halo Gradle 插件时，源文件可以省略此字段；构建过程会读取 Gradle 项目版本，并将其写入构建产物中的 `plugin.yaml`。请不要手动修改构建目录里的副本。
@@ -110,6 +110,7 @@ halo:
 
 1. `development` 开发模式下，既可以运行 `fixed-plugin-path` 下的插件，也可以运行通过 `Console` 管理端安装的 JAR 格式的插件。
 2. 如果使用 [DevTools 运行方式](../hello-world.md#run-with-devtools) 来开发插件，则不需要配置 `runtime-mode` 和 `fixed-plugin-path`。
+
 :::
 
 ### 常用的 SemVer Range Expressions {#common-range-expressions}

@@ -3,8 +3,8 @@ title: 全局变量
 description: 在 Halo Thymeleaf 模板中使用 site 与 theme 全局变量、#halo.matchVersion 版本判断、Spring Security 条件渲染及自动访问量统计。
 ---
 
-import SiteSettingVo from "./vo/_SiteSettingVo.md"
-import ThemeVo from "./vo/_ThemeVo.md"
+import SiteSettingVo from "./vo/_SiteSettingVo.md";
+import ThemeVo from "./vo/_ThemeVo.md";
 
 Halo 目前为模板引擎在全局提供了一些变量，本文档将列出已提供的变量以及介绍这些变量的使用方法。
 
@@ -91,8 +91,13 @@ Halo 目前为模板引擎在全局提供了一些变量，本文档将列出已
 在静态资源加入版本号参数，以防止升级之后的缓存问题：
 
 ```html
-<link rel="stylesheet" th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}" />
-<script th:src="@{/assets/dist/main.iife.js?v={version}(version=${theme.spec.version})}"></script>
+<link
+  rel="stylesheet"
+  th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}"
+/>
+<script
+  th:src="@{/assets/dist/main.iife.js?v={version}(version=${theme.spec.version})}"
+></script>
 ```
 
 ## 按登录状态条件渲染

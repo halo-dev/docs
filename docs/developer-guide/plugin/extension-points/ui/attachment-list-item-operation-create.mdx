@@ -1,6 +1,6 @@
 ---
 title: 附件数据列表操作菜单
-description: '使用 attachment:list-item:operation:create 向 Halo Console 附件列表添加自定义操作菜单，按权限或状态控制显示并处理当前附件'
+description: "使用 attachment:list-item:operation:create 向 Halo Console 附件列表添加自定义操作菜单，按权限或状态控制显示并处理当前附件"
 ---
 
 此扩展点用于扩展附件数据列表的操作菜单项。
@@ -13,7 +13,7 @@ description: '使用 attachment:list-item:operation:create 向 Halo Console 附�
 export default definePlugin({
   extensionPoints: {
     "attachment:list-item:operation:create": (
-      attachment: Ref<Attachment>
+      attachment: Ref<Attachment>,
     ): OperationItem<Attachment>[] => {
       return [
         {
@@ -51,7 +51,7 @@ import type { Attachment } from "@halo-dev/api-client";
 export default definePlugin({
   extensionPoints: {
     "attachment:list-item:operation:create": (
-      attachment: Ref<Attachment>
+      attachment: Ref<Attachment>,
     ): OperationItem<Attachment>[] => {
       return [
         {
@@ -78,7 +78,6 @@ export default definePlugin({
     },
   },
 });
-
 ```
 
 ## 实现案例

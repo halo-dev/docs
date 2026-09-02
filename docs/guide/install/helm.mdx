@@ -3,7 +3,7 @@ title: 使用 Helm 部署
 description: 使用 Helm Chart 在 Kubernetes 集群中安装与升级 Halo 的说明。
 ---
 
-import DockerArgs from "./slots/_docker-args.md"
+import DockerArgs from "./slots/_docker-args.md";
 
 :::info 先阅读《写在前面》
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare.md)，这可以快速帮助你了解 Halo。
@@ -23,7 +23,7 @@ import DockerArgs from "./slots/_docker-args.md"
 ```bash
 # 添加 Halo 项目的 Helm Charts 仓库
 helm repo add halo https://halo-sigs.github.io/charts/
-# 从 chart 仓库中更新本地可用chart的信息 
+# 从 chart 仓库中更新本地可用chart的信息
 helm repo update
 # 使用默认参数，在当前的 Kubernetes namespace 中安装 Halo
 helm install halo halo/halo
@@ -67,6 +67,7 @@ To access your Halo site from outside the cluster follow the steps below:
 ```
 
 :::info 默认 PostgreSQL 参数
+
 - 使用 Halo Helm Chart 仓库中 [values.yaml](https://github.com/halo-sigs/charts/blob/main/charts/halo/values.yaml) 文件中的默认参数进行安装；
 - 关于 PostgreSQL 数据库的更多参数说明，请参考 [Bitnami PostgreSQL Chart](https://github.com/bitnami/charts/tree/main/bitnami/postgresql#parameters)，在原有参数格式上增加 `postgresql.` 前缀即可。
 
@@ -89,6 +90,7 @@ helm install halo halo/halo --set mysql.enabled=true --set postgresql.enabled=fa
 ```
 
 :::info 自动安装 MySQL 参数
+
 - `mysql.enabled=true`：自动安装 MySQL 数据库；
 - `postgresql.enabled=false`：不自动安装 PostgreSQL 数据库；
 - 关于 mysql 的更多参数说明，请参考 [Bitnami MySQL Chart](https://github.com/bitnami/charts/tree/main/bitnami/mysql#parameters)，在原有参数格式上增加 `mysql.` 前缀即可。
@@ -112,6 +114,7 @@ helm install halo halo/halo \
 ```
 
 :::info 外部数据库参数
+
 - `mysql.enabled=false`：不自动安装 MySQL 数据库；
 - `postgresql.enabled=false`：不自动安装 PostgreSQL 数据库；
 - `externalDatabase.platform=mysql`：外部数据库类型，例如 `postgresql`、`mysql`；

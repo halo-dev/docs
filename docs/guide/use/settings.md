@@ -46,31 +46,31 @@ Halo 提供了以下站点基本信息设置：
 
 - **屏蔽搜索引擎**：配置后会在所有页面 HTML 源码的 head 部分添加：
 
-    ```html
-    <meta name="robots" content="noindex" />
-    ```
+  ```html
+  <meta name="robots" content="noindex" />
+  ```
 
-    :::info 提示
-    需要注意的是，并不是所有搜索引擎都会遵守这个规则。
-    :::
+  :::info 提示
+  需要注意的是，并不是所有搜索引擎都会遵守这个规则。
+  :::
 
 - **站点关键词**：格式为以 `,` 分隔的关键词列表，配置后会在所有页面 HTML 源码的 head 部分添加：
 
-    ```html
-    <meta name="keywords" content="{关键词 A, 关键词 B}" />
-    ```
+  ```html
+  <meta name="keywords" content="{关键词 A, 关键词 B}" />
+  ```
 
-    :::warning 注意
-    目前主流的搜索引擎（如 Google、Bing、百度搜索等）已经不再使用该标签作为关键词的参考，因此该设置项的作用已经不大，未来我们也可能会移除该设置项。
-    :::
+  :::warning 注意
+  目前主流的搜索引擎（如 Google、Bing、百度搜索等）已经不再使用该标签作为关键词的参考，因此该设置项的作用已经不大，未来我们也可能会移除该设置项。
+  :::
 
 - **站点描述**：仅对首页生效，配置后会在首页 HTML 源码的 head 部分添加：
 
-    ```html
-    <meta name="description" content="{描述}" />
-    ```
+  ```html
+  <meta name="description" content="{描述}" />
+  ```
 
-    其他页面会根据页面类型和内容自动生成描述。
+  其他页面会根据页面类型和内容自动生成描述。
 
 ## 用户设置
 

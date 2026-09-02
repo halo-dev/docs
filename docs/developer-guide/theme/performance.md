@@ -11,7 +11,10 @@ description: 从静态资源加载、Finder 调用、分页和图片处理几个
 - 非首屏必需的脚本添加 `defer`，避免阻塞页面渲染：
 
 ```html
-<script defer th:src="@{/assets/dist/main.iife.js?v={version}(version=${theme.spec.version})}"></script>
+<script
+  defer
+  th:src="@{/assets/dist/main.iife.js?v={version}(version=${theme.spec.version})}"
+></script>
 ```
 
 - 在静态资源地址中加入主题版本号参数（如上例），配合 Halo 默认对静态资源输出的长效缓存（`Cache-Control: max-age=31536000`），主题升级后浏览器会获取到新资源。

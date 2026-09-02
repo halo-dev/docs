@@ -1,6 +1,6 @@
 ---
 title: 回复数据列表操作菜单
-description: '使用 reply:list-item:operation:create 向 Halo Console 回复列表添加自定义操作菜单，读取当前 ListedReply 并配置权限、显隐条件与处理动作'
+description: "使用 reply:list-item:operation:create 向 Halo Console 回复列表添加自定义操作菜单，读取当前 ListedReply 并配置权限、显隐条件与处理动作"
 ---
 
 此扩展点用于扩展回复数据列表的操作菜单项。
@@ -13,7 +13,7 @@ description: '使用 reply:list-item:operation:create 向 Halo Console 回复列
 export default definePlugin({
   extensionPoints: {
     "reply:list-item:operation:create": (
-      reply: Ref<ListedReply>
+      reply: Ref<ListedReply>,
     ): OperationItem<ListedReply>[] => {
       return [
         {
@@ -58,7 +58,7 @@ export default definePlugin({
           label: "测试回复菜单",
           permissions: [],
           action: async (reply: ListedReply) => {
-            console.log(reply)
+            console.log(reply);
           },
         },
       ];

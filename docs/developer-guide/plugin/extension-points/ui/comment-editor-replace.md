@@ -29,10 +29,10 @@ export default definePlugin({
 
 Provider 的 `component` 必须使用 `markRaw()` 包装。组件需要遵循以下输入和输出约定：
 
-| 类型 | 名称        | 说明                                                                            |
-| ---- | ----------- | ------------------------------------------------------------------------------- |
-| Prop | `autoFocus` | 可选的 `boolean`，为 `true` 时应在组件挂载后聚焦编辑器                           |
-| Emit | `update`    | 内容变化时发送 `{ content: string; characterCount: number }`                    |
+| 类型 | 名称        | 说明                                                         |
+| ---- | ----------- | ------------------------------------------------------------ |
+| Prop | `autoFocus` | 可选的 `boolean`，为 `true` 时应在组件挂载后聚焦编辑器       |
+| Emit | `update`    | 内容变化时发送 `{ content: string; characterCount: number }` |
 
 `content` 是最终提交给评论或回复 API 的内容，`characterCount` 是当前内容的字符数。
 

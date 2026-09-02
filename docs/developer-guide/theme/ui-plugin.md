@@ -35,14 +35,14 @@ Halo 只会从主题包的 `ui-plugin/dist` 目录读取 UI provider 资源。�
 入口文件与插件 UI 使用相同的 `PluginModule` 类型，并默认导出 `definePlugin` 的结果：
 
 ```ts title="ui-plugin/src/index.ts"
-import { definePlugin } from "@halo-dev/ui-shared"
+import { definePlugin } from "@halo-dev/ui-shared";
 
 export default definePlugin({
   components: {},
   routes: [],
   ucRoutes: [],
   extensionPoints: {},
-})
+});
 ```
 
 可用字段、路由和扩展点请参考 [插件 UI 入口文件](../plugin/basics/ui/entry.md)。
@@ -58,12 +58,12 @@ pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
 创建构建配置：
 
 ```ts title="ui-plugin/vite.config.ts"
-import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite"
+import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
 export default viteConfig({
   provider: "theme",
   vite: {},
-})
+});
 ```
 
 ## 使用 Rsbuild 构建
@@ -77,12 +77,12 @@ pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 @rsbuild/core @rsbuild/plugi
 创建构建配置：
 
 ```ts title="ui-plugin/rsbuild.config.ts"
-import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild"
+import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
 export default rsbuildConfig({
   provider: "theme",
   rsbuild: {},
-})
+});
 ```
 
 主题 provider 默认读取上一级目录的 `theme.yaml`，输出到当前 UI 项目的 `dist`，并使用 `/themes/{metadata.name}/ui-plugin/assets/` 作为资源路径。需要使用其他清单路径时，可以通过顶层的 `manifestPath` 配置。

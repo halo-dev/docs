@@ -2,6 +2,7 @@
 title: UI 权限控制
 description: 通过角色模板的 ui-permissions 注解声明 Halo 插件前端权限，并在路由、菜单和组件中使用 permissions 或 HasPermission 控制界面可见操作
 ---
+
 UI（用户界面）权限控制是指在应用程序中，通过用户角色或身份的不同，控制用户界面上可见和可操作的元素。
 这种权限控制的目的是根据用户的权限等级和角色，动态调整他们在应用中的操作权限，从而确保系统的安全性和功能的正确使用。
 
@@ -51,7 +52,7 @@ rules:
 
 你可以在 UI 层面使用这个权限来控制菜单是否展示：
 
-```vue
+```ts
 export default definePlugin({
   components: {},
   routes: [
@@ -92,10 +93,7 @@ export default definePlugin({
 <template>
   <!-- HasPermission 组件不需要导入，直接使用即可 -->
   <HasPermission :permissions="['plugin:my-plugin:person:view']">
-    <UserFilterDropdown
-      v-model="selectedUser"
-      label="用户"
-    />
+    <UserFilterDropdown v-model="selectedUser" label="用户" />
   </HasPermission>
 </template>
 ```

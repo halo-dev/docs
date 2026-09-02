@@ -63,7 +63,7 @@ public class CustomHeadProcessor implements TemplateHeadProcessor {
             false,
             true
         ));
-        
+
         // 添加自定义 Meta 标签
         model.add(factory.createStandaloneElementTag(
             "meta",

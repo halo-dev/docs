@@ -1,7 +1,7 @@
 minimumReleaseAgeExclude:
-  - '@rspress/core@2.0.20 || 2.0.21'
-  - '@rspress/shared@2.0.20 || 2.0.21'
-  - '@rspress/plugin-sitemap@2.0.21'
+  - "@rspress/core@2.0.20 || 2.0.21"
+  - "@rspress/shared@2.0.20 || 2.0.21"
+  - "@rspress/plugin-sitemap@2.0.21"
 patchedDependencies:
   rspress-plugin-devkit@1.0.0: patches/rspress-plugin-devkit@1.0.0.patch
   rspress-plugin-file-tree@1.0.5: patches/rspress-plugin-file-tree@1.0.5.patch

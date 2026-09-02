@@ -1,6 +1,6 @@
 ---
 title: 自定义标签
-description: '在 Halo Thymeleaf 模板中使用 halo:comment 提供文章或独立页面评论扩展点，并通过 halo:footer 注入系统设置中的页脚代码。'
+description: "在 Halo Thymeleaf 模板中使用 halo:comment 提供文章或独立页面评论扩展点，并通过 halo:footer 注入系统设置中的页脚代码。"
 ---
 
 Halo 为满足部分代码注入和模板扩展点的需求，提供了一些专有标签，本文档将列出已支持的标签以及介绍这些标签的使用方法。
@@ -16,11 +16,11 @@ Halo 为满足部分代码注入和模板扩展点的需求，提供了一些专
 ```html title="/templates/post.html"
 <!-- 需要判断当前评论组件是否满足显示的条件，这个变量可能是是否安装评论插件、文章是否开启评论等条件的组合 -->
 <div th:if="${haloCommentEnabled}">
-    <halo:comment
-        group="content.halo.run"
-        kind="Post"
-        th:attr="name=${post.metadata.name}"
-    />
+  <halo:comment
+    group="content.halo.run"
+    kind="Post"
+    th:attr="name=${post.metadata.name}"
+  />
 </div>
 ```
 
@@ -47,7 +47,7 @@ Halo 为满足部分代码注入和模板扩展点的需求，提供了一些专
 
 ```html
 <footer>
-    <halo:footer />
+  <halo:footer />
 </footer>
 ```
 

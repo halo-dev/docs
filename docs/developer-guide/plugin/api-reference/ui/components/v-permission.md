@@ -9,7 +9,7 @@ description: 使用 v-permission 指令为单个界面元素声明所需权限�
 
 ```vue
 <script lang="ts" setup>
-import { VButton } from "@halo-dev/components"
+import { VButton } from "@halo-dev/components";
 </script>
 
 <template>

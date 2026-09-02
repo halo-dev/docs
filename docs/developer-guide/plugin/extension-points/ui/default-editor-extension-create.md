@@ -1,6 +1,6 @@
 ---
 title: 默认编辑器
-description: '使用 default:editor:extension:create 注册 Tiptap 扩展，为 Halo 默认编辑器添加工具栏、工具箱、Slash Command、悬浮菜单和拖拽菜单功能'
+description: "使用 default:editor:extension:create 注册 Tiptap 扩展，为 Halo 默认编辑器添加工具栏、工具箱、Slash Command、悬浮菜单和拖拽菜单功能"
 ---
 
 此扩展点用于扩展默认编辑器的功能。
@@ -10,7 +10,8 @@ description: '使用 default:editor:extension:create 注册 Tiptap 扩展，为 
 ```ts
 export default definePlugin({
   extensionPoints: {
-    "default:editor:extension:create": (): AnyExtension[] | Promise<AnyExtension[]> => {
+    "default:editor:extension:create": ():
+      AnyExtension[] | Promise<AnyExtension[]> => {
       return [FooExtension];
     },
   },
@@ -489,17 +490,17 @@ export const ExtensionExample = Extension.create<ExtensionOptions>({
 
 `defineHaloKeyboardShortcuts` 接收的每一项都是一个 `HaloKeyboardShortcutDefinition`：
 
-| 字段 | 必填 | 说明 |
-| --- | --- | --- |
-| `id` | 是 | 编辑器内稳定且唯一的标识符，用于关联提示信息。插件应使用包含插件标识的命名空间，例如 `plugin.example.insertGreeting`。 |
-| `keys` | 是 | Tiptap 格式的按键组合。第一项是提示信息展示的主快捷键，全部按键都会展示在快捷键侧边栏中。 |
-| `label` | 是 | 用户可见的操作名称，可以是字符串或返回字符串的函数。 |
-| `category` | 是 | 快捷键侧边栏分组：`general`、`formatting`、`structure` 或 `navigation`。 |
-| `command` | 视情况 | 新增快捷键时必须提供。扩展已有 Tiptap 快捷键时可以省略，此时复用父扩展中相同按键的命令。 |
-| `description` | 否 | 操作的补充说明，可以是字符串或返回字符串的函数。 |
-| `priority` | 否 | 在快捷键侧边栏同一分组中的排序值，数值越小越靠前，默认为 `100`。 |
-| `discoverable` | 否 | 是否出现在快捷键侧边栏中，默认为 `true`。即使设为 `false`，显式绑定了 `shortcutId` 的提示信息仍可展示。 |
-| `visible` | 否 | 根据当前编辑器状态决定是否出现在快捷键侧边栏中。 |
+| 字段           | 必填   | 说明                                                                                                                   |
+| -------------- | ------ | ---------------------------------------------------------------------------------------------------------------------- |
+| `id`           | 是     | 编辑器内稳定且唯一的标识符，用于关联提示信息。插件应使用包含插件标识的命名空间，例如 `plugin.example.insertGreeting`。 |
+| `keys`         | 是     | Tiptap 格式的按键组合。第一项是提示信息展示的主快捷键，全部按键都会展示在快捷键侧边栏中。                              |
+| `label`        | 是     | 用户可见的操作名称，可以是字符串或返回字符串的函数。                                                                   |
+| `category`     | 是     | 快捷键侧边栏分组：`general`、`formatting`、`structure` 或 `navigation`。                                               |
+| `command`      | 视情况 | 新增快捷键时必须提供。扩展已有 Tiptap 快捷键时可以省略，此时复用父扩展中相同按键的命令。                               |
+| `description`  | 否     | 操作的补充说明，可以是字符串或返回字符串的函数。                                                                       |
+| `priority`     | 否     | 在快捷键侧边栏同一分组中的排序值，数值越小越靠前，默认为 `100`。                                                       |
+| `discoverable` | 否     | 是否出现在快捷键侧边栏中，默认为 `true`。即使设为 `false`，显式绑定了 `shortcutId` 的提示信息仍可展示。                |
+| `visible`      | 否     | 根据当前编辑器状态决定是否出现在快捷键侧边栏中。                                                                       |
 
 按键名称遵循 [Tiptap 快捷键格式](https://tiptap.dev/docs/editor/core-concepts/keyboard-shortcuts)。建议使用 `Mod` 表示 macOS 的 `Command` 和 Windows/Linux 的 `Control`，例如 `Mod-b`。命令处理成功时应返回 `true`，这样 ProseMirror 会阻止浏览器继续执行同一按键的默认行为；未处理时应返回 `false`。
 
@@ -612,9 +613,7 @@ export const MathBlock = Node.create({
           mode: "requires-capability",
           requiredCapabilities: ["math-to-html"],
         },
-        examples: [
-          '<div data-type="math-block" formula="E = mc^2"></div>',
-        ],
+        examples: ['<div data-type="math-block" formula="E = mc^2"></div>'],
       },
     };
   },

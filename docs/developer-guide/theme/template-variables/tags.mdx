@@ -3,7 +3,7 @@ title: 文章标签集合
 description: 编写 Halo 主题的 tags.html 标签集合模板，使用 tags 变量读取全部文章标签并渲染标签墙，同时了解页面路由和模板标识
 ---
 
-import TagVo from '../vo/_TagVo.md'
+import TagVo from "../vo/_TagVo.md";
 
 用于列出所有文章标签的页面，可以用于实现标签墙等功能。
 
@@ -25,12 +25,15 @@ List\<[#TagVo](#tagvo)\>
 ```html title="/templates/tags.html"
 <ul>
   <li th:each="tag : ${tags}">
-    <a th:href="@{${tag.status.permalink}}" th:text="${tag.spec.displayName}"></a>
+    <a
+      th:href="@{${tag.status.permalink}}"
+      th:text="${tag.spec.displayName}"
+    ></a>
   </li>
 </ul>
 ```
 
-### _templateId
+### \_templateId
 
 #### 变量值
 

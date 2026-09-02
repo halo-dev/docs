@@ -45,16 +45,17 @@ curl -X 'GET' \
 [Axios](https://www.axios-http.cn/) 请求示例：
 
 ```javascript
-import axios from 'axios';
+import axios from "axios";
 
-axios.get('https://demo.halo.run/apis/content.halo.run/v1alpha1/posts', {
-  headers: {
-    Authorization: 'Bearer pat_1234567890abcdef',
-  },
-})
-.then(response => {
-  // handle response
-})
+axios
+  .get("https://demo.halo.run/apis/content.halo.run/v1alpha1/posts", {
+    headers: {
+      Authorization: "Bearer pat_1234567890abcdef",
+    },
+  })
+  .then((response) => {
+    // handle response
+  });
 ```
 
 ### Basic Auth
@@ -83,16 +84,17 @@ curl -X 'GET' \
 [Axios](https://www.axios-http.cn/) 请求示例：
 
 ```javascript
-import axios from 'axios';
+import axios from "axios";
 
-axios.get('https://demo.halo.run/apis/content.halo.run/v1alpha1/posts', {
-  headers: {
-    Authorization: `Basic ${Buffer.from('demo:P@ssw0rd123..').toString('base64')}`,
-  },
-})
-.then(response => {
-  // handle response
-})
+axios
+  .get("https://demo.halo.run/apis/content.halo.run/v1alpha1/posts", {
+    headers: {
+      Authorization: `Basic ${Buffer.from("demo:P@ssw0rd123..").toString("base64")}`,
+    },
+  })
+  .then((response) => {
+    // handle response
+  });
 ```
 
 ## 示例项目

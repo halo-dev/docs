@@ -1,6 +1,6 @@
 ---
 title: 备份数据列表操作菜单
-description: '使用 backup:list-item:operation:create 向 Halo Console 备份列表添加自定义操作菜单，通过 OperationItem 配置组件、权限、显隐条件和操作逻辑'
+description: "使用 backup:list-item:operation:create 向 Halo Console 备份列表添加自定义操作菜单，通过 OperationItem 配置组件、权限、显隐条件和操作逻辑"
 ---
 
 此扩展点用于扩展备份数据列表的操作菜单项。
@@ -13,7 +13,7 @@ description: '使用 backup:list-item:operation:create 向 Halo Console 备份�
 export default definePlugin({
   extensionPoints: {
     "backup:list-item:operation:create": (
-      backup: Ref<Backup>
+      backup: Ref<Backup>,
     ): OperationItem<Backup>[] => {
       return [
         {

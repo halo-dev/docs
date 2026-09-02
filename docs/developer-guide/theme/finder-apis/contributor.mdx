@@ -3,12 +3,12 @@ title: 作者
 description: 使用 ContributorFinder 按 metadata.name 查询单个或多个作者，并在 Thymeleaf 模板中读取 ContributorVo 的显示名称等作者信息。
 ---
 
-import ContributorVo from "../vo/_ContributorVo.md"
+import ContributorVo from "../vo/_ContributorVo.md";
 
 ## getContributor(name)
 
 ```js
-contributorFinder.getContributor(name)
+contributorFinder.getContributor(name);
 ```
 
 ### 描述
@@ -26,7 +26,9 @@ contributorFinder.getContributor(name)
 ### 示例
 
 ```html
-<div th:with="contributor = ${contributorFinder.getContributor('contributor-foo')}">
+<div
+  th:with="contributor = ${contributorFinder.getContributor('contributor-foo')}"
+>
   <h1 th:text="${contributor.displayName}"></h1>
 </div>
 ```
@@ -34,7 +36,7 @@ contributorFinder.getContributor(name)
 ## getContributors(names)
 
 ```js
-contributorFinder.getContributors(names)
+contributorFinder.getContributors(names);
 ```
 
 ### 描述
@@ -52,8 +54,13 @@ List\<[#ContributorVo](#contributorvo)\>
 ### 示例
 
 ```html
-<div th:with="contributors = ${contributorFinder.getContributors({'contributor-foo, 'contributor-bar'})}">
-  <span th:each="contributor : ${contributors}" th:text="${contributor.displayName}"></span>
+<div
+  th:with="contributors = ${contributorFinder.getContributors({'contributor-foo, 'contributor-bar'})}"
+>
+  <span
+    th:each="contributor : ${contributors}"
+    th:text="${contributor.displayName}"
+  ></span>
 </div>
 ```
 

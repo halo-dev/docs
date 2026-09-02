@@ -3,9 +3,9 @@ title: 开发环境运行
 description: 在本地完整运行 Halo 开发环境，涵盖克隆仓库、安装并启动 Console 与 UC 前端、配置 IntelliJ IDEA Profile，以及使用 Gradle 启动后端。
 ---
 
-import { Tab, Tabs } from '@rspress/core/theme';
-import { PageTabs, PageTab } from '@rspress/core/theme';
-import { Steps } from '@rspress/core/theme';
+import { Tab, Tabs } from "@rspress/core/theme";
+import { PageTabs, PageTab } from "@rspress/core/theme";
+import { Steps } from "@rspress/core/theme";
 
 :::info 运行前准备
 在此之前，我们推荐你先阅读[《准备工作》](./prepare)，检查本地环境是否满足要求。
@@ -36,7 +36,7 @@ git clone https://github.com/halo-dev/halo
 # git clone git@github.com:halo-dev/halo.git
 
 # 或者使用 GitHub CLI 克隆（推荐）
-# gh repo clone halo-dev/halo 
+# gh repo clone halo-dev/halo
 
 # 或者使用 GitHub CLI Fork（推荐）
 # gh repo fork halo-dev/halo
@@ -86,14 +86,18 @@ halo:
 
 <Tabs>
   <Tab label="macOS / Linux">
-  ```bash
-  ./gradlew downloadPluginPresets
-  ```
+
+```bash
+./gradlew downloadPluginPresets
+```
+
   </Tab>
   <Tab label="Windows">
-  ```bash
-  ./gradlew.bat downloadPluginPresets
-  ```
+
+```bash
+./gradlew.bat downloadPluginPresets
+```
+
   </Tab>
 </Tabs>
 
@@ -101,19 +105,22 @@ halo:
 
 <Tabs>
   <Tab label="macOS / Linux">
-  将 Active Profiles 改为 `dev`，如图所示：
 
-  ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-macOS.png)
+将 Active Profiles 改为 `dev`，如图所示：
+
+![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-macOS.png)
+
   </Tab>
   <Tab label="Windows">
-  将 Active Profiles 改为 `dev,win`，如图所示：
 
-  ![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-Win.png)
+将 Active Profiles 改为 `dev,win`，如图所示：
+
+![IntelliJ IDEA Profiles](/img/developer-run/IntelliJ-IDEA-Profiles-Win.png)
 
   </Tab>
 </Tabs>
 
-### 运行 
+### 运行
 
 点击 IntelliJ IDEA 的运行按钮，等待项目启动完成。
 
@@ -124,20 +131,23 @@ halo:
 
 <Tabs>
   <Tab label="macOS / Linux">
-  ```bash
-  ./gradlew bootRun --args="--spring.profiles.active=dev"
-  ```
+
+```bash
+./gradlew bootRun --args="--spring.profiles.active=dev"
+```
+
   </Tab>
   <Tab label="Windows">
-  ```bash
-  gradlew.bat bootRun --args="--spring.profiles.active=dev,win"
-  ```
+
+```bash
+gradlew.bat bootRun --args="--spring.profiles.active=dev,win"
+```
+
   </Tab>
 </Tabs>
 
 </PageTab>
 </PageTabs>
-
 
 最终提供以下访问地址：
 

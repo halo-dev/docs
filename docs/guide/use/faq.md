@@ -17,45 +17,45 @@ description: Halo 使用常见问题：产品定位、数据库结构、找回�
 1. 站点管理员已经配置好邮件通知，并且用户已完成电子邮箱验证时，可以点击登录页面的 `找回密码` 链接，填写邮箱后，系统将向该邮箱发送密码重置链接，用户可通过该链接重置密码；
 2. 如果不满足上述条件，或者密码重置邮件不能发送成功，请直接联系具有用户管理权限的管理员进行密码重置操作，管理员可参考文档[修改用户密码](./users#修改用户密码)部分修改指定用户的密码；
 3. 如果系统没有任何一个能够正常登录控制台且具有用户管理权限的管理员账号，则用户需要通过更新数据库记录的方式重置指定用户的密码。
-  
-     :::info 参考 SQL 语句
 
-     通过以下 SQL 语句，可以将 `admin` 用户的密码重置为 `password`，密码重置后请尽快修改为更加安全的密码。
+   :::info 参考 SQL 语句
 
-     **PostgreSQL** 数据库
+   通过以下 SQL 语句，可以将 `admin` 用户的密码重置为 `password`，密码重置后请尽快修改为更加安全的密码。
 
-     ```sql
-       UPDATE
-           extensions
-       SET
-           data = convert_to(
-               jsonb_set(
-                   convert_from(data, 'UTF-8') :: jsonb,
-                   '{spec,password}',
-                   '"{bcrypt}$2a$10$7tBEL1sNQSr/uWtLZHLmCeA9IGx0I9/Jz//3Uwo/anIm9xdxv.xrO"'
-               ) :: text,
-               'UTF-8'
-           )
-       WHERE
-           name LIKE '/registry/users/admin';
-     ```
+   **PostgreSQL** 数据库
 
-     **MySQL** 数据库
-
-     ```sql
+   ```sql
      UPDATE
          extensions
      SET
-         data = JSON_SET(
-             CONVERT(data USING utf8mb4),
-             '$.spec.password',
-             '{bcrypt}$2a$10$7tBEL1sNQSr/uWtLZHLmCeA9IGx0I9/Jz//3Uwo/anIm9xdxv.xrO'
+         data = convert_to(
+             jsonb_set(
+                 convert_from(data, 'UTF-8') :: jsonb,
+                 '{spec,password}',
+                 '"{bcrypt}$2a$10$7tBEL1sNQSr/uWtLZHLmCeA9IGx0I9/Jz//3Uwo/anIm9xdxv.xrO"'
+             ) :: text,
+             'UTF-8'
          )
      WHERE
          name LIKE '/registry/users/admin';
-     ```
+   ```
 
-     :::
+   **MySQL** 数据库
+
+   ```sql
+   UPDATE
+       extensions
+   SET
+       data = JSON_SET(
+           CONVERT(data USING utf8mb4),
+           '$.spec.password',
+           '{bcrypt}$2a$10$7tBEL1sNQSr/uWtLZHLmCeA9IGx0I9/Jz//3Uwo/anIm9xdxv.xrO'
+       )
+   WHERE
+       name LIKE '/registry/users/admin';
+   ```
+
+   :::
 
 ### 附件上传提示 `413 Request Entity Too Large` 如何解决？
 
@@ -91,23 +91,23 @@ server {
 
 使用 Docker 创建多个容器，因为使用 Docker 可以将内部的工作目录映射到宿主机的任何目录，可以参考以下创建容器的方式：
 
- ```bash
- # 第一个 Halo 容器
- docker run \
-   -it -d \
-   --name halo-1 \
-   -p 8090:8090 \
-   -v ~/.halo2:/root/.halo2 \
-   registry.fit2cloud.com/halo/halo-pro:2.26 \
+```bash
+# 第一个 Halo 容器
+docker run \
+  -it -d \
+  --name halo-1 \
+  -p 8090:8090 \
+  -v ~/.halo2:/root/.halo2 \
+  registry.fit2cloud.com/halo/halo-pro:2.26 \
 
- # 第二个 Halo 容器
- docker run \
-   -it -d \
-   --name halo-2 \
-   -p 8091:8090 \
-   -v ~/.halo2_2:/root/.halo2 \
-   registry.fit2cloud.com/halo/halo-pro:2.26 \
- ```
+# 第二个 Halo 容器
+docker run \
+  -it -d \
+  --name halo-2 \
+  -p 8091:8090 \
+  -v ~/.halo2_2:/root/.halo2 \
+  registry.fit2cloud.com/halo/halo-pro:2.26 \
+```
 
 更多 Docker 相关的教程请参考：[使用 Docker 部署 Halo](../install/docker.mdx)
 

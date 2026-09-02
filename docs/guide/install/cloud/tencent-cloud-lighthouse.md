@@ -29,14 +29,16 @@ description: 腾讯云轻量应用服务器应用模板一键部署 Halo 的步�
 
 1. 在 **应用管理** 页面中可以看到预装的 1Panel 信息，首先需要将 1Panel 的端口开放，进入防火墙页面添加默认端口 8090 即可：
 
-    ![防火墙](/img/install/tencent-cloud-lighthouse/firewall.png)
+   ![防火墙](/img/install/tencent-cloud-lighthouse/firewall.png)
+
 2. 登录到实例获取 1Panel 初始用户名和密码：
 
-    ![1Panel 信息](/img/install/tencent-cloud-lighthouse/1panel-info.png)
+   ![1Panel 信息](/img/install/tencent-cloud-lighthouse/1panel-info.png)
+
 3. 然后就可以通过 `http://ip:8090/tencentcloud` 进入 1Panel 的管理后台：
 
-    ![1Panel 登录](/img/install/tencent-cloud-lighthouse/1panel-login.png)
-    ![1Panel 概览](/img/install/tencent-cloud-lighthouse/1panel-overview.png)
+   ![1Panel 登录](/img/install/tencent-cloud-lighthouse/1panel-login.png)
+   ![1Panel 概览](/img/install/tencent-cloud-lighthouse/1panel-overview.png)
 
 ## 查看预装应用
 

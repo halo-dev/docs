@@ -18,7 +18,7 @@ export default definePlugin({
   formkit: {
     inputs: {
       myPluginInput: createInput(
-        defineAsyncComponent(() => import("./components/MyPluginInput.vue"))
+        defineAsyncComponent(() => import("./components/MyPluginInput.vue")),
       ),
     },
   },

@@ -7,13 +7,13 @@ description: 根据数据用途为 Halo 插件选择自定义模型、插件配�
 
 ## 选择存储方式
 
-| 数据类型 | 建议方式 |
-| --- | --- |
-| 需要通过 Halo API 查询、授权或与其他插件交互的业务数据 | 自定义模型和 `ReactiveExtensionClient` |
-| 由用户在插件设置页面维护的少量配置 | `Setting`、`ConfigMap` 和 `ReactiveSettingFetcher` |
-| 密码、Token、API Key 和私钥 | `Secret`，其他资源只保存 Secret 名称 |
-| 插件专用数据库、索引或无法表示为自定义模型的文件 | `PluginsRootGetter` 下的插件专属目录 |
-| 可以重新生成的临时结果 | 明确标识的缓存目录，并允许安全删除和重建 |
+| 数据类型                                               | 建议方式                                           |
+| ------------------------------------------------------ | -------------------------------------------------- |
+| 需要通过 Halo API 查询、授权或与其他插件交互的业务数据 | 自定义模型和 `ReactiveExtensionClient`             |
+| 由用户在插件设置页面维护的少量配置                     | `Setting`、`ConfigMap` 和 `ReactiveSettingFetcher` |
+| 密码、Token、API Key 和私钥                            | `Secret`，其他资源只保存 Secret 名称               |
+| 插件专用数据库、索引或无法表示为自定义模型的文件       | `PluginsRootGetter` 下的插件专属目录               |
+| 可以重新生成的临时结果                                 | 明确标识的缓存目录，并允许安全删除和重建           |
 
 配置读取参考[获取插件配置](../../api-reference/server/setting-fetcher.md)，自定义模型参考[自定义模型](../../api-reference/server/extension.md)，密钥存储和第三方请求参考[敏感数据与出站请求](../../security/outbound-http.md)。
 

@@ -87,7 +87,7 @@ public interface ReactiveExtensionClient {
 @RequiredArgsConstructor
 public PersonService {
     private final ReactiveExtensionClient client;
-    
+
     Mono<Person> getPerson(String name) {
         return client.fetch(Person.class, name);
     }
@@ -101,7 +101,7 @@ public PersonService {
 @RequiredArgsConstructor
 public PersonService {
     private final ExtensionClient client;
-    
+
     Optional<Person> getPerson(String name) {
         return client.fetch(Person.class, name);
     }
@@ -207,25 +207,25 @@ ListOptions.builder()
 
 支持的查询条件如下：
 
-| 方法 | 说明 | 示例 |
-| --- | --- | --- |
-| `equal` | 等于 | `equal("name", "test")` |
-| `notEqual` | 不等于 | `notEqual("name", "test")` |
+| 方法          | 说明                                   | 示例                                                     |
+| ------------- | -------------------------------------- | -------------------------------------------------------- |
+| `equal`       | 等于                                   | `equal("name", "test")`                                  |
+| `notEqual`    | 不等于                                 | `notEqual("name", "test")`                               |
 | `greaterThan` | 大于，可通过第三个参数控制是否包含边界 | `greaterThan("age", 18)`、`greaterThan("age", 18, true)` |
-| `lessThan` | 小于，可通过第三个参数控制是否包含边界 | `lessThan("age", 18)`、`lessThan("age", 18, true)` |
-| `between` | 在范围内，可分别控制上下边界是否包含 | `between("age", 18, true, 20, false)` |
-| `in` | 在给定值范围内 | `in("age", 18, 19, 20)` |
-| `isNull` | 值为空 | `isNull("deletedAt")` |
-| `all` | 指定字段的所有值 | `all("age")` |
-| `startsWith` | 以指定字符串开头 | `startsWith("name", "test")` |
-| `endsWith` | 以指定字符串结尾 | `endsWith("name", "test")` |
-| `contains` | 包含指定字符串 | `contains("name", "test")` |
-| `and` | 且 | `and(equal("name", "test"), equal("age", 18))` |
-| `or` | 或 | `or(equal("name", "test"), equal("age", 18))` |
-| `not` | 取反 | `not(equal("name", "test"))` |
-| `labelExists` | 标签存在 | `labelExists("halo.run/hidden")` |
-| `labelEqual` | 标签等于 | `labelEqual("env", "production")` |
-| `labelIn` | 标签值在给定范围内 | `labelIn("env", Set.of("production", "staging"))` |
+| `lessThan`    | 小于，可通过第三个参数控制是否包含边界 | `lessThan("age", 18)`、`lessThan("age", 18, true)`       |
+| `between`     | 在范围内，可分别控制上下边界是否包含   | `between("age", 18, true, 20, false)`                    |
+| `in`          | 在给定值范围内                         | `in("age", 18, 19, 20)`                                  |
+| `isNull`      | 值为空                                 | `isNull("deletedAt")`                                    |
+| `all`         | 指定字段的所有值                       | `all("age")`                                             |
+| `startsWith`  | 以指定字符串开头                       | `startsWith("name", "test")`                             |
+| `endsWith`    | 以指定字符串结尾                       | `endsWith("name", "test")`                               |
+| `contains`    | 包含指定字符串                         | `contains("name", "test")`                               |
+| `and`         | 且                                     | `and(equal("name", "test"), equal("age", 18))`           |
+| `or`          | 或                                     | `or(equal("name", "test"), equal("age", 18))`            |
+| `not`         | 取反                                   | `not(equal("name", "test"))`                             |
+| `labelExists` | 标签存在                               | `labelExists("halo.run/hidden")`                         |
+| `labelEqual`  | 标签等于                               | `labelEqual("env", "production")`                        |
+| `labelIn`     | 标签值在给定范围内                     | `labelIn("env", Set.of("production", "staging"))`        |
 
 在 `FieldSelector` 中使用的所有字段都必须添加为索引，否则会抛出异常表示不支持该字段。关于如何使用索引请参考 [自定义模型使用索引](./extension.md#using-indexes)。
 
@@ -277,7 +277,7 @@ ListOptions.builder()
 ```java
 import org.springframework.data.domain.Sort;
 
-Sort.by(Sort.Order.asc("metadata.name")) 
+Sort.by(Sort.Order.asc("metadata.name"))
 ```
 
 通过 `Sort.by` 方法可以构建排序条件，`Sort.Order` 用于指定排序字段和排序方式，`asc` 表示升序，`desc` 表示降序。

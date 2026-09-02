@@ -60,19 +60,19 @@ rules:
 
 ```yaml
 rules:
-  - apiGroups: [ "my-plugin.halo.run" ]
-    resources: [ "persons" ]
-    verbs: [ "list" ]
+  - apiGroups: ["my-plugin.halo.run"]
+    resources: ["persons"]
+    verbs: ["list"]
 ```
 
 而对于资源型 API `GET /apis/my-plugin.halo.run/v1alpha1/persons/zhangsan`，可以定义如下规则：
 
 ```yaml
 rules:
-  - apiGroups: [ "my-plugin.halo.run" ]
-    resources: [ "persons" ]
-    resourceNames: [ "zhangsan" ]
-    verbs: [ "get" ]
+  - apiGroups: ["my-plugin.halo.run"]
+    resources: ["persons"]
+    resourceNames: ["zhangsan"]
+    verbs: ["get"]
 ```
 
 关于 `verbs` 的详细说明请参考 [Verbs 详解](#verbs)。
@@ -84,7 +84,7 @@ rules:
 ```yaml
 rules:
   - nonResourceURLs: ["/healthz", "/healthz/*"]
-    verbs: [ "get", "create"]
+    verbs: ["get", "create"]
 ```
 
 非资源型规则使用 `nonResourceURLs` 来定义，其中 `nonResourceURLs` 是一个字符串数组，用于定义非资源型 APIs 的路径，`verbs` 用于定义非资源型 APIs 的请求动词。
@@ -121,15 +121,15 @@ metadata:
     halo.run/role-template: "true"
   annotations:
     rbac.authorization.halo.run/dependencies: |
-     [ "role-template-view-person" ]
+      [ "role-template-view-person" ]
     rbac.authorization.halo.run/module: "Persons Management"
     rbac.authorization.halo.run/display-name: "Person Manage"
     rbac.authorization.halo.run/ui-permissions: |
       ["plugin:my-plugin:person:manage"]
 rules:
-  - apiGroups: [ "my-plugin.halo.run" ]
-    resources: [ "persons" ]
-    verbs: [ "get", "list" ]
+  - apiGroups: ["my-plugin.halo.run"]
+    resources: ["persons"]
+    verbs: ["get", "list"]
 ```
 
 上述便是根据 [自定义模型](../api-reference/server/extension.md) 章节中定义的 Person 自定义模型来配置角色模板的示例。
@@ -176,7 +176,7 @@ rules:
 可以使用如下表格来简化理解：
 
 | Verb               | HTTP Method(s) | Description              |
-|--------------------|----------------|--------------------------|
+| ------------------ | -------------- | ------------------------ |
 | `create`           | POST           | 创建新资源实例           |
 | `get`              | GET            | 获取单个资源详细信息     |
 | `list`             | GET            | 获取资源列表             |
@@ -201,16 +201,16 @@ metadata:
   name: guqing-post-reader-binding
 roleRef:
   # "roleRef" 指定了绑定到的角色
-  apiGroup: ''
+  apiGroup: ""
   # 这里必须是 Role
   kind: Role
   # 这里的 name 必须匹配到一个已经定义的角色
   name: post-reader
 subjects:
-- apiGroup: ''
-  kind: User
-  # 这里的 name 是用户的 username
-  name: guqing
+  - apiGroup: ""
+    kind: User
+    # 这里的 name 是用户的 username
+    name: guqing
 ```
 
 在 Halo 中，当你给一个用户分配角色后，实际上就是创建了一个”RoleBinding”对象来完成的。

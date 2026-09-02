@@ -22,12 +22,12 @@ kind: NotifierDescriptor
 metadata:
   name: default-email-notifier
 spec:
-  displayName: '邮件通知'
-  description: '通过邮件将通知发送给用户'
-  notifierExtName: 'halo-email-notifier'
+  displayName: "邮件通知"
+  description: "通过邮件将通知发送给用户"
+  notifierExtName: "halo-email-notifier"
   senderSettingRef:
-    name: 'notifier-setting-for-email'
-    group: 'sender'
+    name: "notifier-setting-for-email"
+    group: "sender"
   #receiverSettingRef:
   #  name: ''
   #  group: ''

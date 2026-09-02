@@ -63,14 +63,14 @@ description: Halo 商城虚拟商品：文件下载与卡密交付的配置及�
 配置说明：
 
 - 类型：支持 **预获取** 和 **动态获取**
-    - 补货配置（当类型为预获取时）
-        - API 地址：补货 API 地址
-        - 认证 Token：补货 API 认证 Token，用于对 API 请求进行认证
-        - 阈值：可用卡密数量低于此值时触发补货
-        - 每次获取的卡密数量：每次调用 API 获取的卡密数量
-    - 服务器配置（当类型为动态获取时）
-        - API 地址：远程生成 API 地址
-        - 认证 Token：API 认证 Token，用于对 API 请求进行认证
+  - 补货配置（当类型为预获取时）
+    - API 地址：补货 API 地址
+    - 认证 Token：补货 API 认证 Token，用于对 API 请求进行认证
+    - 阈值：可用卡密数量低于此值时触发补货
+    - 每次获取的卡密数量：每次调用 API 获取的卡密数量
+  - 服务器配置（当类型为动态获取时）
+    - API 地址：远程生成 API 地址
+    - 认证 Token：API 认证 Token，用于对 API 请求进行认证
 
 需要注意的是，API 需要自行实现并适配 Halo 的接口标准，可以参考下方的 [API 规范](#api-规范)。
 
@@ -119,15 +119,15 @@ Authorization: Bearer <token>  // 配置了 token 时附带
 }
 ```
 
-| 字段                               | 类型    | 必填 | 说明                      |
-| ---------------------------------- | ------- | ---- | ------------------------- |
-| `orderItem.id`                     | long    | 是   | 订单项 ID(可用作幂等键)   |
-| `orderItem.orderId`                | long    | 是   | 订单 ID                   |
-| `orderItem.productId`              | long    | 是   | 商品 ID                   |
-| `orderItem.quantity`               | int     | 是   | 需要发放的卡密数量        |
-| `orderItem.itemTitle`              | string  | 否   | 订单项标题                |
-| `orderItem.productVariantSnapshot` | object  | 否   | 规格快照                  |
-| `dryRun`                           | boolean | 是   | 当前固定为 `false`        |
+| 字段                               | 类型    | 必填 | 说明                    |
+| ---------------------------------- | ------- | ---- | ----------------------- |
+| `orderItem.id`                     | long    | 是   | 订单项 ID(可用作幂等键) |
+| `orderItem.orderId`                | long    | 是   | 订单 ID                 |
+| `orderItem.productId`              | long    | 是   | 商品 ID                 |
+| `orderItem.quantity`               | int     | 是   | 需要发放的卡密数量      |
+| `orderItem.itemTitle`              | string  | 否   | 订单项标题              |
+| `orderItem.productVariantSnapshot` | object  | 否   | 规格快照                |
+| `dryRun`                           | boolean | 是   | 当前固定为 `false`      |
 
 #### 响应
 
@@ -144,12 +144,12 @@ Authorization: Bearer <token>  // 配置了 token 时附带
 ]
 ```
 
-| 字段       | 类型   | 必填 | 说明                      |
-| ---------- | ------ | ---- | ------------------------- |
-| `code`     | string | 是   | 卡密(同一响应内唯一)      |
-| `secret`   | string | 否   | 附加验证信息              |
-| `expireAt` | string | 否   | 过期时间(UTC，ISO-8601)   |
-| `capacity` | int    | 否   | 可用次数，默认为 `1`      |
+| 字段       | 类型   | 必填 | 说明                    |
+| ---------- | ------ | ---- | ----------------------- |
+| `code`     | string | 是   | 卡密(同一响应内唯一)    |
+| `secret`   | string | 否   | 附加验证信息            |
+| `expireAt` | string | 否   | 过期时间(UTC，ISO-8601) |
+| `capacity` | int    | 否   | 可用次数，默认为 `1`    |
 
 :::warning 发放响应必须非空且幂等
 响应不可为空列表，否则触发卡密发放失败。建议以 `orderItem.id` 作为幂等键，避免重复请求导致重复发放。
@@ -222,12 +222,12 @@ Authorization: Bearer <token>  // 配置了 token 时附带
 ]
 ```
 
-| 字段       | 类型   | 必填 | 说明                      |
-| ---------- | ------ | ---- | ------------------------- |
-| `code`     | string | 是   | 卡密(同一响应内唯一)      |
-| `secret`   | string | 否   | 附加验证信息              |
-| `expireAt` | string | 否   | 过期时间(UTC，ISO-8601)   |
-| `capacity` | int    | 否   | 可用次数，默认为 `1`      |
+| 字段       | 类型   | 必填 | 说明                    |
+| ---------- | ------ | ---- | ----------------------- |
+| `code`     | string | 是   | 卡密(同一响应内唯一)    |
+| `secret`   | string | 否   | 附加验证信息            |
+| `expireAt` | string | 否   | 过期时间(UTC，ISO-8601) |
+| `capacity` | int    | 否   | 可用次数，默认为 `1`    |
 
 :::warning 补货响应不可为空
 响应不可为空列表，否则视为补货失败。补货失败不影响当前订单的卡密发放。

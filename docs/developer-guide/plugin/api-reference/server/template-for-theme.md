@@ -75,7 +75,7 @@ public class MomentRouter {
 
 如果你的默认模板不止一个，你可能需要通过模板片段来抽取一些公共的部分，例如，你的插件提供了一个 `moments.html` 模板，你可能需要抽取一些公共的部分，例如头部、尾部等，你可以这样做：
 
-```text
+```tree
 ├── templates
 │   ├── moments.html
 │   ├── fragments
@@ -87,22 +87,24 @@ public class MomentRouter {
 ```html
 <!DOCTYPE html th:fragment="layoutHtml(content)">
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title th:text="${title}">Moment</title>
-</head>
-<body>
-  <div class="container">
-    <th:block th:replace="${content}" />
-  </div>
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <th:block th:replace="${content}" />
+    </div>
+  </body>
 </html>
 ```
 
 那么使用 `layout.html` 模板中提供的 `fragment` 时，你需要这样做：
 
 ```html
-<div th:replace="~{plugin:plugin-moment:fragments/layout :: layoutHtml(content = ~{::content})}">
+<div
+  th:replace="~{plugin:plugin-moment:fragments/layout :: layoutHtml(content = ~{::content})}"
+>
   <th:block th:fragment="content"> Hello World </th:block>
 </div>
 ```

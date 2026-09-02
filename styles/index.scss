@@ -1,6 +1,10 @@
 .docs-home {
   --home-brand-soft: color-mix(in srgb, var(--rp-c-brand) 9%, var(--rp-c-bg));
-  --home-brand-border: color-mix(in srgb, var(--rp-c-brand) 28%, var(--rp-c-divider));
+  --home-brand-border: color-mix(
+    in srgb,
+    var(--rp-c-brand) 28%,
+    var(--rp-c-divider)
+  );
   max-width: 1080px;
   margin: 0 auto;
   padding: 56px 28px 80px;
@@ -165,7 +169,11 @@
   overflow: hidden;
   border-radius: 16px;
   background:
-    radial-gradient(circle at 86% 10%, rgb(255 255 255 / 0.14), transparent 34%),
+    radial-gradient(
+      circle at 86% 10%,
+      rgb(255 255 255 / 0.14),
+      transparent 34%
+    ),
     linear-gradient(
       165deg,
       color-mix(in srgb, var(--rp-c-brand) 72%, #051322),

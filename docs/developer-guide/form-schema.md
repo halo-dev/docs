@@ -9,11 +9,11 @@ description: 面向 Halo 主题、插件和元数据表单的 FormKit Schema 通
 
 ## 选择正确的使用场景
 
-| 场景 | 指南 | 本页提供的内容 |
-| --- | --- | --- |
-| 主题设置 | [设置选项](./theme/settings.md) | Schema 字段和可用输入组件 |
-| 插件设置或自定义表单 | [插件设置与表单组件](./plugin/basics/ui/forms.md) | Setting Schema、宿主输入组件和数据边界 |
-| 模型元数据表单 | [元数据表单定义](./annotations-form.md) | 可返回字符串的输入组件；具体值类型限制以元数据表单指南为准 |
+| 场景                 | 指南                                              | 本页提供的内容                                             |
+| -------------------- | ------------------------------------------------- | ---------------------------------------------------------- |
+| 主题设置             | [设置选项](./theme/settings.md)                   | Schema 字段和可用输入组件                                  |
+| 插件设置或自定义表单 | [插件设置与表单组件](./plugin/basics/ui/forms.md) | Setting Schema、宿主输入组件和数据边界                     |
+| 模型元数据表单       | [元数据表单定义](./annotations-form.md)           | 可返回字符串的输入组件；具体值类型限制以元数据表单指南为准 |
 
 FormKit 相关文档：
 
@@ -28,14 +28,14 @@ Halo 使用 FormKit 开源版本提供的默认输入组件，不支持 FormKit 
 
 Halo 已经注册 FormKit 开源版本的原生输入。以下是 Setting Schema 中常用的类型，具体参数和验证规则以 FormKit 官方文档为准。
 
-| 类型 | 用途 |
-| --- | --- |
-| `text`、`textarea` | 单行或多行文本 |
-| `email`、`url` | 邮箱或 URL，并可配合对应验证规则 |
-| `number`、`range` | 数值或范围 |
-| `checkbox`、`radio` | 多选、布尔开关或单选项 |
-| `date`、`time` | 日期或时间 |
-| `password` | 遮蔽输入内容，但不会加密保存值 |
+| 类型                | 用途                             |
+| ------------------- | -------------------------------- |
+| `text`、`textarea`  | 单行或多行文本                   |
+| `email`、`url`      | 邮箱或 URL，并可配合对应验证规则 |
+| `number`、`range`   | 数值或范围                       |
+| `checkbox`、`radio` | 多选、布尔开关或单选项           |
+| `date`、`time`      | 日期或时间                       |
+| `password`          | 遮蔽输入内容，但不会加密保存值   |
 
 Halo 已覆盖原生 `select`，请使用本文的 [`select`](#select) 参数。附件应优先使用 [`attachment`](#attachment)，不要使用 FormKit 原生文件上传自行实现附件管理。
 
@@ -104,25 +104,26 @@ Halo 只会从 `formSchema` 的直接子节点中提取同时具有 `name` 和 `
 
 ## Halo 扩展组件速查
 
-| 组件 | 用途 | 保存值 |
-| --- | --- | --- |
-| [`select`](#select) | 静态或远程选择 | `string` 或 `string[]` |
-| [`list`](#list) | 基本类型或对象列表 | 数组 |
-| [`verificationForm`](#verificationform) | 提交前远程验证一组字段 | 不改变子字段的数据结构 |
-| [`attachment`](#attachment) / [`attachmentInput`](#attachmentinput) | 上传或选择附件 | `string` 或 `string[]` |
-| [`attachmentGroupSelect`](#attachmentgroupselect) / [`attachmentPolicySelect`](#attachmentpolicyselect) | 选择附件分组或存储策略 | `string` |
-| [`code`](#code) | 编辑代码或结构化文本 | `string` |
-| [`color`](#color) | 选择颜色 | `string` |
-| [`menuSelect`](#menuselect) / [`menuItemSelect`](#menuitemselect) / [`menuCheckbox`](#menucheckbox) / [`menuRadio`](#menuradio) | 选择菜单或菜单项 | 资源名称或资源名称数组 |
-| [`postSelect`](#postselect) / [`singlePageSelect`](#singlepageselect) | 选择文章或独立页面 | 资源名称 |
-| [`categorySelect`](#categoryselect) / [`tagSelect`](#tagselect) / [`categoryCheckbox`](#categorycheckbox) / [`tagCheckbox`](#tagcheckbox) | 选择分类或标签 | `string` 或 `string[]` |
-| [`roleSelect`](#roleselect) / [`userSelect`](#userselect) | 选择角色或用户 | 资源名称 |
-| [`iconify`](#iconify) | 选择 Iconify 图标 | `string` 或对象 |
-| [`array`](#array) | 编辑对象数组 | 对象数组 |
-| [`switch`](#switch) / [`toggle`](#toggle) | 在预设值之间切换 | 单值或数组 |
-| [`secret`](#secret) | 选择 Secret 资源 | Secret 资源名称 |
+| 组件                                                                                                                                      | 用途                   | 保存值                 |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ---------------------- |
+| [`select`](#select)                                                                                                                       | 静态或远程选择         | `string` 或 `string[]` |
+| [`list`](#list)                                                                                                                           | 基本类型或对象列表     | 数组                   |
+| [`verificationForm`](#verificationform)                                                                                                   | 提交前远程验证一组字段 | 不改变子字段的数据结构 |
+| [`attachment`](#attachment) / [`attachmentInput`](#attachmentinput)                                                                       | 上传或选择附件         | `string` 或 `string[]` |
+| [`attachmentGroupSelect`](#attachmentgroupselect) / [`attachmentPolicySelect`](#attachmentpolicyselect)                                   | 选择附件分组或存储策略 | `string`               |
+| [`code`](#code)                                                                                                                           | 编辑代码或结构化文本   | `string`               |
+| [`color`](#color)                                                                                                                         | 选择颜色               | `string`               |
+| [`menuSelect`](#menuselect) / [`menuItemSelect`](#menuitemselect) / [`menuCheckbox`](#menucheckbox) / [`menuRadio`](#menuradio)           | 选择菜单或菜单项       | 资源名称或资源名称数组 |
+| [`postSelect`](#postselect) / [`singlePageSelect`](#singlepageselect)                                                                     | 选择文章或独立页面     | 资源名称               |
+| [`categorySelect`](#categoryselect) / [`tagSelect`](#tagselect) / [`categoryCheckbox`](#categorycheckbox) / [`tagCheckbox`](#tagcheckbox) | 选择分类或标签         | `string` 或 `string[]` |
+| [`roleSelect`](#roleselect) / [`userSelect`](#userselect)                                                                                 | 选择角色或用户         | 资源名称               |
+| [`iconify`](#iconify)                                                                                                                     | 选择 Iconify 图标      | `string` 或对象        |
+| [`array`](#array)                                                                                                                         | 编辑对象数组           | 对象数组               |
+| [`switch`](#switch) / [`toggle`](#toggle)                                                                                                 | 在预设值之间切换       | 单值或数组             |
+| [`secret`](#secret)                                                                                                                       | 选择 Secret 资源       | Secret 资源名称        |
 
 :::warning 组件可用不代表数据可直接使用
+
 - `verificationForm` 需要可访问的服务端验证接口，通常由插件或其他服务端扩展提供。
 - `secret` 只保存 Secret 资源名称，Secret 内容必须由服务端读取，主题模板不能通过设置值直接获得凭据。
 - `multiple: true` 会让部分选择器返回数组，不适用于只允许字符串值的 AnnotationSetting。
@@ -299,7 +300,7 @@ Halo 只会从 `formSchema` 的直接子节点中提取同时具有 `name` 和 `
 当远程数据具有分页时，可能会出现默认选项不在第一页的情况，此时 Select 组件将会发送另一个查询请求，以获取默认选项的数据。此接口会携带如下参数：
 
 ```ts
-fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
+fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`;
 ```
 
 其中，value1, value2, value3 为默认选项的值。返回值与查询一致，通过 `requestOption` 解析。
@@ -351,10 +352,7 @@ fieldSelector: `${requestOption.fieldSelectorKey}=(value1,value2,value3)`
 
 ```json
 {
-  "socials": [
-    "GitHub",
-    "Twitter"
-  ]
+  "socials": ["GitHub", "Twitter"]
 }
 ```
 
@@ -1022,7 +1020,6 @@ UI 效果：
     - label: 图文3
       value: 3
       render: https://placehold.co/600x400
-
 ```
 
 #### UI 效果

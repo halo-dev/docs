@@ -1,6 +1,6 @@
 ---
 title: 主题管理界面选项卡
-description: '使用 theme:list:tabs:create 为 Halo Console 主题管理界面添加自定义选项卡，配置 Vue 面板、属性、权限和排序以接入新的主题安装来源'
+description: "使用 theme:list:tabs:create 为 Halo Console 主题管理界面添加自定义选项卡，配置 Vue 面板、属性、权限和排序以接入新的主题安装来源"
 ---
 
 目前在 Halo 的主题管理中原生支持本地上传和远程下载的方式安装主题，此扩展点用于扩展主题管理界面的选项卡，以支持更多的安装方式。
@@ -21,7 +21,7 @@ export default definePlugin({
           props: {},
           permissions: [],
           priority: 0,
-        }
+        },
       ];
     },
   },

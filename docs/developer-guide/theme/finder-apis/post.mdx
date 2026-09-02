@@ -6,9 +6,9 @@ description: 使用 PostFinder 查询文章、正文、上下篇导航、随机�
 import CategoryVo from "../vo/_CategoryVo.md";
 import TagVo from "../vo/_TagVo.md";
 import PostVo from "../vo/_PostVo.md";
-import ContentVo from "../vo/_ContentVo.md"
-import ContributorVo from "../vo/_ContributorVo.md"
-import ListedPostVo from "../vo/_ListedPostVo.md"
+import ContentVo from "../vo/_ContentVo.md";
+import ContributorVo from "../vo/_ContributorVo.md";
+import ListedPostVo from "../vo/_ListedPostVo.md";
 
 ## getByName(postName)
 
@@ -257,7 +257,8 @@ postFinder.list({
 ### 示例
 
 ```html
-<ul th:with="posts = ${postFinder.list({
+<ul
+  th:with="posts = ${postFinder.list({
   page: 1,
   size: 10,
   tagName: 'fake-tag',
@@ -265,7 +266,8 @@ postFinder.list({
   owner: 'fake-owner',
   pinned: true,
   sort: {'spec.publishTime,desc', 'metadata.creationTimestamp,asc'}
-})}">
+})}"
+>
   <li th:each="post : ${posts.items}">
     <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
   </li>
@@ -544,8 +546,8 @@ postFinder.archives(page, size, year, month);
 
 ```json title="NavigationPostVo"
 {
-  "previous": "#ListedPostVo",                                   // 上一篇文章，发布时间较当前文章更早的文章
-  "next": "#ListedPostVo"                                        // 下一篇文章，发布时间较当前文章更新的文章
+  "previous": "#ListedPostVo", // 上一篇文章，发布时间较当前文章更早的文章
+  "next": "#ListedPostVo" // 下一篇文章，发布时间较当前文章更新的文章
 }
 ```
 
@@ -563,15 +565,15 @@ postFinder.archives(page, size, year, month);
 
 ```json title="ListResult<ListedPostVo>"
 {
-  "page": 0,                                   // 当前页码
-  "size": 0,                                   // 每页条数
-  "total": 0,                                  // 总条数
-  "items": "List<#ListedPostVo>",              // 文章列表数据
-  "first": true,                               // 是否为第一页
-  "last": true,                                // 是否为最后一页
-  "hasNext": true,                             // 是否有下一页
-  "hasPrevious": true,                         // 是否有上一页
-  "totalPages": 0                              // 总页数
+  "page": 0, // 当前页码
+  "size": 0, // 每页条数
+  "total": 0, // 总条数
+  "items": "List<#ListedPostVo>", // 文章列表数据
+  "first": true, // 是否为第一页
+  "last": true, // 是否为最后一页
+  "hasNext": true, // 是否有下一页
+  "hasPrevious": true, // 是否有上一页
+  "totalPages": 0 // 总页数
 }
 ```
 
@@ -597,15 +599,15 @@ postFinder.archives(page, size, year, month);
 
 ```json title="ListResult<PostArchiveVo>"
 {
-  "page": 0,                                   // 当前页码
-  "size": 0,                                   // 每页条数
-  "total": 0,                                  // 总条数
-  "items": "List<#PostArchiveVo>",             // 文章归档数据
-  "first": true,                               // 是否为第一页
-  "last": true,                                // 是否为最后一页
-  "hasNext": true,                             // 是否有下一页
-  "hasPrevious": true,                         // 是否有上一页
-  "totalPages": 0                              // 总页数
+  "page": 0, // 当前页码
+  "size": 0, // 每页条数
+  "total": 0, // 总条数
+  "items": "List<#PostArchiveVo>", // 文章归档数据
+  "first": true, // 是否为第一页
+  "last": true, // 是否为最后一页
+  "hasNext": true, // 是否有下一页
+  "hasPrevious": true, // 是否有上一页
+  "totalPages": 0 // 总页数
 }
 ```
 

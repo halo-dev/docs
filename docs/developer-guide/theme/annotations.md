@@ -15,14 +15,17 @@ description: 介绍 Halo 主题模板的 annotations 表达式对象，演示获
 
 ### 示例
 
-```html {4}
+```html {4-7}
 <div th:with="menu = ${menuFinder.getPrimary()}">
   <ul th:with="menuItems = ${menu.menuItems}">
     <li th:each="menuItem : ${menuItems}">
       <i th:class="${#annotations.get(menuItem, 'icon')}"></i>
-      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"></a>
+      <a
+        th:href="@{${menuItem.status.href}}"
+        th:text="${menuItem.status.displayName}"
+      ></a>
     </li>
-   </ul>
+  </ul>
 </div>
 ```
 
@@ -39,9 +42,12 @@ description: 介绍 Halo 主题模板的 annotations 表达式对象，演示获
   <ul th:with="menuItems = ${menu.menuItems}">
     <li th:each="menuItem : ${menuItems}">
       <i th:class="${#annotations.getOrDefault(menuItem, 'icon', 'fa')}"></i>
-      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"></a>
+      <a
+        th:href="@{${menuItem.status.href}}"
+        th:text="${menuItem.status.displayName}"
+      ></a>
     </li>
-   </ul>
+  </ul>
 </div>
 ```
 
@@ -57,9 +63,15 @@ description: 介绍 Halo 主题模板的 annotations 表达式对象，演示获
 <div th:with="menu = ${menuFinder.getPrimary()}">
   <ul th:with="menuItems = ${menu.menuItems}">
     <li th:each="menuItem : ${menuItems}">
-      <i th:if="${#annotations.contains(menuItem, 'icon')}" th:class="${#annotations.get(menuItem, 'icon')}"></i>
-      <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"></a>
+      <i
+        th:if="${#annotations.contains(menuItem, 'icon')}"
+        th:class="${#annotations.get(menuItem, 'icon')}"
+      ></i>
+      <a
+        th:href="@{${menuItem.status.href}}"
+        th:text="${menuItem.status.displayName}"
+      ></a>
     </li>
-   </ul>
+  </ul>
 </div>
 ```

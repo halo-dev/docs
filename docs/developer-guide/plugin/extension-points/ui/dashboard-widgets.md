@@ -70,22 +70,24 @@ export default definePlugin({
 
 ```ts
 export interface DashboardWidgetDefinition {
-  id: string;                                    // 小部件唯一标识符
-  component: Raw<Component>;                     // 小部件 Vue 组件
-  group: string;                                 // 小部件分组，用于在小部件库中分类显示
-  configFormKitSchema?: Record<string, unknown>[]  // 配置表单 FormKit 定义，支持数组、
-    | (() => Record<string, unknown>[])            // 返回数组的函数
-    | (() => Promise<Record<string, unknown>[]>)   // 或返回 Promise 的异步函数
-  defaultConfig?: Record<string, unknown>;       // 默认配置
-  defaultSize: {                                 // 默认尺寸
-    w: number;                                   // 宽度（网格单位），根据不同屏幕尺寸，网格单位不同，可参考：{ lg: 12, md: 12, sm: 6, xs: 4 }
-    h: number;                                   // 高度（网格单位）
-    minW?: number;                               // 最小宽度
-    minH?: number;                               // 最小高度
-    maxW?: number;                               // 最大宽度
-    maxH?: number;                               // 最大高度
+  id: string; // 小部件唯一标识符
+  component: Raw<Component>; // 小部件 Vue 组件
+  group: string; // 小部件分组，用于在小部件库中分类显示
+  configFormKitSchema?:
+    | Record<string, unknown>[] // 配置表单 FormKit 定义，支持数组、
+    | (() => Record<string, unknown>[]) // 返回数组的函数
+    | (() => Promise<Record<string, unknown>[]>); // 或返回 Promise 的异步函数
+  defaultConfig?: Record<string, unknown>; // 默认配置
+  defaultSize: {
+    // 默认尺寸
+    w: number; // 宽度（网格单位），根据不同屏幕尺寸，网格单位不同，可参考：{ lg: 12, md: 12, sm: 6, xs: 4 }
+    h: number; // 高度（网格单位）
+    minW?: number; // 最小宽度
+    minH?: number; // 最小高度
+    maxW?: number; // 最大宽度
+    maxH?: number; // 最大高度
   };
-  permissions?: string[];                        // 访问权限
+  permissions?: string[]; // 访问权限
 }
 ```
 
@@ -106,12 +108,10 @@ export interface DashboardWidgetDefinition {
         />
       </div>
     </template>
-    
+
     <!-- 小部件内容 -->
     <div class="p-4">
-      <div v-if="previewMode" class="text-center text-gray-500">
-        预览模式
-      </div>
+      <div v-if="previewMode" class="text-center text-gray-500">预览模式</div>
       <div v-else>
         <!-- 实际小部件内容 -->
         <p>刷新间隔：{{ config?.refresh_interval || 30 }}秒</p>
@@ -125,40 +125,39 @@ import { IconSettings } from "@halo-dev/components";
 import { ref } from "vue";
 
 const props = defineProps<{
-  editMode?: boolean;        // 是否为编辑模式
-  previewMode?: boolean;     // 是否为预览模式
+  editMode?: boolean; // 是否为编辑模式
+  previewMode?: boolean; // 是否为预览模式
   config?: Record<string, unknown>; // 小部件配置
 }>();
 
 const emit = defineEmits<{
-  // 
+  //
   (e: "update:config", config: Record<string, unknown>): void;
 }>();
-
 </script>
 ```
 
 **小部件组件的属性与事件：**
 
-| 属性          | 类型                    | 说明           |
-|---------------|-------------------------|--------------|
-| `editMode`    | boolean                 | 是否为编辑模式 |
-| `previewMode` | boolean                 | 是否为预览模式 |
+| 属性          | 类型                      | 说明           |
+| ------------- | ------------------------- | -------------- |
+| `editMode`    | boolean                   | 是否为编辑模式 |
+| `previewMode` | boolean                   | 是否为预览模式 |
 | `config`      | Record\<string, unknown\> | 小部件配置     |
 
 | 事件            | 说明               |
-|-----------------|------------------|
+| --------------- | ------------------ |
 | `update:config` | 小部件配置更新事件 |
 
 **WidgetCard 组件的属性与插槽：**
 
-| 属性          | 类型                    | 说明           |
-|---------------|-------------------------|--------------|
-| `title`    | string                 | 小部件标题 |
-| `bodyClass` | string[]                 | 小部件内容区域样式     |
+| 属性        | 类型     | 说明               |
+| ----------- | -------- | ------------------ |
+| `title`     | string   | 小部件标题         |
+| `bodyClass` | string[] | 小部件内容区域样式 |
 
 | 插槽      | 说明         |
-|-----------|------------|
+| --------- | ------------ |
 | `title`   | 小部件标题   |
 | `default` | 小部件内容   |
 | `actions` | 小部件操作项 |
@@ -229,7 +228,9 @@ export default definePlugin({
 
 ```vue
 <template>
-  <div class="group relative cursor-pointer rounded-lg bg-blue-50 p-4 transition-all hover:bg-blue-100">
+  <div
+    class="group relative cursor-pointer rounded-lg bg-blue-50 p-4 transition-all hover:bg-blue-100"
+  >
     <div class="flex items-center gap-3">
       <component :is="item.icon" class="text-blue-600" />
       <div>
@@ -255,33 +256,30 @@ defineProps<{
 
 ```ts
 interface DashboardWidgetQuickActionBaseItem {
-  id: string;                    // 操作项唯一标识符
-  permissions?: string[];        // 访问权限
+  id: string; // 操作项唯一标识符
+  permissions?: string[]; // 访问权限
 }
 
-interface DashboardWidgetQuickActionComponentItem
-  extends DashboardWidgetQuickActionBaseItem {
-  component: Raw<Component>;     // 自定义组件
-  icon?: Raw<Component>;         // 图标（可选）
-  title?: string;                // 标题（可选）
-  action?: () => void;           // 点击操作（可选）
+interface DashboardWidgetQuickActionComponentItem extends DashboardWidgetQuickActionBaseItem {
+  component: Raw<Component>; // 自定义组件
+  icon?: Raw<Component>; // 图标（可选）
+  title?: string; // 标题（可选）
+  action?: () => void; // 点击操作（可选）
 }
 
-interface DashboardWidgetQuickActionStandardItem
-  extends DashboardWidgetQuickActionBaseItem {
-  component?: never;             // 不使用自定义组件
-  icon: Raw<Component>;          // 图标（必需）
-  title: string;                 // 标题（必需）
-  action: () => void;            // 点击操作（必需）
+interface DashboardWidgetQuickActionStandardItem extends DashboardWidgetQuickActionBaseItem {
+  component?: never; // 不使用自定义组件
+  icon: Raw<Component>; // 图标（必需）
+  title: string; // 标题（必需）
+  action: () => void; // 点击操作（必需）
 }
 
-interface DashboardWidgetQuickActionRouteItem
-  extends DashboardWidgetQuickActionBaseItem {
-  component?: never;             // 不使用自定义组件
-  action?: never;                // 不使用点击操作
-  icon: Raw<Component>;          // 图标（必需）
-  title: string;                 // 标题（必需）
-  route: RouteLocationRaw;       // 点击后跳转的路由（必需）
+interface DashboardWidgetQuickActionRouteItem extends DashboardWidgetQuickActionBaseItem {
+  component?: never; // 不使用自定义组件
+  action?: never; // 不使用点击操作
+  icon: Raw<Component>; // 图标（必需）
+  title: string; // 标题（必需）
+  route: RouteLocationRaw; // 点击后跳转的路由（必需）
 }
 
 export type DashboardWidgetQuickActionItem =

@@ -9,7 +9,7 @@ description: 使用 v-tooltip 指令为 Halo 插件界面中的任意元素添�
 
 ```vue
 <script lang="ts" setup>
-import { IconDeleteBin } from "@halo-dev/components"
+import { IconDeleteBin } from "@halo-dev/components";
 </script>
 
 <template>

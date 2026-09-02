@@ -71,9 +71,9 @@ spring:
 | 配置路径                                           | 说明                                                                                                                                                                                                                                                           | 生产环境默认值                    |
 | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | `halo.work-dir`                                    | Halo [工作目录](../prepare.md#工作目录)，通常不建议修改                                                                                                                                                                                                        | `${user.home}/.halo2`             |
-| `halo.external-url`                                | 网站的实际访问地址，如：`https://www.halo.run`。未配置时，初始化页面会根据当前请求预填外部访问地址                                                                                                                                                              | --                                |
+| `halo.external-url`                                | 网站的实际访问地址，如：`https://www.halo.run`。未配置时，初始化页面会根据当前请求预填外部访问地址                                                                                                                                                             | --                                |
 | `halo.use-absolute-permalink`                      | 永久链接是否生成为绝对地址，设置为 `true` 时，请确保正确配置了 `halo.external-url`                                                                                                                                                                             | `false`                           |
-| `halo.security.frame-options.disabled`             | 是否禁用 `X-Frame-Options` 响应头。设为 `true` 后将不再通过该响应头限制 iframe 嵌入                                                                                                                                                                              | `false`                           |
+| `halo.security.frame-options.disabled`             | 是否禁用 `X-Frame-Options` 响应头。设为 `true` 后将不再通过该响应头限制 iframe 嵌入                                                                                                                                                                            | `false`                           |
 | `halo.security.frame-options.mode`                 | iframe 嵌入模式，默认为同源，可设置的值为 `DENY`、`SAMEORIGIN`                                                                                                                                                                                                 | `SAMEORIGIN`                      |
 | `halo.security.referrer-options.policy`            | Referrer-Policy 是一个 HTTP 头部字段，用于控制浏览器在发送请求时如何处理 Referer 信息，可设置的值请参考 [https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referrer-Policy](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Referrer-Policy) | `strict-origin-when-cross-origin` |
 | `halo.security.remember-me.token-validity`         | 保持登录会话的有效期，默认为 14 天（14d）                                                                                                                                                                                                                      | `14d`                             |
@@ -87,11 +87,11 @@ spring:
 
 通常用于开发环境的配置：
 
-| 配置路径                      | 说明                        | 默认值 |
-| ----------------------------- | --------------------------- | ------ |
-| `halo.ui.proxy.endpoint`      | 开发环境的 UI 代理地址      | --     |
-| `halo.ui.proxy.enabled`       | 是否启用 UI 代理地址        | --     |
-| `halo.plugin.runtime-mode`    | 插件的运行模式              | --     |
+| 配置路径                   | 说明                   | 默认值 |
+| -------------------------- | ---------------------- | ------ |
+| `halo.ui.proxy.endpoint`   | 开发环境的 UI 代理地址 | --     |
+| `halo.ui.proxy.enabled`    | 是否启用 UI 代理地址   | --     |
+| `halo.plugin.runtime-mode` | 插件的运行模式         | --     |
 
 ### Web 框架本身的配置
 
@@ -110,21 +110,21 @@ Web 服务相关：
 
 数据库相关：
 
-| 配置路径                   | 说明                                                                  | 默认值 |
-| -------------------------- | --------------------------------------------------------------------- | ------ |
-| `spring.r2dbc.url`         | 数据库连接地址，详细可查阅下方的 `数据库配置`                         | --     |
-| `spring.r2dbc.username`    | 数据库用户名                                                          | --     |
-| `spring.r2dbc.password`    | 数据库密码                                                            | --     |
+| 配置路径                   | 说明                                                        | 默认值 |
+| -------------------------- | ----------------------------------------------------------- | ------ |
+| `spring.r2dbc.url`         | 数据库连接地址，详细可查阅下方的 `数据库配置`               | --     |
+| `spring.r2dbc.username`    | 数据库用户名                                                | --     |
+| `spring.r2dbc.password`    | 数据库密码                                                  | --     |
 | `spring.sql.init.platform` | 数据库平台名称，支持 `postgresql`、`mysql`、`mariadb`、`h2` | --     |
 
 数据库配置：
 
-| 链接方式         | 链接地址格式                                                                       | `spring.sql.init.platform` |
-| ---------------- | ---------------------------------------------------------------------------------- | -------------------------- |
-| PostgreSQL       | `r2dbc:pool:postgresql://{HOST}:{PORT}/{DATABASE}`                                 | postgresql                 |
-| MySQL            | `r2dbc:pool:mysql://{HOST}:{PORT}/{DATABASE}`                                      | mysql                      |
-| MariaDB          | `r2dbc:pool:mariadb://{HOST}:{PORT}/{DATABASE}`                                    | mariadb                    |
-| H2 Database      | `r2dbc:h2:file:///${halo.work-dir}/db/halo-next?MODE=MySQL&DB_CLOSE_ON_EXIT=FALSE` | h2                         |
+| 链接方式    | 链接地址格式                                                                       | `spring.sql.init.platform` |
+| ----------- | ---------------------------------------------------------------------------------- | -------------------------- |
+| PostgreSQL  | `r2dbc:pool:postgresql://{HOST}:{PORT}/{DATABASE}`                                 | postgresql                 |
+| MySQL       | `r2dbc:pool:mysql://{HOST}:{PORT}/{DATABASE}`                                      | mysql                      |
+| MariaDB     | `r2dbc:pool:mariadb://{HOST}:{PORT}/{DATABASE}`                                    | mariadb                    |
+| H2 Database | `r2dbc:h2:file:///${halo.work-dir}/db/halo-next?MODE=MySQL&DB_CLOSE_ON_EXIT=FALSE` | h2                         |
 
 ## Redis 集成
 
@@ -174,7 +174,7 @@ services:
       interval: 30s
       timeout: 5s
       retries: 5
-      start_period: 30s          
+      start_period: 30s
     command:
       ...
 
@@ -192,7 +192,7 @@ networks:
 
 如果你是使用的 Docker Compose 部署 Halo，并且希望将 Redis 服务编排在一起，以下是配置示例：
 
-```yaml {25-32,36-43}
+```yaml {26-33,37-44}
 version: "3"
 
 services:
@@ -209,23 +209,24 @@ services:
     ports:
       - "8090:8090"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
+      test:
+        ["CMD", "curl", "-f", "http://localhost:8090/actuator/health/readiness"]
       interval: 30s
       timeout: 5s
       retries: 5
-      start_period: 30s          
+      start_period: 30s
     command:
       # ...
 
       # Redis 相关配置开始
-      - --spring.data.redis.host=redis      # Redis 服务地址
-      - --spring.data.redis.port=6379       # Redis 服务端口
-      - --spring.data.redis.database=0      # Redis 数据库
-      - --spring.data.redis.password=       # Redis 密码
-      - --halo.session.store-type=redis     # 声明 session 存储方式为 redis,默认不配置则为 in-memory
+      - --spring.data.redis.host=redis # Redis 服务地址
+      - --spring.data.redis.port=6379 # Redis 服务端口
+      - --spring.data.redis.database=0 # Redis 数据库
+      - --spring.data.redis.password= # Redis 密码
+      - --halo.session.store-type=redis # 声明 session 存储方式为 redis,默认不配置则为 in-memory
       - --halo.redis.enabled=true
       # Redis 相关配置结束
-  
+
   # ...
 
   # 新增的 Redis 编排

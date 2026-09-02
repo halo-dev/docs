@@ -3,13 +3,13 @@ title: 评论
 description: 使用 CommentFinder 按名称查询评论、按内容引用分页获取评论列表，并查询指定评论的回复，包含 CommentVo、ReplyVo 和 Ref 类型定义
 ---
 
-import CommentVo from "../vo/_CommentVo.md"
-import ReplyVo from "../vo/_ReplyVo.md"
+import CommentVo from "../vo/_CommentVo.md";
+import ReplyVo from "../vo/_ReplyVo.md";
 
 ## getByName(name)
 
 ```js
-commentFinder.getByName(name)
+commentFinder.getByName(name);
 ```
 
 ### 描述
@@ -36,7 +36,7 @@ commentFinder.getByName(name)
 ## list(ref,page,size)
 
 ```js
-commentFinder.list(ref,page,size)
+commentFinder.list(ref, page, size);
 ```
 
 ### 描述
@@ -58,7 +58,9 @@ commentFinder.list(ref,page,size)
 ### 示例
 
 ```html
-<ul th:with="comments = ${commentFinder.list({ group: 'content.halo.run', version: 'v1alpha1', kind: 'Post', name: 'post-foo' },1,10)}">
+<ul
+  th:with="comments = ${commentFinder.list({ group: 'content.halo.run', version: 'v1alpha1', kind: 'Post', name: 'post-foo' },1,10)}"
+>
   <li th:each="comment : ${comments.items}">
     <span th:text="${comment.spec.owner.displayName}"></span>
     <div th:text="${comment.spec.content}"></div>
@@ -69,7 +71,7 @@ commentFinder.list(ref,page,size)
 ## listReply(commentName,page,size)
 
 ```js
-commentFinder.listReply(commentName,page,size)
+commentFinder.listReply(commentName, page, size);
 ```
 
 ### 描述
@@ -80,7 +82,7 @@ commentFinder.listReply(commentName,page,size)
 
 1. `commentName:string` - 评论的唯一标识 `metadata.name`。
 1. `page:int` - 分页页码，从 1 开始
-2. `size:int` - 分页条数
+1. `size:int` - 分页条数
 
 ### 返回值
 
@@ -107,15 +109,15 @@ commentFinder.listReply(commentName,page,size)
 
 ```json title="ListResult<CommentVo>"
 {
-  "page": 0,                                   // 当前页码
-  "size": 0,                                   // 每页条数
-  "total": 0,                                  // 总条数
-  "items": "List<#CommentVo>",                 // 评论列表数据
-  "first": true,                               // 是否为第一页
-  "last": true,                                // 是否为最后一页
-  "hasNext": true,                             // 是否有下一页
-  "hasPrevious": true,                         // 是否有上一页
-  "totalPages": 0                              // 总页数
+  "page": 0, // 当前页码
+  "size": 0, // 每页条数
+  "total": 0, // 总条数
+  "items": "List<#CommentVo>", // 评论列表数据
+  "first": true, // 是否为第一页
+  "last": true, // 是否为最后一页
+  "hasNext": true, // 是否有下一页
+  "hasPrevious": true, // 是否有上一页
+  "totalPages": 0 // 总页数
 }
 ```
 
@@ -129,15 +131,15 @@ commentFinder.listReply(commentName,page,size)
 
 ```json title="ListResult<ReplyVo>"
 {
-  "page": 0,                                   // 当前页码
-  "size": 0,                                   // 每页条数
-  "total": 0,                                  // 总条数
-  "items": "List<#ReplyVo>",                   // 回复列表数据
-  "first": true,                               // 是否为第一页
-  "last": true,                                // 是否为最后一页
-  "hasNext": true,                             // 是否有下一页
-  "hasPrevious": true,                         // 是否有上一页
-  "totalPages": 0                              // 总页数
+  "page": 0, // 当前页码
+  "size": 0, // 每页条数
+  "total": 0, // 总条数
+  "items": "List<#ReplyVo>", // 回复列表数据
+  "first": true, // 是否为第一页
+  "last": true, // 是否为最后一页
+  "hasNext": true, // 是否有下一页
+  "hasPrevious": true, // 是否有上一页
+  "totalPages": 0 // 总页数
 }
 ```
 

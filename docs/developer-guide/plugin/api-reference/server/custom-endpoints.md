@@ -9,11 +9,11 @@ description: 使用 CustomEndpoint 或 ApiVersion 为 Halo 插件提供响应式
 
 自定义 API 的 group 决定主要使用范围和 OpenAPI 分组：
 
-| 使用范围 | group 示例 |
-| --- | --- |
-| Console | `console.api.my-plugin.halo.run` |
-| UC 个人中心 | `uc.api.my-plugin.halo.run` |
-| 主题或其他公开调用方 | `api.my-plugin.halo.run` |
+| 使用范围             | group 示例                       |
+| -------------------- | -------------------------------- |
+| Console              | `console.api.my-plugin.halo.run` |
+| UC 个人中心          | `uc.api.my-plugin.halo.run`      |
+| 主题或其他公开调用方 | `api.my-plugin.halo.run`         |
 
 自定义 API 仍需配置最小权限。使用公开 group 不会自动允许匿名访问，权限规则见[角色模板](../../security/role-template.md)。
 

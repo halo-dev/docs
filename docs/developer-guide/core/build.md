@@ -20,7 +20,7 @@ git clone https://github.com/halo-dev/halo
 # git clone git@github.com:halo-dev/halo.git
 
 # 或者使用 GitHub CLI 克隆（推荐）
-# gh repo clone halo-dev/halo 
+# gh repo clone halo-dev/halo
 
 # 或者使用 GitHub CLI Fork（推荐）
 # gh repo fork halo-dev/halo

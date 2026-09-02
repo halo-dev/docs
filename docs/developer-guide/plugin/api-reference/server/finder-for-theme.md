@@ -55,8 +55,7 @@ public class LinkFinderImpl implements LinkFinder {
 在主题中，你可以通过 `finder` 名称和方法名及对应的参数来获取数据，例如：
 
 ```html
-<div th:text="${myPluginLinkFinder.listAll()}">
-</div>
+<div th:text="${myPluginLinkFinder.listAll()}"></div>
 ```
 
 模板语法参考：[Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html#standard-expression-syntax)。

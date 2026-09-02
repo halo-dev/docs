@@ -20,21 +20,21 @@ pnpm install pinia
 从 Halo 2.26.0 开始，可以通过 `stores.uiPlugins()` 查询当前页面发现的插件和已激活主题的 UI provider 状态。使用此 API 时，需要将 `@halo-dev/ui-shared` 和 `@halo-dev/ui-plugin-bundler-kit` 升级到 2.26.0 或更高版本，并将插件的 `spec.requires` 设置为不低于 Halo 2.26.0。
 
 ```ts
-import { stores } from "@halo-dev/ui-shared"
-import { computed } from "vue"
+import { stores } from "@halo-dev/ui-shared";
+import { computed } from "vue";
 
-const uiPlugins = stores.uiPlugins()
+const uiPlugins = stores.uiPlugins();
 
 // 是否在当前 provider 列表中
-uiPlugins.isEnabled("plugin-search")
+uiPlugins.isEnabled("plugin-search");
 
 // 当前页面中是否已经成功注册
 const searchRegistered = computed(() =>
-  uiPlugins.isRegistered("plugin-search")
-)
+  uiPlugins.isRegistered("plugin-search"),
+);
 
 // 读取 Halo 提供的只读状态
-uiPlugins.get("plugin-search")
+uiPlugins.get("plugin-search");
 ```
 
 主题 provider 使用 `theme:{metadata.name}` 作为名称，例如 `theme:theme-earth`。
@@ -47,10 +47,10 @@ uiPlugins.get("plugin-search")
 
 ```ts
 interface UiPluginRegistration {
-  name: string
-  type: "plugin" | "theme"
-  version: string
-  status: "pending" | "registered" | "failed"
+  name: string;
+  type: "plugin" | "theme";
+  version: string;
+  status: "pending" | "registered" | "failed";
 }
 ```
 
@@ -68,22 +68,22 @@ interface UiPluginRegistration {
 
 ```vue title="ui/src/MyComponent.vue"
 <script lang="ts" setup>
-import { stores } from "@halo-dev/ui-shared"
-import { storeToRefs } from "pinia"
+import { stores } from "@halo-dev/ui-shared";
+import { storeToRefs } from "pinia";
 
-const userStore = stores.currentUser()
+const userStore = stores.currentUser();
 
 // 获取当前用户信息，在插件中通常无需手动调用，此方法会在 /console 和 /uc 初始化页面时调用一次，用户更新自己资料后也会同步更新。
-await userStore.fetchCurrentUser()
+await userStore.fetchCurrentUser();
 
 // 访问用户数据
-console.log(userStore.currentUser?.user.metadata.name)
+console.log(userStore.currentUser?.user.metadata.name);
 
 // 检查是否为匿名用户
-console.log(userStore.isAnonymous)
+console.log(userStore.isAnonymous);
 
 // 或使用 storeToRefs 保持响应性
-const { currentUser, isAnonymous } = storeToRefs(stores.currentUser())
+const { currentUser, isAnonymous } = storeToRefs(stores.currentUser());
 </script>
 ```
 
@@ -102,20 +102,20 @@ const { currentUser, isAnonymous } = storeToRefs(stores.currentUser())
 
 ```vue title="ui/src/MyComponent.vue"
 <script lang="ts" setup>
-import { stores } from "@halo-dev/ui-shared"
-import { storeToRefs } from "pinia"
+import { stores } from "@halo-dev/ui-shared";
+import { storeToRefs } from "pinia";
 
-const globalInfoStore = stores.globalInfo()
+const globalInfoStore = stores.globalInfo();
 
 // 获取全局信息，在插件中通常无需手动调用，此方法会在 /console 和 /uc 初始化页面时调用一次
-await globalInfoStore.fetchGlobalInfo()
+await globalInfoStore.fetchGlobalInfo();
 
 // 访问全局配置
-console.log(globalInfoStore.globalInfo?.externalUrl)
-console.log(globalInfoStore.globalInfo?.siteTitle)
+console.log(globalInfoStore.globalInfo?.externalUrl);
+console.log(globalInfoStore.globalInfo?.siteTitle);
 
 // 或使用 storeToRefs 保持响应性
-const { globalInfo } = storeToRefs(stores.globalInfo())
+const { globalInfo } = storeToRefs(stores.globalInfo());
 </script>
 ```
 
@@ -163,11 +163,11 @@ const { globalInfo } = storeToRefs(stores.globalInfo())
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/ui-shared"
+import { utils } from "@halo-dev/ui-shared";
 
-utils.date.format(new Date()) // "2025-11-05 14:30"
-utils.date.format("2025-10-22", "YYYY/MM/DD") // "2025/10/22"
-utils.date.format(null) // ""
+utils.date.format(new Date()); // "2025-11-05 14:30"
+utils.date.format("2025-10-22", "YYYY/MM/DD"); // "2025/10/22"
+utils.date.format(null); // ""
 ```
 
 #### toISOString(date)
@@ -183,9 +183,9 @@ utils.date.format(null) // ""
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/ui-shared"
+import { utils } from "@halo-dev/ui-shared";
 
-utils.date.toISOString(new Date("2025-10-22")) // "2025-10-22T00:00:00.000Z"
+utils.date.toISOString(new Date("2025-10-22")); // "2025-10-22T00:00:00.000Z"
 ```
 
 #### toDatetimeLocal(date)
@@ -201,9 +201,9 @@ utils.date.toISOString(new Date("2025-10-22")) // "2025-10-22T00:00:00.000Z"
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/ui-shared"
+import { utils } from "@halo-dev/ui-shared";
 
-utils.date.toDatetimeLocal(new Date("2025-10-22 14:30")) // "2025-10-22T14:30"
+utils.date.toDatetimeLocal(new Date("2025-10-22 14:30")); // "2025-10-22T14:30"
 ```
 
 #### timeAgo(date)
@@ -219,12 +219,12 @@ utils.date.toDatetimeLocal(new Date("2025-10-22 14:30")) // "2025-10-22T14:30"
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/ui-shared"
+import { utils } from "@halo-dev/ui-shared";
 
 // 假设当前时间是 2025-10-22
-utils.date.timeAgo("2025-10-23") // "1 天后"
-utils.date.timeAgo("2025-10-21") // "1 天前"
-utils.date.timeAgo("2025-11-22") // "1 个月后"
+utils.date.timeAgo("2025-10-23"); // "1 天后"
+utils.date.timeAgo("2025-10-21"); // "1 天前"
+utils.date.timeAgo("2025-11-22"); // "1 个月后"
 ```
 
 #### dayjs()
@@ -257,22 +257,16 @@ utils.date.timeAgo("2025-11-22") // "1 个月后"
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/ui-shared"
+import { utils } from "@halo-dev/ui-shared";
 
 // 检查是否拥有任意一个权限
-utils.permission.has(["core:posts:manage"], true) // true
-utils.permission.has(["core:posts:delete"], true) // false
+utils.permission.has(["core:posts:manage"], true); // true
+utils.permission.has(["core:posts:delete"], true); // false
 
 // 检查是否拥有所有权限
-utils.permission.has([
-  "core:posts:manage",
-  "core:attachments:view"
-], false) // true
+utils.permission.has(["core:posts:manage", "core:attachments:view"], false); // true
 
-utils.permission.has([
-  "core:posts:manage",
-  "core:posts:delete"
-], false) // false
+utils.permission.has(["core:posts:manage", "core:posts:delete"], false); // false
 ```
 
 #### getUserPermissions()
@@ -284,10 +278,10 @@ utils.permission.has([
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/ui-shared"
+import { utils } from "@halo-dev/ui-shared";
 
-const permissions = utils.permission.getUserPermissions()
-console.log(permissions) // ["core:posts:manage", "core:attachments:view"]
+const permissions = utils.permission.getUserPermissions();
+console.log(permissions); // ["core:posts:manage", "core:attachments:view"]
 ```
 
 ### attachment
@@ -317,14 +311,14 @@ console.log(permissions) // ["core:posts:manage", "core:attachments:view"]
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/ui-shared"
+import { utils } from "@halo-dev/ui-shared";
 
 // 本地图片
-utils.attachment.getThumbnailUrl("/uploads/image.jpg", "M")
+utils.attachment.getThumbnailUrl("/uploads/image.jpg", "M");
 // 返回: "/uploads/image.jpg?width=800"
 
 // 当前域名图片
-utils.attachment.getThumbnailUrl("https://example.com/image.jpg", "S")
+utils.attachment.getThumbnailUrl("https://example.com/image.jpg", "S");
 // 返回: "https://example.com/image.jpg?width=400" (如果当前域名是 example.com)
 ```
 
@@ -341,18 +335,18 @@ utils.attachment.getThumbnailUrl("https://example.com/image.jpg", "S")
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/ui-shared"
+import { utils } from "@halo-dev/ui-shared";
 
 // 字符串 URL
-utils.attachment.getUrl("https://example.com/image.jpg")
+utils.attachment.getUrl("https://example.com/image.jpg");
 // 返回: "https://example.com/image.jpg"
 
 // Attachment 对象
-utils.attachment.getUrl(attachmentObject)
+utils.attachment.getUrl(attachmentObject);
 // 返回: attachmentObject.status?.permalink
 
 // AttachmentSimple 对象
-utils.attachment.getUrl({ url: "https://example.com/image.jpg" })
+utils.attachment.getUrl({ url: "https://example.com/image.jpg" });
 // 返回: "https://example.com/image.jpg"
 ```
 
@@ -370,23 +364,23 @@ utils.attachment.getUrl({ url: "https://example.com/image.jpg" })
 
 ```ts
 interface AttachmentSimple {
-  url: string
-  alt?: string
-  mediaType?: string
+  url: string;
+  alt?: string;
+  mediaType?: string;
 }
 ```
 
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/ui-shared"
+import { utils } from "@halo-dev/ui-shared";
 
 // 字符串 URL
-utils.attachment.convertToSimple("https://example.com/image.jpg")
+utils.attachment.convertToSimple("https://example.com/image.jpg");
 // 返回: { url: "https://example.com/image.jpg" }
 
 // Attachment 对象
-utils.attachment.convertToSimple(attachmentObject)
+utils.attachment.convertToSimple(attachmentObject);
 // 返回: {
 //   url: attachmentObject.status?.permalink || "",
 //   alt: attachmentObject.spec.displayName,
@@ -396,8 +390,8 @@ utils.attachment.convertToSimple(attachmentObject)
 // AttachmentSimple 对象
 utils.attachment.convertToSimple({
   url: "https://example.com/image.jpg",
-  alt: "Image"
-})
+  alt: "Image",
+});
 // 返回: { url: "https://example.com/image.jpg", alt: "Image" }
 ```
 
@@ -420,13 +414,13 @@ ID 生成工具，用于生成唯一且可排序的标识符。基于 [uuid](htt
 **示例：**
 
 ```ts
-import { utils } from "@halo-dev/ui-shared"
+import { utils } from "@halo-dev/ui-shared";
 
-const id = utils.id.uuid()
-console.log(id) // "018f1c2e-4fcb-7d04-9f21-1a2b3c4d5e6f"
+const id = utils.id.uuid();
+console.log(id); // "018f1c2e-4fcb-7d04-9f21-1a2b3c4d5e6f"
 
 // 可以用于生成唯一的资源标识
-const resourceId = utils.id.uuid()
+const resourceId = utils.id.uuid();
 ```
 
 ## events
@@ -437,13 +431,13 @@ const resourceId = utils.id.uuid()
 
 ```vue title="ui/src/MyComponent.vue"
 <script lang="ts" setup>
-import { events } from "@halo-dev/ui-shared"
+import { events } from "@halo-dev/ui-shared";
 
 // 监听事件
 events.on("core:plugin:configMap:updated", (data) => {
-  console.log(`插件 ${data.pluginName} 的配置已更新`)
-  console.log(`配置组：${data.group}`)
-})
+  console.log(`插件 ${data.pluginName} 的配置已更新`);
+  console.log(`配置组：${data.group}`);
+});
 </script>
 ```
 

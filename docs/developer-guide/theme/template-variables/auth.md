@@ -53,16 +53,24 @@ Halo 2.20 重构了登录、注册等页面，现在支持通过主题自定义�
 
 Halo 系统自带的布局模板为 `gateway_fragments/layout.html`，所以我们在主题的 `templates` 目录中新建一个相同路径的模板即可，下面我们以 Halo 默认主题 [Earth](https://github.com/halo-dev/theme-earth) 为例：
 
-```html {2,17-20,26} title="templates/gateway_fragments/layout.html"
+```html {2,25-31,33-35,41} title="templates/gateway_fragments/layout.html"
 <!doctype html>
 <html th:lang="${#locale.toLanguageTag}" th:fragment="layout (title,head,body)">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=2"
+    />
     <title th:text="${title}"></title>
-    <link rel="stylesheet" th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}" />
-    <script th:src="@{/assets/dist/main.iife.js?v={version}(version=${theme.spec.version})}"></script>
+    <link
+      rel="stylesheet"
+      th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}"
+    />
+    <script
+      th:src="@{/assets/dist/main.iife.js?v={version}(version=${theme.spec.version})}"
+    ></script>
     <th:block th:if="${head != null}">
       <th:block th:replace="${head}" />
     </th:block>
@@ -70,10 +78,17 @@ Halo 系统自带的布局模板为 `gateway_fragments/layout.html`，所以我�
       main.initColorScheme("[[${theme.config.style.color_scheme}]]",[[${theme.config.style.enable_change_color_scheme}]])
     </script>
 
-    <link rel="preload" href="/images/wordmark.svg" as="image" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/images/wordmark.svg"
+      as="image"
+      type="image/svg+xml"
+    />
     <link rel="preload" href="/images/logo.png" as="image" type="image/png" />
 
-    <th:block th:replace="~{gateway_fragments/common::basicStaticResources}"></th:block>
+    <th:block
+      th:replace="~{gateway_fragments/common::basicStaticResources}"
+    ></th:block>
   </head>
   <body class="bg-slate-50 dark:bg-slate-900">
     <th:block th:replace="~{modules/header}" />
@@ -104,27 +119,40 @@ Halo 系统自带的布局模板为 `gateway_fragments/layout.html`，所以我�
 
 因为 Halo 系统中的模板是在 `gateway_fragments/layout.html` 中引入样式文件的，所以我们仍然覆盖这个文件即可，以下是示例：
 
-```html {2,16-20,23} title="templates/gateway_fragments/layout.html"
+```html {2,24-28,30-33,36} title="templates/gateway_fragments/layout.html"
 <!doctype html>
 <html th:lang="${#locale.toLanguageTag}" th:fragment="layout (title,head,body)">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=2"
+    />
     <title th:text="${title}"></title>
 
     <th:block th:if="${head != null}">
       <th:block th:replace="${head}" />
     </th:block>
 
-    <link rel="preload" href="/images/wordmark.svg" as="image" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/images/wordmark.svg"
+      as="image"
+      type="image/svg+xml"
+    />
     <link rel="preload" href="/images/logo.png" as="image" type="image/png" />
 
     <!-- 主题自行编写的样式文件 -->
-    <link rel="stylesheet" th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}" />
+    <link
+      rel="stylesheet"
+      th:href="@{/assets/dist/style.css?v={version}(version=${theme.spec.version})}"
+    />
 
     <!-- 只引入脚本文件，通常 JS 脚本无需自行编写 -->
-    <th:block th:replace="~{gateway_fragments/common::basicScriptResources}"></th:block>
+    <th:block
+      th:replace="~{gateway_fragments/common::basicScriptResources}"
+    ></th:block>
   </head>
   <body>
     <th:block th:replace="${body}" />

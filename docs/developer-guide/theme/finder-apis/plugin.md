@@ -6,7 +6,7 @@ description: 使用 PluginFinder 检查指定 Halo 插件是否已启动，或�
 ## available(pluginName)
 
 ```js
-pluginFinder.available(pluginName)
+pluginFinder.available(pluginName);
 ```
 
 ### 描述
@@ -26,16 +26,14 @@ pluginFinder.available(pluginName)
 ```html
 <!-- https://github.com/halo-dev/plugin-search-widget -->
 <li th:if="${pluginFinder.available('PluginSearchWidget')}">
-  <a href="javascript:SearchWidget.open()" title="搜索">
-    搜索
-  </a>
+  <a href="javascript:SearchWidget.open()" title="搜索"> 搜索 </a>
 </li>
 ```
 
 ## available(pluginName, requiresVersion)
 
 ```js
-pluginFinder.available('fake-plugin', '>=2.3.0')
+pluginFinder.available("fake-plugin", ">=2.3.0");
 ```
 
 ### 描述
@@ -56,8 +54,6 @@ pluginFinder.available('fake-plugin', '>=2.3.0')
 ```html
 <!-- https://github.com/halo-dev/plugin-search-widget -->
 <li th:if="${pluginFinder.available('PluginSearchWidget', '>=1.0.0')}">
-  <a href="javascript:SearchWidget.open()" title="搜索">
-    搜索
-  </a>
+  <a href="javascript:SearchWidget.open()" title="搜索"> 搜索 </a>
 </li>
 ```

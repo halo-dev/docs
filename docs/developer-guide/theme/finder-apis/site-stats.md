@@ -6,7 +6,7 @@ description: 使用 SiteStatsFinder 获取站点访问、点赞、评论、文�
 ## getStats()
 
 ```js
-siteStatsFinder.getStats()
+siteStatsFinder.getStats();
 ```
 
 ### 描述
@@ -36,10 +36,10 @@ siteStatsFinder.getStats()
 
 ```json title="SiteStatsVo"
 {
-  "visit": 0,                                   // 访问数量
-  "upvote": 0,                                  // 点赞数量
-  "comment": 0,                                 // 评论数量
-  "post": 0,                                    // 文章数量
-  "category": 0                                 // 分类数量
+  "visit": 0, // 访问数量
+  "upvote": 0, // 点赞数量
+  "comment": 0, // 评论数量
+  "post": 0, // 文章数量
+  "category": 0 // 分类数量
 }
 ```

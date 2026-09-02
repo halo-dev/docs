@@ -1,5 +1,5 @@
 ---
-title:  实现 WebSocket
+title: 实现 WebSocket
 description: 从 Halo 2.15.0 起在插件中实现 WebSocketEndpoint，注册受权限控制的 WebSocket API，并随插件生命周期自动加载和卸载。
 ---
 

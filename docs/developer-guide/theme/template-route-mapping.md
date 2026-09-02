@@ -81,7 +81,7 @@ customTemplates:
   post:
     - name: 文档
       description: 文档类型的文章
-      screenshot: 
+      screenshot:
       file: post_documentation.html
 ```
 

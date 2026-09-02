@@ -7,8 +7,8 @@ description: 使用 FilterCleanButton 为 Halo 插件的筛选界面提供统一
 
 ```vue
 <script lang="ts" setup>
-function onClear () {
-  console.log("clear")
+function onClear() {
+  console.log("clear");
 }
 </script>
 

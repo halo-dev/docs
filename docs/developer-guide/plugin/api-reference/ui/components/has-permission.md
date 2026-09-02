@@ -9,7 +9,7 @@ description: 使用 HasPermission 组件声明界面元素所需的权限列表�
 
 ```vue
 <script lang="ts" setup>
-import { VButton } from "@halo-dev/components"
+import { VButton } from "@halo-dev/components";
 </script>
 
 <template>
@@ -21,6 +21,6 @@ import { VButton } from "@halo-dev/components"
 
 ## Props
 
-| 属性名        | 类型     | 默认值  | 描述                    |
-|---------------|----------|------|-----------------------|
+| 属性名        | 类型     | 默认值   | 描述                     |
+| ------------- | -------- | -------- | ------------------------ |
 | `permissions` | string[] | 无，必填 | 定义组件所需的权限列表。 |

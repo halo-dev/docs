@@ -9,9 +9,9 @@ description: 使用 PluginDetailModal 在当前操作流程中打开指定插件
 
 ```vue
 <script lang="ts" setup>
-import { ref } from "vue"
+import { ref } from "vue";
 
-const modalVisible = ref(false)
+const modalVisible = ref(false);
 
 function onPluginDetailModalClose() {
   // Do something
@@ -19,7 +19,11 @@ function onPluginDetailModalClose() {
 </script>
 
 <template>
-  <PluginDetailModal v-if="modalVisible" @close="onPluginDetailModalClose" name="starter" />
+  <PluginDetailModal
+    v-if="modalVisible"
+    @close="onPluginDetailModalClose"
+    name="starter"
+  />
 </template>
 ```
 

@@ -1,6 +1,6 @@
 ---
 title: 编辑器集成
-description: '使用 editor:create 为 Halo 文章编辑页注册独立编辑器，实现标题、原始内容和渲染内容的双向更新，并复用内置图片上传能力'
+description: "使用 editor:create 为 Halo 文章编辑页注册独立编辑器，实现标题、原始内容和渲染内容的双向更新，并复用内置图片上传能力"
 ---
 
 此扩展点可以为文章提供新的独立编辑器。
@@ -93,7 +93,7 @@ const props = withDefaults(
     raw: "",
     content: "",
     uploadImage: undefined,
-  }
+  },
 );
 
 const emit = defineEmits<{
@@ -126,7 +126,7 @@ onMounted(() => {
             emit(
               "update:raw",
               props.raw +
-                `![${attachment.spec.displayName}](${attachment.status?.permalink})`
+                `![${attachment.spec.displayName}](${attachment.status?.permalink})`,
             );
           });
         }
@@ -138,7 +138,12 @@ onMounted(() => {
 
 <template>
   <div class="editor">
-    <textarea ref="textareaRef" class="input" :value="raw" @input="update"></textarea>
+    <textarea
+      ref="textareaRef"
+      class="input"
+      :value="raw"
+      @input="update"
+    ></textarea>
     <div class="output" v-html="output"></div>
   </div>
 </template>
@@ -169,7 +174,7 @@ body {
   outline: none;
   background-color: #f6f6f6;
   font-size: 14px;
-  font-family: 'Monaco', courier, monospace;
+  font-family: "Monaco", courier, monospace;
   padding: 20px;
 }
 

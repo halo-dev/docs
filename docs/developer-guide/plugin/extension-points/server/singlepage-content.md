@@ -7,7 +7,7 @@ description: 实现 ReactiveSinglePageContentHandler 依次处理主题端独立
 
 ```java
 public interface ReactiveSinglePageContentHandler extends ExtensionPoint {
-   
+
     Mono<SinglePageContentContext> handle(SinglePageContentContext singlePageContent);
 
     @Data

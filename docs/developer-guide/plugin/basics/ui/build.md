@@ -5,13 +5,13 @@ description: 使用 ui-plugin-bundler-kit 的 Vite 或 Rsbuild 预配置构建 H
 
 通过 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建的项目已经包含可用构建配置。没有特殊需求时沿用脚手架配置，不要重新实现 Halo 的输出协议。
 
-| 任务 | 阅读位置 |
-| --- | --- |
-| 在 Vite 或 Rsbuild 间选择 | [ui-plugin-bundler-kit](#bundler-kit) |
-| 配置图标组件 | [使用图标组件](#使用图标组件) |
-| 确认 ESM、IIFE 与最低 Halo 版本 | [输出格式与 Halo 目标](#output-format) |
-| 使用 Halo 提供的 Vue、Axios 和 UI 包 | [共享运行时依赖](#shared-runtime-dependencies) |
-| 从旧版 plugin-starter 迁移 | [HaloUIPluginBundlerKit（已过时）](#legacy-bundler-kit) |
+| 任务                                 | 阅读位置                                                |
+| ------------------------------------ | ------------------------------------------------------- |
+| 在 Vite 或 Rsbuild 间选择            | [ui-plugin-bundler-kit](#bundler-kit)                   |
+| 配置图标组件                         | [使用图标组件](#使用图标组件)                           |
+| 确认 ESM、IIFE 与最低 Halo 版本      | [输出格式与 Halo 目标](#output-format)                  |
+| 使用 Halo 提供的 Vue、Axios 和 UI 包 | [共享运行时依赖](#shared-runtime-dependencies)          |
+| 从旧版 plugin-starter 迁移           | [HaloUIPluginBundlerKit（已过时）](#legacy-bundler-kit) |
 
 ## 原理
 
@@ -49,7 +49,7 @@ pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
 ```js
 import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
-export default viteConfig()
+export default viteConfig();
 ```
 
 更新 package.json:
@@ -84,37 +84,37 @@ export default viteConfig({
 
 1. 添加路径别名
 
-    ```js
-    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
-    import path from "path";
+   ```js
+   import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
+   import path from "path";
 
-    export default viteConfig({
-      vite: {
-        resolve: {
-          alias: {
-            "@": path.resolve(__dirname, "src"),
-            "@components": path.resolve(__dirname, "src/components"),
-          },
-        },
-      },
-    });
-    ```
+   export default viteConfig({
+     vite: {
+       resolve: {
+         alias: {
+           "@": path.resolve(__dirname, "src"),
+           "@components": path.resolve(__dirname, "src/components"),
+         },
+       },
+     },
+   });
+   ```
 
 2. 添加额外的 Vite 插件
 
-    ```js
-    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
-    import { defineConfig } from "vite";
-    import UnoCSS from "unocss/vite";
+   ```js
+   import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
+   import { defineConfig } from "vite";
+   import UnoCSS from "unocss/vite";
 
-    export default viteConfig({
-      vite: {
-        plugins: [
-          UnoCSS(), // 添加 UnoCSS 插件
-        ],
-      },
-    });
-    ```
+   export default viteConfig({
+     vite: {
+       plugins: [
+         UnoCSS(), // 添加 UnoCSS 插件
+       ],
+     },
+   });
+   ```
 
 ### rsbuildConfig
 
@@ -135,7 +135,7 @@ pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 @rsbuild/core @rsbuild/plugi
 ```js
 import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
-export default rsbuildConfig()
+export default rsbuildConfig();
 ```
 
 更新 package.json:
@@ -170,35 +170,35 @@ export default rsbuildConfig({
 
 1. 添加路径别名
 
-    ```js
-    import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
+   ```js
+   import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
-    export default rsbuildConfig({
-      rsbuild: {
-        source: {
-          alias: {
-            "@": "./src",
-            "@components": "./src/components",
-          },
-        },
-      },
-    });
-    ```
+   export default rsbuildConfig({
+     rsbuild: {
+       source: {
+         alias: {
+           "@": "./src",
+           "@components": "./src/components",
+         },
+       },
+     },
+   });
+   ```
 
 2. 添加额外的 Rsbuild 插件
 
-    ```js
-    import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
-    import { pluginSass } from "@rsbuild/plugin-sass";
+   ```js
+   import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
+   import { pluginSass } from "@rsbuild/plugin-sass";
 
-    export default rsbuildConfig({
-      rsbuild: {
-        plugins: [
-          pluginSass(), // 添加 Sass 插件
-        ],
-      },
-    });
-    ```
+   export default rsbuildConfig({
+     rsbuild: {
+       plugins: [
+         pluginSass(), // 添加 Sass 插件
+       ],
+     },
+   });
+   ```
 
 ### 配置内置的 Vue 编译器
 
@@ -380,116 +380,115 @@ ESM 入口仍需默认导出已有的 `PluginModule`，不应通过顶层副作�
 
 1. 更新 `@halo-dev/ui-plugin-bundler-kit` 至 `2.26.0` 或更高版本
 
-    ```bash
-    pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
-    ```
+   ```bash
+   pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
+   ```
 
 2. 更新 `vite.config.ts` 文件
 
-    ```typescript
-    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
+   ```typescript
+   import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
-    export default viteConfig({
-      vite: {
-        // Vite 配置需要按照原有的配置进行修改，但需要移除 Vue 插件，因为已经内置
-        plugins: [
-        ],
-      },
-    });
-    ```
+   export default viteConfig({
+     vite: {
+       // Vite 配置需要按照原有的配置进行修改，但需要移除 Vue 插件，因为已经内置
+       plugins: [],
+     },
+   });
+   ```
 
 3. 更新项目根目录的 `build.gradle` 文件
 
-    ```groovy
-    plugins {
-        id 'java'
-        id "io.freefair.lombok" version "8.13"
-        id "run.halo.plugin.devtools" version "0.8.0"
-    }
+   ```groovy
+   plugins {
+       id 'java'
+       id "io.freefair.lombok" version "8.13"
+       id "run.halo.plugin.devtools" version "0.8.0"
+   }
 
-    group 'com.example.starter'
+   group 'com.example.starter'
 
-    repositories {
-        mavenCentral()
-    }
+   repositories {
+       mavenCentral()
+   }
 
-    dependencies {
-        implementation platform('run.halo.tools.platform:plugin:2.26.0')
-        compileOnly 'run.halo.app:api'
+   dependencies {
+       implementation platform('run.halo.tools.platform:plugin:2.26.0')
+       compileOnly 'run.halo.app:api'
 
-        testImplementation 'run.halo.app:api'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    }
+       testImplementation 'run.halo.app:api'
+       testImplementation 'org.springframework.boot:spring-boot-starter-test'
+       testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+   }
 
-    test {
-        useJUnitPlatform()
-    }
+   test {
+       useJUnitPlatform()
+   }
 
-    java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(21)
-        }
-    }
+   java {
+       toolchain {
+           languageVersion = JavaLanguageVersion.of(21)
+       }
+   }
 
-    tasks.withType(JavaCompile).configureEach {
-        options.encoding = "UTF-8"
-        options.release = 21
-    }
+   tasks.withType(JavaCompile).configureEach {
+       options.encoding = "UTF-8"
+       options.release = 21
+   }
 
-    tasks.register('processUiResources', Copy) {
-        from project(':ui').layout.buildDirectory.dir('dist')
-        into layout.buildDirectory.dir('resources/main/ui')
-        dependsOn project(':ui').tasks.named('assemble')
-        shouldRunAfter tasks.named('processResources')
-    }
+   tasks.register('processUiResources', Copy) {
+       from project(':ui').layout.buildDirectory.dir('dist')
+       into layout.buildDirectory.dir('resources/main/ui')
+       dependsOn project(':ui').tasks.named('assemble')
+       shouldRunAfter tasks.named('processResources')
+   }
 
-    tasks.named('classes') {
-        dependsOn tasks.named('processUiResources')
-    }
+   tasks.named('classes') {
+       dependsOn tasks.named('processUiResources')
+   }
 
-    halo {
-        version = '2.26'
-    }
-    ```
+   halo {
+       version = '2.26'
+   }
+   ```
 
 4. 在 ui 或者 console 目录新建 `build.gradle` 文件，内容如下：
 
-    ```groovy
-    plugins {
-        id 'base'
-        id "com.github.node-gradle.node" version "7.1.0"
-    }
+   ```groovy
+   plugins {
+       id 'base'
+       id "com.github.node-gradle.node" version "7.1.0"
+   }
 
-    group 'com.example.starter.ui'
+   group 'com.example.starter.ui'
 
-    tasks.register('buildFrontend', PnpmTask) {
-        group = 'build'
-        description = 'Builds the UI project using pnpm.'
-        args = ['build']
-        dependsOn tasks.named('pnpmInstall')
-        inputs.dir(layout.projectDirectory.dir('src'))
-        inputs.files(fileTree(
-                dir: layout.projectDirectory,
-                includes: ['*.cjs', '*.ts', '*.js', '*.json', '*.yaml']))
-        outputs.dir(layout.buildDirectory.dir('dist'))
-    }
+   tasks.register('buildFrontend', PnpmTask) {
+       group = 'build'
+       description = 'Builds the UI project using pnpm.'
+       args = ['build']
+       dependsOn tasks.named('pnpmInstall')
+       inputs.dir(layout.projectDirectory.dir('src'))
+       inputs.files(fileTree(
+               dir: layout.projectDirectory,
+               includes: ['*.cjs', '*.ts', '*.js', '*.json', '*.yaml']))
+       outputs.dir(layout.buildDirectory.dir('dist'))
+   }
 
-    tasks.register('pnpmCheck', PnpmTask) {
-        group = 'verification'
-        description = 'Runs unit tests using pnpm.'
-        args = ['test:unit']
-        dependsOn tasks.named('pnpmInstall')
-    }
+   tasks.register('pnpmCheck', PnpmTask) {
+       group = 'verification'
+       description = 'Runs unit tests using pnpm.'
+       args = ['test:unit']
+       dependsOn tasks.named('pnpmInstall')
+   }
 
-    tasks.named('check') {
-        dependsOn tasks.named('pnpmCheck')
-    }
+   tasks.named('check') {
+       dependsOn tasks.named('pnpmCheck')
+   }
 
-    tasks.named('assemble') {
-        dependsOn tasks.named('buildFrontend')
-    }
-    ```
+   tasks.named('assemble') {
+       dependsOn tasks.named('buildFrontend')
+   }
+   ```
 
 进行此变更的主要目的是保证 UI 构建产物不直接输出到源码目录，而是通过 Gradle 复制到 `build/resources/main/ui` 并打包到插件 JAR 中。
 

@@ -16,11 +16,11 @@ description: 从自定义模型、自动生成的 API Client 到 Console 页面�
 
 先按照[创建插件项目](../hello-world.md#创建插件项目)生成一个包含 UI 的插件。本文使用以下名称：
 
-| 项目 | 值 |
-| --- | --- |
-| 项目名 | `plugin-todolist` |
+| 项目      | 值                     |
+| --------- | ---------------------- |
+| 项目名    | `plugin-todolist`      |
 | Java 包名 | `com.example.tutorial` |
-| 插件主类 | `TodoListPlugin` |
+| 插件主类  | `TodoListPlugin`       |
 | API group | `todo.plugin.halo.run` |
 
 如果你的项目使用了其他名称，请同步替换后续示例中的包名和主类名。
@@ -213,12 +213,12 @@ haloPlugin {
 创建 `ui/src/api/index.ts`，让生成的 Client 复用 Halo Console 已配置认证和错误处理的 Axios 实例：
 
 ```ts title="ui/src/api/index.ts"
-import { axiosInstance } from '@halo-dev/api-client'
-import { TodoV1alpha1Api } from './generated'
+import { axiosInstance } from "@halo-dev/api-client";
+import { TodoV1alpha1Api } from "./generated";
 
-const todoApiClient = new TodoV1alpha1Api(undefined, '', axiosInstance)
+const todoApiClient = new TodoV1alpha1Api(undefined, "", axiosInstance);
 
-export { todoApiClient }
+export { todoApiClient };
 ```
 
 模型发生变化时，修改 Java 源码后重新运行 `./gradlew generateApiClient`，不要直接修补生成的 TypeScript 文件。
@@ -228,25 +228,25 @@ export { todoApiClient }
 用以下内容替换 `ui/src/index.ts`：
 
 ```ts title="ui/src/index.ts"
-import { IconPlug } from '@halo-dev/components'
-import { definePlugin } from '@halo-dev/ui-shared'
-import { markRaw } from 'vue'
+import { IconPlug } from "@halo-dev/components";
+import { definePlugin } from "@halo-dev/ui-shared";
+import { markRaw } from "vue";
 
 export default definePlugin({
   components: {},
   routes: [
     {
-      parentName: 'Root',
+      parentName: "Root",
       route: {
-        path: '/todos',
-        name: 'TodoList',
-        component: () => import('./views/HomeView.vue'),
+        path: "/todos",
+        name: "TodoList",
+        component: () => import("./views/HomeView.vue"),
         meta: {
-          title: 'Todo List',
+          title: "Todo List",
           searchable: true,
           menu: {
-            name: 'Todo List',
-            group: '工具',
+            name: "Todo List",
+            group: "工具",
             icon: markRaw(IconPlug),
             priority: 0,
           },
@@ -255,7 +255,7 @@ export default definePlugin({
     },
   ],
   extensionPoints: {},
-})
+});
 ```
 
 这里保留了脚手架的 `Root` 父路由，只替换页面路径、名称和菜单信息。页面组件继续使用异步导入，避免增加 Console 的初始加载体积。
@@ -266,81 +266,81 @@ export default definePlugin({
 
 ```vue title="ui/src/views/HomeView.vue"
 <script setup lang="ts">
-import type { Todo } from '@/api/generated'
-import { todoApiClient } from '@/api'
-import { computed, onMounted, ref } from 'vue'
+import type { Todo } from "@/api/generated";
+import { todoApiClient } from "@/api";
+import { computed, onMounted, ref } from "vue";
 
-type Filter = 'all' | 'active' | 'completed'
+type Filter = "all" | "active" | "completed";
 
 const filters: Array<{ label: string; value: Filter }> = [
-  { label: '全部', value: 'all' },
-  { label: '未完成', value: 'active' },
-  { label: '已完成', value: 'completed' },
-]
+  { label: "全部", value: "all" },
+  { label: "未完成", value: "active" },
+  { label: "已完成", value: "completed" },
+];
 
-const todos = ref<Todo[]>([])
-const title = ref('')
-const filter = ref<Filter>('all')
-const loading = ref(false)
-const saving = ref(false)
+const todos = ref<Todo[]>([]);
+const title = ref("");
+const filter = ref<Filter>("all");
+const loading = ref(false);
+const saving = ref(false);
 
 const filteredTodos = computed(() => {
-  if (filter.value === 'active') {
-    return todos.value.filter((todo) => !todo.spec.done)
+  if (filter.value === "active") {
+    return todos.value.filter((todo) => !todo.spec.done);
   }
-  if (filter.value === 'completed') {
-    return todos.value.filter((todo) => todo.spec.done)
+  if (filter.value === "completed") {
+    return todos.value.filter((todo) => todo.spec.done);
   }
-  return todos.value
-})
+  return todos.value;
+});
 
 async function fetchTodos() {
-  loading.value = true
+  loading.value = true;
   try {
-    const { data } = await todoApiClient.listTodo({ page: 0, size: 0 })
-    todos.value = data.items
+    const { data } = await todoApiClient.listTodo({ page: 0, size: 0 });
+    todos.value = data.items;
   } finally {
-    loading.value = false
+    loading.value = false;
   }
 }
 
 async function mutateAndReload(request: () => Promise<unknown>) {
   if (saving.value) {
-    return
+    return;
   }
 
-  saving.value = true
+  saving.value = true;
   try {
-    await request()
-    await fetchTodos()
+    await request();
+    await fetchTodos();
   } finally {
-    saving.value = false
+    saving.value = false;
   }
 }
 
 async function createTodo() {
-  const todoTitle = title.value.trim()
+  const todoTitle = title.value.trim();
   if (!todoTitle) {
-    return
+    return;
   }
 
   await mutateAndReload(async () => {
     await todoApiClient.createTodo({
       todo: {
-        apiVersion: 'todo.plugin.halo.run/v1alpha1',
-        kind: 'Todo',
+        apiVersion: "todo.plugin.halo.run/v1alpha1",
+        kind: "Todo",
         metadata: {
-          generateName: 'todo-',
-          name: '',
+          generateName: "todo-",
+          name: "",
         },
         spec: {
           title: todoTitle,
           done: false,
         },
       },
-    })
-    title.value = ''
-  })
+    });
+    title.value = "";
+  });
 }
 
 async function toggleTodo(todo: Todo) {
@@ -355,16 +355,16 @@ async function toggleTodo(todo: Todo) {
         },
       },
     }),
-  )
+  );
 }
 
 async function deleteTodo(todo: Todo) {
   await mutateAndReload(() =>
     todoApiClient.deleteTodo({ name: todo.metadata.name }),
-  )
+  );
 }
 
-onMounted(fetchTodos)
+onMounted(fetchTodos);
 </script>
 
 <template>
@@ -416,7 +416,9 @@ onMounted(fetchTodos)
             type="checkbox"
             @change="toggleTodo(todo)"
           />
-          <span :class="{ completed: todo.spec.done }">{{ todo.spec.title }}</span>
+          <span :class="{ completed: todo.spec.done }">{{
+            todo.spec.title
+          }}</span>
         </label>
         <button
           class="delete-button"

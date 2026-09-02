@@ -3,7 +3,7 @@ title: Nginx Proxy Manager 反向代理
 description: 使用 Nginx Proxy Manager 为 Halo 配置域名转发与 SSL 证书说明。
 ---
 
-import { Steps } from '@rspress/core/theme';
+import { Steps } from "@rspress/core/theme";
 
 ## Halo 部署
 
@@ -46,14 +46,14 @@ vim docker-compose.yml
 ```yaml
 services:
   npm:
-    image: 'jc21/nginx-proxy-manager:latest'
+    image: "jc21/nginx-proxy-manager:latest"
     networks:
       - npm
     restart: unless-stopped
     ports:
-      - '80:80'       # Nginx 的 80 端口
-      - '443:443'     # Nginx 的 443 端口
-      - '81:81'       # Nginx Proxy Manager 的管理端口
+      - "80:80" # Nginx 的 80 端口
+      - "443:443" # Nginx 的 443 端口
+      - "81:81" # Nginx Proxy Manager 的管理端口
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt

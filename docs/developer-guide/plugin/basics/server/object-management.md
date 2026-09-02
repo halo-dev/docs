@@ -48,12 +48,12 @@ public class Demo {
 
 Halo 会向插件入口的构造函数提供 `PluginContext`，可以安全保留并在插件生命周期内使用：
 
-| 属性 | 含义 |
-| --- | --- |
-| `name` | 插件的 `metadata.name`，可用于日志和本地数据目录命名空间 |
+| 属性            | 含义                                                      |
+| --------------- | --------------------------------------------------------- |
+| `name`          | 插件的 `metadata.name`，可用于日志和本地数据目录命名空间  |
 | `configMapName` | `plugin.yaml` 声明的配置 ConfigMap 名称；未配置时可能为空 |
-| `version` | 当前加载的插件版本 |
-| `runtimeMode` | 当前为开发模式还是部署模式 |
+| `version`       | 当前加载的插件版本                                        |
+| `runtimeMode`   | 当前为开发模式还是部署模式                                |
 
 不要使用显示名称、Java 包名或硬编码常量代替插件 `name` 来标识运行中的插件。
 
@@ -253,29 +253,29 @@ public void stop() {
 
 ```json
 {
-  "title" : "guqing's blog",
-  "subtitle" : "副标题",
-  "logo" : "/upload/myavatar.png",
-  "favicon" : "/upload/myavatar.png",
-  "url" : "http://localhost:8090",
-  "version" : {
-    "majorVersion" : 2,
-    "minorVersion" : 20,
-    "normalVersion" : "2.20.10",
-    "preRelease" : true,
-    "publicApiStable" : true,
-    "patchVersion" : 10,
-    "preReleaseVersion" : "SNAPSHOT",
-    "buildMetadata" : "",
-    "stable" : false
+  "title": "guqing's blog",
+  "subtitle": "副标题",
+  "logo": "/upload/myavatar.png",
+  "favicon": "/upload/myavatar.png",
+  "url": "http://localhost:8090",
+  "version": {
+    "majorVersion": 2,
+    "minorVersion": 20,
+    "normalVersion": "2.20.10",
+    "preRelease": true,
+    "publicApiStable": true,
+    "patchVersion": 10,
+    "preReleaseVersion": "SNAPSHOT",
+    "buildMetadata": "",
+    "stable": false
   },
-  "seo" : {
-    "blockSpiders" : false,
-    "keywords" : "keyword1,keyword2",
-    "description" : "站点描述"
+  "seo": {
+    "blockSpiders": false,
+    "keywords": "keyword1,keyword2",
+    "description": "站点描述"
   },
-  "locale" : "zh_CN_#Hans",
-  "timeZone" : "Asia/Shanghai",
-  "activatedThemeName" : "theme-earth"
+  "locale": "zh_CN_#Hans",
+  "timeZone": "Asia/Shanghai",
+  "activatedThemeName": "theme-earth"
 }
 ```

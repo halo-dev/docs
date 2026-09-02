@@ -1,7 +1,8 @@
 ---
 title: 评论组件
-description: '实现单实例 CommentWidget 扩展点处理主题模板中的 halo:comment 标签，以自定义评论组件的前台渲染内容'
+description: "实现单实例 CommentWidget 扩展点处理主题模板中的 halo:comment 标签，以自定义评论组件的前台渲染内容"
 ---
+
 评论组件扩展点用于自定义主题端使用的评论组件，Halo 通过插件提供了一个默认的评论组件，如果你需要使用其他的评论组件，那么可以通过实现该扩展点来自定义评论组件。
 
 ```java

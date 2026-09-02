@@ -3,15 +3,15 @@ title: 独立页面
 description: 使用 SinglePageFinder 按唯一标识查询独立页面及正文内容，或分页获取页面列表，并在 Thymeleaf 模板中渲染 SinglePageVo 数据。
 ---
 
-import SinglePageVo from "../vo/_SinglePageVo.md"
-import ListedSinglePageVo from "../vo/_ListedSinglePageVo.md"
-import ContributorVo from "../vo/_ContributorVo.md"
-import ContentVo from "../vo/_ContentVo.md"
+import SinglePageVo from "../vo/_SinglePageVo.md";
+import ListedSinglePageVo from "../vo/_ListedSinglePageVo.md";
+import ContributorVo from "../vo/_ContributorVo.md";
+import ContentVo from "../vo/_ContentVo.md";
 
 ## getByName(pageName)
 
 ```js
-singlePageFinder.getByName(pageName)
+singlePageFinder.getByName(pageName);
 ```
 
 ### 描述
@@ -30,14 +30,17 @@ singlePageFinder.getByName(pageName)
 
 ```html
 <div th:with="singlePage = ${singlePageFinder.getByName('page-foo')}">
-  <a th:href="@{${singlePage.status.permalink}}" th:text="${singlePage.spec.title}"></a>
+  <a
+    th:href="@{${singlePage.status.permalink}}"
+    th:text="${singlePage.spec.title}"
+  ></a>
 </div>
 ```
 
 ## content(pageName)
 
 ```js
-singlePageFinder.content(pageName)
+singlePageFinder.content(pageName);
 ```
 
 ### 描述
@@ -63,7 +66,7 @@ singlePageFinder.content(pageName)
 ## list(page,size)
 
 ```js
-singlePageFinder.list(page,size)
+singlePageFinder.list(page, size);
 ```
 
 ### 描述
@@ -84,7 +87,10 @@ singlePageFinder.list(page,size)
 ```html
 <ul th:with="singlePages = ${singlePageFinder.list(1,10)}">
   <li th:each="singlePage : ${singlePages.items}">
-    <a th:href="@{${singlePage.status.permalink}}" th:text="${singlePage.spec.title}"></a>
+    <a
+      th:href="@{${singlePage.status.permalink}}"
+      th:text="${singlePage.spec.title}"
+    ></a>
   </li>
 </ul>
 ```
@@ -108,15 +114,15 @@ singlePageFinder.list(page,size)
 
 ```json title="ListResult<ListedSinglePageVo>"
 {
-  "page": 0,                                   // 当前页码
-  "size": 0,                                   // 每页条数
-  "total": 0,                                  // 总条数
-  "items": "List<#ListedSinglePageVo>",        // 自定义页面列表数据
-  "first": true,                               // 是否为第一页
-  "last": true,                                // 是否为最后一页
-  "hasNext": true,                             // 是否有下一页
-  "hasPrevious": true,                         // 是否有上一页
-  "totalPages": 0                              // 总页数
+  "page": 0, // 当前页码
+  "size": 0, // 每页条数
+  "total": 0, // 总条数
+  "items": "List<#ListedSinglePageVo>", // 自定义页面列表数据
+  "first": true, // 是否为第一页
+  "last": true, // 是否为最后一页
+  "hasNext": true, // 是否有下一页
+  "hasPrevious": true, // 是否有上一页
+  "totalPages": 0 // 总页数
 }
 ```
 

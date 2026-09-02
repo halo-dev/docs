@@ -1,6 +1,6 @@
 ---
 title: 附件选择选项卡
-description: '使用 attachment:selector:create 为 Halo 附件选择器添加自定义选项卡，通过 AttachmentLike 和 selected 双向绑定接入贴纸库或第三方素材源'
+description: "使用 attachment:selector:create 为 Halo 附件选择器添加自定义选项卡，通过 AttachmentLike 和 selected 双向绑定接入贴纸库或第三方素材源"
 ---
 
 此扩展点用于扩展附件选择组件的选项卡，目前 Halo 仅包含内置的附件库，你可以通过此扩展点添加自定义的选项卡。
@@ -10,12 +10,16 @@ description: '使用 attachment:selector:create 为 Halo 附件选择器添加�
 ## 定义方式
 
 ```ts
-import { definePlugin, type AttachmentSelectProvider } from "@halo-dev/ui-shared"
-import { markRaw } from "vue"
-import FooComponent from "./src/FooComponent.vue"
+import {
+  definePlugin,
+  type AttachmentSelectProvider,
+} from "@halo-dev/ui-shared";
+import { markRaw } from "vue";
+import FooComponent from "./src/FooComponent.vue";
 export default definePlugin({
   extensionPoints: {
-    "attachment:selector:create": (): AttachmentSelectProvider[]| Promise<AttachmentSelectProvider[]> => {
+    "attachment:selector:create": ():
+      AttachmentSelectProvider[] | Promise<AttachmentSelectProvider[]> => {
       return [
         {
           id: "foo",
@@ -30,9 +34,9 @@ export default definePlugin({
 
 ```ts title="AttachmentSelectProvider"
 export interface AttachmentSelectProvider {
-  id: string;                                   // 选项卡 ID
-  label: string;                                // 选项卡名称
-  component: Component | string;                // 选项卡组件
+  id: string; // 选项卡 ID
+  label: string; // 选项卡名称
+  component: Component | string; // 选项卡组件
 }
 ```
 
@@ -40,34 +44,34 @@ export interface AttachmentSelectProvider {
 
 1. 组件必须包含名称为 `selected` 的 `prop`，用于接收当前选中的附件。
 
-    ```ts
-    const props = withDefaults(
-       defineProps<{
-           selected: AttachmentLike[];
-       }>(),
-       {
-           selected: () => [],
-       }
-    );
-    ```
+   ```ts
+   const props = withDefaults(
+     defineProps<{
+       selected: AttachmentLike[];
+     }>(),
+     {
+       selected: () => [],
+     },
+   );
+   ```
 
 2. 组件必须包含名称为 `update:selected` 的 emit 事件，用于更新选中的附件。
 
-    ```ts
-    const emit = defineEmits<{
-        (event: "update:selected", attachments: AttachmentLike[]): void;
-    }>();
-    ```
+   ```ts
+   const emit = defineEmits<{
+     (event: "update:selected", attachments: AttachmentLike[]): void;
+   }>();
+   ```
 
 `AttachmentLike` 是一个复合类型，可以是 Halo 附件模型数据、文件链接字符串、或者简单类型对象，类型定义：
 
 ```ts title="AttachmentLike"
 type AttachmentLike = Attachment | AttachmentSimple | string;
 interface AttachmentSimple {
-  url: string;            // 文件链接
-  mediaType?: string;     // 文件类型，如 image/png、video/*，如不填写，将被作为链接插入到文章
-  alt?: string;           // 代替文本
-  caption?: string;       // 说明文本
+  url: string; // 文件链接
+  mediaType?: string; // 文件类型，如 image/png、video/*，如不填写，将被作为链接插入到文章
+  alt?: string; // 代替文本
+  caption?: string; // 说明文本
 }
 ```
 
@@ -102,8 +106,8 @@ export default definePlugin({
 
 ```vue title="StickerSelectorProvider.vue"
 <script lang="ts" setup>
-import type { AttachmentLike, AttachmentSimple } from '@halo-dev/ui-shared';
-import { ref } from 'vue';
+import type { AttachmentLike, AttachmentSimple } from "@halo-dev/ui-shared";
+import { ref } from "vue";
 
 const props = withDefaults(
   defineProps<{
@@ -111,7 +115,7 @@ const props = withDefaults(
   }>(),
   {
     selected: () => [],
-  }
+  },
 );
 
 const emit = defineEmits<{
@@ -121,15 +125,15 @@ const emit = defineEmits<{
 const stickers: AttachmentSimple[] = [
   {
     url: "https://picsum.photos/200?random=1",
-    mediaType: "image/*"
+    mediaType: "image/*",
   },
   {
     url: "https://picsum.photos/200?random=2",
-    mediaType: "image/*"
+    mediaType: "image/*",
   },
   {
     url: "https://picsum.photos/200?random=3",
-    mediaType: "image/*"
+    mediaType: "image/*",
   },
 ];
 
@@ -141,13 +145,17 @@ const handleSelect = async (url: string) => {
     return;
   }
   selectedStickers.value.add(url);
-  emit('update:selected', Array.from(selectedStickers.value));
+  emit("update:selected", Array.from(selectedStickers.value));
 };
 </script>
 
 <template>
   <div>
-    <img v-for="sticker in stickers" :src="sticker.url" @click="handleSelect(sticker.url)" />
+    <img
+      v-for="sticker in stickers"
+      :src="sticker.url"
+      @click="handleSelect(sticker.url)"
+    />
   </div>
 </template>
 ```

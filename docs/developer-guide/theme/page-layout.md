@@ -13,7 +13,11 @@ description: 从 Halo 2.26.0 起在 templates/layout.html 声明 html(head, cont
 
 ```html title="templates/layout.html"
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" th:lang="${#locale.toLanguageTag}" th:fragment="html (head, content)">
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:lang="${#locale.toLanguageTag}"
+  th:fragment="html (head, content)"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -61,7 +65,10 @@ description: 从 Halo 2.26.0 起在 templates/layout.html 声明 html(head, cont
     <!-- 文章列表 -->
     <ul>
       <li th:each="post : ${posts.items}">
-        <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+        <a
+          th:href="@{${post.status.permalink}}"
+          th:text="${post.spec.title}"
+        ></a>
       </li>
     </ul>
   </th:block>

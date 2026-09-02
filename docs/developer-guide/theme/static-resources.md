@@ -30,23 +30,22 @@ description: 在 Halo 主题中通过 Thymeleaf 资源链接和 theme.assets() A
 
 比如我们需要在 JavaScript 中异步获取一些资源：
 
-```html {3}
+```html {2}
 <script th:inline="javascript">
+  loadScript('[(${#theme.assets("/dist/main.iife.js")})]');
 
-loadScript('[(${#theme.assets("/dist/main.iife.js")})]');
+  // loadScript('/themes/my-theme/assets/dist/main.iife.js');
 
-// loadScript('/themes/my-theme/assets/dist/main.iife.js');
-
-function loadScript(url) {
+  function loadScript(url) {
     return new Promise(function (resolve, reject) {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = url;
-        script.onload = resolve;
-        script.onerror = reject;
-        document.head.appendChild(script);
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = url;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
     });
-}
+  }
 </script>
 ```
 
@@ -60,11 +59,10 @@ function loadScript(url) {
 
 **引入版本**：2.4.0
 
-```html {3}
+```html {2}
 <script th:inline="javascript">
+  var archivesUrl = '[[${#theme.route("/archives")}]]';
 
-var archivesUrl = '[[${#theme.route("/archives")}]]';
-
-// archivesUrl 为 '/archives'
+  // archivesUrl 为 '/archives'
 </script>
 ```

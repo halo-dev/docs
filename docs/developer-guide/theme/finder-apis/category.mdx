@@ -3,13 +3,13 @@ title: 文章分类
 description: 使用 CategoryFinder 按唯一标识查询单个或多个文章分类，分页或完整列出分类，并获取分类树、父分类与面包屑导航数据。
 ---
 
-import CategoryVo from "../vo/_CategoryVo.md"
-import CategoryTreeVo from "../vo/_CategoryTreeVo.md"
+import CategoryVo from "../vo/_CategoryVo.md";
+import CategoryTreeVo from "../vo/_CategoryTreeVo.md";
 
 ## getByName(name)
 
 ```js
-categoryFinder.getByName(name)
+categoryFinder.getByName(name);
 ```
 
 :::info 配合分类选择器使用
@@ -32,14 +32,17 @@ categoryFinder.getByName(name)
 
 ```html
 <div th:with="category = ${categoryFinder.getByName('category-foo')}">
-  <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
+  <a
+    th:href="@{${category.status.permalink}}"
+    th:text="${category.spec.displayName}"
+  ></a>
 </div>
 ```
 
 ## getByNames(names)
 
 ```js
-categoryFinder.getByNames(names)
+categoryFinder.getByNames(names);
 ```
 
 :::info 配合分类选择器使用
@@ -61,15 +64,21 @@ List\<[#CategoryVo](#categoryvo)\>
 ### 示例
 
 ```html
-<div th:with="categories = ${categoryFinder.getByNames({'category-foo', 'category-bar'})}">
-  <a th:each="category : ${categories}" th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
+<div
+  th:with="categories = ${categoryFinder.getByNames({'category-foo', 'category-bar'})}"
+>
+  <a
+    th:each="category : ${categories}"
+    th:href="@{${category.status.permalink}}"
+    th:text="${category.spec.displayName}"
+  ></a>
 </div>
 ```
 
 ## list(page,size)
 
 ```js
-categoryFinder.list(page,size)
+categoryFinder.list(page, size);
 ```
 
 ### 描述
@@ -90,7 +99,10 @@ categoryFinder.list(page,size)
 ```html
 <ul th:with="categories = ${categoryFinder.list(1,10)}">
   <li th:each="category : ${categories.items}">
-    <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
+    <a
+      th:href="@{${category.status.permalink}}"
+      th:text="${category.spec.displayName}"
+    ></a>
   </li>
 </ul>
 ```
@@ -98,7 +110,7 @@ categoryFinder.list(page,size)
 ## listAll()
 
 ```js
-categoryFinder.listAll()
+categoryFinder.listAll();
 ```
 
 ### 描述
@@ -118,7 +130,10 @@ List\<[#CategoryVo](#categoryvo)\>
 ```html
 <ul th:with="categories = ${categoryFinder.listAll()}">
   <li th:each="category : ${categories}">
-    <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
+    <a
+      th:href="@{${category.status.permalink}}"
+      th:text="${category.spec.displayName}"
+    ></a>
   </li>
 </ul>
 ```
@@ -126,7 +141,7 @@ List\<[#CategoryVo](#categoryvo)\>
 ## listAsTree()
 
 ```js
-categoryFinder.listAsTree()
+categoryFinder.listAsTree();
 ```
 
 ### 描述
@@ -146,7 +161,9 @@ List\<[#CategoryTreeVo](#categorytreevo)\>
 ```html
 <div th:with="categories = ${categoryFinder.listAsTree()}">
   <ul>
-    <li th:replace="~{modules/category-tree :: single(categories=${categories})}" />
+    <li
+      th:replace="~{modules/category-tree :: single(categories=${categories})}"
+    />
   </ul>
 </div>
 ```
@@ -158,7 +175,9 @@ List\<[#CategoryTreeVo](#categorytreevo)\>
       <span th:text="${category.spec.displayName}"> </span>
     </a>
     <th:block th:if="${not #lists.isEmpty(category.children)}">
-      <th:block th:replace="~{modules/category-tree :: next (categories=${category.children})}"></th:block>
+      <th:block
+        th:replace="~{modules/category-tree :: next (categories=${category.children})}"
+      ></th:block>
     </th:block>
   </li>
 </ul>
@@ -167,7 +186,7 @@ List\<[#CategoryTreeVo](#categorytreevo)\>
 ## listAsTree(name)
 
 ```js
-categoryFinder.listAsTree(name)
+categoryFinder.listAsTree(name);
 ```
 
 ### 描述
@@ -187,7 +206,10 @@ List\<[#CategoryTreeVo](#categorytreevo)\>
 ```html
 <ul th:with="categories = ${categoryFinder.listAsTree('category-foo')}">
   <li th:each="category : ${categories}">
-    <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
+    <a
+      th:href="@{${category.status.permalink}}"
+      th:text="${category.spec.displayName}"
+    ></a>
   </li>
 </ul>
 ```
@@ -195,7 +217,7 @@ List\<[#CategoryTreeVo](#categorytreevo)\>
 ## getParentByName(name)
 
 ```js
-categoryFinder.getParentByName(name)
+categoryFinder.getParentByName(name);
 ```
 
 ### 描述
@@ -225,7 +247,7 @@ categoryFinder.getParentByName(name)
 ## getBreadcrumbs(name)
 
 ```js
-categoryFinder.getBreadcrumbs('category-foo')
+categoryFinder.getBreadcrumbs("category-foo");
 ```
 
 ### 描述
@@ -244,8 +266,13 @@ List\<[#CategoryVo](#categoryvo)\>
 
 ```html
 <div>
-  <th:block th:each="category,stats : ${categoryFinder.getBreadcrumbs(category.metadata?.name)}">
-    <a th:href="@{${category.status.permalink}}" th:text="${category.spec.displayName}"></a>
+  <th:block
+    th:each="category,stats : ${categoryFinder.getBreadcrumbs(category.metadata?.name)}"
+  >
+    <a
+      th:href="@{${category.status.permalink}}"
+      th:text="${category.spec.displayName}"
+    ></a>
     <span th:if="${!stats.last}">/</span>
   </th:block>
 </div>
@@ -261,15 +288,15 @@ List\<[#CategoryVo](#categoryvo)\>
 
 ```json title="ListResult<CategoryVo>"
 {
-  "page": 0,                                   // 当前页码
-  "size": 0,                                   // 每页条数
-  "total": 0,                                  // 总条数
-  "items": "List<#CategoryVo>",                // 分类列表数据
-  "first": true,                               // 是否为第一页
-  "last": true,                                // 是否为最后一页
-  "hasNext": true,                             // 是否有下一页
-  "hasPrevious": true,                         // 是否有上一页
-  "totalPages": 0                              // 总页数
+  "page": 0, // 当前页码
+  "size": 0, // 每页条数
+  "total": 0, // 总条数
+  "items": "List<#CategoryVo>", // 分类列表数据
+  "first": true, // 是否为第一页
+  "last": true, // 是否为最后一页
+  "hasNext": true, // 是否有下一页
+  "hasPrevious": true, // 是否有上一页
+  "totalPages": 0 // 总页数
 }
 ```
 

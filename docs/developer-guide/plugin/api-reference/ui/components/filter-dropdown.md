@@ -9,40 +9,35 @@ description: 使用 FilterDropdown 构建通用下拉筛选器，通过包含标
 
 ```vue
 <script lang="ts" setup>
-import { ref } from "vue"
+import { ref } from "vue";
 
-const value = ref("")
+const value = ref("");
 const items = [
   {
     label: "最近创建",
-    value: "creationTimestamp,desc"
+    value: "creationTimestamp,desc",
   },
   {
     label: "较晚创建",
-    value: "creationTimestamp,asc"
-  }
-]
-
+    value: "creationTimestamp,asc",
+  },
+];
 </script>
 <template>
-  <FilterDropdown
-    v-model="value"
-    label="排序"
-    :items="items"
-  />
+  <FilterDropdown v-model="value" label="排序" :items="items" />
 </template>
 ```
 
 ## Props
 
-| 属性名       | 类型                                                      | 默认值    | 描述                                               |
-|--------------|-----------------------------------------------------------|-----------|--------------------------------------------------|
-| `items`      | \{ label: string; value?: string \| boolean \| number; \}[] | 无，必填   | 包含 `label` 和可选 `value` 的对象数组。            |
-| `label`      | string                                                    | 无，必填   | 组件的标签文本。                                    |
-| `modelValue` | string \| boolean \| number                               | undefined | 可选，用于绑定到组件的值，可以是字符串、布尔值或数字。 |
+| 属性名       | 类型                                                        | 默认值    | 描述                                                   |
+| ------------ | ----------------------------------------------------------- | --------- | ------------------------------------------------------ |
+| `items`      | \{ label: string; value?: string \| boolean \| number; \}[] | 无，必填  | 包含 `label` 和可选 `value` 的对象数组。               |
+| `label`      | string                                                      | 无，必填  | 组件的标签文本。                                       |
+| `modelValue` | string \| boolean \| number                                 | undefined | 可选，用于绑定到组件的值，可以是字符串、布尔值或数字。 |
 
 ## Emits
 
-| 事件名称          | 参数                                                   | 描述                |
-|-------------------|--------------------------------------------------------|-------------------|
+| 事件名称          | 参数                                                   | 描述                 |
+| ----------------- | ------------------------------------------------------ | -------------------- |
 | update:modelValue | `modelValue`: string \| boolean \| number \| undefined | 当模型值更新时触发。 |

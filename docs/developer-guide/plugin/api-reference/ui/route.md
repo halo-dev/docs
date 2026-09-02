@@ -15,11 +15,12 @@ Console 控制台和 UC 个人中心的路由定义基本和 Vue Router 官方�
 - `ucRoutes`：UC 个人中心路由定义
 
 ```ts
-import HomeView from "./views/HomeView.vue"
+import HomeView from "./views/HomeView.vue";
 import { IconComputer } from "@halo-dev/components";
 
 export default definePlugin({
-  routes: [                                 // Console 控制台路由定义
+  routes: [
+    // Console 控制台路由定义
     {
       parentName: "Root",
       route: {
@@ -32,13 +33,14 @@ export default definePlugin({
             name: "Foo",
             group: "content",
             icon: markRaw(IconComputer),
-            priority: 40
+            priority: 40,
           },
         },
       },
     },
   ],
-  ucRoutes: [                               // UC 个人中心路由定义
+  ucRoutes: [
+    // UC 个人中心路由定义
     {
       parentName: "Root",
       route: {
@@ -51,12 +53,12 @@ export default definePlugin({
             name: "FooUC",
             group: "content",
             icon: markRaw(IconComputer),
-            priority: 40
+            priority: 40,
           },
         },
       },
     },
-  ]
+  ],
 });
 ```
 
@@ -102,19 +104,21 @@ export interface RouteRecordAppend {
 
 ```ts
 interface RouteMeta {
-  title?: string;               // 浏览器标题
-  searchable?: boolean;         // 是否可以在 Console 的全局搜索中搜索到
-  permissions?: string[];       // UI 权限
-  menu?: {                      // 侧边菜单配置
-    name: string;               // 菜单名称
-    group?: CoreMenuGroupId;    // 内置菜单分组 ID，如果不使用内置的分组，也可以直接填写分组名称
-    icon?: Component;           // 菜单图标，类型为 Vue 组件，推荐使用 https://github.com/unplugin/unplugin-icons
-    priority: number;           // 菜单项排序，数字越小越靠前
-    mobile?: boolean;           // 是否在移动端显示
+  title?: string; // 浏览器标题
+  searchable?: boolean; // 是否可以在 Console 的全局搜索中搜索到
+  permissions?: string[]; // UI 权限
+  menu?: {
+    // 侧边菜单配置
+    name: string; // 菜单名称
+    group?: CoreMenuGroupId; // 内置菜单分组 ID，如果不使用内置的分组，也可以直接填写分组名称
+    icon?: Component; // 菜单图标，类型为 Vue 组件，推荐使用 https://github.com/unplugin/unplugin-icons
+    priority: number; // 菜单项排序，数字越小越靠前
+    mobile?: boolean; // 是否在移动端显示
   };
 }
 ```
 
 ```ts
-export type CoreMenuGroupId = "dashboard" | "content" | "interface" | "system" | "tool";
+export type CoreMenuGroupId =
+  "dashboard" | "content" | "interface" | "system" | "tool";
 ```

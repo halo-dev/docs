@@ -3,11 +3,11 @@ title: 文章
 description: 编写 Halo 主题的 post.html 文章详情模板，使用 post 变量渲染标题与正文，并通过 theme.yaml 为文章声明可选的自定义模板。
 ---
 
-import CategoryVo from "../vo/_CategoryVo.md"
-import TagVo from "../vo/_TagVo.md"
-import ContentVo from "../vo/_ContentVo.md"
-import ContributorVo from "../vo/_ContributorVo.md"
-import PostVo from "../vo/_PostVo.md"
+import CategoryVo from "../vo/_CategoryVo.md";
+import TagVo from "../vo/_TagVo.md";
+import ContentVo from "../vo/_ContentVo.md";
+import ContributorVo from "../vo/_ContributorVo.md";
+import PostVo from "../vo/_PostVo.md";
 
 文章详情页面的模板。
 
@@ -43,7 +43,7 @@ customTemplates:
   post:
     - name: 文档
       description: 文档类型的文章
-      screenshot: 
+      screenshot:
       file: post_documentation.html
 ```
 
@@ -64,11 +64,11 @@ customTemplates:
 ```html title="/templates/post.html"
 <article>
   <h1 th:text="${post.spec.title}"></h1>
-  <div th:utext="${post.content.content}"> </div>
+  <div th:utext="${post.content.content}"></div>
 </article>
 ```
 
-### _templateId
+### \_templateId
 
 #### 变量值
 

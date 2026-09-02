@@ -9,24 +9,31 @@ description: 通过 settings.yaml 和 FormKit 表单定义 Halo 主题设置项�
 
 主题设置只应描述主题自身的外观、布局和组件行为。Halo 已经提供的站点级能力应继续使用系统设置，避免同一项配置出现多个入口或产生冲突。
 
-| 能力 | 配置位置 | 主题中的用法 |
-| --- | --- | --- |
-| 站点 Logo、favicon | Console 系统设置 | `site.logo`、`site.favicon` |
-| 站点标题、描述、关键词和搜索引擎策略 | Console 系统设置 | 使用 `site` 变量，并遵循[搜索引擎优化](./seo.md)中的自动注入规则 |
+| 能力                                      | 配置位置                   | 主题中的用法                                                           |
+| ----------------------------------------- | -------------------------- | ---------------------------------------------------------------------- |
+| 站点 Logo、favicon                        | Console 系统设置           | `site.logo`、`site.favicon`                                            |
+| 站点标题、描述、关键词和搜索引擎策略      | Console 系统设置           | 使用 `site` 变量，并遵循[搜索引擎优化](./seo.md)中的自动注入规则       |
 | 全局 `<head>`、内容页 `<head>` 和页脚代码 | Console 系统设置的代码注入 | Halo 自动处理 head 注入；公共布局在 `</body>` 前提供 `<halo:footer />` |
-| 配色、布局、卡片样式和主题组件开关 | 主题设置 | `theme.config.[group].[name]` |
-| 仅该主题需要的品牌变体 | 可选主题设置 | 明确标为覆盖项，并回退到对应的 `site` 值 |
+| 配色、布局、卡片样式和主题组件开关        | 主题设置                   | `theme.config.[group].[name]`                                          |
+| 仅该主题需要的品牌变体                    | 可选主题设置               | 明确标为覆盖项，并回退到对应的 `site` 值                               |
 
 `theme.yaml` 中的 `spec.logo` 是 Console 中用于展示主题自身的图标，不是站点前台 Logo。前台默认应使用 `site.logo`：
 
 ```html
-<img th:if="${not #strings.isEmpty(site.logo)}" th:src="${site.logo}" th:alt="${site.title}" />
+<img
+  th:if="${not #strings.isEmpty(site.logo)}"
+  th:src="${site.logo}"
+  th:alt="${site.title}"
+/>
 ```
 
 如果主题确实需要深色专用 Logo，可以只提供可选覆盖项，并回退到系统 Logo：
 
 ```html
-<img th:src="${theme.config.brand?.dark_logo ?: site.logo}" th:alt="${site.title}" />
+<img
+  th:src="${theme.config.brand?.dark_logo ?: site.logo}"
+  th:alt="${site.title}"
+/>
 ```
 
 不要在主题设置中再次提供通用的 head、body 或页脚代码注入。主题自己的 CSS、布局模式等仍可以作为主题设置，但不应取代系统级站点配置。
@@ -99,7 +106,7 @@ spec:
           name: nav
           label: 导航栏布局
           value: "single"
-          options: 
+          options:
             - label: 单栏
               value: "single"
             - label: 双栏
@@ -123,17 +130,17 @@ Setting 资源的 `metadata.name` 必须和 `theme.yaml` 中的 `spec.settingNam
 
 ```html
 <body th:class="${theme.config.style.color_scheme}">
-    <!-- do something -->
+  <!-- do something -->
 </body>
 ```
 
 ```html
 <ul th:if="${theme.config.layout.nav == 'single'}">
-    <!-- do something -->
+  <!-- do something -->
 </ul>
 
 <div th:if="${theme.config.layout.nav == 'double'}">
-    <!-- do something -->
+  <!-- do something -->
 </div>
 ```
 
