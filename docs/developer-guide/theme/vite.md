@@ -92,4 +92,4 @@ pnpm build-only
 pnpm build
 ```
 
-`--watch` 只负责在文件变化后重新构建；Halo 端仍需关闭 Thymeleaf 缓存并安装、启用当前主题，具体步骤请参考[准备工作](./prepare.md)。
+`--watch` 只负责在文件变化后重新构建；Halo 端仍需关闭 Thymeleaf 缓存并安装、启用当前主题，具体步骤请参考[准备工作](./prepare.mdx)。

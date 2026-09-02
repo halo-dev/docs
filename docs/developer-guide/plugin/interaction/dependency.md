@@ -51,7 +51,7 @@ Halo 在安装或升级插件时检查：
 
 运行时插件版本与共享 API artifact 版本应建立清晰对应关系。破坏接口二进制兼容性的变更需要提高主版本，并同步收紧 `pluginDependencies` 范围。
 
-版本号应遵循[应用市场版本规范](../../app-store/publish-app.md#version-control)。
+版本号应遵循[应用市场版本规范](../../app-store/publish-app.mdx#version-control)。
 
 ## 源码参考
 

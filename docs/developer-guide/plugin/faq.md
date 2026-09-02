@@ -24,7 +24,7 @@ description: 插件开发中常见问题的排查方法，包括插件启动失�
 
 ## UI 扩展不加载 {#ui-not-loading}
 
-1. 确认插件已启用，且 UI 构建产物作为完整目录打包（清单 `ui-plugin.json`、入口、样式和分块缺一不可），参考 [UI 构建](./basics/ui/build.md)。
+1. 确认插件已启用，且 UI 构建产物作为完整目录打包（清单 `ui-plugin.json`、入口、样式和分块缺一不可），参考 [UI 构建](./basics/ui/build.mdx)。
 2. 打开浏览器开发者工具查看 Console 页面是否有加载错误（404、语法错误、共享依赖版本不兼容等）。
 3. 使用 `@halo-dev/ui-shared` 的 `stores.uiPlugins()` 查询插件 UI provider 是否被发现、是否注册成功及当前状态，参考[共享工具库](./api-reference/ui/shared.md)。
 4. 确认扩展点名称拼写与文档一致（如 `plugin:self:tabs:create`），错误的键名不会产生任何报错。

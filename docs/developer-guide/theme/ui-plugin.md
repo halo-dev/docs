@@ -96,6 +96,6 @@ spec:
   requires: ">=2.26.0"
 ```
 
-如果需要暂时保留 IIFE，可以在 Vite 或 Rsbuild 配置的顶层设置 `format: "iife"`。自动格式选择、`targetHaloVersion`、`ui-plugin.json` 和共享依赖的完整规则与插件相同，请参考 [插件 UI 构建](../plugin/basics/ui/build.md#output-format)。这些默认保证不适用于覆盖输出格式、资源路径、externals 或文件名的原生 Vite / Rsbuild 配置；自定义最终产物的兼容性和缓存安全由主题开发者负责。
+如果需要暂时保留 IIFE，可以在 Vite 或 Rsbuild 配置的顶层设置 `format: "iife"`。自动格式选择、`targetHaloVersion`、`ui-plugin.json` 和共享依赖的完整规则与插件相同，请参考 [插件 UI 构建](../plugin/basics/ui/build.mdx#output-format)。这些默认保证不适用于覆盖输出格式、资源路径、externals 或文件名的原生 Vite / Rsbuild 配置；自定义最终产物的兼容性和缓存安全由主题开发者负责。
 
 Halo 会把主题 provider 注册为 `theme:{metadata.name}`。例如主题名称为 `theme-earth` 时，可以通过 `stores.uiPlugins().get("theme:theme-earth")` 查询其状态。主题安装、升级、重载或切换后，需要完整刷新 Console 或 UC 页面以加载新的模块图。

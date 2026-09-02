@@ -37,7 +37,7 @@ Halo 插件通常使用 JUnit 5，测试代码位于 `src/test/java`。只验证
 ./gradlew :ui:pnpmCheck
 ```
 
-如果 UI 目录名为 `console`，将命令中的 `ui` 替换为 `console`。不同项目的 `pnpmCheck` 可能只运行单元测试，也可能同时运行格式、Lint 和类型检查；以仓库的 `ui/build.gradle`、`package.json` 和 CI 配置为准。接入方式参考 [UI 构建](./basics/ui/build.md)。
+如果 UI 目录名为 `console`，将命令中的 `ui` 替换为 `console`。不同项目的 `pnpmCheck` 可能只运行单元测试，也可能同时运行格式、Lint 和类型检查；以仓库的 `ui/build.gradle`、`package.json` 和 CI 配置为准。接入方式参考 [UI 构建](./basics/ui/build.mdx)。
 
 不要手动修改 OpenAPI 生成的 API client。API 契约变化时，应运行项目已有的生成任务，并把生成差异与后端契约一起审查。
 

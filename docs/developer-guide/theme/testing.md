@@ -7,7 +7,7 @@ description: 在主题开发过程中定位 Thymeleaf、路由、静态资源和
 
 ## 建立开发反馈循环
 
-1. 按[准备工作](./prepare.md)关闭 Thymeleaf 缓存，并安装、启用当前主题。
+1. 按[准备工作](./prepare.mdx)关闭 Thymeleaf 缓存，并安装、启用当前主题。
 2. 使用 Vite 工程时执行 `pnpm dev` 持续生成 `templates`；不使用构建工具时直接修改主题源码。
 3. 修改 `theme.yaml` 或设置表单后，在 Console 中重载主题配置。
 4. 同时观察 Halo 日志以及浏览器 Console 和 Network，不能只根据页面是否显示判断结果。

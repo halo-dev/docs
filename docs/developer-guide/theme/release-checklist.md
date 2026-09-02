@@ -111,4 +111,4 @@ Artifact path and SHA-256:
 
 macOS 可以使用 `shasum -a 256 dist/theme-name-version.zip` 生成摘要。发现以下任一问题时应停止发布：构建或打包失败、无法安装或启用、主要页面返回服务端错误、缺少可选插件时主题不可用、制品版本不一致，或 ZIP 中包含不应分发的敏感文件。
 
-验收通过后，再根据[发布应用](../app-store/publish-app.md)准备版本说明、截图、许可证和应用市场资料。
+验收通过后，再根据[发布应用](../app-store/publish-app.mdx)准备版本说明、截图、许可证和应用市场资料。

@@ -76,4 +76,4 @@ unzip -l dist/theme-foo-1.2.0.zip
 
 完整的页面、升级和兼容性验证请参考[主题发布验收清单](./release-checklist.md)。
 
-通过 GitHub Actions 发布并同步到应用市场的配置，请参考[发布应用](../app-store/publish-app.md#使用-github-actions-自动构建和发布)。
+通过 GitHub Actions 发布并同步到应用市场的配置，请参考[发布应用](../app-store/publish-app.mdx#使用-github-actions-自动构建和发布)。

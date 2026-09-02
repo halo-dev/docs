@@ -59,7 +59,7 @@ Halo 的 Plugin Schema 要求最终安装包中的 `spec.version` 为完整的 S
 如果在 `plugin.yaml` 中配置了 `settingName`，但没有提供对应的 Setting 资源文件，插件将因为找不到 `metadata.name` 与 `settingName` 一致的 Setting 而无法启动。
 :::
 
-从 `@halo-dev/ui-plugin-bundler-kit@2.26.0` 开始，`spec.requires` 也用于自动选择 UI 构建格式。支持的推导写法和回退行为请参考 [UI 构建 > 输出格式与 Halo 目标](./ui/build.md#output-format)。
+从 `@halo-dev/ui-plugin-bundler-kit@2.26.0` 开始，`spec.requires` 也用于自动选择 UI 构建格式。支持的推导写法和回退行为请参考 [UI 构建 > 输出格式与 Halo 目标](./ui/build.mdx#output-format)。
 
 ## 插件运行模式
 
@@ -82,7 +82,7 @@ halo:
     runtime-mode: deployment
 ```
 
-参考 [传统方式运行](../hello-world.md#run-with-traditional-way)
+参考 [传统方式运行](../hello-world.mdx#run-with-traditional-way)
 
 #### 以 `development` 模式运行插件
 
@@ -109,7 +109,7 @@ halo:
 :::tip development 模式的插件加载方式
 
 1. `development` 开发模式下，既可以运行 `fixed-plugin-path` 下的插件，也可以运行通过 `Console` 管理端安装的 JAR 格式的插件。
-2. 如果使用 [DevTools 运行方式](../hello-world.md#run-with-devtools) 来开发插件，则不需要配置 `runtime-mode` 和 `fixed-plugin-path`。
+2. 如果使用 [DevTools 运行方式](../hello-world.mdx#run-with-devtools) 来开发插件，则不需要配置 `runtime-mode` 和 `fixed-plugin-path`。
 
 :::
 

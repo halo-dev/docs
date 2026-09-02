@@ -38,7 +38,7 @@ unzip -p 'build/libs/plugin-name-1.2.3.jar' META-INF/MANIFEST.MF
 - JAR 根目录包含 `plugin.yaml`，其中 `metadata.name`、`spec.version`、`spec.requires`、插件依赖、Logo、主页、问题反馈地址和许可证正确。
 - Manifest 包含正确的 `Plugin-Main-Class` 和 `Implementation-Version`。
 - 后端类、`extensions`、设置、模板、静态资源和其他运行时资源完整。
-- 包含 UI 的插件应打包完整的 `ui` 目录；使用 ESM 输出时，`ui/ui-plugin.json` 记录的入口、样式和异步资源均存在。旧项目可能使用 `console` 目录，具体规则参考 [UI 构建](./basics/ui/build.md#output-format)。
+- 包含 UI 的插件应打包完整的 `ui` 目录；使用 ESM 输出时，`ui/ui-plugin.json` 记录的入口、样式和异步资源均存在。旧项目可能使用 `console` 目录，具体规则参考 [UI 构建](./basics/ui/build.mdx#output-format)。
 - API 契约变化后已经运行 `generateApiClient`，UI 使用生成的模型和请求方法，没有另行手写同一资源的类型和路径。
 - JAR 不包含凭据、私钥、`.env`、本地工作目录、测试数据或其他不应分发的文件。
 
@@ -76,7 +76,7 @@ Halo 的可复用插件 CI 工作流运行 `./gradlew clean build`，能够执�
 - `artifacts-path` 只匹配计划发布的制品。
 - 首次上架前不自动同步应用市场；首次审核通过后再配置应用 ID 和最小权限的个人令牌。
 
-CI/CD 配置和应用市场流程参考[发布应用](../app-store/publish-app.md#使用-github-actions-自动构建和发布)。
+CI/CD 配置和应用市场流程参考[发布应用](../app-store/publish-app.mdx#使用-github-actions-自动构建和发布)。
 
 ## 记录发布证据
 
@@ -96,4 +96,4 @@ Artifact path and SHA-256:
 
 macOS 可以使用 `shasum -a 256 'build/libs/plugin-name-1.2.3.jar'`，Linux 可以使用 `sha256sum 'build/libs/plugin-name-1.2.3.jar'` 生成摘要。
 
-发现以下任一问题时应停止发布：检查或构建失败、JAR 无法安装或启用、版本信息不一致、主要功能或权限失效、升级导致数据损坏，或制品包含不应分发的敏感文件。验收通过后，再根据[发布应用](../app-store/publish-app.md)准备版本说明、截图、许可证和应用市场资料。
+发现以下任一问题时应停止发布：检查或构建失败、JAR 无法安装或启用、版本信息不一致、主要功能或权限失效、升级导致数据损坏，或制品包含不应分发的敏感文件。验收通过后，再根据[发布应用](../app-store/publish-app.mdx)准备版本说明、截图、许可证和应用市场资料。

@@ -3,6 +3,8 @@ title: 构建
 description: 使用 ui-plugin-bundler-kit 的 Vite 或 Rsbuild 预配置构建 Halo 插件 UI，选择 ESM 或 IIFE 输出并正确打包共享依赖、清单和异步资源
 ---
 
+import { Steps } from "@rspress/core/theme";
+
 通过 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建的项目已经包含可用构建配置。没有特殊需求时沿用脚手架配置，不要重新实现 Halo 的输出协议。
 
 | 任务                                 | 阅读位置                                                |
@@ -378,117 +380,125 @@ ESM 入口仍需默认导出已有的 `PluginModule`，不应通过顶层副作�
 
 如果你当前的插件使用的是旧版本的 [plugin-starter](https://github.com/halo-dev/plugin-starter)，并且想使用新的 `viteConfig` 和 `rsbuildConfig`，可以参考以下步骤：
 
-1. 更新 `@halo-dev/ui-plugin-bundler-kit` 至 `2.26.0` 或更高版本
+<Steps>
 
-   ```bash
-   pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
-   ```
+### 更新 `@halo-dev/ui-plugin-bundler-kit`
 
-2. 更新 `vite.config.ts` 文件
+更新至 `2.26.0` 或更高版本：
 
-   ```typescript
-   import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
+```bash
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
+```
 
-   export default viteConfig({
-     vite: {
-       // Vite 配置需要按照原有的配置进行修改，但需要移除 Vue 插件，因为已经内置
-       plugins: [],
-     },
-   });
-   ```
+### 更新 `vite.config.ts`
 
-3. 更新项目根目录的 `build.gradle` 文件
+```typescript
+import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
-   ```groovy
-   plugins {
-       id 'java'
-       id "io.freefair.lombok" version "8.13"
-       id "run.halo.plugin.devtools" version "0.8.0"
-   }
+export default viteConfig({
+  vite: {
+    // Vite 配置需要按照原有的配置进行修改，但需要移除 Vue 插件，因为已经内置
+    plugins: [],
+  },
+});
+```
 
-   group 'com.example.starter'
+### 更新项目根目录的 `build.gradle`
 
-   repositories {
-       mavenCentral()
-   }
+```groovy
+plugins {
+    id 'java'
+    id "io.freefair.lombok" version "8.13"
+    id "run.halo.plugin.devtools" version "0.8.0"
+}
 
-   dependencies {
-       implementation platform('run.halo.tools.platform:plugin:2.26.0')
-       compileOnly 'run.halo.app:api'
+group 'com.example.starter'
 
-       testImplementation 'run.halo.app:api'
-       testImplementation 'org.springframework.boot:spring-boot-starter-test'
-       testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-   }
+repositories {
+    mavenCentral()
+}
 
-   test {
-       useJUnitPlatform()
-   }
+dependencies {
+    implementation platform('run.halo.tools.platform:plugin:2.26.0')
+    compileOnly 'run.halo.app:api'
 
-   java {
-       toolchain {
-           languageVersion = JavaLanguageVersion.of(21)
-       }
-   }
+    testImplementation 'run.halo.app:api'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
 
-   tasks.withType(JavaCompile).configureEach {
-       options.encoding = "UTF-8"
-       options.release = 21
-   }
+test {
+    useJUnitPlatform()
+}
 
-   tasks.register('processUiResources', Copy) {
-       from project(':ui').layout.buildDirectory.dir('dist')
-       into layout.buildDirectory.dir('resources/main/ui')
-       dependsOn project(':ui').tasks.named('assemble')
-       shouldRunAfter tasks.named('processResources')
-   }
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
-   tasks.named('classes') {
-       dependsOn tasks.named('processUiResources')
-   }
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+    options.release = 21
+}
 
-   halo {
-       version = '2.26'
-   }
-   ```
+tasks.register('processUiResources', Copy) {
+    from project(':ui').layout.buildDirectory.dir('dist')
+    into layout.buildDirectory.dir('resources/main/ui')
+    dependsOn project(':ui').tasks.named('assemble')
+    shouldRunAfter tasks.named('processResources')
+}
 
-4. 在 ui 或者 console 目录新建 `build.gradle` 文件，内容如下：
+tasks.named('classes') {
+    dependsOn tasks.named('processUiResources')
+}
 
-   ```groovy
-   plugins {
-       id 'base'
-       id "com.github.node-gradle.node" version "7.1.0"
-   }
+halo {
+    version = '2.26'
+}
+```
 
-   group 'com.example.starter.ui'
+### 新建 UI 构建配置
 
-   tasks.register('buildFrontend', PnpmTask) {
-       group = 'build'
-       description = 'Builds the UI project using pnpm.'
-       args = ['build']
-       dependsOn tasks.named('pnpmInstall')
-       inputs.dir(layout.projectDirectory.dir('src'))
-       inputs.files(fileTree(
-               dir: layout.projectDirectory,
-               includes: ['*.cjs', '*.ts', '*.js', '*.json', '*.yaml']))
-       outputs.dir(layout.buildDirectory.dir('dist'))
-   }
+在 ui 或者 console 目录新建 `build.gradle` 文件，内容如下：
 
-   tasks.register('pnpmCheck', PnpmTask) {
-       group = 'verification'
-       description = 'Runs unit tests using pnpm.'
-       args = ['test:unit']
-       dependsOn tasks.named('pnpmInstall')
-   }
+```groovy
+plugins {
+    id 'base'
+    id "com.github.node-gradle.node" version "7.1.0"
+}
 
-   tasks.named('check') {
-       dependsOn tasks.named('pnpmCheck')
-   }
+group 'com.example.starter.ui'
 
-   tasks.named('assemble') {
-       dependsOn tasks.named('buildFrontend')
-   }
-   ```
+tasks.register('buildFrontend', PnpmTask) {
+    group = 'build'
+    description = 'Builds the UI project using pnpm.'
+    args = ['build']
+    dependsOn tasks.named('pnpmInstall')
+    inputs.dir(layout.projectDirectory.dir('src'))
+    inputs.files(fileTree(
+            dir: layout.projectDirectory,
+            includes: ['*.cjs', '*.ts', '*.js', '*.json', '*.yaml']))
+    outputs.dir(layout.buildDirectory.dir('dist'))
+}
+
+tasks.register('pnpmCheck', PnpmTask) {
+    group = 'verification'
+    description = 'Runs unit tests using pnpm.'
+    args = ['test:unit']
+    dependsOn tasks.named('pnpmInstall')
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('pnpmCheck')
+}
+
+tasks.named('assemble') {
+    dependsOn tasks.named('buildFrontend')
+}
+```
+
+</Steps>
 
 进行此变更的主要目的是保证 UI 构建产物不直接输出到源码目录，而是通过 Gradle 复制到 `build/resources/main/ui` 并打包到插件 JAR 中。
 

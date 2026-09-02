@@ -3,6 +3,8 @@ title: 代码贡献
 description: 参与 Halo 代码贡献的完整流程，涵盖查找并认领 Good First Issue、Fork 与同步仓库、创建分支、提交代码、发起及更新 Pull Request。
 ---
 
+import { Steps } from "@rspress/core/theme";
+
 欢迎关注并有想法参与 Halo 的开发，以下是关于如何参与到 Halo 项目的指南，仅供参考。
 
 ## 发现 Issue
@@ -26,52 +28,56 @@ Issue。这样可避免两位贡献者在同一个问题上花时间。
 
 ## 代码贡献步骤
 
-1. Fork 此仓库
+<Steps>
 
-   点击 Halo 仓库主页右上角的 `Fork` 按钮即可。
+### Fork 此仓库
 
-2. Clone 仓库到本地
+点击 Halo 仓库主页右上角的 `Fork` 按钮即可。
 
-   ```bash
-   git clone https://github.com/{YOUR_USERNAME}/halo
-   # 或者 git clone git@github.com:{YOUR_USERNAME}/halo.git
-   ```
+### Clone 仓库到本地
 
-3. 添加主仓库
+```bash
+git clone https://github.com/{YOUR_USERNAME}/halo
+# 或者 git clone git@github.com:{YOUR_USERNAME}/halo.git
+```
 
-   添加主仓库方便未来同步主仓库最新的 commits 以及创建新的分支。
+### 添加主仓库
 
-   ```bash
-   git remote add upstream https://github.com/halo-dev/halo.git
-   # 或者 git remote add upstream git@github.com:halo-dev/halo.git
-   git fetch upstream main
-   ```
+添加主仓库方便未来同步主仓库最新的 commits 以及创建新的分支。
 
-4. 创建新的开发分支
+```bash
+git remote add upstream https://github.com/halo-dev/halo.git
+# 或者 git remote add upstream git@github.com:halo-dev/halo.git
+git fetch upstream main
+```
 
-   我们需要从主仓库的主分支创建一个新的开发分支。
+### 创建新的开发分支
 
-   ```bash
-   git switch --create {BRANCH_NAME} upstream/main
-   ```
+我们需要从主仓库的主分支创建一个新的开发分支。
 
-5. 提交代码
+```bash
+git switch --create {BRANCH_NAME} upstream/main
+```
 
-   ```bash
-   git add {CHANGED_FILES}
-   git commit -s -m "Fix the issue description"
-   git push origin {BRANCH_NAME}
-   ```
+### 提交代码
 
-6. 合并主分支
+```bash
+git add {CHANGED_FILES}
+git commit -s -m "Fix the issue description"
+git push origin {BRANCH_NAME}
+```
 
-   在提交 Pull Request 之前，尽量保证当前分支和主分支的代码尽可能同步，这时需要我们手动操作。示例：
+### 合并主分支
 
-   ```bash
-   git fetch upstream
-   git merge upstream/main
-   git push origin {BRANCH_NAME}
-   ```
+在提交 Pull Request 之前，尽量保证当前分支和主分支的代码尽可能同步，这时需要我们手动操作。示例：
+
+```bash
+git fetch upstream
+git merge upstream/main
+git push origin {BRANCH_NAME}
+```
+
+</Steps>
 
 ## Pull Request
 
