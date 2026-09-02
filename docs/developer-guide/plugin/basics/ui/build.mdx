@@ -48,7 +48,7 @@ pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
 
 创建 vite.config.ts:
 
-```js
+```ts
 import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
 export default viteConfig();
@@ -68,7 +68,7 @@ export default viteConfig();
 
 #### 配置
 
-```js
+```ts
 import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
 export default viteConfig({
@@ -86,7 +86,7 @@ export default viteConfig({
 
 1. 添加路径别名
 
-   ```js
+   ```ts
    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
    import path from "path";
 
@@ -104,7 +104,7 @@ export default viteConfig({
 
 2. 添加额外的 Vite 插件
 
-   ```js
+   ```ts
    import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
    import { defineConfig } from "vite";
    import UnoCSS from "unocss/vite";
@@ -134,7 +134,7 @@ pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 @rsbuild/core @rsbuild/plugi
 
 创建 rsbuild.config.ts:
 
-```js
+```ts
 import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
 export default rsbuildConfig();
@@ -154,7 +154,7 @@ export default rsbuildConfig();
 
 #### 配置
 
-```js
+```ts
 import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
 export default rsbuildConfig({
@@ -172,7 +172,7 @@ export default rsbuildConfig({
 
 1. 添加路径别名
 
-   ```js
+   ```ts
    import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
    export default rsbuildConfig({
@@ -189,7 +189,7 @@ export default rsbuildConfig({
 
 2. 添加额外的 Rsbuild 插件
 
-   ```js
+   ```ts
    import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
    import { pluginSass } from "@rsbuild/plugin-sass";
 
@@ -506,7 +506,7 @@ tasks.named('assemble') {
 
 viteConfig:
 
-```js
+```ts
 import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
 
 const OUT_DIR_PROD = "../src/main/resources/ui";
@@ -528,7 +528,7 @@ export default viteConfig({
 
 rsbuildConfig:
 
-```js
+```ts
 import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
 
 const OUT_DIR_PROD = "../src/main/resources/ui";

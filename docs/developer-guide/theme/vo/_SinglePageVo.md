@@ -1,4 +1,4 @@
-```json title="SinglePageVo"
+```jsonc title="SinglePageVo"
 {
   "metadata": {
     "name": "string", // 唯一标识

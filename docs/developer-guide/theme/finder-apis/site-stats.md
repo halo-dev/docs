@@ -34,7 +34,7 @@ siteStatsFinder.getStats();
 
 ### SiteStatsVo
 
-```json title="SiteStatsVo"
+```jsonc title="SiteStatsVo"
 {
   "visit": 0, // 访问数量
   "upvote": 0, // 点赞数量

@@ -1,4 +1,4 @@
-```json title="SiteSettingVo"
+```jsonc title="SiteSettingVo"
 {
   "title": "string", // 站点标题
   "subtitle": "string", // 站点副标题

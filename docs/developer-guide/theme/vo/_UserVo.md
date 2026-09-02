@@ -1,4 +1,4 @@
-```json title="UserVo"
+```jsonc title="UserVo"
 {
   "metadata": {
     "name": "string", // 唯一标识

@@ -1,4 +1,4 @@
-```json title="CommentVo"
+```jsonc title="CommentVo"
 {
   "metadata": {
     "name": "string", // 唯一标识

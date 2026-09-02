@@ -1,4 +1,4 @@
-```json title="ContributorVo"
+```jsonc title="ContributorVo"
 {
   "name": "string", // 用户名
   "displayName": "string", // 显示名称

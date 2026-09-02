@@ -1,4 +1,4 @@
-```json title="ListedPostVo"
+```jsonc title="ListedPostVo"
 {
   "metadata": {
     "name": "string", // 唯一标识

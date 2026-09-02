@@ -138,7 +138,7 @@ Halo 付费版在 2.16 中新增了集成 Redis 的功能，目前提供将用�
 
 如果使用 Docker 或者 Docker Compose 部署，需要添加以下启动参数：
 
-```properties
+```yaml
 - --spring.data.redis.host=localhost  # Redis 服务地址
 - --spring.data.redis.port=6379       # Redis 服务端口
 - --spring.data.redis.database=0      # Redis 数据库

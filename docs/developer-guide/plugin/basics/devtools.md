@@ -36,7 +36,7 @@ Release 版本和版本说明可以在 [GitHub Releases](https://github.com/halo
 
 看到如下日志时表示 Halo 服务已经启动成功：
 
-```shell
+```text
 =======================================================================
 > Halo 启动成功！
 访问地址：http://localhost:8090/console?language=zh-CN
@@ -93,7 +93,7 @@ halo {
 - `docker.url`：用于配置连接 Docker 的 URL。未配置时使用 Docker Client 的默认配置和 `DOCKER_HOST`、`DOCKER_TLS_VERIFY`、`DOCKER_CERT_PATH` 等环境变量。
 - `docker.apiVersion`：Docker 的 API 版本。大多数情况下无需配置；如需固定版本，可以使用 `docker version` 命令查看，例如：
 
-  ```shell
+  ```shellsession
   ➤ docker version
   Client:
   Version:           24.0.7

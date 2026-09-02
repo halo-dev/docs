@@ -123,7 +123,7 @@ postFinder.cursorByCategory(postName);
 
 对应的 Public API 为：
 
-```bash
+```http
 GET /apis/api.content.halo.run/v1alpha1/posts/{name}/navigation?scope=category
 ```
 
@@ -544,7 +544,7 @@ postFinder.archives(page, size, year, month);
 
 ### NavigationPostVo
 
-```json title="NavigationPostVo"
+```jsonc title="NavigationPostVo"
 {
   "previous": "#ListedPostVo", // 上一篇文章，发布时间较当前文章更早的文章
   "next": "#ListedPostVo" // 下一篇文章，发布时间较当前文章更新的文章
@@ -563,7 +563,7 @@ postFinder.archives(page, size, year, month);
 
 ### ListResult\<ListedPostVo\>
 
-```json title="ListResult<ListedPostVo>"
+```jsonc title="ListResult<ListedPostVo>"
 {
   "page": 0, // 当前页码
   "size": 0, // 每页条数
@@ -597,7 +597,7 @@ postFinder.archives(page, size, year, month);
 
 ### ListResult\<PostArchiveVo\>
 
-```json title="ListResult<PostArchiveVo>"
+```jsonc title="ListResult<PostArchiveVo>"
 {
   "page": 0, // 当前页码
   "size": 0, // 每页条数

@@ -1,4 +1,4 @@
-```json title="CategoryTreeVo"
+```jsonc title="CategoryTreeVo"
 {
   "metadata": {
     "name": "string", // 唯一标识

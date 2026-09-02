@@ -4,19 +4,19 @@ This website is built using [Rspress](https://rspress.rs/), a modern static webs
 
 ### Installation
 
-```
+```bash
 pnpm install
 ```
 
 > If you don’t have pnpm installed, you can install it with the following command:
 
-```
+```bash
 npm install -g pnpm
 ```
 
 ### Local Development
 
-```
+```bash
 pnpm start
 ```
 
@@ -24,7 +24,7 @@ This command starts a local development server and opens up a browser window. Mo
 
 ### Build
 
-```
+```bash
 pnpm build
 ```
 

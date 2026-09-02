@@ -25,7 +25,7 @@ description: 配置 Halo 主题的 404、4xx、500、5xx 与默认错误模板�
 
 #### 变量类型
 
-```json
+```jsonc
 {
   "detail": "string", // 异常详细信息
   "instance": "string", // 异常实例

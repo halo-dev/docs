@@ -1,4 +1,4 @@
-```json title="MenuVo"
+```jsonc title="MenuVo"
 {
   "metadata": {
     "name": "string", // 唯一标识

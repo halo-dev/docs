@@ -1,4 +1,4 @@
-```json title="MenuItemVo"
+```jsonc title="MenuItemVo"
 {
   "metadata": {
     "name": "string", // 唯一标识
