@@ -45,6 +45,30 @@ pnpm create halo-plugin
 
 更多关于插件创建工具的信息可查阅：[halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin)
 
+## 按需扩展项目
+
+从 `create-halo-plugin` 1.6.0 开始，可以在已有插件项目的根目录中按需添加 UI 项目或 Java 模块，无需重新创建插件或手动复制模板。
+
+### 添加 UI 项目
+
+```bash
+pnpm dlx create-halo-plugin@latest add ui --tool vite
+# 或
+pnpm dlx create-halo-plugin@latest add ui --tool rsbuild
+```
+
+命令会先展示将要创建或更新的文件；重复执行相同命令不会产生变化，已有的 `ui/` 目录或无法识别的 Gradle 配置也不会被覆盖。UI 项目的构建方式可查阅：[UI 构建](./basics/ui/build.mdx)。
+
+### 添加 Java 模块
+
+```bash
+pnpm dlx create-halo-plugin@latest add module api
+```
+
+可以将 `api` 替换为实际模块名。命令会创建 Java 源码与测试目录、Maven Central 发布配置、模块 README 和 `.github/workflows/publish.yml`，并自动配置模块依赖。发布工作流从 `main` 分支发布 SNAPSHOT 版本，从 `v*` 标签发布正式版本；运行前需要配置工作流中列出的 Maven Central 和签名密钥。
+
+如果模块用于向其他插件提供 Java API，可继续阅读：[发布共享 Java API](./interaction/shared-java-api.md)。
+
 ## 运行插件
 
 现在有了一个空项目，我们需要让插件以最小配置运行起来，这里提供两种运行方式。

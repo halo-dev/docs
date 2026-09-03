@@ -10,7 +10,7 @@ description: 准备 Halo 插件开发所需的 Java、Spring Boot、Vue、TypeSc
 - 你能通过 [Docker 运行 Halo](../../guide/install/docker.mdx) 或在[开发环境运行 Halo](../core/run.mdx)。
 - 你需要安装 Java 21 或更高版本。
 - 你熟悉 Java Web 开发并掌握 [Spring Boot](https://spring.io/projects/spring-boot/) 框架。
-- 如果插件包含 UI，你需要安装 Node.js `^20.19.0` 或 `>=22.12.0`。可以从 [Node.js 官网](https://nodejs.org/)下载安装。
+- 你需要安装 Node.js `>=22.0.0` 来运行插件创建工具；如果插件包含 UI，则至少需要 Node.js `>=22.12.0`。可以从 [Node.js 官网](https://nodejs.org/)下载安装。
 - 你熟悉 Vue 和 TypeScript。
 - 你应该熟悉使用 pnpm，并以脚手架生成的 `ui/package.json` 中 `packageManager` 声明的版本为准。
 - Git 是一个版本控制系统，用于跟踪代码的更改，您需要 Git 来下载示例插件并发布插件。
