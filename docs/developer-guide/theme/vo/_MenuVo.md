@@ -13,10 +13,10 @@
   "spec": {
     "displayName": "string", // 显示名称
     "menuItems": [
-      // 菜单的菜单项名称集合，即 MenuItem 的 metadata.name 的集合
+      // 自 Halo 2.26.0 起已弃用，请使用 MenuItem.spec.menuName 和 MenuItem.spec.parent
       "string",
     ],
   },
-  "menuItems": "List<#MenuItemVo>", // 菜单项的集合
+  "menuItems": "List<#MenuItemVo>", // menuFinder 根据当前层级关系构建的根菜单项集合
 }
 ```

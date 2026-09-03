@@ -6,6 +6,10 @@ description: 使用 MenuFinder 按唯一标识查询导航菜单或获取站点�
 import MenuItemVo from "../vo/_MenuItemVo.md";
 import MenuVo from "../vo/_MenuVo.md";
 
+本页 API 自 Halo 2.0.0 起可用。
+
+从 Halo 2.26.0 开始，菜单项通过 `MenuItem.spec.menuName` 归属菜单，并通过 `MenuItem.spec.parent` 记录父级。`menuFinder` 返回的 `menu.menuItems` 已按该关系组成树；请通过每个节点的 `children` 渲染子菜单，不要读取已弃用的 `Menu.spec.menuItems` 或 `MenuItem.spec.children`。
+
 ## getByName(name)
 
 ```js
@@ -62,18 +66,28 @@ menuFinder.getPrimary();
 ### 示例
 
 ```html
-<div th:with="menu = ${menuFinder.getPrimary()}">
-  <ul th:with="menuItems = ${menu.menuItems}">
-    <li th:each="menuItem : ${menuItems}">
-      <a
-        th:href="@{${menuItem.status.href}}"
-        th:text="${menuItem.status.displayName}"
-        th:target="${menuItem.spec.target?.value}"
-      >
-      </a>
-    </li>
-  </ul>
-</div>
+<nav th:with="menu = ${menuFinder.getPrimary()}">
+  <th:block
+    th:replace="~{modules/menu-tree :: tree(menuItems=${menu.menuItems})}"
+  ></th:block>
+</nav>
+```
+
+```html title="/templates/modules/menu-tree.html"
+<ul th:fragment="tree (menuItems)">
+  <li th:each="menuItem : ${menuItems}">
+    <a
+      th:href="@{${menuItem.status.href}}"
+      th:text="${menuItem.status.displayName}"
+      th:target="${menuItem.spec.target?.value}"
+    ></a>
+    <th:block th:if="${not #lists.isEmpty(menuItem.children)}">
+      <th:block
+        th:replace="~{modules/menu-tree :: tree(menuItems=${menuItem.children})}"
+      ></th:block>
+    </th:block>
+  </li>
+</ul>
 ```
 
 ## 类型定义

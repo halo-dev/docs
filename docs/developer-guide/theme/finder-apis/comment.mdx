@@ -6,6 +6,8 @@ description: 使用 CommentFinder 按名称查询评论、按内容引用分页�
 import CommentVo from "../vo/_CommentVo.md";
 import ReplyVo from "../vo/_ReplyVo.md";
 
+本页 API 自 Halo 2.0.0 起可用。
+
 ## getByName(name)
 
 ```js
@@ -28,7 +30,7 @@ commentFinder.getByName(name);
 
 ```html
 <div th:with="comment = ${commentFinder.getByName('comment-foo')}">
-  <span th:text="${comment.spec.owner.displayName}"></span>
+  <span th:text="${comment.owner.displayName}"></span>
   <div th:text="${comment.spec.content}"></div>
 </div>
 ```
@@ -42,6 +44,8 @@ commentFinder.list(ref, page, size);
 ### 描述
 
 根据评论主体的引用（Ref）和分页参数获取评论列表，例如获取某篇文章下的评论。
+
+其中以 Map 字面量传递 `ref` 的形式自 Halo 2.10.1 起可用。
 
 ### 参数
 
@@ -62,7 +66,7 @@ commentFinder.list(ref, page, size);
   th:with="comments = ${commentFinder.list({ group: 'content.halo.run', version: 'v1alpha1', kind: 'Post', name: 'post-foo' },1,10)}"
 >
   <li th:each="comment : ${comments.items}">
-    <span th:text="${comment.spec.owner.displayName}"></span>
+    <span th:text="${comment.owner.displayName}"></span>
     <div th:text="${comment.spec.content}"></div>
   </li>
 </ul>
@@ -93,7 +97,7 @@ commentFinder.listReply(commentName, page, size);
 ```html
 <ul th:with="replies = ${commentFinder.listReply('comment-foo',1,10)}">
   <li th:each="reply : ${replies.items}">
-    <span th:text="${reply.spec.owner.displayName}"></span>
+    <span th:text="${reply.owner.displayName}"></span>
     <div th:text="${reply.spec.content}"></div>
   </li>
 </ul>
@@ -104,6 +108,8 @@ commentFinder.listReply(commentName, page, size);
 ### CommentVo
 
 <CommentVo />
+
+公开查询会清空评论者标识、邮箱和 IP 地址。需要展示评论者信息时，请使用 `owner.displayName`、`owner.avatar` 和 `owner.kind`；需要展示公开回复数时，请使用 `status.visibleReplyCount`。
 
 ### ListResult\<CommentVo\>
 

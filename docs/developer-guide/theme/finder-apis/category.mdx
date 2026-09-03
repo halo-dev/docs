@@ -6,6 +6,8 @@ description: 使用 CategoryFinder 按唯一标识查询单个或多个文章分
 import CategoryVo from "../vo/_CategoryVo.md";
 import CategoryTreeVo from "../vo/_CategoryTreeVo.md";
 
+除另行注明外，本页 API 自 Halo 2.0.0 起可用。
+
 ## getByName(name)
 
 ```js
@@ -193,6 +195,8 @@ categoryFinder.listAsTree(name);
 
 根据分类的 `metadata.name` 获取以该分类为根节点的多层级结构。返回列表的第一个元素是指定的根分类，其 `children` 包含直接子分类；分类不存在时返回空列表。
 
+**引入版本**：2.1.0
+
 ### 参数
 
 1. `name:string` - 根分类的唯一标识 `metadata.name`。
@@ -228,6 +232,8 @@ categoryFinder.getParentByName(name);
 
 根据分类的 `metadata.name` 获取其直接父分类。当前分类没有有效父分类时返回空值。
 
+**引入版本**：2.12.0
+
 ### 参数
 
 1. `name:string` - 当前分类的唯一标识 `metadata.name`。
@@ -257,6 +263,8 @@ categoryFinder.getBreadcrumbs("category-foo");
 ### 描述
 
 获取分类树结构的路径节点，可以通过此方法来构建面包屑导航。
+
+**引入版本**：2.17.0
 
 ### 参数
 

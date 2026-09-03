@@ -14,8 +14,10 @@
     "displayName": "string", // 显示名称，但是不要直接使用这个字段进行显示，最终字段为 status.displayName
     "href": "string", // 链接，同样不要直接使用这个字段，最终字段为 status.href
     "priority": 0, // 排序字段
+    "menuName": "string", // 所属菜单的 metadata.name，自 Halo 2.26.0 起作为菜单归属依据
+    "parent": "string", // 父菜单项的 metadata.name，根菜单项为空
     "children": [
-      // 下级菜单项，菜单项的 metadata.name 集合
+      // 自 Halo 2.26.0 起已弃用，请使用 spec.parent 表示层级
       "string",
     ],
     "target": "#Target", // 菜单页面打开方式，枚举类型
@@ -31,8 +33,8 @@
     "displayName": "string", // 显示名称
     "href": "string", // 链接
   },
-  "children": "List<#MenuItemVo>", // 下级菜单项，MenuItemVo 的集合
-  "parentName": "string",
+  "children": "List<#MenuItemVo>", // menuFinder 根据 spec.parent 构建的直接子菜单项
+  "parentName": "string", // spec.parent 的值
 }
 ```
 

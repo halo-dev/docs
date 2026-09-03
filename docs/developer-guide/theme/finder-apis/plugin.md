@@ -3,6 +3,8 @@ title: 插件
 description: 使用 PluginFinder 检查指定 Halo 插件是否已启动，或进一步按 Semantic Version 版本范围判断插件是否可用
 ---
 
+除另行注明外，本页 API 自 Halo 2.0.0 起可用。
+
 ## available(pluginName)
 
 ```js
@@ -39,6 +41,8 @@ pluginFinder.available("fake-plugin", ">=2.3.0");
 ### 描述
 
 判断插件是否处于 `STARTED` 状态，且插件版本符合 `requiresVersion` 要求。
+
+**引入版本**：2.17.0
 
 ### 参数
 

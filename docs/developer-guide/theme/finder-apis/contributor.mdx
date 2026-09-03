@@ -5,6 +5,8 @@ description: 使用 ContributorFinder 按 metadata.name 查询单个或多个作
 
 import ContributorVo from "../vo/_ContributorVo.md";
 
+本页 API 自 Halo 2.0.0 起可用。
+
 ## getContributor(name)
 
 ```js
@@ -55,7 +57,7 @@ List\<[#ContributorVo](#contributorvo)\>
 
 ```html
 <div
-  th:with="contributors = ${contributorFinder.getContributors({'contributor-foo, 'contributor-bar'})}"
+  th:with="contributors = ${contributorFinder.getContributors({'contributor-foo', 'contributor-bar'})}"
 >
   <span
     th:each="contributor : ${contributors}"

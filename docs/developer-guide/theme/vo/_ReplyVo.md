@@ -16,14 +16,15 @@
     "owner": {
       // 创建者关联
       "kind": "string",
-      "name": "string",
+      "name": "", // 公开查询中已脱敏
       "displayName": "string",
       "annotations": {
         "additionalProp1": "string",
+        "email-hash": "string", // 邮箱的 SHA-256，仅在邮箱存在时提供
       },
     },
     "userAgent": "string", // 评论者 UserAgent 信息
-    "ipAddress": "string", // 评论者 IP 地址
+    "ipAddress": "", // 公开查询中已脱敏
     "priority": 0, // 排序字段
     "top": false, // 是否置顶
     "allowNotification": true, // 是否允许通知
@@ -35,10 +36,13 @@
   "owner": {
     // 创建者信息
     "kind": "string",
-    "name": "string",
+    "name": null, // 公开查询中已脱敏
     "displayName": "string",
     "avatar": "string",
-    "email": "string",
+    "email": null, // 公开查询中已脱敏
+  },
+  "stats": {
+    "upvote": 0, // 点赞数量
   },
 }
 ```

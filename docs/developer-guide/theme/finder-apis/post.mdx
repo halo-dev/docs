@@ -10,6 +10,8 @@ import ContentVo from "../vo/_ContentVo.md";
 import ContributorVo from "../vo/_ContributorVo.md";
 import ListedPostVo from "../vo/_ListedPostVo.md";
 
+除另行注明外，本页 API 自 Halo 2.0.0 起可用。
+
 ## getByName(postName)
 
 ```js
@@ -230,6 +232,8 @@ postFinder.list({
 
 统一参数的文章列表查询方法，支持分页、标签、分类、创建者、置顶状态、排序等参数，且均为可选参数。
 
+**引入版本**：2.19.0
+
 可以使用此方法来代替 `list(page, size)`、`listByCategory(page, size, categoryName)`、`listByTag(page, size, tag)`、`listByOwner(page, size, owner)` 方法。
 
 :::info 排序与分类筛选的默认行为
@@ -378,6 +382,8 @@ postFinder.listByOwner(page, size, owner);
 ### 描述
 
 根据创建者用户名和分页参数获取文章列表。
+
+**引入版本**：2.1.0
 
 **已过时**: 请使用 `list({...})` 方法代替。
 
