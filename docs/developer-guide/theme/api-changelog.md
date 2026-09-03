@@ -5,6 +5,10 @@ description: 按 Halo 版本记录主题开发 API 的新增与变更，涵盖 U
 
 ## 2.26.0
 
+### 文章分类 > 层级关系改用 `spec.parent`
+
+从 Halo 2.26.0 开始，文章分类通过子分类的 `spec.parent` 记录层级关系。`spec.children` 已弃用，仅为旧数据兼容而保留，不会随分类层级调整继续更新。主题需要获取分类树或直接子分类时，应使用 [`categoryFinder.listAsTree(name)`](./finder-apis/category.mdx#listastreename)。
+
 ### 主题支持提供 ESM UI 扩展
 
 主题可以继续复用插件的 `PluginModule` 契约扩展 Console 和 UC。从 Halo 2.26.0 开始，主题 UI provider 支持 ESM、异步 JavaScript 和 CSS 分块，并与插件使用相同的共享运行时依赖和失败隔离机制；已有 IIFE 主题 UI 产物继续兼容。详细文档请参考 [UI 扩展](../../developer-guide/theme/ui-plugin.md)。

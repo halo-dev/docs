@@ -191,7 +191,7 @@ categoryFinder.listAsTree(name);
 
 ### 描述
 
-根据分类的 `metadata.name` 获取以该分类为根节点的多层级结构。分类不存在时返回空列表。
+根据分类的 `metadata.name` 获取以该分类为根节点的多层级结构。返回列表的第一个元素是指定的根分类，其 `children` 包含直接子分类；分类不存在时返回空列表。
 
 ### 参数
 
@@ -204,15 +204,19 @@ List\<[#CategoryTreeVo](#categorytreevo)\>
 ### 示例
 
 ```html
-<ul th:with="categories = ${categoryFinder.listAsTree('category-foo')}">
-  <li th:each="category : ${categories}">
-    <a
-      th:href="@{${category.status.permalink}}"
-      th:text="${category.spec.displayName}"
-    ></a>
-  </li>
-</ul>
+<div th:with="categories = ${categoryFinder.listAsTree('category-foo')}">
+  <ul th:if="${not #lists.isEmpty(categories)}">
+    <li th:each="child : ${categories[0].children}">
+      <a
+        th:href="@{${child.status.permalink}}"
+        th:text="${child.spec.displayName}"
+      ></a>
+    </li>
+  </ul>
+</div>
 ```
+
+从 Halo 2.26.0 开始，分类层级以 `Category.spec.parent` 为准。不要通过已弃用的 `Category.spec.children` 获取子分类；该字段仅为旧数据兼容而保留，不会随层级调整继续更新。
 
 ## getParentByName(name)
 

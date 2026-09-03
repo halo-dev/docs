@@ -17,8 +17,9 @@
     "cover": "string", // 封面图
     "template": "string", // 自定义渲染模板名称
     "priority": 0, // 排序字段
+    "parent": "string", // 父分类的 metadata.name，根分类为空
     "children": [
-      // 下级分类，分类的 metadata.name 集合
+      // 已弃用，仅用于兼容旧数据，不再表示当前分类层级
       "string",
     ],
   },
