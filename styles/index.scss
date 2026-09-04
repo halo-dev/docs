@@ -110,6 +110,17 @@
   border-radius: 5px;
 }
 
+.rp-dark {
+  .docs-hero__shot {
+    filter: brightness(0.7);
+    transition: filter 180ms ease;
+
+    &:hover {
+      filter: unset;
+    }
+  }
+}
+
 .docs-home a:focus-visible {
   outline: 2px solid var(--rp-c-brand);
   outline-offset: 3px;
