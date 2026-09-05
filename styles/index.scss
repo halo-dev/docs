@@ -833,6 +833,16 @@
   text-decoration: none;
 }
 
+.docs-help__link--icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.docs-help__link--icon svg {
+  flex: 0 0 auto;
+}
+
 .docs-help a:hover {
   color: var(--rp-c-brand);
 }
