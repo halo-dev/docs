@@ -21,6 +21,9 @@ import PhPuzzlePieceDuotone from "~icons/ph/puzzle-piece-duotone";
 import PhQuestionDuotone from "~icons/ph/question-duotone";
 import PhStorefrontDuotone from "~icons/ph/storefront-duotone";
 import PhTerminalDuotone from "~icons/ph/terminal-duotone";
+import MingcuteCopy2Line from "~icons/mingcute/copy-2-line";
+import MingcuteSettings3Line from "~icons/mingcute/settings-3-line";
+import MingcuteWorld2Line from "~icons/mingcute/world-2-line";
 import { Link } from "@rspress/core/runtime";
 
 <main className="docs-home">
@@ -31,7 +34,7 @@ import { Link } from "@rspress/core/runtime";
         Halo 是一款强大易用的开源建站工具，可以通过丰富的主题和插件搭建任何类型的网站。这里汇集了安装、使用和开发
         Halo 所需的全部文档。
       </p>
-      <Link className="docs-hero__cta" to={{pathname: '/guide/install/'}}>
+      <Link className="docs-hero__cta docs-hero__cta--primary" to={{pathname: '/guide/install/'}}>
         快速开始 <span aria-hidden="true">→</span>
       </Link>
       <nav className="docs-hero__platforms" aria-label="常见安装方式">
@@ -51,6 +54,108 @@ import { Link } from "@rspress/core/runtime";
     />
   </header>
 
+  <section className="docs-section docs-trial" aria-labelledby="try-halo">
+    <header className="docs-trial__header">
+      <h2 id="try-halo">立即体验</h2>
+    </header>
+
+    <div className="docs-trial__grid">
+      <aside className="docs-trial__demo" aria-labelledby="online-demo">
+        <div className="docs-trial__title">
+          <h3 id="online-demo">在线 Demo 环境</h3>
+        </div>
+        <nav className="docs-trial__demo-links" aria-label="Halo 在线演示入口">
+          <a href="https://demo.halocms.site" target="_blank" rel="noreferrer">
+            <MingcuteWorld2Line width={17} height={17} aria-hidden="true" />
+            <span>演示站点</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a href="https://demo.halocms.site/console" target="_blank" rel="noreferrer">
+            <MingcuteSettings3Line width={17} height={17} aria-hidden="true" />
+            <span>管理后台</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </nav>
+        <dl className="docs-trial__credentials">
+          <div>
+            <dt>用户名</dt>
+            <dd>
+              <code>demo</code>
+              <button
+                type="button"
+                aria-label="复制 Demo 用户名"
+                title="复制用户名"
+                onClick={() => navigator.clipboard.writeText('demo')}
+              >
+                <MingcuteCopy2Line width={16} height={16} aria-hidden="true" />
+              </button>
+            </dd>
+          </div>
+          <div>
+            <dt>密码</dt>
+            <dd>
+              <code>P@ssw0rd123..</code>
+              <button
+                type="button"
+                aria-label="复制 Demo 密码"
+                title="复制密码"
+                onClick={() => navigator.clipboard.writeText('P@ssw0rd123..')}
+              >
+                <MingcuteCopy2Line width={16} height={16} aria-hidden="true" />
+              </button>
+            </dd>
+          </div>
+        </dl>
+        <p className="docs-trial__note">请勿在演示环境中上传或填写敏感信息。</p>
+      </aside>
+
+      <article className="docs-trial__install">
+        <div className="docs-trial__title">
+          <h3>本地 Docker 运行</h3>
+        </div>
+        <p>使用本地 Docker 环境快速启动一个 Halo 实例。</p>
+        <div className="docs-trial__command">
+          <div className="docs-trial__command-bar" aria-hidden="true">
+            <span className="docs-trial__window-dots">
+              <i></i><i></i><i></i>
+            </span>
+            <span>Docker CLI</span>
+          </div>
+          <div className="docs-trial__command-body">
+            <code>
+              <span className="docs-trial__token docs-trial__token--prompt">$</span>{' '}
+              <span className="docs-trial__token docs-trial__token--command">docker</span>{' '}
+              <span className="docs-trial__token docs-trial__token--subcommand">run</span>{' '}
+              <span className="docs-trial__token docs-trial__token--option">-d</span>{' '}
+              <span className="docs-trial__token docs-trial__token--option">--name</span>{' '}
+              <span className="docs-trial__token docs-trial__token--value">halo</span>{' '}
+              <span className="docs-trial__token docs-trial__token--option">-p</span>{' '}
+              <span className="docs-trial__token docs-trial__token--value">8090:8090</span>{' '}
+              <span className="docs-trial__token docs-trial__token--option">-v</span>{' '}
+              <span className="docs-trial__token docs-trial__token--value">~/.halo2:/root/.halo2</span>{' '}
+              <span className="docs-trial__token docs-trial__token--image">halohub/halo:2.26</span>
+            </code>
+            <button
+              type="button"
+              aria-label="复制 Docker 快速体验命令"
+              title="复制命令"
+              onClick={() => navigator.clipboard.writeText('docker run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.26')}
+            >
+              <MingcuteCopy2Line width={18} height={18} aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+        <div className="docs-trial__install-footer">
+          <Link to={{pathname: '/guide/install/docker-compose'}}>
+            查看完整安装文档 <span aria-hidden="true">→</span>
+          </Link>
+          <span>生产环境推荐使用 Docker Compose</span>
+        </div>
+      </article>
+    </div>
+
+  </section>
+
   <section className="docs-section" aria-labelledby="get-started">
     <div className="docs-section__heading">
       <h2 id="get-started">快速开始</h2>
@@ -68,13 +173,13 @@ import { Link } from "@rspress/core/runtime";
       <Link className="quick-start__item" to={{pathname: '/guide/first-post'}}>
         <strong>发布第一篇文章</strong>
         <p>熟悉内容编辑和发布流程。</p>
-        <span aria-hidden="true">→</span>
+        <span aria-hidden="true">↗</span>
       </Link>
 
       <a className="quick-start__item" href="https://www.halo.run/store/apps" target="_blank" rel="noreferrer">
         <strong>探索应用市场</strong>
         <p>发现主题和插件，扩展站点能力。</p>
-        <span aria-hidden="true">↗</span>
+        <span aria-hidden="true">→</span>
       </a>
     </div>
 
