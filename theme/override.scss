@@ -79,6 +79,16 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  color: var(--rp-c-link);
+  font-size: 14px;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--rp-c-brand);
+    text-decoration: none;
+  }
 
   svg {
     flex: none;
