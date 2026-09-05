@@ -14,12 +14,5 @@
   "users",
   "settings",
   "backup",
-  "mobile-app",
-  {
-    "type": "dir",
-    "name": "shop",
-    "label": "商城",
-    "collapsed": true
-  },
-  "faq"
+  "mobile-app"
 ]
