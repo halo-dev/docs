@@ -20,6 +20,5 @@ const Layout = () => (
 
 export * from "@rspress/core/theme-original";
 export { EditLink } from "./components/EditLink";
-export { Overview } from "./components/Overview";
 export { Sidebar } from "./components/Sidebar";
 export { Layout };
