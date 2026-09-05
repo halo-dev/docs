@@ -21,10 +21,10 @@ import PhPuzzlePieceDuotone from "~icons/ph/puzzle-piece-duotone";
 import PhQuestionDuotone from "~icons/ph/question-duotone";
 import PhStorefrontDuotone from "~icons/ph/storefront-duotone";
 import PhTerminalDuotone from "~icons/ph/terminal-duotone";
-import MingcuteCopy2Line from "~icons/mingcute/copy-2-line";
 import MingcuteSettings3Line from "~icons/mingcute/settings-3-line";
 import MingcuteWorld2Line from "~icons/mingcute/world-2-line";
 import { Link } from "@rspress/core/runtime";
+import { CopyButton } from "../theme/components/CopyButton";
 
 <main className="docs-home">
   <header className="docs-hero">
@@ -81,28 +81,14 @@ import { Link } from "@rspress/core/runtime";
             <dt>用户名</dt>
             <dd>
               <code>demo</code>
-              <button
-                type="button"
-                aria-label="复制 Demo 用户名"
-                title="复制用户名"
-                onClick={() => navigator.clipboard.writeText('demo')}
-              >
-                <MingcuteCopy2Line width={16} height={16} aria-hidden="true" />
-              </button>
+              <CopyButton value="demo" label="复制 Demo 用户名" />
             </dd>
           </div>
           <div>
             <dt>密码</dt>
             <dd>
               <code>P@ssw0rd123..</code>
-              <button
-                type="button"
-                aria-label="复制 Demo 密码"
-                title="复制密码"
-                onClick={() => navigator.clipboard.writeText('P@ssw0rd123..')}
-              >
-                <MingcuteCopy2Line width={16} height={16} aria-hidden="true" />
-              </button>
+              <CopyButton value="P@ssw0rd123.." label="复制 Demo 密码" />
             </dd>
           </div>
         </dl>
@@ -135,14 +121,11 @@ import { Link } from "@rspress/core/runtime";
               <span className="docs-trial__token docs-trial__token--value">~/.halo2:/root/.halo2</span>{' '}
               <span className="docs-trial__token docs-trial__token--image">halohub/halo:2.26</span>
             </code>
-            <button
-              type="button"
-              aria-label="复制 Docker 快速体验命令"
-              title="复制命令"
-              onClick={() => navigator.clipboard.writeText('docker run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.26')}
-            >
-              <MingcuteCopy2Line width={18} height={18} aria-hidden="true" />
-            </button>
+            <CopyButton
+              value="docker run -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.26"
+              label="复制 Docker 快速体验命令"
+              size={18}
+            />
           </div>
         </div>
         <div className="docs-trial__install-footer">

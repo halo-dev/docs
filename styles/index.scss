@@ -224,6 +224,7 @@
 .docs-trial__install,
 .docs-trial__demo {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   padding: 20px;
   border-radius: 16px;
@@ -252,6 +253,7 @@
 }
 
 .docs-trial__command {
+  min-width: 0;
   overflow: hidden;
   border: 1px solid var(--rp-c-divider);
   border-radius: 12px;
@@ -301,14 +303,16 @@
 .docs-trial__command-body {
   display: flex;
   min-height: 54px;
+  min-width: 0;
   align-items: center;
   gap: 12px;
   padding: 0 10px 0 15px;
 }
 
 .docs-trial__command-body code {
+  width: 0;
   min-width: 0;
-  flex: 1;
+  flex: 1 1 0;
   padding: 0;
   overflow-x: auto;
   background: transparent;
@@ -396,6 +400,28 @@
 .docs-trial button:hover {
   background: var(--home-brand-soft);
   color: var(--rp-c-brand);
+}
+
+.docs-trial button.is-copied {
+  background: var(--home-brand-soft);
+  color: var(--rp-c-brand);
+}
+
+.rp-dark .docs-trial button:hover,
+.rp-dark .docs-trial button.is-copied {
+  background: var(--home-control-hover);
+  color: color-mix(in srgb, var(--rp-c-brand) 72%, white);
+}
+
+.docs-copy-button__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .docs-trial__install-footer {
@@ -527,6 +553,11 @@
   grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
   grid-template-rows: repeat(2, minmax(96px, auto));
   gap: 14px;
+}
+
+.quick-start > *,
+.topic-groups > * {
+  min-width: 0;
 }
 
 .quick-start a {
@@ -832,7 +863,7 @@
 
   .quick-start,
   .topic-groups {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .topic-groups {
@@ -862,11 +893,21 @@
 
 @media (max-width: 900px) {
   .docs-trial__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 @media (max-width: 600px) {
+  .docs-home {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .docs-trial__install,
+  .docs-trial__demo {
+    padding: 16px;
+  }
+
   .docs-trial__install-footer {
     align-items: flex-start;
     flex-direction: column;
