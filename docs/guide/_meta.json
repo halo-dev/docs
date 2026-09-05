@@ -2,17 +2,18 @@
   {
     "type": "file",
     "name": "index",
-    "label": "概览"
+    "label": "内容导航"
   },
   {
     "type": "section-header",
     "label": "入门"
   },
   "prepare",
+  "demo",
   {
     "type": "dir",
     "name": "install",
-    "label": "安装",
+    "label": "快速安装",
     "collapsed": true
   },
   {
@@ -24,9 +25,16 @@
   {
     "type": "dir",
     "name": "use",
-    "label": "功能文档",
+    "label": "常用模块",
     "collapsed": true
   },
+  {
+    "type": "dir",
+    "name": "shop",
+    "label": "商城模块",
+    "collapsed": true
+  },
+  "faq",
   {
     "type": "dir-section-header",
     "name": "contribution",

@@ -1,26 +1,70 @@
 ---
 title: 写在前面
-description: Halo 部署前必读：社区版与付费版、软硬件环境、域名与 HTTPS 等准备事项。
+description: 了解 Halo、发行版本、应用生态，以及部署前所需的软硬件环境。
 ---
+
+<div class="rp-project-header">
+  <p align="center">
+    <a href="https://www.halo.run" target="_blank" rel="noopener noreferrer"><img width="100" src="https://www.halo.run/logo" alt="Halo logo" class="no-zoom" /></a>
+  </p>
+
+  <p align="center"><b>Halo</b> [ˈheɪloʊ]，强大易用的开源建站工具。</p>
+
+  <p align="center" class="rp-project-header__badges">
+    <a href="https://github.com/halo-dev/halo/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/halo-dev/halo.svg?style=flat-square&include_prereleases" class="no-zoom" /></a>
+    <a href="https://hub.docker.com/r/halohub/halo"><img alt="Docker pulls" src="https://img.shields.io/docker/pulls/halohub/halo?style=flat-square" class="no-zoom" /></a>
+    <a href="https://github.com/halo-dev/halo/commits"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/halo-dev/halo.svg?style=flat-square" class="no-zoom" /></a>
+    <a href="https://github.com/halo-dev/halo/actions"><img alt="GitHub Workflow Status" src="https://img.shields.io/github/actions/workflow/status/halo-dev/halo/halo.yaml?branch=main&style=flat-square" class="no-zoom" /></a>
+    <a href="https://codecov.io/gh/halo-dev/halo"><img alt="Codecov percentage" src="https://img.shields.io/codecov/c/github/halo-dev/halo/main?style=flat-square&token=YsRUg9fall" class="no-zoom" /></a>
+  </p>
+</div>
+
+## Halo 是什么？
+
+Halo 是一款强大易用的开源建站工具，从个人博客、知识库，到企业官网、在线商城，Halo 都能助您轻松实现，一站式满足您的多样化建站需求。
+
+<a href="https://www.bilibili.com/video/BV15x4y1U7RU" target="_blank" rel="noopener noreferrer" class="rp-image-link" aria-label="播放 Halo 介绍视频" title="播放 Halo 介绍视频"><img src="https://www.halo.run/upload/dashboard-2026-03-26-5.png" alt="Halo 管理后台界面" class="no-zoom" /><span class="rp-image-link__play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path fill="currentColor" d="M5.669 4.76a1.47 1.47 0 0 1 2.04-1.177c1.062.453 3.442 1.532 6.462 3.276c3.021 1.744 5.146 3.266 6.069 3.958c.788.59.79 1.763.001 2.355c-.914.687-3.013 2.191-6.07 3.956c-3.06 1.766-5.412 2.832-6.464 3.28a1.467 1.467 0 0 1-2.038-1.177c-.138-1.141-.396-3.734-.396-7.236c0-3.5.257-6.092.396-7.235" /></svg></span></a>
 
 ## 发行版本
 
-Halo 的发行版本主要区分为两个大类别，即 **Halo 社区版** 和 **Halo 付费版**。
+Halo 的发行版本主要分为两个大类别，即**Halo 社区版**和 **Halo 付费版**。
 
-Halo 付费版包括专业版和商城版，是[凌霞软件](https://www.lxware.cn?code=mcYhwMkn)旗下的商业产品，为企业/团体/或进阶个人使用者提供了诸多定制化和特定场景的功能支持。
+Halo 付费版包含专业版和商城版，是[**凌霞软件**](https://www.lxware.cn/)旗下的商业产品，致力于为企业、团体或有进阶需求的个人用户提供定制化和特定场景的功能支持。
 
-版本区别可查阅 [方案对比](https://www.lxware.cn/halo?code=mcYhwMkn)
+关于三个版本的详细区别，请查阅[**版本对比**](https://www.lxware.cn/halo)。
 
-在后续的文档中，使用付费版统称 Halo 专业版 和 Halo 商城版，除非特别说明。
+在后续的文档中，除非特别说明，将使用付费版统称 Halo 专业版和 Halo 商城版。
 
-## 在线体验
+### Halo 社区版
 
-- 环境地址：<https://demo.halocms.site>
-- 后台地址：<https://demo.halocms.site/console>
-- 用户名：`demo`
-- 密码：`P@ssw0rd123..`
+Halo 社区版开源免费，遵循 GPL-3.0 协议，适合个人开发者、技术爱好者和开源项目。
 
-或者也可以参考 [《如何在本地快速体验 Halo》](https://www.halo.run/archives/halo-local-quickstart) 在本地搭建体验环境。
+- 零成本搭建博客、作品集、技术文档站
+- 提供超过 100 款免费主题和插件
+
+### Halo 专业版
+
+Halo 专业版在社区版基础上，集成多项适用于专业场景的功能：
+
+- 移动端 App：随时随地管理内容
+- AI 智能建站：快速生成专业站点
+- 手机号验证登录：提升安全性与用户体验
+- 全站私有化部署：保障数据主权
+- 付费主题与插件市场：提供精品主题，以及 SEO 优化、付费阅读、AI 助手等付费插件
+
+### Halo 商城版
+
+Halo 商城版在专业版基础上，提供在线商城功能：
+
+- 一体化在线商城：覆盖商品管理、订单处理和支付对接流程
+- 面向中国商家：集成微信支付、支付宝等本土支付方式
+- 支持品牌官网、内容管理和线上店铺一站式建设
+
+## 应用生态
+
+- **应用市场**：提供丰富的站点主题与功能插件，前往 [Halo 应用市场](https://www.halo.run/store/apps)了解详情。
+- **成为开发者**：支持自主发布并管理应用，参阅[应用市场开发者入驻及应用创建指南](https://www.halo.run/archives/halo-app-store-developer-onboarding-app-creation)。
+- **社区资源**：访问 [Awesome Halo](https://github.com/halo-sigs/awesome-halo)，了解 Halo 相关的精选资源。
 
 ## 环境要求
 
@@ -143,3 +187,17 @@ Halo 目前支持以下数据库：
 用于扩展 Halo 功能的软件包。插件独立于 Halo 核心应用，可以单独安装、升级、卸载。
 
 相关使用文档：[插件管理相关功能说明](../guide/use/plugins.md)
+
+## 许可证
+
+Halo 使用 [GPL-3.0](https://github.com/halo-dev/halo/blob/main/LICENSE) 协议开源，使用和分发时请遵守开源协议。
+
+## 贡献者
+
+欢迎参与 Halo 项目建设，具体方式请参阅 [Halo 贡献指南](https://github.com/halo-dev/halo/blob/main/CONTRIBUTING.md)。
+
+<a href="https://github.com/halo-dev/halo/graphs/contributors"><img src="https://opencollective.com/halo/contributors.svg?width=890&button=false" alt="Halo 项目贡献者" /></a>
+
+## 项目状态
+
+![Halo 项目活跃度](https://repobeats.axiom.co/api/embed/ad008b2151c22e7cf734d2688befaa795d593b95.svg "Halo 项目活跃度")

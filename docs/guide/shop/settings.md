@@ -4,7 +4,7 @@ description: 配置 Halo 商城的联系方式、询价跳转、小程序首页�
 ---
 
 :::note 仅限 Halo 商城版
-限 [Halo 商城版](../../prepare.md#发行版本) 可用。
+限 [Halo 商城版](../prepare.md#发行版本) 可用。
 :::
 
 登录 Halo 控制台，进入 **商店 -> 设置**。支付方式和销售渠道分别参见[支付方式](./payments.mdx)与[销售渠道](./sales-channels.mdx)，本页介绍其余设置。

@@ -5,6 +5,36 @@
   "nodeVersion": "24.18.0",
   "redirects": [
     {
+      "source": "/guide/use/shop",
+      "destination": "/guide/shop",
+      "statusCode": 301
+    },
+    {
+      "source": "/guide/use/shop/*",
+      "destination": "/guide/shop/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/guide/use/faq",
+      "destination": "/guide/faq",
+      "statusCode": 301
+    },
+    {
+      "source": "/user-guide/shop",
+      "destination": "/guide/shop",
+      "statusCode": 301
+    },
+    {
+      "source": "/user-guide/shop/*",
+      "destination": "/guide/shop/:splat",
+      "statusCode": 301
+    },
+    {
+      "source": "/user-guide/faq",
+      "destination": "/guide/faq",
+      "statusCode": 301
+    },
+    {
       "source": "/next/getting-started/install/*",
       "destination": "/guide/install/:splat",
       "statusCode": 301
