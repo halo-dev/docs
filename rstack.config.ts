@@ -39,6 +39,9 @@ define.doc(async () => {
     route: {
       cleanUrls: true,
     },
+    mediumZoom: {
+      selector: ".rspress-doc img:not(.no-zoom)",
+    },
     markdown: {
       showLineNumbers: true,
       link: {
