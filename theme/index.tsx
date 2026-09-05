@@ -1,6 +1,6 @@
 import { Layout as BasicLayout } from "@rspress/core/theme-original";
 import { FooterColumns } from "./FooterColumns";
-import { SidebarPromo } from "./components/SidebarPromo";
+import { OutlinePromo } from "./components/OutlinePromo";
 import "./override.scss";
 import MingcuteArrowToUpLine from "~icons/mingcute/arrow-to-up-line";
 import MingcuteEdit3Line from "~icons/mingcute/edit-3-line";
@@ -15,7 +15,7 @@ export {
 };
 
 const Layout = () => (
-  <BasicLayout afterSidebar={<SidebarPromo />} bottom={<FooterColumns />} />
+  <BasicLayout afterOutline={<OutlinePromo />} bottom={<FooterColumns />} />
 );
 
 export * from "@rspress/core/theme-original";
