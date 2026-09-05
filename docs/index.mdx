@@ -109,7 +109,7 @@ import { CopyButton } from "../theme/components/CopyButton";
             <span>Docker CLI</span>
           </div>
           <div className="docs-trial__command-body">
-            <code>
+            <code tabIndex={0}>
               <span className="docs-trial__token docs-trial__token--prompt">$</span>{' '}
               <span className="docs-trial__token docs-trial__token--command">docker</span>{' '}
               <span className="docs-trial__token docs-trial__token--subcommand">run</span>{' '}
@@ -157,13 +157,13 @@ import { CopyButton } from "../theme/components/CopyButton";
       <Link className="quick-start__item" to={{pathname: '/guide/first-post'}}>
         <strong>发布第一篇文章</strong>
         <p>熟悉内容编辑和发布流程。</p>
-        <span aria-hidden="true">↗</span>
+        <span aria-hidden="true">→</span>
       </Link>
 
       <a className="quick-start__item" href="https://www.halo.run/store/apps" target="_blank" rel="noreferrer">
         <strong>探索应用市场</strong>
         <p>发现主题和插件，扩展站点能力。</p>
-        <span aria-hidden="true">→</span>
+        <span aria-hidden="true">↗</span>
       </a>
     </div>
 
