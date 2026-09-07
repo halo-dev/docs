@@ -3,6 +3,14 @@ title: API 变更日志
 description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单组件和依赖升级等变更，识别兼容性影响并完成插件迁移
 ---
 
+## 2.27.0
+
+### UI 构建工具移除旧入口，构建工具依赖改为可选
+
+`@halo-dev/ui-plugin-bundler-kit@2.27.0` 移除了包根入口及 `HaloUIPluginBundlerKit`。原先从包根入口导入 `viteConfig` 或 `rsbuildConfig` 的项目，需要分别改为从 `@halo-dev/ui-plugin-bundler-kit/vite` 或 `@halo-dev/ui-plugin-bundler-kit/rsbuild` 导入；使用 `HaloUIPluginBundlerKit` 的旧项目需要迁移到对应预配置。具体步骤请参考 [UI 构建迁移](./basics/ui/build.mdx#migration)。
+
+Vite、Rsbuild 及各自的 Vue 插件均改为可选 peer 依赖。升级时请显式安装所选构建工具及其 Vue 插件，无需安装另一套工具链。已有 IIFE 产物在 Halo 2.x 中仍可加载；此变更不要求提高插件或主题的 `spec.requires`。
+
 ## 2.26.0
 
 ### UI 构建工具新增独立入口
