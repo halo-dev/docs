@@ -3,6 +3,12 @@ title: API 变更日志
 description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单组件和依赖升级等变更，识别兼容性影响并完成插件迁移
 ---
 
+## 2.27.0
+
+### 移除旧缩略图扩展点
+
+移除了自 2.22.0 起废弃的 `ThumbnailProvider` 接口及 `thumbnail-provider` 扩展点。仍使用旧接口的插件需要迁移到 `AttachmentHandler.getThumbnailLinks()`，并调整扩展注册，具体说明请参考[附件存储策略扩展点](./extension-points/server/attachment.md)。主题使用的缩略图 Finder 和 HTTP API 不受此变更影响。
+
 ## 2.26.0
 
 ### UI 构建工具新增独立入口

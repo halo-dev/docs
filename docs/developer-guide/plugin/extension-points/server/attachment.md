@@ -41,7 +41,9 @@ public interface AttachmentHandler extends ExtensionPoint {
 - `delete` 方法用于删除附件，返回值为 `Mono<Attachment>`，其中 `Attachment` 为删除后的附件对象。
 - `getSharedURL` 方法用于获取附件的共享链接，返回值为 `Mono<URI>`，其中 `URI` 为附件的共享链接。
 - `getPermalink` 方法用于获取附件的永久链接，返回值为 `Mono<URI>`，其中 `URI` 为附件的永久链接。
-- `getThumbnailLinks` 方法用于按 `ThumbnailSize` 返回附件的缩略图链接。新实现应使用此方法提供缩略图，不要再实现已废弃的 `thumbnail-provider`（`ThumbnailProvider`）扩展点。
+- `getThumbnailLinks` 方法用于按 `ThumbnailSize` 返回附件的缩略图链接。
+
+从 Halo 2.27.0 开始，已移除自 2.22.0 起废弃的 `ThumbnailProvider` 接口及 `thumbnail-provider` 扩展点。旧插件应将缩略图能力迁移到 `AttachmentHandler.getThumbnailLinks()`，并将对应 `ExtensionDefinition` 的 `extensionPointName` 改为 `attachment-handler`。如果插件已经注册了 `AttachmentHandler` 实现，应在该实现中提供缩略图链接，并移除旧的缩略图扩展实现和注册定义。
 
 `AttachmentHandler` 对应的 `ExtensionPointDefinition` 如下：
 
