@@ -7,13 +7,13 @@ import { Steps } from "@rspress/core/theme";
 
 通过 [halo-dev/create-halo-plugin](https://github.com/halo-dev/create-halo-plugin) 创建的项目已经包含可用构建配置。没有特殊需求时沿用脚手架配置，不要重新实现 Halo 的输出协议。
 
-| 任务                                 | 阅读位置                                                |
-| ------------------------------------ | ------------------------------------------------------- |
-| 在 Vite 或 Rsbuild 间选择            | [ui-plugin-bundler-kit](#bundler-kit)                   |
-| 配置图标组件                         | [使用图标组件](#使用图标组件)                           |
-| 确认 ESM、IIFE 与最低 Halo 版本      | [输出格式与 Halo 目标](#output-format)                  |
-| 使用 Halo 提供的 Vue、Axios 和 UI 包 | [共享运行时依赖](#shared-runtime-dependencies)          |
-| 从旧版 plugin-starter 迁移           | [HaloUIPluginBundlerKit（已过时）](#legacy-bundler-kit) |
+| 任务                                 | 阅读位置                                       |
+| ------------------------------------ | ---------------------------------------------- |
+| 在 Vite 或 Rsbuild 间选择            | [ui-plugin-bundler-kit](#bundler-kit)          |
+| 配置图标组件                         | [使用图标组件](#使用图标组件)                  |
+| 确认 ESM、IIFE 与最低 Halo 版本      | [输出格式与 Halo 目标](#output-format)         |
+| 使用 Halo 提供的 Vue、Axios 和 UI 包 | [共享运行时依赖](#shared-runtime-dependencies) |
+| 从旧版 plugin-starter 迁移           | [迁移旧版构建插件](#legacy-bundler-kit)        |
 
 ## 原理
 
@@ -26,13 +26,14 @@ Halo 插件的 UI 部分（Console / UC）以 `index.ts` 为源码入口，默�
 
 ## @halo-dev/ui-plugin-bundler-kit {#bundler-kit}
 
-这个库提供两个当前预配置和一个兼容旧项目的入口：
+这个库提供两个构建工具预配置：
 
 1. `viteConfig`: Vite 的预配置
 2. `rsbuildConfig`: Rsbuild 的预配置
-3. `HaloUIPluginBundlerKit`：已过时，迁移方式可以参考下面的文档
 
-从 2.26.0 开始，`viteConfig` 和 `rsbuildConfig` 分别通过构建工具专用入口导出。包根入口中的同名导出仅用于兼容已有项目，已标记为过时，并计划在 2.27.0 中移除。
+从 2.26.0 开始，`viteConfig` 和 `rsbuildConfig` 分别通过 `/vite` 和 `/rsbuild` 专用入口导出。2.27.0 移除了包根入口及 `HaloUIPluginBundlerKit`，已有项目请参考[迁移说明](#migration)。
+
+从 2.27.0 开始，Vite、Rsbuild 及各自的 Vue 插件均为可选 peer 依赖。只需显式安装所选构建工具及其 Vue 插件，无需安装另一套工具链。以下安装示例使用 2.27.0。
 
 ### viteConfig
 
@@ -43,7 +44,7 @@ Halo 插件的 UI 部分（Console / UC）以 `index.ts` 为源码入口，默�
 安装依赖：
 
 ```bash
-pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.27.0 vite @vitejs/plugin-vue -D
 ```
 
 创建 vite.config.ts:
@@ -129,7 +130,7 @@ Rsbuild 是基于 Rspack 开发的上层构建工具，其优势在于兼容 Web
 安装依赖：
 
 ```bash
-pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 @rsbuild/core @rsbuild/plugin-vue -D
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.27.0 @rsbuild/core @rsbuild/plugin-vue -D
 ```
 
 创建 rsbuild.config.ts:
@@ -363,9 +364,9 @@ ESM 入口仍需默认导出已有的 `PluginModule`，不应通过顶层副作�
 
 单个 provider 的入口、样式或注册失败时，Halo 会跳过该 provider，并继续启动核心 UI 和其他 provider。入口求值产生的定时器、事件监听器等任意副作用无法保证回滚，因此插件安装、升级、启用、禁用或重新加载后，完整刷新 Console 或 UC 页面是受支持的模块替换和恢复边界。
 
-## HaloUIPluginBundlerKit（已过时） {#legacy-bundler-kit}
+## 迁移旧版构建插件 {#legacy-bundler-kit}
 
-旧版本 [plugin-starter](https://github.com/halo-dev/plugin-starter) 使用的方式，目前已经不再推荐，也不支持 ESM 或主题 UI provider。`HaloUIPluginBundlerKit` 计划在 2.27.0 中移除，请改用构建工具专用入口中的 `viteConfig` 或 `rsbuildConfig`。
+旧版本 [plugin-starter](https://github.com/halo-dev/plugin-starter) 使用的 `HaloUIPluginBundlerKit` 已在 2.27.0 中移除。升级前请按[迁移步骤](#migration)改用 `viteConfig` 或 `rsbuildConfig`。此变更不影响已有 IIFE 产物在 Halo 2.x 中的兼容性。
 
 ## 构建输出
 
@@ -378,16 +379,32 @@ ESM 入口仍需默认导出已有的 `PluginModule`，不应通过顶层副作�
 
 ## 迁移{#migration}
 
-如果你当前的插件使用的是旧版本的 [plugin-starter](https://github.com/halo-dev/plugin-starter)，并且想使用新的 `viteConfig` 和 `rsbuildConfig`，可以参考以下步骤：
+### 从包根入口迁移
+
+如果已经使用 `viteConfig` 或 `rsbuildConfig`，只需修改导入路径，并按上文安装所选构建工具及其 Vue 插件。现有配置参数和 Gradle 打包配置无需因此修改。
+
+```ts
+// Vite 项目
+import { viteConfig } from "@halo-dev/ui-plugin-bundler-kit/vite";
+```
+
+```ts
+// Rsbuild 项目
+import { rsbuildConfig } from "@halo-dev/ui-plugin-bundler-kit/rsbuild";
+```
+
+### 从 HaloUIPluginBundlerKit 迁移
+
+如果当前插件使用旧版本 [plugin-starter](https://github.com/halo-dev/plugin-starter) 中的 `HaloUIPluginBundlerKit`，可以参考以下步骤迁移到 Vite 预配置：
 
 <Steps>
 
 ### 更新 `@halo-dev/ui-plugin-bundler-kit`
 
-更新至 `2.26.0` 或更高版本：
+更新至 `2.27.0` 或更高版本：
 
 ```bash
-pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.27.0 vite @vitejs/plugin-vue -D
 ```
 
 ### 更新 `vite.config.ts`

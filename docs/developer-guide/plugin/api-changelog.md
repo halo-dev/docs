@@ -5,6 +5,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 ## 2.27.0
 
+### UI 构建工具移除旧入口，构建工具依赖改为可选
+
+`@halo-dev/ui-plugin-bundler-kit@2.27.0` 移除了包根入口及 `HaloUIPluginBundlerKit`。原先从包根入口导入 `viteConfig` 或 `rsbuildConfig` 的项目，需要分别改为从 `@halo-dev/ui-plugin-bundler-kit/vite` 或 `@halo-dev/ui-plugin-bundler-kit/rsbuild` 导入；使用 `HaloUIPluginBundlerKit` 的旧项目需要迁移到对应预配置。具体步骤请参考 [UI 构建迁移](./basics/ui/build.mdx#migration)。
+
+Vite、Rsbuild 及各自的 Vue 插件均改为可选 peer 依赖。升级时请显式安装所选构建工具及其 Vue 插件，无需安装另一套工具链。已有 IIFE 产物在 Halo 2.x 中仍可加载；此变更不要求提高插件或主题的 `spec.requires`。
+
 ### 移除旧缩略图扩展点
 
 移除了自 2.22.0 起废弃的 `ThumbnailProvider` 接口及 `thumbnail-provider` 扩展点。仍使用旧接口的插件需要迁移到 `AttachmentHandler.getThumbnailLinks()`，并调整扩展注册，具体说明请参考[附件存储策略扩展点](./extension-points/server/attachment.md)。主题使用的缩略图 Finder 和 HTTP API 不受此变更影响。
