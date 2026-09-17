@@ -30,6 +30,12 @@
   },
   {
     "type": "dir",
+    "name": "shop",
+    "label": "商城对接",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
     "name": "app-store",
     "label": "应用市场",
     "collapsed": true

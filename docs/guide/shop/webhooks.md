@@ -29,7 +29,7 @@ Webhook 会把订单、支付和发货事件以 HTTP `POST` 请求发送到外�
 {
   "eventType": "ORDER_PAID",
   "timestamp": "2026-08-31T08:00:00Z",
-  "webhookId": "webhook-config-name",
+  "webhookId": 1,
   "data": {}
 }
 ```
@@ -51,10 +51,12 @@ Webhook 会把订单、支付和发货事件以 HTTP `POST` 请求发送到外�
 - `ORDER_CANCELLED`
 - `PAYMENT_FAILED`
 - `PAYMENT_CANCELLED`
+- `FULFILLMENT_REQUESTED`
 - `FULFILLMENT_SHIPPED`
 - `FULFILLMENT_COMPLETED`
+- `SUBSCRIPTION_*` 订阅事件
 
-零元订单只触发 `ORDER_CREATED`，不会触发 `ORDER_PAID`。当前没有退款事件。
+零元订单在创建时即视为已支付，会同时触发 `ORDER_CREATED` 和 `ORDER_PAID`。当前没有退款事件。订阅事件的含义、载荷与处理方式见[订阅 Webhook](../../developer-guide/shop/subscription-webhook.md)。
 
 ## 验证签名
 
