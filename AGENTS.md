@@ -6,7 +6,7 @@ This repository contains the Halo documentation site built with Rspress through 
 
 ## Build, Test, and Development Commands
 
-Use pnpm 11.24.0, as declared in `package.json`.
+Use pnpm 12.4.2, as declared in `package.json`.
 
 - `pnpm install` installs dependencies.
 - `pnpm dev` starts the local Rspress development server.
@@ -35,3 +35,9 @@ There is no dedicated automated test suite or coverage threshold. Treat `pnpm bu
 ## Commit & Pull Request Guidelines
 
 The current history contains only generic `init` commits, so it does not establish a useful convention. Write short, imperative subjects that describe the change, for example `Document offline installation`. Keep each pull request focused on one topic, explain the user-facing impact, link the relevant issue when one exists, and include screenshots for layout or styling changes. Run `pnpm check` and `pnpm build` before requesting review; avoid force-pushing after review begins.
+
+## Documentation Branch Workflow
+
+- `main` deploys to production continuously. For documentation that does not cover an unreleased Halo version, open a PR against `main` or push directly to `main`.
+- Submit documentation for an unreleased Halo version to `dev`.
+- After Halo releases a new version, create a `release-xxx` archive branch from `main` before merging `dev` into `main`.
