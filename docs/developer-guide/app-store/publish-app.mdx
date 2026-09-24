@@ -177,7 +177,7 @@ on:
 
 jobs:
   ci:
-    uses: halo-sigs/reusable-workflows/.github/workflows/plugin-ci.yaml@v4
+    uses: halo-sigs/reusable-workflows/.github/workflows/plugin-ci.yaml@v5
     with:
       ui-path: "ui"
 ```
@@ -194,7 +194,7 @@ on:
 
 jobs:
   cd:
-    uses: halo-sigs/reusable-workflows/.github/workflows/plugin-cd.yaml@v4
+    uses: halo-sigs/reusable-workflows/.github/workflows/plugin-cd.yaml@v5
     permissions:
       contents: write
     with:
@@ -214,7 +214,7 @@ on:
 
 jobs:
   cd:
-    uses: halo-sigs/reusable-workflows/.github/workflows/theme-cd.yaml@v4
+    uses: halo-sigs/reusable-workflows/.github/workflows/theme-cd.yaml@v5
     permissions:
       contents: write
     with:
@@ -247,7 +247,7 @@ jobs:
 
 ### 创建个人令牌
 
-在 Halo 官网的个人中心创建新的[个人令牌](https://www.halo.run/uc/profile?tab=pat)，勾选 **应用市场开发者 > 版本管理**。
+在 Halo 官网的个人中心创建新的[个人令牌](https://www.halo.run/uc/profile?tab=pat)，勾选 **应用市场开发者 > 版本管理**。如果还需要同步应用的 GitHub README，同时勾选“同步 GitHub README”。
 
 ### 创建 GitHub Secret
 
@@ -271,7 +271,7 @@ on:
 
 jobs:
   cd:
-    uses: halo-sigs/reusable-workflows/.github/workflows/plugin-cd.yaml@v4
+    uses: halo-sigs/reusable-workflows/.github/workflows/plugin-cd.yaml@v5
     secrets:
       halo-pat: ${{ secrets.HALO_PAT }}
     permissions:
@@ -293,7 +293,7 @@ on:
 
 jobs:
   cd:
-    uses: halo-sigs/reusable-workflows/.github/workflows/theme-cd.yaml@v4
+    uses: halo-sigs/reusable-workflows/.github/workflows/theme-cd.yaml@v5
     secrets:
       halo-pat: ${{ secrets.HALO_PAT }}
     permissions:
@@ -302,4 +302,6 @@ jobs:
       app-id: app-xxxxxxxx
 ```
 
-以上插件示例假设 UI 子项目路径为 `ui`；如果你的仓库使用默认的 `console` 路径，可以移除 `ui-path`，或按实际结构调整。若项目使用 Corepack 并且已在 `package.json` 中定义 `packageManager`，可以参考 `halo-sigs/reusable-workflows` 的说明调整 `pnpm-version`。
+以上插件示例假设 UI 子项目路径为 `ui`；如果你的仓库使用默认的 `console` 路径，可以移除 `ui-path`，或按实际结构调整。若项目已在 `package.json` 中声明 pnpm 的 `packageManager`，应设置 `pnpm-version: ""`，让工作流使用项目声明的版本。
+
+v5 还支持在应用市场版本发布后同步应用的公开 GitHub 仓库 README。需要时可在插件或主题 CD 的 `with` 中设置 `sync-github-readme: true`（默认关闭）。若 README 同步失败，工作流会失败，但已发布的版本不会回滚。
