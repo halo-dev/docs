@@ -1,9 +1,2 @@
 minimumReleaseAgeExclude:
-  - "@rspress/core@2.0.20 || 2.0.21 || 2.0.22"
-  - "@rspress/shared@2.0.20 || 2.0.21 || 2.0.22"
-  - "@rspress/plugin-sitemap@2.0.22"
-  - "rspress-plugin-devkit@1.0.1"
-  - "rspress-plugin-file-tree@1.0.6"
-  - "rspress-plugin-mermaid@1.0.2"
-patchedDependencies:
-  rspress-plugin-google-analytics@1.0.0: patches/rspress-plugin-google-analytics@1.0.0.patch
+  - "@iconify-json/simple-icons@1.2.99"

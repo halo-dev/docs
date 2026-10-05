@@ -11,28 +11,28 @@
     "preview": "rs doc preview"
   },
   "dependencies": {
-    "@rspress/core": "^2.0.22",
-    "@shikijs/transformers": "^4.4.3",
-    "rspress-plugin-file-tree": "^1.0.6",
-    "rspress-plugin-google-analytics": "^1.0.0",
-    "rspress-plugin-mermaid": "^1.0.2"
+    "@rspress/core": "^2.0.23",
+    "@shikijs/transformers": "^4.5.0",
+    "rspress-plugin-file-tree": "^1.0.7",
+    "rspress-plugin-google-analytics": "^1.0.1",
+    "rspress-plugin-mermaid": "^1.0.3"
   },
   "devDependencies": {
     "@iconify-json/mingcute": "^1.2.8",
     "@iconify-json/ph": "^1.2.2",
-    "@iconify-json/simple-icons": "^1.2.93",
+    "@iconify-json/simple-icons": "^1.2.99",
     "@rsbuild/plugin-sass": "^2.0.1",
-    "@rspress/plugin-sitemap": "^2.0.22",
+    "@rspress/plugin-sitemap": "^2.0.23",
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
     "@types/node": "^22.20.1",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "rstack": "^0.7.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "rstack": "^0.8.0",
     "typescript": "^6.0.3",
-    "unplugin-icons": "^23.0.1"
+    "unplugin-icons": "^24.0.0"
   },
   "devEngines": {
     "packageManager": {
