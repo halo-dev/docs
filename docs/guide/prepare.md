@@ -194,7 +194,7 @@ Halo 使用 [GPL-3.0](https://github.com/halo-dev/halo/blob/main/LICENSE) 协议
 
 ## 贡献者
 
-欢迎参与 Halo 项目建设，具体方式请参阅 [Halo 贡献指南](https://github.com/halo-dev/halo/blob/main/CONTRIBUTING.md)。
+欢迎通过 Bug 反馈、功能建议和社区讨论参与 Halo 项目建设，具体方式请参阅[问题反馈](./contribution/issue.md)与[贡献政策](./contribution/pr.mdx)。
 
 <a href="https://github.com/halo-dev/halo/graphs/contributors"><img src="https://opencollective.com/halo/contributors.svg?width=890&button=false" alt="Halo 项目贡献者" /></a>
 
