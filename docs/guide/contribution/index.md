@@ -1,5 +1,5 @@
 ---
 title: 参与贡献
-description: 参与 Halo 开源项目的完整指南，涵盖通过 GitHub 提交问题反馈、寻找适合的 Issue、编写代码并发起 Pull Request 的流程与规范。
+description: 了解 Halo 的问题反馈渠道与贡献政策，通过 Bug 反馈、功能建议和社区讨论参与项目建设。
 overview: true
 ---

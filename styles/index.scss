@@ -50,7 +50,7 @@
   text-wrap: balance;
 }
 
-.docs-hero__intro > p {
+.docs-hero__description {
   max-width: 32em;
   margin: 30px 0 30px;
   color: var(--rp-c-text-2);
@@ -858,7 +858,7 @@
     font-size: 34px;
   }
 
-  .docs-hero__intro > p {
+  .docs-hero__description {
     margin-bottom: 24px;
     font-size: 15px;
   }
