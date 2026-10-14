@@ -32,7 +32,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md";
 ### 创建容器
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS="-Xmx256m -Xms256m" registry.fit2cloud.com/halo/halo-pro:2.26
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS="-Xmx256m -Xms256m" registry.fit2cloud.com/halo/halo-pro:2.27
 ```
 
 :::info 默认使用 H2 数据库
@@ -78,7 +78,7 @@ docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS=
 ### 拉取新版本镜像
 
 ```bash
-docker pull registry.fit2cloud.com/halo/halo-pro:2.26
+docker pull registry.fit2cloud.com/halo/halo-pro:2.27
 ```
 
 ### 停止运行中的容器
@@ -93,7 +93,7 @@ docker rm halo
 修改版本号后，按照最初安装的方式，重新创建容器即可。
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS="-Xmx256m -Xms256m" registry.fit2cloud.com/halo/halo-pro:2.26
+docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS="-Xmx256m -Xms256m" registry.fit2cloud.com/halo/halo-pro:2.27
 ```
 
 </Steps>

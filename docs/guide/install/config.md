@@ -16,7 +16,7 @@ Halo 支持通过多种方式进行配置，目前 [Docker Compose 部署文档]
 ```yaml {5-10}
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo-pro:2.26
+    image: registry.fit2cloud.com/halo/halo-pro:2.27
     ...
     command:
       - --spring.r2dbc.url=r2dbc:pool:postgresql://halodb/halo
@@ -158,7 +158,7 @@ version: "3"
 
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo-pro:2.26
+    image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
     depends_on:
       halodb:
@@ -197,7 +197,7 @@ version: "3"
 
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo-pro:2.26
+    image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
     depends_on:
       halodb:

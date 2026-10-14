@@ -62,7 +62,7 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 
 ```bash
 mkdir -p ~/.halo2
-podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2:Z registry.fit2cloud.com/halo/halo-pro:2.26
+podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2:Z registry.fit2cloud.com/halo/halo-pro:2.27
 ```
 
 :::info 默认使用 H2 数据库
@@ -108,7 +108,7 @@ podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2:Z registry.f
 ### 拉取新版本镜像
 
 ```bash
-podman pull registry.fit2cloud.com/halo/halo-pro:2.26
+podman pull registry.fit2cloud.com/halo/halo-pro:2.27
 ```
 
 ### 停止运行中的容器
@@ -123,7 +123,7 @@ podman rm halo
 修改版本号后，按照最初安装的方式，重新创建容器即可。
 
 ```bash
-podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2:Z registry.fit2cloud.com/halo/halo-pro:2.26
+podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2:Z registry.fit2cloud.com/halo/halo-pro:2.27
 ```
 
 </Steps>
@@ -161,7 +161,7 @@ Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"
 Environment=TZ=Asia/Shanghai
 Volume=/opt/podman-data/halo:/.halo:Z
 PublishPort=127.0.0.1:8090:8090
-Image=ghcr.io/halo-dev/halo:2.26
+Image=ghcr.io/halo-dev/halo:2.27
 Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://host.containers.internal:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password
 
 [Service]
@@ -189,7 +189,7 @@ Podman Quadlet 解析：
 
 `[Container]` 部分：
 
-- `AutoUpdate=registry`指定了自动拉取容器。假设后续 Halo 镜像支持了`latest`标签，你需要`systemctl enable --now podman-auto-update.timer`以启用容器自动更新。本文示例`ghcr.io/halo-dev/halo:2.26`，将会自动更新适用与`2.26`版本的 patch，例如您创建容器时是`2.26.1`，在官方发布`2.26.2`版本时，容器会自动更新到`2.26.2`。
+- `AutoUpdate=registry`指定了自动拉取容器。你需要`systemctl enable --now podman-auto-update.timer`以启用容器自动更新。本文示例`ghcr.io/halo-dev/halo:2.27`，将会自动更新到`2.27`系列的最新 patch 版本，例如您创建容器时是`2.27.0`，假设后续官方发布`2.27.1`版本，容器会自动更新到`2.27.1`。
 - `ContainerName=`指定了 systemd 将生成的服务名称。
 - `User=60000 Group=60000 UserNS=keep-id:uid=60000,gid=60000` 限制容器以 id 60000 的用户运行，提高安全性。注意这个 id 60000 请根据你实际想要运行的用户名来修改，可通过`id user`获得你的用户的 id.
 - `Environment=`字段指定了容器的环境变量，其中你需要注意的是`Environment=HALO_WORK_DIR="/.halo"` `Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"`这两个变量中的`/.halo`路径。
@@ -231,7 +231,7 @@ AutoUpdate=registry
 ContainerName=halo
 Volume=/opt/podman-data/halo:/root/.halo2:Z
 PublishPort=127.0.0.1:8090:8090
-Image=ghcr.io/halo-dev/halo:2.26
+Image=ghcr.io/halo-dev/halo:2.27
 Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://host.containers.internal:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password
 
 [Service]
