@@ -49,7 +49,7 @@ mkdir ~/halo && cd ~/halo
 ```yaml {25-31,45} title="~/halo/docker-compose.yaml"
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo-pro:2.26
+    image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
     depends_on:
       halodb:
@@ -110,7 +110,7 @@ networks:
 ```yaml {25-31,53} title="~/halo/docker-compose.yaml"
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo-pro:2.26
+    image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
     depends_on:
       halodb:
@@ -181,7 +181,7 @@ networks:
 ```yaml {21} title="~/halo/docker-compose.yaml"
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo-pro:2.26
+    image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
     volumes:
       - ./halo2:/root/.halo2
@@ -208,7 +208,7 @@ services:
 ```yaml {5,13-20} title="~/halo/docker-compose.yaml"
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo-pro:2.26
+    image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
     network_mode: "host"
     volumes:
@@ -289,7 +289,7 @@ docker compose logs -f
 ```yaml {3}
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo-pro:2.26
+    image: registry.fit2cloud.com/halo/halo-pro:2.27
 ```
 
 ```bash
@@ -353,7 +353,7 @@ networks:
 
 services:
   halo:
-    image: registry.fit2cloud.com/halo/halo-pro:2.26
+    image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
     volumes:
       - ./halo2:/root/.halo2
