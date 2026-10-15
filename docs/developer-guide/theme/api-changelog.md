@@ -3,6 +3,12 @@ title: API 变更日志
 description: 按 Halo 版本记录主题开发 API 的新增与变更，涵盖 UI 扩展、页面布局契约、Finder API、FormKit 表单组件和模板表达式，便于判断兼容范围并完成适配
 ---
 
+## 2.27.0
+
+### 导航菜单 Finder API > 新增 `getByNames(names)` 方法
+
+在 2.27.0 中，导航菜单 Finder API 新增了 `getByNames(names)` 方法，用于批量获取多个菜单及其菜单项树。结果保持传入顺序，重复标识只保留第一次出现的位置，不存在的菜单会被跳过。详细文档可查阅：[导航菜单 Finder API#getByNames](./finder-apis/menu.mdx#getbynamesnames)。
+
 ## 2.26.0
 
 ### 文章分类 > 层级关系改用 `spec.parent`
