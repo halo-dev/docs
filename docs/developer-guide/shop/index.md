@@ -70,7 +70,7 @@ sequenceDiagram
 
 ## 最小闭环
 
-1. 运营在控制台配置 `productType=SUBSCRIPTION` 的产品线、档次与计划，详见[订阅生命周期](./subscription-lifecycle.md#数据模型)。
+1. 运营在控制台配置 `productType=SUBSCRIPTION` 的产品线、档次与计划，操作步骤见[商城 / 订阅管理](../../guide/shop/subscriptions.md)，数据模型见[订阅生命周期](./subscription-lifecycle.md#数据模型)。
 2. 接入方订阅 `SUBSCRIPTION_*` 事件与 `FULFILLMENT_REQUESTED`。
 3. 客户下单支付后，接入方按 `SUBSCRIPTION_CREATED` / `SUBSCRIPTION_TRIAL_STARTED` 载荷中的 `effectiveEntitlements` 开通权益。
 4. 收到 `FULFILLMENT_REQUESTED` 后完成交付，并调用[履约上报接口](./fulfillment-callback.md)回执；**不上报，订单会一直停留在待发货**。
@@ -87,6 +87,7 @@ sequenceDiagram
 相关文档：
 
 - [商城 / Webhook](../../guide/shop/webhooks.md)
+- [商城 / 订阅管理](../../guide/shop/subscriptions.md)
 - [商城 / 订单管理](../../guide/shop/orders.mdx)
 - [商城 / 虚拟交付](../../guide/shop/virtual-delivery.mdx)
 - [RESTful API 介绍](../restful-api/introduction.md)

@@ -136,6 +136,7 @@ Halo 等待响应的超时时间为 10 秒。请先完成验签与持久化，�
 | `planId`                                     | 相关计划 ID                                              |
 | `changeId`                                   | 关联的变更 ID（变更单）                                  |
 | `fromQuantity` / `toQuantity`                | 变更前后的数量                                           |
+| `periodDelta`                                | 周期偏移（预留字段，当前版本不写入）                     |
 | `feeType`                                    | 费用类型，如 `TRIAL` / `FREE` / `FIXED_FEE` / `PRORATED` |
 | `planName` / `billingPeriod` / `billingMode` | 下单时的计划快照                                         |
 
