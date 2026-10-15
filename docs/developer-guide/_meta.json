@@ -24,6 +24,12 @@
   },
   {
     "type": "dir",
+    "name": "shop",
+    "label": "商城开发",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
     "name": "restful-api",
     "label": "RESTful API",
     "collapsed": true
