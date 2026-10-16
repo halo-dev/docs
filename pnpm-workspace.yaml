@@ -1,4 +1,6 @@
 allowBuilds:
   "@parcel/watcher": true
+  "esbuild": true
+  "workerd": true
 minimumReleaseAgeExclude:
   - "@iconify-json/simple-icons@1.2.99"
