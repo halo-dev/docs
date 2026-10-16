@@ -33,7 +33,7 @@ description: Halo 商城订阅的完整周期：数据模型、状态机、试�
 | `billingMode=SUBSCRIPTION`         | 连续计费：到期前提醒，到期未付进入 `PAST_DUE` 宽限期，客户可手动续费。         |
 | `billingMode=ONE_TIME`             | 预付一期：到期直接 `EXPIRED`，需要重新购买。                                   |
 | `billingMode=LIFETIME`             | 买断：周期字段为空，永不过期。                                                 |
-| `billingPeriod=MONTHLY` / `YEARLY` | 周期单位；季度付是 `MONTHLY` 加 `periodCount=3`。                              |
+| `billingPeriod=MONTHLY` / `YEARLY` | 周期单位为月或年；2.27 控制台创建计划时 `periodCount` 固定为 `1`。             |
 | `gracePeriodDays`                  | 仅连续计费有效：到期未付后的容忍天数。                                         |
 | `entitlements`                     | 档次上的 JSON 契约，在购买、变更、续费时快照到订阅的 `effectiveEntitlements`。 |
 
@@ -127,30 +127,25 @@ Halo **不保存支付凭据，也不会自动扣款**，任何续费都必须�
 
 ## 权益如何判定
 
-`entitlements` 是运营与接入方约定的契约，Halo 只负责快照与下发，不解释也不强制执行。**权益截止时间必须按状态分支判断**，不能直接使用 `currentPeriodEndAt`：
+`entitlements` 是运营与接入方约定的契约，Halo 只负责快照与下发，不解释也不强制执行。**已付费覆盖终点不等于宽限期截止时间**，不能仅用 `paidThroughAt` 或 `currentPeriodEndAt` 决定是否停用权益：
 
-| 状态                                 | 权益截止时间                                     |
-| ------------------------------------ | ------------------------------------------------ |
-| `TRIALING`                           | `trialEndAt`（试用期只收了试用价）               |
-| `ACTIVE` / `PAST_DUE`                | `paidThroughAt`，为空时回退 `currentPeriodEndAt` |
-| 买断（`ACTIVE` 且周期字段为 `null`） | 无终点，永不过期                                 |
-| `CANCELLED` / `EXPIRED`              | 已无权益，`paidThroughAt` 只是历史覆盖记录       |
+| 状态                                 | 时间与权益处理                                                                                    |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| `TRIALING`                           | `trialEndAt` 是试用覆盖终点；转正宽限内是否继续提供试用权益由接入方决定                           |
+| `ACTIVE`                             | 已付费覆盖终点为 `paidThroughAt`，为空时回退 `currentPeriodEndAt`；到期时需核对当前状态与宽限策略 |
+| `PAST_DUE`                           | 已进入续费宽限期；保留宽限期访问时，截止时间为已付费覆盖终点加计划的 `gracePeriodDays` 天         |
+| 买断（`ACTIVE` 且周期字段为 `null`） | 无时间终点，但取消后仍须停用权益                                                                  |
+| `CANCELLED` / `EXPIRED`              | 停用权益，`paidThroughAt` 只是历史覆盖记录                                                        |
 
-```ts
-// 按状态分支计算权益截止时间
-function coveredUntilAt(s: Subscription): string | null {
-  switch (s.status) {
-    case "TRIALING":
-      return s.trialEndAt;
-    case "ACTIVE":
-    case "PAST_DUE":
-      // 买断订阅两者均为 null，返回 null 表示永不过期
-      return s.paidThroughAt ?? s.currentPeriodEndAt;
-    default:
-      return null; // CANCELLED / EXPIRED：停用权益
-  }
-}
-```
+### 宽限期内的访问
+
+`PAST_DUE` 仍是生效订阅，权益查询会继续返回其契约。接入方可以保留访问或按业务规则限流；不要仅因为 `paidThroughAt` 已过就把它当作 `EXPIRED`。
+
+2.27 调度器按 `(paidThroughAt ?? currentPeriodEndAt) + gracePeriodDays × 24 小时` 计算续费宽限截止时间，达到截止时间后转为 `EXPIRED`。`gracePeriodDays` 为空时按 `0` 计算；它来自订阅当前计划，并非订阅快照字段。需要计算截止时间时，先通过 `planId` 查询计划，不能假设 Webhook 或订阅详情已经包含宽限天数。
+
+例如已付费覆盖到 10 月 16 日 00:00 UTC、计划宽限期为 3 天，保留宽限期访问的截止时间是 10 月 19 日 00:00 UTC。试用转正宽限的规则不同，为 `trialEndAt + max(gracePeriodDays, 1) × 24 小时`；在此期间状态仍为 `TRIALING`。
+
+状态转换由定时任务执行，Webhook 也可能延迟或乱序。接入方应查询当前订阅及计划核对状态和截止时间，不要仅等待过期通知，也不要使用旧快照延长已取消订阅的权益。
 
 需要注意：
 
@@ -166,6 +161,7 @@ Console API（前缀 `https://{host}/apis/console.api.ecommerce.halo.run/v1alpha
 | ---- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | GET  | `/subscriptions?customerId=&productId=&status=&page=&size=` | 订阅列表                                                                                                |
 | GET  | `/subscriptions/{id}`                                       | 订阅详情，含 `effectiveEntitlements` 与 `upcomingRenewal`                                               |
+| GET  | `/subscription-plans/{id}`                                  | 订阅当前计划，用 `planId` 查询，包含 `gracePeriodDays` 等计费配置                                       |
 | GET  | `/customers/{customerId}/entitlements?productId=`           | **权益二次确认**：返回 `{ customerId, productId, entitlements }`，没有生效订阅时 `entitlements` 为 `{}` |
 | GET  | `/subscription-changes?subscriptionId=`                     | 变更流水，含 `orderId`、计价结果与前后快照                                                              |
 | POST | `/subscriptions/{id}/cancel`                                | 运营立即取消                                                                                            |
