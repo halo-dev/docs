@@ -9,5 +9,11 @@
     "name": "theme",
     "label": "主题开发",
     "collapsed": false
+  },
+  {
+    "type": "dir",
+    "name": "integration",
+    "label": "集成",
+    "collapsed": false
   }
 ]

@@ -5,10 +5,11 @@
   "payments",
   "sales-channels",
   "products",
+  "subscriptions",
   "marketing",
   "orders",
-  "customer-center",
   "virtual-delivery",
+  "customer-center",
   "webhooks",
   "mp",
   "theme-dev"

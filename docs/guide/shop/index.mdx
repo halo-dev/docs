@@ -1,6 +1,6 @@
 ---
 title: 商城模块
-description: Halo 商城版功能概览：开店、商品、支付发货与前台路由等用户指南索引。
+description: Halo 商城版使用指南索引，涵盖开店、商品与订阅配置、支付、订单交付和客户自助管理。
 overview: true
 ---
 
@@ -10,14 +10,20 @@ import { Tab, Tabs } from "@rspress/core/theme";
 限 [Halo 商城版](../prepare.md#发行版本) 可用。
 :::
 
-商城模块是 Halo 商城版的一项功能，支持用户基于 Halo 站点创建店铺，上架多种类型的货品，配置商品支付和发货方式。为实体商品、虚拟商品、链接商品等销售场景提供完备的电商解决方案。
+商城模块是 Halo 商城版的一项功能，支持基于 Halo 站点创建店铺，销售实体商品、虚拟商品、链接商品和订阅产品，并管理支付、订单与交付。
 
 ## 使用流程
 
 1. 完成[准备工作](./prepare.mdx)，配置[商店设置](./settings.md)、[支付方式](./payments.mdx)和[销售渠道](./sales-channels.mdx)。
-2. 创建并发布[产品](./products.mdx)，按需配置[营销活动](./marketing.md)。
-3. 在[订单管理](./orders.mdx)中处理付款与发货；顾客可在[商城客户中心](./customer-center.md)查看自己的订单、地址和优惠券。
-4. 需要对接外部系统时，配置 [Webhook](./webhooks.md)。
+2. 创建并发布[产品](./products.mdx)。销售订阅产品时，继续配置[订阅档次、计划与变更规则](./subscriptions.md)；按需设置[营销活动](./marketing.md)。
+3. 在[订单管理](./orders.mdx)中处理付款与发货。虚拟商品配置[数字资源或卡密](./virtual-delivery.mdx)，订阅商品由接入方完成[权益交付与履约上报](../../developer-guide/shop/integration/fulfillment-callback.md)。
+4. 顾客可在[商城客户中心](./customer-center.md)管理订单、地址、优惠券和订阅；运营可在控制台[管理订阅](./subscriptions.md#管理订阅)。
+5. 需要向外部系统发送业务通知时，配置 [Webhook](./webhooks.md)并检查投递记录。
+
+## 开发与对接
+
+- [商城主题开发](../../developer-guide/shop/theme/overview.md)：定制商城前台页面、样式和交互。
+- [商城集成](../../developer-guide/shop/integration/overview.md)：接入方实现订阅事件处理、权益管理与履约回执。
 
 <Tabs>
   <Tab label="控制台预览">
