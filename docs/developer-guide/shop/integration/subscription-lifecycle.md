@@ -4,12 +4,12 @@ description: Halo 商城订阅的完整周期：数据模型、状态机、试�
 ---
 
 :::note 适用范围
-本页适用于 **Halo 商城版 2.27.0 及以上版本**。传输与鉴权约定见[商城订阅对接](./index.md)，事件推送见[订阅 Webhook](./subscription-webhook.md)。
+本页适用于 **Halo 商城版 2.27.0 及以上版本**。传输与鉴权约定见[商城订阅对接](./overview.md)，事件推送见[订阅 Webhook](./subscription-webhook.md)。
 :::
 
 ## 数据模型
 
-订阅由四层对象组成，由运营在控制台 **商店 → 商品** 中配置（操作说明见[商城 / 订阅管理](../../guide/shop/subscriptions.md)）：
+订阅由四层对象组成，由运营在控制台 **商店 → 商品** 中配置（操作说明见[商城 / 订阅管理](../../../guide/shop/subscriptions.md)）：
 
 | 对象              | 说明                                                                                                                                                                   |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -187,5 +187,5 @@ Console API（前缀 `https://{host}/apis/console.api.ecommerce.halo.run/v1alpha
 :::
 
 :::note 完整契约
-以上仅为常用接口。字段与状态码的完整定义以运行实例的 API 文档为准（在线文档：[https://api.halo.run](https://api.halo.run)，分组为 `console.api.ecommerce.halo.run` 与 `uc.api.ecommerce.halo.run`）。
+以上仅为常用接口。字段与状态码的完整定义以运行实例的 API 文档为准，也可以查阅 [Halo 商城版 2.27 RESTful API](https://api.halo.run/?version=2.27-paid) 中的 Console 和 User-center 分组，对应 `console.api.ecommerce.halo.run` 与 `uc.api.ecommerce.halo.run`。
 :::

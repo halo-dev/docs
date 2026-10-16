@@ -13,12 +13,12 @@ halohub/halo-pro:<version>
 halohub/halo:<version>
 ```
 
-`<version>` 表示 Halo 的具体版本号，比如 `2.26.0`，版本命名方式遵循 [SemVer](https://semver.org/lang/zh-CN/)，即 `<major>.<minor>.<patch>`
+`<version>` 表示 Halo 的具体版本号，比如 `2.27.0`，版本命名方式遵循 [SemVer](https://semver.org/lang/zh-CN/)，即 `<major>.<minor>.<patch>`
 
 除了具体版本号的标签之外，Halo 还提供了 `:<major>` 和 `:<major>.<minor>` 的标签，比如：
 
 - `halohub/halo-pro:2`：代表整个 Halo 2 的最新版本
-- `halohub/halo-pro:2.20`：代表 Halo 2.20 的最新版本
+- `halohub/halo-pro:2.27`：代表 Halo 2.27 的最新版本
 
 以上是 Docker Hub 的官方镜像地址，如果你的服务器因为网络原因导致拉取速度缓慢，也可以使用我们自行搭建的镜像库：
 

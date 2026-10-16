@@ -16,17 +16,21 @@ description: 启用 Halo 商城前：商城版安装激活、合规资质与支�
 
 ## 前台路由
 
-目前商城包含以下前台路由：
+Halo 商城版 2.27 的常用前台路由如下：
 
 - `/shop`：商城首页，目前会重定向到商品列表页面
 - `/shop/products`：商品列表页面
-- `/shop/products/:id`：商品详情页面
+- `/shop/products/{handle}`：商品详情页面，`handle` 为商品永久链接标识
+- `/shop/subscription/{handle}`：订阅商品详情页面
 - `/shop/cart`：购物车页面
-- `/shop/checkout/:id`：结算页面
-- `/shop/order/:code/payments`：支付页面
+- `/shop/checkout/{contextId}`：结算页面，由购买流程生成当前会话的结算地址
+- `/shop/order/{orderCode}/payments`：订单支付页面
+- `/shop/order/{orderCode}`：订单详情页面，需具备该订单的访问权限
+
+旧数字 ID 入口为 `/shop/product/{id}`；商品设置了永久链接标识时，会重定向到对应的商品详情地址。分享商品时，优先使用实际商品页面的链接。
 
 :::note 系统内置页面模板
 这些页面无需主题提供对应的模板文件即可访问，使用的是系统内置的模板文件。如果当前激活的主题提供了对应的模板文件，则会优先使用主题提供的模板文件。
 :::
 
-你可以根据需求，将这些页面路径添加到[网站菜单](../use/menus.md)中。
+可以把商品列表或购物车等入口添加到[网站菜单](../use/menus.md)中；结算、支付和订单详情地址由交易流程生成。需要定制这些页面时，参见[商城主题开发](../../developer-guide/shop/theme/overview.md)。

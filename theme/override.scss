@@ -172,11 +172,6 @@
     border-radius: 16px;
     background: var(--rp-c-bg-soft);
     box-shadow: 0 24px 64px rgb(15 23 42 / 30%);
-    animation: rp-search-panel-in 0.18s ease-out;
-
-    @media (prefers-reduced-motion: reduce) {
-      animation: none;
-    }
   }
 
   &__input-form {
@@ -202,18 +197,6 @@
     max-height: calc(100dvh - 176px);
     margin-top: 12px;
     padding: 0 2px;
-  }
-}
-
-@keyframes rp-search-panel-in {
-  from {
-    opacity: 0;
-    transform: translateY(-8px) scale(0.98);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
   }
 }
 

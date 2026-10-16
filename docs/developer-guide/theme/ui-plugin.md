@@ -47,12 +47,14 @@ export default definePlugin({
 
 可用字段、路由和扩展点请参考 [插件 UI 入口文件](../plugin/basics/ui/entry.md)。
 
+从 `@halo-dev/ui-plugin-bundler-kit@2.27.0` 开始，两套构建工具及各自的 Vue 插件均为可选 peer 依赖。以下示例使用 2.27.0，只需安装所选工具链，并通过 `/vite` 或 `/rsbuild` 专用入口导入配置函数。构建工具升级不要求将主题的最低 Halo 版本提高到 2.27.0。
+
 ## 使用 Vite 构建
 
 安装依赖：
 
 ```bash
-pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 vite @vitejs/plugin-vue -D
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.27.0 vite @vitejs/plugin-vue -D
 ```
 
 创建构建配置：
@@ -71,7 +73,7 @@ export default viteConfig({
 安装依赖：
 
 ```bash
-pnpm install @halo-dev/ui-plugin-bundler-kit@2.26.0 @rsbuild/core @rsbuild/plugin-vue -D
+pnpm install @halo-dev/ui-plugin-bundler-kit@2.27.0 @rsbuild/core @rsbuild/plugin-vue -D
 ```
 
 创建构建配置：

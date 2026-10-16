@@ -4,7 +4,7 @@ description: 订阅 Webhook 的投递格式、签名验证、重试与去重，�
 ---
 
 :::note 适用范围
-本页适用于 **Halo 商城版 2.27.0 及以上版本**。Webhook 的创建与投递记录查看见[商城 / Webhook](../../guide/shop/webhooks.md)，订阅业务语义见[订阅生命周期](./subscription-lifecycle.md)。
+本页适用于 **Halo 商城版 2.27.0 及以上版本**。Webhook 的创建与投递记录查看见[商城 / Webhook](../../../guide/shop/webhooks.md)，订阅业务语义见[订阅生命周期](./subscription-lifecycle.md)。
 :::
 
 ## 投递格式

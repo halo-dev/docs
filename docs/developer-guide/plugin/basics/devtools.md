@@ -65,7 +65,7 @@ API 文档：http://localhost:8090/swagger-ui.html
 
 ```groovy
 halo {
-  version = '2.26'
+  version = '2.27'
   superAdminUsername = 'admin'
   superAdminPassword = 'admin'
   port = 8090
@@ -153,7 +153,7 @@ logging:
 
 ```groovy
 halo {
-  version = '2.26'
+  version = '2.27'
 }
 ```
 

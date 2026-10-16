@@ -1,13 +1,15 @@
 ---
 title: Webhook
-description: 配置 Halo 商城 Webhook，并正确验签、去重和处理订单、支付与发货事件。
+description: 配置 Halo 商城 Webhook，选择订单、支付、发货与订阅事件，查看投递记录并排查接收问题。
 ---
 
 :::note 适用范围
 本页适用于控制台已经显示 **Webhook** 菜单的 Halo 商城版。可选事件以当前安装版本的创建表单为准。
 :::
 
-Webhook 会把订单、支付和发货事件以 HTTP `POST` 请求发送到外部系统，可用于对接 ERP、物流或营销系统。
+Webhook 会把订单、支付、发货和订阅事件以 HTTP `POST` 请求发送到外部系统，可用于对接 ERP、物流、营销或订阅服务。
+
+本页介绍控制台配置和投递排查。开发接收服务时，参见[商城集成](../../developer-guide/shop/integration/overview.md)；订阅事件载荷与处理规则见[订阅 Webhook](../../developer-guide/shop/integration/subscription-webhook.md)。
 
 ## 创建 Webhook
 
@@ -56,7 +58,7 @@ Webhook 会把订单、支付和发货事件以 HTTP `POST` 请求发送到外�
 - `FULFILLMENT_COMPLETED`
 - `SUBSCRIPTION_*` 订阅事件
 
-零元订单在创建时即视为已支付，会同时触发 `ORDER_CREATED` 和 `ORDER_PAID`。当前没有退款事件。订阅事件的含义、载荷与处理方式见[订阅 Webhook](../../developer-guide/shop/subscription-webhook.md)。
+零元订单在创建时即视为已支付，会同时触发 `ORDER_CREATED` 和 `ORDER_PAID`。当前没有退款事件。订阅事件的含义、载荷与处理方式见[订阅 Webhook](../../developer-guide/shop/integration/subscription-webhook.md)。
 
 ## 验证签名
 

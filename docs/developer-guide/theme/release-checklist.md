@@ -77,7 +77,7 @@ on:
 
 jobs:
   cd:
-    uses: halo-sigs/reusable-workflows/.github/workflows/theme-cd.yaml@v4
+    uses: halo-sigs/reusable-workflows/.github/workflows/theme-cd.yaml@v5
     permissions:
       contents: write
     with:
@@ -89,6 +89,7 @@ jobs:
 使用前确认：
 
 - `pnpm build` 的产物输出在 `dist/` 目录，且 ZIP 内容符合[构建与打包](./packaging.md)的约定；工作流会把 `dist/` 下的全部文件上传到 Release。
+- 如果 `package.json` 已声明 pnpm 的 `packageManager`，在 `with` 中设置 `pnpm-version: ""`，使用项目声明的版本。
 - 版本号以 Git 标签和 `theme.yaml` 的 `spec.version` 为准，发布前确认两者一致。
 - 不需要同步应用市场时，设置 `skip-appstore-release: true` 并省略 `app-id` 与 `halo-pat`。
 

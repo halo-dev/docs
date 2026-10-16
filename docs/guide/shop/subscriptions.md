@@ -9,6 +9,8 @@ description: Halo 商城订阅产品：创建订阅产品线，配置档次、�
 
 订阅产品用于销售按周期提供的服务，例如 SaaS 套餐、会员服务或许可证。与一次性售卖的商品不同，订阅有自己的生命周期：试用、生效、续费、变更、取消与过期。
 
+本页面向商家，介绍控制台配置和日常管理。接入方实现权益开通、订阅同步和交付回执时，请阅读[商城集成文档](../../developer-guide/shop/integration/overview.md)。
+
 :::warning 手动续费模式
 Halo **不保存客户的支付凭据，也不会自动扣款**。连续购买的订阅到期前会向客户发送提醒，客户需要在个人中心手动完成续费。
 :::
@@ -100,10 +102,10 @@ Halo **不保存客户的支付凭据，也不会自动扣款**。连续购买�
 - 不支持自动扣款与自动续费，续费必须由客户手动发起。
 - 不支持降级、跨计费周期变更与订阅暂停。
 - 订阅产品要求客户登录后购买；即使开启[匿名购买](./settings.md#允许匿名购买)，订阅产品也不支持游客结账。
-- 订阅订单行不会在控制台手动发货，也不会自动发放卡密或数字资源，需要接入方系统对接交付，详见[商城订阅对接](../../developer-guide/shop/index.md)。
+- 订阅订单行不会在控制台手动发货，也不会自动发放卡密或数字资源，需要接入方系统对接交付，详见[商城订阅对接](../../developer-guide/shop/integration/overview.md)。
 
 ## 相关文档
 
-- [商城订阅对接](../../developer-guide/shop/index.md)：面向接入方的 Webhook 与履约上报对接说明。
-- [订阅生命周期](../../developer-guide/shop/subscription-lifecycle.md)：订阅状态机与周期语义。
+- [商城订阅对接](../../developer-guide/shop/integration/overview.md)：面向接入方的 Webhook 与履约上报对接说明。
+- [订阅生命周期](../../developer-guide/shop/integration/subscription-lifecycle.md)：订阅状态机与周期语义。
 - [商城客户中心](./customer-center.md)：客户在个人中心的其他自助能力。

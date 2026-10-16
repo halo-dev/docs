@@ -9,7 +9,8 @@ description: 通过 GitHub Issue、Discussion 或 Halo 官方社区反馈使用�
 
 ## GitHub
 
-- [https://github.com/halo-dev/halo/issues](https://github.com/halo-dev/halo/issues)
+- [https://github.com/halo-dev/halo/issues](https://github.com/halo-dev/halo/issues)：反馈 Halo 核心项目的 Bug 或提出功能建议，请提供复现步骤或清晰的需求描述。
+- [https://github.com/halo-dev/halo/discussions](https://github.com/halo-dev/halo/discussions)：交流使用、部署等问题。
 - [https://github.com/orgs/lxware-dev/discussions](https://github.com/orgs/lxware-dev/discussions)：Halo 付费版或者付费应用的问题可以在这里进行反馈。
 
 如果你在使用过程中，遇到了一些 bug 或者需要添加某些新特性，请尽量在 GitHub 进行反馈，这非常有助于我们跟踪解决此问题，您也可以很方便的接收到处理状态。

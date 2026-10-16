@@ -1,12 +1,12 @@
 ---
 title: 导航菜单
-description: 使用 MenuFinder 按唯一标识查询导航菜单或获取站点主菜单，并通过 Thymeleaf 遍历 MenuVo 与 MenuItemVo 渲染菜单链接
+description: 使用 MenuFinder 按唯一标识查询单个或多个导航菜单、获取站点主菜单，并通过 Thymeleaf 遍历 MenuVo 与 MenuItemVo 渲染菜单树
 ---
 
 import MenuItemVo from "../vo/_MenuItemVo.md";
 import MenuVo from "../vo/_MenuVo.md";
 
-本页 API 自 Halo 2.0.0 起可用。
+除 `getByNames(names)` 自 Halo 2.27.0 起可用外，本页其他 API 自 Halo 2.0.0 起可用。
 
 从 Halo 2.26.0 开始，菜单项通过 `MenuItem.spec.menuName` 归属菜单，并通过 `MenuItem.spec.parent` 记录父级。`menuFinder` 返回的 `menu.menuItems` 已按该关系组成树；请通过每个节点的 `children` 渲染子菜单，不要读取已弃用的 `Menu.spec.menuItems` 或 `MenuItem.spec.children`。
 
@@ -42,6 +42,46 @@ menuFinder.getByName(name);
       </a>
     </li>
   </ul>
+</div>
+```
+
+## getByNames(names)
+
+自 Halo 2.27.0 起可用。
+
+```js
+menuFinder.getByNames(names);
+```
+
+### 描述
+
+根据一组 `metadata.name` 批量获取菜单及其菜单项树，适用于需要同时展示多个菜单的场景。
+
+- 按传入集合的迭代顺序返回菜单，重复标识只保留第一次出现的位置。
+- 不存在的菜单会被跳过，不会因此报错。
+- 传入空集合或 `null` 时返回空列表。
+- 每个菜单的 `menuItems` 包含根菜单项，子菜单通过节点的 `children` 获取。
+
+### 参数
+
+1. `names:Collection<string>` - 菜单的唯一标识 `metadata.name` 的集合。
+
+### 返回值
+
+List\<[#MenuVo](#menuvo)\>
+
+### 示例
+
+以下示例按顺序获取两个菜单，并复用下方 [getPrimary() 示例](#getprimary) 中的 `/templates/modules/menu-tree.html` 片段渲染完整菜单树。请将示例标识替换为实际菜单的 `metadata.name`。
+
+```html
+<div th:with="menus = ${menuFinder.getByNames({'menu-foo', 'menu-bar'})}">
+  <nav th:each="menu : ${menus}">
+    <h2 th:text="${menu.spec.displayName}"></h2>
+    <th:block
+      th:replace="~{modules/menu-tree :: tree(menuItems=${menu.menuItems})}"
+    ></th:block>
+  </nav>
 </div>
 ```
 
