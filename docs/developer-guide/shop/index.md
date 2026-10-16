@@ -1,6 +1,6 @@
 ---
 title: 商城开发
-description: Halo 商城版开发指南，涵盖商城主题适配、模板与数据、前台交互及后续集成开发。
+description: Halo 商城版开发指南，涵盖商城主题适配、模板与数据、前台交互。
 overview: true
 ---
 
@@ -9,5 +9,3 @@ overview: true
 :::
 
 商城主题沿用 Halo 的主题机制，可以复用内置商城模板，也可以自行实现商品展示和交易界面。从[主题开发概述](./theme/overview.md)开始，选择适合的开发方式。
-
-外部系统对接等内容将补充到[集成](./integration.md)板块。
