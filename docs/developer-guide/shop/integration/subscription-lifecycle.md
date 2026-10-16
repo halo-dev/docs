@@ -156,7 +156,7 @@ function coveredUntilAt(s: Subscription): string | null {
 
 - `TRIALING` 期间 `currentPeriodStartAt` / `currentPeriodEndAt` 描述的是转正后的第一个周期，**不能当作当前有效周期**，直接使用会把到期时间显示成「试用结束加一个周期」。
 - 权益快照在**购买、变更应用、续费**时重算。运营修改档次的 `entitlements` 不会立即推送给已有订阅，要等下一次续费或变更。
-- 收到快照后请整体覆盖本地权益，不要在本地累加周期或额度。
+- 使用查询确认的当前快照整体更新本地权益，不要在本地累加周期或额度；Webhook 可能乱序，不能直接用迟到的事件快照覆盖当前状态，处理流程见[幂等与顺序](./subscription-webhook.md#幂等与顺序)。
 
 ## 查询与对账接口
 

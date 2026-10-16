@@ -74,9 +74,9 @@ sequenceDiagram
 
 1. 运营在控制台配置 `productType=SUBSCRIPTION` 的产品线、档次与计划，操作步骤见[商城 / 订阅管理](../../../guide/shop/subscriptions.md)，数据模型见[订阅生命周期](./subscription-lifecycle.md#数据模型)。
 2. 接入方订阅 `SUBSCRIPTION_*` 事件与 `FULFILLMENT_REQUESTED`。
-3. 客户下单支付后，接入方按 `SUBSCRIPTION_CREATED` / `SUBSCRIPTION_TRIAL_STARTED` 载荷中的 `effectiveEntitlements` 开通权益。
+3. 客户下单支付后，接入方收到 `SUBSCRIPTION_CREATED` / `SUBSCRIPTION_TRIAL_STARTED`，按[幂等与顺序](./subscription-webhook.md#幂等与顺序)查询确认当前订阅后，使用其 `effectiveEntitlements` 开通权益。
 4. 收到 `FULFILLMENT_REQUESTED` 后完成交付，并调用[履约上报接口](./fulfillment-callback.md)回执；**不上报，订单会一直停留在待发货**。
-5. 收到 `SUBSCRIPTION_CANCELLED` / `SUBSCRIPTION_EXPIRED` 后停用权益；收到 `SUBSCRIPTION_PLAN_CHANGED` / `SUBSCRIPTION_RENEWED` 后按新快照刷新。
+5. 收到取消、过期、变更或续费事件后，按同一流程查询当前订阅，决定停用或刷新权益，避免迟到的旧事件覆盖新状态。
 
 ## 本组文档
 
