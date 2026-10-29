@@ -75,6 +75,8 @@ Halo 插件通常使用 JUnit 5，测试代码位于 `src/test/java`。只验证
 
 `haloServer` 和 `watch` 需要 Docker，并会复用项目的 `workplace` 目录。该目录中的数据会跨任务重启保留；需要验证首次安装或默认配置时，应使用新的测试数据目录或干净环境，不要把生产数据用于开发测试。
 
+同时联调多个插件项目时，DevTools 0.9.0 及以上版本可以通过 `./gradlew haloServer -Pport=8091` 或 `./gradlew watch -Pport=8091` 为各项目指定不同端口。后续在同一项目目录中执行 `./gradlew reloadPlugin` 无需重复传入端口，详见[同时运行多个插件项目](./basics/devtools.md#同时运行多个插件项目)。
+
 联调时至少检查：
 
 - 插件能够启动，服务端和浏览器控制台没有未处理错误。
