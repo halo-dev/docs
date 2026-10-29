@@ -18,7 +18,7 @@ DevTools 是使用 Java 开发的一个 [Gradle](https://gradle.org/) 插件，�
 ```groovy
 plugins {
   // ...
-  id "run.halo.plugin.devtools" version "0.8.0"
+  id "run.halo.plugin.devtools" version "0.9.0"
 }
 ```
 
@@ -58,6 +58,28 @@ API 文档：http://localhost:8090/swagger-ui.html
 :::tip 关于任务名
 `reloadPlugin` 是规范任务名；得益于 Gradle 的任务名缩写特性，`./gradlew reload` 在没有歧义时也可以工作，但建议使用完整任务名。
 :::
+
+### 同时运行多个插件项目
+
+从 DevTools 0.9.0 开始，可以通过 `-Pport` 在启动时指定端口，无需修改 `build.gradle`。例如，分别在两个插件项目的目录中执行：
+
+```shell
+# 插件项目 A
+./gradlew haloServer -Pport=8091
+
+# 插件项目 B
+./gradlew haloServer -Pport=8092
+```
+
+`watch` 也支持同样的参数：
+
+```shell
+./gradlew watch -Pport=8091
+```
+
+使用 `haloServer` 启动后，在另一个终端进入同一插件项目目录，直接执行 `./gradlew reloadPlugin` 即可重载，无需重复传入端口。DevTools 会通过 Docker 查找该项目已记录的运行实例，并读取其访问地址。使用 `watch` 时，自动重载也会沿用启动时的地址。
+
+端口取值范围为 `1` 到 `65535`，优先级为 `-Pport` > `halo.port` > 默认值 `8090`。未显式配置的 `externalUrl` 会自动跟随端口；如果配置了固定的 `externalUrl`，需要同步调整，或移除该配置以恢复自动推导。调试端口默认自动分配；如果固定了 `debugPort`，多个项目也需要使用不同的调试端口。
 
 ## 配置
 
@@ -100,7 +122,7 @@ halo {
   API version:       1.43
   ```
 
-- `port`：Halo 服务的端口号，如果你的 Halo 服务端口号不想使用默认的 `8090` 或者想使用多个 Halo 服务，可以修改此配置。
+- `port`：Halo 服务的端口号，默认为 `8090`。可以修改此配置；从 DevTools 0.9.0 开始，也可以通过 `-Pport` 覆盖，参考[同时运行多个插件项目](#同时运行多个插件项目)。
 - `debug`：是否开启调试模式，开启后会在启动 Halo 服务时会自动开启调试模式，此时你可以使用 IDE 连接到 Halo 服务进行调试。
 - `debugPort`：调试模式下的调试端口号，默认是自动分配端口号，你可以修改此配置来固定调试端口号。
 - `suspend`：是否在启动时挂起，如果开启则会在启动时挂起直到有调试器连接到 Halo 服务。
@@ -157,7 +179,7 @@ halo {
 }
 ```
 
-这不是 DevTools 自身的默认 Halo 版本。DevTools 0.8.0 源码中的默认值为 `2.9.1`，但实际项目应当显式指定与插件 API 依赖和目标 Halo 环境一致的版本。其他配置项及默认行为参见[配置](#配置)。
+这不是 DevTools 自身的默认 Halo 版本。DevTools 0.9.0 源码中的默认值为 `2.9.1`，但实际项目应当显式指定与插件 API 依赖和目标 Halo 环境一致的版本。其他配置项及默认行为参见[配置](#配置)。
 
 ### reloadPlugin 任务
 
@@ -169,14 +191,25 @@ halo {
 
 此任务用于重新加载当前正在开发的插件，修改代码后执行此任务以应用更改。
 
-该任务基于以下配置调用 Halo API 重新加载插件：
+从 DevTools 0.9.0 开始，不传 `-Pport` 时，该任务会通过 Docker 查询当前项目记录的容器，并使用运行实例的访问地址。因此，即使启动时使用了 `./gradlew haloServer -Pport=8091`，重载时也无需重复指定端口。
+
+如果记录中的容器已停止、不存在，或无法查询其访问地址，任务会报错，不会回退连接默认端口。请重新启动 `haloServer`，或显式指定目标：
+
+```shell
+./gradlew reloadPlugin -Pport=8091
+```
+
+没有容器记录，或显式传入 `-Pport` 时，任务会按本次构建的 `halo` 配置连接，无需查询 Docker。显式配置的 `externalUrl` 仍优先于根据端口推导的地址。
+
+无论使用哪种方式选择地址，调用 Halo API 时都使用以下配置中的管理员凭据：
 
 ```groovy
 halo {
   // ...
   superAdminUsername = 'admin'
   superAdminPassword = 'admin'
-  externalUrl = 'http://localhost:8090'
+  // 可选，仅在需要固定访问地址时配置
+  // externalUrl = 'http://localhost:8090'
 }
 ```
 
