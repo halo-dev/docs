@@ -8,7 +8,6 @@ define.doc(async () => {
   const [
     { pluginSass },
     { transformerCompatibleMetaHighlight },
-    { pluginSitemap },
     { transformerNotationDiff },
     { default: fileTree },
     { default: ga },
@@ -17,7 +16,6 @@ define.doc(async () => {
   ] = await Promise.all([
     import("@rsbuild/plugin-sass"),
     import("@rspress/core/shiki-transformers"),
-    import("@rspress/plugin-sitemap"),
     import("@shikijs/transformers"),
     import("rspress-plugin-file-tree"),
     import("rspress-plugin-google-analytics"),
@@ -33,12 +31,8 @@ define.doc(async () => {
     logoText: "Halo 文档",
     icon: "/img/favicon-96x96.png",
     logo: "https://www.halo.run/logo",
-    llms: true,
     siteOrigin: SITE_URL,
     globalStyles: path.join(import.meta.dirname, "styles/index.scss"),
-    route: {
-      cleanUrls: true,
-    },
     mediumZoom: {
       selector: ".rspress-doc img:not(.no-zoom)",
     },
@@ -60,9 +54,6 @@ define.doc(async () => {
     },
     outDir: "build",
     plugins: [
-      pluginSitemap({
-        siteUrl: SITE_URL,
-      }),
       mermaid(),
       ga({
         id: "UA-110780416-7",

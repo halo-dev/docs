@@ -82,7 +82,7 @@ halo:
     runtime-mode: deployment
 ```
 
-参考 [传统方式运行](../hello-world.mdx#run-with-traditional-way)
+参考 [传统方式运行](../hello-world.mdx#运行插件)
 
 #### 以 `development` 模式运行插件
 
@@ -109,7 +109,7 @@ halo:
 :::tip development 模式的插件加载方式
 
 1. `development` 开发模式下，既可以运行 `fixed-plugin-path` 下的插件，也可以运行通过 `Console` 管理端安装的 JAR 格式的插件。
-2. 如果使用 [DevTools 运行方式](../hello-world.mdx#run-with-devtools) 来开发插件，则不需要配置 `runtime-mode` 和 `fixed-plugin-path`。
+2. 如果使用 [DevTools 运行方式](../hello-world.mdx#运行插件) 来开发插件，则不需要配置 `runtime-mode` 和 `fixed-plugin-path`。
 
 :::
 
