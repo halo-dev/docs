@@ -8,7 +8,6 @@ define.doc(async () => {
   const [
     { pluginSass },
     { transformerCompatibleMetaHighlight },
-    { transformerNotationDiff },
     { default: fileTree },
     { default: ga },
     { default: mermaid },
@@ -16,7 +15,6 @@ define.doc(async () => {
   ] = await Promise.all([
     import("@rsbuild/plugin-sass"),
     import("@rspress/core/shiki-transformers"),
-    import("@shikijs/transformers"),
     import("rspress-plugin-file-tree"),
     import("rspress-plugin-google-analytics"),
     import("rspress-plugin-mermaid"),
@@ -43,10 +41,7 @@ define.doc(async () => {
       },
       shiki: {
         theme: "github-dark",
-        transformers: [
-          transformerCompatibleMetaHighlight(),
-          transformerNotationDiff(),
-        ],
+        transformers: [transformerCompatibleMetaHighlight()],
       },
       image: {
         checkDeadImages: true,
