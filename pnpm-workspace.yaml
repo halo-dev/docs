@@ -4,5 +4,5 @@ allowBuilds:
   "workerd": true
 minimumReleaseAgeExclude:
   - "@iconify-json/simple-icons@1.2.99"
-  - "@rspress/core@2.1.0"
-  - "@rspress/shared@2.1.0"
+  - "@rspress/core@2.1.2"
+  - "@rspress/shared@2.1.2"
