@@ -11,8 +11,7 @@
     "preview": "rs doc preview"
   },
   "dependencies": {
-    "@rspress/core": "^2.1.0",
-    "@shikijs/transformers": "^4.5.0",
+    "@rspress/core": "^2.1.2",
     "rspress-plugin-file-tree": "^1.0.7",
     "rspress-plugin-google-analytics": "^1.0.1",
     "rspress-plugin-mermaid": "^1.0.3"
