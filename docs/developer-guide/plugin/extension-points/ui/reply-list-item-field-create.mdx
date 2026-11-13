@@ -1,0 +1,82 @@
+---
+title: 回复数据列表显示字段
+description: "使用 reply:list-item:field:create 在 Halo Console 回复列表中添加自定义显示字段，根据当前 ListedReply 配置位置、组件、权限和显隐条件"
+---
+
+此扩展点在 Halo 2.28.0 中引入，用于扩展回复数据列表的显示字段。
+
+插件返回的字段会按 `position` 分别显示在列表项的 `start`（左侧）或 `end`（右侧）区域，并渲染在该区域内置内容之前。同一区域内的字段按 `priority` 升序排列；`hidden` 为 `true`，或当前用户不具备 `permissions` 中声明的任一权限时，字段不会渲染。
+
+扩展点接收当前回复的 `ListedReply` 响应式引用。列表数据更新时，字段会使用最新的回复数据重新渲染。
+
+## 定义方式
+
+```ts
+export default definePlugin({
+  extensionPoints: {
+    "reply:list-item:field:create": (
+      reply: Ref<ListedReply>,
+    ): EntityFieldItem[] => {
+      return [
+        {
+          priority: 0,
+          position: "start",
+          component: markRaw(FooComponent),
+          props: {},
+          permissions: [],
+          hidden: false,
+        },
+      ];
+    },
+  },
+});
+```
+
+```ts title="EntityFieldItem"
+export interface EntityFieldItem {
+  priority: number;
+  position: "start" | "end";
+  component: Raw<Component>;
+  props?: Record\<string, unknown\>;
+  permissions?: string[];
+  hidden?: boolean;
+}
+```
+
+## 示例
+
+此示例将在回复列表右侧显示回复所属评论的资源名称。
+
+```ts
+import type { ListedReply } from "@halo-dev/api-client";
+import { VEntityField } from "@halo-dev/components";
+import { definePlugin } from "@halo-dev/ui-shared";
+import { markRaw, type Ref } from "vue";
+
+export default definePlugin({
+  extensionPoints: {
+    "reply:list-item:field:create": (reply: Ref<ListedReply>) => {
+      return [
+        {
+          priority: 0,
+          position: "end",
+          component: markRaw(VEntityField),
+          props: {
+            description: reply.value.reply.spec.commentName,
+          },
+          permissions: [],
+          hidden: false,
+        },
+      ];
+    },
+  },
+});
+```
+
+## 类型定义
+
+### ListedReply
+
+import ListedReply from "./interface/_ListedReply.md";
+
+<ListedReply />

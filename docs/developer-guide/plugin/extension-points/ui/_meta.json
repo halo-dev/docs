@@ -20,6 +20,8 @@
   "plugin-list-item-field-create",
   "post-list-item-field-create",
   "single-page-list-item-field-create",
+  "comment-list-item-field-create",
+  "reply-list-item-field-create",
   "user-detail-tabs-create",
   "uc-user-profile-tabs-create",
   "dashboard-widgets"
