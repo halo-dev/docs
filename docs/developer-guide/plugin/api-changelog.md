@@ -3,6 +3,14 @@ title: API 变更日志
 description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单组件和依赖升级等变更，识别兼容性影响并完成插件迁移
 ---
 
+## 2.28.0
+
+### 索引支持语义版本和启动快照
+
+从 Halo 2.28.0 开始，使用 `IndexSpecs.single()` 或 `IndexSpecs.multi()` 声明的索引支持 `.version(int)`，默认版本为 `1`。当索引函数的取值语义发生变化时，插件必须递增该版本，否则 Halo 可能复用旧的启动快照，返回与数据库不一致的查询结果。
+
+Halo 与插件在重启、启停或升级时可以从索引快照恢复 Extension 索引，减少大型数据集下的启动耗时。快照保存在工作目录的 `indices/snapshots` 下，缺失、损坏或不兼容时自动全量重建，无需手动维护。该能力不改变现有的索引声明方式，也不要求提升插件或主题的 `spec.requires`；自定义索引构建器需要按上述规则处理版本。详细说明请参考[自定义模型 > 索引版本与启动快照](./api-reference/server/extension.md#index-version-and-snapshots)。
+
 ## 2.27.0
 
 ### UI 构建工具移除旧入口，构建工具依赖改为可选
