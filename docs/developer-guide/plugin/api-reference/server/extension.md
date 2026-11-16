@@ -125,6 +125,28 @@ public void start() {
 - `keyType` 必须实现 `Comparable`。
 - 同一模型中的索引名称必须唯一。
 
+### 索引版本与启动快照 {#index-version-and-snapshots}
+
+Halo 2.28.0 起可以为索引声明语义版本，默认值为 `1`：
+
+```java
+indexSpecs.add(IndexSpecs
+    .<Person, String>single("spec.name", String.class)
+    .indexFunc(person -> person.getSpec().getName().toLowerCase())
+    .version(2));
+```
+
+当索引函数的取值语义发生变化时，必须递增 `version`。例如将索引键由原始值改为小写值，即使索引名称、单值或多值类型、键类型、唯一性和可空性都没有变化，也要更新版本。索引定义指纹只包含这些结构信息和版本，无法判断 Java 函数是否等价；遗漏版本变更可能导致 Halo 复用旧快照，使查询结果与数据库不一致。
+
+Halo 会在类型注销时把已构建的索引保存为启动快照，并在数据库中记录对应的检查点。下次 Halo 启动或插件重新启停、升级时，如果资源类型、索引定义和索引引擎兼容版本都与检查点匹配，就直接恢复索引，不再读取该类型的全部业务数据；否则全量重建该类型，其他类型仍可继续恢复。
+
+- 快照保存在工作目录的 `indices/snapshots/<Extension 完整类名>.snapshot.gz`，是可以丢弃的启动缓存。
+- 快照缺失、损坏或版本不兼容时会自动重建，并在后续正常停止时重新生成，通常不需要手动删除。
+- 升级 Halo 或插件、调整页面或业务逻辑不会仅因此触发重建；只有索引定义指纹变化或快照不可用才会重建。
+- 该机制假定同一数据库只有一个 Halo 实例写入。通过直接 SQL 或绕过存储层修改业务数据不在自动一致性保障范围内，需要自行确保旧快照不会被复用。
+
+自定义 `IndexSpecBuilder` 实现如果未覆盖 `version(int)`，调用时会抛出 `UnsupportedOperationException`；`ValueIndexSpec#getVersion()` 默认返回 `1`。
+
 Halo 已为以下字段建立索引，不要重复声明：
 
 - `metadata.name`，唯一索引
