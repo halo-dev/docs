@@ -1,6 +1,6 @@
 ---
 title: 评论
-description: 使用 CommentFinder 按名称查询评论、按内容引用分页获取评论列表，并查询指定评论的回复，包含 CommentVo、ReplyVo 和 Ref 类型定义
+description: 使用 CommentFinder 按名称查询评论、按内容引用分页获取评论列表、查询指定评论的回复并自定义排序，包含 CommentVo、ReplyVo 和 Ref 类型定义
 ---
 
 import CommentVo from "../vo/_CommentVo.md";
@@ -72,6 +72,62 @@ commentFinder.list(ref, page, size);
 </ul>
 ```
 
+## `list({...})`
+
+```js
+commentFinder.list({
+  ref: { group: 'content.halo.run', version: 'v1alpha1', kind: 'Post', name: 'post-foo' },
+  page: 1,
+  size: 10,
+  sort: {'spec.creationTime,desc'}
+});
+```
+
+### 描述
+
+统一参数的评论列表查询方法，支持分页、评论主体引用和排序，且均为可选参数。
+
+**引入版本**：2.28.0
+
+省略 `ref` 时将查询所有评论主体下的评论。公开可见性和内容清理规则与 `list(ref, page, size)` 一致。
+
+:::info 排序的默认行为
+
+默认排序为 `spec.top,desc → spec.priority,asc → spec.creationTime,desc → metadata.name,asc`。传递自定义 `sort` 时，自定义排序会拼接到默认排序之前，默认排序仍然生效。例如传入 `sort: {'spec.creationTime,desc'}` 后，置顶评论仍会排在非置顶评论之前，但在同一置顶状态下按创建时间倒序排列。
+
+:::
+
+### 参数
+
+1. `ref:#Ref` - 评论主体的引用，即被评论对象（如文章、自定义页面）的 `group` / `version` / `kind` / `name`，而非评论自身的 `metadata.name`。不传时查询所有评论主体下的评论。
+2. `page:int` - 分页页码，从 1 开始
+3. `size:int` - 分页条数
+4. `sort:string[]` - 排序字段，格式为 `字段名,排序方式`，排序方式可选值为 `asc` 或 `desc`，如 `spec.creationTime,desc`，传递时需要使用 `{}` 形式并用逗号分隔表示数组。
+
+- [#Ref](#ref)
+
+### 返回值
+
+[#ListResult\<CommentVo\>](#listresultcommentvo)
+
+### 示例
+
+```html
+<ul
+  th:with="comments = ${commentFinder.list({
+  ref: { group: 'content.halo.run', version: 'v1alpha1', kind: 'Post', name: 'post-foo' },
+  page: 1,
+  size: 10,
+  sort: {'spec.creationTime,desc'}
+})}"
+>
+  <li th:each="comment : ${comments.items}">
+    <span th:text="${comment.owner.displayName}"></span>
+    <div th:text="${comment.spec.content}"></div>
+  </li>
+</ul>
+```
+
 ## listReply(commentName,page,size)
 
 ```js
@@ -96,6 +152,58 @@ commentFinder.listReply(commentName, page, size);
 
 ```html
 <ul th:with="replies = ${commentFinder.listReply('comment-foo',1,10)}">
+  <li th:each="reply : ${replies.items}">
+    <span th:text="${reply.owner.displayName}"></span>
+    <div th:text="${reply.spec.content}"></div>
+  </li>
+</ul>
+```
+
+## `listReply(commentName, {...})`
+
+```js
+commentFinder.listReply('comment-foo', {
+  page: 1,
+  size: 10,
+  sort: {'spec.creationTime,desc'}
+});
+```
+
+### 描述
+
+统一参数的回复列表查询方法，支持分页和排序，且均为可选参数。
+
+**引入版本**：2.28.0
+
+公开可见性和内容清理规则与 `listReply(commentName, page, size)` 一致。
+
+:::info 排序的默认行为
+
+默认排序为 `spec.top,desc → spec.priority,asc → spec.creationTime,asc → metadata.name,asc`。传递自定义 `sort` 时，自定义排序会拼接到默认排序之前，默认排序仍然生效。
+
+:::
+
+### 参数
+
+1. `commentName:string` - 评论的唯一标识 `metadata.name`。
+2. `page:int` - 分页页码，从 1 开始
+3. `size:int` - 分页条数
+4. `sort:string[]` - 排序字段，格式为 `字段名,排序方式`，排序方式可选值为 `asc` 或 `desc`，如 `spec.creationTime,desc`，传递时需要使用 `{}` 形式并用逗号分隔表示数组。
+
+### 返回值
+
+[#ListResult\<ReplyVo\>](#listresultreplyvo)
+
+### 示例
+
+```html
+<ul
+  th:with="replies = ${commentFinder.listReply('comment-foo', {
+  page: 1,
+  size: 10,
+  sort: {'spec.creationTime,desc'}
+})}"
+>
   <li th:each="reply : ${replies.items}">
     <span th:text="${reply.owner.displayName}"></span>
     <div th:text="${reply.spec.content}"></div>
