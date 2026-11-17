@@ -3,6 +3,12 @@ title: API 变更日志
 description: 按 Halo 版本记录主题开发 API 的新增与变更，涵盖 UI 扩展、页面布局契约、Finder API、FormKit 表单组件和模板表达式，便于判断兼容范围并完成适配
 ---
 
+## 2.28.0
+
+### 文章 Finder API > 新增 `cursor(postName, params)` 方法
+
+在 2.28.0 中，文章 Finder API 新增了 `cursor(postName, params)` 方法，用于按与 `list({...})` 相同的分类、标签、作者、置顶状态和排序条件获取相邻文章。分页参数 `page` 和 `size` 会被忽略，当前文章不在查询结果中时返回空的导航结果。详细文档可查阅：[文章 Finder API#cursor(postName, params)](./finder-apis/post.mdx#cursorpostname-params)。
+
 ## 2.27.0
 
 ### 导航菜单 Finder API > 新增 `getByNames(names)` 方法
