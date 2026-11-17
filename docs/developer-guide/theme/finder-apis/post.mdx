@@ -105,6 +105,60 @@ postFinder.cursor(postName);
 </div>
 ```
 
+## cursor(postName, params)
+
+```js
+postFinder.cursor(postName, {
+  tagName: "fake-tag",
+  owner: "fake-owner",
+  sort: ["spec.publishTime,desc"],
+});
+```
+
+### 描述
+
+根据文章的 `metadata.name`，在自定义的筛选和排序条件下获取相邻的文章（上一篇 / 下一篇）。
+
+**引入版本**：2.28.0
+
+查询参数与 [`list({...})`](#list) 一致，支持 `categoryName`、`tagName`、`owner`、`pinned` 和 `sort`。分页参数 `page` 和 `size` 会被忽略，导航始终在整个查询结果中计算，而不是只在当前分页内计算。如果当前文章不满足查询条件，或者在查询结果中不存在，将返回空的导航结果。
+
+:::info 上一篇与下一篇的定义
+上一篇文章是指在当前排序结果中位于当前文章之后的文章，下一篇文章是指位于当前文章之前的文章。默认排序为发布时间倒序，因此上一篇即发布时间更早的文章，下一篇即发布时间更新的文章，与 [`cursor(postName)`](#cursorpostname) 的行为一致；传递自定义 `sort` 时，上一篇和下一篇会跟随该排序。
+:::
+
+导航依赖查询条件，主题需要在文章页面之间保留相同的筛选和排序参数。例如从标签页面进入文章时，应在文章模板中使用相同的 `tagName`。
+
+### 参数
+
+1. `postName:string` - 文章的唯一标识 `metadata.name`。
+2. `params:object` - 查询参数，与 [`list({...})`](#list) 相同，支持 `categoryName`、`tagName`、`owner`、`pinned` 和 `sort`；`page` 和 `size` 会被忽略。
+
+### 返回值
+
+[#NavigationPostVo](#navigationpostvo)
+
+### 示例
+
+```html title="/templates/post.html"
+<div
+  th:with="postCursor = ${postFinder.cursor(post.metadata.name, {tagName: 'fake-tag'})}"
+>
+  <a
+    th:if="${postCursor.hasPrevious()}"
+    th:href="@{${postCursor.previous.status.permalink}}"
+  >
+    <span th:text="${postCursor.previous.spec.title}"></span>
+  </a>
+  <a
+    th:if="${postCursor.hasNext()}"
+    th:href="@{${postCursor.next.status.permalink}}"
+  >
+    <span th:text="${postCursor.next.spec.title}"></span>
+  </a>
+</div>
+```
+
 ## cursorByCategory(postName)
 
 ```js
