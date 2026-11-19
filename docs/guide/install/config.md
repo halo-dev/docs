@@ -153,13 +153,14 @@ Halo 付费版在 2.16 中新增了集成 Redis 的功能，目前提供将用�
 
 Docker Compose 配置片段如下：
 
-```yaml {25-32}
+```yaml {26-33}
 version: "3"
 
 services:
   halo:
     image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
+    stop_grace_period: 120s
     depends_on:
       halodb:
         condition: service_healthy
@@ -192,13 +193,14 @@ networks:
 
 如果你是使用的 Docker Compose 部署 Halo，并且希望将 Redis 服务编排在一起，以下是配置示例：
 
-```yaml {26-33,37-44}
+```yaml {27-34,38-45}
 version: "3"
 
 services:
   halo:
     image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
+    stop_grace_period: 120s
     depends_on:
       halodb:
         condition: service_healthy

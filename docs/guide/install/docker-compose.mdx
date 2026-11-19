@@ -46,11 +46,12 @@ mkdir ~/halo && cd ~/halo
 <Tabs>
 <Tab value="halo-postgresql" label="Halo + PostgreSQL（推荐）">
 
-```yaml {25-31,45} title="~/halo/docker-compose.yaml"
+```yaml {26-32,46} title="~/halo/docker-compose.yaml"
 services:
   halo:
     image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
+    stop_grace_period: 120s
     depends_on:
       halodb:
         condition: service_healthy
@@ -107,11 +108,12 @@ networks:
 </Tab>
 <Tab value="halo-mysql" label="Halo + MySQL">
 
-```yaml {25-31,53} title="~/halo/docker-compose.yaml"
+```yaml {26-32,54} title="~/halo/docker-compose.yaml"
 services:
   halo:
     image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
+    stop_grace_period: 120s
     depends_on:
       halodb:
         condition: service_healthy
@@ -178,11 +180,12 @@ networks:
 不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../guide/use/backup.md)。
 :::
 
-```yaml {21} title="~/halo/docker-compose.yaml"
+```yaml {22} title="~/halo/docker-compose.yaml"
 services:
   halo:
     image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
+    stop_grace_period: 120s
     volumes:
       - ./halo2:/root/.halo2
     ports:
@@ -205,11 +208,12 @@ services:
 </Tab>
 <Tab value="external-db" label="使用外部数据库">
 
-```yaml {5,13-20} title="~/halo/docker-compose.yaml"
+```yaml {6,14-21} title="~/halo/docker-compose.yaml"
 services:
   halo:
     image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
+    stop_grace_period: 120s
     network_mode: "host"
     volumes:
       - ./halo2:/root/.halo2
@@ -345,7 +349,7 @@ reverse_proxy 127.0.0.1:8090
 3. 修改外部地址为你的域名
 4. 声明路由规则、开启 TLS
 
-```yaml {2-3,14,18,23-29}
+```yaml {2-3,15,19,24-30}
 networks:
   traefik:
     external: true
@@ -355,6 +359,7 @@ services:
   halo:
     image: registry.fit2cloud.com/halo/halo-pro:2.27
     restart: on-failure:3
+    stop_grace_period: 120s
     volumes:
       - ./halo2:/root/.halo2
     networks:
