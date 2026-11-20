@@ -68,7 +68,6 @@ import "@halo-dev/components/dist/style.css";
 import Demo from ${JSON.stringify(demoPath)};
 
 const style = document.createElement("style");
-// Halo Console 的全局样式会将 select 的上下 padding 重置为 0，这里保持一致
 style.textContent =
   "#root { padding: 24px; } select { padding-top: 0; padding-bottom: 0; }";
 document.head.appendChild(style);
