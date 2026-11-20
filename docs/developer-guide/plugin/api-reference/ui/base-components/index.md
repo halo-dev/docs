@@ -26,13 +26,8 @@ import { VButton } from "@halo-dev/components";
 </template>
 ```
 
-:::tip
-插件运行在 Halo Console 中时，组件库的样式已由 Console 统一加载，无需额外引入。如果需要在独立的 Vue 应用中预览或调试组件，可以手动引入：
-
-```ts
-import "@halo-dev/components/dist/style.css";
-```
-
+:::warning
+此组件库只适用于 Halo 和 Halo 插件，不建议作为通用组件库使用。
 :::
 
 ## 组件列表
