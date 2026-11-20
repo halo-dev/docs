@@ -11,6 +11,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 Halo 与插件在重启、启停或升级时可以从索引快照恢复 Extension 索引，减少大型数据集下的启动耗时。快照保存在工作目录的 `indices/snapshots` 下，缺失、损坏或不兼容时自动全量重建，无需手动维护。该能力不改变现有的索引声明方式，也不要求提升插件或主题的 `spec.requires`；自定义索引构建器需要按上述规则处理版本。详细说明请参考[自定义模型 > 索引版本与启动快照](./api-reference/server/extension.md#index-version-and-snapshots)。
 
+### 内置角色与权限管理模板停用
+
+从 Halo 2.28.0 开始，内置的 `role-template-manage-roles`、`role-template-view-roles`、`role-template-manage-permissions` 和 `role-template-view-permissions` 已停用为隐藏的空角色模板，`system:roles:manage`、`system:roles:view`、`system:permissions:manage` 和 `system:permissions:view` 不再授予非超级管理员，角色的增删改查与用户权限分配因此仅超级管理员可用。
+
+如果插件的 Console 或个人中心界面依赖以上 UI 权限（例如按 `system:roles:view` 显示角色相关入口），需要对非超级管理员隐藏或降级这些入口；用户列表的角色筛选也只在当前用户拥有 `system:roles:view` 时才请求并显示角色列表。
+
 ### 新增通用筛选下拉组件
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VFilterDropdown` 和 `VFilterDropdownGroup`，用于构建列表筛选栏，支持本地与远程搜索、分组、树形选项、滚动加载和一键清空。原先在 Console 中全局注册的 `FilterDropdown` 和 `FilterCleanButton` 仍然保留，已有插件无需修改；新插件建议使用新组件。详细文档请参考[筛选下拉](./api-reference/ui/base-components/filter-dropdown.md)。
