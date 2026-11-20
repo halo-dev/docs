@@ -15,6 +15,10 @@ Halo 与插件在重启、启停或升级时可以从索引快照恢复 Extensio
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VFilterDropdown` 和 `VFilterDropdownGroup`，用于构建列表筛选栏，支持本地与远程搜索、分组、树形选项、滚动加载和一键清空。原先在 Console 中全局注册的 `FilterDropdown` 和 `FilterCleanButton` 仍然保留，已有插件无需修改；新插件建议使用新组件。详细文档请参考[筛选下拉](./api-reference/ui/base-components/filter-dropdown.md)。
 
+### 新增通用表格组件
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VTable` 和 `createTableColumnHelper`，用于展示多列数据，支持列定义、列级排序、行选择、展开行、多级表头、固定列、列宽调整和虚拟滚动。组件基于 TanStack Table 构建，依赖已打包进组件库，插件不需要额外安装。原先的 `VEntity` 系列组件保持不变，卡片式单列列表仍可使用；需要横向对比多个字段时可以使用新组件。详细文档请参考[表格](./api-reference/ui/base-components/table.md)。
+
 ## 2.27.0
 
 ### UI 构建工具移除旧入口，构建工具依赖改为可选
