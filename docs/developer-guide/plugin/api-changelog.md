@@ -11,6 +11,10 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 Halo 与插件在重启、启停或升级时可以从索引快照恢复 Extension 索引，减少大型数据集下的启动耗时。快照保存在工作目录的 `indices/snapshots` 下，缺失、损坏或不兼容时自动全量重建，无需手动维护。该能力不改变现有的索引声明方式，也不要求提升插件或主题的 `spec.requires`；自定义索引构建器需要按上述规则处理版本。详细说明请参考[自定义模型 > 索引版本与启动快照](./api-reference/server/extension.md#index-version-and-snapshots)。
 
+### 新增通用筛选下拉组件
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VFilterDropdown` 和 `VFilterDropdownGroup`，用于构建列表筛选栏，支持本地与远程搜索、分组、树形选项、滚动加载和一键清空。原先在 Console 中全局注册的 `FilterDropdown` 和 `FilterCleanButton` 仍然保留，已有插件无需修改；新插件建议使用新组件。详细文档请参考[筛选下拉](./api-reference/ui/base-components/filter-dropdown.md)。
+
 ## 2.27.0
 
 ### UI 构建工具移除旧入口，构建工具依赖改为可选

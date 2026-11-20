@@ -102,6 +102,7 @@ const icons = [
 | `IconBookRead`              | `ri/book-read-line`             |
 | `IconCalendar`              | `ri/calendar-line`              |
 | `IconCharacterRecognition`  | `ri/character-recognition-line` |
+| `IconCheck`                 | `ri/check-line`                 |
 | `IconCheckboxFill`          | `ri/checkbox-circle-fill`       |
 | `IconCheckboxCircle`        | `ri/checkbox-circle-line`       |
 | `IconClipboardLine`         | `ri/clipboard-line`             |
@@ -165,3 +166,5 @@ const icons = [
 | `IconWindowLine`            | `ri/window-line`                |
 | `IconZoomInLine`            | `ri/zoom-in-line`               |
 | `IconZoomOutLine`           | `ri/zoom-out-line`              |
+
+`IconCheck` 从 2.28.0 开始提供。

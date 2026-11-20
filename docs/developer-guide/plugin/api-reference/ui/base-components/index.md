@@ -6,8 +6,6 @@ overview: true
 
 `@halo-dev/components` 是 Halo 官方维护的基础组件库，Halo Console 和用户中心的界面均由这套组件构建。在插件中使用它可以获得与 Halo 一致的外观和交互。
 
-本文档基于 `@halo-dev/components` 2.27.0。
-
 ## 安装
 
 ```bash
@@ -69,9 +67,10 @@ import { VButton } from "@halo-dev/components";
 
 ### 数据展示
 
-| 组件                        | 说明             |
-| --------------------------- | ---------------- |
-| [实体 VEntity](./entity.md) | 列表中的一行数据 |
+| 组件                                             | 说明                                             |
+| ------------------------------------------------ | ------------------------------------------------ |
+| [实体 VEntity](./entity.md)                      | 列表中的一行数据                                 |
+| [筛选下拉 VFilterDropdown](./filter-dropdown.md) | 列表筛选栏中的下拉筛选，支持搜索、分组与一键清空 |
 
 ### 其他
 

@@ -15,6 +15,7 @@
   "menu",
   "pagination",
   "dropdown",
+  "filter-dropdown",
   "modal",
   "dialog",
   "toast",
