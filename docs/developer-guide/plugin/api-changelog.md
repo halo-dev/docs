@@ -15,6 +15,12 @@ Halo 与插件在重启、启停或升级时可以从索引快照恢复 Extensio
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VFilterDropdown` 和 `VFilterDropdownGroup`，用于构建列表筛选栏，支持本地与远程搜索、分组、树形选项、滚动加载和一键清空。原先在 Console 中全局注册的 `FilterDropdown` 和 `FilterCleanButton` 仍然保留，已有插件无需修改；新插件建议使用新组件。详细文档请参考[筛选下拉](./api-reference/ui/base-components/filter-dropdown.md)。
 
+### 新增日期选择组件
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 新增日期、日期时间和日期范围选择组件：`VDatePickerPanel`、`VDateTimePickerPanel`、`VDateRangePickerPanel`、`VDateTimeRangePickerPanel`，以及在面板外提供触发器的 `VDatePickerDropdown`、`VDateRangePickerDropdown` 和筛选栏变体 `VFilterDateRangeDropdown`。所有值都是普通字符串（`YYYY-MM-DD`、`YYYY-MM-DDTHH:mm` 或 `{ start?, end? }`），调用方不需要依赖 `@internationalized/date`。
+
+Console 和用户中心的发布时间、个人访问令牌过期时间等输入框已改用这些组件，修复了 Firefox 无法选择时间的问题。表单 Schema 中也可以使用新增的 `datepicker` 和 `datetimepicker` 输入类型，详细说明请参考[日期选择](./api-reference/ui/base-components/date-picker.md)和[表单定义 > datepicker](../form-schema.md#datepicker)。
+
 ## 2.27.0
 
 ### UI 构建工具移除旧入口，构建工具依赖改为可选
