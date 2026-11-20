@@ -26,7 +26,7 @@ import { VButton } from "@halo-dev/components";
 </template>
 ```
 
-:::warning
+:::warning 适用范围
 此组件库只适用于 Halo 和 Halo 插件，不建议作为通用组件库使用。
 :::
 
