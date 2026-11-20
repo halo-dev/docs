@@ -180,8 +180,8 @@ importers:
         version: 1.0.3(@rspress/core@2.1.4(@rspack/core@2.2.8(@swc/helpers@0.5.23))(micromark-util-types@2.0.2)(micromark@4.0.2(supports-color@9.4.0))(supports-color@9.4.0))(supports-color@9.4.0)
     devDependencies:
       '@halo-dev/components':
-        specifier: https://pkg.pr.new/@halo-dev/components@93fd3f2b
-        version: https://pkg.pr.new/@halo-dev/components@93fd3f2b(vue-router@5.1.0(@rsbuild/core@2.2.11)(@rspack/core@2.2.8(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.45)(vue@3.5.45(typescript@6.0.3)))(vue@3.5.45(typescript@6.0.3))
+        specifier: https://pkg.pr.new/@halo-dev/components@b4069662
+        version: https://pkg.pr.new/@halo-dev/components@b4069662(vue-router@5.1.0(@rsbuild/core@2.2.11)(@rspack/core@2.2.8(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.45)(vue@3.5.45(typescript@6.0.3)))(vue@3.5.45(typescript@6.0.3))
       '@iconify-json/mingcute':
         specifier: ^1.2.8
         version: 1.2.8
@@ -449,8 +449,8 @@ packages:
     peerDependencies:
       vue: '>=3.3.0'
 
-  '@halo-dev/components@https://pkg.pr.new/@halo-dev/components@93fd3f2b':
-    resolution: {integrity: sha512-ZJOYIc9QSgJmyMAvpW90QagyZaKrNgSHhZSQu1QGJJzb8x+qftf6bXODNCEpXwNCGhOHpmfe9Q+FH0RD+9GOGA==, tarball: https://pkg.pr.new/@halo-dev/components@93fd3f2b}
+  '@halo-dev/components@https://pkg.pr.new/@halo-dev/components@b4069662':
+    resolution: {integrity: sha512-YSUx3JPag3shJiKMKPJb+QpCDCiFb4ySWSvYriZCvi7iXEg0PGf/gVItOTNC3xuhqBSRLVvdnhbVVI8oev0qig==, tarball: https://pkg.pr.new/@halo-dev/components@b4069662}
     version: 2.28.0
     peerDependencies:
       vue: ^3.5.x
@@ -1221,8 +1221,21 @@ packages:
   '@swc/helpers@0.5.24':
     resolution: {integrity: sha512-6tcXo4kA8HgGO7AVmawB57RYi/piBPYVHVcO6dXjX+SZw8GoHmi262sp4v2Ha2kNP9Cx84qei27yT+fjS1lxgg==}
 
+  '@tanstack/store@0.11.2':
+    resolution: {integrity: sha512-sJ4mjol8uQsHV0gOJzzjwXfh2Fwm+Sz0+8deqiTm4jGbMdjzNSW+xZCFm0kUa870uhd8yi+DpKnZb5Kc4apa0Q==}
+
+  '@tanstack/table-core@9.3.1':
+    resolution: {integrity: sha512-zQvlxSNi2qGM3L4jh85Z6hqMfdIR5qOfD9KHOU32nuKFJGN0RlJ7UvV1lsPb1fPVhpFYI0VP3jJGxLdLDpTKjQ==}
+    engines: {node: '>=20'}
+
   '@tanstack/virtual-core@3.19.11':
     resolution: {integrity: sha512-/5iHb0RHBvj8Di59FDs4ESNm45jls33aZAi4zccVXZjc/6ZvwQP6nzEYeT6weXjTf9E6/vrp2JhYWRyO+ZP13A==}
+
+  '@tanstack/vue-table@9.3.1':
+    resolution: {integrity: sha512-7z7nS4UP91rLZ01suGxQBT611ogfBrs7/E+lsKeYS9XdHSRUAzclFvQ4B10F0bC/Q8BrzgXiNH3QzumK7b0Tow==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      vue: '>=3.2'
 
   '@tanstack/vue-virtual@3.13.52':
     resolution: {integrity: sha512-qTwG7HNr5o+FPd/u+T05N73A8howtkB9FgQI71VcBzx6J2KsYzlVugRz/0ji17kl26D8SAdKux1Wmk3yhTI1Kw==}
@@ -3280,9 +3293,11 @@ snapshots:
       '@floating-ui/utils': 0.2.12
       vue: 3.5.45(typescript@6.0.3)
 
-  '@halo-dev/components@https://pkg.pr.new/@halo-dev/components@93fd3f2b(vue-router@5.1.0(@rsbuild/core@2.2.11)(@rspack/core@2.2.8(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.45)(vue@3.5.45(typescript@6.0.3)))(vue@3.5.45(typescript@6.0.3))':
+  '@halo-dev/components@https://pkg.pr.new/@halo-dev/components@b4069662(vue-router@5.1.0(@rsbuild/core@2.2.11)(@rspack/core@2.2.8(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.45)(vue@3.5.45(typescript@6.0.3)))(vue@3.5.45(typescript@6.0.3))':
     dependencies:
       '@internationalized/date': 3.12.4
+      '@tanstack/vue-table': 9.3.1(vue@3.5.45(typescript@6.0.3))
+      '@tanstack/vue-virtual': 3.13.52(vue@3.5.45(typescript@6.0.3))
       floating-vue: 5.4.0(vue@3.5.45(typescript@6.0.3))
       reka-ui: 2.11.0(vue@3.5.45(typescript@6.0.3))
       vue: 3.5.45(typescript@6.0.3)
@@ -3999,7 +4014,19 @@ snapshots:
 
   '@swc/helpers@0.5.24': {}
 
+  '@tanstack/store@0.11.2': {}
+
+  '@tanstack/table-core@9.3.1':
+    dependencies:
+      '@tanstack/store': 0.11.2
+
   '@tanstack/virtual-core@3.19.11': {}
+
+  '@tanstack/vue-table@9.3.1(vue@3.5.45(typescript@6.0.3))':
+    dependencies:
+      '@tanstack/store': 0.11.2
+      '@tanstack/table-core': 9.3.1
+      vue: 3.5.45(typescript@6.0.3)
 
   '@tanstack/vue-virtual@3.13.52(vue@3.5.45(typescript@6.0.3))':
     dependencies:
