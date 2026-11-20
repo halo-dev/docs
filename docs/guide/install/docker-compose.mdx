@@ -80,12 +80,12 @@ services:
       # 外部访问地址，请根据实际需要修改
       - --halo.external-url=http://localhost:8090/
   halodb:
-    image: postgres:15.4
+    image: postgres:19
     restart: on-failure:3
     networks:
       halo_network:
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql
     healthcheck:
       test: ["CMD", "pg_isready"]
       interval: 10s
@@ -100,6 +100,12 @@ services:
 networks:
   halo_network:
 ```
+
+:::warning PostgreSQL 18 及以上版本的数据目录变更
+从 PostgreSQL 18 起，官方镜像的数据目录改为 `/var/lib/postgresql/<主版本号>/docker`（例如 PostgreSQL 19 为 `/var/lib/postgresql/19/docker`），因此本示例将数据目录挂载到 `/var/lib/postgresql`，而不是旧版本使用的 `/var/lib/postgresql/data`。
+
+如果数据库是用旧版本（如 PostgreSQL 15）创建的，请勿只修改镜像版本后直接启动。请先备份 `./db` 目录，再使用 `pg_dump` / `pg_restore` 或 `pg_upgrade` 完成数据迁移，否则新版本无法读取旧版本的数据目录。
+:::
 
 :::info PostgreSQL 容器端口
 此示例的 PostgreSQL 数据库容器默认没有设置端口映射，如果需要在容器外部访问数据库，可以自行在 `halodb` 服务中添加端口映射，PostgreSQL 的端口为 `5432`。
