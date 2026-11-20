@@ -22,9 +22,7 @@ import { IconDeleteBin, VButton, vTooltip } from "@halo-dev/components";
 
 <template>
   <VButton v-tooltip="'删除这条记录'" type="danger" circle aria-label="删除">
-    <template #icon>
-      <IconDeleteBin />
-    </template>
+    <IconDeleteBin />
   </VButton>
 </template>
 ```

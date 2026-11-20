@@ -49,7 +49,12 @@ import { VSpace, VTag } from "@halo-dev/components";
 
 ```vue preview
 <script lang="ts" setup>
-import { IconCheckboxCircle, IconTimerLine, VTag } from "@halo-dev/components";
+import {
+  IconCheckboxCircle,
+  IconTimerLine,
+  VSpace,
+  VTag,
+} from "@halo-dev/components";
 </script>
 
 <template>

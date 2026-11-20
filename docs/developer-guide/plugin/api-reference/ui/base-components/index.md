@@ -4,7 +4,7 @@ description: 使用 Halo 官方基础组件库 @halo-dev/components 构建与 Co
 overview: true
 ---
 
-`@halo-dev/components` 是 Halo 官方维护的基础组件库，Halo Console 和用户中心的界面均由这套组件构建。在插件中使用它可以获得与 Halo 一致的外观、交互和暗色模式适配。
+`@halo-dev/components` 是 Halo 官方维护的基础组件库，Halo Console 和用户中心的界面均由这套组件构建。在插件中使用它可以获得与 Halo 一致的外观和交互。
 
 本文档基于 `@halo-dev/components` 2.27.0。
 

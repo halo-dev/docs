@@ -21,7 +21,7 @@ import { VDescription, VDescriptionItem } from "@halo-dev/components";
 </script>
 
 <template>
-  <div class="rounded-base ring-1 ring-gray-100">
+  <div class="overflow-hidden rounded-base border border-gray-100 bg-white">
     <VDescription>
       <VDescriptionItem label="名称" content="Halo" />
       <VDescriptionItem label="版本" content="2.27.0" />
@@ -41,7 +41,7 @@ import { VDescription, VDescriptionItem, VTag } from "@halo-dev/components";
 </script>
 
 <template>
-  <div class="rounded-base ring-1 ring-gray-100">
+  <div class="overflow-hidden rounded-base border border-gray-100 bg-white">
     <VDescription>
       <VDescriptionItem label="插件状态">
         <VTag theme="primary">已启用</VTag>
@@ -64,7 +64,7 @@ import { VDescription, VDescriptionItem } from "@halo-dev/components";
 </script>
 
 <template>
-  <div class="rounded-base ring-1 ring-gray-100">
+  <div class="overflow-hidden rounded-base border border-gray-100 bg-white">
     <VDescription>
       <VDescriptionItem label="描述" vertical-center>
         当内容较长时，标签与内容垂直居中显示。

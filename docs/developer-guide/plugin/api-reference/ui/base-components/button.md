@@ -121,18 +121,16 @@ import {
       新建
     </VButton>
     <VButton circle aria-label="搜索">
-      <template #icon>
-        <IconSearch />
-      </template>
+      <IconSearch />
     </VButton>
     <VButton type="danger" circle aria-label="删除">
-      <template #icon>
-        <IconDeleteBin />
-      </template>
+      <IconDeleteBin />
     </VButton>
   </VSpace>
 </template>
 ```
+
+纯图标按钮（`circle`）应将图标直接放在默认插槽。`icon` 插槽会为图标保留文字间距，只适合带文字的按钮。
 
 ### 块级按钮
 
