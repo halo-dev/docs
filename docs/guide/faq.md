@@ -96,6 +96,7 @@ server {
 docker run \
   -it -d \
   --name halo-1 \
+  --stop-timeout 120 \
   -p 8090:8090 \
   -v ~/.halo2:/root/.halo2 \
   registry.fit2cloud.com/halo/halo-pro:2.27 \
@@ -104,6 +105,7 @@ docker run \
 docker run \
   -it -d \
   --name halo-2 \
+  --stop-timeout 120 \
   -p 8091:8090 \
   -v ~/.halo2_2:/root/.halo2 \
   registry.fit2cloud.com/halo/halo-pro:2.27 \

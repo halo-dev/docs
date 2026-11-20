@@ -49,7 +49,7 @@ import {
 
 ### 在 Halo 插件中使用
 
-参考：[插件开发 / API 请求](../plugin/api-reference/ui/api-request.md#使用)
+参考：[插件开发 / API 请求](../plugin/api-reference/ui/api-request.md#选择客户端)
 
 ### 在 Halo 内部使用
 

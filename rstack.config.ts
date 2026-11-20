@@ -8,21 +8,21 @@ define.doc(async () => {
   const [
     { pluginSass },
     { transformerCompatibleMetaHighlight },
-    { pluginSitemap },
-    { transformerNotationDiff },
     { default: fileTree },
     { default: ga },
     { default: mermaid },
     { default: Icons },
+    { pluginVue },
+    { pluginPreview },
   ] = await Promise.all([
     import("@rsbuild/plugin-sass"),
     import("@rspress/core/shiki-transformers"),
-    import("@rspress/plugin-sitemap"),
-    import("@shikijs/transformers"),
     import("rspress-plugin-file-tree"),
     import("rspress-plugin-google-analytics"),
     import("rspress-plugin-mermaid"),
     import("unplugin-icons/rspack"),
+    import("@rsbuild/plugin-vue"),
+    import("@rspress/plugin-preview"),
   ]);
 
   return {
@@ -33,12 +33,8 @@ define.doc(async () => {
     logoText: "Halo 文档",
     icon: "/img/favicon-96x96.png",
     logo: "https://www.halo.run/logo",
-    llms: true,
     siteOrigin: SITE_URL,
     globalStyles: path.join(import.meta.dirname, "styles/index.scss"),
-    route: {
-      cleanUrls: true,
-    },
     mediumZoom: {
       selector: ".rspress-doc img:not(.no-zoom)",
     },
@@ -49,10 +45,7 @@ define.doc(async () => {
       },
       shiki: {
         theme: "github-dark",
-        transformers: [
-          transformerCompatibleMetaHighlight(),
-          transformerNotationDiff(),
-        ],
+        transformers: [transformerCompatibleMetaHighlight()],
       },
       image: {
         checkDeadImages: true,
@@ -60,14 +53,32 @@ define.doc(async () => {
     },
     outDir: "build",
     plugins: [
-      pluginSitemap({
-        siteUrl: SITE_URL,
-      }),
       mermaid(),
       ga({
         id: "UA-110780416-7",
       }),
       fileTree(),
+      pluginPreview({
+        previewLanguages: ["vue"],
+        defaultPreviewMode: "iframe-follow",
+        iframeOptions: {
+          customEntry: ({ demoPath }) => `
+import { createApp } from "vue";
+import "@halo-dev/components/dist/style.css";
+import Demo from ${JSON.stringify(demoPath)};
+
+const style = document.createElement("style");
+style.textContent =
+  "#root { padding: 24px; } select { padding-top: 0; padding-bottom: 0; }";
+document.head.appendChild(style);
+
+createApp(Demo).mount("#root");
+`,
+          builderConfig: {
+            plugins: [pluginVue()],
+          },
+        },
+      }),
     ],
     builderConfig: {
       plugins: [pluginSass()],

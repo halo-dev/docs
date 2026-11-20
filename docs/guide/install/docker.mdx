@@ -32,7 +32,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md";
 ### 创建容器
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS="-Xmx256m -Xms256m" registry.fit2cloud.com/halo/halo-pro:2.27
+docker run -it -d --name halo --stop-timeout 120 -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS="-Xmx256m -Xms256m" registry.fit2cloud.com/halo/halo-pro:2.27
 ```
 
 :::info 默认使用 H2 数据库
@@ -44,6 +44,7 @@ docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS=
 - **--name**：为容器指定一个名称
 - **-p**：端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
 - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/.halo2`，后者不能修改。
+- **--stop-timeout**：停止容器时的超时时间（秒）。Halo 停止时需要时间完成插件停止和索引快照保存，建议设置为 `120`。
 
 运行参数详解：
 
@@ -93,7 +94,7 @@ docker rm halo
 修改版本号后，按照最初安装的方式，重新创建容器即可。
 
 ```bash
-docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS="-Xmx256m -Xms256m" registry.fit2cloud.com/halo/halo-pro:2.27
+docker run -it -d --name halo --stop-timeout 120 -p 8090:8090 -v ~/.halo2:/root/.halo2 -e JVM_OPTS="-Xmx256m -Xms256m" registry.fit2cloud.com/halo/halo-pro:2.27
 ```
 
 </Steps>

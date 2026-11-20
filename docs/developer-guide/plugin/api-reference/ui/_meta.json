@@ -5,8 +5,14 @@
   "shared",
   {
     "type": "dir",
+    "name": "base-components",
+    "label": "基础组件",
+    "collapsed": true
+  },
+  {
+    "type": "dir",
     "name": "components",
-    "label": "组件",
+    "label": "业务组件",
     "collapsed": true
   }
 ]
