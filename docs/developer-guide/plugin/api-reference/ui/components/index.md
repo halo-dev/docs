@@ -1,37 +1,9 @@
 ---
-title: 组件
-description: 在 Halo 插件 UI 中安装并使用基础组件库，以及直接调用 Console 和 UC 全局注册的业务组件与指令来扩展管理界面功能
+title: 业务组件
+description: 直接调用 Halo Console 和用户中心全局注册的业务组件与指令来扩展管理界面功能
 overview: true
 ---
 
-此文档将介绍所有在插件中可用的组件，以及它们的使用方法和区别。
-
-## 基础组件库
-
-我们为 Halo 的前端封装了一个基础组件的库，你可以在插件中使用这些组件。
-
-安装方式：
-
-```bash
-pnpm install @halo-dev/components
-```
-
-在 Vue 组件中：
-
-```vue
-<script lang="ts" setup>
-import { VButton } from "@halo-dev/components";
-</script>
-
-<template>
-  <VButton>Hello</VButton>
-</template>
-```
-
-所有可用的基础组件以及文档可查阅：[https://halo-ui-components.halo-run.workers.dev](https://halo-ui-components.halo-run.workers.dev)
-
-## 业务组件和指令
-
-除了基础组件库，我们还为 Halo 的前端封装了一些业务组件和指令，这些组件已经在全局注册，你可以直接在插件中使用这些组件和指令。
+除了[基础组件库](../base-components/index.md)，Halo 还封装了一些与具体业务相关的组件和指令。这些组件已经在 Console 中全局注册，你可以在插件中直接使用，无需额外安装或引入。
 
 以下是所有可用的业务组件和指令：

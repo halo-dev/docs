@@ -12,6 +12,8 @@ define.doc(async () => {
     { default: ga },
     { default: mermaid },
     { default: Icons },
+    { pluginVue },
+    { pluginPreview },
   ] = await Promise.all([
     import("@rsbuild/plugin-sass"),
     import("@rspress/core/shiki-transformers"),
@@ -19,6 +21,8 @@ define.doc(async () => {
     import("rspress-plugin-google-analytics"),
     import("rspress-plugin-mermaid"),
     import("unplugin-icons/rspack"),
+    import("@rsbuild/plugin-vue"),
+    import("@rspress/plugin-preview"),
   ]);
 
   return {
@@ -54,6 +58,27 @@ define.doc(async () => {
         id: "UA-110780416-7",
       }),
       fileTree(),
+      pluginPreview({
+        previewLanguages: ["vue"],
+        defaultPreviewMode: "iframe-follow",
+        iframeOptions: {
+          customEntry: ({ demoPath }) => `
+import { createApp } from "vue";
+import "@halo-dev/components/dist/style.css";
+import Demo from ${JSON.stringify(demoPath)};
+
+const style = document.createElement("style");
+style.textContent =
+  "#root { padding: 24px; } select { padding-top: 0; padding-bottom: 0; }";
+document.head.appendChild(style);
+
+createApp(Demo).mount("#root");
+`,
+          builderConfig: {
+            plugins: [pluginVue()],
+          },
+        },
+      }),
     ],
     builderConfig: {
       plugins: [pluginSass()],
