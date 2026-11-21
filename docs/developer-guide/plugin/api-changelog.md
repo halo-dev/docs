@@ -5,6 +5,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 ## 2.28.0
 
+### 移除 openapi4j 依赖
+
+从 Halo 2.28.0 开始，Halo 不再依赖已归档的 `org.openapi4j:openapi-schema-validator`（该库自 2021 年起不再维护，且仅支持 Jackson 2），Extension Schema 校验改用 `com.networknt:json-schema-validator`。因此 `run.halo.app:api` 不再传递引入 `org.openapi4j.*`。
+
+如果插件直接使用了 `org.openapi4j.*`，需要在 `build.gradle` 中自行声明依赖和版本，或迁移到其他 OpenAPI / JSON Schema 校验库。仅通过 Extension API 读写数据的插件不受影响。该变更不改变 HTTP 接口和 Extension 数据格式，不要求提升 `spec.requires`。
+
 ### 索引支持语义版本和启动快照
 
 从 Halo 2.28.0 开始，使用 `IndexSpecs.single()` 或 `IndexSpecs.multi()` 声明的索引支持 `.version(int)`，默认版本为 `1`。当索引函数的取值语义发生变化时，插件必须递增该版本，否则 Halo 可能复用旧的启动快照，返回与数据库不一致的查询结果。
