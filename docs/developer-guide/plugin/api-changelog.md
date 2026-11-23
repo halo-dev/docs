@@ -27,6 +27,10 @@ Halo 与插件在重启、启停或升级时可以从索引快照恢复 Extensio
 
 Console 和用户中心的发布时间、个人访问令牌过期时间等输入框已改用这些组件，修复了 Firefox 无法选择时间的问题。表单 Schema 中也可以使用新增的 `datepicker` 和 `datetimepicker` 输入类型，详细说明请参考[日期选择](./api-reference/ui/base-components/date-picker.md)和[表单定义 > datepicker](../form-schema.md#datepicker)。
 
+### 新增通用表格组件
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VTable` 和 `createTableColumnHelper`，用于展示多列数据，支持列定义、列级排序、行选择、展开行、多级表头、固定列、列宽调整和虚拟滚动。组件基于 TanStack Table 构建，依赖已打包进组件库，插件不需要额外安装。原先的 `VEntity` 系列组件保持不变，卡片式单列列表仍可使用；需要横向对比多个字段时可以使用新组件。详细文档请参考[表格](./api-reference/ui/base-components/table.md)。
+
 ## 2.27.0
 
 ### UI 构建工具移除旧入口，构建工具依赖改为可选
