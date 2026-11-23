@@ -50,12 +50,13 @@ import { VButton } from "@halo-dev/components";
 
 ### 导航与布局
 
-| 组件                                | 说明                   |
-| ----------------------------------- | ---------------------- |
-| [选项卡 VTabs](./tabs.md)           | 在同一区域切换不同内容 |
-| [菜单 VMenu](./menu.md)             | 多级垂直菜单           |
-| [分页 VPagination](./pagination.md) | 列表分页与每页条数选择 |
-| [下拉菜单 VDropdown](./dropdown.md) | 悬浮展开的操作菜单     |
+| 组件                                | 说明                             |
+| ----------------------------------- | -------------------------------- |
+| [选项卡 VTabs](./tabs.md)           | 在同一区域切换不同内容           |
+| [菜单 VMenu](./menu.md)             | 多级垂直菜单                     |
+| [分页 VPagination](./pagination.md) | 列表分页与每页条数选择           |
+| [下拉菜单 VDropdown](./dropdown.md) | 悬浮展开的操作菜单               |
+| [浮层 VPopover](./popover.md)       | 展开包含表单或提示内容的浮动面板 |
 
 ### 反馈
 

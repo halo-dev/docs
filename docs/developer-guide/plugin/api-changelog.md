@@ -31,6 +31,12 @@ Console 和用户中心的发布时间、个人访问令牌过期时间等输入
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VTable` 和 `createTableColumnHelper`，用于展示多列数据，支持列定义、列级排序、行选择、展开行、多级表头、固定列、列宽调整和虚拟滚动。组件基于 TanStack Table 构建，依赖已打包进组件库，插件不需要额外安装。原先的 `VEntity` 系列组件保持不变，卡片式单列列表仍可使用；需要横向对比多个字段时可以使用新组件。详细文档请参考[表格](./api-reference/ui/base-components/table.md)。
 
+### 新增浮层组件
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VPopover`，用于在触发元素旁展开包含表单、输入框或提示内容的浮动面板。它支持 `v-model:open` 受控打开状态、12 种弹出位置、箭头、与触发器等宽以及自定义面板样式。
+
+组件基于 Reka UI 构建，提供碰撞检测、按 Esc 或点击外部关闭、关闭后焦点回到触发器，以及配套的无障碍属性。原有的 `VDropdown` 保持不变，仍用于操作菜单，已有用法无需修改。详细文档请参考[浮层](./api-reference/ui/base-components/popover.md)。
+
 ## 2.27.0
 
 ### UI 构建工具移除旧入口，构建工具依赖改为可选
