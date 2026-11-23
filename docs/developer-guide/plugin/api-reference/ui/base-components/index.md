@@ -57,6 +57,7 @@ import { VButton } from "@halo-dev/components";
 | [分页 VPagination](./pagination.md) | 列表分页与每页条数选择           |
 | [下拉菜单 VDropdown](./dropdown.md) | 悬浮展开的操作菜单               |
 | [浮层 VPopover](./popover.md)       | 展开包含表单或提示内容的浮动面板 |
+| [抽屉 VDrawer](./drawer.md)         | 从屏幕边缘滑出的次级任务面板     |
 
 ### 反馈
 

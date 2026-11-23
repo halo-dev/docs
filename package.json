@@ -17,7 +17,7 @@
     "rspress-plugin-mermaid": "^1.0.3"
   },
   "devDependencies": {
-    "@halo-dev/components": "https://pkg.pr.new/@halo-dev/components@33d36de6",
+    "@halo-dev/components": "https://pkg.pr.new/@halo-dev/components@5205f8ba0128086e6807880c558f45372a9fd87e",
     "@iconify-json/mingcute": "^1.2.8",
     "@iconify-json/ph": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.99",

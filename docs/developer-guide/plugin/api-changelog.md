@@ -37,6 +37,12 @@ Console 和用户中心的发布时间、个人访问令牌过期时间等输入
 
 组件基于 Reka UI 构建，提供碰撞检测、按 Esc 或点击外部关闭、关闭后焦点回到触发器，以及配套的无障碍属性。原有的 `VDropdown` 保持不变，仍用于操作菜单，已有用法无需修改。详细文档请参考[浮层](./api-reference/ui/base-components/popover.md)。
 
+### 新增抽屉组件
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VDrawer`，用于从屏幕边缘展开次级任务和上下文面板，适合在不离开当前列表或编辑页的情况下修改某一条内容的设置。它支持四个方向、像素或 CSS 长度的尺寸、模态与非模态模式、内嵌悬浮样式，以及底部抽屉的吸附点和拖拽关闭。
+
+组件基于 Reka UI 的 Dialog 原语构建（Reka UI 没有独立的 Drawer 原语），提供遮罩点击、Esc、关闭按钮和异步 `beforeClose` 组成的关闭流程，焦点陷阱与关闭后的焦点还原由 Reka UI 负责。`VModal` 保持不变，居中的对话框仍使用它；已有用法无需修改。详细文档请参考[抽屉](./api-reference/ui/base-components/drawer.md)。
+
 ## 2.27.0
 
 ### UI 构建工具移除旧入口，构建工具依赖改为可选
