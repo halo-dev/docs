@@ -530,32 +530,32 @@ const columns = column.columns([
 
 ## Props
 
-| 属性               | 类型                                           | 默认值       | 说明                                                         |
-| ------------------ | ---------------------------------------------- | ------------ | ------------------------------------------------------------ |
-| `data`             | `TData[]`                                      | 无，必填     | 表格数据                                                     |
-| `columns`          | `TableColumn<TData>[]`                         | 无，必填     | 列定义，建议由 `createTableColumnHelper` 生成                |
-| `rowKey`           | `string \| ((row: TData) => string \| number)` | `undefined`  | 行 id 使用的字段或函数，不设置时使用行下标                   |
-| `loading`          | `boolean`                                      | `false`      | 是否正在加载，无数据时显示加载状态而不是空状态               |
-| `emptyText`        | `string`                                       | `"暂无数据"` | 无数据时的提示文字                                           |
-| `sticky`           | `boolean`                                      | `false`      | 滚动时表头保持可见，需要给容器设置高度                       |
-| `selectable`       | `boolean`                                      | `false`      | 显示复选框列，表头支持全选和半选                             |
-| `expandable`       | `boolean`                                      | `false`      | 显示展开按钮和详情行，不能与 `virtualize` 同时使用           |
-| `manualSorting`    | `boolean`                                      | `false`      | 由调用方处理排序，组件只更新并抛出排序状态                   |
-| `sorting`          | `SortingState`                                 | `undefined`  | 排序状态，支持 `v-model:sorting`                             |
-| `rowSelection`     | `RowSelectionState`                            | `undefined`  | 行选择状态，支持 `v-model:row-selection`                     |
-| `expanded`         | `ExpandedState`                                | `undefined`  | 展开状态，支持 `v-model:expanded`                            |
-| `columnVisibility` | `ColumnVisibilityState`                        | `undefined`  | 列可见状态，支持 `v-model:column-visibility`                 |
-| `columnSizing`     | `ColumnSizingState`                            | `undefined`  | 列宽状态，以列 id 为键，支持 `v-model:column-sizing`         |
-| `columnPinning`    | `ColumnPinningState`                           | `undefined`  | 固定列状态，支持 `v-model:column-pinning`                    |
-| `resizable`        | `boolean`                                      | `false`      | 允许拖动表头边缘调整列宽                                     |
-| `pinnable`         | `boolean`                                      | `false`      | 允许把列固定在左侧或右侧                                     |
-| `headerMenu`       | `boolean`                                      | `false`      | 在表头显示列操作菜单                                         |
-| `headerMenuLabels` | `Partial<TableHeaderMenuLabels>`               | `{}`         | 覆盖表头菜单和列宽手柄的文字                                 |
-| `virtualize`       | `boolean \| TableVirtualizeOptions`            | `false`      | 启用虚拟滚动，需要容器高度限制和统一行高                     |
-| `ui`               | `TableUi`                                      | `{}`         | 追加到各表格元素的 class                                     |
-| `caption`          | `string`                                       | `undefined`  | 表格标题，同时作为无障碍名称                                 |
-| `selectAllLabel`   | `string`                                       | `"选择全部"` | 全选复选框的无障碍标签                                       |
-| `selectRowLabel`   | `string`                                       | `"选择"`     | 行复选框的无障碍标签前缀，最终为 `${selectRowLabel} ${行号}` |
+| 属性               | 类型                                           | 默认值      | 说明                                                                                     |
+| ------------------ | ---------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
+| `data`             | `TData[]`                                      | 无，必填    | 表格数据                                                                                 |
+| `columns`          | `TableColumn<TData>[]`                         | 无，必填    | 列定义，建议由 `createTableColumnHelper` 生成                                            |
+| `rowKey`           | `string \| ((row: TData) => string \| number)` | `undefined` | 行 id 使用的字段或函数，不设置时使用行下标                                               |
+| `loading`          | `boolean`                                      | `false`     | 是否正在加载，无数据时显示加载状态而不是空状态                                           |
+| `emptyText`        | `string`                                       | `undefined` | 无数据时的提示文字，未设置时使用组件库内置文案                                           |
+| `sticky`           | `boolean`                                      | `false`     | 滚动时表头保持可见，需要给容器设置高度                                                   |
+| `selectable`       | `boolean`                                      | `false`     | 显示复选框列，表头支持全选和半选                                                         |
+| `expandable`       | `boolean`                                      | `false`     | 显示展开按钮和详情行，不能与 `virtualize` 同时使用                                       |
+| `manualSorting`    | `boolean`                                      | `false`     | 由调用方处理排序，组件只更新并抛出排序状态                                               |
+| `sorting`          | `SortingState`                                 | `undefined` | 排序状态，支持 `v-model:sorting`                                                         |
+| `rowSelection`     | `RowSelectionState`                            | `undefined` | 行选择状态，支持 `v-model:row-selection`                                                 |
+| `expanded`         | `ExpandedState`                                | `undefined` | 展开状态，支持 `v-model:expanded`                                                        |
+| `columnVisibility` | `ColumnVisibilityState`                        | `undefined` | 列可见状态，支持 `v-model:column-visibility`                                             |
+| `columnSizing`     | `ColumnSizingState`                            | `undefined` | 列宽状态，以列 id 为键，支持 `v-model:column-sizing`                                     |
+| `columnPinning`    | `ColumnPinningState`                           | `undefined` | 固定列状态，支持 `v-model:column-pinning`                                                |
+| `resizable`        | `boolean`                                      | `false`     | 允许拖动表头边缘调整列宽                                                                 |
+| `pinnable`         | `boolean`                                      | `false`     | 允许把列固定在左侧或右侧                                                                 |
+| `headerMenu`       | `boolean`                                      | `false`     | 在表头显示列操作菜单                                                                     |
+| `headerMenuLabels` | `Partial<TableHeaderMenuLabels>`               | `{}`        | 覆盖表头菜单和列宽手柄的文字，未覆盖的项使用组件库内置文案                               |
+| `virtualize`       | `boolean \| TableVirtualizeOptions`            | `false`     | 启用虚拟滚动，需要容器高度限制和统一行高                                                 |
+| `ui`               | `TableUi`                                      | `{}`        | 追加到各表格元素的 class                                                                 |
+| `caption`          | `string`                                       | `undefined` | 表格标题，同时作为无障碍名称                                                             |
+| `selectAllLabel`   | `string`                                       | `undefined` | 全选复选框的无障碍标签，未设置时使用组件库内置文案                                       |
+| `selectRowLabel`   | `string`                                       | `undefined` | 行复选框的无障碍标签前缀，最终为 `${selectRowLabel} ${行号}`；未设置时使用组件库内置文案 |
 
 ## 事件
 

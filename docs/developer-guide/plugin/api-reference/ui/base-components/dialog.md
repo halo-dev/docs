@@ -128,11 +128,11 @@ const visible = ref(false);
 
 | 属性          | 类型                                                | 默认值      | 说明                                                  |
 | ------------- | --------------------------------------------------- | ----------- | ----------------------------------------------------- |
-| `title`       | `string`                                            | `"提示"`    | 标题                                                  |
+| `title`       | `string`                                            | `undefined` | 标题，未设置时使用组件库内置文案                      |
 | `description` | `string`                                            | `""`        | 描述内容                                              |
-| `confirmText` | `string`                                            | `"确定"`    | 确认按钮文字                                          |
+| `confirmText` | `string`                                            | `undefined` | 确认按钮文字，未设置时使用组件库内置文案              |
 | `confirmType` | `"default" \| "primary" \| "secondary" \| "danger"` | `"primary"` | 确认按钮类型                                          |
-| `cancelText`  | `string`                                            | `"取消"`    | 取消按钮文字                                          |
+| `cancelText`  | `string`                                            | `undefined` | 取消按钮文字，未设置时使用组件库内置文案              |
 | `showCancel`  | `boolean`                                           | `true`      | 是否显示取消按钮                                      |
 | `uniqueId`    | `string`                                            | `undefined` | 唯一标识，用于避免重复弹出                            |
 | `onConfirm`   | `() => void \| Promise<void>`                       | `undefined` | 点击确认时调用，返回 Promise 时确认按钮会显示加载状态 |
@@ -140,19 +140,19 @@ const visible = ref(false);
 
 ## VDialog Props
 
-| 属性          | 类型                                                | 默认值      | 说明                             |
-| ------------- | --------------------------------------------------- | ----------- | -------------------------------- |
-| `type`        | `"success" \| "info" \| "warning" \| "error"`       | `"info"`    | 对话框类型                       |
-| `visible`     | `boolean`                                           | `false`     | 是否显示，支持 `v-model:visible` |
-| `title`       | `string`                                            | `"提示"`    | 标题                             |
-| `description` | `string`                                            | `""`        | 描述内容                         |
-| `confirmText` | `string`                                            | `"确定"`    | 确认按钮文字                     |
-| `confirmType` | `"default" \| "primary" \| "secondary" \| "danger"` | `"primary"` | 确认按钮类型                     |
-| `cancelText`  | `string`                                            | `"取消"`    | 取消按钮文字                     |
-| `showCancel`  | `boolean`                                           | `true`      | 是否显示取消按钮                 |
-| `uniqueId`    | `string`                                            | `undefined` | 唯一标识                         |
-| `onConfirm`   | `() => void \| Promise<void>`                       | `undefined` | 点击确认时调用                   |
-| `onCancel`    | `() => void`                                        | `undefined` | 点击取消时调用                   |
+| 属性          | 类型                                                | 默认值      | 说明                                     |
+| ------------- | --------------------------------------------------- | ----------- | ---------------------------------------- |
+| `type`        | `"success" \| "info" \| "warning" \| "error"`       | `"info"`    | 对话框类型                               |
+| `visible`     | `boolean`                                           | `false`     | 是否显示，支持 `v-model:visible`         |
+| `title`       | `string`                                            | `undefined` | 标题，未设置时使用组件库内置文案         |
+| `description` | `string`                                            | `""`        | 描述内容                                 |
+| `confirmText` | `string`                                            | `undefined` | 确认按钮文字，未设置时使用组件库内置文案 |
+| `confirmType` | `"default" \| "primary" \| "secondary" \| "danger"` | `"primary"` | 确认按钮类型                             |
+| `cancelText`  | `string`                                            | `undefined` | 取消按钮文字，未设置时使用组件库内置文案 |
+| `showCancel`  | `boolean`                                           | `true`      | 是否显示取消按钮                         |
+| `uniqueId`    | `string`                                            | `undefined` | 唯一标识                                 |
+| `onConfirm`   | `() => void \| Promise<void>`                       | `undefined` | 点击确认时调用                           |
+| `onCancel`    | `() => void`                                        | `undefined` | 点击取消时调用                           |
 
 ## Emits
 

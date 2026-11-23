@@ -59,7 +59,7 @@ const date = ref<string>();
 </template>
 ```
 
-`locale` 默认为 `en`，用于日历中的月份和星期名称。`weekStartsOn` 取 `0` 到 `6`，`0` 表示周日，省略时使用该语言的默认值。
+`weekStartsOn` 取 `0` 到 `6`，`0` 表示周日，省略时使用该语言的默认值。
 
 ## 日期时间面板 VDateTimePickerPanel
 
@@ -300,39 +300,39 @@ const category = ref<string>();
 
 以下属性适用于全部面板，也被对应的下拉组件透传：
 
-| 属性                 | 类型                              | 默认值       | 说明                                                              |
-| -------------------- | --------------------------------- | ------------ | ----------------------------------------------------------------- |
-| `modelValue`         | 见[值与格式](#值与格式)           | `undefined`  | 当前值，支持 `v-model`                                            |
-| `locale`             | `string`                          | `"en"`       | 日历使用的语言，例如 `zh-CN`                                      |
-| `weekStartsOn`       | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6` | -            | 每周的第一天，`0` 为周日                                          |
-| `numberOfMonths`     | `number`                          | `1`          | 并排显示的月数，范围面板默认为 `2`                                |
-| `fixedWeeks`         | `boolean`                         | `true`       | 始终渲染六周，保持面板高度稳定                                    |
-| `minValue`           | `string`                          | -            | 可选的最小日期，`YYYY-MM-DD`，在日期时间中按日期比较              |
-| `maxValue`           | `string`                          | -            | 可选的最大日期，格式同上                                          |
-| `isDateDisabled`     | `(date: string) => boolean`       | -            | 为每个渲染的日期调用，参数为 `YYYY-MM-DD`，返回 `true` 表示不可选 |
-| `defaultPickerValue` | `string`                          | -            | 没有值时面板显示的月份                                            |
-| `calendarLabel`      | `string`                          | `"Calendar"` | 日历网格的无障碍标签                                              |
-| `disabled`           | `boolean`                         | `false`      | 是否禁用                                                          |
-| `readonly`           | `boolean`                         | `false`      | 是否只读                                                          |
+| 属性                 | 类型                              | 默认值      | 说明                                                              |
+| -------------------- | --------------------------------- | ----------- | ----------------------------------------------------------------- |
+| `modelValue`         | 见[值与格式](#值与格式)           | `undefined` | 当前值，支持 `v-model`                                            |
+| `locale`             | `string`                          | `undefined` | 日历使用的语言，例如 `zh-CN`；省略时跟随 Console 和用户中心的语言 |
+| `weekStartsOn`       | `0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6` | -           | 每周的第一天，`0` 为周日                                          |
+| `numberOfMonths`     | `number`                          | `1`         | 并排显示的月数，范围面板默认为 `2`                                |
+| `fixedWeeks`         | `boolean`                         | `true`      | 始终渲染六周，保持面板高度稳定                                    |
+| `minValue`           | `string`                          | -           | 可选的最小日期，`YYYY-MM-DD`，在日期时间中按日期比较              |
+| `maxValue`           | `string`                          | -           | 可选的最大日期，格式同上                                          |
+| `isDateDisabled`     | `(date: string) => boolean`       | -           | 为每个渲染的日期调用，参数为 `YYYY-MM-DD`，返回 `true` 表示不可选 |
+| `defaultPickerValue` | `string`                          | -           | 没有值时面板显示的月份                                            |
+| `calendarLabel`      | `string`                          | `undefined` | 日历网格的无障碍标签，未设置时使用组件库内置文案                  |
+| `disabled`           | `boolean`                         | `false`     | 是否禁用                                                          |
+| `readonly`           | `boolean`                         | `false`     | 是否只读                                                          |
 
 ## 面板专属属性
 
-| 组件                        | 属性                       | 类型                                 | 默认值    | 说明                             |
-| --------------------------- | -------------------------- | ------------------------------------ | --------- | -------------------------------- |
-| `VDateTimePickerPanel`      | `defaultTime`              | `string`                             | `"00:00"` | 选择日期时使用的时间             |
-|                             | `hourCycle`                | `12 \| 24`                           | `24`      | 时间输入的 12 或 24 小时制       |
-|                             | `timeLabel`                | `string`                             | `"Time"`  | 时间输入左侧的文字               |
-| `VDateRangePickerPanel`     | `presets`                  | `DatePickerPreset<DateRangeValue>[]` | -         | 日历左侧的快捷范围列表           |
-|                             | `maximumDays`              | `number`                             | -         | 一次能选择的最大天数             |
-|                             | `allowNonContiguousRanges` | `boolean`                            | -         | 是否允许选择包含不可选日期的范围 |
-| `VDateTimeRangePickerPanel` | `presets`                  | `DatePickerPreset<DateRangeValue>[]` | -         | 日历左侧的快捷范围列表           |
-|                             | `maximumDays`              | `number`                             | -         | 一次能选择的最大天数             |
-|                             | `allowNonContiguousRanges` | `boolean`                            | -         | 是否允许选择包含不可选日期的范围 |
-|                             | `defaultStartTime`         | `string`                             | `"00:00"` | 新选择开始日期时使用的时间       |
-|                             | `defaultEndTime`           | `string`                             | `"23:59"` | 新选择结束日期时使用的时间       |
-|                             | `hourCycle`                | `12 \| 24`                           | `24`      | 时间输入的 12 或 24 小时制       |
-|                             | `startTimeLabel`           | `string`                             | `"Start"` | 开始时间左侧的文字               |
-|                             | `endTimeLabel`             | `string`                             | `"End"`   | 结束时间左侧的文字               |
+| 组件                        | 属性                       | 类型                                 | 默认值      | 说明                                           |
+| --------------------------- | -------------------------- | ------------------------------------ | ----------- | ---------------------------------------------- |
+| `VDateTimePickerPanel`      | `defaultTime`              | `string`                             | `"00:00"`   | 选择日期时使用的时间                           |
+|                             | `hourCycle`                | `12 \| 24`                           | `24`        | 时间输入的 12 或 24 小时制                     |
+|                             | `timeLabel`                | `string`                             | `undefined` | 时间输入左侧的文字，未设置时使用组件库内置文案 |
+| `VDateRangePickerPanel`     | `presets`                  | `DatePickerPreset<DateRangeValue>[]` | -           | 日历左侧的快捷范围列表                         |
+|                             | `maximumDays`              | `number`                             | -           | 一次能选择的最大天数                           |
+|                             | `allowNonContiguousRanges` | `boolean`                            | -           | 是否允许选择包含不可选日期的范围               |
+| `VDateTimeRangePickerPanel` | `presets`                  | `DatePickerPreset<DateRangeValue>[]` | -           | 日历左侧的快捷范围列表                         |
+|                             | `maximumDays`              | `number`                             | -           | 一次能选择的最大天数                           |
+|                             | `allowNonContiguousRanges` | `boolean`                            | -           | 是否允许选择包含不可选日期的范围               |
+|                             | `defaultStartTime`         | `string`                             | `"00:00"`   | 新选择开始日期时使用的时间                     |
+|                             | `defaultEndTime`           | `string`                             | `"23:59"`   | 新选择结束日期时使用的时间                     |
+|                             | `hourCycle`                | `12 \| 24`                           | `24`        | 时间输入的 12 或 24 小时制                     |
+|                             | `startTimeLabel`           | `string`                             | `undefined` | 开始时间左侧的文字，未设置时使用组件库内置文案 |
+|                             | `endTimeLabel`             | `string`                             | `undefined` | 结束时间左侧的文字，未设置时使用组件库内置文案 |
 
 ## 面板事件
 
@@ -344,15 +344,15 @@ const category = ref<string>();
 
 除了面板通用属性，下拉组件还接受：
 
-| 属性           | 类型                                                         | 默认值                                  | 说明                                                  |
-| -------------- | ------------------------------------------------------------ | --------------------------------------- | ----------------------------------------------------- |
-| `mode`         | `"date" \| "datetime"` 或 `"date-range" \| "datetime-range"` | `"date"` / `"date-range"`               | 渲染哪种面板                                          |
-| `placement`    | `VDropdownPlacement`                                         | `"bottom-start"`                        | 面板出现的位置，可选值参考 [VDropdown](./dropdown.md) |
-| `panelWidth`   | `string`                                                     | -                                       | 面板宽度，例如 `20rem`；默认根据内容自适应            |
-| `panelLabel`   | `string`                                                     | `"Date picker"` / `"Date range picker"` | 面板的无障碍标签                                      |
-| `open`         | `boolean`                                                    | -                                       | 受控的打开状态，支持 `v-model:open`                   |
-| `confirmLabel` | `string`                                                     | `"Confirm"`                             | 确认按钮的文字，仅日期时间模式使用                    |
-| `clearLabel`   | `string`                                                     | `"Clear"`                               | 清除按钮的文字，仅日期时间模式使用                    |
+| 属性           | 类型                                                         | 默认值                    | 说明                                                           |
+| -------------- | ------------------------------------------------------------ | ------------------------- | -------------------------------------------------------------- |
+| `mode`         | `"date" \| "datetime"` 或 `"date-range" \| "datetime-range"` | `"date"` / `"date-range"` | 渲染哪种面板                                                   |
+| `placement`    | `VDropdownPlacement`                                         | `"bottom-start"`          | 面板出现的位置，可选值参考 [VDropdown](./dropdown.md)          |
+| `panelWidth`   | `string`                                                     | -                         | 面板宽度，例如 `20rem`；默认根据内容自适应                     |
+| `panelLabel`   | `string`                                                     | `undefined`               | 面板的无障碍标签，未设置时使用组件库内置文案                   |
+| `open`         | `boolean`                                                    | -                         | 受控的打开状态，支持 `v-model:open`                            |
+| `confirmLabel` | `string`                                                     | `undefined`               | 确认按钮的文字，仅日期时间模式使用，未设置时使用组件库内置文案 |
+| `clearLabel`   | `string`                                                     | `undefined`               | 清除按钮的文字，仅日期时间模式使用，未设置时使用组件库内置文案 |
 
 `VDateRangePickerDropdown` 另外接受 `presets`、`maximumDays`、`allowNonContiguousRanges`、`defaultStartTime`、`defaultEndTime`、`hourCycle`、`startTimeLabel`、`endTimeLabel`，含义与日期时间范围面板相同。
 
@@ -372,24 +372,24 @@ const category = ref<string>();
 
 ## VFilterDateRangeDropdown 属性
 
-| 属性             | 类型                                 | 默认值           | 说明                       |
-| ---------------- | ------------------------------------ | ---------------- | -------------------------- |
-| `label`          | `string`                             | 无，必填         | 触发器上的文字             |
-| `modelValue`     | `DateRangeValue \| undefined`        | `undefined`      | 当前范围，支持 `v-model`   |
-| `mode`           | `"date-range" \| "datetime-range"`   | `"date-range"`   | 渲染哪种范围面板           |
-| `variant`        | `"default" \| "outline"`             | `"default"`      | 触发器的样式               |
-| `presets`        | `DatePickerPreset<DateRangeValue>[]` | -                | 面板左侧的快捷范围列表     |
-| `labelSeparator` | `string`                             | `": "`           | 标签与范围之间的分隔符     |
-| `rangeSeparator` | `string`                             | `" ~ "`          | 开始与结束之间的分隔符     |
-| `confirmLabel`   | `string`                             | `"Confirm"`      | 确认按钮的文字             |
-| `clearLabel`     | `string`                             | `"Clear"`        | 清除按钮的文字             |
-| `hourCycle`      | `12 \| 24`                           | `24`             | 时间输入的 12 或 24 小时制 |
-| `startTimeLabel` | `string`                             | `"Start"`        | 开始时间左侧的文字         |
-| `endTimeLabel`   | `string`                             | `"End"`          | 结束时间左侧的文字         |
-| `locale`         | `string`                             | `"en"`           | 日历使用的语言             |
-| `disabled`       | `boolean`                            | `false`          | 是否禁用                   |
-| `placement`      | `VDropdownPlacement`                 | `"bottom-start"` | 面板出现的位置             |
-| `panelWidth`     | `string`                             | -                | 面板宽度                   |
+| 属性             | 类型                                 | 默认值           | 说明                                                |
+| ---------------- | ------------------------------------ | ---------------- | --------------------------------------------------- |
+| `label`          | `string`                             | 无，必填         | 触发器上的文字                                      |
+| `modelValue`     | `DateRangeValue \| undefined`        | `undefined`      | 当前范围，支持 `v-model`                            |
+| `mode`           | `"date-range" \| "datetime-range"`   | `"date-range"`   | 渲染哪种范围面板                                    |
+| `variant`        | `"default" \| "outline"`             | `"default"`      | 触发器的样式                                        |
+| `presets`        | `DatePickerPreset<DateRangeValue>[]` | -                | 面板左侧的快捷范围列表                              |
+| `labelSeparator` | `string`                             | `": "`           | 标签与范围之间的分隔符                              |
+| `rangeSeparator` | `string`                             | `" ~ "`          | 开始与结束之间的分隔符                              |
+| `confirmLabel`   | `string`                             | `undefined`      | 确认按钮的文字，未设置时使用组件库内置文案          |
+| `clearLabel`     | `string`                             | `undefined`      | 清除按钮的文字，未设置时使用组件库内置文案          |
+| `hourCycle`      | `12 \| 24`                           | `24`             | 时间输入的 12 或 24 小时制                          |
+| `startTimeLabel` | `string`                             | `undefined`      | 开始时间左侧的文字，未设置时使用组件库内置文案      |
+| `endTimeLabel`   | `string`                             | `undefined`      | 结束时间左侧的文字，未设置时使用组件库内置文案      |
+| `locale`         | `string`                             | `undefined`      | 日历使用的语言，省略时跟随 Console 和用户中心的语言 |
+| `disabled`       | `boolean`                            | `false`          | 是否禁用                                            |
+| `placement`      | `VDropdownPlacement`                 | `"bottom-start"` | 面板出现的位置                                      |
+| `panelWidth`     | `string`                             | -                | 面板宽度                                            |
 
 ## VFilterDateRangeDropdown 事件与方法
 

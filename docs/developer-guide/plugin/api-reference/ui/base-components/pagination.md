@@ -92,16 +92,16 @@ const size = ref(10);
 
 ## Props
 
-| 属性          | 类型       | 默认值      | 说明                                    |
-| ------------- | ---------- | ----------- | --------------------------------------- |
-| `page`        | `number`   | `1`         | 当前页码，支持 `v-model:page`           |
-| `size`        | `number`   | `10`        | 每页条数，支持 `v-model:size`           |
-| `total`       | `number`   | `0`         | 数据总条数                              |
-| `sizeOptions` | `number[]` | `[10]`      | 每页条数选项                            |
-| `showTotal`   | `boolean`  | `true`      | 是否显示总条数                          |
-| `pageLabel`   | `string`   | `"页"`      | 页码选择框后的文字                      |
-| `sizeLabel`   | `string`   | `"条 / 页"` | 每页条数选择框后的文字                  |
-| `totalLabel`  | `string`   | `undefined` | 自定义总条数文字，默认显示“共 N 项数据” |
+| 属性          | 类型       | 默认值      | 说明                                               |
+| ------------- | ---------- | ----------- | -------------------------------------------------- |
+| `page`        | `number`   | `1`         | 当前页码，支持 `v-model:page`                      |
+| `size`        | `number`   | `10`        | 每页条数，支持 `v-model:size`                      |
+| `total`       | `number`   | `0`         | 数据总条数                                         |
+| `sizeOptions` | `number[]` | `[10]`      | 每页条数选项                                       |
+| `showTotal`   | `boolean`  | `true`      | 是否显示总条数                                     |
+| `pageLabel`   | `string`   | `undefined` | 页码选择框后的文字，未设置时使用组件库内置文案     |
+| `sizeLabel`   | `string`   | `undefined` | 每页条数选择框后的文字，未设置时使用组件库内置文案 |
+| `totalLabel`  | `string`   | `undefined` | 自定义总条数文字，未设置时使用组件库内置文案       |
 
 ## Emits
 

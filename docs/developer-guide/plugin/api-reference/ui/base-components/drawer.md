@@ -251,14 +251,14 @@ function beforeClose() {
 | `size`                   | `number \| string`                  | `undefined` | 抽屉尺寸：数字按像素，字符串为 CSS 长度；左右方向默认 `400px`，上下方向自适应 |
 | `title`                  | `string`                            | `undefined` | 标题                                                                          |
 | `description`            | `string`                            | `undefined` | 标题下方的描述                                                                |
-| `ariaLabel`              | `string`                            | `undefined` | 没有可见标题时用于无障碍名称，缺省依次回退到 `title` 和 `Drawer`              |
+| `ariaLabel`              | `string`                            | `undefined` | 没有可见标题时用于无障碍名称，缺省依次回退到 `title` 和内置名称               |
 | `modal`                  | `boolean`                           | `true`      | 是否为模态抽屉；模态时显示遮罩、锁定页面滚动并捕获焦点                        |
 | `inset`                  | `boolean`                           | `false`     | 是否与视口边缘保留间距并带圆角，从 `sm` 断点（640px）开始生效                 |
 | `layerClosable`          | `boolean`                           | `true`      | 点击遮罩是否关闭抽屉                                                          |
 | `closeOnEsc`             | `boolean`                           | `true`      | 按 Esc 是否关闭抽屉                                                           |
 | `beforeClose`            | `() => boolean \| Promise<boolean>` | `undefined` | 关闭前调用，返回 `false` 时保持打开                                           |
 | `showClose`              | `boolean`                           | `true`      | 是否显示内置关闭按钮                                                          |
-| `closeLabel`             | `string`                            | `"Close"`   | 关闭按钮的无障碍名称                                                          |
+| `closeLabel`             | `string`                            | `undefined` | 关闭按钮的无障碍名称，未设置时使用组件库内置文案                              |
 | `showHandle`             | `boolean`                           | `false`     | 是否显示顶部拖拽条                                                            |
 | `swipeToDismiss`         | `boolean`                           | `true`      | 是否允许通过拖拽关闭抽屉                                                      |
 | `handleOnly`             | `boolean`                           | `false`     | 是否只允许从拖拽条和头部开始拖拽；触摸输入始终只响应这两个区域                |
