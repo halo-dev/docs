@@ -19,6 +19,7 @@
   "date-picker",
   "modal",
   "dialog",
+  "drawer",
   "toast",
   "tooltip",
   "popover",
