@@ -113,6 +113,7 @@ Halo 只会从 `formSchema` 的直接子节点中提取同时具有 `name` 和 `
 | [`attachmentGroupSelect`](#attachmentgroupselect) / [`attachmentPolicySelect`](#attachmentpolicyselect)                                   | 选择附件分组或存储策略 | `string`               |
 | [`code`](#code)                                                                                                                           | 编辑代码或结构化文本   | `string`               |
 | [`color`](#color)                                                                                                                         | 选择颜色               | `string`               |
+| [`datepicker`](#datepicker) / [`datetimepicker`](#datetimepicker)                                                                         | 选择日期或日期时间     | `string`               |
 | [`menuSelect`](#menuselect) / [`menuItemSelect`](#menuitemselect) / [`menuCheckbox`](#menucheckbox) / [`menuRadio`](#menuradio)           | 选择菜单或菜单项       | 资源名称或资源名称数组 |
 | [`postSelect`](#postselect) / [`singlePageSelect`](#singlepageselect)                                                                     | 选择文章或独立页面     | 资源名称               |
 | [`categorySelect`](#categoryselect) / [`tagSelect`](#tagselect) / [`categoryCheckbox`](#categorycheckbox) / [`tagCheckbox`](#tagcheckbox) | 选择分类或标签         | `string` 或 `string[]` |
@@ -629,6 +630,54 @@ UI 效果：
   label: 强调色
   format: hex
   value: "#2563eb"
+```
+
+### datepicker
+
+日期选择器，点击后在日历中选择日期，保存 `YYYY-MM-DD` 格式的字符串。
+
+**引入版本**：2.28.0
+
+#### 参数
+
+- `placeholder`：未选择时显示的提示文字。
+- `format`：把保存值转换为显示文字的函数，例如 `(value) => value.replaceAll("-", "/")`。只能在以 JavaScript 定义 Schema 时使用，YAML 中无法声明函数。
+- `clearable`：是否显示清除按钮，默认为 `true`。
+- `calendarLocale`：日历使用的语言，默认使用 Console 当前语言。
+- `weekStartsOn`：每周的第一天，`0` 为周日。
+- `numberOfMonths`：并排显示的月数，默认为 `1`。
+- `minDate`、`maxDate`：可选的最小和最大日期，格式为 `YYYY-MM-DD`。
+
+#### 示例
+
+```yaml
+- $formkit: datepicker
+  name: start_date
+  label: 开始日期
+  minDate: "2026-01-01"
+  value: "2026-01-01"
+```
+
+### datetimepicker
+
+日期时间选择器，选择日期后在面板底部设置时间，保存 `YYYY-MM-DDTHH:mm` 格式的字符串，精确到分钟。
+
+**引入版本**：2.28.0
+
+#### 参数
+
+除 [`datepicker`](#datepicker) 的参数外，还支持：
+
+- `defaultTime`：还没有选择时间时使用的时间，默认为 `00:00`。
+- `hourCycle`：时间输入的 12 或 24 小时制，默认为 `24`。
+
+#### 示例
+
+```yaml
+- $formkit: datetimepicker
+  name: publish_time
+  label: 发布时间
+  defaultTime: "09:00"
 ```
 
 ### menuSelect

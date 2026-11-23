@@ -16,6 +16,7 @@
   "pagination",
   "dropdown",
   "filter-dropdown",
+  "date-picker",
   "modal",
   "dialog",
   "toast",

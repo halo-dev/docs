@@ -46,6 +46,7 @@ import { VButton } from "@halo-dev/components";
 | [加载中 VLoading](./loading.md)           | 加载动画                           |
 | [提示 VAlert](./alert.md)                 | 页面内提示信息                     |
 | [开关 VSwitch](./switch.md)               | 开关选择器                         |
+| [日期选择 VDatePicker](./date-picker.md)  | 选择日期、日期时间与日期范围       |
 
 ### 导航与布局
 
