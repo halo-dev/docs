@@ -131,16 +131,18 @@ import { VButton, VPopover } from "@halo-dev/components";
 
 ## Props
 
-| 属性                | 类型                                            | 默认值           | 说明                                                           |
-| ------------------- | ----------------------------------------------- | ---------------- | -------------------------------------------------------------- |
-| `open`              | `boolean`                                       | `undefined`      | 受控的打开状态，支持 `v-model:open`；省略时由组件自己维护      |
-| `disabled`          | `boolean`                                       | `false`          | 是否禁用触发器，禁用时不会打开面板                             |
-| `placement`         | `VPopoverPlacement`                             | `"bottom-start"` | 弹出位置，可选 12 个方向；空间不足时由碰撞检测自动调整         |
-| `offset`            | `number`                                        | `4`              | 触发器与箭头尖端的距离（像素），关闭箭头时即与面板的距离       |
-| `modal`             | `boolean`                                       | `false`          | 是否以模态方式打开，打开时阻止与页面其余部分交互               |
-| `arrow`             | `boolean`                                       | `true`           | 是否显示指向触发器的箭头                                       |
-| `matchTriggerWidth` | `boolean`                                       | `false`          | 面板宽度是否与触发元素一致                                     |
-| `contentClass`      | `string \| string[] \| Record<string, boolean>` | `undefined`      | 追加到面板的类名，用于覆盖默认样式，例如 `!p-0` 去掉默认内边距 |
+| 属性                     | 类型                                            | 默认值           | 说明                                                                               |
+| ------------------------ | ----------------------------------------------- | ---------------- | ---------------------------------------------------------------------------------- |
+| `open`                   | `boolean`                                       | `undefined`      | 受控的打开状态，支持 `v-model:open`；省略时由组件自己维护                          |
+| `disabled`               | `boolean`                                       | `false`          | 是否禁用触发器，禁用时不会打开面板                                                 |
+| `placement`              | `VPopoverPlacement`                             | `"bottom-start"` | 弹出位置，可选 12 个方向；空间不足时由碰撞检测自动调整                             |
+| `offset`                 | `number`                                        | `4`              | 触发器与箭头尖端的距离（像素），关闭箭头时即与面板的距离                           |
+| `modal`                  | `boolean`                                       | `false`          | 是否以模态方式打开，打开时阻止与页面其余部分交互                                   |
+| `arrow`                  | `boolean`                                       | `true`           | 是否显示指向触发器的箭头                                                           |
+| `matchTriggerWidth`      | `boolean`                                       | `false`          | 面板宽度是否与触发元素一致                                                         |
+| `closeOnFocusOutside`    | `boolean`                                       | `true`           | 焦点移出面板时是否关闭；面板中的操作会把焦点交还给编辑器等已聚焦元素时设为 `false` |
+| `closeOnTriggerDetached` | `boolean`                                       | `true`           | 触发器从文档中移除后是否关闭面板；关闭后浮层不会回落到页面角落                     |
+| `contentClass`           | `string \| string[] \| Record<string, boolean>` | `undefined`      | 追加到面板的类名，用于覆盖默认样式，例如 `!p-0` 去掉默认内边距                     |
 
 `placement` 的可选值为 `top`、`top-start`、`top-end`、`right`、`right-start`、`right-end`、`bottom`、`bottom-start`、`bottom-end`、`left`、`left-start`、`left-end`。
 
@@ -153,6 +155,14 @@ import { VButton, VPopover } from "@halo-dev/components";
 
 触发元素插槽只应包含一个根元素。组件以 `as-child` 方式渲染触发器，因此直接在插槽里放 `VButton` 时，它的 `type` 等属性不会被覆盖。
 
+## Emits
+
+| 事件               | 参数      | 说明                                                                               |
+| ------------------ | --------- | ---------------------------------------------------------------------------------- |
+| `update:open`      | `boolean` | 打开状态变化时触发，配合 `v-model:open` 使用                                       |
+| `open-auto-focus`  | `Event`   | 焦点即将进入刚打开的面板时触发，调用 `event.preventDefault()` 可保留原焦点位置     |
+| `close-auto-focus` | `Event`   | 面板关闭、焦点即将回到触发器时触发，可以阻止默认行为并自行移动焦点，例如回到编辑器 |
+
 ## 暴露的方法
 
 | 方法     | 说明     |
@@ -163,8 +173,11 @@ import { VButton, VPopover } from "@halo-dev/components";
 ## 交互与无障碍
 
 - 触发器带有 `aria-haspopup="dialog"`、`aria-expanded` 和 `aria-controls`，屏幕阅读器可以获知面板状态。
-- 按 Esc 或点击面板外部会关闭面板，关闭后焦点回到触发元素。
+- 按 Esc 或点击面板外部会关闭面板，关闭后焦点回到触发元素。设置 `closeOnFocusOutside` 为 `false` 时，焦点移到面板外不会关闭面板，适合面板中的操作需要把焦点交还给编辑器或输入框的场景。
 - 面板位置由 Reka UI 的碰撞检测计算，靠近视口边缘时会自动翻转或偏移。
+- 从面板内部打开的下一层面板（例如在浮层里再打开颜色选择器）与父面板之间的指针和焦点交互会被视为面板内部操作，父面板不会因此关闭。
+- 触发器从文档中移除时，面板会随之关闭，避免浮层失去锚点后回落到页面角落；如果触发元素只是被替换为 `aria-controls` 相同的元素，面板会保持锚定并继续显示。
+- 面板关闭后立即卸载，没有退场动画，因此嵌套面板不会在父面板卸载后残留。
 
 ## 与 VDropdown 的关系
 

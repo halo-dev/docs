@@ -45,7 +45,7 @@ Console 和用户中心的发布时间、个人访问令牌过期时间等输入
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VPopover`，用于在触发元素旁展开包含表单、输入框或提示内容的浮动面板。它支持 `v-model:open` 受控打开状态、12 种弹出位置、箭头、与触发器等宽以及自定义面板样式。
 
-组件基于 Reka UI 构建，提供碰撞检测、按 Esc 或点击外部关闭、关闭后焦点回到触发器，以及配套的无障碍属性。原有的 `VDropdown` 保持不变，仍用于操作菜单，已有用法无需修改。详细文档请参考[浮层](./api-reference/ui/base-components/popover.md)。
+组件基于 Reka UI 构建，提供碰撞检测、按 Esc 或点击外部关闭、关闭后焦点回到触发器，以及配套的无障碍属性。原有的 `VDropdown` 保持不变，仍用于操作菜单，已有用法无需修改。此外还提供 `closeOnFocusOutside`、`closeOnTriggerDetached` 属性和 `open-auto-focus`、`close-auto-focus` 事件，用于在面板中连续操作、接管焦点交接以及处理触发器被移除的情况。详细文档请参考[浮层](./api-reference/ui/base-components/popover.md)。
 
 ### 新增抽屉组件
 
