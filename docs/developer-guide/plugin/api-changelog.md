@@ -5,6 +5,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 ## 2.28.0
 
+### 选项卡支持图标、徽标、禁用状态与持久化面板
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VTabItem` 新增 `icon`、`badge`、`disabled`、`ariaLabel` 和 `persistent` 属性，`VTabs` 与 `VTabbar` 新增 `flush` 属性，用于卡片头部的贴边全宽形态；`VTabbar` 的 `items` 现在直接接受带这些字段的对象。同时补齐了选项卡的键盘交互与 ARIA 语义，标签溢出时改为横向手势滚动、普通垂直滚轮仍然滚动页面。
+
+原有用法不需要修改，默认渲染保持不变。详细说明请参考[选项卡](./api-reference/ui/base-components/tabs.md)。
+
 ### 描述列表新增布局与展示选项
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VDescription` 新增 `columns`、`layout`、`size`、`bordered`、`title`、`divider`、`hover`、`separator`、`emptyText`、`labelWidth` 和 `align` 属性，`VDescriptionItem` 新增 `span`、`labelWidth`、`align`、`emptyText` 属性，`label` 变为可选。不传这些属性时渲染结果与之前一致，已有用法无需修改。同时修复了横向布局在大屏下内容区留白和长链接撑破单元格的问题。详细文档请参考[描述列表](./api-reference/ui/base-components/description.md)。
