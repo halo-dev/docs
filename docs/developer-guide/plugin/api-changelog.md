@@ -11,6 +11,10 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 原有用法不需要修改，默认渲染保持不变。详细说明请参考[选项卡](./api-reference/ui/base-components/tabs.md)。
 
+### 描述列表新增布局与展示选项
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VDescription` 新增 `columns`、`layout`、`size`、`bordered`、`title`、`divider`、`hover`、`separator`、`emptyText`、`labelWidth` 和 `align` 属性，`VDescriptionItem` 新增 `span`、`labelWidth`、`align`、`emptyText` 属性，`label` 变为可选。不传这些属性时渲染结果与之前一致，已有用法无需修改。同时修复了横向布局在大屏下内容区留白和长链接撑破单元格的问题。详细文档请参考[描述列表](./api-reference/ui/base-components/description.md)。
+
 ### 移除 openapi4j 依赖
 
 从 Halo 2.28.0 开始，Halo 不再依赖已归档的 `org.openapi4j:openapi-schema-validator`（该库自 2021 年起不再维护，且仅支持 Jackson 2），Extension Schema 校验改用 `com.networknt:json-schema-validator`。因此 `run.halo.app:api` 不再传递引入 `org.openapi4j.*`。
