@@ -906,6 +906,7 @@ menuSelect 基于 select，并兼容 select 的[参数](#select-params)。
   - `name`：Iconify 的图标名称，需要在使用的地方自行加载图标
 - `value-only`：是否仅返回图标数据，默认为 `false`
 - `popper-placement`：图标选择弹窗的打开位置，默认为 `auto`，可以为：`auto`、`auto-end`、`auto-start`、`bottom`、`bottom-end`、`bottom-start`、`left`、`left-end`、`left-start`、`right`、`right-end`、`right-start`、`top`、`top-end`、`top-start`
+  - 自 2.28.0 起，弹窗由共享的弹出层组件渲染，`auto`、`auto-end`、`auto-start` 均使用默认的 `bottom-start` 位置，并在空间不足时自动翻转和偏移，不再区分 start / end 对齐。需要固定方向时，请显式指定 `bottom`、`top-start` 等具体值。
 - `sizing`：图标尺寸配置对象（引入版本：2.23.0），包含以下属性：
   - `enabled`：是否显示图标尺寸配置，默认为 `false`
   - `default`：默认尺寸，字符串类型，默认为 `"24"`

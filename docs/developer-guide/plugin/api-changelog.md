@@ -5,6 +5,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 ## 2.28.0
 
+### 选项卡支持图标、徽标、禁用状态与持久化面板
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VTabItem` 新增 `icon`、`badge`、`disabled`、`ariaLabel` 和 `persistent` 属性，`VTabs` 与 `VTabbar` 新增 `flush` 属性，用于卡片头部的贴边全宽形态；`VTabbar` 的 `items` 现在直接接受带这些字段的对象。同时补齐了选项卡的键盘交互与 ARIA 语义，标签溢出时改为横向手势滚动、普通垂直滚轮仍然滚动页面。
+
+原有用法不需要修改，默认渲染保持不变。详细说明请参考[选项卡](./api-reference/ui/base-components/tabs.md)。
+
 ### 移除 openapi4j 依赖
 
 从 Halo 2.28.0 开始，Halo 不再依赖已归档的 `org.openapi4j:openapi-schema-validator`（该库自 2021 年起不再维护，且仅支持 Jackson 2），Extension Schema 校验改用 `com.networknt:json-schema-validator`。因此 `run.halo.app:api` 不再传递引入 `org.openapi4j.*`。
