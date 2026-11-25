@@ -280,14 +280,14 @@ const options = [
 | `title`             | `string`                      | -                | 面板顶部的标题                                                   |
 | `searchable`        | `boolean`                     | `false`          | 显示搜索框并在本地过滤选项                                       |
 | `remoteSearch`      | `boolean`                     | `false`          | 不在本地过滤，输入时防抖触发 `search` 事件                       |
-| `searchPlaceholder` | `string`                      | `"Search..."`    | 搜索框占位文字                                                   |
+| `searchPlaceholder` | `string`                      | `undefined`      | 搜索框占位文字，未设置时使用组件库内置文案                       |
 | `searchDelay`       | `number`                      | `300`            | `search` 事件的防抖延迟，单位毫秒                                |
-| `emptyText`         | `string`                      | `"No results"`   | 无选项时的提示文字                                               |
+| `emptyText`         | `string`                      | `undefined`      | 无选项时的提示文字，未设置时使用组件库内置文案                   |
 | `loading`           | `boolean`                     | `false`          | 是否正在加载选项，配合 `hasMore` 使用                            |
 | `hasMore`           | `boolean`                     | `false`          | 是否还有更多选项，为 `true` 时滚动到底部会触发 `load-more`       |
 | `disabled`          | `boolean`                     | `false`          | 是否禁用                                                         |
 | `showClearOption`   | `boolean`                     | `false`          | 在面板顶部显示清除选项                                           |
-| `clearLabel`        | `string`                      | `"All"`          | 清除选项的文字                                                   |
+| `clearLabel`        | `string`                      | `undefined`      | 清除选项的文字，未设置时使用组件库内置文案                       |
 | `selectedLabel`     | `string`                      | -                | 选中项不在 `options` 中时，触发器显示的文字                      |
 | `placement`         | `VDropdownPlacement`          | `"bottom-start"` | 面板出现的位置，可选值参考 [VDropdown](./dropdown.md)            |
 | `panelWidth`        | `string`                      | -                | 面板宽度，例如 `20rem`；默认根据内容在 12rem 到 20rem 之间自适应 |
@@ -322,11 +322,11 @@ const options = [
 
 ## VFilterDropdownGroup Props
 
-| 属性                 | 类型                           | 默认值            | 说明                     |
-| -------------------- | ------------------------------ | ----------------- | ------------------------ |
-| `clearLabel`         | `string`                       | `"Reset filters"` | 清除按钮的无障碍标签     |
-| `hasExternalFilters` | `boolean`                      | `false`           | 组外是否有生效的筛选条件 |
-| `spacing`            | `"xs" \| "sm" \| "md" \| "lg"` | `"sm"`            | 筛选组件之间的间距       |
+| 属性                 | 类型                           | 默认值      | 说明                                             |
+| -------------------- | ------------------------------ | ----------- | ------------------------------------------------ |
+| `clearLabel`         | `string`                       | `undefined` | 清除按钮的无障碍标签，未设置时使用组件库内置文案 |
+| `hasExternalFilters` | `boolean`                      | `false`     | 组外是否有生效的筛选条件                         |
+| `spacing`            | `"xs" \| "sm" \| "md" \| "lg"` | `"sm"`      | 筛选组件之间的间距                               |
 
 ## VFilterDropdownGroup 事件
 
