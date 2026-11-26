@@ -5,6 +5,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 ## 2.28.0
 
+### 轻提示组件重做并扩展 API
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `Toast` 基于 Reka UI 重做，所有提示共用一个通知区域：多条提示依次堆叠、不再互相遮挡，按内容收缩宽度并在窄屏换行；类型和内容相同的提示会合并并显示重复次数；同时最多显示 5 条，超出时关闭最旧的一条。自动关闭会在鼠标悬停、键盘焦点进入通知区域或窗口失去焦点时暂停，离开后按剩余时间继续；错误提示会被读屏软件立即播报；按 `F8` 可把焦点移到通知区域，按 `Esc` 或向右滑动可关闭提示。通知区域默认仍在顶部居中，可通过 `Toast.configure({ placement })` 改为六个方向之一。
+
+公开 API 只做新增，不替换原有用法：新增 `Toast.loading`、`Toast.promise`、`Toast.update`、`Toast.dismiss`、`Toast.clear` 和 `Toast.configure`，以及 `title`、`icon`、`action`、`customClass`、`key`、`grouping`、`status`、`count` 属性。原有 `Toast.success/info/warning/error(content, props?)` 签名和 `ToastInstance` 保持不变，已有调用无需修改。`duration` 传 `0` 或负数时不自动关闭；`frozenOnHover` 保留但不再生效，现在始终在悬停或聚焦时暂停倒计时；`ToastInstance.vnode` 标记为废弃。详细说明请参考[轻提示](./api-reference/ui/base-components/toast.md)。
+
 ### 按钮新增变体、形状、无障碍名称与自定义根元素
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VButton` 新增 `variant`（`solid`、`soft`、`ghost`）、`shape`（`default`、`circle`、`round`）、`label` 和 `as` 属性。`label` 同时用作无障碍名称和悬停提示；`as` 可以把按钮渲染为链接等其他元素，此时不渲染 `type`，禁用状态改用 `aria-disabled` 并阻止点击。`circle` 和 `ghost` 标记为废弃但继续可用，且优先级高于 `shape` 和 `variant`。

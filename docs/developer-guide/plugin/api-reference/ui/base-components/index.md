@@ -66,7 +66,7 @@ import { VButton } from "@halo-dev/components";
 | -------------------------------- | -------------------------------- |
 | [弹窗 VModal](./modal.md)        | 模态对话框                       |
 | [确认对话框 Dialog](./dialog.md) | 函数式调用的确认对话框           |
-| [轻提示 Toast](./toast.md)       | 页面顶部的临时消息               |
+| [轻提示 Toast](./toast.md)       | 临时消息，可堆叠、合并与配置位置 |
 | [文字提示 Tooltip](./tooltip.md) | 悬停提示，支持指令与组件两种用法 |
 
 ### 数据展示
