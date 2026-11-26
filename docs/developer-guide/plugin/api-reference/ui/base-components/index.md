@@ -36,7 +36,7 @@ import { VButton } from "@halo-dev/components";
 | ----------------------------------------- | ---------------------------------- |
 | [按钮 VButton](./button.md)               | 触发操作，支持类型、尺寸、加载状态 |
 | [间距 VSpace](./space.md)                 | 控制子元素之间的间距               |
-| [卡片 VCard](./card.md)                   | 带标题、操作和页脚的内容容器       |
+| [卡片 VCard](./card.md)                   | 带标题、工具栏和页脚的内容容器     |
 | [描述列表 VDescription](./description.md) | 以键值对形式展示详情               |
 | [页头 VPageHeader](./header.md)           | 页面标题与操作区域                 |
 | [标签 VTag](./tag.md)                     | 状态或分类标记                     |
