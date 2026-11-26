@@ -21,6 +21,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 仅含图标的按钮（只有 `icon` 插槽或加载状态、没有文本内容）自动改为正方形布局并去掉左右内边距，开发环境下缺少无障碍名称时会输出警告。同时 `VModal` 的 `actions` 插槽不再为裸 `<span>` 元素提供样式，也不再在悬停头部时隐藏操作项，插件应改用 `VButton`，否则操作项会失去按钮外观。详细说明请参考[按钮](./api-reference/ui/base-components/button.md)和[VModal 弹窗](./api-reference/ui/base-components/modal.md)。
 
+### 确认对话框支持尺寸、更多关闭控制与自定义内容
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `Dialog` 与 `VDialog` 新增 `size`（`sm`、`md`、`lg`）、`width`、`icon`、`showClose`、`closeOnEsc`、`layerClosable` 属性，`VDialog` 提供 `default`、`icon`、`description`、`footer` 插槽。函数式调用现在返回 `{ close, destroy }` 实例，并新增 `Dialog.destroyAll()`。
+
+行为变化：确认操作进行中（`onConfirm` 返回的 Promise 未结束时）不能再通过 Esc、遮罩、取消按钮或关闭按钮关闭对话框；`onConfirm` 被 reject 时对话框保持打开，方便用户重试；`onCancel` 不会在程序调用 `close()` 时触发。已有的属性和函数式用法保持兼容。详细说明请参考[Dialog 确认对话框](./api-reference/ui/base-components/dialog.md)。
+
 ### 选项卡支持图标、徽标、禁用状态与持久化面板
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VTabItem` 新增 `icon`、`badge`、`disabled`、`ariaLabel` 和 `persistent` 属性，`VTabs` 与 `VTabbar` 新增 `flush` 属性，用于卡片头部的贴边全宽形态；`VTabbar` 的 `items` 现在直接接受带这些字段的对象。同时补齐了选项卡的键盘交互与 ARIA 语义，标签溢出时改为横向手势滚动、普通垂直滚轮仍然滚动页面。
