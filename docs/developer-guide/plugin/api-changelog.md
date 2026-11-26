@@ -5,6 +5,10 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 ## 2.28.0
 
+### 间距组件支持自定义间距与布局属性
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VSpace` 新增 `justify`、`wrap`、`block`、`fill` 和 `as` 属性；`spacing` 现在也接受自定义像素数字或 `[水平, 垂直]` 数组，并新增 `xl`（24 像素）和 `2xl`（32 像素）两个预设；`align` 新增 `baseline`。间距改为通过 `--v-space-gap-x` 和 `--v-space-gap-y` 两个 CSS 变量设置，在外部覆盖间距时不再需要 `!important`。默认值与已有的类名保持不变，不传这些属性时渲染结果与之前一致。详细说明请参考[间距](./api-reference/ui/base-components/space.md)。
+
 ### 轻提示组件重做并扩展 API
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的 `Toast` 基于 Reka UI 重做，所有提示共用一个通知区域：多条提示依次堆叠、不再互相遮挡，按内容收缩宽度并在窄屏换行；类型和内容相同的提示会合并并显示重复次数；同时最多显示 5 条，超出时关闭最旧的一条。自动关闭会在鼠标悬停、键盘焦点进入通知区域或窗口失去焦点时暂停，离开后按剩余时间继续；错误提示会被读屏软件立即播报；按 `F8` 可把焦点移到通知区域，按 `Esc` 或向右滑动可关闭提示。通知区域默认仍在顶部居中，可通过 `Toast.configure({ placement })` 改为六个方向之一。
