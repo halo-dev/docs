@@ -64,6 +64,44 @@ const visible = ref(false);
 </template>
 ```
 
+### 头部操作
+
+从 2.28.0 开始，`actions` 插槽只负责布局，不再为其内部的裸 `<span>` 元素提供按钮样式，也不在鼠标悬停头部时隐藏操作项。插槽中应使用 `VButton`，否则操作项不会有按钮外观。弹窗自带的关闭按钮同样是一个 `VButton`。
+
+```vue preview
+<script lang="ts" setup>
+import { ref } from "vue";
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  VButton,
+  VModal,
+} from "@halo-dev/components";
+
+const visible = ref(false);
+</script>
+
+<template>
+  <VButton type="primary" @click="visible = true">打开弹窗</VButton>
+
+  <VModal v-if="visible" title="浏览图片" @close="visible = false">
+    这里可以放置上一张、下一张等头部操作。
+    <template #actions>
+      <VButton label="上一张" variant="ghost" size="sm">
+        <template #icon>
+          <IconArrowLeft />
+        </template>
+      </VButton>
+      <VButton label="下一张" variant="ghost" size="sm">
+        <template #icon>
+          <IconArrowRight />
+        </template>
+      </VButton>
+    </template>
+  </VModal>
+</template>
+```
+
 ### 点击遮罩关闭
 
 ```vue preview
@@ -130,10 +168,10 @@ const visible = ref(false);
 
 ## Slots
 
-| 插槽      | 说明                             |
-| --------- | -------------------------------- |
-| `default` | 弹窗内容                         |
-| `header`  | 自定义整个头部区域               |
-| `center`  | 头部中间区域                     |
-| `actions` | 头部右侧操作区域（关闭按钮之前） |
-| `footer`  | 底部操作区域                     |
+| 插槽      | 说明                                                          |
+| --------- | ------------------------------------------------------------- |
+| `default` | 弹窗内容                                                      |
+| `header`  | 自定义整个头部区域                                            |
+| `center`  | 头部中间区域                                                  |
+| `actions` | 头部右侧操作区域（关闭按钮之前），请使用 `VButton` 放置操作项 |
+| `footer`  | 底部操作区域                                                  |

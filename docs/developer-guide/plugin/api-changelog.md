@@ -5,6 +5,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 ## 2.28.0
 
+### 按钮新增变体、形状、无障碍名称与自定义根元素
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VButton` 新增 `variant`（`solid`、`soft`、`ghost`）、`shape`（`default`、`circle`、`round`）、`label` 和 `as` 属性。`label` 同时用作无障碍名称和悬停提示；`as` 可以把按钮渲染为链接等其他元素，此时不渲染 `type`，禁用状态改用 `aria-disabled` 并阻止点击。`circle` 和 `ghost` 标记为废弃但继续可用，且优先级高于 `shape` 和 `variant`。
+
+仅含图标的按钮（只有 `icon` 插槽或加载状态、没有文本内容）自动改为正方形布局并去掉左右内边距，开发环境下缺少无障碍名称时会输出警告。同时 `VModal` 的 `actions` 插槽不再为裸 `<span>` 元素提供样式，也不再在悬停头部时隐藏操作项，插件应改用 `VButton`，否则操作项会失去按钮外观。详细说明请参考[按钮](./api-reference/ui/base-components/button.md)和[VModal 弹窗](./api-reference/ui/base-components/modal.md)。
+
 ### 选项卡支持图标、徽标、禁用状态与持久化面板
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VTabItem` 新增 `icon`、`badge`、`disabled`、`ariaLabel` 和 `persistent` 属性，`VTabs` 与 `VTabbar` 新增 `flush` 属性，用于卡片头部的贴边全宽形态；`VTabbar` 的 `items` 现在直接接受带这些字段的对象。同时补齐了选项卡的键盘交互与 ARIA 语义，标签溢出时改为横向手势滚动、普通垂直滚轮仍然滚动页面。
