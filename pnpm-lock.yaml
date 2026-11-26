@@ -180,8 +180,8 @@ importers:
         version: 1.0.3(@rspress/core@2.1.4(@rspack/core@2.2.8(@swc/helpers@0.5.23))(micromark-util-types@2.0.2)(micromark@4.0.2(supports-color@9.4.0))(supports-color@9.4.0))(supports-color@9.4.0)
     devDependencies:
       '@halo-dev/components':
-        specifier: https://pkg.pr.new/@halo-dev/components@4f2d0cd273f895abcbe97bf311ad79619a4816c2
-        version: https://pkg.pr.new/@halo-dev/components@4f2d0cd273f895abcbe97bf311ad79619a4816c2(vue-router@5.1.0(@rsbuild/core@2.2.11)(@rspack/core@2.2.8(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.45)(vue@3.5.45(typescript@6.0.3)))(vue@3.5.45(typescript@6.0.3))
+        specifier: https://pkg.pr.new/@halo-dev/components@265e71551b7ea2dc15cd0283560384acfc63d43e
+        version: https://pkg.pr.new/@halo-dev/components@265e71551b7ea2dc15cd0283560384acfc63d43e(vue-router@5.1.0(@rsbuild/core@2.2.11)(@rspack/core@2.2.8(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.45)(vue@3.5.45(typescript@6.0.3)))(vue@3.5.45(typescript@6.0.3))
       '@iconify-json/mingcute':
         specifier: ^1.2.8
         version: 1.2.8
@@ -449,8 +449,8 @@ packages:
     peerDependencies:
       vue: '>=3.3.0'
 
-  '@halo-dev/components@https://pkg.pr.new/@halo-dev/components@4f2d0cd273f895abcbe97bf311ad79619a4816c2':
-    resolution: {integrity: sha512-HxFf1qQZw4CeaxihzSTtWq/NnFZ1Tt2VXckQLHmGFvYDEtuIGWcWvvhowPlfDzIsrszNqHm5vJaPG1wzBWY9Fg==, tarball: https://pkg.pr.new/@halo-dev/components@4f2d0cd273f895abcbe97bf311ad79619a4816c2}
+  '@halo-dev/components@https://pkg.pr.new/@halo-dev/components@265e71551b7ea2dc15cd0283560384acfc63d43e':
+    resolution: {integrity: sha512-44S5V9kdoeFphCJt9pJ5/wB7xt5aeEEiDNH2GUib28xhYzaJU5bVGGi9bMesYnI8jQ9QUWEpqKN0X5/wsmkRDQ==, tarball: https://pkg.pr.new/@halo-dev/components@265e71551b7ea2dc15cd0283560384acfc63d43e}
     version: 2.28.0
     peerDependencies:
       vue: ^3.5.x
@@ -3293,7 +3293,7 @@ snapshots:
       '@floating-ui/utils': 0.2.12
       vue: 3.5.45(typescript@6.0.3)
 
-  '@halo-dev/components@https://pkg.pr.new/@halo-dev/components@4f2d0cd273f895abcbe97bf311ad79619a4816c2(vue-router@5.1.0(@rsbuild/core@2.2.11)(@rspack/core@2.2.8(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.45)(vue@3.5.45(typescript@6.0.3)))(vue@3.5.45(typescript@6.0.3))':
+  '@halo-dev/components@https://pkg.pr.new/@halo-dev/components@265e71551b7ea2dc15cd0283560384acfc63d43e(vue-router@5.1.0(@rsbuild/core@2.2.11)(@rspack/core@2.2.8(@swc/helpers@0.5.23))(@vue/compiler-sfc@3.5.45)(vue@3.5.45(typescript@6.0.3)))(vue@3.5.45(typescript@6.0.3))':
     dependencies:
       '@internationalized/date': 3.12.4
       '@tanstack/vue-table': 9.3.1(vue@3.5.45(typescript@6.0.3))
