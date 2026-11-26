@@ -5,6 +5,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 ## 2.28.0
 
+### 标签支持尺寸、语义色与交互状态
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VTag` 新增 `size`（`sm`、`md`、`lg`）、`variant`（`solid`、`soft`），`theme` 新增 `success`、`warning`、`info` 三个取值，并新增 `closable`、`disabled`、`clickable`、`checkable`（配合 `v-model:checked` 或 `defaultChecked`）、`maxWidth`、`title`、`color` 属性。标签改为单行显示，超过 `maxWidth`（默认 `12rem`）或父容器可用宽度时以省略号截断，悬浮被截断的标签时显示完整内容；图标和关闭按钮随尺寸自动缩放，`closable` 提供内置关闭按钮，不再需要手动拼接 `rightIcon`。
+
+行为变化：默认不再显示手型光标和悬停效果，只有设置了 `clickable` 或 `checkable` 的标签才显示指针、可聚焦并响应 `Enter` 和空格；此前依赖点击标签跳转或筛选的插件需要显式设置 `clickable`。`theme`、`rounded` 和 `rightIcon` 插槽保持不变，`styles` 标记为废弃，请改用原生 `style` 属性或 `color`。同时修正了主色标签的文字对比度。详细说明请参考[标签](./api-reference/ui/base-components/tag.md)。
+
 ### 页头组件改为语义化结构并新增加载、吸顶与副标题
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VPageHeader` 根元素由 `div` 改为 `<header>`，标题由 `h2` 改为 `h1`；新增 `subtitle`、`sticky`、`bordered`、`loading`、`truncate` 属性和 `title`、`subtitle`、`tags` 插槽。`loading` 用骨架替换标题并在操作区域上设置 `inert`；`sticky` 依赖窗口滚动吸附在视口顶部，并自动启用 `bordered`；`truncate` 默认为 `true`，标题和副标题保持单行省略，传 `false` 时换行。
