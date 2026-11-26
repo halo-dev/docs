@@ -79,6 +79,14 @@ Console 和用户中心的发布时间、个人访问令牌过期时间等输入
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的内置文案（分页、表格、确认框、抽屉、标签栏、筛选和日期选择等）跟随 Console 和用户中心的语言，不再固定为中文或英文。组件属性未显式传入文案时使用内置文案，传入时仍然优先。
 
+### 角色模板不再提供 ConfigMap 与存储策略写权限
+
+从 Halo 2.28.0 开始，ConfigMap 的查看与管理权限仅限超级管理员。`role-template-manage-configmaps` 和 `role-template-view-configmaps` 已改为隐藏的空角色模板（保留资源名，便于升级时覆盖旧规则），对应的 `system:configmaps:manage`、`system:configmaps:view` UI 权限，以及角色权限列表中的 `ConfigMap 管理`、`ConfigMap 查看` 一并移除。
+
+附件管理角色模板 `role-template-manage-attachments` 保留对 `policies`、`policytemplates` 的只读权限，用于在控制台中展示和筛选存储策略名称；不再包含 `settings` 的读取权限，也不再能创建或修改存储策略。控制台中的存储策略管理入口、系统设置的保存区域以及全局搜索的设置项改为要求超级管理员权限 `*`。
+
+升级影响：通过这两个角色模板获得权限的非超级管理员会失去对应能力，无需手动处理；在自定义角色中显式列出 `configmaps` 规则的不会被重写。插件和主题一般不受影响；如果自定义角色或插件角色聚合到上述两个角色模板，或前端检查 `system:configmaps:*`，需要相应调整。
+
 ## 2.27.0
 
 ### UI 构建工具移除旧入口，构建工具依赖改为可选
