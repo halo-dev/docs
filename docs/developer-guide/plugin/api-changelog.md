@@ -5,6 +5,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 ## 2.28.0
 
+### 页头组件改为语义化结构并新增加载、吸顶与副标题
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VPageHeader` 根元素由 `div` 改为 `<header>`，标题由 `h2` 改为 `h1`；新增 `subtitle`、`sticky`、`bordered`、`loading`、`truncate` 属性和 `title`、`subtitle`、`tags` 插槽。`loading` 用骨架替换标题并在操作区域上设置 `inert`；`sticky` 依赖窗口滚动吸附在视口顶部，并自动启用 `bordered`；`truncate` 默认为 `true`，标题和副标题保持单行省略，传 `false` 时换行。
+
+已有的 `title`、`#icon`、`#actions` 用法保持不变，不传新属性时渲染结果与之前一致；操作区域在 640px 以下会移到标题下方单独一行。由于标题语义从 `h2` 变为 `h1`，依赖原标签层级选择器的自定义样式需要调整。详细说明请参考[页头](./api-reference/ui/base-components/header.md)。
+
 ### 状态点新增进行中与信息状态、尺寸和无障碍说明
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VStatusDot` 新增 `info` 与 `processing` 两种状态，其中 `processing` 自动带呼吸动画；新增 `size`（`sm`、`md`）、`color`、`label` 和 `title` 属性。`color` 通过 `--status-dot-color` 变量覆盖状态颜色，自定义主题可以在外层覆盖同一变量；`label` 同时作为无障碍名称和悬停提示，仅在没有可见文字时输出到 DOM。
