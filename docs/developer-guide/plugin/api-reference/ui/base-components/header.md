@@ -182,11 +182,11 @@ import { VPageHeader } from "@halo-dev/components";
 
 页头在根元素上暴露以下变量，可以按页面单独覆盖，例如 `<VPageHeader style="--page-header-border: #d0d5dd">`，改动只影响这一个页头。
 
-| 变量                               | 默认值    | 说明               |
-| ---------------------------------- | --------- | ------------------ |
-| `--page-header-bg`                 | `#fff`    | 页头背景色         |
-| `--page-header-text`               | `#1f2937` | 标题文字颜色       |
-| `--page-header-subtle`             | `#6b7280` | 副标题文字颜色     |
-| `--page-header-border`             | `#e5e7eb` | 底部分隔线颜色     |
-| `--page-header-skeleton`           | `#f3f4f6` | 加载骨架的基础颜色 |
-| `--page-header-skeleton-highlight` | `#e5e7eb` | 加载骨架的高亮颜色 |
+| 变量                   | 默认值    | 说明           |
+| ---------------------- | --------- | -------------- |
+| `--page-header-bg`     | `#fff`    | 页头背景色     |
+| `--page-header-text`   | `#1f2937` | 标题文字颜色   |
+| `--page-header-subtle` | `#6b7280` | 副标题文字颜色 |
+| `--page-header-border` | `#e5e7eb` | 底部分隔线颜色 |
+
+从 2.28.0 开始，加载骨架改用[骨架屏](./skeleton.md)组件渲染，`--page-header-skeleton` 和 `--page-header-skeleton-highlight` 两个变量已移除，需要调整骨架颜色时改为覆盖 `--v-skeleton-bg` 和 `--v-skeleton-highlight`。
