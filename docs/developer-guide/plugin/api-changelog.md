@@ -5,6 +5,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 ## 2.28.0
 
+### 状态点新增进行中与信息状态、尺寸和无障碍说明
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VStatusDot` 新增 `info` 与 `processing` 两种状态，其中 `processing` 自动带呼吸动画；新增 `size`（`sm`、`md`）、`color`、`label` 和 `title` 属性。`color` 通过 `--status-dot-color` 变量覆盖状态颜色，自定义主题可以在外层覆盖同一变量；`label` 同时作为无障碍名称和悬停提示，仅在没有可见文字时输出到 DOM。
+
+行为变化：圆点本身改为对辅助技术隐藏（`aria-hidden`），状态需要由可见文字、`label` 或调用方的 `v-tooltip` 传达；警告状态的颜色提高了对比度；动画遵循系统的「减弱动态效果」设置。原先用 `success` 加 `animate` 表示「进行中」的写法仍然可用，建议改用语义更准确的 `processing`。详细说明请参考[状态点](./api-reference/ui/base-components/status.md)。
+
 ### 间距组件支持自定义间距与布局属性
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VSpace` 新增 `justify`、`wrap`、`block`、`fill` 和 `as` 属性；`spacing` 现在也接受自定义像素数字或 `[水平, 垂直]` 数组，并新增 `xl`（24 像素）和 `2xl`（32 像素）两个预设；`align` 新增 `baseline`。间距改为通过 `--v-space-gap-x` 和 `--v-space-gap-y` 两个 CSS 变量设置，在外部覆盖间距时不再需要 `!important`。默认值与已有的类名保持不变，不传这些属性时渲染结果与之前一致。详细说明请参考[间距](./api-reference/ui/base-components/space.md)。
