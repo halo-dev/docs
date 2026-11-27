@@ -21,6 +21,9 @@ description: 在 Thymeleaf 中查询商城商品、分类和订阅计划，了�
 | `keyword`              | 字符串     | 商品标题关键词                             |
 | `categoryId`           | 长整数     | 分类 ID，正数                              |
 | `minPrice`、`maxPrice` | 数值       | 价格筛选边界                               |
+| `tag`                  | 字符串列表 | 标签别名，如 `{'new'}`，自 2.28.0 起可用   |
+
+`tag` 中的多个标签之间是“或”的关系，即命中任意一个标签的商品都会返回；它与 `keyword`、`categoryId` 和价格条件是“且”的关系。传入不存在的标签别名时返回空结果。
 
 Finder 的每页数量限制与 `/shop/products` HTTP 路由的最大 100 条不同，不要混用。
 
