@@ -11,6 +11,12 @@ description: 按 Halo 版本查阅插件服务端 API、UI 构建工具、表单
 
 行为变化：默认不再显示手型光标和悬停效果，只有设置了 `clickable` 或 `checkable` 的标签才显示指针、可聚焦并响应 `Enter` 和空格；此前依赖点击标签跳转或筛选的插件需要显式设置 `clickable`。`theme`、`rounded` 和 `rightIcon` 插槽保持不变，`styles` 标记为废弃，请改用原生 `style` 属性或 `color`。同时修正了主色标签的文字对比度。详细说明请参考[标签](./api-reference/ui/base-components/tag.md)。
 
+### VModal 新增关闭控制、无障碍名称与 CSS 尺寸
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VModal` 新增 `ariaLabel`、`closeOnEsc`、`showClose`、`closeLabel`、`beforeClose` 和 `unmountOnHide` 属性：可以隐藏内置关闭按钮或禁止 Esc 关闭，用 `closeLabel` 改写关闭按钮的无障碍名称，用 `ariaLabel` 为没有可见标题的弹窗提供无障碍名称，用异步 `beforeClose` 拦截关闭。`width` 和 `height` 现在也接受 CSS 长度字符串，例如 `calc(100vh - 12rem)`；数字仍按像素处理。
+
+原有属性、插槽、`close` 事件和 `close()` 方法保持不变，已有用法无需修改，但有两处行为差异：打开时初始焦点落在弹窗容器而不是第一个可聚焦元素，而且弹窗自身的 `aria-*` 与 `role` 属性会应用到内容元素。同时修复了弹窗内滚动条溢出圆角的问题。详细说明请参考 [VModal 弹窗](./api-reference/ui/base-components/modal.md)。
+
 ### 页头组件改为语义化结构并新增加载、吸顶与副标题
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的 `VPageHeader` 根元素由 `div` 改为 `<header>`，标题由 `h2` 改为 `h1`；新增 `subtitle`、`sticky`、`bordered`、`loading`、`truncate` 属性和 `title`、`subtitle`、`tags` 插槽。`loading` 用骨架替换标题并在操作区域上设置 `inert`；`sticky` 依赖窗口滚动吸附在视口顶部，并自动启用 `bordered`；`truncate` 默认为 `true`，标题和副标题保持单行省略，传 `false` 时换行。
