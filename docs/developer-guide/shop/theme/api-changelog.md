@@ -5,6 +5,12 @@ description: Halo 商城主题开发相关的 Finder 返回结构、商品永久
 
 本页记录与商城主题适配直接相关的变化。本系列代码示例以 **Halo 商城版 2.27** 为基线；完整接口模型见 [2.27 商城版 API](https://api.halo.run/?version=2.27-paid)。
 
+## Halo 商城版 2.28.0
+
+- 商品支持标签：商品响应新增 `tags`（`id`、`name`、`slug`），`/shop/products` 与 `productFinder.list` 新增 `tag` 筛选参数，`/shop/products` 页面新增 `tagOptions` 变量。
+- 标签筛选在多个标签之间是“或”的关系，与其他筛选条件是“且”的关系。
+- 新增主题端 `productTagFinder`，可通过 `productTagFinder.list({page, size})` 分页获取已发布商品的标签及对应商品数量。
+
 ## Halo 商城版 2.27
 
 - 新增基于 handle 的商品详情入口 `/shop/products/{handle}`，商品响应提供 `permalink`。旧数字 ID 入口 `/shop/product/{id}` 在商品有 handle 时重定向到永久链接。

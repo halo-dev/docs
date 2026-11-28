@@ -21,6 +21,9 @@ description: 在 Thymeleaf 中查询商城商品、分类和订阅计划，了�
 | `keyword`              | 字符串     | 商品标题关键词                             |
 | `categoryId`           | 长整数     | 分类 ID，正数                              |
 | `minPrice`、`maxPrice` | 数值       | 价格筛选边界                               |
+| `tag`                  | 字符串列表 | 标签别名，如 `{'new'}`，自 2.28.0 起可用   |
+
+`tag` 中的多个标签之间是“或”的关系，即命中任意一个标签的商品都会返回；它与 `keyword`、`categoryId` 和价格条件是“且”的关系。传入不存在的标签别名时返回空结果。
 
 Finder 的每页数量限制与 `/shop/products` HTTP 路由的最大 100 条不同，不要混用。
 
@@ -63,6 +66,40 @@ Finder 的每页数量限制与 `/shop/products` HTTP 路由的最大 100 条不
   </article>
 </th:block>
 ```
+
+## productTagFinder.list(params)
+
+**自 Halo 商城版 2.28.0 起可用。**
+
+分页查询已发布商品的标签及其商品数量，适合在侧边栏、筛选区或标签导航中复用，不需要从商品列表的 `tagOptions` 变量取数据。
+
+### 参数
+
+支持 `page` 和 `size`：`page` 从 1 开始，默认 1；`size` 默认 50，最大 1000。小于 1 的值回退到默认值，超过 1000 时按 1000 处理。
+
+### 返回值
+
+返回 `ListResult<ProductTagOptionResponse>`，`items` 中每项包含：
+
+| 字段    | 含义                          |
+| ------- | ----------------------------- |
+| `slug`  | 标签别名，用于 `tag` 筛选参数 |
+| `name`  | 标签名称                      |
+| `count` | 该标签下的已发布商品数量      |
+
+只返回至少关联一个已发布商品的标签，按已发布商品数量降序、名称升序排列，数量与名称都相同时按 `slug` 升序保证顺序稳定。`page` 从 1 开始，`total` 为标签总数。
+
+```html
+<nav th:with="tagPage = ${productTagFinder.list({page: 1, size: 20})}">
+  <a
+    th:each="tag : ${tagPage.items}"
+    th:href="@{/shop/products(tag=${tag.slug})}"
+    th:text="|${tag.name} (${tag.count})|"
+  ></a>
+</nav>
+```
+
+`/shop/products` 页面的 `tagOptions` 变量固定最多返回 50 个标签，需要完整列表或分页时使用此 Finder。
 
 ## productCategoryFinder.list(params)
 

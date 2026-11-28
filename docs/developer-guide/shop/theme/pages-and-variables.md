@@ -12,7 +12,7 @@ description: Halo 商城页面路由、模板文件、商品分页筛选、详�
 | 访问路径                                                          | 模板                                 | 页面专属变量                                       |
 | ----------------------------------------------------------------- | ------------------------------------ | -------------------------------------------------- |
 | `/shop`                                                           | 无                                   | 重定向到 `/shop/products`                          |
-| `/shop/products`                                                  | `shop/products.html`                 | `productPage`、`categoryTree`                      |
+| `/shop/products`                                                  | `shop/products.html`                 | `productPage`、`categoryTree`、`tagOptions`        |
 | `/shop/products/{handle}`                                         | `shop/product.html`                  | `product`                                          |
 | `/shop/product/{id}`                                              | `shop/product.html`                  | 兼容数字 ID 入口；有 handle 时重定向到商品永久链接 |
 | `/shop/subscription/{handle}`                                     | `shop/product.html`                  | `product`；仅接受已发布的订阅商品                  |
@@ -40,8 +40,13 @@ description: Halo 商城页面路由、模板文件、商品分页筛选、详�
 | `keyword`              | 商品标题关键词                                                      |
 | `categoryId`           | 分类 ID                                                             |
 | `minPrice`、`maxPrice` | 价格筛选边界                                                        |
+| `tag`                  | 标签别名，可重复传多个；命中任意一个标签即匹配                      |
 
 例如 `/shop/products?keyword=键盘&sort=minPrice,asc&page=1`。切换筛选条件时应清除旧的 `page`，分页跳转时则保留当前筛选条件。
+
+:::info 标签筛选版本
+`tag` 参数与 `tagOptions` 变量在 Halo 商城版 2.28.0 及以上版本提供。多个标签之间是“或”的关系，与关键词、分类、价格条件之间是“且”的关系；传入不存在的别名时返回空列表。
+:::
 
 `productPage` 为 `ListResult<ProductResponse>`，使用 `items` 获取当前页商品，`page`、`size`、`total` 分别表示页码、每页数量和总条数；可用 `hasNext`、`hasPrevious` 判断翻页按钮状态。
 
@@ -60,23 +65,38 @@ description: Halo 商城页面路由、模板文件、商品分页筛选、详�
 
 `categoryTree` 是分类树列表。每项包含 `id`、`name`、`slug`、`image`、`description`、`parentId` 和 `children` 等字段。需要展示多级分类时自行递归渲染 `children`。
 
+`tagOptions` 是可用于筛选的标签列表，自 Halo 商城版 2.28.0 起提供。每项包含 `slug`、`name` 和 `count`（该标签下的已发布商品数量），最多返回 50 个，按已发布商品数量降序、名称升序排列；没有已发布商品的标签不会出现在这里。
+
+```html
+<nav>
+  <a
+    th:each="tag : ${tagOptions}"
+    th:href="@{/shop/products(tag=${tag.slug})}"
+    th:text="|${tag.name} (${tag.count})|"
+  ></a>
+</nav>
+```
+
+同时选中多个标签时，重复传 `tag` 参数，例如 `/shop/products?tag=new&tag=sale`。
+
 ## 商品详情
 
 `product` 是 `ProductResponse`。列表与详情共用该模型，但列表数据不包含完整详情内容；正文、图库与 SKU 应从详情页变量、`getByHandle` 或详情接口获取。
 
-| 字段                                        | 用途                                                         |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| `id`                                        | 商品 ID，用于商品接口和购买组件                              |
-| `handle`、`permalink`                       | 商品标识与后端生成的前台链接，输出链接时优先使用 `permalink` |
-| `title`、`description`                      | 商品标题与简短介绍，使用 `th:text` 输出                      |
-| `coverImageUrl`、`images`                   | 封面与详情图库；为空时显示占位内容                           |
-| `content`                                   | 商品详情 HTML，可使用 `th:utext` 渲染                        |
-| `productType`                               | 商品类型，包括订阅与外链商品等                               |
-| `specDefinition`                            | 规格定义，`usedForSku` 表示是否参与 SKU 选择                 |
-| `productVariants`                           | SKU 列表，包含价格、规格、库存与购买限制                     |
-| `minPrice`、`maxPrice`                      | 商品价格区间                                                 |
-| `minOriginalPrice`、`maxOriginalPrice`      | 原价区间                                                     |
-| `externalLinkUrl`、`externalLinkButtonText` | 外链商品的目标地址与按钮文案                                 |
+| 字段                                        | 用途                                                          |
+| ------------------------------------------- | ------------------------------------------------------------- |
+| `id`                                        | 商品 ID，用于商品接口和购买组件                               |
+| `handle`、`permalink`                       | 商品标识与后端生成的前台链接，输出链接时优先使用 `permalink`  |
+| `title`、`description`                      | 商品标题与简短介绍，使用 `th:text` 输出                       |
+| `coverImageUrl`、`images`                   | 封面与详情图库；为空时显示占位内容                            |
+| `content`                                   | 商品详情 HTML，可使用 `th:utext` 渲染                         |
+| `productType`                               | 商品类型，包括订阅与外链商品等                                |
+| `specDefinition`                            | 规格定义，`usedForSku` 表示是否参与 SKU 选择                  |
+| `productVariants`                           | SKU 列表，包含价格、规格、库存与购买限制                      |
+| `minPrice`、`maxPrice`                      | 商品价格区间                                                  |
+| `minOriginalPrice`、`maxOriginalPrice`      | 原价区间                                                      |
+| `externalLinkUrl`、`externalLinkButtonText` | 外链商品的目标地址与按钮文案                                  |
+| `tags`                                      | 商品标签列表，每项包含 `id`、`name`、`slug`，自 2.28.0 起提供 |
 
 ```html
 <h1 th:text="${product.title}"></h1>
