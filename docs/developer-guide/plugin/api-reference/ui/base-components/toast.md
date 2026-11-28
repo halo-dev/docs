@@ -1,6 +1,6 @@
 ---
 title: Toast 轻提示
-description: 使用 Toast 在 Halo 插件中展示自动消失的轻量提示消息，支持成功、信息、警告、错误与加载状态，以及堆叠、合并、操作按钮和全局配置
+description: 使用 Toast 在 Halo 插件中展示自动消失的轻量提示消息，支持成功、信息、警告、错误与加载状态，以及堆叠、合并和操作按钮
 ---
 
 `Toast` 用于展示短暂的操作结果提示，会自动消失，不需要用户确认。它通过函数调用，不需要在模板中声明组件，也不需要自己挂载容器。
@@ -157,23 +157,6 @@ function showToast() {
 </template>
 ```
 
-### 全局配置
-
-`Toast.configure` 在运行时调整全局配置，影响之后创建的所有提示。插件调用它会作用于整个 Console 或用户中心，通常只在应用入口设置一次。
-
-```ts
-Toast.configure({
-  // 默认值："top-center"
-  placement: "bottom-right",
-  // 默认值：3000 毫秒
-  duration: 5000,
-  // 默认值：5，传 undefined 表示不限制
-  maxCount: 3,
-  // 默认值：["F8"]
-  hotkey: ["F8", "Alt+KeyN"],
-});
-```
-
 ## Toast 函数
 
 | 方法                              | 参数                                   | 说明                                                  |
@@ -188,7 +171,6 @@ Toast.configure({
 | `Toast.update(id, props?)`        | `string`, `ToastProps`                 | 更新仍未关闭的提示，未传入的属性沿用原值              |
 | `Toast.dismiss(id?)`              | `string`                               | 关闭指定提示；不传 `id` 时关闭全部提示                |
 | `Toast.clear()`                   | —                                      | 关闭全部提示                                          |
-| `Toast.configure(config)`         | `ToastConfig`                          | 更新全局配置，影响之后创建的提示                      |
 
 `ToastApiProps` 是去掉 `type` 和 `content` 的 `ToastProps`，因为这两个属性由具体方法决定。
 
@@ -220,15 +202,6 @@ Toast.configure({
 | `closeOnClick` | `boolean`                     | `true`      | 点击后是否关闭该提示   |
 | `onClick`      | `(event: MouseEvent) => void` | `undefined` | 点击时调用             |
 
-### ToastConfig
-
-| 属性        | 类型                                                                                              | 默认值         | 说明                                     |
-| ----------- | ------------------------------------------------------------------------------------------------- | -------------- | ---------------------------------------- |
-| `placement` | `"top-left" \| "top-center" \| "top-right" \| "bottom-left" \| "bottom-center" \| "bottom-right"` | `"top-center"` | 通知区域的位置                           |
-| `duration`  | `number`                                                                                          | `3000`         | 默认显示时长（毫秒）                     |
-| `maxCount`  | `number`                                                                                          | `5`            | 同时显示的提示数量上限，超出时关闭最旧的 |
-| `hotkey`    | `string[]`                                                                                        | `["F8"]`       | 聚焦通知区域的快捷键                     |
-
 ### ToastPromiseOptions
 
 | 属性      | 类型                                                                 | 说明                             |
@@ -254,7 +227,7 @@ Toast.configure({
 :::
 
 - 多条提示依次堆叠，相邻提示保持 10 像素间距，最新的提示最靠近屏幕边缘；每条提示按内容收缩宽度，最宽 22rem，窄屏下为视口宽度减去 2rem，长文本自动换行。
-- 通知区域内最多同时显示 5 条提示，超出时最旧的一条自动关闭，可通过 `Toast.configure({ maxCount })` 调整或取消限制。
+- 通知区域固定在顶部居中（`top-center`），最多同时显示 5 条提示，超出时最旧的一条自动关闭；显示时长、条数上限和快捷键不提供全局配置，单条提示的时长通过 `duration` 设置。
 - 鼠标悬停或键盘焦点进入通知区域、以及窗口失去焦点时，自动关闭会暂停，离开后按剩余时间继续。
 - 错误提示会被读屏软件立即播报，其他类型在合适时机播报；按 `F8` 可以把焦点移到通知区域，按 `Esc` 关闭提示，关闭按钮本身就是带无障碍名称的按钮。
 - 向右滑动或拖拽可以关闭提示，减少动态效果的系统设置下会跳过入场和退出动画。
