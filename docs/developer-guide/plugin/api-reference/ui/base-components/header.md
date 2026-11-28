@@ -5,7 +5,7 @@ description: 使用 VPageHeader 在 Halo 插件页面顶部展示标题、副标
 
 `VPageHeader` 用于页面顶部，展示页面标题、图标、副标题、标签和操作区域，通常作为插件独立页面的第一个元素。
 
-从 2.28.0 开始，页头改为语义化结构：根元素渲染为 `<header>`，标题渲染为 `h1`；新增 `subtitle`、`sticky`、`bordered`、`loading`、`truncate` 属性和 `title`、`subtitle`、`tags` 插槽。已有 `title`、`#icon`、`#actions` 用法保持不变，不传新属性时渲染结果与之前一致。
+从 2.28.0 开始，页头改为语义化结构：根元素渲染为 `<header>`，标题渲染为 `h1`；新增 `subtitle`、`sticky`、`bordered`、`loading`、`truncate` 属性和 `title`、`subtitle`、`tags`、`center` 插槽。已有 `title`、`#icon`、`#actions` 用法保持不变，不传新属性时渲染结果与之前一致。
 
 ## 引入
 
@@ -97,6 +97,36 @@ import { VButton, VPageHeader, VTag } from "@halo-dev/components";
 </template>
 ```
 
+### 居中内容
+
+`center` 插槽用于在页头中间放置与标题、操作区域分开的内容，例如切换视图的标签栏。宽度不小于 640px 时，页头按「左侧标题、中间内容、右侧操作」三列排布，`center` 的内容对齐页头本身的中线，而不是两侧宽度不等时的空隙中点；宽度小于 640px 时该区域与其它内容一起按需要换行。
+
+```vue preview
+<script lang="ts" setup>
+import { ref } from "vue";
+import { VButton, VPageHeader, VTabbar } from "@halo-dev/components";
+
+const activeId = ref("desktop");
+
+const items = [
+  { id: "desktop", label: "桌面端" },
+  { id: "tablet", label: "平板" },
+  { id: "mobile", label: "移动端" },
+];
+</script>
+
+<template>
+  <VPageHeader title="编辑仪表盘">
+    <template #center>
+      <VTabbar v-model:active-id="activeId" :items="items" type="outline" />
+    </template>
+    <template #actions>
+      <VButton size="sm" type="primary">保存</VButton>
+    </template>
+  </VPageHeader>
+</template>
+```
+
 ### 加载状态
 
 `loading` 用骨架替换标题和副标题，同时在根元素上设置 `aria-busy`，并让操作区域变为不可交互：`#actions` 中的内容会降为半透明、不再响应点击，也不会进入键盘焦点顺序。
@@ -162,17 +192,18 @@ import { VPageHeader } from "@halo-dev/components";
 
 ## Slots
 
-| 插槽       | 说明                                                        |
-| ---------- | ----------------------------------------------------------- |
-| `icon`     | 标题前的图标，图标外层固定为 `1.25rem` 字号，与标题字号对齐 |
-| `title`    | 替换 `title` 文字渲染的标题内容，从 2.28.0 开始支持         |
-| `subtitle` | 替换 `subtitle` 文字渲染的副标题内容，从 2.28.0 开始支持    |
-| `tags`     | 标题右侧的标签区域，与标题同一行显示，从 2.28.0 开始支持    |
-| `actions`  | 右侧操作区域                                                |
+| 插槽       | 说明                                                                |
+| ---------- | ------------------------------------------------------------------- |
+| `icon`     | 标题前的图标，图标外层固定为 `1.25rem` 字号，与标题字号对齐         |
+| `title`    | 替换 `title` 文字渲染的标题内容，从 2.28.0 开始支持                 |
+| `subtitle` | 替换 `subtitle` 文字渲染的副标题内容，从 2.28.0 开始支持            |
+| `tags`     | 标题右侧的标签区域，与标题同一行显示，从 2.28.0 开始支持            |
+| `center`   | 页头中间的内容，宽度不小于 640px 时对齐页头中线，从 2.28.0 开始支持 |
+| `actions`  | 右侧操作区域                                                        |
 
 ## 响应式
 
-窗口宽度小于 640px 时，操作区域会移到标题下方单独占一行并左对齐；标题和图标始终保留在上方一行。
+窗口宽度小于 640px 时，标题和操作区域默认保持在同一行，只有在操作区域放不下时才换到标题下方单独一行并保持右对齐。没有 `actions` 插槽内容时不会渲染空的 `actions` 容器，标题因此在垂直方向保持居中。
 
 ## 无障碍
 
