@@ -93,6 +93,12 @@ Console 和用户中心的发布时间、个人访问令牌过期时间等输入
 
 组件基于 Reka UI 的 Dialog 原语构建（Reka UI 没有独立的 Drawer 原语），提供遮罩点击、Esc、关闭按钮和异步 `beforeClose` 组成的关闭流程，焦点陷阱与关闭后的焦点还原由 Reka UI 负责。`VModal` 保持不变，居中的对话框仍使用它；已有用法无需修改。详细文档请参考[抽屉](./api-reference/ui/base-components/drawer.md)。
 
+### 新增骨架屏组件
+
+从 Halo 2.28.0 开始，`@halo-dev/components` 新增 `VSkeleton` 和 `VSkeletonText`，用于在数据加载时展示内容轮廓。`VSkeleton` 支持 `rect`、`text`、`circle` 三种形状，`shimmer`、`pulse`、`none` 三种动画，`width`、`height` 接受像素数字或 CSS 长度，可通过 `as` 指定根元素；默认样式使用零特异性选择器，普通 Tailwind 类即可覆盖尺寸和圆角。`VSkeletonText` 在其上组合出多行文字占位，支持行数、逐行宽度和行距。骨架块对辅助技术隐藏，并遵循系统的「减弱动态效果」设置。详细文档请参考[骨架屏](./api-reference/ui/base-components/skeleton.md)。
+
+行为变化：`VPageHeader` 的加载骨架改用 `VSkeleton` 渲染，`--page-header-skeleton` 和 `--page-header-skeleton-highlight` 两个 CSS 变量随之移除，原先覆盖这两个变量的样式需要改为覆盖 `--v-skeleton-bg` 和 `--v-skeleton-highlight`；`loading` 的视觉效果与之前一致。
+
 ### 组件库内置文案跟随界面语言
 
 从 Halo 2.28.0 开始，`@halo-dev/components` 的内置文案（分页、表格、确认框、抽屉、标签栏、筛选和日期选择等）跟随 Console 和用户中心的语言，不再固定为中文或英文。组件属性未显式传入文案时使用内置文案，传入时仍然优先。

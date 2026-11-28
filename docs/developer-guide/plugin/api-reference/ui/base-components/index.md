@@ -44,6 +44,7 @@ import { VButton } from "@halo-dev/components";
 | [头像 VAvatar](./avatar.md)               | 用户或应用头像，支持头像组         |
 | [空状态 VEmpty](./empty.md)               | 无数据时的占位提示                 |
 | [加载中 VLoading](./loading.md)           | 加载动画                           |
+| [骨架屏 VSkeleton](./skeleton.md)         | 加载占位，支持文字、头像与卡片轮廓 |
 | [提示 VAlert](./alert.md)                 | 页面内提示信息                     |
 | [开关 VSwitch](./switch.md)               | 开关选择器                         |
 | [日期选择 VDatePicker](./date-picker.md)  | 选择日期、日期时间与日期范围       |
