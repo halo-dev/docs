@@ -9,6 +9,7 @@ description: Halo 商城主题开发相关的 Finder 返回结构、商品永久
 
 - 商品支持标签：商品响应新增 `tags`（`id`、`name`、`slug`），`/shop/products` 与 `productFinder.list` 新增 `tag` 筛选参数，`/shop/products` 页面新增 `tagOptions` 变量。
 - 标签筛选在多个标签之间是“或”的关系，与其他筛选条件是“且”的关系。
+- 新增主题端 `productTagFinder`，可通过 `productTagFinder.list({page, size})` 分页获取已发布商品的标签及对应商品数量。
 
 ## Halo 商城版 2.27
 
